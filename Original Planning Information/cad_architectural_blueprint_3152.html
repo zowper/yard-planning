@@ -178,11 +178,11 @@
           <button onclick="toggleLayer('fence')" id="layer-fence" class="layer-pill px-2 py-1 rounded-md text-[11px] font-medium bg-purple-500/20 text-purple-300 border border-purple-500/40" title="Toggle Side Yard Fence & Gate Plan">
             Fence Plan
           </button>
-          <button onclick="toggleLayer('garden')" id="layer-garden" class="layer-pill px-2 py-1 rounded-md text-[11px] font-medium bg-lime-500/20 text-lime-300 border border-lime-500/40" title="Toggle 6'×3' Raised Garden Bed Layouts">
-            Garden Boxes (7)
+          <button onclick="toggleLayer('garden')" id="layer-garden" class="layer-pill px-2 py-1 rounded-md text-[11px] font-medium bg-lime-500/20 text-lime-300 border border-lime-500/40" title="Toggle 5× 3'×6' North Fence Planters & Garden Bed Layouts">
+            Planters (5× 3'×6')
           </button>
-          <button onclick="toggleLayer('paverEdging')" id="layer-paverEdging" class="layer-pill px-2 py-1 rounded-md text-[11px] font-medium bg-teal-500/20 text-teal-300 border border-teal-500/40" title="Toggle 6-Inch Flush Paver Edging, 45° Chamfered Corners & 2.0' Foundation Drip Buffer">
-            6" Paver Edging (45°)
+          <button onclick="toggleLayer('paverEdging')" id="layer-paverEdging" class="layer-pill px-2 py-1 rounded-md text-[11px] font-medium bg-teal-500/20 text-teal-300 border border-teal-500/40" title="Toggle 6-Inch Flush Paver Edging, 45° Chamfered Corners, 4' W / 2' S / 8.5' N Backyard Beds & 2' Front Yard Beds">
+            Beds & 6" Pavers (45°)
           </button>
           <button onclick="toggleLayer('grid')" id="layer-grid" class="layer-pill px-2 py-1 rounded-md text-[11px] font-medium bg-slate-700/60 text-slate-300 border border-slate-600" title="Toggle 1-Ft / 5-Ft Engineering Grid">
             1'/5' Grid
@@ -209,15 +209,18 @@
 
         <!-- Sub-selector for Garden Bed Layout when Garden Layer is active -->
         <div id="garden-options-bar" class="flex items-center gap-1 pl-2 border-l border-slate-700 text-[11px]">
-          <span class="text-lime-300 font-mono-cad text-[10px]">Garden (7× 6'×3'):</span>
-          <button onclick="setGardenMode('PROPOSED_UTAH')" id="garden-mode-utah" class="px-1.5 py-0.5 rounded bg-lime-600 text-white font-mono-cad text-[10px]" title="Your Proposed 7-Box Layout: 2 N-S boxes North of Patio + 5 N-S boxes along North Fence (Leaves 4.5' Window Well clearance & 5.5' at NW corner)">
-            Your "Utah" (2 Patio + 5 N. Fence)
+          <span class="text-lime-300 font-mono-cad text-[10px]">Planters:</span>
+          <button onclick="setGardenMode('FIVE_NORTH_85')" id="garden-mode-five" class="px-1.5 py-0.5 rounded bg-lime-600 text-white font-mono-cad text-[10px]" title="Master Plan: 5 N–S Planters (3'W × 6'D) along North Backyard Fence with 1' space N & S (8.0' bed + 6&quot; pavers = 8.5' total to grass)">
+            ★ 5 N. Fence (8.5' to Grass)
           </button>
-          <button onclick="setGardenMode('COURTYARD_PRO')" id="garden-mode-courtyard" class="px-1.5 py-0.5 rounded bg-slate-800 text-slate-400 hover:text-white font-mono-cad text-[10px]" title="Gate-Clear Courtyard: Moves the 5th North box to the sunny West Wall (2 Patio + 4 N. Fence + 1 W. Wall) to open a 10.2' Vehicle Gate drive-through!">
-            ★ Gate-Clear Utah (2 + 4 + 1)
+          <button onclick="setGardenMode('PROPOSED_UTAH')" id="garden-mode-utah" class="px-1.5 py-0.5 rounded bg-slate-800 text-slate-400 hover:text-white font-mono-cad text-[10px]" title="7-Box Utah Layout: 2 N-S boxes North of Patio + 5 N-S boxes along North Fence">
+            7-Box Utah (2+5)
           </button>
-          <button onclick="setGardenMode('PERIMETER_L')" id="garden-mode-perimeter" class="px-1.5 py-0.5 rounded bg-slate-800 text-slate-400 hover:text-white font-mono-cad text-[10px]" title="Full-Sun NW Wall L: 4 N-S boxes along North Fence + 3 along West Wall (100% out of 2-story house shadow & leaves Patio-North open)">
-            Sunny NW Wall L (4 N + 3 W)
+          <button onclick="setGardenMode('COURTYARD_PRO')" id="garden-mode-courtyard" class="px-1.5 py-0.5 rounded bg-slate-800 text-slate-400 hover:text-white font-mono-cad text-[10px]" title="7-Box Courtyard: 2 Patio + 4 N. Fence + 1 W. Wall">
+            7-Box Gate-Clear (2+4+1)
+          </button>
+          <button onclick="setGardenMode('PERIMETER_L')" id="garden-mode-perimeter" class="px-1.5 py-0.5 rounded bg-slate-800 text-slate-400 hover:text-white font-mono-cad text-[10px]" title="7-Box Perimeter L: 4 N-S boxes along North Fence + 3 along West Wall">
+            7-Box L (4N+3W)
           </button>
         </div>
       </div>
@@ -278,7 +281,7 @@
     </main>
 
     <!-- RIGHT SIDEBAR: MASTER RECONCILED MEASUREMENT TABLE & INSPECTOR -->
-    <aside id="sidebar-drawer" class="no-print w-full sm:w-96 lg:w-[410px] bg-slate-900 border-l border-slate-800 flex flex-col shrink-0 z-30 absolute lg:static inset-y-0 right-0 transform translate-x-full lg:translate-x-0 transition-transform duration-200 shadow-2xl lg:shadow-none">
+    <aside id="sidebar-drawer" class="no-print w-full sm:w-96 lg:w-[410px] bg-slate-900 border-l border-slate-800 flex flex-col shrink-0 z-30 absolute lg:static inset-y-0 right-0 transform translate-x-full lg:hidden transition-transform duration-200 shadow-2xl lg:shadow-none">
 
       <!-- Sidebar Header -->
       <div class="p-3.5 border-b border-slate-800 flex items-center justify-between bg-slate-900/95">
@@ -423,7 +426,7 @@
       isPanning: false,
       startPanX: 0,
       startPanY: 0,
-      sidebarOpen: true
+      sidebarOpen: false
     };
 
     // Theme Color Palettes

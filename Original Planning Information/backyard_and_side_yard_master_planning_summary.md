@@ -161,18 +161,23 @@ project_context:
 
 design_decisions:
   side_yard_fencing:
-    recommended_strategy: "Relative Symmetry (2 to 4 ft setback from each side's respective front corner)"
-    target_left_setback_ft: 3.0
-    target_right_setback_ft: 3.0
-    enclosed_left_length_ft: 40.2
-    enclosed_right_length_ft: 27.0
-    enclosed_left_area_sqft: 361.8
-    enclosed_right_area_sqft: 243.0
-    total_enclosed_side_area_sqft: 604.8
+    recommended_strategy: "Relative Symmetry (3.2 ft North setback at wx=70.0' behind 2.0' stone wrap; 2.2 ft South stucco setback at wx=57.5' enclosing meters)"
+    target_north_setback_ft: 3.2
+    target_south_setback_ft: 2.2
+    enclosed_north_length_ft: 40.0
+    enclosed_south_length_ft: 27.5
+    enclosed_north_area_sqft: 360.0
+    enclosed_south_area_sqft: 247.5
+    total_enclosed_side_area_sqft: 607.5
+    total_fence_linear_ft: 145.5
     key_constraints:
-      - "Avoid 0 ft flush mount due to corner trim, masonry return (12-24 in), and downspout splash blocks."
-      - "Avoid street-line alignment (16.2 ft left setback) to prevent losing 118.8 sq ft of garage-side storage/pad space."
-      - "Verify gas/electric meter locations and place fence 6 in behind meters if located near front corner."
+      - "Avoid 0 ft flush mount due to corner trim, masonry return (24 in on North garage corner), and downspout splash blocks."
+      - "Avoid street-line alignment to prevent losing garage-side storage/trailer pad space."
+      - "South gate at wx=57.5' sits on flat stucco 2.2' West of SE corner, enclosing gas/electric meters (wx=51.0'-54.5') behind the gate."
+  lawn_edging_and_transitions:
+    style: "Straight 6-inch wide flush paver edging with 45-degree chamfered corners (NO curvy / S-curve edging)"
+    foundation_buffer: "2.0 ft straight rock/mulch drip buffer along vertical stucco house walls (enclosing the 4.0'x1.3' rear basement window well)"
+    flat_concrete_edges: "Flat poured concrete slabs (patio, porch walkway, driveway, sidewalk) act directly as flush mower edges without redundant pavers"
   fire_pit_placement:
     fuel_type: "Propane (20 lb concealed tank or natural gas conversion)"
     recommended_location: "Existing Patio (Zone 2 Lounge) or Connected Patio Corner Bump-Out"
@@ -184,4 +189,10 @@ design_decisions:
       required_seating_circle_diameter_ft: 13.5
       required_corner_fence_clearance_center_ft: 9.5
       lawn_area_lost_sqft: 150.0
+  website_presentation:
+    style: "Ultra-minimalist visual demonstration (index.html)"
+    guidelines:
+      - "Keep index.html stripped of heavy text, paragraphs, and long tables."
+      - "Demonstrate what we want visually via concise spec pills, the interactive 2D CAD blueprint, target AI concept renders, and the current-yard photo grid."
+      - "Store all detailed narrative specifications, decision trade-offs, and measurement tables in the repository's Markdown files."
 ```

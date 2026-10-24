@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Lot 3152 — Master Yard Planning & Decision Hub (Jared & Melinda)</title>
+  <title>Lot 3152 — Yard Plan</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
   <style>
     :root {
       --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
@@ -21,1062 +21,249 @@
     .font-mono-code {
       font-family: var(--font-mono);
     }
-    .option-card {
-      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-    .option-card.selected {
-      border-color: #059669;
-      background-color: #ecfdf5;
-      box-shadow: 0 0 0 2px #059669, 0 10px 15px -3px rgba(5, 150, 105, 0.12);
-    }
-    /* Custom subtle scrollbars */
-    ::-webkit-scrollbar {
-      width: 8px;
-      height: 8px;
-    }
-    ::-webkit-scrollbar-track {
-      background: #f1f5f9;
-    }
-    ::-webkit-scrollbar-thumb {
-      background: #94a3b8;
-      border-radius: 4px;
-    }
-    ::-webkit-scrollbar-thumb:hover {
-      background: #64748b;
-    }
   </style>
 </head>
 <body class="min-h-screen flex flex-col bg-slate-50 text-slate-900">
 
-  <!-- Sticky Top Navigation Bar -->
-  <header class="sticky top-0 z-40 bg-white/95 backdrop-blur border-b border-slate-200 shadow-sm">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-4">
-      <div class="flex items-center gap-3">
-        <div class="w-10 h-10 rounded-xl bg-emerald-700 text-white flex items-center justify-center font-bold font-mono-code text-sm shadow-sm">
+  <!-- Minimal Header -->
+  <header class="sticky top-0 z-40 bg-white/95 backdrop-blur border-b border-slate-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 h-14 flex items-center justify-between">
+      <div class="flex items-center gap-2.5">
+        <span class="w-8 h-8 rounded-lg bg-emerald-700 text-white flex items-center justify-center font-bold font-mono-code text-xs">
           3152
-        </div>
-        <div>
-          <div class="flex items-center gap-2">
-            <h1 class="font-bold text-slate-900 text-base sm:text-lg tracking-tight">Lot 3152 Master Yard Plan</h1>
-            <span class="hidden md:inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-emerald-100 text-emerald-800 border border-emerald-300">
-              Jared &amp; Melinda Decision Hub
-            </span>
-          </div>
-          <p class="text-xs text-slate-600 hidden sm:block">
-            Front Yard &middot; North &amp; South Side Yards &middot; Backyard &amp; Patio &middot; Park Strips
-          </p>
-        </div>
+        </span>
+        <span class="font-bold text-slate-900 text-sm sm:text-base tracking-tight">Yard Plan</span>
       </div>
 
-      <nav class="hidden lg:flex items-center gap-1 text-sm font-semibold text-slate-700">
-        <a href="#zones" class="px-3 py-2 rounded-lg hover:bg-slate-100 hover:text-emerald-700 transition">Yard Zones</a>
-        <a href="#blueprint" class="px-3 py-2 rounded-lg hover:bg-slate-100 hover:text-emerald-700 transition">Interactive CAD</a>
-        <a href="#decisions" class="px-3 py-2 rounded-lg hover:bg-slate-100 hover:text-emerald-700 transition">Melinda's Decision Guide</a>
-        <a href="#concepts" class="px-3 py-2 rounded-lg hover:bg-slate-100 hover:text-emerald-700 transition">AI Concepts</a>
-        <a href="#current-photos" class="px-3 py-2 rounded-lg hover:bg-slate-100 hover:text-emerald-700 transition">30 Site Photos</a>
-        <a href="#measurements" class="px-3 py-2 rounded-lg hover:bg-slate-100 hover:text-emerald-700 transition">44 Measurements &amp; Docs</a>
-      </nav>
-
-      <div class="flex items-center gap-2">
+      <nav class="flex items-center gap-1 sm:gap-2 text-xs sm:text-sm font-semibold text-slate-700">
+        <a href="#concepts" class="px-2.5 py-1.5 rounded-lg hover:bg-slate-100 transition">Concepts</a>
+        <a href="#blueprint" class="px-2.5 py-1.5 rounded-lg hover:bg-slate-100 transition">2D Plan</a>
+        <a href="#photos" class="px-2.5 py-1.5 rounded-lg hover:bg-slate-100 transition">Current Photos</a>
         <a href="Original%20Planning%20Information/cad_architectural_blueprint_3152.html" target="_blank"
-           class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-lg text-xs sm:text-sm font-semibold bg-emerald-700 text-white hover:bg-emerald-800 shadow-sm transition">
-          <span>Open Fullscreen CAD</span>
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+           class="ml-1 inline-flex items-center gap-1 px-3 py-1.5 rounded-lg text-xs font-bold bg-emerald-700 text-white hover:bg-emerald-800 transition">
+          <span>CAD</span>
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
         </a>
-      </div>
+      </nav>
     </div>
   </header>
 
-  <!-- Hero Banner -->
-  <section class="bg-gradient-to-b from-slate-100 via-white to-slate-50 border-b border-slate-200 py-8 sm:py-12">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-        <div class="lg:col-span-7 space-y-4">
-          <div class="inline-flex flex-wrap items-center gap-2">
-            <span class="px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-emerald-100 text-emerald-900 border border-emerald-300">
-              Whole-Property Landscape Scope
-            </span>
-            <span class="px-3 py-1 rounded-full text-xs font-semibold bg-slate-200 text-slate-800">
-              50.0' W &times; 96.7' D (108.7' to Curb)
-            </span>
-            <span class="px-3 py-1 rounded-full text-xs font-semibold bg-amber-100 text-amber-900 border border-amber-300">
-              Compass: Front Faces East &middot; Backyard Faces West
-            </span>
-          </div>
-          <h2 class="text-2xl sm:text-4xl font-extrabold text-slate-900 tracking-tight leading-tight">
-            Complete Yard Master Plan: Front Yard, Side Yards, Backyard &amp; Park Strips
-          </h2>
-          <p class="text-slate-700 text-base sm:text-lg leading-relaxed">
-            Everything we have measured, modeled, and rendered for Lot 3152 in one interactive hub so <strong>Jared &amp; Melinda</strong> can review options side-by-side, inspect the interactive CAD blueprint, compare AI concept renders against current site photos, and lock in decisions for each zone of the property.
-          </p>
-          <div class="flex flex-wrap gap-3 pt-2">
-            <a href="#decisions" class="px-5 py-2.5 rounded-xl font-bold text-sm bg-emerald-700 text-white hover:bg-emerald-800 shadow transition">
-              Review 6 Key Decisions Together &rarr;
-            </a>
-            <a href="#blueprint" class="px-5 py-2.5 rounded-xl font-bold text-sm bg-white text-slate-900 border-2 border-slate-300 hover:border-emerald-600 hover:text-emerald-800 transition">
-              Explore Interactive CAD Blueprint
-            </a>
-            <a href="#concepts" class="px-5 py-2.5 rounded-xl font-bold text-sm bg-slate-200 text-slate-900 hover:bg-slate-300 transition">
-              View AI Renders &amp; Photos
-            </a>
-          </div>
-        </div>
+  <!-- Minimal Target Spec Pills -->
+  <section class="bg-white border-b border-slate-200 py-3">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 flex flex-wrap items-center justify-center sm:justify-between gap-2">
+      <div class="flex flex-wrap items-center gap-1.5 text-xs font-semibold">
+        <span class="px-2.5 py-1 rounded-full bg-emerald-100 text-emerald-900 border border-emerald-300">Max Open Grass</span>
+        <span class="px-2.5 py-1 rounded-full bg-teal-100 text-teal-900 border border-teal-300">6" Flush Pavers &middot; 45&deg; Corners</span>
+        <span class="px-2.5 py-1 rounded-full bg-slate-100 text-slate-800 border border-slate-300">2' Foundation Buffer</span>
+        <span class="px-2.5 py-1 rounded-full bg-amber-100 text-amber-900 border border-amber-300">7 Cedar Beds (6'&times;3')</span>
+        <span class="px-2.5 py-1 rounded-full bg-rose-100 text-rose-900 border border-rose-300">Patio Fire Table</span>
+        <span class="px-2.5 py-1 rounded-full bg-blue-100 text-blue-900 border border-blue-300">145.5' Vinyl Fence</span>
+      </div>
+      <span class="text-xs font-mono-code font-semibold text-slate-500 hidden xl:inline">50.0' &times; 96.7' Lot</span>
+    </div>
+  </section>
 
-        <!-- Quick Property KPI Strip -->
-        <div class="lg:col-span-5 grid grid-cols-2 sm:grid-cols-2 gap-3">
-          <div class="bg-white p-4 rounded-2xl border border-slate-200 shadow-sm">
-            <div class="text-xs font-bold uppercase tracking-wider text-slate-500">Total Lot Footprint</div>
-            <div class="text-2xl font-extrabold text-slate-900 font-mono-code mt-1">4,835 sq ft</div>
-            <div class="text-xs text-slate-600 mt-1">50.0' N–S &times; 96.7' to Sidewalk (108.7' to Street Curb)</div>
-          </div>
-          <div class="bg-white p-4 rounded-2xl border border-slate-200 shadow-sm">
-            <div class="text-xs font-bold uppercase tracking-wider text-emerald-700">Total Unpaved Yard</div>
-            <div class="text-2xl font-extrabold text-emerald-800 font-mono-code mt-1">2,709.8 sq ft</div>
-            <div class="text-xs text-slate-600 mt-1">1,845.0 sq ft Inside Gates + 864.8 sq ft Front &amp; Strips</div>
-          </div>
-          <div class="bg-white p-4 rounded-2xl border border-slate-200 shadow-sm">
-            <div class="text-xs font-bold uppercase tracking-wider text-blue-700">Perimeter Vinyl Fence</div>
-            <div class="text-2xl font-extrabold text-blue-900 font-mono-code mt-1">145.5 lin ft</div>
-            <div class="text-xs text-slate-600 mt-1">70.0' N + 57.5' S + 18.0' Gates (Vehicle + Walk Gate)</div>
-          </div>
-          <div class="bg-white p-4 rounded-2xl border border-slate-200 shadow-sm">
-            <div class="text-xs font-bold uppercase tracking-wider text-amber-800">Raised Garden Boxes</div>
-            <div class="text-2xl font-extrabold text-amber-900 font-mono-code mt-1">126.0 sq ft</div>
-            <div class="text-xs text-slate-600 mt-1">7 Cedar Boxes @ 6.0' &times; 3.0' (18 sq ft each, N–S oriented)</div>
-          </div>
+  <!-- 1. Visual Concepts (What We Want) -->
+  <section id="concepts" class="py-8 max-w-7xl mx-auto px-4 sm:px-6 w-full">
+    <div class="flex items-center justify-between mb-4">
+      <h2 class="text-lg font-bold text-slate-900">Target Design</h2>
+      <button id="toggle-baseline-btn" onclick="toggleBaselineCompare()"
+              class="px-3 py-1 rounded-lg text-xs font-bold bg-slate-200 text-slate-900 hover:bg-slate-300 transition">
+        Show Before / Baseline
+      </button>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <!-- Card 1: Backyard & Patio Fire Table -->
+      <div class="group relative rounded-2xl overflow-hidden bg-slate-200 border border-slate-200 shadow-sm cursor-pointer aspect-[16/10]"
+           onclick="openConceptCard1()">
+        <img id="concept-1-img"
+             src="photos_backyard_ideas/5e639ba7-a34e-49bf-b2cc-13d6a92536ff.jpeg"
+             alt="Backyard & Patio Fire Table"
+             class="w-full h-full object-cover group-hover:scale-105 transition duration-300" />
+        <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-slate-950/80 via-slate-950/30 to-transparent p-3.5 flex items-center justify-between">
+          <span id="concept-1-label" class="text-xs sm:text-sm font-bold text-white">Backyard &middot; Patio Fire Table &amp; Flush Steppers</span>
+          <span class="px-2 py-0.5 rounded text-[11px] font-bold bg-emerald-700 text-white">View</span>
+        </div>
+      </div>
+
+      <!-- Card 2: Pergola & Raised Cedar Beds -->
+      <div class="group relative rounded-2xl overflow-hidden bg-slate-200 border border-slate-200 shadow-sm cursor-pointer aspect-[16/10]"
+           onclick="openLightbox('photos_backyard_ideas/Gemini_Generated_Image_qtuyw2qtuyw2qtuy%20(2).jpg', 'Backyard · Pergola & Raised Cedar Beds')">
+        <img src="photos_backyard_ideas/Gemini_Generated_Image_qtuyw2qtuyw2qtuy%20(2).jpg"
+             alt="Pergola & Raised Cedar Beds"
+             class="w-full h-full object-cover group-hover:scale-105 transition duration-300" />
+        <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-slate-950/80 via-slate-950/30 to-transparent p-3.5 flex items-center justify-between">
+          <span class="text-xs sm:text-sm font-bold text-white">Backyard &middot; Pergola &amp; Raised Cedar Beds</span>
+          <span class="px-2 py-0.5 rounded text-[11px] font-bold bg-emerald-700 text-white">View</span>
+        </div>
+      </div>
+
+      <!-- Card 3: South Side Yard Flagstone & AC Screen -->
+      <div class="group relative rounded-2xl overflow-hidden bg-slate-200 border border-slate-200 shadow-sm cursor-pointer aspect-[16/10]"
+           onclick="openLightbox('photos_backyard_ideas/Gemini_Generated_Image_88m5un88m5un88m5.jpg', 'South Side · Flagstone Path & AC Screen')">
+        <img src="photos_backyard_ideas/Gemini_Generated_Image_88m5un88m5un88m5.jpg"
+             alt="South Side Yard Flagstone Path & AC Screen"
+             class="w-full h-full object-cover group-hover:scale-105 transition duration-300" />
+        <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-slate-950/80 via-slate-950/30 to-transparent p-3.5 flex items-center justify-between">
+          <span class="text-xs sm:text-sm font-bold text-white">South Side &middot; Flagstone Path &amp; AC Screen</span>
+          <span class="px-2 py-0.5 rounded text-[11px] font-bold bg-emerald-700 text-white">View</span>
+        </div>
+      </div>
+
+      <!-- Card 4: Front Yard & Side Gates -->
+      <div class="group relative rounded-2xl overflow-hidden bg-slate-200 border border-slate-200 shadow-sm cursor-pointer aspect-[16/10]"
+           onclick="openLightbox('photos_backyard_ideas/Gemini_Generated_Image_wk5if6wk5if6wk5i.jpg', 'Front Yard · Open Lawn & Side Gates')">
+        <img src="photos_backyard_ideas/Gemini_Generated_Image_wk5if6wk5if6wk5i.jpg"
+             alt="Front Yard & Side Gates"
+             class="w-full h-full object-cover group-hover:scale-105 transition duration-300" />
+        <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-slate-950/80 via-slate-950/30 to-transparent p-3.5 flex items-center justify-between">
+          <span class="text-xs sm:text-sm font-bold text-white">Front Yard &middot; Open Lawn &amp; Side Gates</span>
+          <span class="px-2 py-0.5 rounded text-[11px] font-bold bg-emerald-700 text-white">View</span>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- SECTION 1: ALL 4 YARD ZONES OVERVIEW -->
-  <section id="zones" class="py-12 border-b border-slate-200 bg-white">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4">
-        <div>
-          <span class="text-xs font-bold uppercase tracking-wider text-emerald-700">Complete Property Breakdown</span>
-          <h3 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-1">All 4 Yard Zones &amp; Reconciled Specs</h3>
-          <p class="text-sm sm:text-base text-slate-600 mt-1">
-            Covering the <strong>Backyard &amp; Patio</strong>, <strong>North &amp; South Side Yards</strong>, <strong>Front Yard</strong>, and <strong>Street Park Strips</strong>.
-          </p>
-        </div>
-        <div class="bg-slate-100 border border-slate-300 rounded-xl px-4 py-2.5 text-xs text-slate-700 font-medium">
-          <div><strong>Compass Reference:</strong> Standing in the street looking at the house = Looking <strong>West</strong></div>
-          <div><strong>Right Side (Garage):</strong> North (<code class="font-mono-code">Y = 0' to 9'</code>) &middot; <strong>Left Side (Porch):</strong> South (<code class="font-mono-code">Y = 41' to 50'</code>)</div>
-        </div>
-      </div>
+  <!-- 2. Interactive 2D CAD Blueprint -->
+  <section id="blueprint" class="py-6 max-w-7xl mx-auto px-4 sm:px-6 w-full">
+    <div class="flex items-center justify-between mb-3">
+      <h2 class="text-lg font-bold text-slate-900">2D Layout</h2>
+      <a href="Original%20Planning%20Information/cad_architectural_blueprint_3152.html" target="_blank"
+         class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold bg-emerald-700 text-white hover:bg-emerald-800 transition">
+        <span>Fullscreen CAD</span>
+        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+      </a>
+    </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <!-- Zone Card 1: Backyard & Patio -->
-        <div class="rounded-2xl border-2 border-emerald-200 bg-emerald-50/40 p-6 flex flex-col justify-between">
-          <div>
-            <div class="flex items-center justify-between gap-2 mb-3">
-              <span class="px-3 py-1 rounded-lg text-xs font-bold bg-emerald-700 text-white">ZONE 1 &middot; WEST (REAR)</span>
-              <span class="font-mono-code text-xs font-bold text-emerald-900 bg-emerald-100 px-2.5 py-1 rounded border border-emerald-300">
-                X = 0.0' to 30.0' &middot; Y = 0.0' to 50.0'
-              </span>
-            </div>
-            <h4 class="text-xl font-bold text-slate-900">Backyard &amp; Concrete Patio (1,500.0 sq ft)</h4>
-            <p class="text-sm text-slate-700 mt-2">
-              50.0' wide &times; 30.0' deep rear yard backed by a 5-panel precast concrete privacy wall (10.0' center-to-center columns).
-            </p>
-            <ul class="mt-4 space-y-2 text-sm text-slate-800">
-              <li class="flex items-start gap-2">
-                <span class="font-bold text-emerald-700">&bull;</span>
-                <span><strong>Existing Concrete Patio:</strong> <code class="font-mono-code font-semibold">21.0' N–S &times; 12.5' E–W = 262.5 sq ft</code> (four 10.5' &times; 6.25' control-joint quadrants; South edge flush with SW house corner at <code class="font-mono-code">Y=41.0'</code>).</span>
-              </li>
-              <li class="flex items-start gap-2">
-                <span class="font-bold text-emerald-700">&bull;</span>
-                <span><strong>Unpaved Backyard Area:</strong> <code class="font-mono-code font-semibold">1,237.5 sq ft</code> (<code class="font-mono-code">17.5'</code> dirt depth from patio edge to West wall; <code class="font-mono-code">20.0'</code> open width North of patio).</span>
-              </li>
-              <li class="flex items-start gap-2">
-                <span class="font-bold text-emerald-700">&bull;</span>
-                <span><strong>Basement Egress Window Well:</strong> <code class="font-mono-code font-semibold">4.0' W &times; 1.3' D</code> metal grate on rear North wall (<code class="font-mono-code">Y=12.5'–16.5'</code>); garden boxes maintain <code class="font-mono-code">4.5'</code> safety clearance.</span>
-              </li>
-              <li class="flex items-start gap-2">
-                <span class="font-bold text-emerald-700">&bull;</span>
-                <span><strong>Key Features Planned:</strong> Pergola lounge + propane fire table on patio, 7 raised 6'&times;3' cedar garden boxes in NW sun zone, privacy planting along West wall, maximum open lawn.</span>
-              </li>
-            </ul>
-          </div>
-          <div class="mt-5 pt-4 border-t border-emerald-200 flex items-center justify-between text-xs font-semibold text-emerald-900">
-            <span>Net Plantable / Lawn / Garden Area: 1,237.5 sq ft</span>
-            <a href="#decisions" class="underline hover:text-emerald-700">See Backyard Decisions &darr;</a>
-          </div>
-        </div>
-
-        <!-- Zone Card 2: North & South Side Yards -->
-        <div class="rounded-2xl border-2 border-blue-200 bg-blue-50/40 p-6 flex flex-col justify-between">
-          <div>
-            <div class="flex items-center justify-between gap-2 mb-3">
-              <span class="px-3 py-1 rounded-lg text-xs font-bold bg-blue-800 text-white">ZONE 2 &middot; NORTH &amp; SOUTH CORRIDORS</span>
-              <span class="font-mono-code text-xs font-bold text-blue-900 bg-blue-100 px-2.5 py-1 rounded border border-blue-300">
-                Both 9.0' Wide Setbacks
-              </span>
-            </div>
-            <h4 class="text-xl font-bold text-slate-900">North &amp; South Side Yards (607.5 sq ft Enclosed)</h4>
-            <p class="text-sm text-slate-700 mt-2">
-              Asymmetrical house depth creates a deeper utility/trailer side yard on the North (garage side) and a shorter pedestrian walkway corridor on the South (porch side).
-            </p>
-            <ul class="mt-4 space-y-2 text-sm text-slate-800">
-              <li class="flex items-start gap-2">
-                <span class="font-bold text-blue-700">&bull;</span>
-                <span><strong>North Side Yard (Garage Side, <code class="font-mono-code">Y=0'–9'</code>):</strong> <code class="font-mono-code font-semibold">9.0' W &times; 43.2' D</code> (388.8 sq ft raw; <strong>360.0 sq ft enclosed</strong> behind gate at <code class="font-mono-code">X=70.0'</code>, set back 3.2' from NE corner behind 2.0' stone wrap). Includes water spigot (<code class="font-mono-code">X=51.0'</code>), trash bin storage &amp; <strong>8.5' Double-Swing Vehicle Gate</strong>.</span>
-              </li>
-              <li class="flex items-start gap-2">
-                <span class="font-bold text-blue-700">&bull;</span>
-                <span><strong>South Side Yard (Porch Side, <code class="font-mono-code">Y=41'–50'</code>):</strong> <code class="font-mono-code font-semibold">9.0' W &times; 29.7' D</code> (270.0 sq ft raw; <strong>247.5 sq ft enclosed</strong> behind gate at <code class="font-mono-code">X=57.5'</code>, set back 2.2' from SE stucco corner).</span>
-              </li>
-              <li class="flex items-start gap-2">
-                <span class="font-bold text-blue-700">&bull;</span>
-                <span><strong>South Utilities &amp; Clearances:</strong> Gas &amp; electric meters at <code class="font-mono-code">X=51.0'–54.5'</code> (enclosed inside gate!) and <code class="font-mono-code">3'&times;3'</code> AC condenser pad at <code class="font-mono-code">X=45.0'–48.0'</code> (leaves <strong>6.0' clear walkway</strong> + wood-slat screen).</span>
-              </li>
-            </ul>
-          </div>
-          <div class="mt-5 pt-4 border-t border-blue-200 flex items-center justify-between text-xs font-semibold text-blue-900">
-            <span>360.0 sq ft (North) + 247.5 sq ft (South) Inside Gates</span>
-            <a href="#decision-fence" class="underline hover:text-blue-700">See Gate &amp; Side Yard Options &darr;</a>
-          </div>
-        </div>
-
-        <!-- Zone Card 3: Front Yard & Covered Entry -->
-        <div class="rounded-2xl border-2 border-amber-200 bg-amber-50/40 p-6 flex flex-col justify-between">
-          <div>
-            <div class="flex items-center justify-between gap-2 mb-3">
-              <span class="px-3 py-1 rounded-lg text-xs font-bold bg-amber-800 text-white">ZONE 3 &middot; EAST (FRONT YARD)</span>
-              <span class="font-mono-code text-xs font-bold text-amber-900 bg-amber-100 px-2.5 py-1 rounded border border-amber-300">
-                X = 59.7' to 96.7'
-              </span>
-            </div>
-            <h4 class="text-xl font-bold text-slate-900">Front Yard, Driveway &amp; Covered Porch (813.5 sq ft Unpaved)</h4>
-            <p class="text-sm text-slate-700 mt-2">
-              Split by the 2-car concrete driveway and front entry walkway into the main SE front lawn/bed zone and the NE side-of-driveway strip.
-            </p>
-            <ul class="mt-4 space-y-2 text-sm text-slate-800">
-              <li class="flex items-start gap-2">
-                <span class="font-bold text-amber-700">&bull;</span>
-                <span><strong>SE Front Yard Lawn &amp; Bed Area (South of Driveway):</strong> <code class="font-mono-code font-semibold">555.0 sq ft</code> (<code class="font-mono-code">17.5'</code> wide along porch walkway widening to <code class="font-mono-code">21.0'</code> near sidewalk &times; <code class="font-mono-code">27.0'–37.0'</code> deep).</span>
-              </li>
-              <li class="flex items-start gap-2">
-                <span class="font-bold text-amber-700">&bull;</span>
-                <span><strong>Green Utility Transformer Box:</strong> <code class="font-mono-code font-semibold">3.5' &times; 3.0'</code> PacifiCorp box near sidewalk (<code class="font-mono-code">X=90.0', Y=39.5'</code>) — planned 3-sided ornamental grass screening while keeping front access clear.</span>
-              </li>
-              <li class="flex items-start gap-2">
-                <span class="font-bold text-amber-700">&bull;</span>
-                <span><strong>NE Front Strip (North of Driveway):</strong> <code class="font-mono-code font-semibold">11.0' W &times; 23.5' D = 258.5 sq ft</code> leading to the North double vehicle gate.</span>
-              </li>
-              <li class="flex items-start gap-2">
-                <span class="font-bold text-amber-700">&bull;</span>
-                <span><strong>Concrete Driveway &amp; Covered Porch:</strong> <code class="font-mono-code">18.0'</code> driveway + <code class="font-mono-code">3.5'</code> walkway panel (<code class="font-mono-code">21.5' &times; 23.5' = 505.3 sq ft</code>) + <code class="font-mono-code">6.0' D &times; 11.5' W</code> covered porch with <code class="font-mono-code">3152</code> stone pillar.</span>
-              </li>
-            </ul>
-          </div>
-          <div class="mt-5 pt-4 border-t border-amber-200 flex items-center justify-between text-xs font-semibold text-amber-900">
-            <span>555.0 sq ft SE Front Yard + 258.5 sq ft NE Strip</span>
-            <a href="#decision-front" class="underline hover:text-amber-800">See Front Yard Options &darr;</a>
-          </div>
-        </div>
-
-        <!-- Zone Card 4: Park Strips & Street Frontage -->
-        <div class="rounded-2xl border-2 border-purple-200 bg-purple-50/40 p-6 flex flex-col justify-between">
-          <div>
-            <div class="flex items-center justify-between gap-2 mb-3">
-              <span class="px-3 py-1 rounded-lg text-xs font-bold bg-purple-800 text-white">ZONE 4 &middot; STREET FRONTAGE &amp; PARK STRIPS</span>
-              <span class="font-mono-code text-xs font-bold text-purple-900 bg-purple-100 px-2.5 py-1 rounded border border-purple-300">
-                X = 96.7' to 108.7'
-              </span>
-            </div>
-            <h4 class="text-xl font-bold text-slate-900">6.0' Park Strips, Sidewalk &amp; Curb (12.0' Street Zone)</h4>
-            <p class="text-sm text-slate-700 mt-2">
-              The easternmost 12.0' of the property frontage between the front yard lot line (<code class="font-mono-code">X=96.7'</code>) and the street asphalt (<code class="font-mono-code">X=108.7'</code>).
-            </p>
-            <ul class="mt-4 space-y-2 text-sm text-slate-800">
-              <li class="flex items-start gap-2">
-                <span class="font-bold text-purple-700">&bull;</span>
-                <span><strong>City Concrete Sidewalk:</strong> <code class="font-mono-code font-semibold">4.0' Wide</code> (<code class="font-mono-code">X=96.7' to 100.7'</code>) running the full 50.0' N–S width.</span>
-              </li>
-              <li class="flex items-start gap-2">
-                <span class="font-bold text-purple-700">&bull;</span>
-                <span><strong>South Park Strip (Left of Driveway Flare):</strong> <code class="font-mono-code font-semibold">6.0' Deep &times; ~21.0' Long (~126 sq ft)</code> along the SE front lawn frontage (<code class="font-mono-code">X=100.7'–106.7', Y=29.0'–50.0'</code>).</span>
-              </li>
-              <li class="flex items-start gap-2">
-                <span class="font-bold text-purple-700">&bull;</span>
-                <span><strong>North Park Strip (Right of Driveway Flare):</strong> <code class="font-mono-code font-semibold">6.0' Deep &times; ~11.0' Long (~66 sq ft)</code> north of the driveway apron (<code class="font-mono-code">X=100.7'–106.7', Y=0.0'–11.0'</code>).</span>
-              </li>
-              <li class="flex items-start gap-2">
-                <span class="font-bold text-purple-700">&bull;</span>
-                <span><strong>Street Curb &amp; Gutter:</strong> <code class="font-mono-code font-semibold">2.0' Wide</code> (<code class="font-mono-code">X=106.7' to 108.7'</code>) with sloped driveway approach flares. Ideal for water-wise rock/boulder &amp; drip-irrigated ornamental grass/perennial park strip design.</span>
-              </li>
-            </ul>
-          </div>
-          <div class="mt-5 pt-4 border-t border-purple-200 flex items-center justify-between text-xs font-semibold text-purple-900">
-            <span>6.0' Deep Park Strip (Sidewalk to Curb)</span>
-            <a href="#decision-front" class="underline hover:text-purple-800">See Park Strip Options &darr;</a>
-          </div>
-        </div>
-      </div>
+    <div class="rounded-2xl overflow-hidden border border-slate-300 shadow-md bg-slate-950">
+      <iframe
+        src="Original%20Planning%20Information/cad_architectural_blueprint_3152.html"
+        title="Lot 3152 2D Blueprint"
+        class="w-full h-[640px] sm:h-[740px] border-0"
+        loading="lazy">
+      </iframe>
     </div>
   </section>
 
-  <!-- SECTION 2: INTERACTIVE CAD ARCHITECTURAL BLUEPRINT -->
-  <section id="blueprint" class="py-12 border-b border-slate-200 bg-slate-100">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
-        <div>
-          <span class="text-xs font-bold uppercase tracking-wider text-emerald-700">Interactive Engineering &amp; Layout Tool</span>
-          <h3 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-1">Live 2D CAD Architectural Blueprint</h3>
-          <p class="text-sm text-slate-700 mt-1">
-            Switch viewing orientation (<strong>West-Up Front View</strong>, <strong>North-Up Compass View</strong>, <strong>East-Up Door View</strong>), toggle the <strong>3 Garden Bed Layouts</strong>, compare <strong>Fence Setbacks</strong>, or use the <strong>Tape Measure Tool</strong> directly inside the blueprint below.
-          </p>
-        </div>
-        <div class="flex flex-wrap gap-2">
-          <a href="Original%20Planning%20Information/cad_architectural_blueprint_3152.html" target="_blank"
-             class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl font-bold text-sm bg-emerald-700 text-white hover:bg-emerald-800 shadow transition">
-            <span>Launch Fullscreen CAD Window</span>
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
-          </a>
-        </div>
+  <!-- 3. Current Property Photos -->
+  <section id="photos" class="py-8 max-w-7xl mx-auto px-4 sm:px-6 w-full">
+    <div class="flex flex-wrap items-center justify-between gap-2 mb-4">
+      <h2 class="text-lg font-bold text-slate-900">Current Yard</h2>
+      <div class="flex flex-wrap gap-1.5">
+        <button onclick="filterPhotos('ALL', this)" class="photo-filter-btn px-3 py-1 rounded-lg text-xs font-bold bg-emerald-700 text-white transition">
+          All (30)
+        </button>
+        <button onclick="filterPhotos('BACKYARD', this)" class="photo-filter-btn px-3 py-1 rounded-lg text-xs font-bold bg-slate-200 text-slate-800 hover:bg-slate-300 transition">
+          Backyard (13)
+        </button>
+        <button onclick="filterPhotos('FRONT_PARK', this)" class="photo-filter-btn px-3 py-1 rounded-lg text-xs font-bold bg-slate-200 text-slate-800 hover:bg-slate-300 transition">
+          Front (9)
+        </button>
+        <button onclick="filterPhotos('NORTH_SIDE', this)" class="photo-filter-btn px-3 py-1 rounded-lg text-xs font-bold bg-slate-200 text-slate-800 hover:bg-slate-300 transition">
+          North (5)
+        </button>
+        <button onclick="filterPhotos('SOUTH_SIDE', this)" class="photo-filter-btn px-3 py-1 rounded-lg text-xs font-bold bg-slate-200 text-slate-800 hover:bg-slate-300 transition">
+          South (3)
+        </button>
       </div>
+    </div>
 
-      <div class="rounded-2xl overflow-hidden border-2 border-slate-300 shadow-lg bg-slate-900">
-        <iframe
-          src="Original%20Planning%20Information/cad_architectural_blueprint_3152.html"
-          title="Lot 3152 Interactive CAD Architectural Blueprint"
-          class="w-full h-[680px] sm:h-[780px] border-0"
-          loading="lazy">
-        </iframe>
-      </div>
+    <div id="current-photos-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3">
+      <!-- Populated via JS -->
     </div>
   </section>
 
-  <!-- SECTION 3: JARED & MELINDA INTERACTIVE DECISION CENTER -->
-  <section id="decisions" class="py-12 border-b border-slate-200 bg-white">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex flex-col lg:flex-row lg:items-end justify-between mb-8 gap-4">
-        <div>
-          <span class="text-xs font-bold uppercase tracking-wider text-emerald-700">Interactive Decision Worksheet</span>
-          <h3 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-1">Melinda &amp; Jared's 6 Key Yard Decisions</h3>
-          <p class="text-sm sm:text-base text-slate-600 mt-1">
-            Click any option below to select your preference across all zones of the yard. Your selections save automatically in your browser and can be copied as a summary checklist.
-          </p>
-        </div>
-        <div class="flex flex-wrap items-center gap-2">
-          <button onclick="copyDecisionSummary()" class="px-4 py-2.5 rounded-xl font-bold text-sm bg-emerald-700 text-white hover:bg-emerald-800 shadow-sm transition">
-            Copy Selected Decisions Summary
-          </button>
-          <button onclick="resetDecisions()" class="px-4 py-2.5 rounded-xl font-semibold text-sm bg-slate-200 text-slate-800 hover:bg-slate-300 transition">
-            Reset to Recommended
-          </button>
-        </div>
-      </div>
-
-      <div id="copy-toast" class="hidden mb-6 p-4 rounded-xl bg-emerald-100 border border-emerald-400 text-emerald-950 font-semibold text-sm">
-        Copied your whole-yard decision summary to the clipboard!
-      </div>
-
-      <div class="space-y-8">
-
-        <!-- DECISION 1: 6" PAVER EDGING, 45° CORNERS & HOUSE-TO-GRASS TRANSITION -->
-        <div class="rounded-2xl border border-slate-200 bg-slate-50 p-6 shadow-sm">
-          <div class="flex flex-wrap items-center justify-between gap-2 mb-4">
-            <div>
-              <span class="px-2.5 py-1 rounded-md text-xs font-bold bg-emerald-100 text-emerald-900">DECISION 1 &middot; LAWN EDGING &amp; HOUSE TRANSITION (NO CURVY EDGING)</span>
-              <h4 class="text-xl font-bold text-slate-900 mt-1">Straight 6" Flush Paver Edging + 45&deg; Chamfered Corners &amp; House Wall Buffer</h4>
-            </div>
-            <span class="text-xs font-semibold text-emerald-800 bg-emerald-100 px-2.5 py-1 rounded border border-emerald-300">Shown Live in CAD Blueprint Above ("6&quot; Paver Edging 45&deg;")</span>
-          </div>
-
-          <div class="mb-4 p-4 rounded-xl bg-white border border-slate-200 text-xs sm:text-sm text-slate-700 space-y-2">
-            <div class="font-bold text-slate-900">Locked-In Lawn Perimeter Rules:</div>
-            <ul class="list-disc list-inside space-y-1">
-              <li><strong>Zero Curvy / S-Curve Edging:</strong> All lawn borders use clean, straight geometric runs.</li>
-              <li><strong>6-Inch Wide Flush Paver Edging (<code class="font-mono-code">0.5'</code> wide):</strong> Set soil-flush around the grass perimeter so the lawn mower wheel rides directly on the 6" paver strip (zero string-trimming along beds).</li>
-              <li><strong>45&deg; Paver Corners Everywhere:</strong> Every 90&deg; turf corner is replaced by a <strong>45&deg; chamfered paver corner</strong> (<code class="font-mono-code">2.0'&times;2.0'</code> diagonal transition) so the mower turns smoothly in one pass without backing up or scalping corners.</li>
-              <li><strong>Where Grass Meets Flat Concrete (Patio, Porch Walkway, Driveway, Sidewalk):</strong> <em>No extra pavers needed</em>—the flat poured concrete slab already acts as a built-in flush mower strip, avoiding a redundant "double-concrete" seam.</li>
-            </ul>
-          </div>
-
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-4" data-decision-group="track">
-            <div onclick="selectOption('track', '6\" Flush Paver Edging + 45° Paver Corners + 2.0\' Foundation Rock/Mulch Drip Buffer at House Walls (Recommended)', this)"
-                 class="option-card selected cursor-pointer rounded-xl border-2 p-5 bg-white">
-              <div class="flex items-center justify-between gap-2">
-                <span class="px-2.5 py-0.5 rounded text-xs font-bold bg-emerald-700 text-white">RECOMMENDED &middot; FOUNDATION DRIP BUFFER</span>
-                <span class="text-xs font-bold text-emerald-800">Protects Stucco &amp; Window Well</span>
-              </div>
-              <h5 class="text-lg font-bold text-slate-900 mt-2">2.0' Foundation Rock/Mulch Buffer + 6" Paver Edging</h5>
-              <p class="text-sm text-slate-700 mt-2">
-                Instead of putting grass + a 6" paver tight against the vertical stucco house walls, leave a <strong>2.0' straight rock/mulch buffer</strong> against the foundation, bordered by your <strong>6" flush paver edging + 45&deg; corners</strong>:
-              </p>
-              <ul class="mt-3 space-y-1 text-xs text-slate-700 list-disc list-inside">
-                <li><strong>Solves the 11.0' Rear Wall &amp; Window Well (<code class="font-mono-code">4.0'&times;1.3'</code>):</strong> A 2.0' rock buffer (<code class="font-mono-code">X=28.0'–30.0'</code>) completely encloses the <code class="font-mono-code">1.3'</code> deep metal window well grate and downspout so the 6" paver strip runs straight across without awkward notches!</li>
-                <li><strong>Mower Handlebar &amp; Stucco Clearance:</strong> A 6" strip right against a vertical wall is too narrow for a mower deck/handlebar (you'd scrape the stucco). A 2.0' buffer gives full knuckle &amp; mower clearance.</li>
-                <li><strong>Prevents Hard-Water Stains &amp; Basement Seepage:</strong> Keeps turf sprinklers 2 feet away from the stucco weep screed and basement window well.</li>
-              </ul>
-            </div>
-
-            <div onclick="selectOption('track', '6\" Flush Paver Edging + 45° Paver Corners Tight Against House Foundation Wall', this)"
-                 class="option-card cursor-pointer rounded-xl border-2 border-slate-200 p-5 bg-white hover:border-slate-300">
-              <div class="flex items-center justify-between gap-2">
-                <span class="px-2.5 py-0.5 rounded text-xs font-bold bg-slate-700 text-white">ALTERNATIVE &middot; PAVERS TIGHT TO WALL</span>
-                <span class="text-xs font-bold text-amber-800">Requires Window Well Notch</span>
-              </div>
-              <h5 class="text-lg font-bold text-slate-900 mt-2">6" Paver Strip Tight Against Stucco Foundation</h5>
-              <p class="text-sm text-slate-700 mt-2">
-                Runs turf all the way to a 6" paver strip laid directly against the vertical house foundation wall (on the 11.0' rear wall and front/side walls):
-              </p>
-              <ul class="mt-3 space-y-1 text-xs text-slate-700 list-disc list-inside">
-                <li><strong>Why It Can Look/Feel Pinched:</strong> A 6" paver against a vertical 2-story wall looks like a thin baseboard rather than an intentional architectural border, and must notch around the <code class="font-mono-code">4.0'&times;1.3'</code> basement window well grate.</li>
-                <li><strong>Mowing &amp; Water Tradeoff:</strong> Mower wheels can ride the 6" paver only if the handlebar leans away from the stucco wall, and lawn irrigation will hit the vertical stucco and window well.</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-
-        <!-- DECISION 2: RAISED GARDEN BED LAYOUT (7 BOXES) -->
-        <div class="rounded-2xl border border-slate-200 bg-slate-50 p-6 shadow-sm">
-          <div class="flex flex-wrap items-center justify-between gap-2 mb-4">
-            <div>
-              <span class="px-2.5 py-1 rounded-md text-xs font-bold bg-amber-100 text-amber-900">DECISION 2 &middot; NW BACKYARD GARDEN ZONE</span>
-              <h4 class="text-xl font-bold text-slate-900 mt-1">Raised Garden Bed Layout (7 Cedar Boxes @ 6.0' &times; 3.0' = 126 sq ft)</h4>
-            </div>
-            <span class="text-xs font-semibold text-slate-600">Test all 3 layouts live in the CAD Blueprint above!</span>
-          </div>
-          <div class="grid grid-cols-1 md:grid-cols-3 gap-4" data-decision-group="garden">
-            <div onclick="selectOption('garden', 'Option B: Gate-Clear Utah (2 Patio + 4 North Fence + 1 West Wall — 10.25 ft Gate Turnaround)', this)"
-                 class="option-card selected cursor-pointer rounded-xl border-2 p-5 bg-white">
-              <div class="flex items-center justify-between gap-2">
-                <span class="px-2.5 py-0.5 rounded text-xs font-bold bg-emerald-700 text-white">RECOMMENDED &middot; OPTION B</span>
-                <span class="text-xs font-mono-code font-bold text-emerald-800">10.25' Gate Clear</span>
-              </div>
-              <h5 class="text-base font-bold text-slate-900 mt-2">"Gate-Clear Utah" (2 Patio + 4 N. Fence + 1 W. Wall)</h5>
-              <p class="text-xs text-slate-700 mt-2 leading-relaxed">
-                Keeps <strong>2 boxes North of the patio</strong> (<code class="font-mono-code">4.5'</code> clear of basement window well) and <strong>4 boxes along the North fence</strong>, moving the 5th North box onto the sunny West precast wall. Opens a full <strong>10.25' wide turnaround</strong> at the NW house corner so trailers, ATVs, or wheelbarrows can drive straight through the North vehicle gate!
-              </p>
-            </div>
-
-            <div onclick="selectOption('garden', 'Option A: Your Utah Layout (2 Patio + 5 North Fence)', this)"
-                 class="option-card cursor-pointer rounded-xl border-2 border-slate-200 p-5 bg-white hover:border-slate-300">
-              <div class="flex items-center justify-between gap-2">
-                <span class="px-2.5 py-0.5 rounded text-xs font-bold bg-slate-700 text-white">OPTION A &middot; ORIGINAL</span>
-                <span class="text-xs font-mono-code font-bold text-amber-800">5.5' Corner Pinch</span>
-              </div>
-              <h5 class="text-base font-bold text-slate-900 mt-2">"Your Utah" (2 Patio + 5 North Fence)</h5>
-              <p class="text-xs text-slate-700 mt-2 leading-relaxed">
-                Places <strong>2 N–S boxes North of the patio</strong> and <strong>5 N–S boxes along the North fence</strong> (<code class="font-mono-code">1.75'</code> gaps). Preserves the entire West wall for trees/shrubs, but Box N5 extends to <code class="font-mono-code">X=24.5'</code>, leaving a <strong>5.5' diagonal pinch point</strong> at the NW house corner for vehicles entering the North gate.
-              </p>
-            </div>
-
-            <div onclick="selectOption('garden', 'Option C: Sunny NW Wall L-Layout (4 North Fence + 3 West Wall)', this)"
-                 class="option-card cursor-pointer rounded-xl border-2 border-slate-200 p-5 bg-white hover:border-slate-300">
-              <div class="flex items-center justify-between gap-2">
-                <span class="px-2.5 py-0.5 rounded text-xs font-bold bg-slate-700 text-white">OPTION C &middot; PERIMETER L</span>
-                <span class="text-xs font-mono-code font-bold text-blue-800">100% Full Sun</span>
-              </div>
-              <h5 class="text-base font-bold text-slate-900 mt-2">"Sunny NW Wall L" (4 N. Fence + 3 W. Wall)</h5>
-              <p class="text-xs text-slate-700 mt-2 leading-relaxed">
-                Hugs all 7 boxes along the NW perimeter walls (4 on North fence, 3 on West wall) in <strong>100% unobstructed southern/western sun</strong>. Leaves the entire area North of the patio (<code class="font-mono-code">20' &times; 12.5'</code>) completely open for lawn, play, and vehicle access.
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <!-- DECISION 3: PROPANE FIRE PIT PLACEMENT -->
-        <div class="rounded-2xl border border-slate-200 bg-slate-50 p-6 shadow-sm">
-          <div class="flex flex-wrap items-center justify-between gap-2 mb-4">
-            <div>
-              <span class="px-2.5 py-1 rounded-md text-xs font-bold bg-rose-100 text-rose-900">DECISION 3 &middot; FIRE FEATURE</span>
-              <h4 class="text-xl font-bold text-slate-900 mt-1">Propane Fire Pit Placement: Melinda's Patio Lounge vs. Yard Corner</h4>
-            </div>
-            <span class="text-xs font-semibold text-slate-600">21.0' &times; 12.5' Existing Concrete Patio (262.5 sq ft)</span>
-          </div>
-          <div class="grid grid-cols-1 md:grid-cols-3 gap-4" data-decision-group="firepit">
-            <div onclick="selectOption('firepit', 'Option A (Melinda\'s Idea): On Existing Patio — Zone 2 Lounge with Convertible Fire Table', this)"
-                 class="option-card selected cursor-pointer rounded-xl border-2 p-5 bg-white">
-              <div class="flex items-center justify-between gap-2">
-                <span class="px-2.5 py-0.5 rounded text-xs font-bold bg-emerald-700 text-white">RECOMMENDED &middot; MELINDA'S IDEA</span>
-                <span class="text-xs font-bold text-emerald-800">0 sq ft Grass Lost</span>
-              </div>
-              <h5 class="text-base font-bold text-slate-900 mt-2">On Existing Concrete Patio (2-Zone Split)</h5>
-              <p class="text-xs text-slate-700 mt-2 leading-relaxed">
-                Divides the 21.0' patio into <strong>Zone 1 (9.5' &times; 12.5' Grill &amp; Dining near sliding door)</strong> and <strong>Zone 2 (11.5' &times; 12.5' Fire Pit Lounge)</strong>. Uses a rectangular propane fire table (<code class="font-mono-code">28"&times;48"</code> or <code class="font-mono-code">32"&times;52"</code>) with a concealed 20-lb tank and flush metal burner cover so it doubles as an everyday coffee table. <strong>Zero hardscape cost &amp; zero lawn lost!</strong>
-              </p>
-            </div>
-
-            <div onclick="selectOption('firepit', 'Option B: Connected Patio Corner Bump-Out (8x8 ft Paver Extension)', this)"
-                 class="option-card cursor-pointer rounded-xl border-2 border-slate-200 p-5 bg-white hover:border-slate-300">
-              <div class="flex items-center justify-between gap-2">
-                <span class="px-2.5 py-0.5 rounded text-xs font-bold bg-slate-700 text-white">OPTION B &middot; HYBRID</span>
-                <span class="text-xs font-bold text-slate-600">+64–80 sq ft Pavers</span>
-              </div>
-              <h5 class="text-base font-bold text-slate-900 mt-2">Connected Patio Corner Bump-Out</h5>
-              <p class="text-xs text-slate-700 mt-2 leading-relaxed">
-                Pours or lays an <code class="font-mono-code">8'&times;8'</code> or <code class="font-mono-code">10'</code> curved paver extension directly off the outer corner of the existing 12.5'&times;21' slab. Keeps the fire pit dry and step-free right off the patio while freeing the main 262.5 sq ft slab for a larger dining table + sectional.
-              </p>
-            </div>
-
-            <div onclick="selectOption('firepit', 'Option C: Dedicated Backyard Corner Pad (13.5 ft Diameter Circle)', this)"
-                 class="option-card cursor-pointer rounded-xl border-2 border-slate-200 p-5 bg-white hover:border-slate-300">
-              <div class="flex items-center justify-between gap-2">
-                <span class="px-2.5 py-0.5 rounded text-xs font-bold bg-slate-700 text-white">OPTION C &middot; YARD CORNER</span>
-                <span class="text-xs font-bold text-rose-800">-150 sq ft Lawn</span>
-              </div>
-              <h5 class="text-base font-bold text-slate-900 mt-2">Dedicated Backyard Corner Pad</h5>
-              <p class="text-xs text-slate-700 mt-2 leading-relaxed">
-                Builds a separate <code class="font-mono-code">13.5'</code> diameter gravel/paver circle in the SW backyard corner. Requires placing the burner center <code class="font-mono-code">9.5'</code> out from the vinyl fence to protect vinyl panels from heat and seat 4–6 chairs, consuming ~150 sq ft of prime lawn.
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <!-- DECISION 4: SIDE-YARD FENCE SETBACKS & GATES -->
-        <div id="decision-fence" class="rounded-2xl border border-slate-200 bg-slate-50 p-6 shadow-sm">
-          <div class="flex flex-wrap items-center justify-between gap-2 mb-4">
-            <div>
-              <span class="px-2.5 py-1 rounded-md text-xs font-bold bg-blue-100 text-blue-900">DECISION 4 &middot; FENCING &amp; GATES</span>
-              <h4 class="text-xl font-bold text-slate-900 mt-1">Side-Yard White Vinyl Fence Setbacks &amp; Gate Positions</h4>
-            </div>
-            <span class="text-xs font-semibold text-slate-600">145.5 Linear Feet Total White Vinyl Privacy Fence</span>
-          </div>
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-4" data-decision-group="fence">
-            <div onclick="selectOption('fence', 'Option A (Recommended): Relative Stucco Setback — 3.2 ft N. Setback (X=70.0\') & 2.2 ft S. Stucco Setback (X=57.5\', Enclosing Meters)', this)"
-                 class="option-card selected cursor-pointer rounded-xl border-2 p-5 bg-white">
-              <div class="flex items-center justify-between gap-2">
-                <span class="px-2.5 py-0.5 rounded text-xs font-bold bg-emerald-700 text-white">RECOMMENDED &middot; STUCCO SETBACK</span>
-                <span class="text-xs font-mono-code font-bold text-emerald-800">N: X=70.0' | S: X=57.5'</span>
-              </div>
-              <h5 class="text-base font-bold text-slate-900 mt-2">Relative Symmetry Behind Stone Returns (Encloses Meters)</h5>
-              <ul class="mt-2 space-y-1.5 text-xs text-slate-700 list-disc list-inside">
-                <li><strong>North Side (Garage):</strong> <code class="font-mono-code">8.0'–8.5'</code> Double-Swing Vehicle Gate at <code class="font-mono-code">X=70.0'</code> (set back <code class="font-mono-code">3.2'</code> behind NE garage face, cleanly behind the 2.0' stone masonry wrap &amp; downspout). Encloses <strong>360.0 sq ft</strong>.</li>
-                <li><strong>South Side (Porch):</strong> <code class="font-mono-code">4.0'</code> Single-Swing Pedestrian Gate at <code class="font-mono-code">X=57.5'</code> (<code class="font-mono-code">2.2'</code> behind SE stucco corner / <code class="font-mono-code">8.2'</code> behind porch pillar). <strong>Hides gas &amp; electric meters behind the gate</strong> while framing the front stone pillar!</li>
-              </ul>
-            </div>
-
-            <div onclick="selectOption('fence', 'Option B: Flush SE Stucco Corner Alignment — N. at X=70.0\' & S. at X=59.7\'', this)"
-                 class="option-card cursor-pointer rounded-xl border-2 border-slate-200 p-5 bg-white hover:border-slate-300">
-              <div class="flex items-center justify-between gap-2">
-                <span class="px-2.5 py-0.5 rounded text-xs font-bold bg-slate-700 text-white">OPTION B &middot; SE CORNER ALIGNMENT</span>
-                <span class="text-xs font-mono-code font-bold text-slate-700">N: X=70.0' | S: X=59.7'</span>
-              </div>
-              <h5 class="text-base font-bold text-slate-900 mt-2">South Gate Flush with SE Stucco Corner (<code class="font-mono-code">X=59.7'</code>)</h5>
-              <ul class="mt-2 space-y-1.5 text-xs text-slate-700 list-disc list-inside">
-                <li><strong>North Side:</strong> Same <code class="font-mono-code">X=70.0'</code> Double Vehicle Gate position (<code class="font-mono-code">3.2'</code> setback).</li>
-                <li><strong>South Side:</strong> Pushes the South pedestrian gate <code class="font-mono-code">2.2'</code> further East to align flush with the SE house stucco corner (<code class="font-mono-code">6.0'</code> behind the front porch column), gaining <code class="font-mono-code">19.8 sq ft</code> of enclosed side yard.</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-
-        <!-- DECISION 5: NORTH & SOUTH SIDE YARD SURFACES -->
-        <div class="rounded-2xl border border-slate-200 bg-slate-50 p-6 shadow-sm">
-          <div class="flex flex-wrap items-center justify-between gap-2 mb-4">
-            <div>
-              <span class="px-2.5 py-1 rounded-md text-xs font-bold bg-indigo-100 text-indigo-900">DECISION 5 &middot; SIDE YARD TREATMENTS</span>
-              <h4 class="text-xl font-bold text-slate-900 mt-1">North &amp; South Side Yard Surfacing, Walkway &amp; Utility Screening</h4>
-            </div>
-            <span class="text-xs font-semibold text-slate-600">North: 9.0' &times; 43.2' &middot; South: 9.0' &times; 29.7'</span>
-          </div>
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-4" data-decision-group="sideyards">
-            <div onclick="selectOption('sideyards', 'Option A (Recommended): South Flagstone Walkway + AC Wood Screen & North Compacted Gravel Utility/Trailer Pad', this)"
-                 class="option-card selected cursor-pointer rounded-xl border-2 p-5 bg-white">
-              <div class="flex items-center justify-between gap-2">
-                <span class="px-2.5 py-0.5 rounded text-xs font-bold bg-emerald-700 text-white">RECOMMENDED &middot; FUNCTIONAL SPLIT</span>
-                <span class="text-xs font-bold text-emerald-800">Matches Side Yard Render</span>
-              </div>
-              <h5 class="text-base font-bold text-slate-900 mt-2">South Flagstone Path + AC Screen &amp; North Utility/Trailer Pad</h5>
-              <ul class="mt-2 space-y-1.5 text-xs text-slate-700 list-disc list-inside">
-                <li><strong>South Side Yard (Human Gate):</strong> Large charcoal flagstone steppers inlaid in grey crushed granite gravel, shade plantings (hostas, ferns, ornamental grasses) along the house wall, and a <strong>horizontal cedar-slat screen</strong> hiding the 3'&times;3' AC unit while preserving a 6.0' walk path.</li>
-                <li><strong>North Side Yard (Vehicle Gate):</strong> Compacted crushed stone/road-base utility pad over commercial weed barrier from the 8.5' double gate to the backyard for trash bins, trailer/mower parking, and clean access to the water spigot (<code class="font-mono-code">X=51'</code>) and raised garden beds.</li>
-              </ul>
-            </div>
-
-            <div onclick="selectOption('sideyards', 'Option B: Concrete Pad on North Side + Decorative Gravel on South Side', this)"
-                 class="option-card cursor-pointer rounded-xl border-2 border-slate-200 p-5 bg-white hover:border-slate-300">
-              <div class="flex items-center justify-between gap-2">
-                <span class="px-2.5 py-0.5 rounded text-xs font-bold bg-slate-700 text-white">OPTION B &middot; POURED CONCRETE RV/UTILITY PAD</span>
-                <span class="text-xs font-bold text-slate-600">Heavy-Duty Hardscape</span>
-              </div>
-              <h5 class="text-base font-bold text-slate-900 mt-2">Poured Concrete North Pad + Gravel/Stepper South Corridor</h5>
-              <p class="text-xs text-slate-700 mt-2 leading-relaxed">
-                Pours a dedicated 4" concrete slab down the 9.0' North side yard for rolling heavy bins, trailers, or utility carts, paired with decorative gravel and flagstone steppers on the South side corridor.
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <!-- DECISION 6: FRONT YARD & 6.0 FT PARK STRIPS -->
-        <div id="decision-front" class="rounded-2xl border border-slate-200 bg-slate-50 p-6 shadow-sm">
-          <div class="flex flex-wrap items-center justify-between gap-2 mb-4">
-            <div>
-              <span class="px-2.5 py-1 rounded-md text-xs font-bold bg-purple-100 text-purple-900">DECISION 6 &middot; FRONT YARD &amp; PARK STRIPS</span>
-              <h4 class="text-xl font-bold text-slate-900 mt-1">Front Yard (813.5 sq ft), Utility Box Camouflage &amp; 6.0' Park Strips</h4>
-            </div>
-            <span class="text-xs font-semibold text-slate-600">555 sq ft SE Front + 258.5 sq ft NE Strip + 6.0' Deep Park Strips</span>
-          </div>
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-4" data-decision-group="frontpark">
-            <div onclick="selectOption('frontpark', 'Option A (Recommended): Open Front Lawn + 3-Sided Utility Box Grass Screen + Water-Wise Rock/Grass 6\' Park Strips', this)"
-                 class="option-card selected cursor-pointer rounded-xl border-2 p-5 bg-white">
-              <div class="flex items-center justify-between gap-2">
-                <span class="px-2.5 py-0.5 rounded text-xs font-bold bg-emerald-700 text-white">RECOMMENDED &middot; WATER-WISE STRIPS + FULL LAWN</span>
-                <span class="text-xs font-bold text-emerald-800">Syracuse / Utah Friendly</span>
-              </div>
-              <h5 class="text-base font-bold text-slate-900 mt-2">Open Front Lawn + Utility Box Screen + Water-Wise 6' Park Strips</h5>
-              <ul class="mt-2 space-y-1.5 text-xs text-slate-700 list-disc list-inside">
-                <li><strong>SE Front Lawn (555 sq ft):</strong> Continuous lush turf with soil-flush concrete mowing strips; focal specimen tree (*Japanese Maple* or *Little Gem Magnolia*) planted inside the existing foundation bed corner with lavender &amp; boxwoods.</li>
-                <li><strong>Green Utility Box (<code class="font-mono-code">X=90', Y=39.5'</code>):</strong> Screened on 3 sides with upright *Karl Foerster* feather reed grasses inside the front-left bed (leaving the front service face accessible).</li>
-                <li><strong>NE Front Strip (258.5 sq ft):</strong> Clean decorative rock or turf transition leading up to the 8.5' North vehicle gate.</li>
-                <li><strong>6.0' Park Strips (South 21' &amp; North 11'):</strong> Drip-irrigated decorative cobble/gravel with accent boulders and drought-hardy perennials/ornamental grasses (no narrow turf strips to edge or overspray onto the sidewalk/street).</li>
-              </ul>
-            </div>
-
-            <div onclick="selectOption('frontpark', 'Option B: Curving Front Flagstone Walkway + Sod/Tree Park Strips', this)"
-                 class="option-card cursor-pointer rounded-xl border-2 border-slate-200 p-5 bg-white hover:border-slate-300">
-              <div class="flex items-center justify-between gap-2">
-                <span class="px-2.5 py-0.5 rounded text-xs font-bold bg-slate-700 text-white">OPTION B &middot; TRADITIONAL WALKWAY &amp; SOD</span>
-                <span class="text-xs font-bold text-slate-600">Track A Front Design</span>
-              </div>
-              <h5 class="text-base font-bold text-slate-900 mt-2">Mid-Lawn Flagstone Walkway + Sod/Tree Park Strips</h5>
-              <p class="text-xs text-slate-700 mt-2 leading-relaxed">
-                Adds a 4.0' wide curving natural flagstone walkway from the driveway across the SE front lawn to the front porch, plants a specimen tree in a curbed center-lawn mulch ring, and finishes the 6.0' park strips in lawn/street trees.
-              </p>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- SECTION 4: AI DESIGN CONCEPTS & BEFORE/AFTER GALLERY -->
-  <section id="concepts" class="py-12 border-b border-slate-200 bg-slate-100">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="mb-8">
-        <span class="text-xs font-bold uppercase tracking-wider text-emerald-700">Visual Inspirations &amp; AI Renders</span>
-        <h3 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-1">AI Landscape Concept Gallery (Backyard, Side Yard &amp; Front Yard)</h3>
-        <p class="text-sm sm:text-base text-slate-600 mt-1">
-          Click any concept image to inspect it in full resolution. Below includes a side-by-side comparison of the <strong>Baseline vs. Upgraded Backyard View 2</strong>, plus concepts for the <strong>Pergola &amp; Garden Beds</strong>, <strong>South Side Yard Walkway</strong>, and <strong>Front Yard</strong>.
-        </p>
-      </div>
-
-      <!-- Featured Before / After Comparison Card -->
-      <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm mb-8">
-        <div class="flex flex-wrap items-center justify-between gap-2 mb-4">
-          <div>
-            <span class="px-2.5 py-1 rounded-md text-xs font-bold bg-emerald-100 text-emerald-900">FEATURED SIDE-BY-SIDE COMPARISON</span>
-            <h4 class="text-xl font-bold text-slate-900 mt-1">Backyard View 2: Builder Baseline vs. Track B Maximum-Grass Upgrade</h4>
-          </div>
-          <span class="text-xs text-slate-600 font-medium">Click either image to enlarge</span>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div class="group cursor-pointer" onclick="openLightbox('photos_backyard_ideas/Gemini_Generated_Image_qtuyw2qtuyw2qtuy%20(1).jpg', 'Backyard View 2 (Baseline): Monoculture arborvitae row, unstained corner beds, basic patio chairs')">
-            <div class="relative rounded-xl overflow-hidden border border-slate-200 aspect-[4/3] bg-slate-200">
-              <img src="photos_backyard_ideas/Gemini_Generated_Image_qtuyw2qtuyw2qtuy%20(1).jpg"
-                   alt="Backyard View 2 Baseline"
-                   class="w-full h-full object-cover group-hover:scale-105 transition duration-300" />
-              <span class="absolute top-3 left-3 px-3 py-1 rounded-lg text-xs font-bold bg-slate-900/85 text-white">
-                BEFORE / BASELINE CONCEPT
-              </span>
-            </div>
-            <p class="text-xs text-slate-700 mt-2 font-medium">
-              <strong>Baseline Concept:</strong> Monoculture row of 9 arborvitae along the West precast wall, basic patio chairs on bare concrete, and no pathway to the corner raised garden beds.
-            </p>
-          </div>
-
-          <div class="group cursor-pointer" onclick="openLightbox('photos_backyard_ideas/5e639ba7-a34e-49bf-b2cc-13d6a92536ff.jpeg', 'Backyard View 2 (Track B Upgraded): Karl Foerster grasses & purple Russian sage interplanted with warm uplights, soil-flush flagstone steppers, and rectangular propane fire table')">
-            <div class="relative rounded-xl overflow-hidden border-2 border-emerald-600 aspect-[4/3] bg-slate-200 shadow-md">
-              <img src="photos_backyard_ideas/5e639ba7-a34e-49bf-b2cc-13d6a92536ff.jpeg"
-                   alt="Backyard View 2 Track B Upgrade"
-                   class="w-full h-full object-cover group-hover:scale-105 transition duration-300" />
-              <span class="absolute top-3 left-3 px-3 py-1 rounded-lg text-xs font-bold bg-emerald-700 text-white shadow">
-                UPGRADED &middot; TRACK B + MELINDA'S PATIO FIRE TABLE
-              </span>
-            </div>
-            <p class="text-xs text-slate-700 mt-2 font-medium">
-              <strong>Upgraded Track B Concept:</strong> Interplanted <em>Karl Foerster</em> grasses &amp; purple <em>Russian Sage</em> with warm 2700K uplighting, soil-flush charcoal flagstone steppers to dark espresso cedar beds, and deep cushioned armchairs around a rectangular propane fire table on the patio.
-            </p>
-          </div>
-        </div>
-      </div>
-
-      <!-- Remaining 3 Unique AI Concept Cards -->
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <!-- Concept 1: Backyard View 1 -->
-        <div class="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm flex flex-col cursor-pointer group"
-             onclick="openLightbox('photos_backyard_ideas/Gemini_Generated_Image_qtuyw2qtuyw2qtuy%20(2).jpg', 'Backyard View 1: House Rear Facade, Espresso Timber Pergola with String Lights, Raised Cedar Garden Boxes & Open Lawn')">
-          <div class="relative aspect-[4/3] bg-slate-200 overflow-hidden">
-            <img src="photos_backyard_ideas/Gemini_Generated_Image_qtuyw2qtuyw2qtuy%20(2).jpg"
-                 alt="Backyard Pergola & Garden Beds Concept"
-                 class="w-full h-full object-cover group-hover:scale-105 transition duration-300" />
-            <span class="absolute top-3 left-3 px-2.5 py-1 rounded-md text-xs font-bold bg-emerald-800 text-white">
-              BACKYARD &amp; PERGOLA
-            </span>
-          </div>
-          <div class="p-4 flex-1 flex flex-col justify-between">
-            <div>
-              <h5 class="font-bold text-slate-900 text-base">Backyard View 1: Pergola &amp; Raised Cedar Beds</h5>
-              <p class="text-xs text-slate-600 mt-1 leading-relaxed">
-                Shows the dark-stained timber pergola over the 21'&times;12.5' patio with warm Bistro string lights, L-shaped sectional lounge, raised cedar garden boxes along the North fence, and wide-open turf.
-              </p>
-            </div>
-            <span class="text-xs font-bold text-emerald-700 mt-3 inline-block">Click to view full size &rarr;</span>
-          </div>
-        </div>
-
-        <!-- Concept 2: South Side Yard Walkway & AC Screen -->
-        <div class="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm flex flex-col cursor-pointer group"
-             onclick="openLightbox('photos_backyard_ideas/Gemini_Generated_Image_88m5un88m5un88m5.jpg', 'South Side Yard Concept: 9.0 ft Corridor with Crushed Gravel, Charcoal Flagstone Steppers, Shade Plantings & Wood-Slat AC Condenser Screen')">
-          <div class="relative aspect-[4/3] bg-slate-200 overflow-hidden">
-            <img src="photos_backyard_ideas/Gemini_Generated_Image_88m5un88m5un88m5.jpg"
-                 alt="South Side Yard Concept"
-                 class="w-full h-full object-cover group-hover:scale-105 transition duration-300" />
-            <span class="absolute top-3 left-3 px-2.5 py-1 rounded-md text-xs font-bold bg-blue-800 text-white">
-              SOUTH SIDE YARD (9.0' WIDE)
-            </span>
-          </div>
-          <div class="p-4 flex-1 flex flex-col justify-between">
-            <div>
-              <h5 class="font-bold text-slate-900 text-base">South Side Yard: Flagstone Path &amp; AC Screen</h5>
-              <p class="text-xs text-slate-600 mt-1 leading-relaxed">
-                Transforms the 9.0' South side corridor with a curving grey gravel path, oversized flagstone steppers, concrete edging, hostas/ferns along the stucco wall, and a horizontal cedar screen hiding the AC unit.
-              </p>
-            </div>
-            <span class="text-xs font-bold text-emerald-700 mt-3 inline-block">Click to view full size &rarr;</span>
-          </div>
-        </div>
-
-        <!-- Concept 3: Front Yard -->
-        <div class="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm flex flex-col cursor-pointer group"
-             onclick="openLightbox('photos_backyard_ideas/Gemini_Generated_Image_wk5if6wk5if6wk5i.jpg', 'Front Yard Concept: Full Open Lawn, White Vinyl Side Gates, Foundation Mulch Beds & Utility Box Area')">
-          <div class="relative aspect-[4/3] bg-slate-200 overflow-hidden">
-            <img src="photos_backyard_ideas/Gemini_Generated_Image_wk5if6wk5if6wk5i.jpg"
-                 alt="Front Yard Concept"
-                 class="w-full h-full object-cover group-hover:scale-105 transition duration-300" />
-            <span class="absolute top-3 left-3 px-2.5 py-1 rounded-md text-xs font-bold bg-amber-800 text-white">
-              FRONT YARD &amp; SIDE GATES
-            </span>
-          </div>
-          <div class="p-4 flex-1 flex flex-col justify-between">
-            <div>
-              <h5 class="font-bold text-slate-900 text-base">Front Yard: Maximum Lawn &amp; Gate Symmetry</h5>
-              <p class="text-xs text-slate-600 mt-1 leading-relaxed">
-                Illustrates the 555 sq ft SE front lawn, white vinyl side-yard gates flanking both sides of the house, foundation planting beds, and the green utility transformer box near the sidewalk ready for ornamental grass screening.
-              </p>
-            </div>
-            <span class="text-xs font-bold text-emerald-700 mt-3 inline-block">Click to view full size &rarr;</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- SECTION 5: CURRENT PROPERTY WALKAROUND PHOTOS (ALL 30 PHOTOS BY ZONE) -->
-  <section id="current-photos" class="py-12 border-b border-slate-200 bg-white">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-4 mb-6">
-        <div>
-          <span class="text-xs font-bold uppercase tracking-wider text-emerald-700">Complete Site Reference Archive (Oct 2026)</span>
-          <h3 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-1">All 30 Current Yard Photos (Organized by Zone)</h3>
-          <p class="text-sm text-slate-600 mt-1">
-            Filter by zone to inspect every angle of the Front Yard, 6' Park Strips, North Side Yard, South Side Yard, and Backyard/Patio. Click any photo for full-screen view and original 6MB Motion Photo download.
-          </p>
-        </div>
-
-        <!-- High-Contrast Filter Buttons -->
-        <div class="flex flex-wrap gap-1.5" id="photo-filter-bar">
-          <button onclick="filterPhotos('ALL', this)" class="photo-filter-btn px-3.5 py-2 rounded-xl text-xs font-bold bg-emerald-700 text-white shadow-sm transition">
-            All Zones (30)
-          </button>
-          <button onclick="filterPhotos('FRONT_PARK', this)" class="photo-filter-btn px-3.5 py-2 rounded-xl text-xs font-bold bg-slate-200 text-slate-800 hover:bg-slate-300 transition">
-            Front Yard &amp; Park Strips (9)
-          </button>
-          <button onclick="filterPhotos('NORTH_SIDE', this)" class="photo-filter-btn px-3.5 py-2 rounded-xl text-xs font-bold bg-slate-200 text-slate-800 hover:bg-slate-300 transition">
-            North Side Yard (5)
-          </button>
-          <button onclick="filterPhotos('SOUTH_SIDE', this)" class="photo-filter-btn px-3.5 py-2 rounded-xl text-xs font-bold bg-slate-200 text-slate-800 hover:bg-slate-300 transition">
-            South Side Yard (3)
-          </button>
-          <button onclick="filterPhotos('BACKYARD', this)" class="photo-filter-btn px-3.5 py-2 rounded-xl text-xs font-bold bg-slate-200 text-slate-800 hover:bg-slate-300 transition">
-            Backyard &amp; Patio (13)
-          </button>
-        </div>
-      </div>
-
-      <div id="current-photos-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-        <!-- Populated dynamically via JS below -->
-      </div>
-    </div>
-  </section>
-
-  <!-- SECTION 6: 44 RECONCILED MEASUREMENTS TABLE & DOCUMENTS VAULT -->
-  <section id="measurements" class="py-12 bg-slate-50">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
-
-      <!-- Master Documents Vault -->
-      <div>
-        <span class="text-xs font-bold uppercase tracking-wider text-emerald-700">Project Files &amp; Safe-Keeping Archive</span>
-        <h3 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-1">Master Planning Documents &amp; Exports</h3>
-        <p class="text-sm text-slate-600 mt-1 mb-6">
-          All original engineering specifications, CAD files, and measurement datasets backed up in this repository.
-        </p>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          <a href="Original%20Planning%20Information/cad_architectural_blueprint_3152.html" target="_blank"
-             class="p-5 rounded-2xl bg-white border border-slate-200 hover:border-emerald-600 shadow-sm transition flex flex-col justify-between">
-            <div>
-              <span class="px-2.5 py-1 rounded text-xs font-bold bg-emerald-100 text-emerald-900">INTERACTIVE CAD HTML</span>
-              <h4 class="font-bold text-slate-900 text-base mt-2">cad_architectural_blueprint_3152.html</h4>
-              <p class="text-xs text-slate-600 mt-1">
-                Standalone interactive 2D CAD blueprint with West/North/East orientation switching, 3 garden bed layouts, tape measure, and SVG/PNG/CSV export.
-              </p>
-            </div>
-            <span class="text-xs font-bold text-emerald-700 mt-4">Open Interactive Blueprint &rarr;</span>
-          </a>
-
-          <a href="Original%20Planning%20Information/Lot_3152_Master_Yard_Measurements.csv" download
-             class="p-5 rounded-2xl bg-white border border-slate-200 hover:border-emerald-600 shadow-sm transition flex flex-col justify-between">
-            <div>
-              <span class="px-2.5 py-1 rounded text-xs font-bold bg-blue-100 text-blue-900">CSV SPREADSHEET (44 ROWS)</span>
-              <h4 class="font-bold text-slate-900 text-base mt-2">Lot_3152_Master_Yard_Measurements.csv</h4>
-              <p class="text-xs text-slate-600 mt-1">
-                Complete spreadsheet of all 44 reconciled site measurements, rough inputs, exact specs, CAD coordinates (X/Y), and engineering notes.
-              </p>
-            </div>
-            <span class="text-xs font-bold text-blue-700 mt-4">Download CSV File &darr;</span>
-          </a>
-
-          <a href="Original%20Planning%20Information/lot_3152_master_project_context_cad_specification.md" target="_blank"
-             class="p-5 rounded-2xl bg-white border border-slate-200 hover:border-emerald-600 shadow-sm transition flex flex-col justify-between">
-            <div>
-              <span class="px-2.5 py-1 rounded text-xs font-bold bg-purple-100 text-purple-900">ARCHITECTURAL &amp; CAD SPEC</span>
-              <h4 class="font-bold text-slate-900 text-base mt-2">lot_3152_master_project_context_cad_specification.md</h4>
-              <p class="text-xs text-slate-600 mt-1">
-                Canonical coordinate system, compass orientation, fencing/gate geometry, and 7-box raised garden bed layout specifications.
-              </p>
-            </div>
-            <span class="text-xs font-bold text-purple-800 mt-4">View Specification Document &rarr;</span>
-          </a>
-
-          <a href="Original%20Planning%20Information/landscape_design_master_context_specification.md" target="_blank"
-             class="p-5 rounded-2xl bg-white border border-slate-200 hover:border-emerald-600 shadow-sm transition flex flex-col justify-between">
-            <div>
-              <span class="px-2.5 py-1 rounded text-xs font-bold bg-amber-100 text-amber-900">LANDSCAPE &amp; PLANTING SPEC</span>
-              <h4 class="font-bold text-slate-900 text-base mt-2">landscape_design_master_context_specification.md</h4>
-              <p class="text-xs text-slate-600 mt-1">
-                Track B (Maximum-Grass) vs. Track A (S-Curve) comparison, cohesive wood/stone/metal material palette, lighting plan, and plant schedule.
-              </p>
-            </div>
-            <span class="text-xs font-bold text-amber-800 mt-4">View Landscape Design Spec &rarr;</span>
-          </a>
-
-          <a href="Original%20Planning%20Information/backyard_and_side_yard_master_planning_summary.md" target="_blank"
-             class="p-5 rounded-2xl bg-white border border-slate-200 hover:border-emerald-600 shadow-sm transition flex flex-col justify-between">
-            <div>
-              <span class="px-2.5 py-1 rounded text-xs font-bold bg-rose-100 text-rose-900">FENCE &amp; FIRE PIT ANALYSIS</span>
-              <h4 class="font-bold text-slate-900 text-base mt-2">backyard_and_side_yard_master_planning_summary.md</h4>
-              <p class="text-xs text-slate-600 mt-1">
-                Detailed side-yard fence setback symmetry analysis and propane fire pit placement study (Patio Lounge vs. Dedicated Yard Corner vs. Bump-Out).
-              </p>
-            </div>
-            <span class="text-xs font-bold text-rose-800 mt-4">View Fence &amp; Fire Pit Study &rarr;</span>
-          </a>
-        </div>
-      </div>
-
-      <!-- Searchable 44 Reconciled Measurements Table -->
-      <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm">
-        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
-          <div>
-            <h4 class="text-xl font-bold text-slate-900">All 44 Reconciled Property Measurements</h4>
-            <p class="text-xs sm:text-sm text-slate-600 mt-0.5">
-              Search or filter by zone across Footprint, Front Yard, Park Strips, North Side, South Side, Backyard &amp; Area/Fence.
-            </p>
-          </div>
-          <div class="flex flex-wrap items-center gap-3">
-            <input
-              id="measurement-search"
-              type="text"
-              oninput="renderMeasurementsTable()"
-              placeholder="Search measurements (e.g. Park Strip, Gate, Patio)..."
-              class="w-full sm:w-72 px-3.5 py-2 rounded-xl text-sm bg-white text-slate-900 border-2 border-slate-300 focus:border-emerald-600 focus:outline-none"
-            />
-            <select
-              id="measurement-zone-filter"
-              onchange="renderMeasurementsTable()"
-              class="px-3.5 py-2 rounded-xl text-sm font-semibold bg-white text-slate-900 border-2 border-slate-300 focus:border-emerald-600 focus:outline-none">
-              <option value="ALL">All Zones (44)</option>
-              <option value="Footprint">Footprint (5)</option>
-              <option value="Front">Front Yard, Driveway &amp; Park Strip (10)</option>
-              <option value="North Side">North Side Yard (6)</option>
-              <option value="South Side">South Side Yard (5)</option>
-              <option value="Backyard">Backyard &amp; Patio (10)</option>
-              <option value="Area & Fence">Area &amp; Fence Calculations (8)</option>
-            </select>
-          </div>
-        </div>
-
-        <div class="overflow-x-auto">
-          <table class="w-full text-left border-collapse text-xs sm:text-sm">
-            <thead>
-              <tr class="border-b-2 border-slate-200 bg-slate-100 text-slate-800 font-bold">
-                <th class="py-3 px-3">#</th>
-                <th class="py-3 px-3">Zone</th>
-                <th class="py-3 px-3">Measurement Name</th>
-                <th class="py-3 px-3">Rough Input</th>
-                <th class="py-3 px-3">Reconciled Exact Spec</th>
-                <th class="py-3 px-3">CAD Coordinates</th>
-                <th class="py-3 px-3">Planning &amp; Visual Notes</th>
-              </tr>
-            </thead>
-            <tbody id="measurements-tbody" class="divide-y divide-slate-200 text-slate-700">
-              <!-- Populated via JS -->
-            </tbody>
-          </table>
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- Footer -->
-  <footer class="bg-white border-t border-slate-200 py-8 mt-auto">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-600">
-      <div>
-        <strong>Lot 3152 Master Yard Planning Portal</strong> &middot; Prepared for Jared &amp; Melinda Carter
-      </div>
+  <!-- Minimal Footer -->
+  <footer class="bg-white border-t border-slate-200 py-4 mt-auto">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-between text-xs text-slate-500">
+      <span class="font-semibold text-slate-700">Lot 3152</span>
       <div class="flex items-center gap-4">
-        <a href="#zones" class="hover:text-emerald-700 underline">Yard Zones</a>
-        <a href="#blueprint" class="hover:text-emerald-700 underline">Interactive CAD</a>
-        <a href="#decisions" class="hover:text-emerald-700 underline">Decision Guide</a>
-        <a href="#current-photos" class="hover:text-emerald-700 underline">30 Site Photos</a>
+        <a href="Original%20Planning%20Information/cad_architectural_blueprint_3152.html" target="_blank" class="hover:text-emerald-700 underline">CAD Blueprint</a>
+        <a href="https://github.com/zowper/yard-planning" target="_blank" class="hover:text-emerald-700 underline">Markdown Specs</a>
       </div>
     </div>
   </footer>
 
-  <!-- Fullscreen Image Lightbox Modal -->
-  <div id="lightbox-modal" class="fixed inset-0 z-50 hidden bg-slate-900/90 backdrop-blur-sm flex items-center justify-center p-4" onclick="closeLightbox(event)">
+  <!-- Fullscreen Image Lightbox -->
+  <div id="lightbox-modal" class="fixed inset-0 z-50 hidden bg-slate-900/90 backdrop-blur-sm flex items-center justify-center p-4" onclick="closeLightbox()">
     <div class="relative max-w-5xl w-full bg-white rounded-2xl overflow-hidden shadow-2xl border border-slate-300" onclick="event.stopPropagation()">
-      <div class="flex items-center justify-between px-4 py-3 bg-slate-100 border-b border-slate-200">
-        <div id="lightbox-caption" class="text-xs sm:text-sm font-bold text-slate-900 pr-4"></div>
+      <div class="flex items-center justify-between px-4 py-2.5 bg-slate-100 border-b border-slate-200">
+        <div id="lightbox-caption" class="text-xs sm:text-sm font-bold text-slate-900 truncate pr-4"></div>
         <div class="flex items-center gap-2 shrink-0">
           <a id="lightbox-download" href="#" target="_blank"
-             class="px-3 py-1.5 rounded-lg text-xs font-bold bg-emerald-700 text-white hover:bg-emerald-800 transition">
-            Open Full-Res Original
+             class="px-3 py-1 rounded-lg text-xs font-bold bg-emerald-700 text-white hover:bg-emerald-800 transition">
+            Full Res
           </a>
-          <button onclick="closeLightbox()" class="px-3 py-1.5 rounded-lg text-xs font-bold bg-slate-200 text-slate-900 hover:bg-slate-300 transition">
-            Close &times;
+          <button onclick="closeLightbox()" class="px-3 py-1 rounded-lg text-xs font-bold bg-slate-200 text-slate-900 hover:bg-slate-300 transition">
+            Close
           </button>
         </div>
       </div>
-      <div class="bg-slate-950 flex items-center justify-center max-h-[80vh] overflow-hidden">
-        <img id="lightbox-img" src="" alt="Enlarged yard view" class="max-h-[78vh] w-auto object-contain" />
+      <div class="bg-slate-950 flex items-center justify-center max-h-[82vh] overflow-hidden">
+        <img id="lightbox-img" src="" alt="Yard view" class="max-h-[80vh] w-auto object-contain" />
       </div>
     </div>
   </div>
 
   <script>
-    // --- 1. INTERACTIVE DECISIONS STATE ---
-    const DEFAULT_DECISIONS = {
-      track: "6\" Flush Paver Edging + 45° Paver Corners + 2.0' Foundation Rock/Mulch Drip Buffer at House Walls (Recommended)",
-      garden: "Option B: Gate-Clear Utah (2 Patio + 4 North Fence + 1 West Wall — 10.25 ft Gate Turnaround)",
-      firepit: "Option A (Melinda's Idea): On Existing Patio — Zone 2 Lounge with Convertible Fire Table",
-      fence: "Option A (Recommended): Relative Stucco Setback — 3.2 ft N. Setback (X=70.0') & 2.2 ft S. Stucco Setback (X=57.5', Enclosing Meters)",
-      sideyards: "Option A (Recommended): South Flagstone Walkway + AC Wood Screen & North Compacted Gravel Utility/Trailer Pad",
-      frontpark: "Option A (Recommended): Open Front Lawn + 3-Sided Utility Box Grass Screen + Water-Wise Rock/Grass 6' Park Strips"
-    };
+    let showingBaseline = false;
 
-    let currentDecisions = Object.assign({}, DEFAULT_DECISIONS);
-
-    function selectOption(group, label, el) {
-      currentDecisions[group] = label;
-      const container = document.querySelector(`[data-decision-group="${group}"]`);
-      if (container) {
-        container.querySelectorAll('.option-card').forEach(card => {
-          card.classList.remove('selected');
-          card.classList.add('border-slate-200');
-        });
+    function toggleBaselineCompare() {
+      showingBaseline = !showingBaseline;
+      const img = document.getElementById('concept-1-img');
+      const label = document.getElementById('concept-1-label');
+      const btn = document.getElementById('toggle-baseline-btn');
+      if (showingBaseline) {
+        img.src = 'photos_backyard_ideas/Gemini_Generated_Image_qtuyw2qtuyw2qtuy%20(1).jpg';
+        label.textContent = 'Backyard · Baseline Before Upgrade';
+        btn.textContent = 'Show Target Upgrade';
+        btn.className = 'px-3 py-1 rounded-lg text-xs font-bold bg-emerald-700 text-white hover:bg-emerald-800 transition';
+      } else {
+        img.src = 'photos_backyard_ideas/5e639ba7-a34e-49bf-b2cc-13d6a92536ff.jpeg';
+        label.textContent = 'Backyard · Patio Fire Table & Flush Steppers';
+        btn.textContent = 'Show Before / Baseline';
+        btn.className = 'px-3 py-1 rounded-lg text-xs font-bold bg-slate-200 text-slate-900 hover:bg-slate-300 transition';
       }
-      el.classList.add('selected');
-      el.classList.remove('border-slate-200');
-      try {
-        localStorage.setItem('lot3152_decisions', JSON.stringify(currentDecisions));
-      } catch (e) {}
     }
 
-    function resetDecisions() {
-      currentDecisions = Object.assign({}, DEFAULT_DECISIONS);
-      try {
-        localStorage.removeItem('lot3152_decisions');
-      } catch (e) {}
-      document.querySelectorAll('[data-decision-group]').forEach(groupEl => {
-        const cards = groupEl.querySelectorAll('.option-card');
-        cards.forEach((c, idx) => {
-          if (idx === 0) {
-            c.classList.add('selected');
-            c.classList.remove('border-slate-200');
-          } else {
-            c.classList.remove('selected');
-            c.classList.add('border-slate-200');
-          }
-        });
-      });
+    function openConceptCard1() {
+      const img = document.getElementById('concept-1-img');
+      const label = document.getElementById('concept-1-label');
+      openLightbox(img.src, label.textContent);
     }
 
-    function copyDecisionSummary() {
-      const text = [
-        "Lot 3152 — Jared & Melinda Whole-Yard Decisions Summary:",
-        "1. Landscape Track: " + currentDecisions.track,
-        "2. Raised Garden Beds (7 Boxes): " + currentDecisions.garden,
-        "3. Propane Fire Pit Placement: " + currentDecisions.firepit,
-        "4. Side-Yard Fence & Gates: " + currentDecisions.fence,
-        "5. North & South Side Yards: " + currentDecisions.sideyards,
-        "6. Front Yard & 6' Park Strips: " + currentDecisions.frontpark
-      ].join("\n");
-      navigator.clipboard.writeText(text).then(() => {
-        const toast = document.getElementById('copy-toast');
-        toast.classList.remove('hidden');
-        setTimeout(() => toast.classList.add('hidden'), 4000);
-      });
-    }
-
-    // --- 2. ALL 30 CURRENT YARD PHOTOS DATASET ---
     const CURRENT_PHOTOS = [
-      // Front Yard, Driveway & Park Strips (9 photos)
-      { file: "PXL_20261022_162032048.MP.jpg", zone: "FRONT_PARK", zoneBadge: "Front Yard & Park Strip", time: "Daylight", title: "Full Front Elevation, 21.5' Driveway, Sidewalk & 6' Park Strip (Looking West)" },
-      { file: "PXL_20261022_162046640.MP.jpg", zone: "FRONT_PARK", zoneBadge: "Front Yard & Park Strip", time: "Daylight", title: "6.0' South Park Strip, Sidewalk & SE Front Yard (Looking North-West from Street Curb)" },
-      { file: "PXL_20261022_162056602.MP.jpg", zone: "FRONT_PARK", zoneBadge: "Front Yard & Utility Box", time: "Daylight", title: "SE Front Yard Bed/Lawn Area (555 sq ft), Green Utility Transformer Box & Covered Porch" },
-      { file: "PXL_20261022_162020319.MP.jpg", zone: "FRONT_PARK", zoneBadge: "Front Garage & Driveway", time: "Daylight", title: "20.5' Garage Frontage, Stone Masonry Veneer Corners & Driveway Apron" },
-      { file: "PXL_20261022_162017040.MP.jpg", zone: "FRONT_PARK", zoneBadge: "NE Front Strip & Park Strip", time: "Daylight", title: "NE Front Strip (11.0' × 23.5' = 258.5 sq ft), Pink Survey Stakes & North Park Strip" },
-      { file: "PXL_20261022_162250066.MP.jpg", zone: "FRONT_PARK", zoneBadge: "NE Corner & Park Strip", time: "Daylight", title: "Looking South-East Across Driveway, Sidewalk & 6.0' Park Strip from NE Garage Corner" },
-      { file: "PXL_20261022_004632253.MP.jpg", zone: "FRONT_PARK", zoneBadge: "Front Yard & Park Strip", time: "Dusk", title: "Dusk Front Elevation — 2-Car Garage, Driveway & 6.0' Park Strip" },
-      { file: "PXL_20261022_004640801.MP.jpg", zone: "FRONT_PARK", zoneBadge: "Front Yard & Park Strip", time: "Dusk", title: "Dusk Wide Street View — Curb, 6.0' Park Strips, 4.0' City Sidewalk & Front Yard" },
-      { file: "PXL_20261022_004655951.MP.jpg", zone: "FRONT_PARK", zoneBadge: "SE Front Yard & Utility Box", time: "Dusk", title: "Dusk View of SE Front Yard (555 sq ft), Green Transformer Box & South Neighbor Gravel Border" },
-
-      // North Side Yard (5 photos)
-      { file: "PXL_20261022_162209617.MP.jpg", zone: "NORTH_SIDE", zoneBadge: "North Side Yard (9' × 43.2')", time: "Daylight", title: "North Side Yard Corridor Looking East from NW Backyard (Shows 9.0' Width & Pink Survey Stakes)" },
-      { file: "PXL_20261022_162233919.MP.jpg", zone: "NORTH_SIDE", zoneBadge: "North Side Yard (9' × 43.2')", time: "Daylight", title: "North Continuous 43.2' Stucco Wall & Exterior Water Spigot (X=51.0') Looking East" },
-      { file: "PXL_20261022_162243180.MP.jpg", zone: "NORTH_SIDE", zoneBadge: "North Vehicle Gate Zone", time: "Daylight", title: "North Double-Swing Vehicle Gate Location (X=70.0', 3.2' Behind NE Garage Corner & 2.0' Stone Return)" },
-      { file: "PXL_20261022_162132591.MP.jpg", zone: "NORTH_SIDE", zoneBadge: "NW Corner & North Side Entry", time: "Daylight", title: "Looking North Along Rear Patio Edge Toward NW House Corner & North Side Yard Turnaround" },
-      { file: "PXL_20261022_162230541.MP.jpg", zone: "NORTH_SIDE", zoneBadge: "NW Garden Bed & Gate Zone", time: "Daylight", title: "NW Backyard & North Property Line Stakes (Planned 7-Box Raised Cedar Garden Bed Zone)" },
-
-      // South Side Yard (3 photos)
-      { file: "PXL_20261022_162104480.MP.jpg", zone: "SOUTH_SIDE", zoneBadge: "South Gate Setback Zone", time: "Daylight", title: "South Entry & 3152 Stone Pillar — Shows SE Stucco Corner & Gas/Electric Meters Behind Planned Gate" },
-      { file: "PXL_20261022_162115166.MP.jpg", zone: "SOUTH_SIDE", zoneBadge: "South Side Yard (9' × 29.7')", time: "Daylight", title: "South Side Corridor (9.0' Wide) — Looking West Past Meters & 3'×3' AC Pad (6.0' Clear Path)" },
-      { file: "PXL_20261022_004709213.MP.jpg", zone: "SOUTH_SIDE", zoneBadge: "South Side Utilities", time: "Dusk", title: "Close-Up of South Stucco Wall Gas/Electric Meters (X=51'–54.5') & AC Condenser Pad (X=45'–48')" },
-
-      // Backyard & Patio (13 photos)
-      { file: "PXL_20261022_162150878.MP.jpg", zone: "BACKYARD", zoneBadge: "Backyard & 21'×12.5' Patio", time: "Daylight", title: "Rear House Elevation Straight-On (32.0' Foundation Width) & 21.0' × 12.5' Concrete Patio" },
-      { file: "PXL_20261022_162141898.MP.jpg", zone: "BACKYARD", zoneBadge: "Backyard & Patio", time: "Daylight", title: "Rear House Facade & Patio Looking North-East from SW Backyard Corner" },
-      { file: "PXL_20261022_162158316.MP.jpg", zone: "BACKYARD", zoneBadge: "Rear Wall & Window Well", time: "Daylight", title: "11.0' Bare Rear Wall North of Patio & 4.0'×1.3' Basement Egress Window Well Grate" },
-      { file: "PXL_20261022_162206648.MP.jpg", zone: "BACKYARD", zoneBadge: "NW Backyard (20' Unpaved)", time: "Daylight", title: "20.0' Unpaved Width North of Patio Looking South-East (Garden Box P1 & P2 Zone)" },
-      { file: "PXL_20261022_162120308.MP.jpg", zone: "BACKYARD", zoneBadge: "Backyard (17.5' Dirt to Wall)", time: "Daylight", title: "Looking North-West Across Backyard & 5-Panel Precast Concrete Privacy Wall" },
-      { file: "PXL_20261022_162126370.MP.jpg", zone: "BACKYARD", zoneBadge: "Concrete Patio (262.5 sq ft)", time: "Daylight", title: "Four 10.5' × 6.25' Concrete Patio Quadrants Looking North" },
-      { file: "PXL_20261022_162216594.MP.jpg", zone: "BACKYARD", zoneBadge: "Full 50.0' Backyard Width", time: "Daylight", title: "Full 50.0' N–S Backyard Span Looking South Along 17.5' Dirt Strip Between Patio & Wall" },
-      { file: "PXL_20261022_162226769.MP.jpg", zone: "BACKYARD", zoneBadge: "West Precast Wall (50.0')", time: "Daylight", title: "5-Bay Precast Concrete West Wall (10.0' Center-to-Center Columns) Looking South" },
-      { file: "PXL_20261022_004719182.MP.jpg", zone: "BACKYARD", zoneBadge: "Backyard & Patio (Dusk)", time: "Dusk", title: "Dusk Backyard & Patio View with Melinda — Looking North-West Toward Precast Wall" },
-      { file: "PXL_20261022_004857161.MP.jpg", zone: "BACKYARD", zoneBadge: "Rear House & Patio (Dusk)", time: "Dusk", title: "Dusk View Looking East from SW Corner Across Patio & Rear Sliding Glass Door" },
-      { file: "PXL_20261022_004913415.MP.jpg", zone: "BACKYARD", zoneBadge: "Rear House & Window Well", time: "Dusk", title: "Dusk View Looking South-East from NW Corner Showing Window Well & Patio" },
-      { file: "PXL_20261022_004925322.MP.jpg", zone: "BACKYARD", zoneBadge: "West Precast Wall (Dusk)", time: "Dusk", title: "Dusk View of 50.0' West Precast Privacy Wall Looking South-West" },
-      { file: "PXL_20261022_004940478.MP.jpg", zone: "BACKYARD", zoneBadge: "Patio Quadrants (Dusk)", time: "Dusk", title: "Dusk View of 21.0' × 12.5' Concrete Patio & West Precast Wall" }
+      { file: "PXL_20261022_162032048.MP.jpg", zone: "FRONT_PARK", tag: "Front" },
+      { file: "PXL_20261022_162046640.MP.jpg", zone: "FRONT_PARK", tag: "Front" },
+      { file: "PXL_20261022_162056602.MP.jpg", zone: "FRONT_PARK", tag: "Front" },
+      { file: "PXL_20261022_162020319.MP.jpg", zone: "FRONT_PARK", tag: "Front" },
+      { file: "PXL_20261022_162017040.MP.jpg", zone: "FRONT_PARK", tag: "Front" },
+      { file: "PXL_20261022_162250066.MP.jpg", zone: "FRONT_PARK", tag: "Front" },
+      { file: "PXL_20261022_004632253.MP.jpg", zone: "FRONT_PARK", tag: "Front" },
+      { file: "PXL_20261022_004640801.MP.jpg", zone: "FRONT_PARK", tag: "Front" },
+      { file: "PXL_20261022_004655951.MP.jpg", zone: "FRONT_PARK", tag: "Front" },
+      { file: "PXL_20261022_162209617.MP.jpg", zone: "NORTH_SIDE", tag: "North" },
+      { file: "PXL_20261022_162233919.MP.jpg", zone: "NORTH_SIDE", tag: "North" },
+      { file: "PXL_20261022_162243180.MP.jpg", zone: "NORTH_SIDE", tag: "North" },
+      { file: "PXL_20261022_162132591.MP.jpg", zone: "NORTH_SIDE", tag: "North" },
+      { file: "PXL_20261022_162230541.MP.jpg", zone: "NORTH_SIDE", tag: "North" },
+      { file: "PXL_20261022_162104480.MP.jpg", zone: "SOUTH_SIDE", tag: "South" },
+      { file: "PXL_20261022_162115166.MP.jpg", zone: "SOUTH_SIDE", tag: "South" },
+      { file: "PXL_20261022_004709213.MP.jpg", zone: "SOUTH_SIDE", tag: "South" },
+      { file: "PXL_20261022_162150878.MP.jpg", zone: "BACKYARD", tag: "Backyard" },
+      { file: "PXL_20261022_162141898.MP.jpg", zone: "BACKYARD", tag: "Backyard" },
+      { file: "PXL_20261022_162158316.MP.jpg", zone: "BACKYARD", tag: "Backyard" },
+      { file: "PXL_20261022_162206648.MP.jpg", zone: "BACKYARD", tag: "Backyard" },
+      { file: "PXL_20261022_162120308.MP.jpg", zone: "BACKYARD", tag: "Backyard" },
+      { file: "PXL_20261022_162126370.MP.jpg", zone: "BACKYARD", tag: "Backyard" },
+      { file: "PXL_20261022_162216594.MP.jpg", zone: "BACKYARD", tag: "Backyard" },
+      { file: "PXL_20261022_162226769.MP.jpg", zone: "BACKYARD", tag: "Backyard" },
+      { file: "PXL_20261022_004719182.MP.jpg", zone: "BACKYARD", tag: "Backyard" },
+      { file: "PXL_20261022_004857161.MP.jpg", zone: "BACKYARD", tag: "Backyard" },
+      { file: "PXL_20261022_004913415.MP.jpg", zone: "BACKYARD", tag: "Backyard" },
+      { file: "PXL_20261022_004925322.MP.jpg", zone: "BACKYARD", tag: "Backyard" },
+      { file: "PXL_20261022_004940478.MP.jpg", zone: "BACKYARD", tag: "Backyard" }
     ];
 
     let activePhotoFilter = 'ALL';
@@ -1084,10 +271,10 @@
     function filterPhotos(zone, btnEl) {
       activePhotoFilter = zone;
       document.querySelectorAll('.photo-filter-btn').forEach(b => {
-        b.className = "photo-filter-btn px-3.5 py-2 rounded-xl text-xs font-bold bg-slate-200 text-slate-800 hover:bg-slate-300 transition";
+        b.className = "photo-filter-btn px-3 py-1 rounded-lg text-xs font-bold bg-slate-200 text-slate-800 hover:bg-slate-300 transition";
       });
       if (btnEl) {
-        btnEl.className = "photo-filter-btn px-3.5 py-2 rounded-xl text-xs font-bold bg-emerald-700 text-white shadow-sm transition";
+        btnEl.className = "photo-filter-btn px-3 py-1 rounded-lg text-xs font-bold bg-emerald-700 text-white transition";
       }
       renderPhotoGrid();
     }
@@ -1101,27 +288,14 @@
       grid.innerHTML = items.map(p => {
         const thumbUrl = `photos_current_backyard/thumbs/${p.file}`;
         const fullUrl = `photos_current_backyard/${p.file}`;
-        const safeTitle = p.title.replace(/'/g, "\\'");
         return `
-          <div class="bg-slate-50 rounded-xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-md hover:border-emerald-500 transition flex flex-col cursor-pointer group"
-               onclick="openLightbox('${thumbUrl}', '${safeTitle}', '${fullUrl}')">
-            <div class="relative aspect-[4/3] bg-slate-200 overflow-hidden">
-              <img src="${thumbUrl}" alt="${p.title}" loading="lazy"
-                   class="w-full h-full object-cover group-hover:scale-105 transition duration-300" />
-              <span class="absolute top-2.5 left-2.5 px-2 py-0.5 rounded text-[11px] font-bold bg-slate-900/80 text-white">
-                ${p.zoneBadge}
-              </span>
-              <span class="absolute bottom-2 right-2 px-2 py-0.5 rounded text-[10px] font-mono-code font-semibold bg-white/90 text-slate-900">
-                ${p.time}
-              </span>
-            </div>
-            <div class="p-3 flex-1 flex flex-col justify-between">
-              <p class="text-xs font-semibold text-slate-800 leading-snug">${p.title}</p>
-              <div class="mt-2 pt-2 border-t border-slate-200/80 flex items-center justify-between text-[11px] text-emerald-800 font-bold">
-                <span class="font-mono-code text-slate-500">${p.file.replace('PXL_20261022_', '').replace('.MP.jpg', '')}</span>
-                <span>Enlarge &rarr;</span>
-              </div>
-            </div>
+          <div class="relative aspect-[4/3] rounded-xl overflow-hidden bg-slate-200 border border-slate-200 cursor-pointer group"
+               onclick="openLightbox('${thumbUrl}', '${p.tag}', '${fullUrl}')">
+            <img src="${thumbUrl}" alt="${p.tag}" loading="lazy"
+                 class="w-full h-full object-cover group-hover:scale-105 transition duration-300" />
+            <span class="absolute bottom-2 left-2 px-2 py-0.5 rounded text-[10px] font-bold bg-slate-900/75 text-white">
+              ${p.tag}
+            </span>
           </div>
         `;
       }).join('');
@@ -1129,103 +303,18 @@
 
     function openLightbox(displayUrl, caption, downloadUrl) {
       const modal = document.getElementById('lightbox-modal');
-      const img = document.getElementById('lightbox-img');
-      const cap = document.getElementById('lightbox-caption');
-      const dl = document.getElementById('lightbox-download');
-      img.src = displayUrl;
-      cap.textContent = caption;
-      dl.href = downloadUrl || displayUrl;
+      document.getElementById('lightbox-img').src = displayUrl;
+      document.getElementById('lightbox-caption').textContent = caption;
+      document.getElementById('lightbox-download').href = downloadUrl || displayUrl;
       modal.classList.remove('hidden');
     }
 
-    function closeLightbox(e) {
+    function closeLightbox() {
       document.getElementById('lightbox-modal').classList.add('hidden');
       document.getElementById('lightbox-img').src = '';
     }
 
-    // --- 3. ALL 44 RECONCILED MEASUREMENTS TABLE ---
-    const ALL_MEASUREMENTS = [
-      { id: 1, zone: "Footprint", name: "Total Lot Width (North–South)", rough: "~50 ft", exact: "50.0 ft", coords: "X: 0.0..96.7 | Y: 0.0..50.0", notes: "Matches 5 precast wall panels across West back wall (10.0 ft O.C.) and 9.0' N + 32.0' House + 9.0' S." },
-      { id: 2, zone: "Footprint", name: "Main House Foundation Width (N–S)", rough: "~32 ft", exact: "32.0 ft", coords: "X: 30.0..59.7 | Y: 9.0..41.0", notes: "Exact structural foundation width between North (Y=9.0') and South (Y=41.0') side yards." },
-      { id: 3, zone: "Footprint", name: "Max House Depth — North Wall (E–W)", rough: "43.2 ft", exact: "43.2 ft", coords: "X: 30.0..73.2 | Y: 9.0", notes: "Continuous stucco wall from NW back corner (X=30.0') to NE garage corner (X=73.2')." },
-      { id: 4, zone: "Footprint", name: "Main House Depth — South Wall to Door", rough: "~30 ft", exact: "29.7 ft (30.0' nom.)", coords: "X: 30.0..59.7 | Y: 41.0", notes: "From SW back corner (X=30.0') to SE stucco corner / Front Door plane (X=59.7'). Plus 13.5' garage = 43.2'." },
-      { id: 5, zone: "Footprint", name: "Total Lot Depth (Rear Wall to Sidewalk)", rough: "Derived", exact: "96.7 ft (108.7' to Curb)", coords: "X: 0.0..96.7 (108.7 to Curb)", notes: "30.0' Backyard + 43.2' North House/Garage Wall + 23.5' Driveway = 96.7' to Sidewalk (+12.0' Walk/Strip/Curb = 108.7')." },
-      { id: 6, zone: "Front", name: "Garage Front Exterior Width (N–S)", rough: "20.5 ft", exact: "20.5 ft (20.0' fdn)", coords: "X: 73.2..73.5 | Y: 8.75..29.25", notes: "20.0' foundation (Y=9.0' to 29.0') + 0.25' (3\") stone masonry flare on North and South corners = 20.5'." },
-      { id: 7, zone: "Front", name: "2-Car Garage Door Width & Wing Walls", rough: "Derived", exact: "16.0 ft door (+2.25' wings)", coords: "X: 73.2 | Y: 11.0..27.0", notes: "Standard 16.0' × 7.0' 4-panel garage door centered between two 2.25' stone-veneer wing walls." },
-      { id: 8, zone: "Front", name: "Garage Forward Projection (Porch to Garage)", rough: "13.5 ft", exact: "13.5 ft (7.5' past Porch)", coords: "X: 59.7..73.2 | Y: 29.0", notes: "From front door stucco wall (X=59.7') to NE/SE garage front face (X=73.2'). Extends 7.5' past 6.0' porch." },
-      { id: 9, zone: "Front", name: "Covered Front Porch Width (N–S)", rough: "11.5 ft", exact: "11.5 ft (12.0' clear)", coords: "X: 59.7..65.7 | Y: 29.0..41.0", notes: "Spans from garage South stone face (11.5') / foundation (12.0') to South house corner (Y=41.0')." },
-      { id: 10, zone: "Front", name: "Covered Front Porch Depth (E–W)", rough: "6 ft", exact: "6.0 ft", coords: "X: 59.7..65.7 | Y: 29.0..41.0", notes: "From front entry door wall (X=59.7') to East face of stone-base support column '3152' (X=65.7')." },
-      { id: 11, zone: "Front", name: "Driveway Main Width (2-Car Apron)", rough: "18 ft", exact: "18.0 ft", coords: "X: 73.2..96.7 | Y: 11.0..29.0", notes: "Two 9.0' concrete bays aligned with garage South edge (Y=29.0') to 2.0' South of NE garage corner (Y=11.0')." },
-      { id: 12, zone: "Front", name: "Front Porch Walkway Side Extension", rough: "3.5 ft", exact: "3.5 ft", coords: "X: 65.7..96.7 | Y: 29.0..32.5", notes: "Poured concrete walkway slab poured integrally along South edge of driveway leading to porch steps." },
-      { id: 13, zone: "Front", name: "Total Combined Driveway + Walkway Width", rough: "21.5 ft", exact: "21.5 ft", coords: "X: 73.2..96.7 | Y: 11.0..32.5", notes: "18.0' main driveway + 3.5' porch walkway extension = 21.5' total width." },
-      { id: 14, zone: "Front", name: "Driveway Length (Garage Face to Sidewalk)", rough: "23.5 ft", exact: "23.5 ft", coords: "X: 73.2..96.7 | Y: 11.0..29.0", notes: "Two ~11.75' control-jointed concrete panels from garage slab edge (X=73.2') to City Sidewalk (X=96.7')." },
-      { id: 15, zone: "Front", name: "Sidewalk (4'), Park Strip (6') & Curb (2')", rough: "Derived", exact: "12.0 ft Total Street Zone", coords: "X: 96.7..108.7 | Y: 0.0..50.0", notes: "4.0' City Sidewalk (X=96.7'–100.7') + 6.0' Park Strip (X=100.7'–106.7') + 2.0' Street Curb & Gutter (X=106.7'–108.7')." },
-      { id: 16, zone: "North Side", name: "North Side Yard Width (Wall to Lot Line)", rough: "9 ft", exact: "9.0 ft", coords: "X: 0.0..96.7 | Y: 0.0..9.0", notes: "Marked by pink/orange survey stakes on North property line; houses trash bins & planned 8.5' double vehicle gate." },
-      { id: 17, zone: "North Side", name: "North Side Yard Wall Run Length", rough: "43.2 ft", exact: "43.2 ft", coords: "X: 30.0..73.2 | Y: 0.0..9.0", notes: "Full length of North stucco wall from NW rear house corner (X=30.0') to NE front garage corner (X=73.2')." },
-      { id: 18, zone: "North Side", name: "Garage NE Corner Stone Wrap Return", rough: "2 ft", exact: "2.0 ft E–W × 0.25 ft N–S", coords: "X: 71.2..73.5 | Y: 8.75..9.0", notes: "24\" stone masonry return + downspout on North wall at NE corner. Vehicle gate set at X=70.0' (1.2' W of stone)." },
-      { id: 19, zone: "North Side", name: "Garage Front NE Unpaved Strip Width", rough: "2 ft", exact: "2.0 ft", coords: "X: 73.2..96.7 | Y: 9.0..11.0", notes: "Garage stone wing extends 2.0' North of the 18.0' driveway edge (Y=9.0' to Y=11.0')." },
-      { id: 20, zone: "North Side", name: "Total North Front Strip Width (Driveway to Lot Line)", rough: "11 ft", exact: "11.0 ft", coords: "X: 73.2..96.7 | Y: 0.0..11.0", notes: "9.0' North side setback + 2.0' garage wing offset = 11.0' unpaved width North of driveway." },
-      { id: 21, zone: "North Side", name: "North Wall Exterior Water Spigot (Hose Bib)", rough: "Derived", exact: "~21.0 ft E of NW Corner", coords: "X: 51.0 | Y: 9.0", notes: "Brass hose bib on North stucco wall (~X=51.0', Y=9.0') for garden bed drip irrigation hookup." },
-      { id: 22, zone: "South Side", name: "South Side Yard Width (Wall to Lot Line)", rough: "9 ft", exact: "9.0 ft", coords: "X: 0.0..96.7 | Y: 41.0..50.0", notes: "From South house wall (Y=41.0') to neighbor's white gravel border (Y=50.0'); houses meters, AC & 4' walk gate." },
-      { id: 23, zone: "South Side", name: "South Side Yard Wall Run (to Front Door)", rough: "~30 ft", exact: "29.7 ft (30.0' nom.)", coords: "X: 30.0..59.7 | Y: 41.0..50.0", notes: "From SW rear house corner (X=30.0') to SE stucco corner (X=59.7'); 35.7' if measured to front porch pillar (X=65.7')." },
-      { id: 24, zone: "South Side", name: "SE Yard Width (Porch Walkway to S. Lot Line)", rough: "17.5 ft", exact: "17.5 ft", coords: "X: 65.7..96.7 | Y: 32.5..50.0", notes: "50.0' Total Lot Width - (11.0' N Strip + 21.5' Combined Driveway/Walkway) = 17.5' exactly." },
-      { id: 25, zone: "South Side", name: "AC Condenser Pad & Clearance (South Wall)", rough: "Derived", exact: "3.0' × 3.0' Pad (6.0' Clear Path)", coords: "X: 45.0..48.0 | Y: 41.0..44.0", notes: "AC unit on South wall (X=45.0'–48.0') leaves a full 6.0' wide clear walkway path along the South fence." },
-      { id: 26, zone: "Backyard", name: "Total Backyard Width (North–South)", rough: "~50 ft", exact: "50.0 ft (5 × 10.0' Wall Panels)", coords: "X: 0.0..30.0 | Y: 0.0..50.0", notes: "Rear West precast concrete privacy wall has exactly 5 panels @ 10.0' center-to-center." },
-      { id: 27, zone: "Backyard", name: "Total Backyard Depth (House to Rear Wall)", rough: "30 ft", exact: "30.0 ft", coords: "X: 0.0..30.0 | Y: 0.0..50.0", notes: "12.5' concrete patio depth + 17.5' unpaved dirt depth = 30.0' total backyard depth." },
-      { id: 28, zone: "Backyard", name: "Concrete Patio Width (North–South)", rough: "21 ft", exact: "21.0 ft (2 × 10.5' Quadrants)", coords: "X: 17.5..30.0 | Y: 20.0..41.0", notes: "South edge is flush with SW house corner (Y=41.0'); extends North to Y=20.0' (past sliding glass door)." },
-      { id: 29, zone: "Backyard", name: "Concrete Patio Depth (East–West)", rough: "12.5 ft", exact: "12.5 ft (2 × 6.25' Quadrants)", coords: "X: 17.5..30.0 | Y: 20.0..41.0", notes: "From rear house wall (X=30.0') West to patio edge (X=17.5'). Poured in 4 equal 10.5' × 6.25' quadrants." },
-      { id: 30, zone: "Backyard", name: "Unpaved Depth (Patio Edge to Rear Wall)", rough: "17.5 ft", exact: "17.5 ft", coords: "X: 0.0..17.5 | Y: 20.0..41.0", notes: "Distance from West edge of concrete patio (X=17.5') to the rear precast wall (X=0.0')." },
-      { id: 31, zone: "Backyard", name: "Bare Rear House Wall North of Patio", rough: "Derived", exact: "11.0 ft", coords: "X: 30.0 | Y: 9.0..20.0", notes: "Unpaved rear house wall section under North window between NW corner (Y=9.0') and Patio (Y=20.0')." },
-      { id: 32, zone: "Backyard", name: "Total Backyard Width North of Patio", rough: "Derived", exact: "20.0 ft", coords: "X: 0.0..30.0 | Y: 0.0..20.0", notes: "Full unpaved width from North edge of patio (Y=20.0') to North property line (Y=0.0'): 11.0' wall + 9.0' setback." },
-      { id: 33, zone: "Backyard", name: "Unpaved Width South of Patio", rough: "Derived", exact: "9.0 ft", coords: "X: 0.0..30.0 | Y: 41.0..50.0", notes: "Patio South edge is flush with the SW house corner (Y=41.0'), leaving 9.0' to the South lot line (Y=50.0')." },
-      { id: 34, zone: "Area & Fence", name: "Existing Concrete Patio Area", rough: "Calculated", exact: "262.5 sq. ft.", coords: "21.0' W × 12.5' D", notes: "Four 10.5' × 6.25' concrete quadrants (65.625 sq. ft. each)." },
-      { id: 35, zone: "Area & Fence", name: "Unpaved Backyard Area (West of House)", rough: "Calculated", exact: "1,237.5 sq. ft.", coords: "1,500.0 Total - 262.5 Patio", notes: "50.0' × 30.0' (1,500 sq. ft.) minus 262.5 sq. ft. patio = 1,237.5 sq. ft. backyard landscaping area." },
-      { id: 36, zone: "Area & Fence", name: "North Side Yard Area (Enclosed vs. Total)", rough: "Calculated", exact: "360.0 sq.ft. Enclosed (388.8 Total)", coords: "9.0' W × 40.0' Enclosed (X=30..70)", notes: "Double-swing vehicle gate set at X=70.0' (3.2' W of NE corner, 1.2' behind 2' stone wrap) encloses 9.0' × 40.0' = 360.0 sq.ft." },
-      { id: 37, zone: "Area & Fence", name: "South Side Yard Area (Enclosed vs. Total)", rough: "Calculated", exact: "247.5 sq.ft. Enclosed (267.3 Total)", coords: "9.0' W × 27.5' Enclosed (X=30..57.5)", notes: "4.0' walk gate set at X=57.5' (2.2' W of SE stucco corner / 8.2' W of porch pillar) encloses meters & 9.0' × 27.5' = 247.5 sq.ft." },
-      { id: 38, zone: "Area & Fence", name: "Planned Perimeter Fence & Gate Run", rough: "Calculated", exact: "145.5 lin. ft. (70' N + 57.5' S + 18' Gates)", coords: "N Gate X=70.0' | S Gate X=57.5'", notes: "70.0' North fence + 9.0' N vehicle gate + 57.5' South fence + 9.0' S walk gate & wing." },
-      { id: 39, zone: "Area & Fence", name: "Raised Garden Beds (7 × 6.0'×3.0' N–S Boxes)", rough: "2 Patio + 5 N. Fence", exact: "126.0 sq.ft. Growing Area (7 Boxes @ 18 sq.ft.)", coords: "7 Boxes (6'×3') | P1-P2 & N1-N5", notes: "2 N–S boxes North of Patio + 4–5 along North Fence. Moving Box N5 to West Wall opens a 10.25' wide vehicle gate turnaround." },
-      { id: 40, zone: "Backyard", name: "Basement Egress Window Well & Grate (Rear Wall)", rough: "Derived from Photos", exact: "4.0 ft W × 1.3 ft D (4.5' clear to Box P2)", coords: "Well X: 28.7..30.0 | Y: 12.5..16.5", notes: "Metal grate window well under North rear window. Keeping Patio garden boxes at X=17.5'–25.5' leaves 4.5' clear." },
-      { id: 41, zone: "South Side", name: "Gas & Electric Meters Location (South Wall)", rough: "Derived from Photos", exact: "6.0 ft – 10.0 ft W of SE Corner", coords: "X: 51.0..54.5 | Y: 41.0..42.1", notes: "Mounted on South stucco wall at X=51.0'–54.5'. Setting South pedestrian gate at X=57.5' encloses meters inside the gate." },
-      { id: 42, zone: "Front", name: "SE Front Yard Unpaved Bed Area (South of Driveway)", rough: "Calculated", exact: "555.0 sq. ft.", coords: "X: 59.7..96.7 | Y: 29.0..50.0", notes: "17.5' wide along porch walkway widening to 21.0' East of walkway × 27.0'–37.0' deep to City Sidewalk." },
-      { id: 43, zone: "Front", name: "NE Front Yard Unpaved Strip Area (North of Driveway)", rough: "Calculated", exact: "258.5 sq. ft.", coords: "X: 73.2..96.7 | Y: 0.0..11.0", notes: "11.0' wide (9.0' North setback + 2.0' garage stone wing offset) × 23.5' deep to City Sidewalk." },
-      { id: 44, zone: "Area & Fence", name: "Total Unpaved Yard Area (Full Lot & Enclosed)", rough: "Calculated", exact: "2,709.8 sq. ft. Total (1,845.0 sq.ft. Inside Gates)", coords: "1,845.0 sq.ft. Enclosed + 864.8 sq.ft. Front", notes: "1,237.5 sq.ft. Backyard dirt + 360.0 sq.ft. N. Side + 247.5 sq.ft. S. Side + 864.8 sq.ft. Front Yard & Park Strips." }
-    ];
-
-    function renderMeasurementsTable() {
-      const q = (document.getElementById('measurement-search').value || '').toLowerCase().trim();
-      const z = document.getElementById('measurement-zone-filter').value;
-      const tbody = document.getElementById('measurements-tbody');
-
-      const filtered = ALL_MEASUREMENTS.filter(m => {
-        const matchZone = z === 'ALL' || m.zone === z;
-        const matchQuery = !q ||
-          m.name.toLowerCase().includes(q) ||
-          m.zone.toLowerCase().includes(q) ||
-          m.exact.toLowerCase().includes(q) ||
-          m.notes.toLowerCase().includes(q);
-        return matchZone && matchQuery;
-      });
-
-      tbody.innerHTML = filtered.map(m => `
-        <tr class="hover:bg-slate-50 transition">
-          <td class="py-2.5 px-3 font-mono-code font-bold text-slate-500">${m.id}</td>
-          <td class="py-2.5 px-3">
-            <span class="px-2 py-0.5 rounded text-xs font-bold bg-slate-200 text-slate-800">${m.zone}</span>
-          </td>
-          <td class="py-2.5 px-3 font-bold text-slate-900">${m.name}</td>
-          <td class="py-2.5 px-3 font-mono-code text-slate-600">${m.rough}</td>
-          <td class="py-2.5 px-3 font-mono-code font-bold text-emerald-800">${m.exact}</td>
-          <td class="py-2.5 px-3 font-mono-code text-xs text-slate-600">${m.coords}</td>
-          <td class="py-2.5 px-3 text-slate-700">${m.notes}</td>
-        </tr>
-      `).join('');
-    }
-
-    // Initialize on load
-    window.addEventListener('DOMContentLoaded', () => {
-      renderPhotoGrid();
-      renderMeasurementsTable();
-    });
+    window.addEventListener('DOMContentLoaded', renderPhotoGrid);
   </script>
 </body>
 </html>

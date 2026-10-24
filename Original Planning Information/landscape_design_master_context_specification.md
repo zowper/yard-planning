@@ -11,6 +11,7 @@ This document serves as the complete architectural, botanical, and visual specif
   * **House-to-Grass & Concrete Transitions:** Where grass meets flat poured concrete (Patio, Porch Walkway, Driveway, City Sidewalk), the concrete slab itself serves as the flush mower edge (no redundant pavers against flat concrete). Where lawn approaches vertical stucco house walls (such as the $11.0\text{ ft}$ rear wall with the $4.0\text{ ft} \times 1.3\text{ ft}$ basement window well), a **$2.0\text{ ft}$ straight rock/mulch Foundation Drip Buffer** separates the house wall and window well from the $6\text{-inch}$ paver edging.
 * **User Preference (Primary Design Track):** **Track B — "Maximum-Grass / Zero-Footprint Design"** (updated with straight $6\text{-inch}$ flush paver edging and $45^\circ$ chamfered corners). The homeowner strongly prefers preserving $90\%$ to $95\%$ of the existing open turf area for recreation and easy mowing.
 * **Secondary Reference Track (Archived):** **Track A — "Lush S-Curve & Gravel Pad Design"** (superseded by straight $6\text{-inch}$ paver edging with $45^\circ$ corners).
+* **Minimalist Website Presentation Rule (`index.html`):** The live website (`index.html`) must remain an **ultra-minimalist visual demonstration** of what we want—containing almost no prose or long text blocks—while all detailed descriptions, decision trade-offs, and measurement tables live in the repository's Markdown files.
 
 ---
 
@@ -53,11 +54,11 @@ This track preserves almost $100\%$ of the original turf square footage while so
 3. **Enhanced Narrow Back-Wall Bed (View 2):**
    * **Keep the original narrow, straight bed footprint** along the rear stone wall so lawn depth is completely preserved.
    * Break up the monotonous row of 9 arborvitae by alternating clusters of 2 to 3 evergreens with narrow, upright ornamental grasses (Karl Foerster Feather Reed Grass) and compact purple Russian Sage or Catmint tucked strictly inside the existing narrow strip.
-4. **Mower-Friendly Flush Concrete Edging:**
-   * Pour a flat, 4-inch-wide concrete mowing strip **completely flush with the soil/turf level** along the rear tree bed and corner pocket bed. Lawnmower wheels ride directly on the flat concrete strip, eliminating string-trimming without creating a raised barrier.
+4. **Mower-Friendly Straight 6-Inch Flush Paver Edging + 45° Chamfered Corners:**
+   * Install a continuous $6\text{-inch}$ wide ($0.5\text{ ft}$) flat concrete/stone paver mowing strip **completely flush with the soil/turf level** along all straight perimeter beds, with **$45^\circ$ chamfered paver corners** ($\approx 2.0\text{ ft} \times 2.0\text{ ft}$ diagonal transitions) at every turf corner. Lawnmower wheels ride directly on the flat paver strip and pivot cleanly around corners in a single pass.
 5. **Soil-Flush Flagstone Steppers to Garden Boxes:**
    * Omit the wide gravel pad in the lawn. Allow green grass to grow right up to the dark espresso-stained raised garden beds.
-   * Sink large, flat natural flagstone steppers ($18 \times 24\text{ in}$) **completely flush with the soil level** in a gentle arc from the corner of the concrete patio to the garden beds and side gate. Provides dry footing while allowing mower blades to pass safely overhead.
+   * Sink large, flat natural flagstone steppers ($18 \times 24\text{ in}$) **completely flush with the soil level** from the corner of the concrete patio to the garden beds and side gate. Provides dry footing while allowing mower blades to pass safely overhead.
 6. **Patio-Contained Living & Vertical Color:**
    * Keep all leisure upgrades strictly on the existing concrete slab.
    * Add a large, weather-resistant charcoal/taupe patterned outdoor area rug under the seating zone.
@@ -101,7 +102,7 @@ For comparison or hybrid adaptation, Track A prioritizes deep botanical layering
 | :--- | :--- | :--- | :--- |
 | **Carpentry Stain** | Semi-transparent exterior wood stain | Dark Espresso / Deep Walnut | Pergola, raised garden boxes, fence accent panels |
 | **Stepping Stones** | Natural cleft sandstone / Arizona buff flagstone | Warm grey, tan, and buff tones ($2\text{ in}$ thick) | Patio-to-garden path & front entry path |
-| **Edging (Track B)** | Poured-in-place flat concrete strip | Smooth broom finish, light grey ($4\text{ in}$ wide, flush) | Back wall bed, pocket bed |
+| **Edging (Track B)** | Straight $6\text{-inch}$ flush concrete/stone pavers + $45^\circ$ chamfered corners | Smooth charcoal/grey paver strip ($6\text{ in}$ wide, soil-flush) | All grass-to-bed perimeters & $2.0\text{ ft}$ foundation buffer |
 | **Edging (Track A)** | Extruded concrete landscape curbing | Stamped stone texture, mid-grey ($6\text{ in}$ raised) | All S-curve beds and gravel borders |
 | **Fire Feature** | Rectangular propane gas fire pit table | Dark bronze / espresso aluminum frame, $50,000\text{ BTU}$ | Center of covered concrete patio |
 | **Outdoor Rug** | Polypropylene all-weather flatweave | Charcoal, warm grey, and cream geometric/medallion | Under patio sectional / armchair grouping |
@@ -155,3 +156,62 @@ Use these structured prompts inside Antigravity or image generation pipelines to
 
 * **View 3 Prompt (Front Yard — Mid-Lawn Walkway):**
   > *"Edit this front yard photo to add a curving 4-foot wide natural flagstone walkway leading from the concrete driveway through the grass to the front porch. Plant a Japanese Maple tree in a curbed mulch ring in the middle-left lawn, camouflage the green utility box near the sidewalk with dense ornamental grasses, and fill the curbed foundation beds with purple lavender and layered evergreens."*
+
+---
+
+## 8. Whole-Yard Decision Matrix & Engineering Rationale (6 Key Decisions)
+
+### Decision 1: Straight 6" Flush Paver Edging + 45° Chamfered Corners & House Wall Transition
+* **Locked-In Lawn Perimeter Rules:**
+  * **Zero Curvy / S-Curve Edging:** All lawn borders use clean, straight geometric runs.
+  * **6-Inch Wide Flush Paver Edging ($0.5\text{ ft}$ wide):** Set soil-flush around the grass perimeter so the lawn mower wheel rides directly on the $6\text{-inch}$ paver strip (zero string-trimming along beds).
+  * **45° Paver Corners Everywhere:** Every $90^\circ$ turf corner is replaced by a **$45^\circ$ chamfered paver corner** ($2.0\text{ ft} \times 2.0\text{ ft}$ diagonal transition) so the mower turns smoothly in one pass without backing up or scalping corners.
+  * **Where Grass Meets Flat Concrete (Patio, Porch Walkway, Driveway, Sidewalk):** *No extra pavers needed*—the flat poured concrete slab already acts as a built-in flush mower strip, avoiding a redundant "double-concrete" seam.
+* **Recommended Option — $2.0\text{ ft}$ Foundation Rock/Mulch Drip Buffer + $6\text{-inch}$ Paver Edging:**
+  * **Solves the $11.0\text{ ft}$ Rear Wall & Window Well ($4.0\text{ ft} \times 1.3\text{ ft}$):** A $2.0\text{ ft}$ rock buffer ($X = 28.0\text{ ft}\text{–}30.0\text{ ft}$) completely encloses the $1.3\text{ ft}$ deep metal window well grate and downspout so the $6\text{-inch}$ paver strip runs straight across without awkward notches.
+  * **Mower Handlebar & Stucco Clearance:** A $6\text{-inch}$ strip right against a vertical wall is too narrow for a mower deck/handlebar without scraping the stucco. A $2.0\text{ ft}$ buffer gives full knuckle and mower clearance.
+  * **Prevents Hard-Water Stains & Basement Seepage:** Keeps turf sprinklers $2\text{ ft}$ away from the stucco weep screed and basement window well.
+* **Alternative Option — $6\text{-inch}$ Paver Strip Tight Against Stucco Foundation:**
+  * Runs turf all the way to a $6\text{-inch}$ paver strip laid directly against the vertical house foundation wall (requires notching around the $4.0\text{ ft} \times 1.3\text{ ft}$ basement window well grate and risks sprinkler overspray on stucco).
+
+### Decision 2: NW Backyard Raised Garden Bed Layout (7 Cedar Boxes @ $6.0\text{ ft} \times 3.0\text{ ft} = 126\text{ sq ft}$)
+* **Option B (Recommended) — "Gate-Clear Utah" (`2 Patio + 4 North Fence + 1 West Wall`):** Keeps 2 boxes North of the patio ($4.5\text{ ft}$ clear of the basement window well) and 4 boxes along the North fence, moving the 5th North box onto the sunny West precast wall (`W1`). Opens a full **$10.25\text{ ft}$ wide turnaround** at the NW house corner so trailers, ATVs, or wheelbarrows can drive straight through the North vehicle gate.
+* **Option A — "Your Utah" (`2 Patio + 5 North Fence`):** Places 2 N–S boxes North of the patio and 5 N–S boxes along the North fence ($1.75\text{ ft}$ gaps). Preserves the entire West wall for trees/shrubs, but Box `N5` extends to $X = 24.5\text{ ft}$, leaving a $5.5\text{ ft}$ diagonal pinch point at the NW house corner.
+* **Option C — "Sunny NW Wall L" (`4 North Fence + 3 West Wall`):** Hugs all 7 boxes along the NW perimeter walls in $100\%$ unobstructed sun and leaves the $20\text{ ft} \times 12.5\text{ ft}$ area North of the patio completely open.
+
+### Decision 3: Propane Fire Pit Placement ($21.0\text{ ft} \times 12.5\text{ ft}$ Existing Patio)
+* **Option A (Recommended — Melinda's Idea) — On Existing Concrete Patio (2-Zone Split):** Divides the $21.0\text{ ft}$ patio into **Zone 1 ($9.5\text{ ft} \times 12.5\text{ ft}$ Grill & Dining near sliding door)** and **Zone 2 ($11.5\text{ ft} \times 12.5\text{ ft}$ Fire Pit Lounge)** with a convertible rectangular propane fire table ($28\text{ in} \times 48\text{ in}$ or $32\text{ in} \times 52\text{ in}$). Zero hardscape cost and $0\text{ sq ft}$ grass lost.
+* **Option B — Connected Patio Corner Bump-Out:** Adds an $8\text{ ft} \times 8\text{ ft}$ or $10\text{ ft}$ paver extension off the outer patio corner ($+64\text{--}80\text{ sq ft}$ pavers).
+* **Option C — Dedicated Backyard Corner Pad:** $13.5\text{ ft}$ diameter circle in the SW backyard corner (requires $9.5\text{ ft}$ center setback from vinyl fences; loses $\approx 150\text{ sq ft}$ lawn).
+
+### Decision 4: Side-Yard White Vinyl Fence Setbacks & Gate Positions ($145.5\text{ lin ft}$)
+* **Option A (Recommended) — Relative Stucco Setback (`N: X = 70.0' | S: X = 57.5'`):**
+  * **North Side (Garage):** $8.0\text{--}8.5\text{ ft}$ Double-Swing Vehicle Gate at $X = 70.0\text{ ft}$ ($3.2\text{ ft}$ behind NE garage face, cleanly behind the $2.0\text{ ft}$ stone masonry wrap and downspout). Encloses $360.0\text{ sq ft}$.
+  * **South Side (Porch):** $4.0\text{ ft}$ Single-Swing Pedestrian Gate at $X = 57.5\text{ ft}$ ($2.2\text{ ft}$ behind SE stucco corner / $8.2\text{ ft}$ behind `3152` porch pillar). Encloses the gas and electric meters ($X = 51.0\text{ ft}\text{–}54.5\text{ ft}$) behind the gate while framing the front stone pillar. Encloses $247.5\text{ sq ft}$.
+* **Option B — Flush SE Stucco Corner Alignment (`N: X = 70.0' | S: X = 59.7'`):** Places the South pedestrian gate flush with the SE stucco corner ($6.0\text{ ft}$ behind the porch column), gaining $19.8\text{ sq ft}$ of enclosed side yard.
+
+### Decision 5: North & South Side Yard Surfacing, Walkway & Utility Screening
+* **Option A (Recommended) — South Flagstone Path + AC Screen & North Utility/Trailer Pad:**
+  * **South Side Yard (Human Gate, $9.0\text{ ft} \times 29.7\text{ ft}$):** Large charcoal flagstone steppers inlaid in grey crushed granite gravel, shade plantings (hostas, ferns, ornamental grasses) along the house wall, and a **horizontal cedar-slat screen** hiding the $3\text{ ft} \times 3\text{ ft}$ AC unit while preserving a $6.0\text{ ft}$ walk path.
+  * **North Side Yard (Vehicle Gate, $9.0\text{ ft} \times 43.2\text{ ft}$):** Compacted crushed stone/road-base utility pad over commercial weed barrier from the $8.5\text{ ft}$ double gate to the backyard for trash bins, trailer/mower parking, and clean access to the water spigot ($X = 51.0\text{ ft}$) and raised garden beds.
+* **Option B — Poured Concrete North RV/Utility Pad + Gravel/Stepper South Corridor:** Pours a $4\text{-inch}$ concrete slab down the $9.0\text{ ft}$ North side yard paired with gravel and steppers on the South side.
+
+### Decision 6: Front Yard ($813.5\text{ sq ft}$), Utility Box Camouflage & $6.0\text{ ft}$ Park Strips
+* **Option A (Recommended) — Open Front Lawn + 3-Sided Utility Box Grass Screen + Water-Wise $6\text{ ft}$ Park Strips:**
+  * **SE Front Lawn ($555.0\text{ sq ft}$):** Continuous lush turf with straight $6\text{-inch}$ flush paver edging and $45^\circ$ corners; focal specimen tree (*Japanese Maple* or *Little Gem Magnolia*) planted inside the foundation bed corner with lavender and boxwoods.
+  * **Green Utility Transformer Box ($X = 90.0\text{ ft}, Y = 39.5\text{ ft}$):** Screened on 3 sides with upright *Karl Foerster* feather reed grasses inside the front-left bed (leaving the front service face accessible from the sidewalk).
+  * **NE Front Strip ($258.5\text{ sq ft}$):** Clean decorative rock or turf transition leading up to the $8.5\text{ ft}$ North vehicle gate.
+  * **$6.0\text{ ft}$ Park Strips (South $21\text{ ft}$ / $\approx 126\text{ sq ft}$ & North $11\text{ ft}$ / $\approx 66\text{ sq ft}$):** Drip-irrigated decorative cobble/gravel with accent boulders and drought-hardy perennials/ornamental grasses (no narrow turf strips to edge or overspray onto the sidewalk/street).
+* **Option B — Mid-Lawn Flagstone Walkway + Sod/Tree Park Strips:** Adds a $4.0\text{ ft}$ wide curving natural flagstone walkway across the SE front lawn and finishes the $6.0\text{ ft}$ park strips in lawn/street trees.
+
+---
+
+## 9. AI Concept Render Inventory (`photos_backyard_ideas/`)
+
+| File Path | Zone | Concept Description |
+| :--- | :--- | :--- |
+| `photos_backyard_ideas/5e639ba7-a34e-49bf-b2cc-13d6a92536ff.jpeg` | Backyard View 2 (Upgraded Track B) | Interplanted *Karl Foerster* grasses & purple *Russian Sage* along West precast wall with warm $2700\text{K}$ uplighting, soil-flush charcoal flagstone steppers to dark espresso cedar beds, and cushioned armchairs around a rectangular propane fire table on the patio. |
+| `photos_backyard_ideas/Gemini_Generated_Image_qtuyw2qtuyw2qtuy (1).jpg` | Backyard View 2 (Baseline) | Monoculture row of 9 arborvitae along the West precast wall, basic patio chairs on bare concrete, and no pathway to the corner raised garden beds. |
+| `photos_backyard_ideas/Gemini_Generated_Image_qtuyw2qtuyw2qtuy (2).jpg` | Backyard View 1 (Pergola & Beds) | House rear facade, dark-stained timber pergola over the $21\text{ ft} \times 12.5\text{ ft}$ patio with warm Bistro string lights, L-shaped sectional lounge, raised cedar garden boxes along the North fence, and wide-open turf. |
+| `photos_backyard_ideas/Gemini_Generated_Image_88m5un88m5un88m5.jpg` | South Side Yard ($9.0\text{ ft}$ Wide) | $9.0\text{ ft}$ South corridor with grey crushed gravel path, oversized charcoal flagstone steppers, concrete edging, shade plantings (hostas/ferns) along the stucco wall, and horizontal cedar-slat screen hiding the AC unit. |
+| `photos_backyard_ideas/Gemini_Generated_Image_wk5if6wk5if6wk5i.jpg` | Front Yard & Side Gates | $555\text{ sq ft}$ SE front lawn, white vinyl side-yard gates flanking both sides of the house, foundation planting beds, and green utility transformer box near the sidewalk. |
