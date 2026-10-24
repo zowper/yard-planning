@@ -99,22 +99,43 @@
     </div>
   </section>
 
-  <!-- 2. Interactive 2D CAD Blueprint -->
+  <!-- 2. Interactive 2D CAD Blueprint, Color Shapes & Top-Down Drone View -->
   <section id="blueprint" class="py-6 max-w-7xl mx-auto px-4 sm:px-6 w-full">
-    <div class="flex items-center justify-between mb-3">
-      <h2 class="text-lg font-bold text-slate-900">2D Layout</h2>
-      <a href="Original%20Planning%20Information/cad_architectural_blueprint_3152.html" target="_blank"
-         class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold bg-emerald-700 text-white hover:bg-emerald-800 transition">
-        <span>Fullscreen CAD</span>
-        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
-      </a>
+    <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
+      <div>
+        <div class="flex flex-wrap items-center gap-2">
+          <h2 class="text-lg font-bold text-slate-900">2D Master Plan &amp; Top-Down Drone View</h2>
+          <span class="px-2 py-0.5 rounded-md text-xs font-mono-code font-bold bg-emerald-100 text-emerald-900 border border-emerald-300">Phased Visual Layers (2026–2031)</span>
+        </div>
+        <p class="text-xs text-slate-600 mt-0.5">
+          All decisions locked in. Toggle individual visual layers (pavers, concrete, plants, grass, beds, fence, awning, lighting) organized by build phase, or switch between CAD Blueprint, Solid Color Shapes, and Photorealistic Drone View.
+        </p>
+      </div>
+
+      <div class="flex flex-wrap items-center gap-1.5">
+        <button onclick="switchBlueprintMode('CAD', this)" class="bp-mode-pill px-2.5 py-1.5 rounded-lg text-xs font-bold bg-emerald-700 text-white transition">
+          CAD Blueprint
+        </button>
+        <button onclick="switchBlueprintMode('COLOR_SHAPES', this)" class="bp-mode-pill px-2.5 py-1.5 rounded-lg text-xs font-bold bg-slate-200 text-slate-900 hover:bg-slate-300 transition">
+          Color Shapes
+        </button>
+        <button onclick="switchBlueprintMode('DRONE', this)" class="bp-mode-pill px-2.5 py-1.5 rounded-lg text-xs font-bold bg-slate-200 text-slate-900 hover:bg-slate-300 transition">
+          Photorealistic Drone View
+        </button>
+        <a href="Original%20Planning%20Information/cad_architectural_blueprint_3152.html" target="_blank"
+           class="ml-1 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold bg-slate-900 text-white hover:bg-slate-800 transition">
+          <span>Fullscreen CAD</span>
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+        </a>
+      </div>
     </div>
 
     <div class="rounded-2xl overflow-hidden border border-slate-300 shadow-md bg-slate-950">
       <iframe
+        id="blueprint-iframe"
         src="Original%20Planning%20Information/cad_architectural_blueprint_3152.html"
-        title="Lot 3152 2D Blueprint"
-        class="w-full h-[640px] sm:h-[740px] border-0"
+        title="Lot 3152 2D Blueprint & Photorealistic Drone View"
+        class="w-full h-[680px] sm:h-[780px] border-0"
         loading="lazy">
       </iframe>
     </div>
@@ -1048,6 +1069,21 @@
           btn.className = 'inline-flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-bold bg-slate-200 text-slate-900 hover:bg-slate-300 transition';
         }, 2000);
       });
+    }
+
+    function switchBlueprintMode(mode, btnEl) {
+      document.querySelectorAll('.bp-mode-pill').forEach(b => {
+        b.className = 'bp-mode-pill px-2.5 py-1.5 rounded-lg text-xs font-bold bg-slate-200 text-slate-900 hover:bg-slate-300 transition';
+      });
+      if (btnEl) {
+        btnEl.className = 'bp-mode-pill px-2.5 py-1.5 rounded-lg text-xs font-bold bg-emerald-700 text-white transition';
+      }
+      const iframe = document.getElementById('blueprint-iframe');
+      if (iframe && iframe.contentWindow && typeof iframe.contentWindow.setRenderStyle === 'function') {
+        iframe.contentWindow.setRenderStyle(mode);
+      } else if (iframe) {
+        iframe.src = `Original%20Planning%20Information/cad_architectural_blueprint_3152.html?style=${mode}`;
+      }
     }
 
     window.addEventListener('DOMContentLoaded', () => {

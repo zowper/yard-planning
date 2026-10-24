@@ -126,16 +126,19 @@ locked_in_decisions:
     total_fence_linear_ft: 145.5
   lawn_edging_and_transitions:
     style: "Straight flush Home Depot Pavestone Holland Concrete Paver edging (7.87 in x 3.94 in x 2.36 in 60mm or 7.75 in x 4 in x 1.75 in 45mm in Charcoal Blend #21703 or Sierra Blend #21777; ~195 lin ft total = 315 bricks single row or 625 bricks double/crosswise) with prominent 45-degree diagonal chamfered corners (zero S-curves, zero extruded curbing, zero lawn stepping stones)"
+    paver_placement_rule:
+      where_pavers_are_installed: "Where the grass meets mulch, gravel (crushed rock), or the home, there ARE flush concrete pavers."
+      where_no_pavers_are_installed: "Where the grass meets the driveway, a patio (21.0' x 12.5' rear patio), a sidewalk (3.0' x 11.0' rear house sidewalk, 3.5' front porch sidewalk/walkway, or 4.0' city sidewalk), or the cement pad (9.0' x 43.2' North side cement pad), there are NOT any pavers."
     basement_and_window_wells: "None (slab-on-grade construction; zero window wells anywhere on property)"
-    rear_house_wall_sidewalk: "3.0 ft W x 11.0 ft L (33.0 sq ft) poured concrete sidewalk (wx=27.0'-30.0', wy=9.0'-20.0') right against rear house wall connecting patio directly to North side cement pad"
+    rear_house_wall_sidewalk: "3.0 ft W x 11.0 ft L (33.0 sq ft) poured concrete sidewalk (wx=27.0'-30.0', wy=9.0'-20.0') right against rear house wall connecting patio directly to North side cement pad (no pavers where grass meets sidewalk, patio, or cement pad)"
     west_back_wall_planting: "Locked-in 5+4 Designer Hybrid (HYBRID_5_PLUS_4): 5 leafy columnar pillars ('Standing Ovation' Serviceberry 15'x4', 'Crimson Spire' Columnar Oak 20'-25'x5'-6' w/ marcescent winter leaves, or 'Parkland Pillar' Birch 20'-25'x5'-6') centered in the 5 precast wall panels (wy=5,15,25,35,45, wx=2.0') + 4 upright evergreen junipers ($20 Home Depot or 'Taylor' Juniper 18'-25'x3'-3.5') aligned at the 4 interior concrete columns (wy=10,20,30,40, wx=1.75')"
     west_back_wall_understory_and_soil: "10-spot alternating under-story ribbon along front/middle of 4.0 ft bed (wx=2.95', wy=2.3,7.6,12.4,17.6,22.4,27.6,32.4,37.6,42.4,47.4) with 5x 'Walker's Low'/'Cat's Pajamas' Catmint or 'Little Spire' Russian Sage + 5x Coneflower alternating with 5x 'Karl Foerster' Feather Reed Grasses; plant trunks 21-24 in off concrete wall with root flare 1-2 in above grade in 80% native clay + 20% compost/bark fines, irrigated by 1/2-in poly drip line (2 GPH emitters) under 3-in dark shredded bark mulch"
-    north_garden_boxes: "5 raised Western Red Cedar garden boxes (N1-N5 @ 3.0 ft W E-W x 6.0 ft L N-S = 90 sq ft) running North-to-South along North backyard fence (wx=4.0'-27.0', wy=0.0'-8.0' + 6-in flush paver at wy=8.0'-8.5'); flat in-ground garden in 2027 (Phase 2) upgraded to cedar boxes in 2030 (Phase 5)"
-    south_side_lawn_corridor: "Backyard lawn wraps at least 4.0 ft wide (wy=43.5'-47.5') all the way down the 9.0 ft wide South side corridor (wx=30.0'-57.5') between 2.0 ft South fence bed (+6 in paver) and 2.0 ft house wall buffer (+6 in paver)"
+    north_garden_boxes: "5 raised Western Red Cedar garden boxes (N1-N5 @ 3.0 ft W E-W x 6.0 ft L N-S = 90 sq ft) running North-to-South along North backyard fence (wx=4.0'-27.0', wy=0.0'-8.0' + 6-in flush paver at wy=8.0'-8.5' where grass meets gravel); flat in-ground garden in 2027 (Phase 2) upgraded to cedar boxes in 2030 (Phase 5)"
+    south_side_lawn_corridor: "Backyard lawn wraps at least 4.0 ft wide (wy=43.5'-47.5') all the way down the 9.0 ft wide South side corridor (wx=30.0'-57.5') between 2.0 ft South fence mulch bed (+6 in paver) and 2.0 ft house wall gravel/mulch buffer (+6 in paver)"
     neighbor_boundary_contrast:
       north_neighbor_wy_lt_0: "Completely empty bare dirt outside Lot 3152's 9.0 ft North property line (wy = 0.0')"
       south_neighbor_wy_gt_50: "White rocks outside Lot 3152's 9.0 ft South property line (wy = 50.0')"
-    flat_concrete_edges: "Flat poured concrete slabs (patio, 3.0' rear sidewalk, porch walkway, driveway, city sidewalk) act directly as flush mower edges without redundant pavers"
+    flat_concrete_edges: "Where grass meets the driveway, a patio, a sidewalk (3.0' rear sidewalk, 3.5' front porch sidewalk/walkway, or 4.0' city sidewalk), or the 9.0' x 43.2' North side cement pad, there are NOT any pavers (flat poured concrete acts directly as the flush mower edge)"
   fire_pit_and_patio_lounge:
     fuel_type: "Propane (20 lb concealed tank inside fire table base)"
     location: "Existing 21.0 ft x 12.5 ft Concrete Patio under a House-Attached 2-Pillar Dark-Espresso Heavy-Timber Awning / Pergola (2 outer West corner pillars, 0 pillars against the home) with Warm 2700K Bistro String Lights"
