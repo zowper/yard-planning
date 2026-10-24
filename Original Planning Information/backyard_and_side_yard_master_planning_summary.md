@@ -175,16 +175,20 @@ design_decisions:
       - "Avoid street-line alignment to prevent losing garage-side storage/trailer pad space."
       - "South gate at wx=57.5' sits on flat stucco 2.2' West of SE corner, enclosing gas/electric meters (wx=51.0'-54.5') behind the gate."
   lawn_edging_and_transitions:
-    style: "Straight 6-inch wide flush paver edging with 45-degree chamfered corners (NO curvy / S-curve edging)"
+    style: "Straight 6-inch wide flush paver edging with prominent, clearly visible 45-degree diagonal chamfered corners (NO curvy / S-curve edging)"
     basement_and_window_wells: "None (slab-on-grade construction; zero window wells anywhere on property)"
     rear_house_wall_sidewalk: "3.0 ft W x 11.0 ft L poured concrete sidewalk (wx=27.0'-30.0', wy=9.0'-20.0') right against rear house wall connecting patio directly to North side cement pad"
+    west_back_wall_junipers: "10 upright green columnar Juniper trees ('Taylor' or 'Spartan' Juniper) evenly spaced 2 per 10.0 ft precast wall panel (@ 5.0 ft O.C.) inside 4.0 ft deep mulched bed + 6-in flush paver (4.5 ft to grass)"
     north_garden_boxes: "5 raised cedar garden boxes (3.0 ft W E-W x 6.0 ft L N-S) running North-to-South along North backyard fence (wx=4.0'-27.0', wy=0.0'-8.0' + 6-in flush paver at wy=8.0'-8.5')"
     south_side_lawn_corridor: "Backyard lawn wraps at least 4.0 ft wide (wy=43.5'-47.5') all the way down the 9.0 ft wide South side corridor (wx=30.0'-57.5') between 2.0 ft South fence bed + 6-in paver and 2.0 ft house wall buffer + 6-in paver"
+    neighbor_boundary_contrast:
+      north_neighbor_wy_lt_0: "Completely empty (simply bare dirt) outside Lot 3152's 9.0 ft North property line (wy = 0.0')"
+      south_neighbor_wy_gt_50: "White rocks outside Lot 3152's 9.0 ft South property line (wy = 50.0')"
     flat_concrete_edges: "Flat poured concrete slabs (patio, 3.0' rear sidewalk, porch walkway, driveway, sidewalk) act directly as flush mower edges without redundant pavers"
-  fire_pit_placement:
+  fire_pit_and_patio_lounge:
     fuel_type: "Propane (20 lb concealed tank or natural gas conversion)"
-    recommended_location: "Existing Patio (Zone 2 Lounge) or Connected Patio Corner Bump-Out"
-    recommended_unit_style: "Rectangular Fire Pit Table (28x48 in or 32x52 in) with flush burner lid"
+    recommended_location: "Existing 21.0 ft x 12.5 ft Concrete Patio under Dark-Espresso Timber Awning / Pergola with Warm 2700K Bistro String Lights"
+    recommended_seating_and_table: "L-Shaped Outdoor Patio Sectional Furniture + Long Rectangular Dual-Purpose Propane Fire Table (acts as both a table and a long propane fire pit)"
     patio_zoning:
       zone_1_dining_grill_width_ft: 9.5
       zone_2_fire_lounge_width_ft: 11.5
@@ -196,6 +200,6 @@ design_decisions:
     style: "Ultra-minimalist visual demonstration (index.html)"
     guidelines:
       - "Keep index.html stripped of heavy text, paragraphs, and long tables."
-      - "Demonstrate what we want visually via concise spec pills, the interactive 2D CAD blueprint, target AI concept renders, and the current-yard photo grid."
+      - "Demonstrate what we want visually via concise spec pills, the interactive 2D CAD blueprint, 12 target AI concept renders, and the current-yard photo grid."
       - "Store all detailed narrative specifications, decision trade-offs, and measurement tables in the repository's Markdown files."
 ```

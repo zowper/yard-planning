@@ -53,30 +53,30 @@
   <section class="bg-white border-b border-slate-200 py-3">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 flex flex-wrap items-center justify-center sm:justify-between gap-2">
       <div class="flex flex-wrap items-center gap-1.5 text-xs font-semibold">
-        <span class="px-2.5 py-1 rounded-full bg-emerald-100 text-emerald-900 border border-emerald-300">4' W. Bed: Junipers + Sage/Coneflower/Grass</span>
-        <span class="px-2.5 py-1 rounded-full bg-teal-100 text-teal-900 border border-teal-300">2' S. Berry/Kiwi Bed + 4' S. Side Grass Wrap</span>
-        <span class="px-2.5 py-1 rounded-full bg-lime-100 text-lime-900 border border-lime-300">5 N–S Planters (3'&times;6' &middot; 8.5' to Grass)</span>
-        <span class="px-2.5 py-1 rounded-full bg-slate-200 text-slate-900 border border-slate-300">9' Cement N. Side + 3' Rear Walk to Patio</span>
-        <span class="px-2.5 py-1 rounded-full bg-amber-100 text-amber-900 border border-amber-300">2' Front Beds + 6" Pavers (45&deg;)</span>
+        <span class="px-2.5 py-1 rounded-full bg-emerald-100 text-emerald-900 border border-emerald-300">10 Junipers Along W. Wall (2/Panel)</span>
+        <span class="px-2.5 py-1 rounded-full bg-amber-100 text-amber-900 border border-amber-300">Patio Awning + Bistro Lights + L-Sectional + Propane Fire Table</span>
+        <span class="px-2.5 py-1 rounded-full bg-lime-100 text-lime-900 border border-lime-300">5 N–S Planters (3'&times;6') + 3' Rear Walk</span>
+        <span class="px-2.5 py-1 rounded-full bg-teal-100 text-teal-900 border border-teal-300">4'+ S. Grass Wrap &middot; 45&deg; Chamfered Pavers</span>
+        <span class="px-2.5 py-1 rounded-full bg-slate-200 text-slate-900 border border-slate-300">N. Neighbor: Bare Dirt &middot; S. Neighbor: White Rocks</span>
       </div>
       <span class="text-xs font-mono-code font-semibold text-slate-500 hidden xl:inline">50.0' &times; 96.7' Lot</span>
     </div>
   </section>
 
-  <!-- 1. Visual Concepts (What We Want — All 10 Angles) -->
+  <!-- 1. Visual Concepts (What We Want — All 12 Angles) -->
   <section id="concepts" class="py-8 max-w-7xl mx-auto px-4 sm:px-6 w-full">
     <div class="flex flex-wrap items-center justify-between gap-2 mb-4">
       <div class="flex items-center gap-2">
         <h2 class="text-lg font-bold text-slate-900">Target Design</h2>
-        <span class="px-2 py-0.5 rounded-md text-xs font-mono-code font-bold bg-emerald-100 text-emerald-900 border border-emerald-300">10 Angles</span>
+        <span class="px-2 py-0.5 rounded-md text-xs font-mono-code font-bold bg-emerald-100 text-emerald-900 border border-emerald-300">12 Angles</span>
       </div>
 
       <div class="flex flex-wrap items-center gap-1.5">
         <button onclick="filterConcepts('ALL', this)" class="concept-filter-btn px-2.5 py-1 rounded-lg text-xs font-bold bg-emerald-700 text-white transition">
-          All (10)
+          All (12)
         </button>
         <button onclick="filterConcepts('BACKYARD', this)" class="concept-filter-btn px-2.5 py-1 rounded-lg text-xs font-bold bg-slate-200 text-slate-900 hover:bg-slate-300 transition">
-          Backyard (4)
+          Backyard (6)
         </button>
         <button onclick="filterConcepts('NORTH_SIDE', this)" class="concept-filter-btn px-2.5 py-1 rounded-lg text-xs font-bold bg-slate-200 text-slate-900 hover:bg-slate-300 transition">
           North (2)
@@ -95,7 +95,7 @@
     </div>
 
     <div id="concepts-grid" class="grid grid-cols-1 md:grid-cols-2 gap-4">
-      <!-- Populated via JS (10 Reconciled Angles) -->
+      <!-- Populated via JS (12 Reconciled Angles) -->
     </div>
   </section>
 
@@ -268,7 +268,7 @@
         id: 'backyard-pergola-planters',
         zone: 'BACKYARD',
         badge: 'Backyard · Looking East',
-        title: 'Pergola, 5 N–S Planters (3\'×6\'), Rear Walk & 4\' S. Grass Wrap',
+        title: 'Awning & Bistro Lights, L-Sectional, Propane Fire Table, 5 Planters & 45° Pavers',
         renderUrl: 'photos_backyard_ideas/render_backyard_pergola_north_planters.jpg',
         beforeThumb: 'photos_current_backyard/thumbs/PXL_20261022_004857161.MP.jpg',
         beforeFull: 'photos_current_backyard/PXL_20261022_004857161.MP.jpg'
@@ -277,7 +277,7 @@
         id: 'backyard-west-juniper-patio',
         zone: 'BACKYARD',
         badge: 'Backyard · Looking NW',
-        title: '4\' W. Juniper Bed, 5 N–S Planters (3\'×6\') & Patio Fire Table',
+        title: '10 W. Wall Junipers (2/Panel), Awning & Bistro Lights, L-Sectional & Fire Table',
         renderUrl: 'photos_backyard_ideas/render_backyard_west_juniper_bed_patio.jpg',
         beforeThumb: 'photos_current_backyard/thumbs/PXL_20261022_004940478.MP.jpg',
         beforeFull: 'photos_current_backyard/PXL_20261022_004940478.MP.jpg'
@@ -286,7 +286,7 @@
         id: 'backyard-nw-planters-sidewalk',
         zone: 'BACKYARD',
         badge: 'Backyard · Looking SE from NW',
-        title: '5 N–S Planters (3\'×6\'), 3\' Rear Sidewalk to Patio & 9\' N. Cement Pad',
+        title: '5 N–S Planters (3\'×6\'), 45° Chamfered Pavers, 3\' Rear Walk & Bare Dirt N. Neighbor',
         renderUrl: 'photos_backyard_ideas/render_backyard_nw_five_planters_sidewalk.jpg',
         beforeThumb: 'photos_current_backyard/thumbs/PXL_20261022_004913415.MP.jpg',
         beforeFull: 'photos_current_backyard/PXL_20261022_004913415.MP.jpg'
@@ -295,10 +295,28 @@
         id: 'backyard-sw-berry-juniper',
         zone: 'BACKYARD',
         badge: 'Backyard · Looking SW',
-        title: '2\' S. Berry/Kiwi Bed, 4\' S. Side Grass Wrap & 4\' W. Juniper Wall',
+        title: '10 W. Wall Junipers (2/Panel), 2\' S. Berry Bed, 4\'+ S. Grass Wrap & Patio Awning',
         renderUrl: 'photos_backyard_ideas/render_backyard_south_berry_west_juniper_panoramic.jpg',
         beforeThumb: 'photos_current_backyard/thumbs/PXL_20261022_004925322.MP.jpg',
         beforeFull: 'photos_current_backyard/PXL_20261022_004925322.MP.jpg'
+      },
+      {
+        id: 'backyard-full-50ft-span-ten-junipers',
+        zone: 'BACKYARD',
+        badge: 'Backyard · Full 50\' Span Looking S',
+        title: 'Full 50\' Span: 10 Junipers (2/Panel), 45° Chamfered Pavers & Patio Awning Lounge',
+        renderUrl: 'photos_backyard_ideas/render_backyard_full_50ft_span_ten_junipers.jpg',
+        beforeThumb: 'photos_current_backyard/thumbs/PXL_20261022_162216594.MP.jpg',
+        beforeFull: 'photos_current_backyard/PXL_20261022_162216594.MP.jpg'
+      },
+      {
+        id: 'backyard-sw-corner-patio-awning',
+        zone: 'BACKYARD',
+        badge: 'Backyard · Looking NE from SW Corner',
+        title: 'Patio Awning & Bistro Lights, L-Sectional, Fire Table, 4\'+ S. Grass & Neighbor Contrast',
+        renderUrl: 'photos_backyard_ideas/render_backyard_sw_corner_patio_awning_south_corridor.jpg',
+        beforeThumb: 'photos_current_backyard/thumbs/PXL_20261022_162141898.MP.jpg',
+        beforeFull: 'photos_current_backyard/PXL_20261022_162141898.MP.jpg'
       },
       {
         id: 'north-side-cement-corridor',
@@ -313,7 +331,7 @@
         id: 'north-vehicle-gate-ne-strip',
         zone: 'NORTH_SIDE',
         badge: 'North Gate · Looking West',
-        title: 'Narrow 9\' Side Yard, 8.5\' Double Gate (3.2\' Setback) & NE Strip',
+        title: 'Narrow 9\' N. Gate (3.2\' Setback) vs. Empty Bare Dirt North Neighbor',
         renderUrl: 'photos_backyard_ideas/render_north_vehicle_gate_ne_strip.jpg',
         beforeThumb: 'photos_current_backyard/thumbs/PXL_20261022_162017040.MP.jpg',
         beforeFull: 'photos_current_backyard/PXL_20261022_162017040.MP.jpg'
@@ -322,7 +340,7 @@
         id: 'south-side-flagstone-ac',
         zone: 'SOUTH_SIDE',
         badge: 'South Side · Looking West',
-        title: 'Narrow 9\' S. Corridor: 4\' Grass Wrap, 2\' Berry Bed & AC Screen',
+        title: 'Narrow 9\' S. Corridor: 4\'+ Grass Wrap, 45° Chamfered Pavers & AC Screen',
         renderUrl: 'photos_backyard_ideas/render_south_side_flagstone_ac_screen.jpg',
         beforeThumb: 'photos_current_backyard/thumbs/PXL_20261022_004709213.MP.jpg',
         beforeFull: 'photos_current_backyard/PXL_20261022_004709213.MP.jpg'
@@ -331,7 +349,7 @@
         id: 'south-gate-porch-entry',
         zone: 'SOUTH_SIDE',
         badge: 'South Gate · Looking West',
-        title: 'Narrow 9\' S. Gate Return (2.2\' Stucco Setback) & 3152 Porch',
+        title: 'Narrow 9\' S. Gate, 45° Chamfered Paver Corner & White Rocks South Neighbor',
         renderUrl: 'photos_backyard_ideas/render_south_gate_porch_entry.jpg',
         beforeThumb: 'photos_current_backyard/thumbs/PXL_20261022_162104480.MP.jpg',
         beforeFull: 'photos_current_backyard/PXL_20261022_162104480.MP.jpg'
@@ -340,7 +358,7 @@
         id: 'front-se-lawn-chamfered',
         zone: 'FRONT_PARK',
         badge: 'Front SE · Looking NW',
-        title: '2\' Perimeter Beds, 6" Chamfered Pavers (45°) & Utility Box Screen',
+        title: '2\' Beds, Prominent 45° Chamfered Pavers, Utility Box Screen & Neighbor Contrast',
         renderUrl: 'photos_backyard_ideas/render_front_se_lawn_chamfered_beds.jpg',
         beforeThumb: 'photos_current_backyard/thumbs/PXL_20261022_004655951.MP.jpg',
         beforeFull: 'photos_current_backyard/PXL_20261022_004655951.MP.jpg'
@@ -349,7 +367,7 @@
         id: 'front-full-elevation-park-strips',
         zone: 'FRONT_PARK',
         badge: 'Front Full · Looking West',
-        title: 'Water-Wise 6\' Street Park Strips, SE Lawn & Both Side Gates',
+        title: 'Full Front: 6\' Park Strips, 45° Pavers, White Rocks S. & Bare Dirt N. Neighbors',
         renderUrl: 'photos_backyard_ideas/render_front_full_elevation_park_strips.jpg',
         beforeThumb: 'photos_current_backyard/thumbs/PXL_20261022_004640801.MP.jpg',
         beforeFull: 'photos_current_backyard/PXL_20261022_004640801.MP.jpg'

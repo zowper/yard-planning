@@ -226,15 +226,15 @@
 
         <!-- Sub-selector for West Wall Juniper Layout when Beds/Paver Layer is active -->
         <div id="juniper-options-bar" class="flex items-center gap-1 pl-2 border-l border-slate-700 text-[11px]">
-          <span class="text-emerald-300 font-mono-cad text-[10px]">W. Junipers:</span>
-          <button onclick="setJuniperMode('TEN_TWO_PER_PANEL')" id="juniper-mode-10" class="px-1.5 py-0.5 rounded bg-emerald-600 text-white font-mono-cad text-[10px]" title="10 Upright Junipers (2 per 10' precast wall panel @ 5.0' O.C.): 100% panel symmetry, columns exposed, purple sage/coneflower centered in each panel + Karl Foerster grass at columns">
-            ★ 10 (2/Panel • 5' O.C.)
+          <span class="text-emerald-300 font-mono-cad text-[10px]">W. Wall:</span>
+          <button onclick="setJuniperMode('HYBRID_5_PLUS_4')" id="juniper-mode-hybrid" class="px-1.5 py-0.5 rounded bg-emerald-600 text-white font-mono-cad text-[10px]" title="5+4 Designer Hybrid: 5 Leafy Columnar Trees ('Standing Ovation' Serviceberry / 'Crimson Spire' Oak) centered in the 5 panels (Y=5', 15', 25', 35', 45') + 4 Upright Junipers at the 4 interior columns (Y=10', 20', 30', 40') + Perennials">
+            ★ 5+4 Hybrid (5 Leafy + 4 Junipers)
           </button>
-          <button onclick="setJuniperMode('FIVE_ONE_PER_PANEL')" id="juniper-mode-5" class="px-1.5 py-0.5 rounded bg-slate-800 text-slate-400 hover:text-white font-mono-cad text-[10px]" title="5 Upright Junipers (1 centered in each 10' precast wall panel @ 10.0' O.C.)">
+          <button onclick="setJuniperMode('TEN_TWO_PER_PANEL')" id="juniper-mode-10" class="px-1.5 py-0.5 rounded bg-slate-800 text-slate-400 hover:text-white font-mono-cad text-[10px]" title="10 Upright Junipers (2 per 10' precast wall panel @ 5.0' O.C.): 100% panel symmetry, columns exposed, purple sage/coneflower centered in each panel + Karl Foerster grass at columns">
+            10 Junipers (2/Panel)
+          </button>
+          <button onclick="setJuniperMode('FIVE_ONE_PER_PANEL')" id="juniper-mode-5" class="px-1.5 py-0.5 rounded bg-slate-800 text-slate-400 hover:text-white font-mono-cad text-[10px]" title="5 Upright Trees (1 centered in each 10' precast wall panel @ 10.0' O.C.)">
             5 (1/Panel • 10' O.C.)
-          </button>
-          <button onclick="setJuniperMode('SIX_EVEN')" id="juniper-mode-6" class="px-1.5 py-0.5 rounded bg-slate-800 text-slate-400 hover:text-white font-mono-cad text-[10px]" title="6 Upright Junipers spaced 8.0' O.C.">
-            6 (8' O.C.)
           </button>
         </div>
       </div>
@@ -418,7 +418,7 @@
       textScale: 1.0,
       southFenceMode: 'STUCCO_SETBACK', // 'STUCCO_SETBACK' (70.0' N / 57.5' S) or 'SE_CORNER' (70.0' N / 59.7' S)
       gardenMode: 'FIVE_NORTH_85',      // 'FIVE_NORTH_85' (5 N. Fence Planters @ 8.5' to grass), 'PROPOSED_UTAH', 'COURTYARD_PRO', or 'PERIMETER_L'
-      juniperMode: 'TEN_TWO_PER_PANEL', // 'TEN_TWO_PER_PANEL' (10 Junipers: 2 per 10' panel @ 5' O.C.), 'FIVE_ONE_PER_PANEL' (5 @ 10' O.C.), or 'SIX_EVEN' (6 @ 8' O.C.)
+      juniperMode: 'HYBRID_5_PLUS_4',   // 'HYBRID_5_PLUS_4' (5 Leafy Pillars in Panels + 4 Column Junipers), 'TEN_TWO_PER_PANEL' (10 @ 5' O.C.), or 'FIVE_ONE_PER_PANEL' (5 @ 10' O.C.)
       layers: {
         primaryDims: true,
         secondaryDims: true,
@@ -1463,10 +1463,14 @@
         out.push(`</g>`);
       }
 
-      // 4. SOUTH NEIGHBOR WHITE GRAVEL BORDER (wy: 50.0 to 52.8, wx: 30 to 85)
-      const southGravel = projectRect(30, 50.0, 85, 52.8);
+      // 4. NEIGHBOR BOUNDARY CONTRAST ZONES (NORTH = EMPTY BARE DIRT wy: -3.5..0.0 | SOUTH = WHITE ROCKS wy: 50.0..53.5)
+      const northNeighborDirt = projectRect(0.0, -3.5, 96.7, 0.0);
+      const southNeighborWhiteRocks = projectRect(0.0, 50.0, 96.7, 53.5);
       out.push(`
-        <rect x="${southGravel.x}" y="${southGravel.y}" width="${southGravel.width}" height="${southGravel.height}" fill="url(#pat-gravel)" stroke="${T.wallStroke}" stroke-width="0.6" stroke-dasharray="3,3" opacity="0.7"/>
+        <!-- North Neighbor Empty Bare Dirt Strip (wy = -3.5' to 0.0') -->
+        <rect x="${northNeighborDirt.x.toFixed(1)}" y="${northNeighborDirt.y.toFixed(1)}" width="${northNeighborDirt.width.toFixed(1)}" height="${northNeighborDirt.height.toFixed(1)}" fill="rgba(120, 83, 55, 0.22)" stroke="${T.wallStroke}" stroke-width="0.6" stroke-dasharray="3,3" opacity="0.85"/>
+        <!-- South Neighbor White Rocks Strip (wy = 50.0' to 53.5') -->
+        <rect x="${southNeighborWhiteRocks.x.toFixed(1)}" y="${southNeighborWhiteRocks.y.toFixed(1)}" width="${southNeighborWhiteRocks.width.toFixed(1)}" height="${southNeighborWhiteRocks.height.toFixed(1)}" fill="rgba(241, 245, 249, 0.32)" stroke="#e2e8f0" stroke-width="0.8" stroke-dasharray="3,3" opacity="0.9"/>
       `);
 
       // 5. STREETSCAPE, CURB, PARK STRIP, SIDEWALK & DRIVEWAY (EAST)
@@ -1531,6 +1535,39 @@
         <line x1="${pjEW1.x}" y1="${pjEW1.y}" x2="${pjEW2.x}" y2="${pjEW2.y}" stroke="${T.jointStroke}" stroke-width="1.3" stroke-dasharray="5,3"/>
         <line x1="${pjNS1.x}" y1="${pjNS1.y}" x2="${pjNS2.x}" y2="${pjNS2.y}" stroke="${T.jointStroke}" stroke-width="1.3" stroke-dasharray="5,3"/>
       `);
+
+      // 6A. TIMBER AWNING / PERGOLA + BISTRO LIGHTS + L-SHAPED SECTIONAL + RECTANGULAR PROPANE FIRE TABLE ON PATIO
+      const rugRect = projectRect(18.8, 29.2, 27.6, 39.8);
+      const sofaSouthArm = projectRect(19.4, 37.0, 27.0, 39.6);
+      const sofaEastArm = projectRect(24.5, 30.2, 27.0, 39.6);
+      const fireTableRect = projectRect(20.4, 31.2, 23.0, 35.8);
+      const flameBarRect = projectRect(21.35, 32.1, 22.05, 34.9);
+      out.push(`
+        <g id="patio-awning-furniture">
+          <!-- Outdoor Area Rug -->
+          <rect x="${rugRect.x.toFixed(1)}" y="${rugRect.y.toFixed(1)}" width="${rugRect.width.toFixed(1)}" height="${rugRect.height.toFixed(1)}" rx="2" fill="rgba(71, 85, 105, 0.28)" stroke="#94a3b8" stroke-width="0.9" stroke-dasharray="2,2"/>
+          <!-- L-Shaped Outdoor Sectional Sofa -->
+          <rect x="${sofaSouthArm.x.toFixed(1)}" y="${sofaSouthArm.y.toFixed(1)}" width="${sofaSouthArm.width.toFixed(1)}" height="${sofaSouthArm.height.toFixed(1)}" rx="2" fill="rgba(51, 65, 85, 0.78)" stroke="#cbd5e1" stroke-width="1.1"/>
+          <rect x="${sofaEastArm.x.toFixed(1)}" y="${sofaEastArm.y.toFixed(1)}" width="${sofaEastArm.width.toFixed(1)}" height="${sofaEastArm.height.toFixed(1)}" rx="2" fill="rgba(51, 65, 85, 0.78)" stroke="#cbd5e1" stroke-width="1.1"/>
+          <!-- Rectangular Dual-Purpose Propane Fire Pit Table (Table + Long Propane Fire Pit) -->
+          <rect x="${fireTableRect.x.toFixed(1)}" y="${fireTableRect.y.toFixed(1)}" width="${fireTableRect.width.toFixed(1)}" height="${fireTableRect.height.toFixed(1)}" rx="2" fill="#1e293b" stroke="#f59e0b" stroke-width="1.4"/>
+          <rect x="${flameBarRect.x.toFixed(1)}" y="${flameBarRect.y.toFixed(1)}" width="${flameBarRect.width.toFixed(1)}" height="${flameBarRect.height.toFixed(1)}" rx="1" fill="#fbbf24" stroke="#f97316" stroke-width="0.9"/>
+        </g>
+      `);
+      // Timber Awning / Pergola Rafters & Corner Posts + Warm 2700K Bistro String Lights
+      [20.5, 23.0, 25.5, 28.0, 30.5, 33.0, 35.5, 38.0, 40.5].forEach(wy => {
+        const pr1 = project(17.7, wy);
+        const pr2 = project(29.8, wy);
+        out.push(`<line x1="${pr1.x.toFixed(1)}" y1="${pr1.y.toFixed(1)}" x2="${pr2.x.toFixed(1)}" y2="${pr2.y.toFixed(1)}" stroke="rgba(120, 53, 15, 0.42)" stroke-width="1.4"/>`);
+      });
+      [[18.0, 20.5], [18.0, 40.5], [29.4, 20.5], [29.4, 40.5]].forEach(([px, py]) => {
+        const post = projectRect(px - 0.35, py - 0.35, px + 0.35, py + 0.35);
+        out.push(`<rect x="${post.x.toFixed(1)}" y="${post.y.toFixed(1)}" width="${post.width.toFixed(1)}" height="${post.height.toFixed(1)}" fill="#78350f" stroke="#fde68a" stroke-width="0.9"/>`);
+      });
+      [[20.0, 23.5], [22.5, 27.5], [25.0, 31.5], [22.5, 35.5], [20.0, 38.8], [26.5, 24.5], [26.5, 37.5]].forEach(([lx, ly]) => {
+        const lp = project(lx, ly);
+        out.push(`<circle cx="${lp.x.toFixed(1)}" cy="${lp.y.toFixed(1)}" r="1.8" fill="#fef08a" stroke="#f59e0b" stroke-width="0.6"/>`);
+      });
 
       // Rear Sliding Glass Door Concrete Step (wx: 28.5 to 30.0 [1.5' D], wy: 21.5 to 27.5 [6.0' W])
       const stepRect = projectRect(28.5, 21.5, 30.0, 27.5);
@@ -1728,85 +1765,122 @@
                 fill="rgba(21, 128, 61, 0.24)" stroke="#4ade80" stroke-width="1.0" stroke-dasharray="3,2"/>
         `);
 
-        // 1A. Upright Columnar Junipers ($20 Home Depot 'Skyrocket' / 'Blue Arrow')
-        //     Default TEN_TWO_PER_PANEL: 10 trees (2 per 10.0' precast panel @ 5.0' O.C.: wy = 2.5', 7.5', 12.5', 17.5', 22.5', 27.5', 32.5', 37.5', 42.5', 47.5')
-        //     FIVE_ONE_PER_PANEL: 5 trees (1 centered per 10.0' panel @ 10.0' O.C.: wy = 5', 15', 25', 35', 45')
-        //     SIX_EVEN: 6 trees (@ 8.0' O.C.: wy = 5', 13', 21', 29', 37', 45')
-        const juniperYs = STATE.juniperMode === 'FIVE_ONE_PER_PANEL'
-          ? [5.0, 15.0, 25.0, 35.0, 45.0]
-          : STATE.juniperMode === 'SIX_EVEN'
-          ? [5.0, 13.0, 21.0, 29.0, 37.0, 45.0]
-          : [2.5, 7.5, 12.5, 17.5, 22.5, 27.5, 32.5, 37.5, 42.5, 47.5];
-        const jRadiusFt = STATE.juniperMode === 'TEN_TWO_PER_PANEL' ? 1.25 : 1.55;
-
-        juniperYs.forEach((wy, idx) => {
-          // Subtle afternoon shadow band cast East-Northeast across the backyard lawn (wx=2.0' to 15.5')
-          const sh1 = project(2.0, wy - 1.15);
-          const sh2 = project(2.0, wy + 1.15);
-          const sh3 = project(15.5, Math.max(8.6, wy - 0.6));
-          const sh4 = project(15.5, Math.max(8.6, wy - 2.8));
-          if (wy >= 11.0) {
-            out.push(`<polygon points="${sh1.x.toFixed(1)},${sh1.y.toFixed(1)} ${sh2.x.toFixed(1)},${sh2.y.toFixed(1)} ${sh3.x.toFixed(1)},${sh3.y.toFixed(1)} ${sh4.x.toFixed(1)},${sh4.y.toFixed(1)}" fill="rgba(15, 23, 42, 0.14)" stroke="none"/>`);
-          }
-          const jp = project(1.85, wy);
-          out.push(`
-            <g class="juniper-tree-symbol">
-              <circle cx="${jp.x.toFixed(1)}" cy="${jp.y.toFixed(1)}" r="${(jRadiusFt * SCALE).toFixed(1)}" fill="rgba(22, 163, 74, 0.44)" stroke="#86efac" stroke-width="1.35"/>
-              <circle cx="${jp.x.toFixed(1)}" cy="${jp.y.toFixed(1)}" r="${(jRadiusFt * 0.62 * SCALE).toFixed(1)}" fill="rgba(20, 83, 45, 0.58)" stroke="#bbf7d0" stroke-width="0.8" stroke-dasharray="2,1.5"/>
-              <circle cx="${jp.x.toFixed(1)}" cy="${jp.y.toFixed(1)}" r="2.0" fill="#dcfce7"/>
-              <text x="${jp.x.toFixed(1)}" y="${(jp.y + 2.3).toFixed(1)}" fill="#ecfdf5" font-family="JetBrains Mono" font-size="5.8" font-weight="700" text-anchor="middle">J${idx + 1}</text>
-            </g>
-          `);
-        });
-
-        // 1B. Companion Inter-Planting
-        if (STATE.juniperMode === 'TEN_TWO_PER_PANEL') {
-          // In 10-Juniper (2 per Panel) Mode:
-          // - Center of each of the 5 panels (wy = 5, 15, 25, 35, 45) gets Russian Sage / Lavender (wx=1.7') + Coneflower / Catmint (wx=3.05')
-          // - In front of each of the 4 interior precast columns (wy = 10, 20, 30, 40) gets Karl Foerster Feather Reed Grass (wx=2.2')
-          [5.0, 15.0, 25.0, 35.0, 45.0].forEach(wy => {
-            const sage = project(1.75, wy);
-            const echinacea = project(3.05, wy);
+        // 1A & 1B. Western Wall Trees & Companion Inter-Planting
+        if (STATE.juniperMode === 'HYBRID_5_PLUS_4') {
+          // ★ 5+4 DESIGNER HYBRID:
+          // - 5 Leafy Columnar Pillars ('Standing Ovation' Serviceberry / 'Crimson Spire' Oak / 'Parkland Pillar' Birch, 4'–5' W × 15'–22' H)
+          //   centered inside the 5 precast panels at wy = 5.0', 15.0', 25.0', 35.0', 45.0' (wx = 2.0')
+          // - 4 Upright Evergreen Junipers ($20 Home Depot / 'Taylor' spires, 2.5'–3' W)
+          //   aligned in front of the 4 interior precast columns at wy = 10.0', 20.0', 30.0', 40.0' (wx = 1.75')
+          // - Repeating Low Perennial & Grass Ribbon tucked in the 8 inter-trunk bays (wy = 2.5', 7.5', 12.5', 17.5', 22.5', 27.5', 32.5', 37.5', 42.5', 47.5')
+          const leafyYs = [5.0, 15.0, 25.0, 35.0, 45.0];
+          leafyYs.forEach((wy, idx) => {
+            // Broad afternoon shade band cast East-Northeast across the backyard lawn
+            const sh1 = project(2.0, wy - 1.85);
+            const sh2 = project(2.0, wy + 1.85);
+            const sh3 = project(16.5, Math.max(8.6, wy - 0.5));
+            const sh4 = project(16.5, Math.max(8.6, wy - 3.8));
+            if (wy >= 15.0) {
+              out.push(`<polygon points="${sh1.x.toFixed(1)},${sh1.y.toFixed(1)} ${sh2.x.toFixed(1)},${sh2.y.toFixed(1)} ${sh3.x.toFixed(1)},${sh3.y.toFixed(1)} ${sh4.x.toFixed(1)},${sh4.y.toFixed(1)}" fill="rgba(15, 23, 42, 0.17)" stroke="none"/>`);
+            }
+            const lp = project(2.0, wy);
             out.push(`
-              <g class="west-wall-companions">
-                <!-- Panel-Center Little Spire Russian Sage / Lavender (Violet-Purple Mound) -->
-                <circle cx="${sage.x.toFixed(1)}" cy="${sage.y.toFixed(1)}" r="${(0.76 * SCALE).toFixed(1)}" fill="rgba(168, 85, 247, 0.48)" stroke="#d8b4fe" stroke-width="1.0"/>
-                <circle cx="${sage.x.toFixed(1)}" cy="${sage.y.toFixed(1)}" r="1.6" fill="#f3e8ff"/>
-                <!-- Panel-Center Front Coneflower / Catmint (Coral-Magenta Accent) -->
-                <circle cx="${echinacea.x.toFixed(1)}" cy="${echinacea.y.toFixed(1)}" r="${(0.62 * SCALE).toFixed(1)}" fill="rgba(244, 63, 94, 0.45)" stroke="#fda4af" stroke-width="0.95"/>
-                <circle cx="${echinacea.x.toFixed(1)}" cy="${echinacea.y.toFixed(1)}" r="1.4" fill="#ffe4e6"/>
+              <g class="leafy-pillar-symbol">
+                <circle cx="${lp.x.toFixed(1)}" cy="${lp.y.toFixed(1)}" r="${(1.75 * SCALE).toFixed(1)}" fill="rgba(34, 197, 94, 0.45)" stroke="#86efac" stroke-width="1.5"/>
+                <circle cx="${lp.x.toFixed(1)}" cy="${lp.y.toFixed(1)}" r="${(1.10 * SCALE).toFixed(1)}" fill="rgba(21, 128, 61, 0.55)" stroke="#bbf7d0" stroke-width="0.9" stroke-dasharray="3,1.5"/>
+                <circle cx="${lp.x.toFixed(1)}" cy="${lp.y.toFixed(1)}" r="2.3" fill="#fef08a"/>
+                <text x="${lp.x.toFixed(1)}" y="${(lp.y + 2.4).toFixed(1)}" fill="#ffffff" font-family="JetBrains Mono" font-size="6.0" font-weight="700" text-anchor="middle">S${idx + 1}</text>
               </g>
             `);
           });
-          [10.0, 20.0, 30.0, 40.0].forEach(wy => {
-            const kf = project(2.25, wy);
+
+          const colJuniperYs = [10.0, 20.0, 30.0, 40.0];
+          colJuniperYs.forEach((wy, idx) => {
+            const jp = project(1.75, wy);
             out.push(`
-              <g class="west-wall-column-grass">
-                <!-- Column-Softener Karl Foerster Feather Reed Grass (Golden Plume) -->
-                <circle cx="${kf.x.toFixed(1)}" cy="${kf.y.toFixed(1)}" r="${(0.82 * SCALE).toFixed(1)}" fill="rgba(245, 158, 11, 0.42)" stroke="#fcd34d" stroke-width="1.05"/>
-                <circle cx="${kf.x.toFixed(1)}" cy="${kf.y.toFixed(1)}" r="1.8" fill="#fef3c7"/>
+              <g class="juniper-tree-symbol">
+                <circle cx="${jp.x.toFixed(1)}" cy="${jp.y.toFixed(1)}" r="${(1.25 * SCALE).toFixed(1)}" fill="rgba(16, 185, 129, 0.48)" stroke="#6ee7b7" stroke-width="1.35"/>
+                <circle cx="${jp.x.toFixed(1)}" cy="${jp.y.toFixed(1)}" r="${(0.75 * SCALE).toFixed(1)}" fill="rgba(6, 78, 59, 0.65)" stroke="#a7f3d0" stroke-width="0.8"/>
+                <circle cx="${jp.x.toFixed(1)}" cy="${jp.y.toFixed(1)}" r="2.0" fill="#ecfdf5"/>
+                <text x="${jp.x.toFixed(1)}" y="${(jp.y + 2.2).toFixed(1)}" fill="#ecfdf5" font-family="JetBrains Mono" font-size="5.6" font-weight="700" text-anchor="middle">J${idx + 1}</text>
               </g>
+            `);
+          });
+
+          // Under-story ribbon in the 2.5' intervals between the 5 Leafy Pillars and 4 Column Junipers
+          [2.3, 7.6, 12.4, 17.6, 22.4, 27.6, 32.4, 37.6, 42.4, 47.4].forEach((wy, i) => {
+            const pp = project(2.95, wy);
+            const isPurple = i % 2 === 0;
+            out.push(`
+              <circle cx="${pp.x.toFixed(1)}" cy="${pp.y.toFixed(1)}" r="${(0.66 * SCALE).toFixed(1)}"
+                      fill="${isPurple ? 'rgba(168, 85, 247, 0.48)' : 'rgba(245, 158, 11, 0.42)'}"
+                      stroke="${isPurple ? '#d8b4fe' : '#fcd34d'}" stroke-width="0.95"/>
             `);
           });
         } else {
-          const gapYs = STATE.juniperMode === 'FIVE_ONE_PER_PANEL'
-            ? [10.0, 20.0, 30.0, 40.0]
-            : [9.0, 17.0, 25.0, 33.0, 41.0];
-          gapYs.forEach(wy => {
-            const kf = project(1.35, wy);
-            const sage = project(2.85, wy - 1.15);
-            const echinacea = project(2.85, wy + 1.15);
+          const juniperYs = STATE.juniperMode === 'FIVE_ONE_PER_PANEL'
+            ? [5.0, 15.0, 25.0, 35.0, 45.0]
+            : [2.5, 7.5, 12.5, 17.5, 22.5, 27.5, 32.5, 37.5, 42.5, 47.5];
+          const jRadiusFt = STATE.juniperMode === 'TEN_TWO_PER_PANEL' ? 1.25 : 1.55;
+
+          juniperYs.forEach((wy, idx) => {
+            const sh1 = project(2.0, wy - 1.15);
+            const sh2 = project(2.0, wy + 1.15);
+            const sh3 = project(15.5, Math.max(8.6, wy - 0.6));
+            const sh4 = project(15.5, Math.max(8.6, wy - 2.8));
+            if (wy >= 11.0) {
+              out.push(`<polygon points="${sh1.x.toFixed(1)},${sh1.y.toFixed(1)} ${sh2.x.toFixed(1)},${sh2.y.toFixed(1)} ${sh3.x.toFixed(1)},${sh3.y.toFixed(1)} ${sh4.x.toFixed(1)},${sh4.y.toFixed(1)}" fill="rgba(15, 23, 42, 0.14)" stroke="none"/>`);
+            }
+            const jp = project(1.85, wy);
             out.push(`
-              <g class="west-wall-companions">
-                <circle cx="${kf.x.toFixed(1)}" cy="${kf.y.toFixed(1)}" r="${(0.85 * SCALE).toFixed(1)}" fill="rgba(245, 158, 11, 0.38)" stroke="#fcd34d" stroke-width="1.0"/>
-                <circle cx="${kf.x.toFixed(1)}" cy="${kf.y.toFixed(1)}" r="1.8" fill="#fef3c7"/>
-                <circle cx="${sage.x.toFixed(1)}" cy="${sage.y.toFixed(1)}" r="${(0.72 * SCALE).toFixed(1)}" fill="rgba(168, 85, 247, 0.45)" stroke="#d8b4fe" stroke-width="0.95"/>
-                <circle cx="${sage.x.toFixed(1)}" cy="${sage.y.toFixed(1)}" r="1.5" fill="#f3e8ff"/>
-                <circle cx="${echinacea.x.toFixed(1)}" cy="${echinacea.y.toFixed(1)}" r="${(0.68 * SCALE).toFixed(1)}" fill="rgba(244, 63, 94, 0.42)" stroke="#fda4af" stroke-width="0.95"/>
-                <circle cx="${echinacea.x.toFixed(1)}" cy="${echinacea.y.toFixed(1)}" r="1.5" fill="#ffe4e6"/>
+              <g class="juniper-tree-symbol">
+                <circle cx="${jp.x.toFixed(1)}" cy="${jp.y.toFixed(1)}" r="${(jRadiusFt * SCALE).toFixed(1)}" fill="rgba(22, 163, 74, 0.44)" stroke="#86efac" stroke-width="1.35"/>
+                <circle cx="${jp.x.toFixed(1)}" cy="${jp.y.toFixed(1)}" r="${(jRadiusFt * 0.62 * SCALE).toFixed(1)}" fill="rgba(20, 83, 45, 0.58)" stroke="#bbf7d0" stroke-width="0.8" stroke-dasharray="2,1.5"/>
+                <circle cx="${jp.x.toFixed(1)}" cy="${jp.y.toFixed(1)}" r="2.0" fill="#dcfce7"/>
+                <text x="${jp.x.toFixed(1)}" y="${(jp.y + 2.3).toFixed(1)}" fill="#ecfdf5" font-family="JetBrains Mono" font-size="5.8" font-weight="700" text-anchor="middle">J${idx + 1}</text>
               </g>
             `);
           });
+
+          if (STATE.juniperMode === 'TEN_TWO_PER_PANEL') {
+            [5.0, 15.0, 25.0, 35.0, 45.0].forEach(wy => {
+              const sage = project(1.75, wy);
+              const echinacea = project(3.05, wy);
+              out.push(`
+                <g class="west-wall-companions">
+                  <circle cx="${sage.x.toFixed(1)}" cy="${sage.y.toFixed(1)}" r="${(0.76 * SCALE).toFixed(1)}" fill="rgba(168, 85, 247, 0.48)" stroke="#d8b4fe" stroke-width="1.0"/>
+                  <circle cx="${sage.x.toFixed(1)}" cy="${sage.y.toFixed(1)}" r="1.6" fill="#f3e8ff"/>
+                  <circle cx="${echinacea.x.toFixed(1)}" cy="${echinacea.y.toFixed(1)}" r="${(0.62 * SCALE).toFixed(1)}" fill="rgba(244, 63, 94, 0.45)" stroke="#fda4af" stroke-width="0.95"/>
+                  <circle cx="${echinacea.x.toFixed(1)}" cy="${echinacea.y.toFixed(1)}" r="1.4" fill="#ffe4e6"/>
+                </g>
+              `);
+            });
+            [10.0, 20.0, 30.0, 40.0].forEach(wy => {
+              const kf = project(2.25, wy);
+              out.push(`
+                <g class="west-wall-column-grass">
+                  <circle cx="${kf.x.toFixed(1)}" cy="${kf.y.toFixed(1)}" r="${(0.82 * SCALE).toFixed(1)}" fill="rgba(245, 158, 11, 0.42)" stroke="#fcd34d" stroke-width="1.05"/>
+                  <circle cx="${kf.x.toFixed(1)}" cy="${kf.y.toFixed(1)}" r="1.8" fill="#fef3c7"/>
+                </g>
+              `);
+            });
+          } else {
+            [10.0, 20.0, 30.0, 40.0].forEach(wy => {
+              const kf = project(1.35, wy);
+              const sage = project(2.85, wy - 1.15);
+              const echinacea = project(2.85, wy + 1.15);
+              out.push(`
+                <g class="west-wall-companions">
+                  <circle cx="${kf.x.toFixed(1)}" cy="${kf.y.toFixed(1)}" r="${(0.85 * SCALE).toFixed(1)}" fill="rgba(245, 158, 11, 0.38)" stroke="#fcd34d" stroke-width="1.0"/>
+                  <circle cx="${kf.x.toFixed(1)}" cy="${kf.y.toFixed(1)}" r="1.8" fill="#fef3c7"/>
+                  <circle cx="${sage.x.toFixed(1)}" cy="${sage.y.toFixed(1)}" r="${(0.72 * SCALE).toFixed(1)}" fill="rgba(168, 85, 247, 0.45)" stroke="#d8b4fe" stroke-width="0.95"/>
+                  <circle cx="${sage.x.toFixed(1)}" cy="${sage.y.toFixed(1)}" r="1.5" fill="#f3e8ff"/>
+                  <circle cx="${echinacea.x.toFixed(1)}" cy="${echinacea.y.toFixed(1)}" r="${(0.68 * SCALE).toFixed(1)}" fill="rgba(244, 63, 94, 0.42)" stroke="#fda4af" stroke-width="0.95"/>
+                  <circle cx="${echinacea.x.toFixed(1)}" cy="${echinacea.y.toFixed(1)}" r="1.5" fill="#ffe4e6"/>
+                </g>
+              `);
+            });
+          }
         }
 
         // 2. Backyard & Side Southern Fence 2.0' Deep Berry, Snap Pea, Strawberry, Kiwi & Shade Bed (wy: 48.0..50.0, wx: 0.0..57.5)
@@ -2250,16 +2324,16 @@
             prefWx: 11.0, prefWy: 27.0,
             title: 'BACKYARD LAWN (679 SQ.FT.)',
             sqft: '8.5\' N • 4.5\' W • 2.5\' S TO GRASS',
-            sub: 'Holland Pavers (7.87"×3.94" Charcoal/Sierra • 45°)'
+            sub: '6" Flush Holland Pavers • Prominent 45° Chamfered Corners'
           },
           {
             id: 'zone-patio',
             measureId: 'area-patio',
             anchorWx: 23.75, anchorWy: 34.5,
             prefWx: 23.75, prefWy: 34.5,
-            title: 'CONCRETE PATIO',
-            sqft: '262.5 SQ. FT.',
-            sub: "21.0' W × 12.5' D (4 Quads)"
+            title: 'PATIO + AWNING & BISTRO LIGHTS',
+            sqft: '262.5 SQ. FT. (21.0\' × 12.5\')',
+            sub: 'L-Shaped Patio Furniture + Rectangular Propane Fire Table'
           },
           {
             id: 'zone-north-side',
@@ -2268,16 +2342,16 @@
             prefWx: 40.0, prefWy: 4.5,
             title: 'NORTH SIDE CEMENT PAD',
             sqft: '388.8 SQ. FT. CEMENT',
-            sub: "9.0' W × 43.2' L (Full Concrete)"
+            sub: "9.0' W × 43.2' L (+3' Rear Walk • N. Neighbor = Bare Dirt)"
           },
           {
             id: 'zone-south-side',
             measureId: 'area-side-yards',
             anchorWx: 36.5, anchorWy: 45.5,
             prefWx: 36.5, prefWy: 45.5,
-            title: 'SOUTH SIDE YARD',
-            sqft: '270.0 SQ. FT.',
-            sub: "9.0'×30' (+2' S. Fence Bed)"
+            title: 'SOUTH SIDE GRASS CORRIDOR',
+            sqft: '270.0 SQ. FT. (4.0\'+ GRASS)',
+            sub: "9.0'×30' (4.0'+ Grass Wrap • S. Neighbor = White Rocks)"
           },
           {
             id: 'zone-se-front',
@@ -2285,8 +2359,8 @@
             anchorWx: 78.5, anchorWy: 41.2,
             prefWx: 78.5, prefWy: 41.2,
             title: 'SE FRONT LAWN & 2\' BEDS',
-            sqft: '2\' BEDS + HOLLAND PAVERS (45°)',
-            sub: '7.87"×3.94" Charcoal/Sierra • Drive/Walk/Porch/Box'
+            sqft: '2\' BEDS + 45° CHAMFERED PAVERS',
+            sub: '6" Flush Holland Pavers (45° Corners) • Drive/Walk/Porch/Box'
           },
           {
             id: 'zone-ne-front',
@@ -2295,7 +2369,7 @@
             prefWx: 85.0, prefWy: 5.2,
             title: 'NE FRONT STRIP',
             sqft: '258.5 SQ. FT.',
-            sub: "11.0' W × 23.5' D"
+            sub: "11.0' W × 23.5' D (N. Neighbor wy<0' = Empty Bare Dirt)"
           }
         ];
 
@@ -2366,8 +2440,8 @@
             measureId: 'north-setback',
             anchorWx: 26.0, anchorWy: 0.0,
             prefWx: 21.0, prefWy: -1.8,
-            title: 'PINK SURVEY STAKES',
-            sub: "Marks 9.0' N. Property Line"
+            title: 'N. PROPERTY LINE (BARE DIRT NORTH)',
+            sub: "9.0' Setback • Neighbor wy<0' = Empty Dirt"
           }
         ];
         extraUtilCallouts.forEach(u => {
@@ -2519,12 +2593,14 @@
       }
 
       if (STATE.layers.paverEdging) {
-        const jCalloutLine2 = STATE.juniperMode === 'FIVE_ONE_PER_PANEL'
-          ? '5× \'Taylor\' / \'Spartan\' Green Junipers (1/Panel @ 10\' O.C.)'
-          : STATE.juniperMode === 'SIX_EVEN'
-          ? '6× \'Taylor\' / \'Spartan\' Green Junipers (8\' O.C.)'
-          : '★ 10× \'Taylor\' / \'Spartan\' Lush Green Junipers (2/Panel @ 5\' O.C.)';
-        const jCalloutLine3 = STATE.juniperMode === 'TEN_TWO_PER_PANEL'
+        const jCalloutLine2 = STATE.juniperMode === 'HYBRID_5_PLUS_4'
+          ? '★ 5 Leafy Pillars (Serviceberry/Oak) + 4 Column Junipers'
+          : STATE.juniperMode === 'FIVE_ONE_PER_PANEL'
+          ? '5× \'Taylor\' / \'Standing Ovation\' Pillars (1/Panel @ 10\' O.C.)'
+          : '10× \'Taylor\' Lush Green Junipers (2/Panel @ 5\' O.C.)';
+        const jCalloutLine3 = STATE.juniperMode === 'HYBRID_5_PLUS_4'
+          ? 'Panels: 5 Leafy (S1–S5) • Columns: 4 Junipers (J1–J4) + Perennials'
+          : STATE.juniperMode === 'TEN_TWO_PER_PANEL'
           ? 'Panel Centers: Sage + Coneflower • Columns: Karl Foerster'
           : 'Bays: Karl Foerster Grass • Russian Sage • Coneflower';
         labelQueue.push(
@@ -2553,8 +2629,8 @@
             prefWx: 16.0, prefWy: 53.2,
             alwaysLeader: true,
             lines: [
-              { text: "2.0' S. BERRY, PEA, KIWI & SHADE BED", size: 7.6, weight: '700', color: '#a7f3d0' },
-              { text: 'Raspberries • Snap Peas • Strawberries • Hardy Kiwi', size: 6.6, weight: '500', color: '#6ee7b7' }
+              { text: "2.0' S. BERRY BED (S. NEIGHBOR = WHITE ROCKS)", size: 7.5, weight: '700', color: '#a7f3d0' },
+              { text: 'Raspberries • Snap Peas • Kiwi • White Rocks Beyond wy=50\'', size: 6.5, weight: '500', color: '#6ee7b7' }
             ],
             bg: '#064e3b',
             border: '#10b981',
@@ -2913,9 +2989,9 @@
     function setJuniperMode(mode) {
       STATE.juniperMode = mode;
       const map = {
+        'HYBRID_5_PLUS_4': 'juniper-mode-hybrid',
         'TEN_TWO_PER_PANEL': 'juniper-mode-10',
-        'FIVE_ONE_PER_PANEL': 'juniper-mode-5',
-        'SIX_EVEN': 'juniper-mode-6'
+        'FIVE_ONE_PER_PANEL': 'juniper-mode-5'
       };
       Object.entries(map).forEach(([k, btnId]) => {
         const el = document.getElementById(btnId);
