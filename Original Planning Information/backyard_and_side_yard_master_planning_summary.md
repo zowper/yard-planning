@@ -188,7 +188,28 @@ design_decisions:
     flat_concrete_edges: "Flat poured concrete slabs (patio, 3.0' rear sidewalk, porch walkway, driveway, sidewalk) act directly as flush mower edges without redundant pavers"
   fire_pit_and_patio_lounge:
     fuel_type: "Propane (20 lb concealed tank or natural gas conversion)"
-    recommended_location: "Existing 21.0 ft x 12.5 ft Concrete Patio under Dark-Espresso Timber Awning / Pergola with Warm 2700K Bistro String Lights"
+    recommended_location: "Existing 21.0 ft x 12.5 ft Concrete Patio under a House-Attached 2-Pillar Dark-Espresso Heavy-Timber Awning / Pergola (2 outer West corner pillars, 0 pillars against the home) with Warm 2700K Bistro String Lights"
+    patio_awning_structure:
+      mounting_type: "House-Attached Ledger-Mounted Timber Awning / Pergola (Strictly 2 Outer Corner Pillars; 0 Pillars Against Home; 0 Center Posts)"
+      house_ledger_attachment: "2x10 or 2x12 x 21.0 ft pressure-treated/cedar ledger board lag-bolted (Simpson LedgerLOK / structural screws with SkyLift waterproof standoff spacers) directly into the 2nd-floor rim joist along the rear house wall at wx = 30.0', wy = 20.0' to 41.0' (~9.5-10.0 ft height above slab) — ZERO vertical posts against the home"
+      outer_corner_pillars:
+        total_pillar_count: 2
+        house_wall_pillar_count: 0
+        center_post_count: 0
+        pillar_size_and_material: "6x6 (5.5 in x 5.5 in) or 8x8 (7.5 in x 7.5 in) rough-sawn Western Red Cedar or #1 Appearance-Grade Douglas Fir stained Dark Espresso / Kona Brown, anchored to outer West corners of concrete slab via matte-black powder-coated steel post bases (Simpson Strong-Tie Outdoor Accents Avant APB66 / APB88 + ZMAX Titen HD concrete anchors)"
+        north_west_pillar_p1: "wx = 18.0', wy = 20.5' (6 in inset from North/West slab edges)"
+        south_west_pillar_p2: "wx = 18.0', wy = 40.5' (6 in inset from South/West slab edges)"
+        clear_west_span_ft: 20.0
+      west_front_header_beam: "21.0 ft continuous clear-span beam across West edge (wx = 18.0', wy = 20.0'-41.0' at 8.5-9.0 ft underside clearance): either 3.5 in x 11.875 in architectural exterior Glulam beam OR steel-flitch-plate double 2x12 box beam, braced at both outer corner posts by 45-degree timber knee braces (4x6 or 6x6)"
+      rafters_and_shade_canopy: "14x 2x8 E-W rafters @ 18 in O.C. spanning 12.5 ft from house ledger (wx = 30.0') to West header beam (wx = 18.0') with 12 in decorative notched West tail overhang (to wx = 17.0'); topped with 24x 2x2 N-S shade purlins @ 4.5 in O.C. (3 in open gap) + optional flat smoked-bronze polycarbonate UV/rain top sheet (Palram Suntuf / SkyPoly EZ-Glaze) + commercial warm 2700K Edison LED bistro string lights"
+      researched_turnkey_kit_equivalents:
+        - "Western Timber Frame (Lehi, UT) — Custom 21' x 12.5' Attached 2-Post ShadeScape Heavy-Timber Kit (mortise-and-tenon Dovetail joinery, engineered 20' clear-span West beam, concealed TimberVolt lighting track)"
+        - "Sunset Pergola Kits — Custom 21' x 12' Attached 2-Post Modern Heavy-Duty Western Red Cedar Pergola Kit with Simpson Strong-Tie Black Hardware"
+      uniform_rendering_rules:
+        - "Rule 1 (Strictly 2 Pillars Total): Every rendering MUST show ONLY TWO vertical timber pillars at the outer West corners of the concrete patio (NW corner wx=18.0', wy=20.5' and SW corner wx=18.0', wy=40.5')."
+        - "Rule 2 (Zero Pillars Against the House): The East side of the canopy attaches flush into the rear house stucco wall at wx=30.0' via a horizontal dark-espresso timber ledger board above the sliding glass door and living room window. NEVER render a 4-post freestanding pergola or any posts along the house wall."
+        - "Rule 3 (Zero Middle Posts): The 20.0 ft West front opening is a single uninterrupted clear span supported by a deep header beam and two 45-degree corner knee braces. NEVER render a 3rd middle post at wy=30.5'."
+        - "Rule 4 (Uniform Color & Hardware): All timber members are stained semi-transparent Dark Espresso / Dark Walnut; all structural post bases, T-straps, and L-angles are matte-black powder-coated steel (Simpson Outdoor Accents)."
     recommended_seating_and_table: "L-Shaped Outdoor Patio Sectional Furniture + Long Rectangular Dual-Purpose Propane Fire Table (acts as both a table and a long propane fire pit)"
     patio_zoning:
       zone_1_dining_grill_width_ft: 9.5

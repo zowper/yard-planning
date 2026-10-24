@@ -734,7 +734,7 @@
         name: 'Back Patio Width (North–South)',
         rough: '21 ft',
         exact: '21.0 ft',
-        notes: 'Spans Y=20.0\' to Y=41.0\' (flush with SW house corner). Divided into two 10.5\' halves at Y=30.5\'.',
+        notes: 'Spans Y=20.0\' to Y=41.0\' (flush with SW house corner). Covered by house-attached 2-pillar dark-espresso timber awning (ledger on house wall at X=30.0\'; ONLY 2 pillars at outer West corners X=18.0\', Y=20.5\' & 40.5\' w/ 20.0\' clear span; 0 pillars against home).',
         dim: {
           x1: -6.8, y1: 20.0, x2: -6.8, y2: 41.0,
           wx1: 17.5, wy1: 20.0, wx2: 17.5, wy2: 41.0,
@@ -748,7 +748,7 @@
         name: 'Back Patio Depth (East–West)',
         rough: '12.5 ft',
         exact: '12.5 ft',
-        notes: 'Extends West from X=30.0\' to X=17.5\'. Divided by center control joint into two 6.25\' deep halves.',
+        notes: 'Extends West from X=30.0\' to X=17.5\'. House-attached 2×8 rafters span 12.5\' E–W from house ledger (X=30.0\', 0 house posts) to outer West header beam supported by 2 corner pillars at X=18.0\'.',
         dim: {
           x1: 17.5, y1: -6.5, x2: 30.0, y2: -6.5,
           wx1: 17.5, wy1: 20.0, wx2: 30.0, wy2: 20.0,
@@ -1029,10 +1029,10 @@
       {
         id: 'area-patio',
         zone: 'Area & Fence',
-        name: 'Backyard Concrete Patio Area',
+        name: 'Backyard Concrete Patio & Attached 2-Pillar Awning Area',
         rough: 'Calculated',
         exact: '262.5 sq. ft.',
-        notes: '21.0\' N–S width × 12.5\' E–W depth = 262.5 sq.ft. (four 65.625 sq.ft. slabs).',
+        notes: '21.0\' N–S width × 12.5\' E–W depth = 262.5 sq.ft. Covered by house-attached 2-pillar dark-espresso timber awning (ledger-mounted to house at X=30.0\'; ONLY 2 outer West corner pillars at X=18.0\', Y=20.5\' & 40.5\'; 0 pillars against home) + 2700K bistro lights, L-sectional & propane fire table.',
         zoneBox: { x1: 17.5, y1: 20.0, x2: 30.0, y2: 41.0 }
       },
       {
@@ -1554,15 +1554,20 @@
           <rect x="${flameBarRect.x.toFixed(1)}" y="${flameBarRect.y.toFixed(1)}" width="${flameBarRect.width.toFixed(1)}" height="${flameBarRect.height.toFixed(1)}" rx="1" fill="#fbbf24" stroke="#f97316" stroke-width="0.9"/>
         </g>
       `);
-      // Timber Awning / Pergola Rafters & Corner Posts + Warm 2700K Bistro String Lights
+      // House-Attached 2-Pillar Timber Awning / Pergola (Ledger at wx=30.0', ONLY 2 Outer West Corner Pillars at wx=18.0', 0 House Posts) + Warm 2700K Bistro String Lights
+      const houseLedger = projectRect(29.7, 20.0, 30.0, 41.0);
+      out.push(`<rect x="${houseLedger.x.toFixed(1)}" y="${houseLedger.y.toFixed(1)}" width="${houseLedger.width.toFixed(1)}" height="${houseLedger.height.toFixed(1)}" fill="#78350f" stroke="#f59e0b" stroke-width="0.9"/>`);
+      const westHeaderBeam = projectRect(17.8, 20.0, 18.2, 41.0);
+      out.push(`<rect x="${westHeaderBeam.x.toFixed(1)}" y="${westHeaderBeam.y.toFixed(1)}" width="${westHeaderBeam.width.toFixed(1)}" height="${westHeaderBeam.height.toFixed(1)}" fill="rgba(120, 53, 15, 0.55)" stroke="#92400e" stroke-width="0.9"/>`);
       [20.5, 23.0, 25.5, 28.0, 30.5, 33.0, 35.5, 38.0, 40.5].forEach(wy => {
-        const pr1 = project(17.7, wy);
+        const pr1 = project(17.0, wy);
         const pr2 = project(29.8, wy);
-        out.push(`<line x1="${pr1.x.toFixed(1)}" y1="${pr1.y.toFixed(1)}" x2="${pr2.x.toFixed(1)}" y2="${pr2.y.toFixed(1)}" stroke="rgba(120, 53, 15, 0.42)" stroke-width="1.4"/>`);
+        out.push(`<line x1="${pr1.x.toFixed(1)}" y1="${pr1.y.toFixed(1)}" x2="${pr2.x.toFixed(1)}" y2="${pr2.y.toFixed(1)}" stroke="rgba(120, 53, 15, 0.45)" stroke-width="1.4"/>`);
       });
-      [[18.0, 20.5], [18.0, 40.5], [29.4, 20.5], [29.4, 40.5]].forEach(([px, py]) => {
-        const post = projectRect(px - 0.35, py - 0.35, px + 0.35, py + 0.35);
-        out.push(`<rect x="${post.x.toFixed(1)}" y="${post.y.toFixed(1)}" width="${post.width.toFixed(1)}" height="${post.height.toFixed(1)}" fill="#78350f" stroke="#fde68a" stroke-width="0.9"/>`);
+      // Strictly 2 Outer West Corner Pillars (P1: wx=18.0, wy=20.5; P2: wx=18.0, wy=40.5) — ZERO pillars against the home
+      [[18.0, 20.5], [18.0, 40.5]].forEach(([px, py]) => {
+        const post = projectRect(px - 0.38, py - 0.38, px + 0.38, py + 0.38);
+        out.push(`<rect x="${post.x.toFixed(1)}" y="${post.y.toFixed(1)}" width="${post.width.toFixed(1)}" height="${post.height.toFixed(1)}" fill="#78350f" stroke="#fde68a" stroke-width="1.1"/>`);
       });
       [[20.0, 23.5], [22.5, 27.5], [25.0, 31.5], [22.5, 35.5], [20.0, 38.8], [26.5, 24.5], [26.5, 37.5]].forEach(([lx, ly]) => {
         const lp = project(lx, ly);
@@ -2331,9 +2336,9 @@
             measureId: 'area-patio',
             anchorWx: 23.75, anchorWy: 34.5,
             prefWx: 23.75, prefWy: 34.5,
-            title: 'PATIO + AWNING & BISTRO LIGHTS',
+            title: 'PATIO + ATTACHED 2-PILLAR AWNING',
             sqft: '262.5 SQ. FT. (21.0\' × 12.5\')',
-            sub: 'L-Shaped Patio Furniture + Rectangular Propane Fire Table'
+            sub: '2 Outer Corner Pillars (0 House Posts) • L-Sectional & Fire Table'
           },
           {
             id: 'zone-north-side',
