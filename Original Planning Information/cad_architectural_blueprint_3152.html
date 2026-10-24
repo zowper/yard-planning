@@ -1084,13 +1084,13 @@
       {
         id: 'west-wall-juniper-bed',
         zone: 'Backyard',
-        name: 'Western Wall Juniper & Perennial Bed (10 Junipers • 2/Panel)',
-        rough: '10× $20 Junipers (2 per Panel)',
-        exact: '4.0\' Bed + 6" Paver • 10 Junipers (2/Panel @ 5\' O.C.)',
-        notes: '10 narrow upright junipers ($20 Home Depot Skyrocket / Blue Arrow, 2.5\' W × 15\'–20\' H) placed 2 per 10.0\' precast wall panel at 5.0\' O.C. (Y=2.5\', 7.5\', 12.5\', 17.5\', 22.5\', 27.5\', 32.5\', 37.5\', 42.5\', 47.5\') for 100% panel symmetry, afternoon shade & 50% open wall visibility. Framed with Russian Sage/Lavender & Coneflower in the 5 panel centers (Y=5\', 15\', 25\', 35\', 45\') + 4 Karl Foerster grasses at the interior columns (Y=10\', 20\', 30\', 40\').',
+        name: 'Western Wall \'Taylor\' / \'Spartan\' Green Juniper Bed (10 • 2/Panel)',
+        rough: '10× Lush Green Junipers (2/Panel)',
+        exact: '4.0\' Bed + Paver • 10 \'Taylor\'/\'Spartan\' Junipers (5\' O.C.)',
+        notes: '10 lush emerald-green upright junipers (#1 Pick: \'Taylor\' Eastern Red Cedar Juniper, 3\' W × 18\'–25\' H; #2 Home Depot In-Store Pick: \'Spartan\' Chinese Juniper lightly sheared to 3\' W × 15\'–20\' H) placed 2 per 10.0\' wall panel at 5.0\' O.C. (Y=2.5\', 7.5\'..47.5\'). Rich green fill for Melinda, tall enough to block City Works buildings/antennas & cast afternoon shade, while keeping 50% open wall visibility. Framed with Russian Sage/Lavender & Coneflower in the 5 panel centers (Y=5\', 15\', 25\', 35\', 45\') + 4 Karl Foerster grasses at interior columns (Y=10\', 20\', 30\', 40\').',
         dim: {
           x1: 0.0, y1: 36.0, x2: 4.5, y2: 36.0,
-          label: "4.0' W. BED (10 JUNIPERS • 2/PANEL)",
+          label: "4.0' W. BED (10 'TAYLOR' GREEN JUNIPERS)",
           primary: false
         },
         zoneBox: { x1: 0.0, y1: 0.0, x2: 4.5, y2: 50.0 }
@@ -2510,10 +2510,10 @@
 
       if (STATE.layers.paverEdging) {
         const jCalloutLine2 = STATE.juniperMode === 'FIVE_ONE_PER_PANEL'
-          ? '5× $20 Upright Junipers (1/Panel @ 10\' O.C.)'
+          ? '5× \'Taylor\' / \'Spartan\' Green Junipers (1/Panel @ 10\' O.C.)'
           : STATE.juniperMode === 'SIX_EVEN'
-          ? '6× $20 Upright Junipers (8\' O.C. • Afternoon Shade)'
-          : '★ 10× $20 Upright Junipers (2/Panel @ 5\' O.C.)';
+          ? '6× \'Taylor\' / \'Spartan\' Green Junipers (8\' O.C.)'
+          : '★ 10× \'Taylor\' / \'Spartan\' Lush Green Junipers (2/Panel @ 5\' O.C.)';
         const jCalloutLine3 = STATE.juniperMode === 'TEN_TWO_PER_PANEL'
           ? 'Panel Centers: Sage + Coneflower • Columns: Karl Foerster'
           : 'Bays: Karl Foerster Grass • Russian Sage • Coneflower';
@@ -2526,8 +2526,8 @@
             prefWx: -9.8, prefWy: 18.0,
             alwaysLeader: true,
             lines: [
-              { text: "4.0' W. JUNIPER & PERENNIAL BED (+6\" PAVER)", size: 7.5, weight: '700', color: '#bbf7d0' },
-              { text: jCalloutLine2, size: 6.7, weight: '600', color: '#86efac' },
+              { text: "4.0' W. LUSH GREEN JUNIPER & PERENNIAL BED", size: 7.5, weight: '700', color: '#bbf7d0' },
+              { text: jCalloutLine2, size: 6.5, weight: '600', color: '#86efac' },
               { text: jCalloutLine3, size: 6.3, weight: '500', color: '#fde68a' }
             ],
             bg: '#052e16',
