@@ -181,6 +181,9 @@
           <button onclick="toggleLayer('garden')" id="layer-garden" class="layer-pill px-2 py-1 rounded-md text-[11px] font-medium bg-lime-500/20 text-lime-300 border border-lime-500/40" title="Toggle 6'×3' Raised Garden Bed Layouts">
             Garden Boxes (7)
           </button>
+          <button onclick="toggleLayer('paverEdging')" id="layer-paverEdging" class="layer-pill px-2 py-1 rounded-md text-[11px] font-medium bg-teal-500/20 text-teal-300 border border-teal-500/40" title="Toggle 6-Inch Flush Paver Edging, 45° Chamfered Corners & 2.0' Foundation Drip Buffer">
+            6" Paver Edging (45°)
+          </button>
           <button onclick="toggleLayer('grid')" id="layer-grid" class="layer-pill px-2 py-1 rounded-md text-[11px] font-medium bg-slate-700/60 text-slate-300 border border-slate-600" title="Toggle 1-Ft / 5-Ft Engineering Grid">
             1'/5' Grid
           </button>
@@ -405,7 +408,8 @@
         utilities: true,
         grid: true,
         fence: true,
-        garden: true
+        garden: true,
+        paverEdging: true
       },
       highlightedId: null,
       zoneFilter: 'ALL',
@@ -1644,6 +1648,125 @@
         out.push(`</g>`);
       }
 
+      // 13A. 6-INCH PAVER EDGING (0.5' WIDE) + 45° CHAMFERED CORNERS + 2.0' FOUNDATION DRIP BUFFER
+      if (STATE.layers.paverEdging) {
+        out.push(`<g id="paver-edging-geometry">`);
+
+        // 1. Rear House Wall 2.0' Foundation Drip Buffer (wx: 28.0..30.0, wy: 9.0..20.0)
+        // Encloses the 4.0'x1.3' Basement Egress Window Well (wx: 28.7..30.0) so grass/mower never touches stucco or window grate
+        const dripBuf = projectRect(28.0, 9.0, 30.0, 20.0);
+        out.push(`
+          <rect x="${dripBuf.x.toFixed(1)}" y="${dripBuf.y.toFixed(1)}" width="${dripBuf.width.toFixed(1)}" height="${dripBuf.height.toFixed(1)}"
+                fill="url(#pat-gravel)" stroke="#94a3b8" stroke-width="1.2" stroke-dasharray="3,2" opacity="0.85"/>
+        `);
+
+        // 2. Backyard Lawn Polygon with 6" (0.5') Paver Edging & 45° Chamfered Corners (2.0' × 2.0' 45° cuts)
+        // Note: Along the flat Concrete Patio (wx=17.5, wy=20.0..41.0), the concrete slab itself is the flush mower edge!
+        // The 6" paver strip borders the West bed (wx=3.5), South bed (wy=47.0), and North Garden Pad (wy=19.5) with 45° corners.
+        const byLawnPts = STATE.gardenMode === 'PERIMETER_L'
+          ? [
+              [5.5, 11.0],  // NW 45° chamfer start
+              [7.5, 9.0],   // NW 45° chamfer end along N garden edge
+              [26.0, 9.0],  // NE 45° chamfer start near 2' foundation buffer
+              [28.0, 11.0], // NE 45° chamfer end along wx=28.0' foundation drip buffer
+              [28.0, 20.0], // Meets North edge of Patio
+              [17.5, 20.0], // Follows West edge of Concrete Patio (no pavers needed along flat concrete!)
+              [17.5, 41.0], // SW corner of Concrete Patio
+              [28.0, 41.0], // South of Patio to SW house corner line
+              [28.0, 45.0], // SE 45° chamfer start
+              [26.0, 47.0], // SE 45° chamfer end along South bed
+              [5.5, 47.0],  // SW 45° chamfer start
+              [3.5, 45.0],  // SW 45° chamfer end along West bed
+              [3.5, 33.5],  // Steps around West garden bed W3
+              [5.5, 31.5]   // 45° chamfer into West garden bed line
+            ]
+          : [
+              [3.5, 21.5],  // NW 45° chamfer start (West bed to Garden pad)
+              [5.5, 19.5],  // NW 45° chamfer end along Garden pad (wy=19.5')
+              [17.5, 19.5], // Meets NW corner of Concrete Patio
+              [17.5, 41.0], // Follows West edge of Concrete Patio (flat concrete = built-in mower edge)
+              [28.0, 41.0], // South edge of Concrete Patio
+              [28.0, 45.0], // SE 45° chamfer start
+              [26.0, 47.0], // SE 45° chamfer end along South fence bed (wy=47.0')
+              [5.5, 47.0],  // SW 45° chamfer start
+              [3.5, 45.0]   // SW 45° chamfer end along West precast wall bed (wx=3.5')
+            ];
+
+        const byLawnSvgPoly = projectPoly(byLawnPts);
+        out.push(`
+          <polygon points="${byLawnSvgPoly}" fill="rgba(16, 185, 129, 0.14)" stroke="none"/>
+        `);
+
+        // Draw the 6" (0.5' wide) Paver Edging Strip along the non-concrete edges of the Backyard Lawn
+        const byPaverChains = STATE.gardenMode === 'PERIMETER_L'
+          ? [
+              [[17.5, 41.0], [28.0, 41.0], [28.0, 45.0], [26.0, 47.0], [5.5, 47.0], [3.5, 45.0], [3.5, 33.5], [5.5, 31.5], [5.5, 11.0], [7.5, 9.0], [26.0, 9.0], [28.0, 11.0], [28.0, 20.0]]
+            ]
+          : [
+              [[17.5, 19.5], [5.5, 19.5], [3.5, 21.5], [3.5, 45.0], [5.5, 47.0], [26.0, 47.0], [28.0, 45.0], [28.0, 41.0]],
+              // Plus straight 6" paver border along the 2.0' Rear Wall Foundation Buffer (wx=28.0', wy=9.0..20.0)
+              [[28.0, 9.0], [28.0, 20.0]]
+            ];
+
+        byPaverChains.forEach(chain => {
+          const ptsStr = chain.map(([wx, wy]) => {
+            const p = project(wx, wy);
+            return `${p.x.toFixed(1)},${p.y.toFixed(1)}`;
+          }).join(' ');
+          // 0.5' (6 inch) wide paver band (0.5 * SCALE = 6px wide) with paver joint dashes
+          out.push(`
+            <polyline points="${ptsStr}" fill="none" stroke="#cbd5e1" stroke-width="${(0.55 * SCALE).toFixed(1)}" stroke-linecap="square" stroke-linejoin="bevel" opacity="0.92"/>
+            <polyline points="${ptsStr}" fill="none" stroke="#334155" stroke-width="${(0.55 * SCALE).toFixed(1)}" stroke-dasharray="2,${(1.0 * SCALE - 2).toFixed(1)}" stroke-linejoin="bevel" opacity="0.65"/>
+            <polyline points="${ptsStr}" fill="none" stroke="#2dd4bf" stroke-width="1.2" stroke-linejoin="bevel" opacity="0.9"/>
+          `);
+        });
+
+        // 3. SE Front Yard Lawn Polygon with 6" Paver Edging & 45° Chamfered Corners
+        // Along Porch Walkway (wy=32.5'), Driveway (wy=29.0'), and City Sidewalk (wx=96.7'), flat concrete is already flush!
+        // 6" Paver Edging + 45° Chamfers frame the West Foundation Bed (wx=66.0'), South Border Bed (wy=47.5'), and Green Utility Box Pocket (wx=88.0..94.0, wy=38.0..47.5).
+        const frontLawnPts = [
+          [66.0, 32.5], // Meets concrete porch walkway
+          [81.0, 32.5], // Along porch walkway South edge
+          [81.0, 29.0], // Steps to main concrete driveway South edge
+          [96.7, 29.0], // Meets City Sidewalk at driveway corner
+          [96.7, 38.0], // Along City Sidewalk down to Utility Box bed
+          [94.0, 38.0], // Utility Box bed North edge
+          [92.5, 39.5], // 45° paver chamfer around Green Utility Box
+          [89.0, 39.5], // West of Green Utility Box
+          [87.5, 41.0], // 45° paver chamfer West of Utility Box
+          [87.5, 46.0], // 45° paver chamfer to South border bed
+          [86.0, 47.5], // South border bed (wy=47.5')
+          [68.0, 47.5], // SW 45° paver chamfer start
+          [66.0, 45.5]  // SW 45° paver chamfer end along Front Foundation Bed (wx=66.0')
+        ];
+        const frontLawnSvgPoly = projectPoly(frontLawnPts);
+        out.push(`
+          <polygon points="${frontLawnSvgPoly}" fill="rgba(16, 185, 129, 0.14)" stroke="none"/>
+        `);
+
+        const frontPaverChain = [
+          [96.7, 38.0], [94.0, 38.0], [92.5, 39.5], [89.0, 39.5], [87.5, 41.0],
+          [87.5, 46.0], [86.0, 47.5], [68.0, 47.5], [66.0, 45.5], [66.0, 32.5]
+        ];
+        const frontPaverStr = frontPaverChain.map(([wx, wy]) => {
+          const p = project(wx, wy);
+          return `${p.x.toFixed(1)},${p.y.toFixed(1)}`;
+        }).join(' ');
+        out.push(`
+          <polyline points="${frontPaverStr}" fill="none" stroke="#cbd5e1" stroke-width="${(0.55 * SCALE).toFixed(1)}" stroke-linecap="square" stroke-linejoin="bevel" opacity="0.92"/>
+          <polyline points="${frontPaverStr}" fill="none" stroke="#334155" stroke-width="${(0.55 * SCALE).toFixed(1)}" stroke-dasharray="2,${(1.0 * SCALE - 2).toFixed(1)}" stroke-linejoin="bevel" opacity="0.65"/>
+          <polyline points="${frontPaverStr}" fill="none" stroke="#2dd4bf" stroke-width="1.2" stroke-linejoin="bevel" opacity="0.9"/>
+        `);
+
+        // Green Utility Transformer Box icon in SE Front Yard (wx: 89.5..93.0, wy: 40.5..43.5)
+        const transRect = projectRect(89.5, 40.5, 93.0, 43.5);
+        out.push(`
+          <rect x="${transRect.x.toFixed(1)}" y="${transRect.y.toFixed(1)}" width="${transRect.width.toFixed(1)}" height="${transRect.height.toFixed(1)}" rx="2" fill="#15803d" stroke="#86efac" stroke-width="1.4"/>
+        `);
+
+        out.push(`</g>`);
+      }
+
       // 13B. RAISED GARDEN BOXES LAYER (7 × 6.0'×3.0' BED CONFIGURATIONS)
       if (STATE.layers.garden) {
         out.push(`<g id="garden-geometry">`);
@@ -2451,7 +2574,7 @@
     }
 
     function syncLayerButtonsUI() {
-      ['primaryDims', 'secondaryDims', 'zones', 'utilities', 'fence', 'garden', 'grid'].forEach(key => {
+      ['primaryDims', 'secondaryDims', 'zones', 'utilities', 'fence', 'garden', 'paverEdging', 'grid'].forEach(key => {
         const btn = document.getElementById(`layer-${key}`);
         if (!btn) return;
         if (STATE.layers[key]) {

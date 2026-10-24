@@ -3,9 +3,14 @@
 ## 1. Project Overview & Core Objectives
 This document serves as the complete architectural, botanical, and visual specification for a residential front and backyard landscaping redesign. It is formatted as a structured knowledge base for AI workflows, 3D rendering engines, and contractor estimation.
 
-* **Primary Aesthetic Goal:** Eliminate the rigid "bowling alley" perimeter effect of builder-grade straight lines and 90-degree corners while unifying wood, stone, and metal finishes across the property.
-* **User Preference (Primary Design Track):** **Track B — "Maximum-Grass / Zero-Footprint Design"**. The homeowner strongly prefers preserving $90\%$ to $95\%$ of the existing open turf area for recreation and easy mowing, shifting visual interest to vertical surfaces, tight corner pockets, existing bed footprints, and soil-flush hardscaping.
-* **Secondary Reference Track:** **Track A — "Lush S-Curve & Gravel Pad Design"**. A traditional landscape design utilizing wide sweeping S-curve garden beds, raised 6-inch concrete curbing, and a dedicated gravel pad for the raised garden zone.
+* **Primary Aesthetic Goal:** Eliminate the rigid "bowling alley" perimeter effect of builder-grade 90-degree corners while unifying wood, stone, and metal finishes across the property—using **clean, straight geometric runs with 45-degree chamfered corners (NO curvy / S-curve edging)**.
+* **Locked-In Lawn Edging & Corner Specification (Jared & Melinda):**
+  * **No Curvy Edging:** All turf perimeters use straight geometric runs rather than wavy S-curves.
+  * **6-Inch Wide Flush Paver Edging ($0.5\text{ ft}$):** Continuous $6\text{-inch}$ wide concrete/stone paver mowing strip set flush with the turf around all grass-to-bed perimeters so the lawn mower wheel rides directly on the pavers.
+  * **45-Degree Chamfered Paver Corners:** Every $90^\circ$ turf corner is replaced by a **$45^\circ$ angled paver corner** ($\approx 2.0\text{ ft} \times 2.0\text{ ft}$ diagonal transition) so the lawn mower can pivot continuously around corners in a single pass without backing up or scalping.
+  * **House-to-Grass & Concrete Transitions:** Where grass meets flat poured concrete (Patio, Porch Walkway, Driveway, City Sidewalk), the concrete slab itself serves as the flush mower edge (no redundant pavers against flat concrete). Where lawn approaches vertical stucco house walls (such as the $11.0\text{ ft}$ rear wall with the $4.0\text{ ft} \times 1.3\text{ ft}$ basement window well), a **$2.0\text{ ft}$ straight rock/mulch Foundation Drip Buffer** separates the house wall and window well from the $6\text{-inch}$ paver edging.
+* **User Preference (Primary Design Track):** **Track B — "Maximum-Grass / Zero-Footprint Design"** (updated with straight $6\text{-inch}$ flush paver edging and $45^\circ$ chamfered corners). The homeowner strongly prefers preserving $90\%$ to $95\%$ of the existing open turf area for recreation and easy mowing.
+* **Secondary Reference Track (Archived):** **Track A — "Lush S-Curve & Gravel Pad Design"** (superseded by straight $6\text{-inch}$ paver edging with $45^\circ$ corners).
 
 ---
 
