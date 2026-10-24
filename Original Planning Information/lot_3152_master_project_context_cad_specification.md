@@ -250,7 +250,7 @@ All 30 original Pixel Motion Photos (`.MP.jpg`) and web thumbnails (`photos_curr
 | 11 | `PXL_20261022_162233919.MP.jpg` | North Side Yard ($9'\times 43.2'$) | Daylight | North Continuous $43.2\text{ ft}$ Stucco Wall & Exterior Water Spigot ($X = 51.0\text{ ft}$) Looking East |
 | 12 | `PXL_20261022_162243180.MP.jpg` | North Vehicle Gate Zone | Daylight | North Double-Swing Vehicle Gate Location ($X = 70.0\text{ ft}$, $3.2\text{ ft}$ Behind NE Garage Corner & $2.0\text{ ft}$ Stone Return) |
 | 13 | `PXL_20261022_162132591.MP.jpg` | NW Corner & North Side Entry | Daylight | Looking North Along Rear Patio Edge Toward NW House Corner & North Side Yard Turnaround |
-| 14 | `PXL_20261022_162230541.MP.jpg` | NW Garden Bed & Gate Zone | Daylight | NW Backyard & North Property Line Stakes (Planned 7-Box Raised Cedar Garden Bed Zone) |
+| 14 | `PXL_20261022_162230541.MP.jpg` | NW Garden Bed & Gate Zone | Daylight | NW Backyard & North Property Line Stakes (Planned 5-Box N–S Raised Cedar Garden Bed Zone) |
 | 15 | `PXL_20261022_162104480.MP.jpg` | South Gate Setback Zone | Daylight | South Entry & `3152` Stone Pillar — Shows SE Stucco Corner & Gas/Electric Meters Behind Planned Gate |
 | 16 | `PXL_20261022_162115166.MP.jpg` | South Side Yard ($9'\times 29.7'$) | Daylight | South Side Corridor ($9.0\text{ ft}$ Wide) — Looking West Past Meters & $3'\times 3'$ AC Pad ($6.0\text{ ft}$ Clear Path) |
 | 17 | `PXL_20261022_004709213.MP.jpg` | South Side Utilities | Dusk | Close-Up of South Stucco Wall Gas/Electric Meters ($X = 51'\text{–}54.5'$) & AC Condenser Pad ($X = 45'\text{–}48'$) |
@@ -274,5 +274,5 @@ All 30 original Pixel Motion Photos (`.MP.jpg`) and web thumbnails (`photos_curr
 
 * **Design Mandate:** The public website (`index.html`) is intentionally stripped of heavy text, paragraphs, and data tables so that it serves strictly as an **ultra-minimalist visual demonstration** of what we want.
 * **Separation of Concerns:**
-  * **Website (`index.html`):** Visual-only showcase featuring concise target spec pills, the interactive 2D CAD layout, the 4 target AI concept renders, and the filterable current-yard photo grid with minimal word count.
+  * **Website (`index.html`):** Visual-only showcase featuring concise target spec pills, the interactive 2D CAD layout, the 10 CAD-reconciled target AI concept renders (with 1:1 Before/After site photo toggle), and the filterable 30-photo current-yard grid with minimal word count.
   * **Markdown Documentation (`README.md` & `Original Planning Information/*.md`):** Houses all comprehensive architectural reconciliations, the 44-row measurement schedule, the 6-decision engineering rationale, plant schedules, and photo descriptions.

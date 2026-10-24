@@ -62,65 +62,39 @@
     </div>
   </section>
 
-  <!-- 1. Visual Concepts (What We Want) -->
+  <!-- 1. Visual Concepts (What We Want — All 10 Angles) -->
   <section id="concepts" class="py-8 max-w-7xl mx-auto px-4 sm:px-6 w-full">
-    <div class="flex items-center justify-between mb-4">
-      <h2 class="text-lg font-bold text-slate-900">Target Design</h2>
-      <button id="toggle-baseline-btn" onclick="toggleBaselineCompare()"
-              class="px-3 py-1 rounded-lg text-xs font-bold bg-slate-200 text-slate-900 hover:bg-slate-300 transition">
-        Show Before / Baseline
-      </button>
+    <div class="flex flex-wrap items-center justify-between gap-2 mb-4">
+      <div class="flex items-center gap-2">
+        <h2 class="text-lg font-bold text-slate-900">Target Design</h2>
+        <span class="px-2 py-0.5 rounded-md text-xs font-mono-code font-bold bg-emerald-100 text-emerald-900 border border-emerald-300">10 Angles</span>
+      </div>
+
+      <div class="flex flex-wrap items-center gap-1.5">
+        <button onclick="filterConcepts('ALL', this)" class="concept-filter-btn px-2.5 py-1 rounded-lg text-xs font-bold bg-emerald-700 text-white transition">
+          All (10)
+        </button>
+        <button onclick="filterConcepts('BACKYARD', this)" class="concept-filter-btn px-2.5 py-1 rounded-lg text-xs font-bold bg-slate-200 text-slate-900 hover:bg-slate-300 transition">
+          Backyard (4)
+        </button>
+        <button onclick="filterConcepts('NORTH_SIDE', this)" class="concept-filter-btn px-2.5 py-1 rounded-lg text-xs font-bold bg-slate-200 text-slate-900 hover:bg-slate-300 transition">
+          North (2)
+        </button>
+        <button onclick="filterConcepts('SOUTH_SIDE', this)" class="concept-filter-btn px-2.5 py-1 rounded-lg text-xs font-bold bg-slate-200 text-slate-900 hover:bg-slate-300 transition">
+          South (2)
+        </button>
+        <button onclick="filterConcepts('FRONT_PARK', this)" class="concept-filter-btn px-2.5 py-1 rounded-lg text-xs font-bold bg-slate-200 text-slate-900 hover:bg-slate-300 transition">
+          Front (2)
+        </button>
+        <button id="toggle-baseline-btn" onclick="toggleBaselineCompare()"
+                class="ml-1 px-3 py-1 rounded-lg text-xs font-bold bg-amber-500 text-slate-950 hover:bg-amber-400 transition shadow-sm">
+          Compare Before Photos
+        </button>
+      </div>
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-      <!-- Card 1: Backyard & Patio Fire Table -->
-      <div class="group relative rounded-2xl overflow-hidden bg-slate-200 border border-slate-200 shadow-sm cursor-pointer aspect-[16/10]"
-           onclick="openConceptCard1()">
-        <img id="concept-1-img"
-             src="photos_backyard_ideas/5e639ba7-a34e-49bf-b2cc-13d6a92536ff.jpeg"
-             alt="Backyard & Patio Fire Table"
-             class="w-full h-full object-cover group-hover:scale-105 transition duration-300" />
-        <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-slate-950/80 via-slate-950/30 to-transparent p-3.5 flex items-center justify-between">
-          <span id="concept-1-label" class="text-xs sm:text-sm font-bold text-white">Backyard &middot; Patio Fire Table &amp; Flush Steppers</span>
-          <span class="px-2 py-0.5 rounded text-[11px] font-bold bg-emerald-700 text-white">View</span>
-        </div>
-      </div>
-
-      <!-- Card 2: Pergola & Raised Cedar Beds -->
-      <div class="group relative rounded-2xl overflow-hidden bg-slate-200 border border-slate-200 shadow-sm cursor-pointer aspect-[16/10]"
-           onclick="openLightbox('photos_backyard_ideas/Gemini_Generated_Image_qtuyw2qtuyw2qtuy%20(2).jpg', 'Backyard · Pergola & Raised Cedar Beds')">
-        <img src="photos_backyard_ideas/Gemini_Generated_Image_qtuyw2qtuyw2qtuy%20(2).jpg"
-             alt="Pergola & Raised Cedar Beds"
-             class="w-full h-full object-cover group-hover:scale-105 transition duration-300" />
-        <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-slate-950/80 via-slate-950/30 to-transparent p-3.5 flex items-center justify-between">
-          <span class="text-xs sm:text-sm font-bold text-white">Backyard &middot; Pergola &amp; Raised Cedar Beds</span>
-          <span class="px-2 py-0.5 rounded text-[11px] font-bold bg-emerald-700 text-white">View</span>
-        </div>
-      </div>
-
-      <!-- Card 3: South Side Yard Flagstone & AC Screen -->
-      <div class="group relative rounded-2xl overflow-hidden bg-slate-200 border border-slate-200 shadow-sm cursor-pointer aspect-[16/10]"
-           onclick="openLightbox('photos_backyard_ideas/Gemini_Generated_Image_88m5un88m5un88m5.jpg', 'South Side · Flagstone Path & AC Screen')">
-        <img src="photos_backyard_ideas/Gemini_Generated_Image_88m5un88m5un88m5.jpg"
-             alt="South Side Yard Flagstone Path & AC Screen"
-             class="w-full h-full object-cover group-hover:scale-105 transition duration-300" />
-        <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-slate-950/80 via-slate-950/30 to-transparent p-3.5 flex items-center justify-between">
-          <span class="text-xs sm:text-sm font-bold text-white">South Side &middot; Flagstone Path &amp; AC Screen</span>
-          <span class="px-2 py-0.5 rounded text-[11px] font-bold bg-emerald-700 text-white">View</span>
-        </div>
-      </div>
-
-      <!-- Card 4: Front Yard & Side Gates -->
-      <div class="group relative rounded-2xl overflow-hidden bg-slate-200 border border-slate-200 shadow-sm cursor-pointer aspect-[16/10]"
-           onclick="openLightbox('photos_backyard_ideas/Gemini_Generated_Image_wk5if6wk5if6wk5i.jpg', 'Front Yard · Open Lawn & Side Gates')">
-        <img src="photos_backyard_ideas/Gemini_Generated_Image_wk5if6wk5if6wk5i.jpg"
-             alt="Front Yard & Side Gates"
-             class="w-full h-full object-cover group-hover:scale-105 transition duration-300" />
-        <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-slate-950/80 via-slate-950/30 to-transparent p-3.5 flex items-center justify-between">
-          <span class="text-xs sm:text-sm font-bold text-white">Front Yard &middot; Open Lawn &amp; Side Gates</span>
-          <span class="px-2 py-0.5 rounded text-[11px] font-bold bg-emerald-700 text-white">View</span>
-        </div>
-      </div>
+    <div id="concepts-grid" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <!-- Populated via JS (10 Reconciled Angles) -->
     </div>
   </section>
 
@@ -190,6 +164,10 @@
       <div class="flex items-center justify-between px-4 py-2.5 bg-slate-100 border-b border-slate-200">
         <div id="lightbox-caption" class="text-xs sm:text-sm font-bold text-slate-900 truncate pr-4"></div>
         <div class="flex items-center gap-2 shrink-0">
+          <button id="lightbox-compare-btn" onclick="toggleLightboxBeforeAfter()"
+                  class="hidden px-3 py-1 rounded-lg text-xs font-bold bg-amber-500 text-slate-950 hover:bg-amber-400 transition">
+            Show Before Photo
+          </button>
           <a id="lightbox-download" href="#" target="_blank"
              class="px-3 py-1 rounded-lg text-xs font-bold bg-emerald-700 text-white hover:bg-emerald-800 transition">
             Full Res
@@ -206,30 +184,191 @@
   </div>
 
   <script>
+    const CONCEPT_RENDERS = [
+      {
+        id: 'backyard-pergola-planters',
+        zone: 'BACKYARD',
+        badge: 'Backyard · Looking East',
+        title: 'Pergola, 5 N. Planters (8.5\' to Grass) & 2\' S. Berry Bed',
+        renderUrl: 'photos_backyard_ideas/render_backyard_pergola_north_planters.jpg',
+        beforeThumb: 'photos_current_backyard/thumbs/PXL_20261022_004857161.MP.jpg',
+        beforeFull: 'photos_current_backyard/PXL_20261022_004857161.MP.jpg'
+      },
+      {
+        id: 'backyard-west-juniper-patio',
+        zone: 'BACKYARD',
+        badge: 'Backyard · Looking NW',
+        title: '4\' W. 6-Juniper Bed (8\' O.C.), 6" Pavers (45°) & Fire Table',
+        renderUrl: 'photos_backyard_ideas/render_backyard_west_juniper_bed_patio.jpg',
+        beforeThumb: 'photos_current_backyard/thumbs/PXL_20261022_004940478.MP.jpg',
+        beforeFull: 'photos_current_backyard/PXL_20261022_004940478.MP.jpg'
+      },
+      {
+        id: 'backyard-nw-planters-window-well',
+        zone: 'BACKYARD',
+        badge: 'Backyard · Looking SE from NW',
+        title: '5 N–S Planters (3\'×6\'), Window Well Buffer & N. Cement Entry',
+        renderUrl: 'photos_backyard_ideas/render_backyard_nw_five_planters_window_well.jpg',
+        beforeThumb: 'photos_current_backyard/thumbs/PXL_20261022_004913415.MP.jpg',
+        beforeFull: 'photos_current_backyard/PXL_20261022_004913415.MP.jpg'
+      },
+      {
+        id: 'backyard-sw-berry-juniper',
+        zone: 'BACKYARD',
+        badge: 'Backyard · Looking SW',
+        title: '2\' S. Berry/Pea/Kiwi Trellis Bed & 4\' W. 6-Juniper Wall',
+        renderUrl: 'photos_backyard_ideas/render_backyard_south_berry_west_juniper_panoramic.jpg',
+        beforeThumb: 'photos_current_backyard/thumbs/PXL_20261022_004925322.MP.jpg',
+        beforeFull: 'photos_current_backyard/PXL_20261022_004925322.MP.jpg'
+      },
+      {
+        id: 'north-side-cement-corridor',
+        zone: 'NORTH_SIDE',
+        badge: 'North Side · Looking East',
+        title: 'Full 9\'×43.2\' Poured Cement Pad & 8.5\' Double Vehicle Gate',
+        renderUrl: 'photos_backyard_ideas/render_north_side_cement_pad_corridor.jpg',
+        beforeThumb: 'photos_current_backyard/thumbs/PXL_20261022_162209617.MP.jpg',
+        beforeFull: 'photos_current_backyard/PXL_20261022_162209617.MP.jpg'
+      },
+      {
+        id: 'north-vehicle-gate-ne-strip',
+        zone: 'NORTH_SIDE',
+        badge: 'North Gate · Looking West',
+        title: '8.5\' Double Gate (3.2\' Setback Behind Stone) & NE Strip',
+        renderUrl: 'photos_backyard_ideas/render_north_vehicle_gate_ne_strip.jpg',
+        beforeThumb: 'photos_current_backyard/thumbs/PXL_20261022_162017040.MP.jpg',
+        beforeFull: 'photos_current_backyard/PXL_20261022_162017040.MP.jpg'
+      },
+      {
+        id: 'south-side-flagstone-ac',
+        zone: 'SOUTH_SIDE',
+        badge: 'South Side · Looking West',
+        title: '2\' S. Fence Bed, Straight 6" Pavers, Flagstone Path & AC Screen',
+        renderUrl: 'photos_backyard_ideas/render_south_side_flagstone_ac_screen.jpg',
+        beforeThumb: 'photos_current_backyard/thumbs/PXL_20261022_004709213.MP.jpg',
+        beforeFull: 'photos_current_backyard/PXL_20261022_004709213.MP.jpg'
+      },
+      {
+        id: 'south-gate-porch-entry',
+        zone: 'SOUTH_SIDE',
+        badge: 'South Gate · Looking West',
+        title: '4\' Walk Gate (2.2\' Stucco Setback Hiding Meters) & 3152 Porch',
+        renderUrl: 'photos_backyard_ideas/render_south_gate_porch_entry.jpg',
+        beforeThumb: 'photos_current_backyard/thumbs/PXL_20261022_162104480.MP.jpg',
+        beforeFull: 'photos_current_backyard/PXL_20261022_162104480.MP.jpg'
+      },
+      {
+        id: 'front-se-lawn-chamfered',
+        zone: 'FRONT_PARK',
+        badge: 'Front SE · Looking NW',
+        title: '2\' Perimeter Beds, 6" Chamfered Pavers (45°) & Utility Box Screen',
+        renderUrl: 'photos_backyard_ideas/render_front_se_lawn_chamfered_beds.jpg',
+        beforeThumb: 'photos_current_backyard/thumbs/PXL_20261022_004655951.MP.jpg',
+        beforeFull: 'photos_current_backyard/PXL_20261022_004655951.MP.jpg'
+      },
+      {
+        id: 'front-full-elevation-park-strips',
+        zone: 'FRONT_PARK',
+        badge: 'Front Full · Looking West',
+        title: 'Water-Wise 6\' Street Park Strips, SE Lawn & Both Side Gates',
+        renderUrl: 'photos_backyard_ideas/render_front_full_elevation_park_strips.jpg',
+        beforeThumb: 'photos_current_backyard/thumbs/PXL_20261022_004640801.MP.jpg',
+        beforeFull: 'photos_current_backyard/PXL_20261022_004640801.MP.jpg'
+      }
+    ];
+
     let showingBaseline = false;
+    let activeConceptFilter = 'ALL';
+    let activeLightboxConcept = null;
+    let lightboxShowingBefore = false;
+
+    function filterConcepts(zone, btnEl) {
+      activeConceptFilter = zone;
+      document.querySelectorAll('.concept-filter-btn').forEach(b => {
+        b.className = "concept-filter-btn px-2.5 py-1 rounded-lg text-xs font-bold bg-slate-200 text-slate-900 hover:bg-slate-300 transition";
+      });
+      if (btnEl) {
+        btnEl.className = "concept-filter-btn px-2.5 py-1 rounded-lg text-xs font-bold bg-emerald-700 text-white transition";
+      }
+      renderConceptsGrid();
+    }
 
     function toggleBaselineCompare() {
       showingBaseline = !showingBaseline;
-      const img = document.getElementById('concept-1-img');
-      const label = document.getElementById('concept-1-label');
       const btn = document.getElementById('toggle-baseline-btn');
       if (showingBaseline) {
-        img.src = 'photos_backyard_ideas/Gemini_Generated_Image_qtuyw2qtuyw2qtuy%20(1).jpg';
-        label.textContent = 'Backyard · Baseline Before Upgrade';
-        btn.textContent = 'Show Target Upgrade';
-        btn.className = 'px-3 py-1 rounded-lg text-xs font-bold bg-emerald-700 text-white hover:bg-emerald-800 transition';
+        btn.textContent = 'Show Target Renders';
+        btn.className = 'ml-1 px-3 py-1 rounded-lg text-xs font-bold bg-emerald-700 text-white hover:bg-emerald-800 transition shadow-sm';
       } else {
-        img.src = 'photos_backyard_ideas/5e639ba7-a34e-49bf-b2cc-13d6a92536ff.jpeg';
-        label.textContent = 'Backyard · Patio Fire Table & Flush Steppers';
-        btn.textContent = 'Show Before / Baseline';
-        btn.className = 'px-3 py-1 rounded-lg text-xs font-bold bg-slate-200 text-slate-900 hover:bg-slate-300 transition';
+        btn.textContent = 'Compare Before Photos';
+        btn.className = 'ml-1 px-3 py-1 rounded-lg text-xs font-bold bg-amber-500 text-slate-950 hover:bg-amber-400 transition shadow-sm';
       }
+      renderConceptsGrid();
     }
 
-    function openConceptCard1() {
-      const img = document.getElementById('concept-1-img');
-      const label = document.getElementById('concept-1-label');
-      openLightbox(img.src, label.textContent);
+    function renderConceptsGrid() {
+      const grid = document.getElementById('concepts-grid');
+      const items = activeConceptFilter === 'ALL'
+        ? CONCEPT_RENDERS
+        : CONCEPT_RENDERS.filter(c => c.zone === activeConceptFilter);
+
+      grid.innerHTML = items.map(c => {
+        const imgSrc = showingBaseline ? c.beforeThumb : c.renderUrl;
+        const statusBadge = showingBaseline
+          ? `<span class="px-2 py-0.5 rounded text-[11px] font-bold bg-amber-500 text-slate-950">Before</span>`
+          : `<span class="px-2 py-0.5 rounded text-[11px] font-bold bg-emerald-700 text-white">Target</span>`;
+        return `
+          <div class="group relative rounded-2xl overflow-hidden bg-slate-200 border border-slate-200 shadow-sm cursor-pointer aspect-[4/3]"
+               onclick="openConceptLightbox('${c.id}')">
+            <img src="${imgSrc}"
+                 alt="${c.title}"
+                 loading="lazy"
+                 class="w-full h-full object-cover group-hover:scale-105 transition duration-300" />
+            <span class="absolute top-3 left-3 px-2.5 py-1 rounded-lg text-[11px] font-bold bg-slate-950/75 text-white backdrop-blur-sm">
+              ${c.badge}
+            </span>
+            <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-slate-950/85 via-slate-950/40 to-transparent p-3.5 flex items-center justify-between gap-2">
+              <span class="text-xs sm:text-sm font-bold text-white leading-snug">${c.title}</span>
+              ${statusBadge}
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function openConceptLightbox(conceptId) {
+      const c = CONCEPT_RENDERS.find(item => item.id === conceptId);
+      if (!c) return;
+      activeLightboxConcept = c;
+      lightboxShowingBefore = showingBaseline;
+      updateConceptLightboxView();
+      document.getElementById('lightbox-modal').classList.remove('hidden');
+    }
+
+    function toggleLightboxBeforeAfter() {
+      if (!activeLightboxConcept) return;
+      lightboxShowingBefore = !lightboxShowingBefore;
+      updateConceptLightboxView();
+    }
+
+    function updateConceptLightboxView() {
+      if (!activeLightboxConcept) return;
+      const c = activeLightboxConcept;
+      const compareBtn = document.getElementById('lightbox-compare-btn');
+      compareBtn.classList.remove('hidden');
+      if (lightboxShowingBefore) {
+        document.getElementById('lightbox-img').src = c.beforeThumb;
+        document.getElementById('lightbox-caption').textContent = `[BEFORE] ${c.badge} — ${c.title}`;
+        document.getElementById('lightbox-download').href = c.beforeFull;
+        compareBtn.textContent = 'Show Target Render';
+        compareBtn.className = 'px-3 py-1 rounded-lg text-xs font-bold bg-emerald-700 text-white hover:bg-emerald-800 transition';
+      } else {
+        document.getElementById('lightbox-img').src = c.renderUrl;
+        document.getElementById('lightbox-caption').textContent = `[TARGET] ${c.badge} — ${c.title}`;
+        document.getElementById('lightbox-download').href = c.renderUrl;
+        compareBtn.textContent = 'Show Before Photo';
+        compareBtn.className = 'px-3 py-1 rounded-lg text-xs font-bold bg-amber-500 text-slate-950 hover:bg-amber-400 transition';
+      }
     }
 
     const CURRENT_PHOTOS = [
@@ -301,6 +440,8 @@
     }
 
     function openLightbox(displayUrl, caption, downloadUrl) {
+      activeLightboxConcept = null;
+      document.getElementById('lightbox-compare-btn').classList.add('hidden');
       const modal = document.getElementById('lightbox-modal');
       document.getElementById('lightbox-img').src = displayUrl;
       document.getElementById('lightbox-caption').textContent = caption;
@@ -309,11 +450,15 @@
     }
 
     function closeLightbox() {
+      activeLightboxConcept = null;
       document.getElementById('lightbox-modal').classList.add('hidden');
       document.getElementById('lightbox-img').src = '';
     }
 
-    window.addEventListener('DOMContentLoaded', renderPhotoGrid);
+    window.addEventListener('DOMContentLoaded', () => {
+      renderConceptsGrid();
+      renderPhotoGrid();
+    });
   </script>
 </body>
 </html>
