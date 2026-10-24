@@ -122,27 +122,101 @@ For comparison or hybrid adaptation, Track A prioritizes deep botanical layering
 
 ---
 
-## 6. Recommended Plant Schedule (Including $4.0\text{ ft}$ Western Wall Bed with 10 Junipers — 2 Per Panel)
+## 6. Recommended Plant Schedule (Including $4.0\text{ ft}$ Western Wall Bed: `5 + 4` Designer Hybrid & `10-Juniper` Layouts)
 
-All plants selected for structural contrast, low maintenance, reflected-heat resilience, and cold-hardy performance:
+All plants are selected for structural contrast, low maintenance, reflected-heat resilience next to the West precast concrete wall, and cold-hardy Utah Zone 6b/7a performance in alkaline clay soil ($\text{pH } 7.5\text{–}8.2$):
 
-1. **Western Wall Bed ($4.0\text{ ft}$ Deep $+ 6\text{"}$ Paver $= 4.5\text{ ft}$ to Grass; $wx = 0.0\text{ ft}\text{–}4.0\text{ ft}, wy = 0.0\text{ ft}\text{–}50.0\text{ ft}$):**
-   * **Locked-In Master Layout — `10 Upright Lush Green Juniper Trees Evenly Spaced 2 Per 10.0 ft Panel (@ 5.0 ft On-Center)` (`J1`–`J10` at $wy = 2.5', 7.5', 12.5', 17.5', 22.5', 27.5', 32.5', 37.5', 42.5', 47.5'$, $wx = 1.85'$):**
-     * **Why 10 Trees (`2 per Panel`) Solves All 4 Goals (City Works Screening + Afternoon Shade + Zero Claustrophobia + Symmetry):** Placing **10 narrow upright green junipers (`2 inside each 10.0 ft panel` at $2.5'$ and $7.5'$ of each bay = $5.0\text{ ft}$ O.C.)** across the 5 panels of the $50.0\text{ ft}$ West precast wall keeps every $10\text{ ft}$ precast panel $100\%$ symmetrical, leaves all 6 concrete columns completely exposed, keeps **$40\%\text{–}50\%$ of the lower stone wall open** so the $30\text{ ft}$ backyard never feels claustrophobic, and rises **$12\text{ to }19\text{ ft}$ above the $6\text{ ft}$ concrete wall** ($18\text{–}25\text{ ft}$ total height) to block the neighboring **City Works buildings and antennas** while casting deep afternoon shade across the lawn and patio.
-     * **Exact Cultivars to Buy for Lush, Rich GREEN Color (Skip the Dusty Blue-Grey Varieties):**
-       * **#1 Best Pick — `'Taylor'` Juniper (*Juniperus virginiana 'Taylor'*):** Known as the *"Cold-Hardy Italian Cypress."* Features **rich, vibrant, semi-glossy emerald-forest GREEN foliage** with a soft, feathery, lush fill (Melinda's exact preference), grows fast ($1.5\text{–}2.5\text{ ft/yr}$) to **$18\text{–}25\text{ ft}$ tall** (blocking the City Works roofline and antennas), and naturally holds a tight **$3.0\text{ to }3.5\text{ ft}$ narrow column** without splaying in winter snow.
-       * **#2 Best Home Depot In-Store Pick — `'Spartan'` Chinese Juniper (*Juniperus chinensis 'Spartan'*):** Widely stocked at Home Depot in budget `1–2 gal` (`~$20–$28`) and `5 gal` pots. Features **ultra-dense, deep Kelly/emerald-green foliage** from top to bottom and grows fast to **$15\text{–}20\text{ ft}$ tall**. *(Because 'Spartan' wants to widen to $4.5\text{–}5\text{ ft}$ at the base if left untouched, simply give it a quick 15-minute light shearing once a year in late spring to keep each column a tight, formal **$3.0\text{–}3.2\text{ ft}$ wide** inside the $4.0\text{ ft}$ bed).*
-       * **Why to Skip `'Skyrocket'`, `'Blue Arrow'`, `'Moonglow'` & `'Wichita Blue'`:** Those cultivars are **silver-blue / dusty grey-blue** rather than lush green, and *'Blue Arrow'* stops at $12\text{–}14\text{ ft}$ (too short to fully block the high City Works antennas).
-   * **Companion Inter-Planting for the 10-Juniper (`2 per Panel`) Layout:**
-     * *Center of Each of the 5 Panels ($wy = 5.0', 15.0', 25.0', 35.0', 45.0'$ — Framed Between Each Pair of Junipers):* **1× 'Little Spire' Russian Sage** (*Perovskia*, $wx = 1.75'$) or **'Hidcote' English Lavender** paired with **1× Front Coneflower** (*Echinacea*, $wx = 3.05'$) or **'Cat's Pajamas' Catmint** — creating a purple & coral-gold focal centerpiece inside every $10\text{ ft}$ wall bay.
-     * *In Front of the 4 Interior Precast Wall Columns ($wy = 10.0', 20.0', 30.0', 40.0'$, $wx = 2.25'$):* **4× 'Karl Foerster' Feather Reed Grass** (*Calamagrostis x acutiflora*, $1.5\text{–}2\text{ ft}$ W $\times 4\text{–}5\text{ ft}$ H) — vertical golden plumes that soften the concrete column joints without hiding the recessed stone panels.
-2. **Canopy / Ornamental Focal Trees ($12\text{ to }20\text{ ft}$ mature height):**
-   * *Backyard Corner / Accent:* Autumn Brilliance Serviceberry (*Amelanchier x grandiflora*) — multi-stem form, white spring blossoms, orange/red fall foliage.
-   * *Front Yard Focal Point:* Emperor I Japanese Maple (*Acer palmatum 'Wolff'*) or Prairiefire Crabapple — deep burgundy/red foliage to contrast the grey siding and stone wainscot.
-3. **Southern Fence Berry, Pea, Kiwi & Shade Bed ($2.0\text{ ft}$ Deep $+ 6\text{"}$ Paver $= 2.5\text{ ft}$ to Grass; $wy = 48.0\text{ ft}\text{–}50.0\text{ ft}$):**
-   * Trellised Heritage/Caroline Raspberries, Sugar Snap Peas, Hardy Kiwi (*Actinidia arguta* 'Issai'), and Alpine Strawberries groundcover in the sunny Backyard section ($wx = 4.0\text{ ft}\text{–}30.0\text{ ft}$), transitioning to Hostas, Ferns, and Astilbe in the shaded South Side Yard corridor ($wx = 30.0\text{ ft}\text{–}57.5\text{ ft}$).
-4. **Utility Box Screening (Front Yard):**
-   * Blonde Ambition Blue Grama Grass or Karl Foerster Feather Reed Grass arranged in a 3-sided U-shape inside the $2.0\text{ ft}$ buffer bed around the green transformer box.
+### 6.1 Western Back Wall Bed ($4.0\text{ ft}$ Deep $+ 6\text{"}$ Paver $= 4.5\text{ ft}$ to Grass; $wx = 0.0\text{ ft}\text{–}4.0\text{ ft}, wy = 0.0\text{ ft}\text{–}50.0\text{ ft}$)
+
+The $50.0\text{ ft}$ West precast concrete wall consists of **5 recessed stone-textured panels ($10.0\text{ ft}$ on-center)** separated by **6 fluted concrete columns ($1.5\text{ ft} \times 1.5\text{ ft}$ at $wy = 0.0', 10.0', 20.0', 30.0', 40.0', 50.0'$)**:
+
+#### Option A (Primary Recommended — `HYBRID_5_PLUS_4`): The `5 + 4` Alternating Designer Hybrid ($\approx \$280\text{–}\$380$ Total Tree Cost)
+* **Why the `5 + 4` Rhythm Is the Most Visually Appealing & Functional Setup:**
+  1. **Architectural Framing ("A-B-A-B" Rhythm):** Instead of a monotonous "barcode" of 9 or 10 identical evergreens, the **4 upright evergreen junipers (`J1`–`J4`) sit directly in front of the 4 interior concrete wall columns ($wy = 10.0', 20.0', 30.0', 40.0'$) like living green pillars**, while the **5 lush, soft-leaved columnar trees (`S1`–`S5`) sit centered inside each of the 5 stone wall panels ($wy = 5.0', 15.0', 25.0', 35.0', 45.0'$)** like framed artwork.
+  2. **Solves Claustrophobia ($17.5\text{ ft}$ Patio-to-Wall Span):** Because the concrete patio edge ($wx = 17.5'$) is only **$17.5\text{ ft}$ East of the West wall** (leaving **$13.0\text{ ft}$ of open grass** between the patio and the $wx = 4.5'$ mower strip), every tree in the `5 + 4` layout stays **$3.0\text{ to }5.0\text{ ft}$ narrow**, preserving $100\%$ of the open sky overhead while leaving $2.5\text{ ft}$ breathing gaps so the decorative tan/grey stone panels remain visible.
+  3. **Blocks City Works Buildings/Antennas + Adds Afternoon Shade + Soft Lush Green for Melinda:** The 5 leafy panel pillars rise **$15\text{ to }25\text{ ft}$ tall** ($9\text{ to }19\text{ ft}$ above the $6\text{ ft}$ concrete wall) to screen the neighboring City Works buildings and antennas and cast dappled afternoon shade across the lawn and patio, while the 4 evergreen column junipers provide 365-day winter structure.
+
+* **Part 1 — 5× Leafy Columnar Pillars Centered in Each $10.0\text{ ft}$ Panel (`S1`–`S5` at $wy = 5.0', 15.0', 25.0', 35.0', 45.0'$, $wx = 2.0'$):**
+  * **#1 Best Pick ("Cross Between a Juniper & a Hornbeam") — `'Standing Ovation'` Serviceberry (*Amelanchier alnifolia 'Obelisk'*):**
+    * **Size & Habit:** $15\text{ ft}$ tall $\times$ **strictly $4.0\text{ ft}$ wide** upright narrow pillar (fits inside the $4.0\text{ ft}$ bed with zero pruning or shearing).
+    * **Why It Beats Both:** Because it is classified and sold in nurseries as a **large upright native shrub/tree**, `#2` ($2\text{-gal}$) or `#5` ($5\text{-gal}$) pots cost only **$\approx \$40\text{–}\$65$ each** ($\approx \$200\text{–}\$300$ for all 5) instead of $\$175\text{–}\$250$ for caliper shade trees. Native to Utah (*Amelanchier alnifolia*), it thrives in heavy alkaline clay and reflected wall heat, bursts with **white blossoms in April**, fills out in **ultra-lush dark emerald-green round leaves all summer**, produces sweet **edible blueberry-like Juneberries**, and turns **fiery red-orange in autumn**.
+  * **#2 Best Pick for Winter Antenna Screening — `'Crimson Spire'` Columnar Oak (*Quercus robur $\times$ Q. alba 'Crimschmidt'*):**
+    * **Size & Habit:** $20\text{–}25\text{ ft}$ tall $\times$ **strictly $5.0\text{–}6.0\text{ ft}$ wide** ($\approx \$65\text{–}\$95$ in `#5` pots).
+    * **Year-Round Screening Advantage:** Features rich dark-green oak foliage in summer, rusty-red fall color, and is **marcescent**—meaning it holds onto its dried coppery-brown leaves all winter long until new green buds push them off in April, screening the City Works antennas 365 days a year.
+  * **#3 Best Pick for Fast Lush Shimmering Green — `'Parkland Pillar'` Columnar Birch (*Betula platyphylla 'Jefpark'*):**
+    * **Size & Habit:** $20\text{–}25\text{ ft}$ tall $\times$ **$5.0\text{–}6.0\text{ ft}$ wide** ($\approx \$60\text{–}\$90$ in `#5` pots).
+    * **Advantage:** Grows $2.5\text{ ft/year}$ with ultra-dense emerald-green leaves that shimmer in the breeze and golden-yellow fall color; specifically bred for alkaline soil and heat/drought tolerance.
+  * *(Bonus Compact/Budget Option: **`'Fine Line'` Columnar Buckthorn**, *Frangula alnus 'Ron Williams'*, $10\text{–}12\text{ ft H} \times 2.5\text{–}3.0\text{ ft W}$, $\approx \$30\text{–}\$45$ each—soft fern-like lush green foliage that never needs pruning).*
+
+* **Part 2 — 4× Upright Evergreen Junipers Aligned with the 4 Interior Wall Columns (`J1`–`J4` at $wy = 10.0', 20.0', 30.0', 40.0'$, $wx = 1.75'$):**
+  * Plant **4× `$20` Home Depot Upright Green Junipers** ($\approx \$80$ total) or **4× `'Taylor'` Eastern Red Cedar Junipers** (*Juniperus virginiana 'Taylor'*, $18\text{–}25\text{ ft H} \times 3.0\text{–}3.5\text{ ft W}$) right in front of the 4 interior fluted concrete pilasters ($wy = 10.0', 20.0', 30.0', 40.0'$). This hides the raw vertical concrete seams with permanent deep-green evergreen needles while framing each of the 5 panels.
+
+---
+
+#### Option B (All-Evergreen Alternative — `TEN_TWO_PER_PANEL`): 10× Upright Green Junipers (`2 per Panel @ 5.0' O.C.`)
+* **Coordinates (`J1`–`J10`):** Placed at **$wy = 2.5', 7.5', 12.5', 17.5', 22.5', 27.5', 32.5', 37.5', 42.5', 47.5'$, $wx = 1.85'$** ($2.5\text{ ft}$ and $7.5\text{ ft}$ inside each $10.0\text{ ft}$ panel = $5.0\text{ ft}$ on-center).
+* **Best Cultivar for 10 Trees in a $4.0\text{ ft}$ Bed — `'Taylor'` Juniper (*Juniperus virginiana 'Taylor'*):** Grows $18\text{–}25\text{ ft H}$ while naturally staying **$3.0\text{–}3.5\text{ ft}$ narrow** with rich emerald-forest green foliage and **zero shearing required**.
+* **Option C (`FIVE_ONE_PER_PANEL`):** 5× centered trees (`1 per Panel @ 10.0' O.C.` at $wy = 5.0', 15.0', 25.0', 35.0', 45.0'$).
+
+---
+
+#### 6.2 Western Wall Tree Cultivar Comparison & Engineering Trade-Offs
+
+| Cultivar Option | Mature Height × Width | Fits $4.0'$ Bed Without Shearing? | Foliage Look & Feel | Winter Screening | Est. Cost (`5+4` or `10×`) | Key Fit & Claustrophobia Notes for Lot 3152 ($17.5'$ Patio-to-Wall) |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| **★ `'Standing Ovation'` Serviceberry** *(in `5+4` Hybrid)* | $15'\text{ H} \times \mathbf{4.0'\text{ W}}$ | **YES** (Zero shearing) | Soft round emerald leaves, white spring flowers, June berries, red fall | Dense branches + 4 evergreen column junipers | **$\$280\text{–}\$380$** *(5 Serviceberry + 4 `$20` Junipers)* | **#1 Overall Pick:** Zero claustrophobia, Utah native, shrub pricing, lush garden feel for Melinda. |
+| **★ `'Crimson Spire'` Columnar Oak** *(in `5+4` Hybrid)* | $20'\text{–}25'\text{ H} \times \mathbf{5.0'\text{–}6.0'\text{ W}}$ | **YES** (Tight column) | Lush dark-green oak leaves; russet-red fall color | **Marcescent** (holds copper leaves all winter!) | **$\$405\text{–}\$555$** *(5 Oaks + 4 `$20` Junipers)* | Best if maximum height ($25'$) + winter leaf retention over City Works antennas is top priority. |
+| **★ `'Parkland Pillar'` Birch** *(in `5+4` Hybrid)* | $20'\text{–}25'\text{ H} \times \mathbf{5.0'\text{–}6.0'\text{ W}}$ | **YES** (Tight column) | Shimmering emerald leaves that flutter in breeze; gold fall | Dense twig column + 4 evergreen junipers | **$\$380\text{–}\$530$** *(5 Birches + 4 `$20` Junipers)* | Fastest growing ($2.5'\text{/yr}$); very bright, airy, cheerful green canopy. |
+| **`'Taylor'` Juniper** *(4 in `5+4` or 10 in `2/Panel`)* | $18'\text{–}25'\text{ H} \times \mathbf{3.0'\text{–}3.5'\text{ W}}$ | **YES** (Naturally $3'\text{–}3.5'$ wide) | Soft feathery emerald-forest green evergreen needles | **100% Evergreen** | **$\$900\text{–}\$1,500$** *(for 10 in `#5` pots)* | #1 all-evergreen choice; never overhangs the $6"$ mower strip or requires annual shearing. |
+| **`'Spartan'` Juniper** *(Home Depot `$20` Pots)* | $15'\text{–}20'\text{ H} \times \mathbf{5.0'\text{–}6.0'\text{ W}}$ *(if unpruned)* | **NO** (Unless sheared annually to $3'\text{–}3.5'$) | Dense Kelly-green evergreen needles | **100% Evergreen** | **$\$200\text{–}\$280$** *(for 10 in `$20` pots)* | **Caution for 10× Row:** Swells to $5'\text{–}6'$ at base if unpruned (overhanging the $4.5'$ mower strip), and junipers **cannot regrow green needles from bare old interior wood ("dead zone")**. Great when used as just **4 accented column trees** (`J1`–`J4`)! |
+| **`'Lucas'` European Hornbeam** (*Carpinus betulus 'Lucas'*) | $30'\text{–}35'\text{ H} \times \mathbf{12'\text{–}15'\text{ W}}$ *(upper tear-drop)* | **NO** (Upper canopy projects $6'\text{–}8'$ over lawn) | Pleated dark-green leaves; yellow fall; marcescent tan winter | Holds tan winter leaves | **$\$900\text{–}\$1,400$** *(5 caliper trees)* | **Avoid for $30'$ Backyard:** At $30'\text{–}35'$ tall and $12'\text{–}15'$ wide near the top, it projects halfway across the $13.0'$ grass strip toward the patio—creating a looming **"canyon / stadium wall" claustrophobic effect**. |
+| **`'Skyrocket'` / `'Blue Arrow'` / `'Moonglow'` Juniper** | $12'\text{–}18'\text{ H} \times 2'\text{–}4'\text{ W}$ | Yes | **Dusty silver-blue / grey-blue** | Evergreen | $\$300\text{–}\$900$ | **Skip:** Blue-grey color clashes with Melinda's preference for rich, lush green foliage. |
+
+---
+
+#### 6.3 Under-Story Planting Beneath & Between the Western Wall Trees (3-Tier Designer Layering)
+
+To make the $4.0\text{ ft}$ Western Wall bed look like a lush botanical garden rather than bare mulch under tree trunks—and to shade the soil around the tree roots—plant an alternating **10-point under-story ribbon along the front/middle half of the bed ($wx = 2.95\text{ ft}$, staying cleanly behind the $wx = 4.0'\text{–}4.5'$ flush Holland paver mower strip)**:
+
+* **Under-Story Coordinates Along the $50.0\text{ ft}$ Wall (10 Interval Spots between the `5 + 4` Trees at $wx = 2.95\text{ ft}$):**
+  * **Panel 1 ($wy = 0.0'\text{–}10.0'$):** Spot 1 at **$wy = 2.3'$** (North of `S1`) and Spot 2 at **$wy = 7.6'$** (between `S1` and `J1`).
+  * **Panel 2 ($wy = 10.0'\text{–}20.0'$):** Spot 3 at **$wy = 12.4'$** (between `J1` and `S2`) and Spot 4 at **$wy = 17.6'$** (between `S2` and `J2`).
+  * **Panel 3 ($wy = 20.0'\text{–}30.0'$):** Spot 5 at **$wy = 22.4'$** (between `J2` and `S3`) and Spot 6 at **$wy = 27.6'$** (between `S3` and `J3`).
+  * **Panel 4 ($wy = 30.0'\text{–}40.0'$):** Spot 7 at **$wy = 32.4'$** (between `J3` and `S4`) and Spot 8 at **$wy = 37.6'$** (between `S4` and `J4`).
+  * **Panel 5 ($wy = 40.0'\text{–}50.0'$):** Spot 9 at **$wy = 42.4'$** (between `J4` and `S5`) and Spot 10 at **$wy = 47.4'$** (South of `S5`).
+* **Exact Under-Story Plants to Alternate Across Those 10 Spots ($\approx \$10\text{–}\$15$ each in `1-gal` pots):**
+  1. **5× Lush Green & Purple Pollinator Perennials ($1.5\text{–}2.5\text{ ft H} \times 2.0\text{ ft W}$ — Placed at Spots $wy = 2.3', 12.4', 22.4', 32.4', 42.4'$):**
+     * **Primary Pick (Lush Green Foliage + Nonstop Purple Blooms): `'Walker's Low'` or `'Cat's Pajamas'` Catmint (*Nepeta*)** — features much greener, fuller foliage than silvery desert plants and produces billowy lavender-purple flower spikes nonstop from May through October.
+     * **Heat-Loving Accent Picks: `'Little Spire'` Russian Sage (*Perovskia*)** or **`'Hidcote'` English Lavender**, paired with **5× `'PowWow Wild Berry'` or `'Cheyenne Spirit'` Coneflower (*Echinacea*)** tucked just forward at $wx = 3.15'$ for summer pops of magenta, coral, and gold.
+  2. **5× Vertical Ornamental Plume Grasses ($3.0\text{–}5.0\text{ ft H} \times 1.8\text{ ft W}$ — Placed at Spots $wy = 7.6', 17.6', 27.6', 37.6', 47.4'$):**
+     * **`'Karl Foerster'` Feather Reed Grass (*Calamagrostis $\times$ acutiflora*):** Rich glossy green blades in spring that send up strictly vertical wheat-gold feathery plumes by June. Catches the afternoon sunset light against the dark-green junipers and leafy pillars, has **sterile seeds** (never spreads invasively into the lawn), and thrives in heavy Utah clay.
+* *(Note: If using **Option B — 10 Junipers @ $2/\text{Panel}$**, place the **5× Russian Sage/Catmint + 5× Coneflower** in the 5 panel centers at $wy = 5.0', 15.0', 25.0', 35.0', 45.0'$ and the **4× Karl Foerster Grasses** in front of the 4 interior columns at $wy = 10.0', 20.0', 30.0', 40.0'$).*
+
+---
+
+#### 6.4 Soil, Microclimate, Drip Irrigation & Planting Instructions Next to the Precast Concrete Wall
+
+1. **Exact Trunk Offset from the Cement Wall ($wx = 1.75'\text{–}2.0'$):**
+   * Never plant trees right up against the precast concrete panels. Dig all tree holes with the **trunk centerline at $wx = 2.0\text{ ft}$** ($24\text{ in}$ East of the wall for the 5 leafy panel pillars, and $wx = 1.75\text{ ft}$ / $21\text{ in}$ East of the wall for the 4 column junipers). This gives the back branches $1.75\text{–}2.0\text{ ft}$ of breathing room and airflow against reflected afternoon heat while keeping the front foliage inside the $wx = 4.0\text{ ft}$ bed line.
+2. **Planting Depth & Clay Drainage ("High & Wide" Rule for Utah Alkaline Clay, $\text{pH } 7.5\text{–}8.2$):**
+   * Dig each planting hole **$2\times$ as wide as the nursery pot** ($24"\text{–}30"$ wide), but **slightly shallower** so the **top of the root flare sits $1\text{ to }2\text{ inches}$ ABOVE surrounding soil grade**.
+   * Backfill with **$80\%$ native clay soil mixed with $20\%$ organic compost or aged pine bark fines** (plus a handful of elemental sulfur or iron chelate if desired). Never replace the hole with $100\%$ potting mix, which creates a "bathtub effect" in clay soil. Junipers and serviceberries hate soggy "wet feet."
+3. **Dedicated Drip Irrigation (Keep Lawn Pop-Up Sprinklers Off Tree Trunks):**
+   * Run a **$1/2\text{-inch}$ brown poly drip line** down the $50.0\text{ ft}$ Western Wall bed with **$2\text{ GPH}$ pressure-compensating button emitters** ($2\text{ emitters}$ per tree + $1\text{ emitter}$ per perennial/grass).
+   * **Watering Schedule:** Deeply soak **$2\times/\text{week}$ during Year 1** establishment; drop to **$1\times\text{ every }7\text{–}10\text{ days}$ in Years 2+**.
+4. **$3\text{-Inch}$ Dark Shredded Bark Mulch & $<30\text{ Min/Year}$ Maintenance:**
+   * Top the entire $4.0\text{ ft} \times 50.0\text{ ft}$ ($200\text{ sq ft}$) bed with **$3\text{ inches}$ of dark espresso/black shredded bark mulch**, pulling mulch **$3\text{ inches}$ back from the base of every tree trunk** (no mulch volcanoes).
+   * **Total Annual Maintenance:** Once a year in **early March**, take hedge clippers and cut the dried *Karl Foerster* grasses and *Catmint/Russian Sage* down to $6\text{ inches}$ above the ground ($\approx 20\text{ minutes}$ total). They flush back bright green every April, and the `'Standing Ovation'` / `'Taylor'` trees require **zero annual shearing**.
+
+---
+
+### 6.5 Additional Property Zone Plantings (Front Yard, South Berry/Kiwi Bed & Utility Screen)
+1. **Canopy / Ornamental Focal Tree (Front Yard Bed — $12\text{ to }20\text{ ft}$ mature height):**
+   * *Front Yard Focal Point:* Emperor I Japanese Maple (*Acer palmatum 'Wolff'*) or Prairiefire Crabapple planted inside the $2.0\text{ ft}$ front-of-porch bed — deep burgundy/red foliage to contrast the grey siding and `3152` stone wainscot.
+2. **Southern Fence Berry, Pea, Kiwi & Shade Bed ($2.0\text{ ft}$ Deep $+ 6\text{"}$ Paver $= 2.5\text{ ft}$ to Grass; $wy = 48.0\text{ ft}\text{–}50.0\text{ ft}$):**
+   * Trellised Heritage/Caroline Raspberries, Sugar Snap Peas, Hardy Kiwi (*Actinidia arguta 'Issai'*), and Alpine Strawberries groundcover in the sunny Backyard section ($wx = 4.0\text{ ft}\text{–}30.0\text{ ft}$), transitioning to Hostas, Ferns, and Astilbe in the shaded South Side Yard corridor ($wx = 30.0\text{ ft}\text{–}57.5\text{ ft}$).
+3. **Utility Box Screening (Front Yard SE Corner):**
+   * Blonde Ambition Blue Grama Grass or Karl Foerster Feather Reed Grass arranged in a 3-sided U-shape inside the $2.0\text{ ft}$ buffer bed around the green transformer box ($wx = 93.0'\text{–}96.4', wy = 45.5'\text{–}48.5'$).
 
 ---
 
@@ -155,7 +229,10 @@ Use these structured prompts inside Antigravity or image generation pipelines to
 * **View 1 Prompt (Backyard — House, Awning, Bistro Lights, L-Sectional, Fire Table & 5 Planters):**
   > *"Edit this backyard photo to show the 21'x12.5' concrete patio covered by a dark-espresso stained timber awning/pergola strung with warm 2700K bistro string lights, sheltering L-shaped outdoor sectional furniture on an outdoor rug and a long rectangular dual-purpose propane fire pit table. Along the left (North) white vinyl fence, show 5 raised cedar garden boxes (3' wide x 6' long) running North-to-South in an 8.0' crushed grey gravel bed, with a 3.0' poured concrete sidewalk right against the rear house wall connecting the patio to the narrow 9.0' North side cement pad (no window well), and leave the North neighbor's lot outside the left fence as empty bare dirt. Along the right (South) white vinyl fence, show a 2.0' dark-mulched berry trellis bed with 4.0'+ wide green grass wrapping all the way down the narrow 9.0' South side corridor and white rocks on the South neighbor's side outside the fence. Border all beds with a straight 6-inch flush grey concrete paver mowing strip featuring prominent 45-degree chamfered paver corners."*
 
-* **View 2 Prompt (Backyard — 10 Junipers Along West Wall, Chamfered Pavers & Patio):**
+* **View 2A Prompt (Backyard — Primary `5 + 4` Designer Hybrid Along West Wall, Under-Story Perennials/Grasses, Chamfered Pavers & Patio):**
+  > *"Edit this backyard photo to show a straight 4.0' dark-mulched bed along the 50.0' West precast concrete wall planted with the '5 + 4' alternating designer rhythm: 5 narrow leafy columnar trees ('Standing Ovation' Serviceberry, 'Crimson Spire' Columnar Oak, or 'Parkland Pillar' Birch, 4' wide x 15'–22' tall with lush emerald-green leaves) centered inside each of the 5 ten-foot concrete wall panels, alternating with 4 tight upright evergreen Junipers ('Taylor' or 'Spartan' Juniper, 3' wide) planted directly in front of the 4 interior concrete wall columns. Beneath and between the trees along the front half of the 4.0' bed, plant an alternating under-story ribbon of purple Catmint/Russian Sage, magenta Coneflower, and vertical golden-plumed Karl Foerster Feather Reed Grass. Border the bed with a straight flush Charcoal/Sierra Pavestone Holland concrete paver mowing strip featuring a prominent 45-degree diagonal chamfered paver corner where it meets the single row of 5 North-to-South 3'x6' raised cedar garden boxes along the North fence. On the foreground patio under the timber awning and warm bistro string lights, show L-shaped patio furniture and a long rectangular propane fire table."*
+
+* **View 2B Prompt (Backyard — All-Evergreen Alternative: 10 Junipers Along West Wall, Chamfered Pavers & Patio):**
   > *"Edit this backyard photo to show a straight 4.0' dark-mulched bed along the 50.0' West precast concrete wall planted with 10 upright green columnar Juniper trees ('Taylor' or 'Spartan' Juniper) evenly spaced two per 10-foot wall panel (5.0' on-center), framed with purple Russian sage, coneflower, and Karl Foerster grasses at the columns. Border the bed with a straight 6-inch flush grey concrete paver mowing strip featuring a prominent 45-degree diagonal chamfered paver corner where it meets the single row of 5 North-to-South 3'x6' raised cedar garden boxes along the North fence. On the foreground patio under the timber awning and warm bistro string lights, show L-shaped patio furniture and a long rectangular propane fire table."*
 
 * **View 3 Prompt (Front Yard — SE Lawn, Prominent 45° Chamfered Pavers & Neighbor Boundaries):**
@@ -258,7 +335,7 @@ To pace capital expenditure evenly across 6 years ($\approx \$3,477/\text{yr}$ u
 | **2027 · Phase 2** | Flush Lawn Paver Mow Strip ($45^\circ$ Corners) | $\approx 195\text{ lin ft}$ Home Depot Pavestone Holland (`#21703 Charcoal` / `#21777 Sierra`, $315\text{–}625\text{ pcs}$) | $\$450$ | $\$1,350$ | **$\$450$** *(DIY)* |
 | **2027 · Phase 2** | Sod / Grass & Topsoil Grading | $1,400\text{ sq ft}$ sod ($679\text{ sq ft}$ BY + $110\text{ sq ft}$ $4'\text{+}$ S. wrap + $555\text{ sq ft}$ Front) + $4\text{ cu yds}$ topsoil | $\$1,050$ | $\$2,300$ | **$\$1,050$** *(DIY)* |
 | **2027 · Phase 2** | Dark Shredded Bark Mulch & Weed Barrier | $5.5\text{ cu yds}$ ($3"$ depth across $560\text{ sq ft}$ West, South & Front perimeter beds) + fabric | $\$360$ | $\$750$ | **$\$360$** *(DIY)* |
-| **2027 · Phase 2** | West Wall Lush Green Junipers (`10×`) & Perennials | $10\times$ `'Taylor'` / `'Spartan'` Junipers ($2/\text{panel} \text{ @ } 5'\text{ O.C.}$) + $5\times$ Sage/Lavender + $5\times$ Coneflower + $4\times$ Grasses | $\$890$ | $\$1,550$ | **$\$890$** *(DIY)* |
+| **2027 · Phase 2** | West Wall Trees (`5+4` Hybrid or `10×` Junipers) & Under-Story | **Option A (`5+4` Hybrid, $\approx \$450\text{–}\$600$ total w/ under-story):** $5\times$ `'Standing Ovation'` Serviceberry / `'Crimson Spire'` Oak / `'Parkland Pillar'` Birch ($wy=5,15,25,35,45$) + $4\times$ `$20` / `'Taylor'` Column Junipers ($wy=10,20,30,40$) \| **Option B ($\approx \$890$):** $10\times$ `'Taylor'` Junipers ($2/\text{panel}$) + $10\text{-spot}$ under-story of *Catmint / Russian Sage*, *Coneflower* & *Karl Foerster* Grasses | $\$890$ *(or $\$490$ w/ `5+4`)* | $\$1,550$ | **$\$890$** *(DIY)* |
 | **2027 · Phase 2** | South Berry/Kiwi Bed, Front Tree & Utility Screen | $1\times$ Front Japanese Maple/Crabapple, $6\times$ utility screen grasses, raspberries, kiwi, snap peas, strawberries & hostas | $\$620$ | $\$1,100$ | **$\$620$** *(DIY)* |
 | **2027 · Phase 2** | In-Ground Flat Dirt Garden Soil Prep & Plants | $184\text{ sq ft}$ flat dirt area (`wx = 4.0'–27.0', wy = 0.0'–8.0'`): tilled compost + starts (**$\$0$ raised beds / $\$0$ gravel**) | $\$160$ | $\$280$ | **$\$160$** *(DIY)* |
 | *2027 Subtotal* | **Phase 2 Total (Sprinklers, Pavers, Grass, Mulch & Plants)** | **Complete Turf, Paver Edging, Perimeter Beds & Flat-Dirt Garden** | **$\$4,880$** | **$\$10,730$** | **$\$4,880$** |
