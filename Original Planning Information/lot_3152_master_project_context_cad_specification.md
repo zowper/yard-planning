@@ -49,9 +49,9 @@ All programmatic drawings and calculations use a locked 1:1 coordinate system in
 * $wx = -1.0\text{ ft}$ to $0.0\text{ ft}$: West Rear Precast Concrete Wall ($1.0\text{ ft}$ thick; $1.5\text{ ft} \times 1.5\text{ ft}$ fluted columns at $wy = 0, 10, 20, 30, 40, 50\text{ ft}$).
 * $wx = 0.0\text{ ft}$ to $17.5\text{ ft}$: Unpaved backyard dirt West of the patio ($17.5\text{ ft}$ deep).
 * $wx = 17.5\text{ ft}$ to $30.0\text{ ft}$: Backyard Concrete Patio ($12.5\text{ ft}$ deep; N–S control joint at $wx = 23.75\text{ ft}$ dividing it into two $6.25\text{ ft}$ halves).
+* $wx = 27.0\text{ ft}$ to $30.0\text{ ft}$: **Rear House Wall Poured Concrete Sidewalk** ($3.0\text{ ft}$ wide $\times 11.0\text{ ft}$ long $= 33.0\text{ sq ft}$ at $wy = 9.0\text{ ft}$ to $20.0\text{ ft}$), running directly against the rear house foundation (no basement and no window wells anywhere) to connect the Concrete Patio ($wy = 20.0\text{ ft}$) to the North Side Cement Pad ($wy = 9.0\text{ ft}$).
 * $wx = 28.5\text{ ft}$ to $30.0\text{ ft}$: Rear Sliding Glass Door Concrete Step ($1.5\text{ ft}$ deep $\times 6.0\text{ ft}$ wide at $wy = 21.5\text{ ft}$ to $27.5\text{ ft}$).
-* $wx = 28.7\text{ ft}$ to $30.0\text{ ft}$: Basement Egress Window Well & Metal Grate ($1.3\text{ ft}$ deep $\times 4.0\text{ ft}$ wide at $wy = 12.5\text{ ft}$ to $16.5\text{ ft}$).
-* $wx = 30.0\text{ ft}$: Rear (West) House Structural Wall.
+* $wx = 30.0\text{ ft}$: Rear (West) House Structural Wall (slab-on-grade; no basement / no window wells).
 * $wx = 45.0\text{ ft}$ to $48.0\text{ ft}$: AC Condenser Pad ($3.0\text{ ft} \times 3.0\text{ ft}$ on South wall at $wy = 41.0\text{ ft}$ to $44.0\text{ ft}$).
 * $wx = 51.0\text{ ft}$: Exterior Hose Bib (Water Spigot) on North wall ($wy = 9.0\text{ ft}$; $21.0\text{ ft}$ East of NW corner).
 * $wx = 51.0\text{ ft}$ to $54.5\text{ ft}$: Gas & Electric Meters on South wall ($wy = 41.0\text{ ft}$ to $42.1\text{ ft}$).
@@ -72,9 +72,9 @@ All programmatic drawings and calculations use a locked 1:1 coordinate system in
 
 ### North–South Axis (`wy`, increasing North $\rightarrow$ South)
 * $wy = 0.0\text{ ft}$: North Property Line (marked by wooden survey stakes at $wx = 1.5\text{ ft}$ and $26.0\text{ ft}$).
-* $wy = 0.0\text{ ft}$ to $9.0\text{ ft}$: North Side Yard Setback ($9.0\text{ ft}$ wide).
+* $wy = 0.0\text{ ft}$ to $9.0\text{ ft}$: **Narrow North Side Yard Setback ($9.0\text{ ft}$ wide)** — full poured concrete utility/trailer pad ($wx = 30.0\text{ ft}$ to $73.2\text{ ft}$).
 * $wy = 9.0\text{ ft}$: North House/Garage Structural Wall.
-* $wy = 9.0\text{ ft}$ to $20.0\text{ ft}$: Bare Rear House Stucco Wall North of Patio ($11.0\text{ ft}$ wide).
+* $wy = 9.0\text{ ft}$ to $20.0\text{ ft}$: Rear House Stucco Wall North of Patio ($11.0\text{ ft}$ wide, bordered by the $3.0\text{ ft}$ wide poured concrete sidewalk at $wx = 27.0\text{ ft}\text{–}30.0\text{ ft}$).
 * $wy = 11.0\text{ ft}$ to $27.0\text{ ft}$: 2-Car Overhead Garage Door ($16.0\text{ ft}$ wide).
 * $wy = 11.0\text{ ft}$ to $29.0\text{ ft}$: Main Concrete Driveway ($18.0\text{ ft}$ wide; N–S control joints at $wy = 17.0\text{ ft}$ and $23.0\text{ ft}$ creating three $6.0\text{ ft}$ wide lanes).
 * $wy = 20.0\text{ ft}$ to $41.0\text{ ft}$: Backyard Concrete Patio ($21.0\text{ ft}$ wide; E–W control joint at $wy = 30.5\text{ ft}$ dividing it into two $10.5\text{ ft}$ halves).
@@ -82,24 +82,24 @@ All programmatic drawings and calculations use a locked 1:1 coordinate system in
 * $wy = 29.0\text{ ft}$ to $32.5\text{ ft}$: South Porch Concrete Walkway Panel ($3.5\text{ ft}$ wide alongside driveway).
 * $wy = 29.0\text{ ft}$ to $41.0\text{ ft}$: Covered Front Porch Structural Width ($12.0\text{ ft}$ foundation; $12.5\text{ ft}$ exterior with stone base).
 * $wy = 41.0\text{ ft}$: South House Structural Wall (Patio South edge is flush with this wall at $wy = 41.0\text{ ft}$).
-* $wy = 41.0\text{ ft}$ to $50.0\text{ ft}$: South Side Yard Setback ($9.0\text{ ft}$ wide).
+* $wy = 41.0\text{ ft}$ to $50.0\text{ ft}$: **Narrow South Side Yard Setback ($9.0\text{ ft}$ wide)** — features a $2.0\text{ ft}$ house wall/AC buffer + $6"$ paver ($wy = 41.0\text{ ft}\text{–}43.5\text{ ft}$), a **$4.0\text{ ft}$ wide continuous lawn strip wrapping all the way down the South side** ($wy = 43.5\text{ ft}\text{–}47.5\text{ ft}$), and a $2.0\text{ ft}$ Southern fence berry/shade bed + $6"$ paver ($wy = 47.5\text{ ft}\text{–}50.0\text{ ft}$).
 * $wy = 50.0\text{ ft}$: South Property Line (borders South neighbor's white gravel strip at $wy = 50.0\text{ ft}$ to $52.8\text{ ft}$).
 
 ---
 
-## 4. Fencing & Gate Decisions
+## 4. Fencing & Gate Decisions (Narrow $9.0\text{ ft}$ Side Yards)
 
-Both side yard gates are intentionally set back from the front corners of the house so they attach to **flat stucco** and leave the **front stone masonry wraps and downspouts 100% visible from the street**:
+Both side yards are strictly **$9.0\text{ ft}$ wide**, and both side yard gates are intentionally set back from the front corners of the house so they attach to **flat stucco** and leave the **front stone masonry wraps and downspouts 100% visible from the street**:
 
 1. **North Side — Double-Swing Vehicle Gate ($wx = 70.0\text{ ft}$)**:
    * **Setback**: Set back **$3.2\text{ ft}$ West** of the NE garage front face ($wx = 73.2\text{ ft}$), which places it **$1.2\text{ ft}$ West** of the $2.0\text{ ft}$ stone masonry wrap ($wx = 71.2\text{ ft}$) and corner downspout.
-   * **Gate Spec**: $9.0\text{ ft}$ total span across the North side yard ($wy = 0.0\text{ ft}$ to $9.0\text{ ft}$), built as an **$8.0\text{ ft}$ to $8.5\text{ ft}$ clear opening Double-Swing Drive Gate** (two $4.0\text{ ft}$ leaves swinging inward/West into the side yard).
+   * **Gate Spec**: $9.0\text{ ft}$ total span across the narrow North side yard ($wy = 0.0\text{ ft}$ to $9.0\text{ ft}$), built as an **$8.0\text{ ft}$ to $8.5\text{ ft}$ clear opening Double-Swing Drive Gate** (two $4.0\text{ ft}$ leaves swinging inward/West into the side yard).
    * **North Fence Length**: **$70.0\text{ linear ft}$** along the North property line ($30.0\text{ ft}$ backyard + $40.0\text{ ft}$ North side yard).
 
 2. **South Side — Single-Swing Pedestrian ("Human") Gate ($wx = 57.5\text{ ft}$)**:
    * **Primary Stucco Setback (`STUCCO_SETBACK` Mode — Default)**: Set back **$2.2\text{ ft}$ West** of the SE stucco corner ($wx = 59.7\text{ ft}$) and **$8.2\text{ ft}$ West** of the front face of the `3152` porch column ($wx = 65.7\text{ ft}$). This lands cleanly on flat stucco just East of the gas/electric meters ($wx = 51.0\text{ ft}$ to $54.5\text{ ft}$), enclosing the meters behind the gate while exposing the entire porch column and siding return.
    * **Alternate Flush Mode (`SE_CORNER` Mode)**: Places the gate at $wx = 59.7\text{ ft}$ ($6.0\text{ ft}$ behind the porch column).
-   * **Gate Spec**: $9.0\text{ ft}$ total return span ($wy = 41.0\text{ ft}$ to $50.0\text{ ft}$), built with a **$4.0\text{ ft}$ Single-Swing Walk Gate** ($wy = 44.5\text{ ft}$ to $48.5\text{ ft}$, aligned with the $6.0\text{ ft}$ walk path South of the AC condenser) plus **$5.0\text{ ft}$ of fixed fence wing panels** ($3.5\text{ ft}$ house-side wing + $1.5\text{ ft}$ property-line wing).
+   * **Gate Spec**: $9.0\text{ ft}$ total return span ($wy = 41.0\text{ ft}$ to $50.0\text{ ft}$), built with a **$4.0\text{ ft}$ Single-Swing Walk Gate** ($wy = 44.5\text{ ft}$ to $48.5\text{ ft}$, aligned with the $4.0\text{ ft}$ grass corridor South of the AC condenser) plus **$5.0\text{ ft}$ of fixed fence wing panels** ($3.5\text{ ft}$ house-side wing + $1.5\text{ ft}$ property-line wing).
    * **South Fence Length**: **$57.5\text{ linear ft}$** along the South property line ($30.0\text{ ft}$ backyard + $27.5\text{ ft}$ South side yard).
 
 3. **Total Fencing Linear Footage**:
@@ -107,26 +107,19 @@ Both side yard gates are intentionally set back from the front corners of the ho
 
 ---
 
-## 5. Raised Garden Bed Layouts (7 Boxes @ $6.0\text{ ft} \times 3.0\text{ ft}$ = $126.0\text{ sq. ft.}$)
+## 5. Raised Garden Bed Layouts (5 Boxes @ $3.0\text{ ft}\text{ W} \times 6.0\text{ ft}\text{ L}$ = $90.0\text{ sq. ft.}$)
 
-All 7 raised garden beds are $6.0\text{ ft} \times 3.0\text{ ft}$ ($18.0\text{ sq. ft.}$ each) oriented **North–South** ($6.0\text{ ft}$ N–S length $\times 3.0\text{ ft}$ E–W width). Three switchable configurations are modeled in the CAD blueprint:
-
-### Option A: User's Proposed "Backwards Utah" (`PROPOSED_UTAH` — 2 Patio + 5 North Fence)
-* **Patio-North Row (2 Boxes: `P1`, `P2`)**:
-  * Placed at $wy = 12.5\text{ ft}$ to $18.5\text{ ft}$ ($1.5\text{ ft}$ North of the patio edge), aligned with the West half of the patio at $wx = 17.5\text{ ft}$ to $20.5\text{ ft}$ (`P1`) and $wx = 22.5\text{ ft}$ to $25.5\text{ ft}$ (`P2`).
-  * **Advantage**: Leaves a **$4.5\text{ ft}$ clear zone** ($wx = 25.5\text{ ft}$ to $30.0\text{ ft}$) in front of the **Basement Egress Window Well** ($wy = 12.5\text{ ft}$ to $16.5\text{ ft}$) and a **$5.0\text{ ft}$ wide central courtyard aisle** ($wy = 7.5\text{ ft}$ to $12.5\text{ ft}$) between the two rows of boxes.
-* **North Fence Row (5 Boxes: `N1`–`N5`)**:
-  * Placed at $wy = 1.5\text{ ft}$ to $7.5\text{ ft}$ ($1.5\text{ ft}$ South of the North fence) at $wx = 1.5\text{ ft}, 6.5\text{ ft}, 11.5\text{ ft}, 16.5\text{ ft}, 21.5\text{ ft}$ (with $2.0\text{ ft}$ walking paths between boxes, ending at $wx = 24.5\text{ ft}$).
-  * **Constraint / Pinch Point**: Box `N5` ($wx = 21.5\text{ ft}$ to $24.5\text{ ft}$) leaves only **$5.5\text{ ft}$** of clearance to the NW house corner ($wx = 30.0\text{ ft}$), which blocks wide vehicles/trailers entering through the North Vehicle Gate from turning into the backyard and sits inside the 2-story house's morning shadow zone.
-
-### Option B: Recommended "Gate-Clear Utah" (`COURTYARD_PRO` — 2 Patio + 4 North Fence + 1 West Wall)
-* Keeps `P1` and `P2` North of the patio ($wx = 16.75\text{ ft}$ to $19.75\text{ ft}$ and $22.0\text{ ft}$ to $25.0\text{ ft}$, giving $5.0\text{ ft}$ window well clearance) and `N1`–`N4` along the North fence ($wx = 1.5\text{ ft}$ to $19.75\text{ ft}$).
-* Relocates the 5th North box (`N5`) to the **Sunny West Precast Wall (`W1`)** at $wx = 1.5\text{ ft}$ to $4.5\text{ ft}$, $wy = 12.5\text{ ft}$ to $18.5\text{ ft}$.
-* **Advantage**: Opens a **$10.25\text{ ft}$ wide unobstructed vehicle turnaround** ($wx = 19.75\text{ ft}$ to $30.0\text{ ft}$) out of the North Vehicle Gate, puts `W1` in 100% full sun, and creates a balanced 3-sided courtyard.
-
-### Option C: "Sunny NW Wall L" (`PERIMETER_L` — 4 North Fence + 3 West Wall)
-* Places 4 boxes (`N1`–`N4`) along the North fence ($wx = 1.5\text{ ft}$ to $19.75\text{ ft}$, $wy = 1.5\text{ ft}$ to $7.5\text{ ft}$) and 3 boxes (`W1`–`W3`) along the West precast wall ($wx = 1.5\text{ ft}$ to $4.5\text{ ft}$, $wy = 10.0\text{ ft}$ to $16.0\text{ ft}$, $18.0\text{ ft}$ to $24.0\text{ ft}$, and $26.0\text{ ft}$ to $32.0\text{ ft}$).
-* **Advantage**: Every box is $>10\text{ ft}$ away from the 2-story house (maximizing morning and afternoon sun) and leaves the $20\text{ ft} \times 18\text{ ft}$ yard area immediately North of the patio completely open.
+### Locked-In Master Plan (`FIVE_NORTH_85` — 5 North-to-South Boxes Along the North Fence)
+* **Quantity & Dimensions**: **5 raised cedar garden boxes** (`N1`–`N5`), each **$3.0\text{ ft}$ wide (East–West) by $6.0\text{ ft}$ long (North–South)** ($18.0\text{ sq. ft.}$ each $= 90.0\text{ sq. ft.}$ total growing area).
+* **North–South Orientation ($8.5\text{ ft}$ Total to Grass)**:
+  * $1.0\text{ ft}$ clearance at the North white vinyl fence ($wy = 0.0\text{ ft}$ to $1.0\text{ ft}$).
+  * $6.0\text{ ft}$ long planter box running **North-to-South** ($wy = 1.0\text{ ft}$ to $7.0\text{ ft}$).
+  * $1.0\text{ ft}$ gravel clearance on the South side ($wy = 7.0\text{ ft}$ to $8.0\text{ ft}$) $= 8.0\text{ ft}$ gravel bed depth.
+  * $6"$ ($0.5\text{ ft}$) flush paver mowing strip ($wy = 8.0\text{ ft}$ to $8.5\text{ ft}$) $= \mathbf{8.5\text{ ft}}$ **total from North fence to grass**.
+* **East–West Spacing ($wx = 4.0\text{ ft}$ to $27.0\text{ ft}$)**:
+  * Placed in a single row along the North backyard fence between the $4.0\text{ ft}$ West juniper bed ($wx = 4.0\text{ ft}$) and the $3.0\text{ ft}$ Rear House Concrete Sidewalk ($wx = 27.0\text{ ft}$):
+  * `N1`: $wx = 5.0\text{ ft}\text{–}8.0\text{ ft}$, `N2`: $wx = 9.75\text{ ft}\text{–}12.75\text{ ft}$, `N3`: $wx = 14.5\text{ ft}\text{–}17.5\text{ ft}$, `N4`: $wx = 19.25\text{ ft}\text{–}22.25\text{ ft}$, `N5`: $wx = 24.0\text{ ft}\text{–}27.0\text{ ft}$ (with $1.75\text{ ft}$ gravel walking paths between boxes).
+* *(Note: The interactive CAD blueprint also includes 3 optional comparison modes—`PROPOSED_UTAH`, `COURTYARD_PRO`, and `PERIMETER_L`—in the top toolbar).*
 
 ---
 
@@ -135,8 +128,8 @@ All 7 raised garden beds are $6.0\text{ ft} \times 3.0\text{ ft}$ ($18.0\text{ s
 | # | Zone / Category | Measurement Name | User Rough Input | Numeric Value | Unit | Reconciled Exact Spec | CAD Coordinates ($X=\text{E/W}, Y=\text{N/S}$) | Planning & Visual Notes |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
 | 1 | Footprint | Total Lot Width (North–South) | ~50 ft | `50.0` | ft | 50.0 ft | `X: 0.0..96.7 \| Y: 0.0..50.0` | Matches 5 precast wall panels across West back wall ($10.0\text{ ft}$ O.C.) and $9.0'\text{ N} + 32.0'\text{ House} + 9.0'\text{ S}$. |
-| 2 | Footprint | Main House Foundation Width (N–S) | ~32 ft | `32.0` | ft | 32.0 ft | `X: 30.0..59.7 \| Y: 9.0..41.0` | Exact structural foundation width between North ($Y=9.0'$) and South ($Y=41.0'$) side yards. |
-| 3 | Footprint | Max House Depth — North Wall (E–W) | 43.2 ft | `43.2` | ft | 43.2 ft | `X: 30.0..73.2 \| Y: 9.0` | Continuous stucco wall from NW back corner ($X=30.0'$) to NE garage corner ($X=73.2'$). |
+| 2 | Footprint | Main House Foundation Width (N–S) | ~32 ft | `32.0` | ft | 32.0 ft | `X: 30.0..59.7 \| Y: 9.0..41.0` | Exact structural foundation width between North ($Y=9.0'$) and South ($Y=41.0'$) side yards (slab-on-grade; no basement). |
+| 3 | Footprint | Max House Depth — North Wall (E–W) | 43.2 ft | `43.2` | ft | 43.2 ft | `X: 30.0..73.2 \| Y: 9.0` | Continuous stucco wall from NW back corner ($X=30.0'$) to NE garage corner ($X=73.2'$); no window wells. |
 | 4 | Footprint | Main House Depth — South Wall to Door | ~30 ft | `29.7` | ft | 29.7 ft (30.0' nom.) | `X: 30.0..59.7 \| Y: 41.0` | From SW back corner ($X=30.0'$) to SE stucco corner / Front Door plane ($X=59.7'$). Plus $13.5'$ garage = $43.2'$. |
 | 5 | Footprint | Total Lot Depth (Rear Wall to Sidewalk) | Derived | `96.7` | ft | 96.7 ft (108.7' to Curb) | `X: 0.0..96.7 (108.7 to Curb)` | $30.0'\text{ Backyard} + 43.2'\text{ North Wall} + 23.5'\text{ Driveway} = 96.7'$ to Sidewalk ($+12.0'\text{ Walk/Strip/Curb} = 108.7'$). |
 | 6 | Front | Garage Front Exterior Width (N–S) | 20.5 ft | `20.5` | ft | 20.5 ft (20.0' fdn) | `X: 73.2..73.5 \| Y: 8.75..29.25` | $20.0'\text{ foundation}$ ($Y=9.0'$ to $29.0'$) $+ 0.25'$ ($3\text{ in}$) stone flare on North and South corners $= 20.5'$. |
@@ -150,34 +143,34 @@ All 7 raised garden beds are $6.0\text{ ft} \times 3.0\text{ ft}$ ($18.0\text{ s
 | 14 | Backyard | Back Patio Depth (East–West) | 12.5 ft | `12.5` | ft | 12.5 ft | `X: 17.5..30.0 \| Y: 20.0..41.0` | Extends West from $X=30.0'$ to $X=17.5'$. Divided by center control joint into two $6.25'$ deep halves. |
 | 15 | Backyard | Patio Control Joint Quadrants (4x) | Derived | `65.63` | sq.ft. | 10.5 ft W $\times$ 6.25 ft D | `4 Slabs @ 10.5' W x 6.25' D` | Each of the 4 poured concrete patio quadrants measures $10.5'\text{ N–S} \times 6.25'\text{ E–W}$ ($65.625\text{ sq.ft.}$ each). |
 | 16 | Backyard | Patio-to-West Wall Dirt Clearance | Derived | `17.5` | ft | 17.5 ft | `X: 0.0..17.5 \| Y: 20.0..41.0` | Unpaved dirt depth West of the concrete patio to the rear precast wall ($30.0' - 12.5' = 17.5'$). |
-| 17 | Backyard | Bare Rear House Wall North of Patio | Derived | `11.0` | ft | 11.0 ft | `X: 30.0 \| Y: 9.0..20.0` | Unpaved rear house wall section under North window between NW corner ($Y=9.0'$) and Patio ($Y=20.0'$). |
-| 18 | Backyard | Total Backyard Width North of Patio | Derived | `20.0` | ft | 20.0 ft | `X: 0.0..30.0 \| Y: 0.0..20.0` | Full unpaved width from North edge of patio ($Y=20.0'$) to North property line ($Y=0.0'$): $11.0'\text{ wall} + 9.0'\text{ setback}$. |
+| 17 | Backyard | Rear House Wall North of Patio | Derived | `11.0` | ft | 11.0 ft | `X: 30.0 \| Y: 9.0..20.0` | Rear house wall section under North window between NW corner ($Y=9.0'$) and Patio ($Y=20.0'$), bordered by $3.0'$ concrete sidewalk. |
+| 18 | Backyard | Total Backyard Width North of Patio | Derived | `20.0` | ft | 20.0 ft | `X: 0.0..30.0 \| Y: 0.0..20.0` | Full width from North edge of patio ($Y=20.0'$) to North property line ($Y=0.0'$): $11.0'\text{ wall} + 9.0'\text{ setback}$. |
 | 19 | Backyard | Unpaved Width South of Patio | Derived | `9.0` | ft | 9.0 ft | `X: 0.0..30.0 \| Y: 41.0..50.0` | Patio South edge is flush with SW house corner ($Y=41.0'$), leaving $9.0'$ to South lot line ($Y=50.0'$). |
 | 20 | Backyard | Rear Sliding Glass Door & Step | Derived | `6.0` | ft | 6.0 ft W $\times$ 1.5 ft D | `X: 28.5..30.0 \| Y: 21.5..27.5` | Concrete step centered under the $6.0'$ wide sliding patio door ($Y=21.5'$ to $27.5'$, $1.5'$ South of N patio edge). |
 | 21 | Backyard | West Precast Concrete Wall Bays (5x) | Derived | `10.0` | ft O.C. | 10.0 ft O.C. (5 Bays) | `X: -1.0..0.0 \| Y: 0,10,20,30,40,50` | 5 panels across the $50.0'$ rear wall with $1.5' \times 1.5'$ fluted columns at $Y = 0', 10', 20', 30', 40', 50'$. |
-| 22 | North Side | North Side Yard Setback Width | ~9 ft | `9.0` | ft | 9.0 ft | `X: 0.0..96.7 \| Y: 0.0..9.0` | From North house/garage wall ($Y=9.0'$) to North lot line ($Y=0.0'$), marked by pink & orange wooden survey stakes. |
+| 22 | North Side | North Side Yard Setback Width | ~9 ft | `9.0` | ft | 9.0 ft (Narrow Corridor) | `X: 0.0..96.7 \| Y: 0.0..9.0` | Narrow $9.0'$ wide corridor from North house/garage wall ($Y=9.0'$) to North lot line ($Y=0.0'$), marked by survey stakes. |
 | 23 | North Side | North Wall Hose Bib (Spigot) Offset | Derived | `21.0` | ft | 21.0 ft E of NW Corner | `X: 51.0 \| Y: 9.0` | Exterior water spigot at $X=51.0', Y=9.0'$ ($21.0'$ East of NW back corner / $22.2'$ West of NE garage corner). |
 | 24 | North Side | NE Garage Corner Stone Wrap Return | Derived | `2.0` | ft | 2.0 ft W $\times$ 0.25 ft N | `X: 71.2..73.2 \| Y: 8.75..9.0` | Front stone veneer wraps $2.0'$ back along North garage wall ($X=71.2'$ to $73.2'$) with downspout at corner. |
-| 25 | South Side | South Side Yard Setback Width | ~9 ft | `9.0` | ft | 9.0 ft | `X: 0.0..96.7 \| Y: 41.0..50.0` | From South house wall ($Y=41.0'$) to South property line gravel border ($Y=50.0'$). |
+| 25 | South Side | South Side Yard Setback Width | ~9 ft | `9.0` | ft | 9.0 ft (Narrow Corridor) | `X: 0.0..96.7 \| Y: 41.0..50.0` | Narrow $9.0'$ wide corridor from South house wall ($Y=41.0'$) to South property line ($Y=50.0'$), with $4.0'\text{+}$ grass wrap. |
 | 26 | South Side | South Side Length (SW Corner to Porch) | Derived | `35.7` | ft | 35.7 ft (36.0' nom.) | `X: 30.0..65.7 \| Y: 41.0..50.0` | $29.7'\text{ South stucco wall} + 6.0'\text{ covered front porch}$ to front face of `3152` pillar ($X=30.0'$ to $65.7'$). |
-| 27 | South Side | AC Condenser Pad & South Walk Clearance | Derived | `6.0` | ft | 3.0'$\times$3.0' Pad (6.0' clear) | `Pad X: 45.0..48.0 \| Y: 41.0..44.0` | AC unit at $X=45.0'\text{–}48.0', Y=41.0'\text{–}44.0'$ leaves $6.0'$ of unobstructed walk space to South lot line. |
+| 27 | South Side | AC Condenser Pad & South Grass Corridor | Derived | `4.0` | ft grass | 3.0'$\times$3.0' Pad (4.0'+ Grass Wrap) | `Pad X: 45.0..48.0 \| Y: 41.0..44.0` | AC unit at $X=45.0'\text{–}48.0', Y=41.0'\text{–}44.0'$ with cedar screen leaves a $4.0'\text{+}$ wide lawn strip ($Y=43.5'\text{–}47.5'$) + $2.0'$ South bed. |
 | 28 | Driveway | Main Driveway Width (+Walkway) | Derived | `18.0` | ft | 18.0 ft (+3.5' walk = 21.5') | `X: 73.2..96.7 \| Y: 11.0..29.0 (+3.5' walk)` | Three $6.0'$ wide main panels across ($Y=11.0'$ to $29.0'$) plus a $3.5'$ South porch walkway panel ($Y=29.0'$ to $32.5'$). |
 | 29 | Driveway | Driveway Length (Garage to Sidewalk) | Derived | `23.5` | ft | 23.5 ft | `X: 73.2..96.7 \| Y: 11.0..29.0` | Divided into 3 equal concrete slab sections ($\approx 7.83'$ each) from $X=73.2'$ (garage) to $X=96.7'$ (city sidewalk). |
 | 30 | Driveway | NE Front Strip (North of Driveway) | Derived | `11.0` | ft | 11.0 ft W $\times$ 23.5 ft D | `X: 73.2..96.7 \| Y: 0.0..11.0` | $9.0'\text{ North side yard} + 2.0'\text{ garage stone offset}$ North of driveway edge ($Y=0.0'$ to $11.0'$, $X=73.2'$ to $96.7'$). |
 | 31 | Driveway | SE Front Yard Depth along South Line | Derived | `37.0` | ft | 37.0 ft (Walk to SE Corner) | `X: 59.7..96.7 \| Y: 29.0..50.0` | From City Sidewalk ($X=96.7'$) Westward to SE stucco corner ($X=59.7'$); $31.0'$ from sidewalk to `3152` porch front. |
 | 32 | Driveway | City Sidewalk, Park Strip & Curb | Derived | `12.0` | ft | 4.0' Walk + 6.0' Strip + 2.0' Curb | `Walk X: 96.7..100.7 \| Strip: 100.7..106.7` | $4.0'$ concrete city sidewalk ($X=96.7'\text{–}100.7'$) $+ 6.0'$ park strip ($X=100.7'\text{–}106.7'$) $+ 2.0'$ curb & gutter. |
-| 33 | Area & Fence | Backyard Unpaved Dirt Area | Calculated | `1237.5` | sq.ft. | 1,237.5 sq. ft. | `X: 0.0..30.0 \| Y: 0.0..50.0 (less Patio)` | Total Backyard ($50.0' \times 30.0' = 1,500\text{ sq.ft.}$) minus Concrete Patio ($21.0' \times 12.5' = 262.5\text{ sq.ft.}$). |
+| 33 | Area & Fence | Backyard Unpaved Area | Calculated | `1237.5` | sq.ft. | 1,237.5 sq. ft. | `X: 0.0..30.0 \| Y: 0.0..50.0 (less Patio)` | Total Backyard ($50.0' \times 30.0' = 1,500\text{ sq.ft.}$) minus Concrete Patio ($21.0' \times 12.5' = 262.5\text{ sq.ft.}$). |
 | 34 | Area & Fence | Backyard Concrete Patio Area | Calculated | `262.5` | sq.ft. | 262.5 sq. ft. | `X: 17.5..30.0 \| Y: 20.0..41.0` | $21.0'\text{ N–S width} \times 12.5'\text{ E–W depth} = 262.5\text{ sq.ft.}$ (four $65.625\text{ sq.ft.}$ slabs). |
-| 35 | Area & Fence | North & South Side Yard Areas | Calculated | `658.8` | sq.ft. | 388.8 sq.ft. (N) / 270.0 sq.ft. (S) | `388.8 N. Side + 270.0 S. Side (607.5 gated)` | North Side: $9.0' \times 43.2' = 388.8\text{ sq.ft.}$ South Side: $9.0' \times 30.0' = 270.0\text{ sq.ft.}$ ($360.0\text{ sq.ft. N}$ & $247.5\text{ sq.ft. S}$ inside gates). |
+| 35 | Area & Fence | North & South Side Yard Areas | Calculated | `658.8` | sq.ft. | 388.8 sq.ft. (N Cement) / 270.0 sq.ft. (S) | `388.8 N. Side + 270.0 S. Side (607.5 gated)` | North Side: $9.0' \times 43.2' = 388.8\text{ sq.ft.}$ full poured concrete. South Side: $9.0' \times 30.0' = 270.0\text{ sq.ft.}$ with $4.0'\text{+}$ grass wrap. |
 | 36 | Area & Fence | North Side Double Vehicle Gate & Setback | Set back behind stone | `9.0` | ft | 9.0' Span (8.0'–8.5' Double Gate) @ 3.2' Setback | `X: 70.0 (3.2' W of NE Corner) \| Y: 0.0..9.0` | Set back $3.2'$ West of NE garage face ($1.2'$ behind $2.0'$ stone wrap & downspout) onto flat stucco at $X=70.0'$. Leaves $70.0'$ North fence. |
 | 37 | Area & Fence | South Side Pedestrian ("Human") Gate & Setback | Set back on stucco | `4.0` | ft | 4.0' Walk Gate + 5.0' Wing @ 2.2' Setback | `X: 57.5 (2.2' W of SE Corner) \| Y: 41.0..50.0` | Set back $2.2'$ West of SE stucco corner ($8.2'$ West of `3152` porch stone pillar) onto flat stucco at $X=57.5'$, East of gas meter. Leaves $57.5'$ South fence. |
 | 38 | Area & Fence | Total Side Fence & Gate Linear Footage | Calculated | `145.5` | lin.ft. | 70.0' N + 57.5' S (+18.0' Gate Returns) | `70.0' N + 57.5' S + 18.0' Gate Returns` | $145.5\text{ linear ft}$ total: $70.0'$ North fence $+ 9.0'$ N vehicle gate $+ 57.5'$ South fence $+ 9.0'$ S walk gate & wing. |
-| 39 | Area & Fence | Raised Garden Beds (7 $\times$ 6.0'$\times$3.0' N–S Boxes) | 2 Patio + 5 N. Fence | `126.0` | sq.ft. | 126.0 sq.ft. Growing Area (7 Boxes @ 18 sq.ft.) | `7 Boxes (6'x3') \| P1-P2 & N1-N5` | 2 N–S boxes North of Patio ($X=17.5'\text{–}25.5'$, leaving $4.5'$ clear for window well) + 5 N–S boxes along North Fence ($X=1.5'\text{–}24.5'$). Moving `N5` to West Wall opens $10.25'$ vehicle gate turnaround. |
-| 40 | Backyard | Basement Egress Window Well & Grate | Derived from Photos | `4.5` | ft clr | 4.0 ft W $\times$ 1.3 ft D (4.5' clear to Box P2) | `Well X: 28.7..30.0 \| Y: 12.5..16.5` | Metal grate window well under North rear window ($Y=12.5'$ to $16.5'$, $X=28.7'$ to $30.0'$). Keeping Patio garden boxes at $X=17.5'\text{–}25.5'$ leaves $4.5'$ clear. |
+| 39 | Backyard | Northern Fence Planters (5 $\times$ 3.0' W $\times$ 6.0' L N–S) | 5 Planters (8.5' to Grass) | `90.0` | sq.ft. | 90.0 sq.ft. Growing Area (5 Boxes @ 3'W $\times$ 6'L) | `X: 4.0..27.0 \| Y: 0.0..8.5 (Planters Y=1.0..7.0)` | 5 N–S boxes ($3.0'\text{ W} \times 6.0'\text{ L}$) along North Fence ($X=5.0'\text{–}27.0'$): $1.0'$ N space $+ 6.0'$ box $+ 1.0'$ S space $+ 6"$ paver $= 8.5'$ to grass. |
+| 40 | Backyard | Rear House Wall Poured Concrete Sidewalk | Patio to N. Cement Pad | `33.0` | sq.ft. | 3.0 ft W $\times$ 11.0 ft L Poured Concrete Walk | `Walk X: 27.0..30.0 \| Y: 9.0..20.0` | $3.0'$ wide poured concrete sidewalk right against the $11.0'$ rear house wall connecting the Concrete Patio ($Y=20.0'$) to the North Side Cement Pad ($Y=9.0'$). |
 | 41 | South Side | Gas & Electric Meters Location (South Wall) | Derived from Photos | `8.0` | ft | 6.0 ft – 10.0 ft W of SE Corner | `X: 51.0..54.5 \| Y: 41.0..42.1` | Mounted on South stucco wall at $X=51.0'\text{–}54.5', Y=41.0'$. Setting South pedestrian gate at $X=57.5'$ encloses meters inside the gate. |
 | 42 | Area & Fence | SE Front Yard Unpaved Bed Area | Calculated | `555.0` | sq.ft. | 555.0 sq. ft. | `X: 59.7..96.7 \| Y: 29.0..50.0` | $17.5'$ wide along porch walkway widening to $21.0'$ East of walkway $\times 27.0'\text{–}37.0'$ deep to City Sidewalk. |
 | 43 | Area & Fence | NE Front Yard Unpaved Strip Area | Calculated | `258.5` | sq.ft. | 258.5 sq. ft. | `X: 73.2..96.7 \| Y: 0.0..11.0` | $11.0'$ wide ($9.0'$ North setback $+ 2.0'$ garage stone wing offset) $\times 23.5'$ deep to City Sidewalk. |
-| 44 | Area & Fence | Total Unpaved Yard Area (Full Lot & Enclosed) | Calculated | `2709.8` | sq.ft. | 2,709.8 sq. ft. Total (1,845.0 sq.ft. Inside Gates) | `1,845.0 sq.ft. Enclosed + 864.8 sq.ft. Front` | $1,237.5\text{ sq.ft.}$ Backyard dirt $+ 360.0\text{ sq.ft.}$ N. Side (inside gate) $+ 247.5\text{ sq.ft.}$ S. Side (inside gate) $+ 864.8\text{ sq.ft.}$ Front Yard unpaved. |
+| 44 | Area & Fence | Total Unpaved Yard Area (Full Lot & Enclosed) | Calculated | `2709.8` | sq.ft. | 2,709.8 sq. ft. Total (1,845.0 sq.ft. Inside Gates) | `1,845.0 sq.ft. Enclosed + 864.8 sq.ft. Front` | $1,237.5\text{ sq.ft.}$ Backyard $+ 360.0\text{ sq.ft.}$ N. Side (inside gate) $+ 247.5\text{ sq.ft.}$ S. Side (inside gate) $+ 864.8\text{ sq.ft.}$ Front Yard. |
 
 ---
 
@@ -199,26 +192,25 @@ When editing or extending `blueprint_3152.html` in Antigravity, note the followi
 4. **Interactive Tools**:
    * **Point-to-Point Tape Measure**: Magnetic snapping to `KEY_SNAP_POINTS` (within $0.9\text{ ft}$) or $0.25\text{ ft}$ ($3\text{ in}$) grid increments, calculating direct Euclidean distance, architectural feet-inches, $\Delta\text{E/W}$, $\Delta\text{N/S}$, and bounding area.
    * **Google Sheets / CSV Exporter**: `openSheetsModal()`, `copyForGoogleSheets()`, and `downloadCSV()` join `MEASUREMENTS` with `SHEET_ENRICHMENT` to output 44 structured rows.
-   * **Layer Toggles**: Includes dedicated toggles for `primaryDims`, `secondaryDims`, `zones`, `utilities`, `fence`, `garden` (7 boxes), `paverEdging` (flush Home Depot **Pavestone Holland Concrete Paver** edging [`7.87" × 3.94" × 2.36"` 60mm or `7.75" × 4" × 1.75"` 45mm in `Charcoal Blend #21703` or `Sierra Blend #21777`] + $45^\circ$ chamfered corners + $2.0\text{ ft}$ foundation drip buffer), and `grid`.
+   * **Layer Toggles**: Includes dedicated toggles for `primaryDims`, `secondaryDims`, `zones`, `utilities`, `fence`, `garden` (5 N–S boxes), `paverEdging` (flush Home Depot **Pavestone Holland Concrete Paver** edging [`7.87" × 3.94" × 2.36"` 60mm or `7.75" × 4" × 1.75"` 45mm in `Charcoal Blend #21703` or `Sierra Blend #21777`] + $45^\circ$ chamfered corners + $3.0\text{ ft}$ rear concrete sidewalk + $4.0'\text{+}$ South grass wrap), and `grid`.
 
 ---
 
 ## 8. All 4 Property Zones — Complete Spatial Breakdown
 
 ### Zone 1: Backyard & Concrete Patio ($1,500.0\text{ sq ft}$ Total — $wx = 0.0\text{ ft}$ to $30.0\text{ ft}$, $wy = 0.0\text{ ft}$ to $50.0\text{ ft}$)
-* **Overall Footprint:** $50.0\text{ ft}$ wide $\times 30.0\text{ ft}$ deep rear yard backed by a 5-panel precast concrete privacy wall ($10.0\text{ ft}$ center-to-center fluted columns).
+* **Overall Footprint:** $50.0\text{ ft}$ wide $\times 30.0\text{ ft}$ deep rear yard backed by a 5-panel precast concrete privacy wall ($10.0\text{ ft}$ center-to-center fluted columns). The home is slab-on-grade with **no basement and no window wells anywhere**.
 * **Existing Concrete Patio:** $21.0\text{ ft}$ N–S $\times 12.5\text{ ft}$ E–W $= 262.5\text{ sq ft}$ (four $10.5\text{ ft} \times 6.25\text{ ft}$ control-joint quadrants; South edge flush with SW house corner at $wy = 41.0\text{ ft}$).
-* **Unpaved Backyard Area:** $1,237.5\text{ sq ft}$ ($17.5\text{ ft}$ dirt depth from patio edge to West wall; $20.0\text{ ft}$ open width North of patio; $9.0\text{ ft}$ open width South of patio).
-* **Basement Egress Window Well:** $4.0\text{ ft}$ W $\times 1.3\text{ ft}$ D metal grate on rear North wall ($wy = 12.5\text{ ft}\text{–}16.5\text{ ft}$, $wx = 28.7\text{ ft}\text{–}30.0\text{ ft}$); enclosed inside a $2.0\text{ ft}$ straight rock/mulch foundation drip buffer ($wx = 28.0\text{ ft}\text{–}30.0\text{ ft}$), while garden boxes maintain $4.5\text{ ft}$ safety clearance.
-* **Key Planned Features:** Pergola lounge + rectangular propane fire table on patio, 5 raised $3\text{ ft} \times 6\text{ ft}$ N–S cedar garden boxes along the North fence ($8.5\text{ ft}$ total to grass), **$4.0\text{ ft}$ Western Wall Bed** with **10 Lush Green Upright Columnar Junipers** (`2 per 10.0 ft panel` @ $5.0\text{ ft}$ O.C. at $wy = 2.5', 7.5', \dots, 47.5'$, **'Taylor' Eastern Red Cedar Juniper** [$3'\text{ W} \times 18'\text{–}25'\text{ H}$] or lightly sheared Home Depot **'Spartan' Chinese Juniper** [$3'\text{ W} \times 15'\text{–}20'\text{ H}$] for rich emerald-green color, blocking neighboring City Works buildings/antennas, afternoon lawn shade & $50\%$ open wall visibility) framed with *Little Spire* Russian sage / lavender & coneflower in the 5 panel centers ($wy = 5', 15', 25', 35', 45'$) and 4 *Karl Foerster* feather reed grasses at the interior columns ($wy = 10', 20', 30', 40'$), **$2.0\text{ ft}$ Southern Fence Bed** (raspberries, snap peas, alpine strawberries, hardy kiwi & shade plants), straight flush **Home Depot Pavestone Holland Paver** mow strip ($\approx 120\text{ lin ft}$ in Backyard; `7.87" × 3.94" × 2.36"` or `7.75" × 4" × 1.75"` in `Charcoal Blend #21703` or `Sierra Blend #21777`) with $45^\circ$ chamfered corners ($22.5^\circ$ miter cuts), and maximum open lawn.
+* **$3.0\text{ ft}$ Rear House Concrete Sidewalk ($33.0\text{ sq ft}$):** Runs directly against the $11.0\text{ ft}$ rear house wall ($wx = 27.0\text{ ft}\text{–}30.0\text{ ft}$, $wy = 9.0\text{ ft}\text{–}20.0\text{ ft}$) connecting the North edge of the Concrete Patio ($wy = 20.0\text{ ft}$) directly to the $9.0\text{ ft}$ North Side Cement Pad ($wy = 9.0\text{ ft}$).
+* **Key Planned Features:** Pergola lounge + rectangular propane fire table on patio, **5 raised $3.0\text{ ft}\text{ W} \times 6.0\text{ ft}\text{ L}$ N–S cedar garden boxes** along the North fence ($8.5\text{ ft}$ total to grass), **$4.0\text{ ft}$ Western Wall Bed** with Upright Columnar Junipers framed with *Little Spire* Russian sage / lavender, coneflower, and *Karl Foerster* feather reed grasses, **$2.0\text{ ft}$ Southern Fence Bed** (raspberries, snap peas, alpine strawberries, hardy kiwi & shade plants), **$4.0'\text{+}$ wide South side lawn wrap** continuing all the way down the South side corridor, and straight flush **Home Depot Pavestone Holland Paver** mow strip with $45^\circ$ chamfered corners.
 
-### Zone 2: North & South Side Yards ($658.8\text{ sq ft}$ Raw / $607.5\text{ sq ft}$ Enclosed Inside Gates)
-* **North Side Yard (Garage Side, $wy = 0.0\text{ ft}\text{–}9.0\text{ ft}$):** $9.0\text{ ft}$ W $\times 43.2\text{ ft}$ D ($388.8\text{ sq ft}$ raw; **$360.0\text{ sq ft}$ enclosed** behind the $8.5\text{ ft}$ Double-Swing Vehicle Gate at $wx = 70.0\text{ ft}$, set back $3.2\text{ ft}$ from NE corner behind the $2.0\text{ ft}$ stone wrap). Includes exterior water spigot ($wx = 51.0\text{ ft}$) and trash/trailer utility pad.
-* **South Side Yard (Porch Side, $wy = 41.0\text{ ft}\text{–}50.0\text{ ft}$):** $9.0\text{ ft}$ W $\times 29.7\text{ ft}$ D ($270.0\text{ sq ft}$ raw; **$247.5\text{ sq ft}$ enclosed** behind the $4.0\text{ ft}$ Single-Swing Pedestrian Gate at $wx = 57.5\text{ ft}$, set back $2.2\text{ ft}$ from SE stucco corner).
-* **South Utilities & Clearances:** Gas and electric meters at $wx = 51.0\text{ ft}\text{–}54.5\text{ ft}$ (enclosed inside gate) and $3\text{ ft} \times 3\text{ ft}$ AC condenser pad at $wx = 45.0\text{ ft}\text{–}48.0\text{ ft}$ (leaves $6.0\text{ ft}$ clear walkway + horizontal cedar-slat screen).
+### Zone 2: Narrow $9.0\text{ ft}$ North & South Side Yards ($658.8\text{ sq ft}$ Raw / $607.5\text{ sq ft}$ Enclosed Inside Gates)
+* **North Side Yard (Garage Side, $wy = 0.0\text{ ft}\text{–}9.0\text{ ft}$):** Narrow $9.0\text{ ft}$ W $\times 43.2\text{ ft}$ D corridor ($388.8\text{ sq ft}$ raw; **$360.0\text{ sq ft}$ enclosed** behind the $8.5\text{ ft}$ Double-Swing Vehicle Gate at $wx = 70.0\text{ ft}$, set back $3.2\text{ ft}$ from NE corner behind the $2.0\text{ ft}$ stone wrap). Completely finished as a **poured concrete (cement) pad** connected to the backyard patio via the $3.0\text{ ft}$ rear-wall concrete sidewalk. Includes exterior water spigot ($wx = 51.0\text{ ft}$).
+* **South Side Yard (Porch Side, $wy = 41.0\text{ ft}\text{–}50.0\text{ ft}$):** Narrow $9.0\text{ ft}$ W $\times 29.7\text{ ft}$ D corridor ($270.0\text{ sq ft}$ raw; **$247.5\text{ sq ft}$ enclosed** behind the $4.0\text{ ft}$ Single-Swing Pedestrian Gate at $wx = 57.5\text{ ft}$, set back $2.2\text{ ft}$ from SE stucco corner). Features the **$2.0\text{ ft}$ Southern fence bed** ($+6"$ paver), a **$4.0\text{ ft}\text{+}$ wide continuous strip of green grass wrapping all the way down the South side**, and a **$2.0\text{ ft}$ house wall buffer + horizontal cedar AC screen** ($+6"$ paver).
+* **South Utilities & Clearances:** Gas and electric meters at $wx = 51.0\text{ ft}\text{–}54.5\text{ ft}$ (enclosed inside gate) and $3\text{ ft} \times 3\text{ ft}$ AC condenser pad at $wx = 45.0\text{ ft}\text{–}48.0\text{ ft}$.
 
 ### Zone 3: Front Yard, Driveway & Covered Porch ($813.5\text{ sq ft}$ Unpaved — $wx = 59.7\text{ ft}$ to $96.7\text{ ft}$)
-* **SE Front Yard Lawn & Bed Area (South of Driveway):** $555.0\text{ sq ft}$ ($17.5\text{ ft}$ wide along porch walkway widening to $21.0\text{ ft}$ near sidewalk $\times 27.0\text{ ft}\text{–}37.0\text{ ft}$ deep). Framed by straight flush **Home Depot Pavestone Holland Paver** edging ($\approx 75\text{ lin ft}$ in Front Yard, totaling $\approx 195\text{ lin ft}$ across Lot 3152: `315 pavers` single lengthwise row @ `~$220–$245` or `625 pavers` crosswise/double staggered row @ `~$430–$485`) with $45^\circ$ chamfered corners and a $2.0\text{ ft}$ foundation rock/mulch buffer.
+* **SE Front Yard Lawn & Bed Area (South of Driveway):** $555.0\text{ sq ft}$ ($17.5\text{ ft}$ wide along porch walkway widening to $21.0\text{ ft}$ near sidewalk $\times 27.0\text{ ft}\text{–}37.0\text{ ft}$ deep). Framed by straight $2.0\text{ ft}$ perimeter planting beds and flush **Home Depot Pavestone Holland Paver** edging with $45^\circ$ chamfered corners.
 * **Green Utility Transformer Box:** $3.4\text{ ft} \times 3.0\text{ ft}$ PacifiCorp box tucked in the SE corner along the sidewalk ($wx = 93.0\text{ ft}\text{–}96.4\text{ ft}, wy = 45.5\text{ ft}\text{–}48.5\text{ ft}$) — screened on 3 sides with a $2.0\text{ ft}$ planting bed and chamfered Pavestone Holland paver edging while keeping front sidewalk access clear.
 * **NE Front Strip (North of Driveway):** $11.0\text{ ft}$ W $\times 23.5\text{ ft}$ D $= 258.5\text{ sq ft}$ leading to the North double vehicle gate.
 * **Concrete Driveway & Covered Porch:** $18.0\text{ ft}$ driveway + $3.5\text{ ft}$ walkway panel ($21.5\text{ ft} \times 23.5\text{ ft} = 505.3\text{ sq ft}$) + $6.0\text{ ft}$ D $\times 11.5\text{ ft}$ W covered porch with `3152` stone pillar.
@@ -246,25 +238,25 @@ All 30 original Pixel Motion Photos (`.MP.jpg`) and web thumbnails (`photos_curr
 | 7 | `PXL_20261022_004632253.MP.jpg` | Front Yard & Park Strip | Dusk | Dusk Front Elevation — 2-Car Garage, Driveway & $6.0\text{ ft}$ Park Strip |
 | 8 | `PXL_20261022_004640801.MP.jpg` | Front Yard & Park Strip | Dusk | Dusk Wide Street View — Curb, $6.0\text{ ft}$ Park Strips, $4.0\text{ ft}$ City Sidewalk & Front Yard |
 | 9 | `PXL_20261022_004655951.MP.jpg` | SE Front Yard & Utility Box | Dusk | Dusk View of SE Front Yard ($555\text{ sq ft}$), Green Transformer Box & South Neighbor Gravel Border |
-| 10 | `PXL_20261022_162209617.MP.jpg` | North Side Yard ($9'\times 43.2'$) | Daylight | North Side Yard Corridor Looking East from NW Backyard (Shows $9.0\text{ ft}$ Width & Pink Survey Stakes) |
+| 10 | `PXL_20261022_162209617.MP.jpg` | North Side Yard ($9'\times 43.2'$) | Daylight | Narrow $9.0\text{ ft}$ North Side Yard Corridor Looking East from NW Backyard (Shows $9.0\text{ ft}$ Width & Pink Survey Stakes) |
 | 11 | `PXL_20261022_162233919.MP.jpg` | North Side Yard ($9'\times 43.2'$) | Daylight | North Continuous $43.2\text{ ft}$ Stucco Wall & Exterior Water Spigot ($X = 51.0\text{ ft}$) Looking East |
 | 12 | `PXL_20261022_162243180.MP.jpg` | North Vehicle Gate Zone | Daylight | North Double-Swing Vehicle Gate Location ($X = 70.0\text{ ft}$, $3.2\text{ ft}$ Behind NE Garage Corner & $2.0\text{ ft}$ Stone Return) |
 | 13 | `PXL_20261022_162132591.MP.jpg` | NW Corner & North Side Entry | Daylight | Looking North Along Rear Patio Edge Toward NW House Corner & North Side Yard Turnaround |
 | 14 | `PXL_20261022_162230541.MP.jpg` | NW Garden Bed & Gate Zone | Daylight | NW Backyard & North Property Line Stakes (Planned 5-Box N–S Raised Cedar Garden Bed Zone) |
 | 15 | `PXL_20261022_162104480.MP.jpg` | South Gate Setback Zone | Daylight | South Entry & `3152` Stone Pillar — Shows SE Stucco Corner & Gas/Electric Meters Behind Planned Gate |
-| 16 | `PXL_20261022_162115166.MP.jpg` | South Side Yard ($9'\times 29.7'$) | Daylight | South Side Corridor ($9.0\text{ ft}$ Wide) — Looking West Past Meters & $3'\times 3'$ AC Pad ($6.0\text{ ft}$ Clear Path) |
+| 16 | `PXL_20261022_162115166.MP.jpg` | South Side Yard ($9'\times 29.7'$) | Daylight | Narrow $9.0\text{ ft}$ South Side Corridor — Looking West Past Meters & $3'\times 3'$ AC Pad |
 | 17 | `PXL_20261022_004709213.MP.jpg` | South Side Utilities | Dusk | Close-Up of South Stucco Wall Gas/Electric Meters ($X = 51'\text{–}54.5'$) & AC Condenser Pad ($X = 45'\text{–}48'$) |
 | 18 | `PXL_20261022_162150878.MP.jpg` | Backyard & $21'\times 12.5'$ Patio | Daylight | Rear House Elevation Straight-On ($32.0\text{ ft}$ Foundation Width) & $21.0\text{ ft} \times 12.5\text{ ft}$ Concrete Patio |
 | 19 | `PXL_20261022_162141898.MP.jpg` | Backyard & Patio | Daylight | Rear House Facade & Patio Looking North-East from SW Backyard Corner |
-| 20 | `PXL_20261022_162158316.MP.jpg` | Rear Wall & Window Well | Daylight | $11.0\text{ ft}$ Bare Rear Wall North of Patio & $4.0'\times 1.3'$ Basement Egress Window Well Grate |
-| 21 | `PXL_20261022_162206648.MP.jpg` | NW Backyard ($20'$ Unpaved) | Daylight | $20.0\text{ ft}$ Unpaved Width North of Patio Looking South-East (Garden Box P1 & P2 Zone) |
+| 20 | `PXL_20261022_162158316.MP.jpg` | Rear Wall North of Patio | Daylight | $11.0\text{ ft}$ Bare Rear Wall North of Patio (Planned $3.0'\times 11.0'$ Poured Concrete Sidewalk Zone; No Basement/Window Well) |
+| 21 | `PXL_20261022_162206648.MP.jpg` | NW Backyard ($20'$ Unpaved) | Daylight | $20.0\text{ ft}$ Unpaved Width North of Patio Looking South-East |
 | 22 | `PXL_20261022_162120308.MP.jpg` | Backyard ($17.5'$ Dirt to Wall) | Daylight | Looking North-West Across Backyard & 5-Panel Precast Concrete Privacy Wall |
 | 23 | `PXL_20261022_162126370.MP.jpg` | Concrete Patio ($262.5\text{ sq ft}$) | Daylight | Four $10.5\text{ ft} \times 6.25\text{ ft}$ Concrete Patio Quadrants Looking North |
 | 24 | `PXL_20261022_162216594.MP.jpg` | Full $50.0'$ Backyard Width | Daylight | Full $50.0\text{ ft}$ N–S Backyard Span Looking South Along $17.5\text{ ft}$ Dirt Strip Between Patio & Wall |
 | 25 | `PXL_20261022_162226769.MP.jpg` | West Precast Wall ($50.0'$) | Daylight | 5-Bay Precast Concrete West Wall ($10.0\text{ ft}$ Center-to-Center Columns) Looking South |
 | 26 | `PXL_20261022_004719182.MP.jpg` | Backyard & Patio (Dusk) | Dusk | Dusk Backyard & Patio View with Melinda — Looking North-West Toward Precast Wall |
 | 27 | `PXL_20261022_004857161.MP.jpg` | Rear House & Patio (Dusk) | Dusk | Dusk View Looking East from SW Corner Across Patio & Rear Sliding Glass Door |
-| 28 | `PXL_20261022_004913415.MP.jpg` | Rear House & Window Well | Dusk | Dusk View Looking South-East from NW Corner Showing Window Well & Patio |
+| 28 | `PXL_20261022_004913415.MP.jpg` | Rear House & NW Corner (Dusk) | Dusk | Dusk View Looking South-East from NW Corner Showing $11.0'$ Rear Wall & Patio |
 | 29 | `PXL_20261022_004925322.MP.jpg` | West Precast Wall (Dusk) | Dusk | Dusk View of $50.0\text{ ft}$ West Precast Privacy Wall Looking South-West |
 | 30 | `PXL_20261022_004940478.MP.jpg` | Patio Quadrants (Dusk) | Dusk | Dusk View of $21.0\text{ ft} \times 12.5\text{ ft}$ Concrete Patio & West Precast Wall |
 

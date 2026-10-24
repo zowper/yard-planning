@@ -786,14 +786,14 @@
       {
         id: 'bare-wall-north-patio',
         zone: 'Backyard',
-        name: 'Bare Rear House Wall North of Patio',
-        rough: 'Derived',
-        exact: '11.0 ft',
-        notes: 'Unpaved rear house wall section under North window between NW corner (Y=9.0\') and Patio (Y=20.0\').',
+        name: 'Rear House Wall Concrete Sidewalk (Patio to N. Pad)',
+        rough: '3\' W × 11\' L Walk',
+        exact: '11.0 ft L × 3.0 ft W (33.0 sq.ft.)',
+        notes: '3.0\' wide poured concrete sidewalk right against the 11.0\' rear house wall (X=27.0\'–30.0\', Y=9.0\'–20.0\') connecting the Concrete Patio directly to the 9.0\' North Side Cement Pad.',
         dim: {
           x1: -6.8, y1: 9.0, x2: -6.8, y2: 20.0,
           wx1: 30.0, wy1: 9.0, wx2: 30.0, wy2: 20.0,
-          label: "11.0' BARE WALL",
+          label: "11.0'×3.0' REAR WALK",
           primary: false
         }
       },
@@ -1590,9 +1590,6 @@
       const sRearWin = projectRect(29.6, 32.0, 30.4, 38.0);
       out.push(`<rect x="${sRearWin.x}" y="${sRearWin.y}" width="${sRearWin.width}" height="${sRearWin.height}" fill="#38bdf8" stroke="${T.houseStroke}" stroke-width="1"/>`);
 
-      const grateRect = projectRect(28.7, 12.5, 30.0, 16.5);
-      out.push(`<rect x="${grateRect.x}" y="${grateRect.y}" width="${grateRect.width}" height="${grateRect.height}" fill="none" stroke="${T.textSub}" stroke-width="0.9" stroke-dasharray="2,2"/>`);
-
       // 11. PROPERTY BOUNDARY LINES (North wy=0.0, South wy=50.0, West wx=0.0, East Walk wx=96.7)
       const propPoly = projectPoly([
         [0.0, 0.0],
@@ -1824,39 +1821,49 @@
           out.push(`<circle cx="${sp.x.toFixed(1)}" cy="${sp.y.toFixed(1)}" r="${(0.75 * SCALE).toFixed(1)}" fill="rgba(52, 211, 153, 0.4)" stroke="#a7f3d0" stroke-width="0.9"/>`);
         });
 
-        // 3. Northern Backyard Planter Zone (wx: 4.0..30.0, wy: 0.0..8.0 = 8.0' deep bed; +0.5' paver = 8.5' total to grass)
-        const northPlanterBedRect = projectRect(4.0, 0.0, 30.0, 8.0);
+        // 3. Northern Backyard Planter Zone (wx: 4.0..27.0, wy: 0.0..8.0 = 8.0' deep bed; +0.5' paver = 8.5' total to grass)
+        const northPlanterBedRect = projectRect(4.0, 0.0, 27.0, 8.0);
         out.push(`
           <rect x="${northPlanterBedRect.x.toFixed(1)}" y="${northPlanterBedRect.y.toFixed(1)}" width="${northPlanterBedRect.width.toFixed(1)}" height="${northPlanterBedRect.height.toFixed(1)}"
                 fill="url(#pat-gravel)" stroke="#94a3b8" stroke-width="1.1" stroke-dasharray="3,2" opacity="0.88"/>
         `);
 
-        // 4. Rear House Wall 2.0' Foundation Drip Buffer (wx: 28.0..30.0, wy: 8.0..20.0)
-        // Encloses the 4.0'x1.3' Basement Egress Window Well (wx: 28.7..30.0) so grass/mower never touches stucco or window grate
-        const dripBuf = projectRect(28.0, 8.0, 30.0, 20.0);
+        // 4. Rear House Wall 3.0' Wide Poured Concrete Sidewalk (wx: 27.0..30.0, wy: 9.0..20.0 = 33.0 sq.ft.)
+        // Runs directly against the 11.0' rear house wall connecting the Concrete Patio (wy=20.0') to the North Side Cement Pad (wy=9.0')
+        const rearSidewalkRect = projectRect(27.0, 9.0, 30.0, 20.0);
         out.push(`
-          <rect x="${dripBuf.x.toFixed(1)}" y="${dripBuf.y.toFixed(1)}" width="${dripBuf.width.toFixed(1)}" height="${dripBuf.height.toFixed(1)}"
-                fill="url(#pat-gravel)" stroke="#94a3b8" stroke-width="1.2" stroke-dasharray="3,2" opacity="0.85"/>
+          <rect x="${rearSidewalkRect.x.toFixed(1)}" y="${rearSidewalkRect.y.toFixed(1)}" width="${rearSidewalkRect.width.toFixed(1)}" height="${rearSidewalkRect.height.toFixed(1)}"
+                fill="url(#pat-concrete)" stroke="${T.concreteStroke}" stroke-width="1.5" opacity="0.95"/>
+        `);
+        const rswJoint1 = project(27.0, 14.5);
+        const rswJoint2 = project(30.0, 14.5);
+        out.push(`<line x1="${rswJoint1.x.toFixed(1)}" y1="${rswJoint1.y.toFixed(1)}" x2="${rswJoint2.x.toFixed(1)}" y2="${rswJoint2.y.toFixed(1)}" stroke="${T.jointStroke}" stroke-width="1.0" stroke-dasharray="4,2"/>`);
+
+        // 4B. South House Wall 2.0' Utility/AC Drip Buffer (wx: 30.0..57.5, wy: 41.0..43.0; +0.5' paver at wy=43.0..43.5)
+        const southWallBufRect = projectRect(30.0, 41.0, southEndWx, 43.0);
+        out.push(`
+          <rect x="${southWallBufRect.x.toFixed(1)}" y="${southWallBufRect.y.toFixed(1)}" width="${southWallBufRect.width.toFixed(1)}" height="${southWallBufRect.height.toFixed(1)}"
+                fill="url(#pat-gravel)" stroke="#94a3b8" stroke-width="1.0" stroke-dasharray="3,2" opacity="0.85"/>
         `);
 
-        // 5. Backyard Lawn Polygon with 6" (0.5') Paver Edging & 45° Chamfered Corners (2.0' × 2.0' 45° cuts)
+        // 5. Backyard Lawn Polygon Wrapping 4.0' Wide Down the Entire South Side Corridor (wy=43.5'..47.5', wx=30.0'..57.5')
         // In FIVE_NORTH_85 (Default Master Plan):
         //   - West grass edge is at wx = 4.5' (4.0' juniper bed + 0.5' paver)
         //   - North grass edge is at wy = 8.5' (1.0' N space + 6.0' planter + 1.0' S space = 8.0' bed + 0.5' paver = 8.5' total!)
-        //   - South grass edge is at wy = 47.5' (2.0' berry/shade bed + 0.5' paver = 2.5' from S fence)
-        //   - East grass edge meets flat Concrete Patio (wx=17.5', wy=20.0..41.0) and 2.0' Rear Wall Buffer + 0.5' paver (wx=27.5')
+        //   - East grass edge North of patio meets the flat 3.0' Rear Concrete Sidewalk (wx=27.0', wy=8.5'..20.0') and Concrete Patio (wx=17.5', wy=20.0'..41.0')
+        //   - South grass wraps around the SE patio corner and continues 4.0' wide (wy=43.5'..47.5') all the way down the 9.0' South side yard to the walk gate (wx=57.5')!
         const byLawnPts = STATE.gardenMode === 'FIVE_NORTH_85'
           ? [
               [4.5, 10.5],  // NW 45° chamfer start along West bed (wx=4.5')
               [6.5, 8.5],   // NW 45° chamfer end along North planter zone (wy=8.5' = 8.0' bed + 6" paver)
-              [25.5, 8.5],  // NE 45° chamfer start along North planter zone (wy=8.5')
-              [27.5, 10.5], // NE 45° chamfer end along 2.0' Rear Wall buffer + 6" paver (wx=27.5')
-              [27.5, 20.0], // Meets North edge of Concrete Patio
+              [27.0, 8.5],  // Meets West edge of 3.0' Rear Concrete Sidewalk & 9.0' North Cement Pad (wx=27.0')
+              [27.0, 20.0], // Follows West edge of 3.0' Rear Concrete Sidewalk to Concrete Patio
               [17.5, 20.0], // Follows West edge of Concrete Patio (flat concrete = built-in mower strip)
               [17.5, 41.0], // SW corner of Concrete Patio
-              [27.5, 41.0], // South edge of Concrete Patio to SE lawn pocket
-              [27.5, 45.5], // SE 45° chamfer start
-              [25.5, 47.5], // SE 45° chamfer end along 2.0' South fence bed + 6" paver (wy=47.5')
+              [30.0, 41.0], // Follows South edge of Concrete Patio to SW house corner (wx=30.0')
+              [32.5, 43.5], // 45° chamfer into 4.0' wide South side grass corridor (wy=43.5' to 47.5')
+              [southEndWx, 43.5], // Wraps all the way down the South side corridor to the South walk gate
+              [southEndWx, 47.5], // South edge of 4.0' grass corridor along 2.0' South fence bed + 6" paver (wy=47.5')
               [6.5, 47.5],  // SW 45° chamfer start along South bed (wy=47.5')
               [4.5, 45.5]   // SW 45° chamfer end along 4.0' West wall bed + 6" paver (wx=4.5')
             ]
@@ -1864,14 +1871,14 @@
           ? [
               [5.5, 10.5],
               [7.5, 8.5],
-              [25.5, 8.5],
-              [27.5, 10.5],
-              [27.5, 20.0],
+              [27.0, 8.5],
+              [27.0, 20.0],
               [17.5, 20.0],
               [17.5, 41.0],
-              [27.5, 41.0],
-              [27.5, 45.5],
-              [25.5, 47.5],
+              [30.0, 41.0],
+              [32.5, 43.5],
+              [southEndWx, 43.5],
+              [southEndWx, 47.5],
               [6.5, 47.5],
               [4.5, 45.5],
               [4.5, 33.5],
@@ -1882,35 +1889,38 @@
               [6.5, 19.5],
               [17.5, 19.5],
               [17.5, 41.0],
-              [27.5, 41.0],
-              [27.5, 45.5],
-              [25.5, 47.5],
+              [30.0, 41.0],
+              [32.5, 43.5],
+              [southEndWx, 43.5],
+              [southEndWx, 47.5],
               [6.5, 47.5],
               [4.5, 45.5]
             ];
 
         const byLawnSvgPoly = projectPoly(byLawnPts);
         out.push(`
-          <polygon points="${byLawnSvgPoly}" fill="rgba(16, 185, 129, 0.16)" stroke="none"/>
+          <polygon points="${byLawnSvgPoly}" fill="rgba(16, 185, 129, 0.18)" stroke="none"/>
         `);
 
-        // Draw the 6" (0.5' wide) Paver Edging Strip along the non-concrete edges of the Backyard Lawn
-        // Centerline of the 0.5' paver sits 0.25' outside the grass boundary
+        // Draw the 6" (0.5' wide) Paver Edging Strip along the non-concrete edges of the Backyard & South Side Lawn
+        // (No pavers needed against the Concrete Patio or the 3.0' Rear Concrete Sidewalk!)
         const byPaverChains = STATE.gardenMode === 'FIVE_NORTH_85'
           ? [
               [
-                [17.5, 41.0], [27.75, 41.0], [27.75, 45.6], [25.6, 47.75],
-                [6.4, 47.75], [4.25, 45.6], [4.25, 10.4], [6.4, 8.25],
-                [25.6, 8.25], [27.75, 10.4], [27.75, 20.0], [17.5, 20.0]
+                [30.0, 41.0], [32.6, 43.25], [southEndWx, 43.25]
+              ],
+              [
+                [southEndWx, 47.75], [6.4, 47.75], [4.25, 45.6], [4.25, 10.4], [6.4, 8.25], [27.0, 8.25]
               ]
             ]
           : STATE.gardenMode === 'PERIMETER_L'
           ? [
-              [[17.5, 41.0], [27.75, 41.0], [27.75, 45.5], [25.5, 47.75], [6.5, 47.75], [4.25, 45.5], [4.25, 33.5], [5.5, 31.5], [5.5, 10.5], [7.5, 8.25], [25.5, 8.25], [27.75, 10.5], [27.75, 20.0]]
+              [[30.0, 41.0], [32.6, 43.25], [southEndWx, 43.25]],
+              [[southEndWx, 47.75], [6.5, 47.75], [4.25, 45.5], [4.25, 33.5], [5.5, 31.5], [5.5, 10.5], [7.5, 8.25], [27.0, 8.25]]
             ]
           : [
-              [[17.5, 19.5], [6.5, 19.5], [4.25, 21.5], [4.25, 45.5], [6.5, 47.75], [25.5, 47.75], [27.75, 45.5], [27.75, 41.0]],
-              [[27.75, 8.5], [27.75, 20.0]]
+              [[17.5, 19.5], [6.5, 19.5], [4.25, 21.5], [4.25, 45.5], [6.5, 47.75], [southEndWx, 47.75]],
+              [[30.0, 41.0], [32.6, 43.25], [southEndWx, 43.25]]
             ];
 
         byPaverChains.forEach(chain => {
@@ -1999,19 +2009,19 @@
         out.push(`</g>`);
       }
 
-      // 13B. RAISED GARDEN PLANTERS LAYER (5 × 3.0' W × 6.0' D N–S PLANTERS ALONG NORTH FENCE)
+      // 13B. RAISED GARDEN PLANTERS LAYER (5 × 3.0' W × 6.0' L N–S PLANTERS ALONG NORTH FENCE)
       if (STATE.layers.garden) {
         out.push(`<g id="garden-geometry">`);
 
         let boxes = [];
         if (STATE.gardenMode === 'FIVE_NORTH_85') {
-          // Master Plan: 5 Planters running North-to-South (3.0' E-W wide × 6.0' N-S deep) in the Backyard (wx: 4.0..30.0)
+          // Master Plan: 5 Planters running North-to-South (3.0' E-W wide × 6.0' N-S long) in the Backyard (wx: 4.0..27.0)
           // - 1.0' space at North Fence (wy: 0.0..1.0)
-          // - 6.0' deep planter (wy: 1.0..7.0)
+          // - 6.0' long planter (wy: 1.0..7.0)
           // - 1.0' space at South end (wy: 7.0..8.0) -> 8.0' bed depth + 0.5' (6") pavers (wy: 8.0..8.5) = 8.5' total to grass!
-          // - Evenly spaced east of the 4.0' West juniper bed with 2.0' walk paths between boxes:
-          //   N1: 5.5..8.5, N2: 10.5..13.5, N3: 15.5..18.5, N4: 20.5..23.5, N5: 25.5..28.5
-          [5.5, 10.5, 15.5, 20.5, 25.5].forEach((bx, idx) => {
+          // - Evenly spaced between the 4.0' West juniper bed (wx=4.0') and the 3.0' Rear Concrete Sidewalk (wx=27.0'):
+          //   N1: 5.0..8.0, N2: 9.75..12.75, N3: 14.5..17.5, N4: 19.25..22.25, N5: 24.0..27.0
+          [5.0, 9.75, 14.5, 19.25, 24.0].forEach((bx, idx) => {
             boxes.push({ id: `N${idx + 1}`, wx1: bx, wy1: 1.0, wx2: bx + 3.0, wy2: 7.0, warn: false });
           });
         } else if (STATE.gardenMode === 'PROPOSED_UTAH') {

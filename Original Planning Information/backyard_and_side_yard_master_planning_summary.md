@@ -176,8 +176,11 @@ design_decisions:
       - "South gate at wx=57.5' sits on flat stucco 2.2' West of SE corner, enclosing gas/electric meters (wx=51.0'-54.5') behind the gate."
   lawn_edging_and_transitions:
     style: "Straight 6-inch wide flush paver edging with 45-degree chamfered corners (NO curvy / S-curve edging)"
-    foundation_buffer: "2.0 ft straight rock/mulch drip buffer along vertical stucco house walls (enclosing the 4.0'x1.3' rear basement window well)"
-    flat_concrete_edges: "Flat poured concrete slabs (patio, porch walkway, driveway, sidewalk) act directly as flush mower edges without redundant pavers"
+    basement_and_window_wells: "None (slab-on-grade construction; zero window wells anywhere on property)"
+    rear_house_wall_sidewalk: "3.0 ft W x 11.0 ft L poured concrete sidewalk (wx=27.0'-30.0', wy=9.0'-20.0') right against rear house wall connecting patio directly to North side cement pad"
+    north_garden_boxes: "5 raised cedar garden boxes (3.0 ft W E-W x 6.0 ft L N-S) running North-to-South along North backyard fence (wx=4.0'-27.0', wy=0.0'-8.0' + 6-in flush paver at wy=8.0'-8.5')"
+    south_side_lawn_corridor: "Backyard lawn wraps at least 4.0 ft wide (wy=43.5'-47.5') all the way down the 9.0 ft wide South side corridor (wx=30.0'-57.5') between 2.0 ft South fence bed + 6-in paver and 2.0 ft house wall buffer + 6-in paver"
+    flat_concrete_edges: "Flat poured concrete slabs (patio, 3.0' rear sidewalk, porch walkway, driveway, sidewalk) act directly as flush mower edges without redundant pavers"
   fire_pit_placement:
     fuel_type: "Propane (20 lb concealed tank or natural gas conversion)"
     recommended_location: "Existing Patio (Zone 2 Lounge) or Connected Patio Corner Bump-Out"

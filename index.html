@@ -38,6 +38,7 @@
       <nav class="flex items-center gap-1 sm:gap-2 text-xs sm:text-sm font-semibold text-slate-700">
         <a href="#concepts" class="px-2.5 py-1.5 rounded-lg hover:bg-slate-100 transition">Concepts</a>
         <a href="#blueprint" class="px-2.5 py-1.5 rounded-lg hover:bg-slate-100 transition">2D Plan</a>
+        <a href="#budget" class="px-2.5 py-1.5 rounded-lg hover:bg-slate-100 transition">Budget (2026–2031)</a>
         <a href="#photos" class="px-2.5 py-1.5 rounded-lg hover:bg-slate-100 transition">Current Photos</a>
         <a href="Original%20Planning%20Information/cad_architectural_blueprint_3152.html" target="_blank"
            class="ml-1 inline-flex items-center gap-1 px-3 py-1.5 rounded-lg text-xs font-bold bg-emerald-700 text-white hover:bg-emerald-800 transition">
@@ -52,11 +53,11 @@
   <section class="bg-white border-b border-slate-200 py-3">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 flex flex-wrap items-center justify-center sm:justify-between gap-2">
       <div class="flex flex-wrap items-center gap-1.5 text-xs font-semibold">
-        <span class="px-2.5 py-1 rounded-full bg-emerald-100 text-emerald-900 border border-emerald-300">4' W. Bed: 10&times; $20 Junipers (2/Panel) + Sage/Coneflower/Grass</span>
-        <span class="px-2.5 py-1 rounded-full bg-teal-100 text-teal-900 border border-teal-300">2' S. Berry/Pea/Kiwi Bed</span>
-        <span class="px-2.5 py-1 rounded-full bg-lime-100 text-lime-900 border border-lime-300">5 N. Planters (3'&times;6' &middot; 8.5' to Grass)</span>
-        <span class="px-2.5 py-1 rounded-full bg-slate-200 text-slate-900 border border-slate-300">Full Cement N. Side Yard</span>
-        <span class="px-2.5 py-1 rounded-full bg-amber-100 text-amber-900 border border-amber-300">2' Front Beds + Holland Pavers (7.87"&times;3.94" Charcoal/Sierra &middot; 45&deg;)</span>
+        <span class="px-2.5 py-1 rounded-full bg-emerald-100 text-emerald-900 border border-emerald-300">4' W. Bed: Junipers + Sage/Coneflower/Grass</span>
+        <span class="px-2.5 py-1 rounded-full bg-teal-100 text-teal-900 border border-teal-300">2' S. Berry/Kiwi Bed + 4' S. Side Grass Wrap</span>
+        <span class="px-2.5 py-1 rounded-full bg-lime-100 text-lime-900 border border-lime-300">5 N–S Planters (3'&times;6' &middot; 8.5' to Grass)</span>
+        <span class="px-2.5 py-1 rounded-full bg-slate-200 text-slate-900 border border-slate-300">9' Cement N. Side + 3' Rear Walk to Patio</span>
+        <span class="px-2.5 py-1 rounded-full bg-amber-100 text-amber-900 border border-amber-300">2' Front Beds + 6" Pavers (45&deg;)</span>
       </div>
       <span class="text-xs font-mono-code font-semibold text-slate-500 hidden xl:inline">50.0' &times; 96.7' Lot</span>
     </div>
@@ -119,7 +120,85 @@
     </div>
   </section>
 
-  <!-- 3. Current Property Photos -->
+  <!-- 3. Phased Itemized Budget (2026–2031) -->
+  <section id="budget" class="py-8 max-w-7xl mx-auto px-4 sm:px-6 w-full">
+    <div class="bg-white rounded-2xl border border-slate-200 shadow-sm p-4 sm:p-6">
+      <!-- Section Header & Pricing Mode Switcher -->
+      <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4 pb-5 border-b border-slate-200">
+        <div>
+          <div class="flex flex-wrap items-center gap-2">
+            <h2 class="text-lg sm:text-xl font-bold text-slate-900">Phased Itemized Budget</h2>
+            <span class="px-2.5 py-0.5 rounded-md text-xs font-mono-code font-bold bg-emerald-100 text-emerald-900 border border-emerald-300">2026–2031 (6 Phases)</span>
+          </div>
+          <p class="text-xs sm:text-sm text-slate-600 mt-1">
+            Year-by-year purchasing &amp; installation roadmap reconciled to Lot 3152 exact CAD dimensions.
+          </p>
+        </div>
+
+        <div class="flex flex-wrap items-center gap-2">
+          <div class="inline-flex rounded-xl bg-slate-100 p-1 border border-slate-200" role="group" aria-label="Pricing mode">
+            <button onclick="setBudgetMode('HYBRID', this)" class="budget-mode-btn px-3 py-1.5 rounded-lg text-xs font-bold bg-emerald-700 text-white shadow-sm transition">
+              Recommended Hybrid
+            </button>
+            <button onclick="setBudgetMode('DIY', this)" class="budget-mode-btn px-3 py-1.5 rounded-lg text-xs font-bold text-slate-800 hover:bg-slate-200 transition">
+              All-DIY
+            </button>
+            <button onclick="setBudgetMode('PRO', this)" class="budget-mode-btn px-3 py-1.5 rounded-lg text-xs font-bold text-slate-800 hover:bg-slate-200 transition">
+              All-Pro
+            </button>
+          </div>
+
+          <button id="copy-budget-btn" onclick="copyBudgetTSV()"
+                  class="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-bold bg-slate-200 text-slate-900 hover:bg-slate-300 transition">
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
+            <span>Copy for Sheets</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- KPI Summary Strip & 6-Year Timeline Selector -->
+      <div id="budget-summary-strip" class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-2.5 my-5">
+        <!-- Populated via JS -->
+      </div>
+
+      <!-- Year Filter Pills -->
+      <div class="flex flex-wrap items-center justify-between gap-2 mb-4">
+        <div class="flex flex-wrap items-center gap-1.5">
+          <button onclick="filterBudgetYear('ALL', this)" class="budget-year-btn px-3 py-1 rounded-lg text-xs font-bold bg-emerald-700 text-white transition">
+            All 6 Years (2026–2031)
+          </button>
+          <button onclick="filterBudgetYear('2026', this)" class="budget-year-btn px-2.5 py-1 rounded-lg text-xs font-bold bg-slate-200 text-slate-900 hover:bg-slate-300 transition">
+            2026 · S. Fence &amp; Gate
+          </button>
+          <button onclick="filterBudgetYear('2027', this)" class="budget-year-btn px-2.5 py-1 rounded-lg text-xs font-bold bg-slate-200 text-slate-900 hover:bg-slate-300 transition">
+            2027 · Sprinklers, Pavers, Grass &amp; Plants
+          </button>
+          <button onclick="filterBudgetYear('2028', this)" class="budget-year-btn px-2.5 py-1 rounded-lg text-xs font-bold bg-slate-200 text-slate-900 hover:bg-slate-300 transition">
+            2028 · N. Cement Pad &amp; Walk
+          </button>
+          <button onclick="filterBudgetYear('2029', this)" class="budget-year-btn px-2.5 py-1 rounded-lg text-xs font-bold bg-slate-200 text-slate-900 hover:bg-slate-300 transition">
+            2029 · Furniture &amp; Awning
+          </button>
+          <button onclick="filterBudgetYear('2030', this)" class="budget-year-btn px-2.5 py-1 rounded-lg text-xs font-bold bg-slate-200 text-slate-900 hover:bg-slate-300 transition">
+            2030 · Raised Beds, Drip &amp; Rock
+          </button>
+          <button onclick="filterBudgetYear('2031', this)" class="budget-year-btn px-2.5 py-1 rounded-lg text-xs font-bold bg-slate-200 text-slate-900 hover:bg-slate-300 transition">
+            2031 · Lighting &amp; Porch Swing
+          </button>
+        </div>
+        <span id="budget-mode-caption" class="text-xs font-semibold text-slate-600">
+          Showing: Pro Fence &amp; Concrete + DIY Landscaping, Beds &amp; Lighting
+        </span>
+      </div>
+
+      <!-- Phase Cards Container -->
+      <div id="budget-phases-container" class="space-y-4">
+        <!-- Populated via JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. Current Property Photos -->
   <section id="photos" class="py-8 max-w-7xl mx-auto px-4 sm:px-6 w-full">
     <div class="flex flex-wrap items-center justify-between gap-2 mb-4">
       <h2 class="text-lg font-bold text-slate-900">Current Yard</h2>
@@ -189,7 +268,7 @@
         id: 'backyard-pergola-planters',
         zone: 'BACKYARD',
         badge: 'Backyard · Looking East',
-        title: 'Pergola, 5 N. Planters (8.5\' to Grass) & 2\' S. Berry Bed',
+        title: 'Pergola, 5 N–S Planters (3\'×6\'), Rear Walk & 4\' S. Grass Wrap',
         renderUrl: 'photos_backyard_ideas/render_backyard_pergola_north_planters.jpg',
         beforeThumb: 'photos_current_backyard/thumbs/PXL_20261022_004857161.MP.jpg',
         beforeFull: 'photos_current_backyard/PXL_20261022_004857161.MP.jpg'
@@ -198,17 +277,17 @@
         id: 'backyard-west-juniper-patio',
         zone: 'BACKYARD',
         badge: 'Backyard · Looking NW',
-        title: '4\' W. 6-Juniper Bed (8\' O.C.), 6" Pavers (45°) & Fire Table',
+        title: '4\' W. Juniper Bed, 5 N–S Planters (3\'×6\') & Patio Fire Table',
         renderUrl: 'photos_backyard_ideas/render_backyard_west_juniper_bed_patio.jpg',
         beforeThumb: 'photos_current_backyard/thumbs/PXL_20261022_004940478.MP.jpg',
         beforeFull: 'photos_current_backyard/PXL_20261022_004940478.MP.jpg'
       },
       {
-        id: 'backyard-nw-planters-window-well',
+        id: 'backyard-nw-planters-sidewalk',
         zone: 'BACKYARD',
         badge: 'Backyard · Looking SE from NW',
-        title: '5 N–S Planters (3\'×6\'), Window Well Buffer & N. Cement Entry',
-        renderUrl: 'photos_backyard_ideas/render_backyard_nw_five_planters_window_well.jpg',
+        title: '5 N–S Planters (3\'×6\'), 3\' Rear Sidewalk to Patio & 9\' N. Cement Pad',
+        renderUrl: 'photos_backyard_ideas/render_backyard_nw_five_planters_sidewalk.jpg',
         beforeThumb: 'photos_current_backyard/thumbs/PXL_20261022_004913415.MP.jpg',
         beforeFull: 'photos_current_backyard/PXL_20261022_004913415.MP.jpg'
       },
@@ -216,7 +295,7 @@
         id: 'backyard-sw-berry-juniper',
         zone: 'BACKYARD',
         badge: 'Backyard · Looking SW',
-        title: '2\' S. Berry/Pea/Kiwi Trellis Bed & 4\' W. 6-Juniper Wall',
+        title: '2\' S. Berry/Kiwi Bed, 4\' S. Side Grass Wrap & 4\' W. Juniper Wall',
         renderUrl: 'photos_backyard_ideas/render_backyard_south_berry_west_juniper_panoramic.jpg',
         beforeThumb: 'photos_current_backyard/thumbs/PXL_20261022_004925322.MP.jpg',
         beforeFull: 'photos_current_backyard/PXL_20261022_004925322.MP.jpg'
@@ -225,7 +304,7 @@
         id: 'north-side-cement-corridor',
         zone: 'NORTH_SIDE',
         badge: 'North Side · Looking East',
-        title: 'Full 9\'×43.2\' Poured Cement Pad & 8.5\' Double Vehicle Gate',
+        title: 'Narrow 9\'×43.2\' Cement Pad, 3\' Rear Sidewalk & 8.5\' Double Gate',
         renderUrl: 'photos_backyard_ideas/render_north_side_cement_pad_corridor.jpg',
         beforeThumb: 'photos_current_backyard/thumbs/PXL_20261022_162209617.MP.jpg',
         beforeFull: 'photos_current_backyard/PXL_20261022_162209617.MP.jpg'
@@ -234,7 +313,7 @@
         id: 'north-vehicle-gate-ne-strip',
         zone: 'NORTH_SIDE',
         badge: 'North Gate · Looking West',
-        title: '8.5\' Double Gate (3.2\' Setback Behind Stone) & NE Strip',
+        title: 'Narrow 9\' Side Yard, 8.5\' Double Gate (3.2\' Setback) & NE Strip',
         renderUrl: 'photos_backyard_ideas/render_north_vehicle_gate_ne_strip.jpg',
         beforeThumb: 'photos_current_backyard/thumbs/PXL_20261022_162017040.MP.jpg',
         beforeFull: 'photos_current_backyard/PXL_20261022_162017040.MP.jpg'
@@ -243,7 +322,7 @@
         id: 'south-side-flagstone-ac',
         zone: 'SOUTH_SIDE',
         badge: 'South Side · Looking West',
-        title: '2\' S. Fence Bed, Straight 6" Pavers, Flagstone Path & AC Screen',
+        title: 'Narrow 9\' S. Corridor: 4\' Grass Wrap, 2\' Berry Bed & AC Screen',
         renderUrl: 'photos_backyard_ideas/render_south_side_flagstone_ac_screen.jpg',
         beforeThumb: 'photos_current_backyard/thumbs/PXL_20261022_004709213.MP.jpg',
         beforeFull: 'photos_current_backyard/PXL_20261022_004709213.MP.jpg'
@@ -252,7 +331,7 @@
         id: 'south-gate-porch-entry',
         zone: 'SOUTH_SIDE',
         badge: 'South Gate · Looking West',
-        title: '4\' Walk Gate (2.2\' Stucco Setback Hiding Meters) & 3152 Porch',
+        title: 'Narrow 9\' S. Gate Return (2.2\' Stucco Setback) & 3152 Porch',
         renderUrl: 'photos_backyard_ideas/render_south_gate_porch_entry.jpg',
         beforeThumb: 'photos_current_backyard/thumbs/PXL_20261022_162104480.MP.jpg',
         beforeFull: 'photos_current_backyard/PXL_20261022_162104480.MP.jpg'
@@ -455,8 +534,507 @@
       document.getElementById('lightbox-img').src = '';
     }
 
+    const PHASED_BUDGET = [
+      {
+        year: '2026',
+        phaseNum: 1,
+        title: 'South Fence & Person Gate',
+        badgeColor: 'bg-emerald-100 text-emerald-900 border-emerald-300',
+        hybridDefault: 'PRO',
+        summary: 'Enclose the South property line (57.5\') and install the 9.0\' South pedestrian ("person") gate return at wx = 57.5\' (set back 2.2\' West of the SE stucco corner behind the meters).',
+        phaseNote: 'Setting the 4.0\' person gate at wx = 57.5\' hides the gas/electric meters and AC unit inside the gate while keeping the 3152 front porch stone column 100% exposed.',
+        items: [
+          {
+            name: 'South Property Line White Vinyl Privacy Fence (6\' Tall)',
+            spec: '57.5 lin ft along South boundary (wx = 0.0\'–57.5\': 30.0\' backyard + 27.5\' South side yard)',
+            qty: '57.5 lin ft',
+            diyCost: 1495,
+            diyRange: '$1,350–$1,650',
+            proCost: 2415,
+            proRange: '$2,150–$2,680'
+          },
+          {
+            name: 'South Pedestrian ("Person") Gate & Fixed Vinyl Return Wings',
+            spec: '9.0\' span at wx = 57.5\' (4.0\' single-swing walk gate aligned with 4\'+ grass corridor + 5.0\' fixed vinyl wings)',
+            qty: '9.0 lin ft (1 Gate)',
+            diyCost: 425,
+            diyRange: '$375–$475',
+            proCost: 725,
+            proRange: '$650–$800'
+          },
+          {
+            name: 'Post Footings, Aluminum Gate Stiffeners & Self-Latching Hardware',
+            spec: '11 post holes, ~22 bags (80 lb) concrete, internal steel/aluminum gate stiffeners & stainless latch/hinges',
+            qty: '11 Posts + Hardware',
+            diyCost: 230,
+            diyRange: '$200–$260',
+            proCost: 310,
+            proRange: '$275–$350'
+          }
+        ]
+      },
+      {
+        year: '2027',
+        phaseNum: 2,
+        title: 'Sprinkler System, Pavers, Grass, Mulch & Plants (In-Ground Flat Dirt Garden)',
+        badgeColor: 'bg-teal-100 text-teal-900 border-teal-300',
+        hybridDefault: 'DIY',
+        summary: 'Install underground irrigation, straight flush Home Depot Holland paver mow strips (45° corners), all front/back/South-wrap sod, dark bark mulch, perimeter trees/perennials, and in-ground garden plants directly in the flat dirt garden area (no raised beds or gravel yet).',
+        phaseNote: '2027 Garden Plan: All vegetable & garden plants go directly into the amended flat dirt plot (8.0\' × 23.0\' along the North fence) framed by the permanent flush paver strip—saving raised beds and crushed rock for Phase 5 (2030).',
+        items: [
+          {
+            name: 'Underground Sprinkler System (Turf Zones + Garden Stub-Out)',
+            spec: 'Smart Wi-Fi controller, PVB backflow, manifold valves, PVC mainline, pop-up MP Rotators (Backyard, 4\'+ S. wrap & Front lawn) + capped stub-out at North garden',
+            qty: '6–8 Zones (~1,345 sq ft)',
+            diyCost: 1350,
+            diyRange: '$1,150–$1,550',
+            proCost: 3400,
+            proRange: '$2,900–$3,900'
+          },
+          {
+            name: 'Flush Lawn Paver Mow Strip (45° Chamfered Corners)',
+            spec: 'Home Depot Pavestone Holland Pavers (7.87"×3.94"×2.36" Charcoal Blend #21703 or Sierra Blend #21777; 120\' BY + 75\' Front) + roadbase & polymeric sand',
+            qty: '195 lin ft (315–625 pcs)',
+            diyCost: 450,
+            diyRange: '$345–$565',
+            proCost: 1350,
+            proRange: '$1,150–$1,550'
+          },
+          {
+            name: 'Sod / Grass & Topsoil Grading (Backyard, 4\'+ S. Wrap & Front Lawn)',
+            spec: 'Kentucky Bluegrass / Tall Fescue sod rolls (679 sq ft BY + 110 sq ft South side wrap + 555 sq ft SE Front) + 4 cu yds screened topsoil leveling',
+            qty: '1,400 sq ft (incl. 5% cuts)',
+            diyCost: 1050,
+            diyRange: '$920–$1,180',
+            proCost: 2300,
+            proRange: '$2,000–$2,600'
+          },
+          {
+            name: 'Dark Shredded Bark Mulch & Commercial Weed Barrier Fabric',
+            spec: '3" depth across 4.0\' W. Juniper bed (200 sq ft), 2.0\' S. Berry bed (115 sq ft), S. house buffer (60 sq ft) & 2.0\' Front perimeter beds (185 sq ft)',
+            qty: '5.5 cu yds (~560 sq ft)',
+            diyCost: 360,
+            diyRange: '$300–$420',
+            proCost: 750,
+            proRange: '$650–$850'
+          },
+          {
+            name: 'Western Wall Lush Green Junipers (10×) & Companion Perennials',
+            spec: '10× \'Taylor\' or Home Depot \'Spartan\' Columnar Junipers (2/panel @ 5\' O.C.) + 5× Russian Sage/Lavender + 5× Coneflower + 4× Karl Foerster Grasses',
+            qty: '10 Trees + 14 Perennials',
+            diyCost: 890,
+            diyRange: '$750–$1,030',
+            proCost: 1550,
+            proRange: '$1,350–$1,750'
+          },
+          {
+            name: 'South Berry/Kiwi Bed, Front Focal Tree & Utility Box Screen Plants',
+            spec: '1× Front Japanese Maple/Crabapple, 6× Karl Foerster grasses (3-sided utility box screen), boxwoods, plus raspberries, hardy kiwi (\'Issai\'), snap peas, strawberries & shade hostas',
+            qty: '1 Tree + ~28 Shrubs/Vines',
+            diyCost: 620,
+            diyRange: '$520–$720',
+            proCost: 1100,
+            proRange: '$950–$1,250'
+          },
+          {
+            name: 'In-Ground Flat Dirt Garden Plot Soil Amendment & Garden Plants',
+            spec: 'Tilled organic compost into flat native dirt area (wx = 4.0\'–27.0\', wy = 0.0\'–8.0\') + vegetable/herb starts & seeds ($0 raised beds / $0 gravel)',
+            qty: '184 sq ft Flat Dirt Plot',
+            diyCost: 160,
+            diyRange: '$120–$200',
+            proCost: 280,
+            proRange: '$220–$340'
+          }
+        ]
+      },
+      {
+        year: '2028',
+        phaseNum: 3,
+        title: 'North Side Cement Pad & Connecting Rear Sidewalk',
+        badgeColor: 'bg-slate-200 text-slate-900 border-slate-400',
+        hybridDefault: 'PRO',
+        summary: 'Pour the full 9.0\' × 43.2\' cement pad down the narrow North side yard and the 3.0\' × 11.0\' rear-wall concrete sidewalk connecting the North cement pad directly to the backyard patio.',
+        phaseNote: 'Pouring the 388.8 sq ft North pad and 33.0 sq ft rear sidewalk together in a single 421.8 sq ft (~5.25 cu yd) batch avoids short-load concrete fees and creates a continuous hardscape loop.',
+        items: [
+          {
+            name: 'North Side Yard Full Poured Concrete ("Cement") Pad (9.0\' W × 43.2\' L)',
+            spec: '4" thick 4,000 PSI fiber/rebar-reinforced slab (wx = 30.0\'–73.2\', wy = 0.0\'–9.0\') over 4" compacted roadbase with broom finish & saw-cut control joints',
+            qty: '388.8 sq ft (~4.8 cu yds)',
+            diyCost: 2150,
+            diyRange: '$1,850–$2,450',
+            proCost: 3500,
+            proRange: '$3,100–$3,900'
+          },
+          {
+            name: 'Rear House Wall Connecting Concrete Sidewalk (3.0\' W × 11.0\' L)',
+            spec: 'Poured 4" concrete walkway right against the 11.0\' rear house wall (wx = 27.0\'–30.0\', wy = 9.0\'–20.0\'; no window well) linking the Patio to the North Cement Pad',
+            qty: '33.0 sq ft (~0.45 cu yds)',
+            diyCost: 210,
+            diyRange: '$175–$245',
+            proCost: 320,
+            proRange: '$275–$365'
+          },
+          {
+            name: 'Expansion Joint Sealant & Concrete Cure-and-Seal Protection',
+            spec: 'Flexible polyurethane expansion joint caulking against foundation/patio seams + breathable acrylic concrete sealer across all 421.8 sq ft',
+            qty: '421.8 sq ft Total',
+            diyCost: 120,
+            diyRange: '$95–$145',
+            proCost: 180,
+            proRange: '$150–$210'
+          }
+        ]
+      },
+      {
+        year: '2029',
+        phaseNum: 4,
+        title: 'Patio Furniture & Awning',
+        badgeColor: 'bg-amber-100 text-amber-950 border-amber-300',
+        hybridDefault: 'DIY',
+        summary: 'Outfit the existing 21.0\' × 12.5\' (262.5 sq ft) backyard concrete patio with overhead shade (awning/cover) and a two-zone outdoor lounge & propane fire table set.',
+        phaseNote: 'Keeps 100% of the leisure & fire-lounge footprint strictly on the existing 262.5 sq ft concrete patio slab so 0 sq ft of backyard grass is lost.',
+        items: [
+          {
+            name: 'Patio Awning / Overhead Shade Cover (21.0\' × 12.5\' Patio Zone)',
+            spec: 'Heavy-duty motorized retractable patio awning (16\'–20\' W × 10\'–12\' projection, Sunbrella acrylic fabric + wind sensor) or dark-espresso patio shade cover',
+            qty: '1 Awning / Shade Structure',
+            diyCost: 2200,
+            diyRange: '$1,800–$2,600',
+            proCost: 3600,
+            proRange: '$3,000–$4,200'
+          },
+          {
+            name: 'Weather-Resistant Patio Lounge Sectional / Club Seating Set',
+            spec: 'Deep-seated L-shaped outdoor sectional or 4× dark-framed club armchairs with quick-dry Sunbrella cushions & winter storage covers',
+            qty: '1 Lounge Seating Set',
+            diyCost: 1650,
+            diyRange: '$1,350–$1,950',
+            proCost: 2400,
+            proRange: '$2,000–$2,800'
+          },
+          {
+            name: 'Rectangular Propane Fire Pit Table (50,000 BTU) & Outdoor Area Rug',
+            spec: 'Convertible dark-espresso aluminum fire table (28"×48" or 32"×52") with flush metal lid & concealed 20 lb tank + 8\'×10\' charcoal/taupe flatweave patio rug',
+            qty: '1 Fire Table + 1 Rug',
+            diyCost: 650,
+            diyRange: '$520–$780',
+            proCost: 950,
+            proRange: '$800–$1,100'
+          }
+        ]
+      },
+      {
+        year: '2030',
+        phaseNum: 5,
+        title: '5 Raised Cedar Garden Beds, Drip Systems & Crushed Rock',
+        badgeColor: 'bg-lime-100 text-lime-900 border-lime-300',
+        hybridDefault: 'DIY',
+        summary: 'Upgrade the 2027 flat-dirt garden zone into 5 North-to-South raised cedar planter boxes (3.0\' W × 6.0\' L), install dedicated grid drip irrigation manifolds, and infill the 1.75\' walkways between beds with compacted crushed rock.',
+        phaseNote: 'Fits directly inside the 8.0\' × 23.0\' garden footprint (1.0\' N fence gap + 6.0\' N–S box + 1.0\' S gap + 6" 2027 flush paver = 8.5\' total from North fence to grass).',
+        items: [
+          {
+            name: '5 Raised Western Red Cedar Garden Beds (N1–N5 @ 3.0\' W × 6.0\' L)',
+            spec: '5 boxes oriented North–South (wx = 5.0\'–27.0\', 18"–24" tall), dark espresso food-safe exterior stain, corner brackets & 1/4" hardware cloth bottom mesh',
+            qty: '5 Cedar Boxes (90 sq ft)',
+            diyCost: 1150,
+            diyRange: '$950–$1,350',
+            proCost: 2100,
+            proRange: '$1,800–$2,400'
+          },
+          {
+            name: 'Bulk Organic Raised-Bed Soil & Compost Blend ("Mel\'s Mix" Fill)',
+            spec: 'Screened organic garden topsoil, mushroom/plant compost & coarse pumice/vermiculite blend to fill all 5 raised boxes',
+            qty: '5.5 cu yds (~150 cu ft)',
+            diyCost: 380,
+            diyRange: '$310–$450',
+            proCost: 680,
+            proRange: '$580–$780'
+          },
+          {
+            name: 'Dedicated Raised-Bed Grid Drip System & Perimeter Drip Lines',
+            spec: 'Connects to 2027 stub-out: 25 PSI pressure regulator, filter, 1/2" poly risers with per-box shutoff valves & 1/4" emitter tubing grids (6" spacing) in all 5 boxes',
+            qty: '5 Box Manifolds + Drip Kit',
+            diyCost: 260,
+            diyRange: '$210–$310',
+            proCost: 620,
+            proRange: '$520–$720'
+          },
+          {
+            name: 'Compacted Crushed Rock / Granite Between & Around Garden Beds',
+            spec: '3" depth of 3/8" crushed granite/stone across the 4× 1.75\' walkways between beds and 1.0\' N/S borders (94 sq ft net area) over heavy geotextile fabric',
+            qty: '2.0 Tons (94 sq ft Paths)',
+            diyCost: 290,
+            diyRange: '$230–$350',
+            proCost: 650,
+            proRange: '$550–$750'
+          }
+        ]
+      },
+      {
+        year: '2031',
+        phaseNum: 6,
+        title: 'Front & Back Landscape Lighting + Hanging Front Porch Swing',
+        badgeColor: 'bg-indigo-100 text-indigo-900 border-indigo-300',
+        hybridDefault: 'DIY',
+        summary: 'Install the complete 12V warm-white (2700K) LED architectural & landscape lighting system across the front and backyard, plus a hanging porch swing on the 3152 covered front porch.',
+        phaseNote: 'Completes the 6-year master plan with dusk-to-dawn twilight ambiance across the 10 West wall junipers, front specimen tree, stone wainscot, and front porch.',
+        items: [
+          {
+            name: '300W Stainless Low-Voltage Transformer, Smart Timer & Burial Cable',
+            spec: 'Multi-tap 12V/15V stainless transformer with dusk-to-dawn astronomical control + 250 ft of 12/2 direct-burial wire & waterproof connectors',
+            qty: '1 Transformer + 250\' Wire',
+            diyCost: 320,
+            diyRange: '$260–$380',
+            proCost: 650,
+            proRange: '$550–$750'
+          },
+          {
+            name: 'Backyard 2700K LED Uplights, Garden Path Lights & Patio Bistro Lights',
+            spec: '10× warm 2700K brass/aluminum uplights for the 10 West Wall Junipers, 4× garden path lights & 48\' commercial shatterproof LED patio string lights',
+            qty: '14 Fixtures + Bistro Strand',
+            diyCost: 540,
+            diyRange: '$450–$630',
+            proCost: 1150,
+            proRange: '$950–$1,350'
+          },
+          {
+            name: 'Front Yard 2700K Tree Uplights, Stone Column Grazing & Path Lights',
+            spec: 'Uplights on front Japanese Maple focal tree & 3152 stone wainscot pillar + low-glare path lights along front walkway & chamfered paver beds',
+            qty: '7 Brass/Black LED Fixtures',
+            diyCost: 340,
+            diyRange: '$280–$400',
+            proCost: 750,
+            proRange: '$650–$850'
+          },
+          {
+            name: 'Hanging Front Porch Swing & Structural Ceiling Mount (6\' × 12\' Porch)',
+            spec: '4.0\'–5.0\' solid cedar/teak/polywood hanging porch swing with Sunbrella cushions, structural ceiling joist eye-bolts, comfort springs & matte-black chains',
+            qty: '1 Hanging Swing + Rigging',
+            diyCost: 750,
+            diyRange: '$600–$900',
+            proCost: 1150,
+            proRange: '$950–$1,350'
+          }
+        ]
+      }
+    ];
+
+    let activeBudgetMode = 'HYBRID'; // 'HYBRID' | 'DIY' | 'PRO'
+    let activeBudgetYear = 'ALL';
+
+    function getItemCost(item, phase) {
+      if (activeBudgetMode === 'DIY') {
+        return { cost: item.diyCost, range: item.diyRange, tag: 'DIY' };
+      }
+      if (activeBudgetMode === 'PRO') {
+        return { cost: item.proCost, range: item.proRange, tag: 'Pro' };
+      }
+      // HYBRID mode uses phase.hybridDefault
+      if (phase.hybridDefault === 'PRO') {
+        return { cost: item.proCost, range: item.proRange, tag: 'Pro Install' };
+      }
+      return { cost: item.diyCost, range: item.diyRange, tag: 'DIY / Direct' };
+    }
+
+    function getPhaseTotal(phase) {
+      return phase.items.reduce((sum, item) => sum + getItemCost(item, phase).cost, 0);
+    }
+
+    function setBudgetMode(mode, btnEl) {
+      activeBudgetMode = mode;
+      document.querySelectorAll('.budget-mode-btn').forEach(b => {
+        b.className = "budget-mode-btn px-3 py-1.5 rounded-lg text-xs font-bold text-slate-800 hover:bg-slate-200 transition";
+      });
+      if (btnEl) {
+        btnEl.className = "budget-mode-btn px-3 py-1.5 rounded-lg text-xs font-bold bg-emerald-700 text-white shadow-sm transition";
+      }
+      const caption = document.getElementById('budget-mode-caption');
+      if (mode === 'HYBRID') {
+        caption.textContent = 'Showing: Recommended Hybrid (Pro Fence & Concrete + DIY Landscaping, Beds & Lighting)';
+      } else if (mode === 'DIY') {
+        caption.textContent = 'Showing: All-DIY (Materials, Direct Retail & Equipment Rentals)';
+      } else {
+        caption.textContent = 'Showing: All-Pro (Turnkey Contractor Installation)';
+      }
+      renderBudgetSection();
+    }
+
+    function filterBudgetYear(year, btnEl) {
+      activeBudgetYear = year;
+      document.querySelectorAll('.budget-year-btn').forEach(b => {
+        b.className = "budget-year-btn px-2.5 py-1 rounded-lg text-xs font-bold bg-slate-200 text-slate-900 hover:bg-slate-300 transition";
+      });
+      if (btnEl) {
+        btnEl.className = "budget-year-btn px-3 py-1 rounded-lg text-xs font-bold bg-emerald-700 text-white transition";
+      }
+      renderBudgetSection();
+    }
+
+    function renderBudgetSection() {
+      const grandTotal = PHASED_BUDGET.reduce((sum, p) => sum + getPhaseTotal(p), 0);
+      const avgPerYear = Math.round(grandTotal / PHASED_BUDGET.length);
+
+      // 1. Render Summary Strip (6 Year Cards + 6-Yr Total + Annual Avg)
+      const stripEl = document.getElementById('budget-summary-strip');
+      const yearCardsHtml = PHASED_BUDGET.map(p => {
+        const total = getPhaseTotal(p);
+        const pct = Math.round((total / grandTotal) * 100);
+        const isSelected = activeBudgetYear === p.year;
+        const borderClass = isSelected
+          ? 'border-emerald-600 bg-emerald-50/70 ring-2 ring-emerald-600/20'
+          : 'border-slate-200 bg-slate-50 hover:bg-slate-100';
+        return `
+          <button onclick="filterBudgetYear('${p.year}', null)"
+                  class="text-left p-3 rounded-xl border ${borderClass} transition flex flex-col justify-between">
+            <div class="flex items-center justify-between gap-1">
+              <span class="text-xs font-mono-code font-bold text-emerald-800">${p.year}</span>
+              <span class="text-[10px] font-mono-code font-semibold px-1.5 py-0.5 rounded bg-slate-200 text-slate-800">${pct}%</span>
+            </div>
+            <div class="text-base sm:text-lg font-bold font-mono-code text-slate-900 mt-1">$${total.toLocaleString()}</div>
+            <div class="text-[11px] font-semibold text-slate-600 truncate mt-0.5">${p.title.split('(')[0].trim()}</div>
+          </button>
+        `;
+      }).join('');
+
+      stripEl.innerHTML = `
+        ${yearCardsHtml}
+        <div class="p-3 rounded-xl border border-emerald-300 bg-emerald-50 flex flex-col justify-between">
+          <div class="flex items-center justify-between">
+            <span class="text-[11px] font-bold uppercase tracking-wider text-emerald-900">6-Yr Total</span>
+            <span class="text-[10px] font-mono-code font-bold px-1.5 py-0.5 rounded bg-emerald-200 text-emerald-950">2026–31</span>
+          </div>
+          <div class="text-base sm:text-lg font-bold font-mono-code text-emerald-950 mt-1">$${grandTotal.toLocaleString()}</div>
+          <div class="text-[11px] font-semibold text-emerald-800 mt-0.5">All 6 Phases</div>
+        </div>
+        <div class="p-3 rounded-xl border border-slate-300 bg-slate-100 flex flex-col justify-between">
+          <div class="flex items-center justify-between">
+            <span class="text-[11px] font-bold uppercase tracking-wider text-slate-700">Avg / Year</span>
+            <span class="text-[10px] font-mono-code font-semibold px-1.5 py-0.5 rounded bg-slate-200 text-slate-800">6 Yrs</span>
+          </div>
+          <div class="text-base sm:text-lg font-bold font-mono-code text-slate-900 mt-1">$${avgPerYear.toLocaleString()}</div>
+          <div class="text-[11px] font-semibold text-slate-600 mt-0.5">Paced Cashflow</div>
+        </div>
+      `;
+
+      // 2. Render Phase Detail Cards
+      const containerEl = document.getElementById('budget-phases-container');
+      const visiblePhases = activeBudgetYear === 'ALL'
+        ? PHASED_BUDGET
+        : PHASED_BUDGET.filter(p => p.year === activeBudgetYear);
+
+      containerEl.innerHTML = visiblePhases.map(phase => {
+        const phaseTotal = getPhaseTotal(phase);
+        const modeBadge = activeBudgetMode === 'HYBRID'
+          ? (phase.hybridDefault === 'PRO'
+              ? '<span class="px-2 py-0.5 rounded text-[11px] font-bold bg-slate-800 text-white">Pro Turnkey</span>'
+              : '<span class="px-2 py-0.5 rounded text-[11px] font-bold bg-emerald-700 text-white">DIY / Direct</span>')
+          : (activeBudgetMode === 'PRO'
+              ? '<span class="px-2 py-0.5 rounded text-[11px] font-bold bg-slate-800 text-white">Pro Turnkey</span>'
+              : '<span class="px-2 py-0.5 rounded text-[11px] font-bold bg-emerald-700 text-white">DIY</span>');
+
+        const rowsHtml = phase.items.map(item => {
+          const price = getItemCost(item, phase);
+          return `
+            <tr class="border-t border-slate-200 hover:bg-slate-50/80 transition">
+              <td class="py-3 pl-4 pr-3">
+                <div class="text-xs sm:text-sm font-bold text-slate-900">${item.name}</div>
+                <div class="text-[11px] sm:text-xs text-slate-600 mt-0.5">${item.spec}</div>
+              </td>
+              <td class="py-3 px-3 text-xs font-mono-code font-semibold text-slate-700 whitespace-nowrap hidden sm:table-cell">
+                ${item.qty}
+              </td>
+              <td class="py-3 px-3 text-xs font-mono-code text-slate-600 whitespace-nowrap hidden md:table-cell">
+                ${price.range}
+              </td>
+              <td class="py-3 pl-3 pr-4 text-right whitespace-nowrap">
+                <div class="text-xs sm:text-sm font-bold font-mono-code text-slate-900">$${price.cost.toLocaleString()}</div>
+                <div class="text-[10px] font-mono-code text-slate-500 sm:hidden">${item.qty}</div>
+              </td>
+            </tr>
+          `;
+        }).join('');
+
+        return `
+          <div class="rounded-xl border border-slate-200 overflow-hidden bg-white shadow-sm">
+            <div class="bg-slate-50 px-4 py-3.5 border-b border-slate-200 flex flex-wrap items-center justify-between gap-2">
+              <div class="flex flex-wrap items-center gap-2">
+                <span class="px-2.5 py-1 rounded-lg text-xs font-mono-code font-bold border ${phase.badgeColor}">
+                  ${phase.year} &middot; Phase ${phase.phaseNum}
+                </span>
+                <h3 class="text-sm sm:text-base font-bold text-slate-900">${phase.title}</h3>
+                ${modeBadge}
+              </div>
+              <div class="flex items-baseline gap-2">
+                <span class="text-xs font-semibold text-slate-500">${phase.year} Subtotal:</span>
+                <span class="text-base sm:text-lg font-bold font-mono-code text-emerald-800">$${phaseTotal.toLocaleString()}</span>
+              </div>
+            </div>
+
+            <div class="px-4 py-2.5 bg-white border-b border-slate-100 text-xs text-slate-700 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+              <span>${phase.summary}</span>
+            </div>
+
+            <div class="overflow-x-auto">
+              <table class="w-full text-left border-collapse">
+                <thead>
+                  <tr class="bg-slate-100/80 text-[11px] font-bold uppercase tracking-wider text-slate-600">
+                    <th class="py-2 pl-4 pr-3">Item &amp; Lot 3152 Specification</th>
+                    <th class="py-2 px-3 hidden sm:table-cell">Quantity</th>
+                    <th class="py-2 px-3 hidden md:table-cell">Est. Range</th>
+                    <th class="py-2 pl-3 pr-4 text-right">Target Budget</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  ${rowsHtml}
+                </tbody>
+              </table>
+            </div>
+
+            <div class="px-4 py-2.5 bg-emerald-50/60 border-t border-slate-200 text-[11px] sm:text-xs text-slate-700 flex items-center justify-between gap-2">
+              <span><strong class="text-emerald-950">Phase ${phase.phaseNum} Note:</strong> ${phase.phaseNote}</span>
+              <span class="font-mono-code font-bold text-slate-900 shrink-0">${phase.items.length} items</span>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function copyBudgetTSV() {
+      const headers = ['Year', 'Phase', 'Phase Title', 'Install Mode', 'Line Item', 'Lot 3152 Specification', 'Quantity', 'Estimated Range', 'Target Budget ($)', 'DIY Estimate ($)', 'Pro Estimate ($)'];
+      const rows = [headers.join('\t')];
+      PHASED_BUDGET.forEach(phase => {
+        phase.items.forEach(item => {
+          const activePrice = getItemCost(item, phase);
+          rows.push([
+            phase.year,
+            `Phase ${phase.phaseNum}`,
+            phase.title,
+            activePrice.tag,
+            item.name,
+            item.spec,
+            item.qty,
+            activePrice.range,
+            activePrice.cost,
+            item.diyCost,
+            item.proCost
+          ].join('\t'));
+        });
+      });
+      navigator.clipboard.writeText(rows.join('\n')).then(() => {
+        const btn = document.getElementById('copy-budget-btn');
+        const origHtml = btn.innerHTML;
+        btn.innerHTML = '<span>Copied TSV!</span>';
+        btn.className = 'inline-flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-bold bg-emerald-700 text-white transition';
+        setTimeout(() => {
+          btn.innerHTML = origHtml;
+          btn.className = 'inline-flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-bold bg-slate-200 text-slate-900 hover:bg-slate-300 transition';
+        }, 2000);
+      });
+    }
+
     window.addEventListener('DOMContentLoaded', () => {
       renderConceptsGrid();
+      renderBudgetSection();
       renderPhotoGrid();
     });
   </script>
