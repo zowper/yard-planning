@@ -1,194 +1,144 @@
-# Master Site Plan & Exterior Design Context
+# Side-Yard Fence Setback & Patio Lounge / Fire Table Engineering Rationale — Lot 3152
 
-This document consolidates the architectural, spatial, and functional analyses for two primary exterior layout decisions on a compact residential lot:
-1. **Side-Yard Fence Setback & Symmetry Strategy** (Left Garage Side vs. Right House Side)
-2. **Backyard Propane Fire Pit Placement** (Existing Patio vs. Dedicated Yard Corner vs. Patio Bump-Out)
-
----
-
-## 1. Property & Footprint Specifications
-
-* **Total Lot Area:** $\approx 0.10\text{ to }0.11\text{ acres}$ ($\approx 50\text{ ft wide} \times 95\text{ ft deep}$, or $4,750\text{ sq ft}$)
-* **House Width:** $32\text{ ft}$
-* **Side Yard Widths:**
-  * **Left Side Yard (Garage Side):** $9\text{ ft}$ wide
-  * **Right Side Yard (Front Door / Porch Side):** $9\text{ ft}$ wide
-* **Side Yard Depths (Asymmetrical Front Facade):**
-  * **Left Side (Garage Wall Run):** $\approx 43.2\text{ ft}$ deep (garage extends $\approx 13.2\text{ ft}$ forward past the front door plane)
-  * **Right Side (Main House Wall Run):** $\approx 30.0\text{ ft}$ deep
-* **Backyard Depth:** $\approx 30.0\text{ ft}$ from the rear house wall to the back property line
-* **Existing Rear Patio:** $12.5\text{ ft deep} \times 21.0\text{ ft wide}$ ($262.5\text{ sq ft}$ concrete slab)
-* **Perimeter Fencing Material:** White vinyl privacy fencing
-* **Decision Makers:** Homeowner & Melinda
+This document records the architectural, spatial, and structural rationale behind our two core hardscape and enclosure decisions for **Lot 3152**:
+1. **Side-Yard Fence Setback & Stucco Mounting Strategy** (`3.2'` North Garage Setback at `wx = 70.0'` & `2.2'` South Porch Setback at `wx = 57.5'`)
+2. **Patio Lounge, House-Attached 2-Pillar Timber Awning & Propane Fire Table Placement** (`21.0' × 12.5'` Existing Concrete Patio Slab)
 
 ---
 
-## 2. Side-Yard Fence Setback & Symmetry Analysis
+## 1. Reconciled Property & Footprint Specifications
 
-### Core Recommendation
-* **Optimal Setback:** Place the fence **$2\text{ to }4\text{ ft}$ back** (with $3\text{ ft}$ as the target sweet spot) from each side's **respective front building corner**.
-* **Symmetry Approach:** Use **Relative Symmetry** (both fences set $3\text{ ft}$ behind the corner they attach to) rather than **Street-Line Alignment** (pushing the left fence back $\approx 16.2\text{ ft}$ to line up with the recessed front door).
+* **Total Lot Dimensions:** $50.0\text{ ft wide (N–S)} \times 96.7\text{ ft deep to City Sidewalk}$ ($4,835\text{ sq ft}$, or $108.7\text{ ft}$ / $5,435\text{ sq ft}$ to street curb; $\approx 0.11\text{ acres}$)
+* **Foundation Type:** Slab-on-grade construction (**no basement and zero window wells anywhere on the property**)
+* **Main House Width:** $32.0\text{ ft}$ (`wy = 9.0'` to `41.0'`)
+* **Side Yard Widths (Symmetric `9.0'` Corridors):**
+  * **North Side Yard (Garage Side, `wy = 0.0'–9.0'`):** $9.0\text{ ft}$ wide — **full $9.0\text{ ft} \times 43.2\text{ ft}$ ($388.8\text{ sq ft}$) poured cement utility & vehicle pad** connected to the backyard patio via a **$3.0\text{ ft W} \times 11.0\text{ ft L}$ ($33.0\text{ sq ft}$) rear house concrete sidewalk** (`wx = 27.0'–30.0', wy = 9.0'–20.0'`).
+  * **South Side Yard (Porch / Utility Side, `wy = 41.0'–50.0'`):** $9.0\text{ ft}$ wide — features a **$4.0\text{ ft+}$ wide continuous grass wrap** (`wy = 43.5'–47.5'`) running between the $2.0\text{ ft}$ South fence berry/kiwi/shade bed ($+6\text{"}$ flush paver) and $2.0\text{ ft}$ house wall buffer ($+6\text{"}$ flush paver) up to the South pedestrian gate (`wx = 57.5'`).
+* **Side Yard Depths (Asymmetrical Stepped Front Facade):**
+  * **North Side (Garage Wall Run):** $43.2\text{ ft}$ deep (`wx = 30.0'` to `73.2'`; garage extends $13.5\text{ ft}$ East past the front door plane at `wx = 59.7'`)
+  * **South Side (Main House Stucco Wall Run):** $29.7\text{ ft}$ deep (`wx = 30.0'` to `59.7'` SE stucco corner, plus $6.0\text{ ft}$ covered front porch to `wx = 65.7'`)
+* **Backyard Depth:** $30.0\text{ ft}$ from the rear house wall (`wx = 30.0'`) to the inside face of the Western precast concrete wall (`wx = 0.0'`)
+* **Existing Rear Concrete Patio:** $21.0\text{ ft wide (N–S)} \times 12.5\text{ ft deep (E–W)}$ ($262.5\text{ sq ft}$ slab at `wx = 17.5'–30.0', wy = 20.0'–41.0'`)
+* **Perimeter Fencing Material:** $6\text{ ft}$ tall tan/almond or white vinyl privacy fencing (`145.5 lin ft` total across North & South runs and gates)
+* **Neighbor Boundary Contrast:**
+  * **North Neighbor (`wy < 0.0'`):** Completely empty bare dirt outside the $9.0\text{ ft}$ North property line.
+  * **South Neighbor (`wy > 50.0'`):** White rock xeriscape outside the $9.0\text{ ft}$ South property line.
 
-### Comparison of Setback Options
+---
 
-| Placement Option | Curb Appeal & Architecture | Usable Enclosed Space ($9\text{ ft}$ Wide Run) | Utility & Storage Impact | Typical Code / HOA Standing |
+## 2. Locked-In Side-Yard Fence Setback & Gate Architecture
+
+### Locked-In Configuration (`STUCCO_SETBACK` — `145.5 lin ft` Total)
+* **North Side Double Vehicle Gate (`wx = 70.0', wy = 0.0'–9.0'`):** Set back **$3.2\text{ ft}$ West of the NE garage corner** (`wx = 73.2'`), which places the hinge/latch post **$1.2\text{ ft}$ behind the $2.0\text{ ft}$ stone masonry wrap return** (`wx = 71.2'–73.2'`) and corner downspout splash block directly onto flat stucco. Uses an **$8.0'\text{–}8.5'$ double-swing steel-frame vinyl vehicle gate** across the $9.0\text{ ft}$ cement pad, leaving **$70.0\text{ lin ft}$** of North side fence (`wx = 0.0'–70.0'`).
+* **South Side Pedestrian Gate (`wx = 57.5', wy = 41.0'–50.0'`):** Set back **$2.2\text{ ft}$ West of the SE stucco corner** (`wx = 59.7'`, or $8.2\text{ ft}$ West of the `3152` front porch stone pillar at `wx = 65.7'`) directly onto flat stucco just East of the gas and electric meters (`wx = 51.0'–54.5'`). Uses a **$4.0\text{ ft}$ pedestrian walk gate + $5.0\text{ ft}$ vinyl wing panel**, enclosing the utility meters and AC condenser (`wx = 45.0'–48.0'`) inside the gate and leaving **$57.5\text{ lin ft}$** of South side fence (`wx = 0.0'–57.5'`).
+* **Relative Symmetry Strategy:** Both gates step $2.2\text{ to }3.2\text{ ft}$ back from their respective front stucco corners rather than forcing street-line alignment across the stepped facade.
+
+### Why Relative Stucco Setback (`2.2'–3.2'`) Was Chosen Over Alternatives
+
+| Evaluated Approach | Architectural & Structural Impact | Enclosed Side Area ($9.0\text{ ft}$ Runs) | Utility & Functional Impact | Status |
 | :--- | :--- | :--- | :--- | :--- |
-| **Flush with Front Corner** ($0\text{ ft}$ setback) | **Poor:** Creates a flat "wall" effect across the lot and cuts abruptly into corner trim, downspouts, or front brick/stone returns. | **Maximum:** Captures $100\%$ of the side yard depth ($388.8\text{ sq ft}$ left, $270\text{ sq ft}$ right). | Encloses everything, including utility meters (which utility companies may require unobstructed access to). | Often prohibited; many municipalities and HOAs require fences to sit at least $1\text{ to }3\text{ ft}$ behind the front building plane. |
-| **A Few Feet Back** ($2\text{--}4\text{ ft}$ setback) | **Best:** Lets the house corners, architectural trim, and front masonry wrap breathe visually; creates a clean shadow line. | **High:** Loses only $18\text{--}36\text{ sq ft}$ per side while keeping the entire functional side run enclosed. | Ideal spot to leave gas/electric meters in front of the fence while hiding trash bins, AC condensers, and concrete pads behind it. | Universally compliant with standard residential front-setback rules. |
-| **Middle of the Home** ($15\text{--}20+\text{ ft}$ setback) | **Mixed:** Opens the front view, but creates a deep, narrow $9\text{ ft}$ "alley" between houses that looks unfinished unless heavily landscaped. | **Low:** Sacrifices $135\text{--}180+\text{ sq ft}$ of private yard per side—a major loss on a $0.1\text{ acre}$ lot. | Exposes side-mounted AC units, hose bibs, or storage areas to the street; difficult to mow and irrigate the narrow front dead-end. | Compliant, though rarely preferred on compact lots unless required by a corner-lot sightline triangle. |
+| **Relative Stucco Setback** (`3.2'` N at `wx=70.0'` / `2.2'` S at `wx=57.5'`) | **Best:** Clears the $2.0\text{ ft}$ North stone return (`wx=71.2'–73.2'`) and corner downspouts; mounts cleanly onto flat stucco with a balanced shadow line. | **$607.5\text{ sq ft}$ enclosed** ($360.0\text{ sq ft}$ N cement pad + $247.5\text{ sq ft}$ S corridor). | Encloses the full North cement utility/trailer pad, water spigot (`wx=51.0'`), AC condenser (`wx=45.0'–48.0'`), and South gas/electric meters (`wx=51.0'–54.5'`). | **LOCKED IN** |
+| **Flush with Front Corner** (`0'` setback) | **Rejected:** Collides with the $2.0\text{ ft}$ stone masonry ledge, corner J-channels, and downspout splash blocks. | $658.8\text{ sq ft}$ | Traps roof downspout runoff against gate footings. | Rejected |
+| **Street-Line Alignment** (`16.2'` N setback to match front door) | **Rejected:** Leaves a shaded $9.0'\times 16.2'$ ($146\text{ sq ft}$) dead-end alley along the North garage wall. | $486.0\text{ sq ft}$ (loses $121.5\text{ sq ft}$ of North cement pad) | Sacrifices trailer/boat/trash storage depth behind the North vehicle gate. | Rejected |
 
-### Why "A Few Feet Back" ($2\text{--}4\text{ ft}$) Wins Structurally
-1. **Front Masonry & Trim Returns:** Front brick, stone, or accent siding typically wraps $12\text{ to }24\text{ in}$ around the side corner. A $2\text{ to }3\text{ ft}$ setback allows the post to mount cleanly against standard siding instead of colliding with masonry ledges or corner J-channels.
-2. **Corner Downspouts & Drainage:** Roof gutters typically drop downspouts at the front-left and front-right corners. Setting the fence $2\text{ to }3\text{ ft}$ back keeps the downspout and splash block in front of the fence, preventing runoff from washing out gate post footings or pooling behind the gate.
-3. **Gate Landing Zone:** On the garage side, stepping the fence back $3\text{ ft}$ from the front garage corner creates a flat, safe standing buffer off the edge of the driveway apron so the gate can swing without hitting parked vehicles or forcing users into landscaping beds.
+### Governing Spatial Equations (Reconciled Lot 3152 Side Yards)
+Given side yard width $W = 9.0\text{ ft}$, North garage wall depth $D_{\text{north}} = 43.2\text{ ft}$ (`wx = 30.0'–73.2'`), South stucco wall depth $D_{\text{south}} = 29.7\text{ ft}$ (`wx = 30.0'–59.7'`), North setback $S_{\text{north}} = 3.2\text{ ft}$, and South setback $S_{\text{south}} = 2.2\text{ ft}$:
 
-### Left vs. Right Matching: Relative Symmetry vs. Street-Line Alignment
+$$L_{\text{north\_enclosed}} = 43.2 - 3.2 = 40.0\text{ ft} \quad (\text{Fence run including } 30.0'\text{ backyard} = 70.0\text{ lin ft})$$
 
-#### Option A: Relative Symmetry (Recommended)
-Both fences are set the same distance back from their respective front walls (e.g., $3\text{ ft}$ back from the front-left garage corner and $3\text{ ft}$ back from the front-right house corner).
-* **Visual Logic:** From the street, the eye reads a fence return in relation to the wall corner it connects to, not as a continuous horizontal line across the house. Because the facade is stepped, staggered fence returns look intentional and balanced.
-* **Space Advantage:** The $\approx 13.2\text{ ft}$ garage protrusion on the $9\text{ ft}$ wide left side represents $\approx 119\text{ sq ft}$ of bonus space. Enclosing it preserves the deepest, most protected section of the side yard for a poured concrete pad, trash/recycling corral, utility trailer parking, or garden storage behind a wide gate.
+$$L_{\text{south\_enclosed}} = 29.7 - 2.2 = 27.5\text{ ft} \quad (\text{Fence run including } 30.0'\text{ backyard} = 57.5\text{ lin ft})$$
 
-#### Option B: Street-Line Alignment (Not Recommended)
-Recessing the left fence $\approx 16.2\text{ ft}$ back along the garage wall so it aligns horizontally with a $3\text{ ft}$ setback on the right-side front door plane.
-* **Drawback:** Turns a $9\text{ ft} \times 16.2\text{ ft}$ section ($\approx 146\text{ sq ft}$) into an un-fenced, shaded corridor between the garage wall and the neighbor's house that receives poor sunlight for turf and serves no front-yard function.
-* **Single Exception:** Only recess the left fence $6\text{ to }8\text{ ft}$ back if pouring an *exterior* concrete trash pad in front of the gate (for curb access without opening a gate) or if gas/electric meters are mounted mid-wall and must remain outside the fenced perimeter.
+$$A_{\text{north\_enclosed}} = 9.0 \times 40.0 = 360.0\text{ sq ft} \quad (\text{of } 388.8\text{ sq ft total North cement pad})$$
 
-### Governing Spatial Equations (Side Yards)
-Given side yard width $W = 9\text{ ft}$, left garage wall depth $D_{\text{left}} = 43.2\text{ ft}$, right house wall depth $D_{\text{right}} = 30.0\text{ ft}$, left setback $S_{\text{left}}$, and right setback $S_{\text{right}}$:
+$$A_{\text{south\_enclosed}} = 9.0 \times 27.5 = 247.5\text{ sq ft} \quad (\text{of } 267.3\text{ sq ft South stucco run})$$
 
-$$L_{\text{left}} = \max(0, 43.2 - S_{\text{left}})$$
-
-$$L_{\text{right}} = \max(0, 30.0 - S_{\text{right}})$$
-
-$$A_{\text{left}} = 9 \cdot L_{\text{left}}$$
-
-$$A_{\text{right}} = 9 \cdot L_{\text{right}}$$
-
-$$A_{\text{total\_enclosed}} = A_{\text{left}} + A_{\text{right}}$$
-
-$$A_{\text{forfeited}} = 658.8 - A_{\text{total\_enclosed}}$$
-
-* **At Recommended Relative Match ($S_{\text{left}} = 3\text{ ft}, S_{\text{right}} = 3\text{ ft}$):**
-  * $A_{\text{left}} = 9 \cdot (43.2 - 3) = 361.8\text{ sq ft}$
-  * $A_{\text{right}} = 9 \cdot (30.0 - 3) = 243.0\text{ sq ft}$
-  * $A_{\text{total\_enclosed}} = 604.8\text{ sq ft}$ (only $54.0\text{ sq ft}$ forfeited across both sides)
-* **At Street-Line Alignment ($S_{\text{left}} = 16.2\text{ ft}, S_{\text{right}} = 3\text{ ft}$):**
-  * $A_{\text{left}} = 9 \cdot (43.2 - 16.2) = 243.0\text{ sq ft}$
-  * $A_{\text{right}} = 9 \cdot (30.0 - 3) = 243.0\text{ sq ft}$
-  * $A_{\text{total\_enclosed}} = 486.0\text{ sq ft}$ ($172.8\text{ sq ft}$ forfeited)
-
-### Pre-Installation Field Checklist
-* [ ] **Gas & Electric Meters:** Measure distance from front corners; place fence $6\text{ in}$ behind meter boxes if located within $3\text{ to }5\text{ ft}$ of the front corner.
-* [ ] **Side Garage Man-Door:** Ensure fence sits forward of any side garage door so it opens into the secure yard.
-* [ ] **AC Condenser & Hose Bibs:** Keep behind the fence line for street noise buffering and backyard hose reach.
-* [ ] **Neighbor's Window Wells & Dryer Vents:** Check adjacent wall clearances to avoid trapping leaves/debris.
+$$A_{\text{total\_enclosed\_sides}} = 360.0 + 247.5 = 607.5\text{ sq ft}$$
 
 ---
 
-## 3. Backyard Propane Fire Pit Placement Analysis
+## 3. Locked-In Patio Awning, L-Sectional & Propane Fire Table Architecture
 
-### Core Recommendation
-* **Best Primary Choice:** Place a **rectangular or square propane fire pit table** directly on the existing **$12.5\text{ ft} \times 21.0\text{ ft}$ patio** (Melinda's suggestion).
-* **Best Alternative (If Patio Feels Crowded):** Build a **$10\text{ ft} \times 10\text{ ft}$ or $12\text{ ft} \times 12\text{ ft}$ connected paver bump-out** directly off the outer corner of the existing patio rather than isolating the fire pit in the far corner of the yard.
+### Locked-In Configuration (On Existing `21.0' × 12.5'` Concrete Patio)
+* **Location:** Placed directly on the existing **$21.0\text{ ft} \times 12.5\text{ ft}$ ($262.5\text{ sq ft}$) concrete patio slab** (`wx = 17.5'–30.0', wy = 20.0'–41.0'`), preserving **$100\%$ of the open central lawn** ($0\text{ sq ft}$ of grass lost).
+* **House-Attached 2-Pillar Dark-Espresso Heavy-Timber Awning / Pergola:**
+  * **East House Wall Ledger (`0` House Pillars):** $2\times 10$ or $2\times 12 \times 21.0\text{ ft}$ ledger board lag-bolted directly into the house rim joist at `wx = 30.0', wy = 20.0'–41.0'` ($\approx 9.5'\text{–}10.0'$ height) with **ZERO vertical posts against the home**.
+  * **Strictly 2 Outer West Corner Pillars (`20.0'` Clear Span):** Two $6\times 6$ or $8\times 8$ rough-sawn Western Red Cedar / Douglas Fir posts stained **Dark Espresso / Kona Brown** anchored via matte-black Simpson Strong-Tie Outdoor Accents post bases at the outer West corners of the slab (`P1` at `wx = 18.0', wy = 20.5'` and `P2` at `wx = 18.0', wy = 40.5'`), supporting a $21.0\text{ ft}$ structural Glulam/flitch West header beam with $45^\circ$ timber knee braces, $2\times 8$ E–W rafters, $2\times 2$ N–S shade purlins, and warm $2700\text{K}$ Edison LED bistro string lights.
+* **Two-Zone Patio Furniture Layout:**
+  * **North Zone (`wy = 20.0'–29.5'`, $9.5\text{ ft}$ wide):** Clear entry corridor from the $6.0\text{ ft}$ sliding glass door (`wy = 21.5'–27.5'`) and $3.0\text{ ft}$ rear concrete sidewalk (`wy = 9.0'–20.0'`), plus the stainless BBQ grill station (`wx = 28.0'–30.0', wy = 28.0'–31.0'`).
+  * **South Zone (`wy = 29.5'–41.0'`, $11.5\text{ ft}$ wide):** **L-Shaped Outdoor Lounge Sectional** on an $8'\times 10'$ outdoor rug centered around a **Long Rectangular Dual-Purpose Propane Fire Table** ($28"\times 48"$ to $32"\times 52"$, $50,000\text{ BTU}$, concealed $20\text{ lb}$ tank, flush metal burner lid that converts the pit into a full dining/coffee table).
 
-### Why Propane Changes the Placement Rules
-Traditional fire pits are pushed into the back corner of a yard because **wood-burning** pits produce smoke, ash, and flying embers that require $15\text{ to }25\text{ ft}$ of clearance from structures. A **propane fire pit** produces zero sparks, zero wood smoke, and turns on/off instantly with a valve—making it safe and practical to use right on the main patio.
+### Why Patio Placement Was Chosen Over a Yard Corner Pit or Paver Bump-Out
 
-### The "Corner Trap": Spatial Breakdown of a Dedicated Yard Corner Pit
-1. **The $12\text{ to }14\text{ ft}$ Diameter Rule:**
-   * Fire pit diameter: $\approx 3.5\text{ ft}$
-   * Legroom buffer around flame: $1.5\text{ ft}$ on all sides ($+3.0\text{ ft}$ total)
-   * Chair depth (Adirondack or lounge chairs): $3.0\text{ ft}$ on all sides ($+6.0\text{ ft}$ total)
-   * **Total Required Pad Diameter:** $12.5\text{ to }14.0\text{ ft}$ ($\approx 135\text{ to }155\text{ sq ft}$ of gravel or pavers)
-2. **Vinyl Fence & Landscaping Heat Buffers:**
-   * White vinyl fencing can warp or yellow from trapped radiant heat, and perimeter trees/shrubs will scorch if flames and chairs sit too close.
-   * Allowing a $3\text{ to }4\text{ ft}$ buffer for perimeter plantings and vinyl fencing means the **center of a corner fire pit must sit $9\text{ to }10\text{ ft}$ out from both corner fences**.
-3. **Collision with the Patio in a $30\text{ ft}$ Deep Yard:**
-   * With the patio extending $12.5\text{ ft}$ from the house and a corner fire zone extending $14\text{ to }16\text{ ft}$ from the rear fence, the two zones nearly collide—eliminating open lawn space and creating tight, awkward mowing strips.
-
-### Why Patio Placement Works Better on a $12.5\text{ ft} \times 21.0\text{ ft}$ Slab
-* **Dual-Purpose Footprint (Zero Wasted Space):** Using a propane fire table with a **flush metal burner cover** allows it to function as a full-surface outdoor coffee table, dining surface, or board-game table during the day, and convert into a fire feature at night.
-* **Clean Two-Zone Patio Layout ($21\text{ ft}$ Width):**
-  * **Zone 1 ($\approx 9\text{ to }10\text{ ft}$ wide):** Grill station and a compact $4\text{ to }6$ person dining table positioned near the back door.
-  * **Zone 2 ($\approx 11\text{ to }12\text{ ft}$ wide):** L-shaped outdoor sectional or $4$ club chairs arranged around a rectangular propane fire table ($28\text{ in} \times 48\text{ in}$ or $32\text{ in} \times 52\text{ in}$). A rectangular footprint aligns with the $12.5\text{ ft}$ patio depth while preserving a clear walking lane along the house wall.
-* **Single Furniture Set:** Eliminates the expense and maintenance of buying two separate sets of outdoor seating (one for the patio + $4\text{ to }6$ weather-resistant chairs for the yard corner).
-* **High Weeknight Usage:** Stepping onto dry concrete $10\text{ ft}$ from the back door encourages spontaneous $30\text{ minute}$ weeknight use without walking across wet grass, hauling $20\text{ lb}$ propane tanks across the yard, or pulling weeds from a gravel pit.
-
-### When the Dedicated Yard Corner *Is* Better
-1. **360-Degree Group Seating ($6\text{ to }8+$ People):** A $12.5\text{ ft}$ deep patio comfortably seats $4\text{ to }6$ around a fire table, whereas a dedicated circular pad in the yard accommodates a wider ring of $6\text{ to }8$ individual Adirondack chairs.
-2. **Dedicated Open Patio Play Space:** If the $12.5\text{ ft} \times 21.0\text{ ft}$ slab needs to hold a large dining table, a grill/smoker station, *and* open concrete floor space for kids' push toys without a coffee table in the way.
-3. **Detached "Campfire" Ambiance:** Sitting away from the house wall provides a wider view of the night sky and feels like a separate backyard destination.
-
-### Side-by-Side Comparison of Fire Pit Locations
-
-| Factor | Option 1: On Existing Patio (Melinda's Idea) | Option 2: Dedicated Yard Corner (Original Idea) | Option 3: Hybrid "Patio Corner Bump-Out" |
-| :--- | :--- | :--- | :--- |
-| **Best Fire Pit Style** | Rectangular or square **fire table** with flush lid (hides $20\text{ lb}$ tank inside base) | Round fire bowl or paver ring (requires external tank cover table or buried gas line) | Round or square fire table set on a paver pad flush with the main patio edge |
-| **Lawn Preserved** | **$100\%$** ($0\text{ sq ft}$ of grass lost) | **Loses $\approx 140\text{--}180\text{ sq ft}$** of lawn and planting bed area | **Loses $\approx 80\text{--}100\text{ sq ft}$** immediately adjacent to the patio corner |
-| **Furniture Needed** | **$1\text{ set}$** (patio lounge doubles as fire seating) | **$2\text{ sets}$** (patio set + dedicated yard chairs) | **$1\text{--}2\text{ sets}$** (can pivot patio chairs onto the bump-out) |
-| **Added Hardscape Cost** | **$\$0$** (uses existing concrete slab) | **$\$800\text{--}\$2,500+$** for excavation, base rock, edging, and pavers/gravel | **$\$500\text{--}\$1,500$** for a $10\text{ ft} \times 10\text{ ft}$ paver extension flush with the patio |
-| **Fence & Plant Safety** | Completely clear of vinyl fences and perimeter trees | Must sit $9\text{--}10\text{ ft}$ out from corner fences/trees to protect vinyl & foliage | Easy to keep $5+\text{ ft}$ clear of side fences and garden boxes |
+1. **Propane Eliminates Wood-Smoke Clearance Requirements:** Unlike wood-burning pits that require $15\text{ to }25\text{ ft}$ clearance from structures, a propane fire table produces zero sparks or wood smoke and operates safely on the covered patio slab under the $8.5'\text{–}9.5'$ open-purlin timber awning.
+2. **Avoids the "Corner Trap" in a $30.0\text{ ft}$ Deep Backyard:**
+   * A dedicated yard corner fire pit requires a $12.5\text{ to }14.0\text{ ft}$ diameter gravel/paver circle ($\approx 150\text{ sq ft}$) plus a $3.0\text{ to }4.0\text{ ft}$ heat buffer from vinyl fencing and perimeter trees—pushing the pit center $9.5\text{ ft}$ out from the corner walls and colliding with the $12.5\text{ ft}$ patio in a $30.0\text{ ft}$ deep yard.
+   * Keeping the fire table on the existing $262.5\text{ sq ft}$ concrete slab preserves the entire **$760\text{ sq ft}$ central emerald turf zone** (`wx = 4.5'–17.5'` West of patio and `wx = 4.5'–27.0'` North of patio), requires only **1 furniture set**, and costs **$\$0$ in extra hardscape excavation**.
 
 ---
 
-## 4. Machine-Readable Context Block (For Antigravity / CAD / Layout Tools)
+## 4. Machine-Readable Context Block (Reconciled Lot 3152 Canonical State)
 
 ```yaml
 project_context:
   lot:
-    area_acres: 0.10
-    reference_width_ft: 50.0
-    reference_depth_ft: 95.0
-    total_area_sqft: 4750.0
+    lot_number: "3152"
+    area_acres: 0.11
+    width_ft: 50.0
+    depth_to_sidewalk_ft: 96.7
+    depth_to_curb_ft: 108.7
+    area_to_sidewalk_sqft: 4835.0
+    area_to_curb_sqft: 5435.0
+    foundation_type: "Slab-on-grade (no basement, zero window wells)"
   house_footprint:
     width_ft: 32.0
-    left_garage_depth_ft: 43.2
-    right_house_depth_ft: 30.0
-    garage_forward_protrusion_ft: 13.2
+    north_garage_depth_ft: 43.2
+    south_stucco_depth_ft: 29.7
+    front_porch_depth_ft: 6.0
+    garage_forward_projection_ft: 13.5
   side_yards:
-    left_width_ft: 9.0
-    right_width_ft: 9.0
-    total_raw_side_area_sqft: 658.8
+    north_width_ft: 9.0
+    south_width_ft: 9.0
+    north_surface: "Full 9.0 ft x 43.2 ft (388.8 sq ft) poured cement utility/vehicle pad"
+    south_surface: "4.0+ ft wide grass wrap (wy=43.5'-47.5') between 2.0' South fence bed (+6 in paver) and 2.0' house buffer (+6 in paver)"
   backyard:
     depth_from_house_ft: 30.0
     width_ft: 50.0
-    fencing_material: "White Vinyl Privacy Fence"
+    west_wall: "50.0 ft precast concrete privacy wall (5 panels @ 10.0 ft O.C., columns at wy=0,10,20,30,40,50)"
+    fencing_material: "6 ft Privacy Vinyl Fence & Gates (145.5 lin ft total)"
   patio:
     depth_ft: 12.5
     width_ft: 21.0
     area_sqft: 262.5
+    coordinates: "wx = 17.5' to 30.0', wy = 20.0' to 41.0'"
 
-design_decisions:
+locked_in_decisions:
   side_yard_fencing:
-    recommended_strategy: "Relative Symmetry (3.2 ft North setback at wx=70.0' behind 2.0' stone wrap; 2.2 ft South stucco setback at wx=57.5' enclosing meters)"
-    target_north_setback_ft: 3.2
-    target_south_setback_ft: 2.2
+    strategy: "Relative Stucco Setback (3.2 ft North setback at wx=70.0' behind 2.0' stone wrap; 2.2 ft South stucco setback at wx=57.5' enclosing meters)"
+    north_gate_wx_ft: 70.0
+    south_gate_wx_ft: 57.5
+    north_setback_ft: 3.2
+    south_setback_ft: 2.2
     enclosed_north_length_ft: 40.0
     enclosed_south_length_ft: 27.5
     enclosed_north_area_sqft: 360.0
     enclosed_south_area_sqft: 247.5
     total_enclosed_side_area_sqft: 607.5
     total_fence_linear_ft: 145.5
-    key_constraints:
-      - "Avoid 0 ft flush mount due to corner trim, masonry return (24 in on North garage corner), and downspout splash blocks."
-      - "Avoid street-line alignment to prevent losing garage-side storage/trailer pad space."
-      - "South gate at wx=57.5' sits on flat stucco 2.2' West of SE corner, enclosing gas/electric meters (wx=51.0'-54.5') behind the gate."
   lawn_edging_and_transitions:
-    style: "Straight 6-inch wide flush paver edging with prominent, clearly visible 45-degree diagonal chamfered corners (NO curvy / S-curve edging)"
+    style: "Straight flush Home Depot Pavestone Holland Concrete Paver edging (7.87 in x 3.94 in x 2.36 in 60mm or 7.75 in x 4 in x 1.75 in 45mm in Charcoal Blend #21703 or Sierra Blend #21777; ~195 lin ft total = 315 bricks single row or 625 bricks double/crosswise) with prominent 45-degree diagonal chamfered corners (zero S-curves, zero extruded curbing, zero lawn stepping stones)"
     basement_and_window_wells: "None (slab-on-grade construction; zero window wells anywhere on property)"
-    rear_house_wall_sidewalk: "3.0 ft W x 11.0 ft L poured concrete sidewalk (wx=27.0'-30.0', wy=9.0'-20.0') right against rear house wall connecting patio directly to North side cement pad"
-    west_back_wall_junipers: "Primary 5+4 Designer Hybrid (HYBRID_5_PLUS_4): 5 leafy columnar pillars ('Standing Ovation' Serviceberry 15'x4', 'Crimson Spire' Columnar Oak 20'-25'x5'-6' w/ marcescent winter leaves, or 'Parkland Pillar' Birch 20'-25'x5'-6') centered in the 5 precast wall panels (wy=5,15,25,35,45, wx=2.0') + 4 upright evergreen junipers ($20 Home Depot or 'Taylor' Juniper 18'-25'x3'-3.5') aligned at the 4 interior concrete columns (wy=10,20,30,40, wx=1.75'); OR All-Evergreen Alternative: 10 'Taylor' Junipers evenly spaced 2 per 10.0 ft panel (@ 5.0 ft O.C., wy=2.5,7.5..47.5)"
+    rear_house_wall_sidewalk: "3.0 ft W x 11.0 ft L (33.0 sq ft) poured concrete sidewalk (wx=27.0'-30.0', wy=9.0'-20.0') right against rear house wall connecting patio directly to North side cement pad"
+    west_back_wall_planting: "Locked-in 5+4 Designer Hybrid (HYBRID_5_PLUS_4): 5 leafy columnar pillars ('Standing Ovation' Serviceberry 15'x4', 'Crimson Spire' Columnar Oak 20'-25'x5'-6' w/ marcescent winter leaves, or 'Parkland Pillar' Birch 20'-25'x5'-6') centered in the 5 precast wall panels (wy=5,15,25,35,45, wx=2.0') + 4 upright evergreen junipers ($20 Home Depot or 'Taylor' Juniper 18'-25'x3'-3.5') aligned at the 4 interior concrete columns (wy=10,20,30,40, wx=1.75')"
     west_back_wall_understory_and_soil: "10-spot alternating under-story ribbon along front/middle of 4.0 ft bed (wx=2.95', wy=2.3,7.6,12.4,17.6,22.4,27.6,32.4,37.6,42.4,47.4) with 5x 'Walker's Low'/'Cat's Pajamas' Catmint or 'Little Spire' Russian Sage + 5x Coneflower alternating with 5x 'Karl Foerster' Feather Reed Grasses; plant trunks 21-24 in off concrete wall with root flare 1-2 in above grade in 80% native clay + 20% compost/bark fines, irrigated by 1/2-in poly drip line (2 GPH emitters) under 3-in dark shredded bark mulch"
-    north_garden_boxes: "5 raised cedar garden boxes (3.0 ft W E-W x 6.0 ft L N-S) running North-to-South along North backyard fence (wx=4.0'-27.0', wy=0.0'-8.0' + 6-in flush paver at wy=8.0'-8.5')"
-    south_side_lawn_corridor: "Backyard lawn wraps at least 4.0 ft wide (wy=43.5'-47.5') all the way down the 9.0 ft wide South side corridor (wx=30.0'-57.5') between 2.0 ft South fence bed + 6-in paver and 2.0 ft house wall buffer + 6-in paver"
+    north_garden_boxes: "5 raised Western Red Cedar garden boxes (N1-N5 @ 3.0 ft W E-W x 6.0 ft L N-S = 90 sq ft) running North-to-South along North backyard fence (wx=4.0'-27.0', wy=0.0'-8.0' + 6-in flush paver at wy=8.0'-8.5'); flat in-ground garden in 2027 (Phase 2) upgraded to cedar boxes in 2030 (Phase 5)"
+    south_side_lawn_corridor: "Backyard lawn wraps at least 4.0 ft wide (wy=43.5'-47.5') all the way down the 9.0 ft wide South side corridor (wx=30.0'-57.5') between 2.0 ft South fence bed (+6 in paver) and 2.0 ft house wall buffer (+6 in paver)"
     neighbor_boundary_contrast:
-      north_neighbor_wy_lt_0: "Completely empty (simply bare dirt) outside Lot 3152's 9.0 ft North property line (wy = 0.0')"
+      north_neighbor_wy_lt_0: "Completely empty bare dirt outside Lot 3152's 9.0 ft North property line (wy = 0.0')"
       south_neighbor_wy_gt_50: "White rocks outside Lot 3152's 9.0 ft South property line (wy = 50.0')"
-    flat_concrete_edges: "Flat poured concrete slabs (patio, 3.0' rear sidewalk, porch walkway, driveway, sidewalk) act directly as flush mower edges without redundant pavers"
+    flat_concrete_edges: "Flat poured concrete slabs (patio, 3.0' rear sidewalk, porch walkway, driveway, city sidewalk) act directly as flush mower edges without redundant pavers"
   fire_pit_and_patio_lounge:
-    fuel_type: "Propane (20 lb concealed tank or natural gas conversion)"
-    recommended_location: "Existing 21.0 ft x 12.5 ft Concrete Patio under a House-Attached 2-Pillar Dark-Espresso Heavy-Timber Awning / Pergola (2 outer West corner pillars, 0 pillars against the home) with Warm 2700K Bistro String Lights"
+    fuel_type: "Propane (20 lb concealed tank inside fire table base)"
+    location: "Existing 21.0 ft x 12.5 ft Concrete Patio under a House-Attached 2-Pillar Dark-Espresso Heavy-Timber Awning / Pergola (2 outer West corner pillars, 0 pillars against the home) with Warm 2700K Bistro String Lights"
     patio_awning_structure:
       mounting_type: "House-Attached Ledger-Mounted Timber Awning / Pergola (Strictly 2 Outer Corner Pillars; 0 Pillars Against Home; 0 Center Posts)"
       house_ledger_attachment: "2x10 or 2x12 x 21.0 ft pressure-treated/cedar ledger board lag-bolted (Simpson LedgerLOK / structural screws with SkyLift waterproof standoff spacers) directly into the 2nd-floor rim joist along the rear house wall at wx = 30.0', wy = 20.0' to 41.0' (~9.5-10.0 ft height above slab) — ZERO vertical posts against the home"
@@ -202,26 +152,8 @@ design_decisions:
         clear_west_span_ft: 20.0
       west_front_header_beam: "21.0 ft continuous clear-span beam across West edge (wx = 18.0', wy = 20.0'-41.0' at 8.5-9.0 ft underside clearance): either 3.5 in x 11.875 in architectural exterior Glulam beam OR steel-flitch-plate double 2x12 box beam, braced at both outer corner posts by 45-degree timber knee braces (4x6 or 6x6)"
       rafters_and_shade_canopy: "14x 2x8 E-W rafters @ 18 in O.C. spanning 12.5 ft from house ledger (wx = 30.0') to West header beam (wx = 18.0') with 12 in decorative notched West tail overhang (to wx = 17.0'); topped with 24x 2x2 N-S shade purlins @ 4.5 in O.C. (3 in open gap) + optional flat smoked-bronze polycarbonate UV/rain top sheet (Palram Suntuf / SkyPoly EZ-Glaze) + commercial warm 2700K Edison LED bistro string lights"
-      researched_turnkey_kit_equivalents:
-        - "Western Timber Frame (Lehi, UT) — Custom 21' x 12.5' Attached 2-Post ShadeScape Heavy-Timber Kit (mortise-and-tenon Dovetail joinery, engineered 20' clear-span West beam, concealed TimberVolt lighting track)"
-        - "Sunset Pergola Kits — Custom 21' x 12' Attached 2-Post Modern Heavy-Duty Western Red Cedar Pergola Kit with Simpson Strong-Tie Black Hardware"
-      uniform_rendering_rules:
-        - "Rule 1 (Strictly 2 Pillars Total): Every rendering MUST show ONLY TWO vertical timber pillars at the outer West corners of the concrete patio (NW corner wx=18.0', wy=20.5' and SW corner wx=18.0', wy=40.5')."
-        - "Rule 2 (Zero Pillars Against the House): The East side of the canopy attaches flush into the rear house stucco wall at wx=30.0' via a horizontal dark-espresso timber ledger board above the sliding glass door and living room window. NEVER render a 4-post freestanding pergola or any posts along the house wall."
-        - "Rule 3 (Zero Middle Posts): The 20.0 ft West front opening is a single uninterrupted clear span supported by a deep header beam and two 45-degree corner knee braces. NEVER render a 3rd middle post at wy=30.5'."
-        - "Rule 4 (Uniform Color & Hardware): All timber members are stained semi-transparent Dark Espresso / Dark Walnut; all structural post bases, T-straps, and L-angles are matte-black powder-coated steel (Simpson Outdoor Accents)."
-    recommended_seating_and_table: "L-Shaped Outdoor Patio Sectional Furniture + Long Rectangular Dual-Purpose Propane Fire Table (acts as both a table and a long propane fire pit)"
+    seating_and_table: "L-Shaped Outdoor Patio Sectional Furniture + Long Rectangular Dual-Purpose Propane Fire Table (50,000 BTU with flush metal lid)"
     patio_zoning:
-      zone_1_dining_grill_width_ft: 9.5
+      zone_1_entry_grill_width_ft: 9.5
       zone_2_fire_lounge_width_ft: 11.5
-    corner_option_constraints:
-      required_seating_circle_diameter_ft: 13.5
-      required_corner_fence_clearance_center_ft: 9.5
-      lawn_area_lost_sqft: 150.0
-  website_presentation:
-    style: "Ultra-minimalist visual demonstration (index.html)"
-    guidelines:
-      - "Keep index.html stripped of heavy text, paragraphs, and long tables."
-      - "Demonstrate what we want visually via concise spec pills, the interactive 2D CAD blueprint, 12 target AI concept renders, and the current-yard photo grid."
-      - "Store all detailed narrative specifications, decision trade-offs, and measurement tables in the repository's Markdown files."
 ```
