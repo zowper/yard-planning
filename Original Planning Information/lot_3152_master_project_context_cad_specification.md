@@ -219,7 +219,7 @@ When editing or extending `blueprint_3152.html` in Antigravity, note the followi
 
 ### Zone 3: Front Yard, Driveway & Covered Porch ($813.5\text{ sq ft}$ Unpaved — $wx = 59.7\text{ ft}$ to $96.7\text{ ft}$)
 * **SE Front Yard Lawn & Bed Area (South of Driveway):** $555.0\text{ sq ft}$ ($17.5\text{ ft}$ wide along porch walkway widening to $21.0\text{ ft}$ near sidewalk $\times 27.0\text{ ft}\text{–}37.0\text{ ft}$ deep). Framed by straight $6\text{-inch}$ flush paver edging with $45^\circ$ chamfered corners and a $2.0\text{ ft}$ foundation rock/mulch buffer.
-* **Green Utility Transformer Box:** $3.5\text{ ft} \times 3.0\text{ ft}$ PacifiCorp box near sidewalk ($wx = 90.0\text{ ft}, wy = 39.5\text{ ft}$) — screened on 3 sides with upright ornamental grasses while keeping front access clear.
+* **Green Utility Transformer Box:** $3.4\text{ ft} \times 3.0\text{ ft}$ PacifiCorp box tucked in the SE corner along the sidewalk ($wx = 93.0\text{ ft}\text{–}96.4\text{ ft}, wy = 45.5\text{ ft}\text{–}48.5\text{ ft}$) — screened on 3 sides with a $2.0\text{ ft}$ planting bed and $6\text{-inch}$ chamfered paver edging while keeping front sidewalk access clear.
 * **NE Front Strip (North of Driveway):** $11.0\text{ ft}$ W $\times 23.5\text{ ft}$ D $= 258.5\text{ sq ft}$ leading to the North double vehicle gate.
 * **Concrete Driveway & Covered Porch:** $18.0\text{ ft}$ driveway + $3.5\text{ ft}$ walkway panel ($21.5\text{ ft} \times 23.5\text{ ft} = 505.3\text{ sq ft}$) + $6.0\text{ ft}$ D $\times 11.5\text{ ft}$ W covered porch with `3152` stone pillar.
 

@@ -1114,7 +1114,7 @@
         name: 'Front Yard 2.0\' Planting Beds & 6" Chamfered Pavers',
         rough: '2 ft wide + 6" pavers',
         exact: '2.0\' Beds + 6" Pavers (45° Corners)',
-        notes: '2.0\' wide planting beds along Driveway (Y=29\'–31\'), Porch Walkway (Y=32.5\'–34.5\'), Front of Porch (X=65.7\'–67.7\'), 2.0\' off Green Utility Box, and 2.0\' off South Property Line (Y=48\'–50\'), all bordered by 6" flush pavers with 45° chamfered corners.',
+        notes: '2.0\' wide planting beds along Driveway (Y=29\'–31\'), Porch Walkway (Y=32.5\'–34.5\'), Front of Porch (X=65.7\'–67.7\'), 2.0\' off Green Utility Box (X=93.0\'–96.4\', Y=45.5\'–48.5\'), and 2.0\' off South Property Line (Y=48\'–50\'), all bordered by 6" flush pavers with 45° chamfered corners.',
         zoneBox: { x1: 65.7, y1: 29.0, x2: 96.7, y2: 50.0 }
       }
     ];
@@ -1839,7 +1839,7 @@
         // - 2.0' wide planting bed along Porch Walkway (wy=32.5..34.5, wx=65.7..81.0 & wx=81.0..83.0) + 6" paver (wy=34.5..35.0, wx=83.0..83.5)
         // - 2.0' wide planting bed along Front Side of Porch (wx=65.7..67.7, wy=32.5..50.0) + 6" paver (wx=67.7..68.2)
         // - 2.0' wide planting bed along South Property Line (wy=48.0..50.0, wx=57.5..96.7) + 6" paver (wy=47.5..48.0)
-        // - 2.0' plant buffer off Green Utility Box (box at wx=91.0..94.5, wy=43.5..46.5 -> bed extends to wx=89.0, wy=41.5; +6" paver to wx=88.5, wy=41.0)
+        // - 2.0' plant buffer off Green Utility Box in SE corner (box at wx=93.0..96.4, wy=45.5..48.5 -> bed extends to wx=91.0, wy=43.5; +6" paver to wx=90.5, wy=43.0)
         const seOuterBedPoly = projectPoly([
           [65.7, 32.5], [81.0, 32.5], [81.0, 29.0], [96.7, 29.0],
           [96.7, 50.0], [57.5, 50.0], [57.5, 41.0], [65.7, 41.0]
@@ -1858,11 +1858,11 @@
           [68.2, 37.0], // NW 45° chamfer into Front-of-Porch 2.0' bed
           [68.2, 45.5], // Runs South along 2.0' Front-of-Porch bed + 6" paver (wx=68.2')
           [70.2, 47.5], // SW 45° chamfer into 2.0' South Property Line bed
-          [86.5, 47.5], // Runs East along 2.0' South Property Line bed + 6" paver (wy=47.5')
-          [88.5, 45.5], // 45° chamfer around Green Utility Box (2.0' off box + 6" paver)
-          [88.5, 42.5], // West side of Green Utility Box buffer (wx=88.5')
-          [90.0, 41.0], // 45° chamfer North-West of Green Utility Box
-          [96.7, 41.0]  // North side of Green Utility Box buffer (wy=41.0') to City Sidewalk
+          [88.5, 47.5], // Runs East along 2.0' South Property Line bed + 6" paver (wy=47.5')
+          [90.5, 45.5], // 45° chamfer around Green Utility Box (2.0' off box + 6" paver)
+          [90.5, 44.5], // West side of Green Utility Box buffer (wx=90.5')
+          [92.0, 43.0], // 45° chamfer North-West of Green Utility Box
+          [96.7, 43.0]  // North side of Green Utility Box buffer (wy=43.0') to City Sidewalk
         ];
         const frontLawnSvgPoly = projectPoly(frontLawnPts);
         out.push(`
@@ -1873,8 +1873,8 @@
         // 6" (0.5') Paver Edging Chain with 45° Chamfered Corners around the entire SE Front Lawn (except where lawn meets flat concrete sidewalk)
         const frontPaverChain = [
           [96.7, 31.25], [84.9, 31.25], [83.25, 32.9], [83.25, 33.4], [81.9, 34.75],
-          [70.1, 34.75], [67.95, 36.9], [67.95, 45.6], [70.1, 47.75], [86.6, 47.75],
-          [88.75, 45.6], [88.75, 42.4], [90.1, 41.25], [96.7, 41.25]
+          [70.1, 34.75], [67.95, 36.9], [67.95, 45.6], [70.1, 47.75], [88.6, 47.75],
+          [90.75, 45.6], [90.75, 44.4], [92.1, 43.25], [96.7, 43.25]
         ];
         const frontPaverStr = frontPaverChain.map(([wx, wy]) => {
           const p = project(wx, wy);
@@ -1892,14 +1892,14 @@
           [70.0, 33.5], [75.0, 33.5], [79.5, 33.5], // Along 2' Walkway bed
           [66.7, 36.0], [66.7, 40.0], [66.7, 44.5], // Along 2' Porch front bed
           [72.0, 49.0], [78.0, 49.0], [84.0, 49.0], // Along 2' South property line bed
-          [90.0, 42.3], [92.8, 42.3], [89.8, 45.0]  // 2' around Green Utility Box
+          [92.0, 44.4], [94.7, 44.4], [91.8, 46.8]  // 2' around Green Utility Box in SE corner
         ].forEach(([px, py]) => {
           const pt = project(px, py);
           out.push(`<circle cx="${pt.x.toFixed(1)}" cy="${pt.y.toFixed(1)}" r="${(0.65 * SCALE).toFixed(1)}" fill="rgba(52, 211, 153, 0.42)" stroke="#86efac" stroke-width="0.9"/>`);
         });
 
-        // Green Utility Transformer Box in SE Front Yard (wx: 91.0..94.5 [3.5'], wy: 43.5..46.5 [3.0'])
-        const transRect = projectRect(91.0, 43.5, 94.5, 46.5);
+        // Green Utility Transformer Box in SE Front Yard Corner (wx: 93.0..96.4 [3.4' D, 0.3' off walk], wy: 45.5..48.5 [3.0' W, 1.5' off S. line])
+        const transRect = projectRect(93.0, 45.5, 96.4, 48.5);
         out.push(`
           <rect x="${transRect.x.toFixed(1)}" y="${transRect.y.toFixed(1)}" width="${transRect.width.toFixed(1)}" height="${transRect.height.toFixed(1)}" rx="2" fill="#15803d" stroke="#86efac" stroke-width="1.5"/>
           <text x="${transRect.cx.toFixed(1)}" y="${transRect.cy.toFixed(1)}" fill="#dcfce7" font-family="JetBrains Mono" font-weight="700" font-size="${(5.8 * ts).toFixed(1)}" text-anchor="middle" dominant-baseline="middle">BOX</text>
