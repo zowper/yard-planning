@@ -40,7 +40,7 @@
 | :--- | :--- | :--- |
 | **Total Lot Footprint** | `50.0' W (N–S) × 96.7' D` to Sidewalk (`108.7'` to Curb) | `4,835.0 sq ft` to Sidewalk (`5,435.0 sq ft` to Curb) |
 | **Backyard & Patio (West)** | `50.0' W × 30.0' D` (`wx = 0.0'–30.0'`) | `1,500.0 sq ft` total (`679.0 sq ft` lawn + `262.5 sq ft` patio + perimeter beds/planters) |
-| **Backyard Western Wall Bed** | `4.0' D × 50.0' L` (`+6"` paver = `4.5'` to grass) | `200.0 sq ft` (`wx = 0.0'–4.0'`) for juniper trees & accent plants |
+| **Backyard Western Wall Bed** | `4.0' D × 50.0' L` (`+6"` paver = `4.5'` to grass) | `200.0 sq ft` (`wx = 0.0'–4.0'`): **6 Upright Junipers** (`$20` Home Depot *Skyrocket* / *Blue Arrow* / *Moonglow*, `8.0'` O.C. at `wy = 5', 13', 21', 29', 37', 45'`) + **5 Companion Bays** (*Karl Foerster* Grass + *Little Spire* Russian Sage/Lavender + Coneflower) |
 | **Southern Fence Berry & Shade Bed** | `2.0' D` (`+6"` paver = `2.5'` to grass) | `wy = 48.0'–50.0'` for raspberries, sugar snap peas, alpine strawberries, hardy kiwis & shade plants |
 | **Northern Backyard Planter Zone** | `5 Planters @ 3.0' W × 6.0' D` (running N–S) | `8.0' D` (`1'` N space + `6'` planter + `1'` S space) + `6"` paver = **`8.5'` total from N. fence to grass** (`wx = 0.0'–30.0'` only) |
 | **Existing Concrete Patio** | `21.0' N–S × 12.5' E–W` (4 quadrants @ `10.5' × 6.25'`) | `262.5 sq ft` (`17.5'` to West wall; `20.0'` North of patio) |

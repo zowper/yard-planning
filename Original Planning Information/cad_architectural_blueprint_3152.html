@@ -1069,13 +1069,13 @@
       {
         id: 'west-wall-juniper-bed',
         zone: 'Backyard',
-        name: 'Western Wall Juniper & Plant Bed Depth',
-        rough: '4 ft deep',
-        exact: '4.0\' Bed + 6" Paver (4.5\' to Grass)',
-        notes: 'Runs along the entire 50.0\' Western precast wall (X=0.0\' to 4.0\', 200 sq.ft.) for juniper trees & accent plants, bordered by 6" (0.5\') flush pavers (X=4.0\'–4.5\') with 45° corners.',
+        name: 'Western Wall Juniper & Perennial Bed (6 Junipers @ 8\' O.C.)',
+        rough: '6× $20 Junipers + Perennials',
+        exact: '4.0\' Bed + 6" Paver • 6 Junipers (8.0\' O.C.)',
+        notes: '6 upright columnar junipers ($20 Home Depot Skyrocket / Blue Arrow / Moonglow, 3\'–3.5\' W × 15\'–20\' H) spaced 8.0\' O.C. (Y=5\', 13\', 21\', 29\', 37\', 45\') for open feel + afternoon lawn shade. Inter-planted in the 5 bays (Y=9\', 17\', 25\', 33\', 41\') with Karl Foerster Feather Reed Grass, Little Spire Russian Sage / Lavender & Coneflower.',
         dim: {
           x1: 0.0, y1: 36.0, x2: 4.5, y2: 36.0,
-          label: "4.0' W. BED + 6\" PAVER",
+          label: "4.0' W. BED (6 JUNIPERS @ 8' O.C.)",
           primary: false
         },
         zoneBox: { x1: 0.0, y1: 0.0, x2: 4.5, y2: 50.0 }
@@ -1709,16 +1709,63 @@
           out.push(`<line x1="${cj1.x.toFixed(1)}" y1="${cj1.y.toFixed(1)}" x2="${cj2.x.toFixed(1)}" y2="${cj2.y.toFixed(1)}" stroke="${T.jointStroke}" stroke-width="1.0" stroke-dasharray="4,2"/>`);
         });
 
-        // 1. Backyard Western Wall 4.0' Deep Juniper & Plant Bed (wx: 0.0..4.0, wy: 0.0..50.0)
+        // 1. Backyard Western Wall 4.0' Deep Juniper & Perennial Bed (wx: 0.0..4.0, wy: 0.0..50.0)
         const westBedRect = projectRect(0.0, 0.0, 4.0, 50.0);
         out.push(`
           <rect x="${westBedRect.x.toFixed(1)}" y="${westBedRect.y.toFixed(1)}" width="${westBedRect.width.toFixed(1)}" height="${westBedRect.height.toFixed(1)}"
-                fill="rgba(21, 128, 61, 0.22)" stroke="#4ade80" stroke-width="1.0" stroke-dasharray="3,2"/>
+                fill="rgba(21, 128, 61, 0.24)" stroke="#4ade80" stroke-width="1.0" stroke-dasharray="3,2"/>
         `);
-        // Subtle Juniper tree canopy symbols along the 4.0' Western wall bed (wx=2.0')
-        [4.0, 10.0, 16.0, 22.0, 28.0, 34.0, 40.0, 45.5].forEach(wy => {
-          const jp = project(2.0, wy);
-          out.push(`<circle cx="${jp.x.toFixed(1)}" cy="${jp.y.toFixed(1)}" r="${(1.45 * SCALE).toFixed(1)}" fill="rgba(22, 163, 74, 0.35)" stroke="#86efac" stroke-width="1.1"/>`);
+
+        // 1A. 6 Upright Columnar Junipers ($20 Home Depot 'Skyrocket' / 'Blue Arrow' / 'Moonglow', 8.0' O.C. at wy = 5', 13', 21', 29', 37', 45')
+        //     + Dappled Afternoon Shade projection cones extending Eastward across the lawn
+        const juniperYs = [5.0, 13.0, 21.0, 29.0, 37.0, 45.0];
+        juniperYs.forEach((wy, idx) => {
+          // Subtle afternoon shadow band cast East-Northeast across the backyard lawn (wx=2.0' to 15.5')
+          const sh1 = project(2.0, wy - 1.4);
+          const sh2 = project(2.0, wy + 1.4);
+          const sh3 = project(15.5, Math.max(8.6, wy - 0.8));
+          const sh4 = project(15.5, Math.max(8.6, wy - 3.2));
+          if (wy >= 13.0) {
+            out.push(`<polygon points="${sh1.x.toFixed(1)},${sh1.y.toFixed(1)} ${sh2.x.toFixed(1)},${sh2.y.toFixed(1)} ${sh3.x.toFixed(1)},${sh3.y.toFixed(1)} ${sh4.x.toFixed(1)},${sh4.y.toFixed(1)}" fill="rgba(15, 23, 42, 0.16)" stroke="none"/>`);
+          }
+          const jp = project(1.95, wy);
+          out.push(`
+            <g class="juniper-tree-symbol">
+              <circle cx="${jp.x.toFixed(1)}" cy="${jp.y.toFixed(1)}" r="${(1.55 * SCALE).toFixed(1)}" fill="rgba(22, 163, 74, 0.42)" stroke="#86efac" stroke-width="1.35"/>
+              <circle cx="${jp.x.toFixed(1)}" cy="${jp.y.toFixed(1)}" r="${(0.95 * SCALE).toFixed(1)}" fill="rgba(20, 83, 45, 0.55)" stroke="#bbf7d0" stroke-width="0.8" stroke-dasharray="2,1.5"/>
+              <circle cx="${jp.x.toFixed(1)}" cy="${jp.y.toFixed(1)}" r="2.2" fill="#dcfce7"/>
+              <text x="${jp.x.toFixed(1)}" y="${(jp.y + 2.5).toFixed(1)}" fill="#ecfdf5" font-family="JetBrains Mono" font-size="6.2" font-weight="700" text-anchor="middle">J${idx + 1}</text>
+            </g>
+          `);
+        });
+
+        // 1B. 5 Inter-Tree Companion Clusters in the 8.0' O.C. gaps (wy = 9.0', 17.0', 25.0', 33.0', 41.0')
+        //     Each gap has: 1 Karl Foerster Feather Reed Grass (back-center, wx=1.35')
+        //                 + 1 Russian Sage / English Lavender (front-north, wx=2.85', wy-1.15')
+        //                 + 1 Coneflower / Catmint (front-south, wx=2.85', wy+1.15')
+        const gapYs = [9.0, 17.0, 25.0, 33.0, 41.0];
+        gapYs.forEach(wy => {
+          const kf = project(1.35, wy);
+          const sage = project(2.85, wy - 1.15);
+          const echinacea = project(2.85, wy + 1.15);
+          out.push(`
+            <g class="west-wall-companions">
+              <!-- Karl Foerster Feather Reed Grass (Golden Plume) -->
+              <circle cx="${kf.x.toFixed(1)}" cy="${kf.y.toFixed(1)}" r="${(0.85 * SCALE).toFixed(1)}" fill="rgba(245, 158, 11, 0.38)" stroke="#fcd34d" stroke-width="1.0"/>
+              <circle cx="${kf.x.toFixed(1)}" cy="${kf.y.toFixed(1)}" r="1.8" fill="#fef3c7"/>
+              <!-- Little Spire Russian Sage / Lavender (Violet-Purple Mound) -->
+              <circle cx="${sage.x.toFixed(1)}" cy="${sage.y.toFixed(1)}" r="${(0.72 * SCALE).toFixed(1)}" fill="rgba(168, 85, 247, 0.45)" stroke="#d8b4fe" stroke-width="0.95"/>
+              <circle cx="${sage.x.toFixed(1)}" cy="${sage.y.toFixed(1)}" r="1.5" fill="#f3e8ff"/>
+              <!-- Coneflower / Catmint (Coral-Magenta Accent Mound) -->
+              <circle cx="${echinacea.x.toFixed(1)}" cy="${echinacea.y.toFixed(1)}" r="${(0.68 * SCALE).toFixed(1)}" fill="rgba(244, 63, 94, 0.42)" stroke="#fda4af" stroke-width="0.95"/>
+              <circle cx="${echinacea.x.toFixed(1)}" cy="${echinacea.y.toFixed(1)}" r="1.5" fill="#ffe4e6"/>
+            </g>
+          `);
+        });
+        // End-cap perennial accents at NW (wy=2.0') and SW (wy=47.3') corners of West bed
+        [2.0, 47.3].forEach(wy => {
+          const ep = project(2.3, wy);
+          out.push(`<circle cx="${ep.x.toFixed(1)}" cy="${ep.y.toFixed(1)}" r="${(0.70 * SCALE).toFixed(1)}" fill="rgba(168, 85, 247, 0.40)" stroke="#d8b4fe" stroke-width="0.9"/>`);
         });
 
         // 2. Backyard & Side Southern Fence 2.0' Deep Berry, Snap Pea, Strawberry, Kiwi & Shade Bed (wy: 48.0..50.0, wx: 0.0..57.5)
@@ -2423,12 +2470,13 @@
             id: 'callout-west-juniper-bed',
             measureId: 'west-wall-juniper-bed',
             priority: STATE.highlightedId === 'west-wall-juniper-bed' ? 0 : 3,
-            anchorWx: 2.0, anchorWy: 22.0,
-            prefWx: -9.5, prefWy: 18.0,
+            anchorWx: 2.0, anchorWy: 21.0,
+            prefWx: -9.8, prefWy: 18.0,
             alwaysLeader: true,
             lines: [
-              { text: "4.0' W. JUNIPER & PLANT BED", size: 7.6, weight: '700', color: '#bbf7d0' },
-              { text: '+6" Paver = 4.5\' Total to Grass', size: 6.8, weight: '500', color: '#86efac' }
+              { text: "4.0' W. JUNIPER & PERENNIAL BED (+6\" PAVER)", size: 7.5, weight: '700', color: '#bbf7d0' },
+              { text: '6× $20 Upright Junipers (8\' O.C. • Afternoon Shade)', size: 6.7, weight: '600', color: '#86efac' },
+              { text: '5 Bays: Karl Foerster Grass • Russian Sage • Coneflower', size: 6.4, weight: '500', color: '#fde68a' }
             ],
             bg: '#052e16',
             border: '#22c55e',

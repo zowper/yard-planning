@@ -111,23 +111,30 @@ For comparison or hybrid adaptation, Track A prioritizes deep botanical layering
 
 ---
 
-## 6. Recommended Plant Schedule
+## 6. Recommended Plant Schedule (Including $4.0\text{ ft}$ Western Wall Juniper & Perennial Bed)
 
-All plants selected for structural contrast, low maintenance, and cold-hardy resilience:
+All plants selected for structural contrast, low maintenance, reflected-heat resilience, and cold-hardy performance:
 
-1. **Canopy / Ornamental Focal Trees ($12\text{ to }20\text{ ft}$ mature height):**
-   * *Backyard Corner Pocket:* Autumn Brilliance Serviceberry (*Amelanchier x grandiflora*) — multi-stem form, white spring blossoms, orange/red fall foliage.
+1. **Western Wall Bed ($4.0\text{ ft}$ Deep $+ 6\text{"}$ Paver $= 4.5\text{ ft}$ to Grass; $wx = 0.0\text{ ft}\text{–}4.0\text{ ft}, wy = 0.0\text{ ft}\text{–}50.0\text{ ft}$):**
+   * **Ideal Number & Spacing of Upright Junipers — `6 Trees @ 8.0 ft On-Center` (`J1`–`J6` at $wy = 5.0', 13.0', 21.0', 29.0', 37.0', 45.0'$, $wx = 1.95'$):**
+     * **Why 6 Trees (`8.0'` O.C.) is the Sweet Spot (Openness + Afternoon Shade):** Each narrow columnar juniper matures to $3.0\text{–}3.5\text{ ft}$ wide $\times 15\text{–}20\text{ ft}$ tall. At $8.0\text{ ft}$ on-center, this leaves **$4.5\text{ to }5.0\text{ ft}$ of open breathing room** between every pair of trees ($\approx 60\%$ of the stone-textured precast wall remains visible so the yard feels wide and open), while the $15\text{–}20\text{ ft}$ tall canopies cast $20\text{ to }35\text{ ft}$ long overlapping afternoon shadows East-Northeast across the lawn and patio from 2:30 PM to sunset. *(Alternative ultra-open option: **5 Trees @ `10.0 ft` O.C.** centered in each of the 5 precast wall bays at $wy = 5', 15', 25', 35', 45'$).*
+     * **Best `$20` Home Depot Upright Juniper Cultivars (`1–2 Gallon` Nursery Pots):**
+       * *'Skyrocket' Juniper* (*Juniperus scopulorum 'Skyrocket'*): Ultra-narrow ($2.5\text{–}3\text{ ft}$ W $\times 15\text{–}20\text{ ft}$ H), silvery blue-green architectural spire; zero overhang onto the $6\text{"}$ mower strip.
+       * *'Blue Arrow' Juniper* (*Juniperus virginiana 'Blue Arrow'*): Tight, dense blue foliage ($2.5\text{–}3\text{ ft}$ W $\times 12\text{–}15\text{ ft}$ H) that resists winter snow-splaying.
+       * *'Moonglow' or 'Wichita Blue' Juniper* (*Juniperus scopulorum*): Bright silver-blue foliage ($3.5\text{–}4\text{ ft}$ W $\times 15\text{–}18\text{ ft}$ H; lightly sheared) for slightly broader afternoon shade.
+       * *'Taylor' Juniper* (*Juniperus virginiana 'Taylor'*): Rich emerald-green upright column ($3\text{–}4\text{ ft}$ W $\times 15\text{–}20\text{ ft}$ H).
+       * *(Note: Avoid wide cultivars like 'Spartan' or 'Hetzi Columnaris' that exceed $6\text{ ft}$ wide, and avoid sprawling shrub junipers like 'Sea Green' or 'Blue Rug').*
+   * **5 Inter-Tree Companion Bays ($wy = 9.0', 17.0', 25.0', 33.0', 41.0'$) — "Triangle Cluster" Between Every Pair of Junipers:**
+     * *Back-Center of Gap ($wx = 1.35'$):* **1× 'Karl Foerster' Feather Reed Grass** (*Calamagrostis x acutiflora*, $1.5\text{–}2\text{ ft}$ W $\times 4\text{–}5\text{ ft}$ H) — vertical golden wheat plumes that glow in the afternoon sun and add movement without flopping onto the lawn.
+     * *Front-North of Gap ($wx = 2.85', wy - 1.15'$):* **1× 'Little Spire' Russian Sage** (*Perovskia atriplicifolia 'Little Spire'*, $2\text{ ft}$ W $\times 2.5\text{ ft}$ H) or **'Hidcote' English Lavender** — silvery foliage with smoky violet-purple spikes from June to October that love reflected West-wall heat.
+     * *Front-South of Gap ($wx = 2.85', wy + 1.15'$):* **1× Coneflower** (*Echinacea 'PowWow Wild Berry'* or *'Cheyenne Spirit'*, $1.5\text{–}2\text{ ft}$ W $\times 2\text{ ft}$ H) or **'Walker's Low' / 'Cat's Pajamas' Catmint** — vibrant magenta/coral/warm-gold blooms that contrast the blue-green junipers and purple sage.
+2. **Canopy / Ornamental Focal Trees ($12\text{ to }20\text{ ft}$ mature height):**
+   * *Backyard Corner / Accent:* Autumn Brilliance Serviceberry (*Amelanchier x grandiflora*) — multi-stem form, white spring blossoms, orange/red fall foliage.
    * *Front Yard Focal Point:* Emperor I Japanese Maple (*Acer palmatum 'Wolff'*) or Prairiefire Crabapple — deep burgundy/red foliage to contrast the grey siding and stone wainscot.
-2. **Vertical Privacy & Structure:**
-   * *Back Wall Existing:* Emerald Green Arborvitae (*Thuja occidentalis 'Smaragd'*).
-   * *Vertical Grasses (Inter-planted):* Karl Foerster Feather Reed Grass (*Calamagrostis x acutiflora*) — strictly upright, $4\text{ to }5\text{ ft}$ tall plumes, zero flopping into the lawn.
-3. **Mid-Layer Color & Pollinator Perennials ($2\text{ to }3.5\text{ ft}$):**
-   * Little Spire Russian Sage (*Perovskia atriplicifolia 'Little Spire'*) — compact upright smoky-purple spikes.
-   * Walker's Low Catmint (*Nepeta x faassenii*) or English Lavender (*Lavandula angustifolia*) — neat mounds for foundation beds and back wall base.
-4. **Vines & Vertical Softeners:**
-   * Jackmanii Clematis (*Clematis 'Jackmanii'*) — deep purple blooms trained on black metal fence trellises.
-5. **Utility Box Screening (Front Yard):**
-   * Blonde Ambition Blue Grama Grass or upright Yew (*Taxus x media 'Hicksii'*) arranged in a tight U-shape around the back and sides of the green transformer box.
+3. **Southern Fence Berry, Pea, Kiwi & Shade Bed ($2.0\text{ ft}$ Deep $+ 6\text{"}$ Paver $= 2.5\text{ ft}$ to Grass; $wy = 48.0\text{ ft}\text{–}50.0\text{ ft}$):**
+   * Trellised Heritage/Caroline Raspberries, Sugar Snap Peas, Hardy Kiwi (*Actinidia arguta* 'Issai'), and Alpine Strawberries groundcover in the sunny Backyard section ($wx = 4.0\text{ ft}\text{–}30.0\text{ ft}$), transitioning to Hostas, Ferns, and Astilbe in the shaded South Side Yard corridor ($wx = 30.0\text{ ft}\text{–}57.5\text{ ft}$).
+4. **Utility Box Screening (Front Yard):**
+   * Blonde Ambition Blue Grama Grass or Karl Foerster Feather Reed Grass arranged in a 3-sided U-shape inside the $2.0\text{ ft}$ buffer bed around the green transformer box.
 
 ---
 
