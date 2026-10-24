@@ -1,0 +1,2723 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>3152 — Precision CAD Architectural & Yard Blueprint</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+    body {
+      font-family: var(--font-sans);
+      overflow: hidden;
+      user-select: none;
+    }
+    .font-mono-cad {
+      font-family: var(--font-mono);
+    }
+    /* Custom Scrollbars */
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: rgba(15, 23, 42, 0.4);
+    }
+    ::-webkit-scrollbar-thumb {
+      background: rgba(100, 116, 139, 0.5);
+      border-radius: 3px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: rgba(148, 163, 184, 0.8);
+    }
+
+    /* Pulse animation for highlighted CAD elements */
+    @keyframes cadPulse {
+      0%, 100% {
+        filter: drop-shadow(0 0 5px #f59e0b);
+      }
+      50% {
+        filter: drop-shadow(0 0 14px #fbbf24);
+      }
+    }
+    .cad-highlight-pulse {
+      animation: cadPulse 1.4s infinite ease-in-out;
+    }
+
+    /* Print Styles */
+    @media print {
+      .no-print {
+        display: none !important;
+      }
+      body, html {
+        overflow: visible !important;
+        background: #ffffff !important;
+      }
+      #canvas-container {
+        width: 100vw !important;
+        height: 100vh !important;
+        position: fixed !important;
+        top: 0 !important;
+        left: 0 !important;
+      }
+    }
+  </style>
+</head>
+<body class="bg-slate-950 text-slate-100 h-screen w-screen flex flex-col overflow-hidden">
+
+  <!-- ==================== TOP COMMAND BAR ==================== -->
+  <header class="no-print h-14 bg-slate-900/95 border-b border-slate-800 px-3 lg:px-5 flex items-center justify-between gap-2 shrink-0 z-30">
+    <!-- Left: Title & Scale Badge -->
+    <div class="flex items-center gap-3 min-w-0">
+      <div class="w-9 h-9 rounded-lg bg-sky-500/15 border border-sky-400/40 flex items-center justify-center text-sky-400 font-mono-cad font-bold text-sm shrink-0 shadow-inner">
+        3152
+      </div>
+      <div class="min-w-0">
+        <div class="flex items-center gap-2">
+          <h1 class="font-bold text-sm sm:text-base tracking-tight text-white truncate">LOT 3152 — MASTER CAD BLUEPRINT</h1>
+          <span id="collision-status-badge" class="hidden md:inline-flex items-center px-2 py-0.5 rounded text-[11px] font-mono-cad font-semibold bg-emerald-500/15 text-emerald-300 border border-emerald-500/30">
+            0 OVERLAPS • SCALE 1:1
+          </span>
+        </div>
+        <p class="text-[11px] text-slate-400 truncate hidden sm:block">
+          50.0' × 96.7' Lot (to Walk) • 32.0' × 43.2' Foundation • Anti-Collision CAD Engine
+        </p>
+      </div>
+    </div>
+
+    <!-- Center: Orientation Switcher -->
+    <div class="flex items-center bg-slate-950 p-1 rounded-lg border border-slate-800">
+      <span class="text-[11px] font-mono-cad uppercase tracking-wider text-slate-400 px-2 hidden xl:inline">View:</span>
+      <button id="orient-west" onclick="setOrientation('WEST_UP')" class="orient-btn px-2.5 py-1 rounded-md text-xs font-medium transition-all bg-sky-600 text-white shadow" title="Looking at Front of House from Street: West (Backyard) at Top, East (Street) at Bottom, South on Left, North on Right">
+        West Up <span class="hidden sm:inline text-[10px] opacity-80">(Front View)</span>
+      </button>
+      <button id="orient-north" onclick="setOrientation('NORTH_UP')" class="orient-btn px-2.5 py-1 rounded-md text-xs font-medium transition-all text-slate-400 hover:text-white" title="Standard Compass CAD View: North at Top, South at Bottom, West on Left, East on Right">
+        North Up <span class="hidden sm:inline text-[10px] opacity-80">(Compass)</span>
+      </button>
+      <button id="orient-east" onclick="setOrientation('EAST_UP')" class="orient-btn px-2.5 py-1 rounded-md text-xs font-medium transition-all text-slate-400 hover:text-white" title="Looking out Front Door: East (Street) at Top, West (Backyard) at Bottom, North on Left, South on Right">
+        East Up <span class="hidden sm:inline text-[10px] opacity-80">(Door View)</span>
+      </button>
+    </div>
+
+    <!-- Right: Tools, Theme & Export -->
+    <div class="flex items-center gap-1.5 sm:gap-2">
+      <!-- Tape Measure Tool Button -->
+      <button id="measure-btn" onclick="toggleMeasureTool()" class="px-2.5 py-1.5 rounded-lg text-xs font-semibold border border-slate-700 bg-slate-800/90 hover:bg-slate-700 text-slate-200 flex items-center gap-1.5 transition-all" title="Click any two points on the blueprint to measure exact distance & delta">
+        <svg class="w-4 h-4 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3"/>
+        </svg>
+        <span class="hidden sm:inline">Tape Measure</span>
+      </button>
+
+      <!-- Theme Selector -->
+      <select id="theme-select" onchange="setTheme(this.value)" class="bg-slate-800 border border-slate-700 text-slate-200 text-xs rounded-lg px-2.5 py-1.5 font-medium focus:outline-none focus:border-sky-500">
+        <option value="blueprint">Blueprint Cyan</option>
+        <option value="cad-dark">Dark CAD Studio</option>
+        <option value="arch-light">Print White (Arch)</option>
+      </select>
+
+      <!-- Export SVG / PNG -->
+      <button onclick="exportSVG()" class="px-2.5 py-1.5 rounded-lg text-xs font-medium bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 hidden md:flex items-center gap-1" title="Download True-to-Scale Vector SVG">
+        <span>.SVG</span>
+      </button>
+      <button onclick="exportPNG()" class="px-2.5 py-1.5 rounded-lg text-xs font-medium bg-sky-600 hover:bg-sky-500 text-white shadow flex items-center gap-1" title="Download High-Res Blueprint Image">
+        <span>Export PNG</span>
+      </button>
+
+      <!-- Toggle Table Sidebar Button -->
+      <button onclick="toggleSidebar()" class="px-2.5 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-200 text-xs font-medium flex items-center gap-1" title="Toggle Master Measurement Schedule">
+        <svg class="w-4 h-4 text-sky-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+        </svg>
+        <span class="hidden xl:inline">Schedule</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- ==================== MAIN WORKSPACE ==================== -->
+  <div class="flex-1 flex overflow-hidden relative">
+
+    <!-- LEFT / CENTER: INTERACTIVE SVG CAD CANVAS -->
+    <main id="canvas-container" class="flex-1 relative overflow-hidden flex flex-col bg-[#07192f]">
+
+      <!-- Floating Top-Left Layer, Label Mode, Font Scale & Fence Controls -->
+      <div class="no-print absolute top-3 left-3 z-20 flex flex-wrap items-center gap-2 max-w-[calc(100%-24px)] bg-slate-900/95 backdrop-blur-md p-2 rounded-xl border border-slate-700/80 shadow-xl">
+
+        <!-- Preset Label Mode Selector -->
+        <div class="flex items-center gap-1.5 pr-2 border-r border-slate-700">
+          <span class="text-[10px] font-mono-cad uppercase tracking-wider text-slate-400">Mode:</span>
+          <select id="label-mode-select" onchange="setLabelMode(this.value)" class="bg-slate-950 border border-slate-700 text-sky-300 text-[11px] rounded-md px-2 py-1 font-mono-cad font-semibold focus:outline-none focus:border-sky-500">
+            <option value="SMART_ALL">Smart CAD (All — Zero Overlap)</option>
+            <option value="CLEAN_OVERVIEW">Clean Overview (Tracks + Sq.Ft.)</option>
+            <option value="DIMS_ONLY">Dimensions Only (Tracks 1–3)</option>
+            <option value="ZONES_ONLY">Zones & Sq.Ft. Areas Only</option>
+            <option value="UTILITIES_FENCE">Utilities & Fencing Focus</option>
+          </select>
+        </div>
+
+        <!-- Individual Layer Toggles -->
+        <div class="flex flex-wrap items-center gap-1">
+          <button onclick="toggleLayer('primaryDims')" id="layer-primaryDims" class="layer-pill px-2 py-1 rounded-md text-[11px] font-medium bg-sky-500/20 text-sky-300 border border-sky-500/40" title="Toggle Outer & Middle Exterior Dimension Tracks">
+            Major Tracks
+          </button>
+          <button onclick="toggleLayer('secondaryDims')" id="layer-secondaryDims" class="layer-pill px-2 py-1 rounded-md text-[11px] font-medium bg-sky-500/20 text-sky-300 border border-sky-500/40" title="Toggle Inner Segment Track & Internal Offsets">
+            Sub-Segments
+          </button>
+          <button onclick="toggleLayer('zones')" id="layer-zones" class="layer-pill px-2 py-1 rounded-md text-[11px] font-medium bg-emerald-500/20 text-emerald-300 border border-emerald-500/40" title="Toggle Yard Area Sq.Ft. Cards">
+            Sq.Ft. Zones
+          </button>
+          <button onclick="toggleLayer('utilities')" id="layer-utilities" class="layer-pill px-2 py-1 rounded-md text-[11px] font-medium bg-amber-500/20 text-amber-300 border border-amber-500/40" title="Toggle Utilities, Spigot, AC, Meters & Survey Stakes">
+            Utilities & Stakes
+          </button>
+          <button onclick="toggleLayer('fence')" id="layer-fence" class="layer-pill px-2 py-1 rounded-md text-[11px] font-medium bg-purple-500/20 text-purple-300 border border-purple-500/40" title="Toggle Side Yard Fence & Gate Plan">
+            Fence Plan
+          </button>
+          <button onclick="toggleLayer('garden')" id="layer-garden" class="layer-pill px-2 py-1 rounded-md text-[11px] font-medium bg-lime-500/20 text-lime-300 border border-lime-500/40" title="Toggle 6'×3' Raised Garden Bed Layouts">
+            Garden Boxes (7)
+          </button>
+          <button onclick="toggleLayer('grid')" id="layer-grid" class="layer-pill px-2 py-1 rounded-md text-[11px] font-medium bg-slate-700/60 text-slate-300 border border-slate-600" title="Toggle 1-Ft / 5-Ft Engineering Grid">
+            1'/5' Grid
+          </button>
+        </div>
+
+        <!-- Text Size Slider -->
+        <div class="hidden sm:flex items-center gap-1.5 pl-2 border-l border-slate-700">
+          <span class="text-[10px] font-mono-cad uppercase text-slate-400">Text:</span>
+          <input id="text-scale-slider" type="range" min="0.80" max="1.25" step="0.05" value="1.00" oninput="setTextScale(this.value)" class="w-16 accent-sky-400 cursor-pointer" title="Adjust Blueprint Text Size (AABB Anti-Collision updates automatically)" />
+          <span id="text-scale-readout" class="text-[10px] font-mono-cad text-slate-300 w-8">100%</span>
+        </div>
+
+        <!-- Sub-selector for South Fence Alignment when Fence Layer is active -->
+        <div id="fence-options-bar" class="flex items-center gap-1 pl-2 border-l border-slate-700 text-[11px]">
+          <span class="text-purple-300 font-mono-cad text-[10px]">Setback:</span>
+          <button onclick="setSouthFenceMode('STUCCO_SETBACK')" id="fence-mode-60" class="px-1.5 py-0.5 rounded bg-purple-600 text-white font-mono-cad text-[10px]" title="Set both gates back onto flat stucco: North Vehicle Gate at 70.0' (3.2' behind garage face / 1.2' behind stone wrap) & South Human Gate at 57.5' (2.2' behind SE corner / 8.2' behind porch)">
+            Stucco Setback (70' N / 57.5' S)
+          </button>
+          <button onclick="setSouthFenceMode('SE_CORNER')" id="fence-mode-66" class="px-1.5 py-0.5 rounded bg-slate-800 text-slate-400 hover:text-white font-mono-cad text-[10px]" title="North Vehicle Gate at 70.0' (behind stone wrap) & South Human Gate flush with SE Stucco Corner (59.7')">
+            SE Corner (70' N / 59.7' S)
+          </button>
+        </div>
+
+        <!-- Sub-selector for Garden Bed Layout when Garden Layer is active -->
+        <div id="garden-options-bar" class="flex items-center gap-1 pl-2 border-l border-slate-700 text-[11px]">
+          <span class="text-lime-300 font-mono-cad text-[10px]">Garden (7× 6'×3'):</span>
+          <button onclick="setGardenMode('PROPOSED_UTAH')" id="garden-mode-utah" class="px-1.5 py-0.5 rounded bg-lime-600 text-white font-mono-cad text-[10px]" title="Your Proposed 7-Box Layout: 2 N-S boxes North of Patio + 5 N-S boxes along North Fence (Leaves 4.5' Window Well clearance & 5.5' at NW corner)">
+            Your "Utah" (2 Patio + 5 N. Fence)
+          </button>
+          <button onclick="setGardenMode('COURTYARD_PRO')" id="garden-mode-courtyard" class="px-1.5 py-0.5 rounded bg-slate-800 text-slate-400 hover:text-white font-mono-cad text-[10px]" title="Gate-Clear Courtyard: Moves the 5th North box to the sunny West Wall (2 Patio + 4 N. Fence + 1 W. Wall) to open a 10.2' Vehicle Gate drive-through!">
+            ★ Gate-Clear Utah (2 + 4 + 1)
+          </button>
+          <button onclick="setGardenMode('PERIMETER_L')" id="garden-mode-perimeter" class="px-1.5 py-0.5 rounded bg-slate-800 text-slate-400 hover:text-white font-mono-cad text-[10px]" title="Full-Sun NW Wall L: 4 N-S boxes along North Fence + 3 along West Wall (100% out of 2-story house shadow & leaves Patio-North open)">
+            Sunny NW Wall L (4 N + 3 W)
+          </button>
+        </div>
+      </div>
+
+      <!-- Floating Tape Measure HUD (Hidden unless Measure Tool is active) -->
+      <div id="measure-hud" class="no-print hidden absolute top-20 left-3 z-20 bg-slate-900/95 backdrop-blur-md border border-amber-500/50 rounded-xl p-3 shadow-2xl w-72 text-xs">
+        <div class="flex items-center justify-between border-b border-slate-800 pb-2 mb-2">
+          <div class="flex items-center gap-1.5">
+            <span class="w-2.5 h-2.5 rounded-full bg-amber-400 animate-ping"></span>
+            <span class="font-bold text-amber-300 uppercase tracking-wider font-mono-cad">Point-to-Point Tape</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <label class="flex items-center gap-1 text-[11px] text-slate-300 cursor-pointer">
+              <input type="checkbox" id="snap-toggle" checked class="accent-amber-400 rounded" />
+              Snap 0.25'
+            </label>
+            <button onclick="clearMeasurePoints()" class="text-[11px] text-slate-400 hover:text-white underline">Reset</button>
+          </div>
+        </div>
+        <p class="text-[11px] text-slate-400 mb-2">Click any two points on the blueprint to measure exact distance and rectangular area.</p>
+        <div class="grid grid-cols-2 gap-2 bg-slate-950/90 p-2.5 rounded-lg border border-slate-800 font-mono-cad">
+          <div>
+            <div class="text-[10px] text-slate-400">DIRECT DISTANCE</div>
+            <div id="meas-dist" class="text-sm font-bold text-amber-400">—</div>
+            <div id="meas-arch" class="text-[10px] text-slate-400">—</div>
+          </div>
+          <div>
+            <div class="text-[10px] text-slate-400">BOUNDING AREA</div>
+            <div id="meas-area" class="text-sm font-bold text-emerald-400">—</div>
+            <div id="meas-coords" class="text-[10px] text-slate-400">ΔE/W & ΔN/S</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Floating Bottom-Left Live Cursor Coordinates & Scale Bar -->
+      <div class="no-print absolute bottom-3 left-3 z-20 flex items-center gap-2 bg-slate-900/90 backdrop-blur-md px-3 py-1.5 rounded-xl border border-slate-700/80 text-xs font-mono-cad shadow-lg">
+        <div class="flex items-center gap-2 pr-2 border-r border-slate-700">
+          <span class="text-slate-400 text-[10px]">CURSOR:</span>
+          <span id="cursor-readout" class="text-sky-300 font-semibold">E/W: 0.0' | N/S: 0.0'</span>
+        </div>
+        <div class="hidden sm:flex items-center gap-2">
+          <span class="text-slate-400 text-[10px]">ZOOM:</span>
+          <span id="zoom-readout" class="text-emerald-300">100%</span>
+        </div>
+      </div>
+
+      <!-- Floating Bottom-Right Zoom & Fit Controls -->
+      <div class="no-print absolute bottom-3 right-3 z-20 flex items-center gap-1 bg-slate-900/90 backdrop-blur-md p-1.5 rounded-xl border border-slate-700/80 shadow-lg">
+        <button onclick="zoomBy(1.25)" class="w-8 h-8 rounded-lg bg-slate-800 hover:bg-slate-700 text-white font-bold flex items-center justify-center" title="Zoom In">+</button>
+        <button onclick="zoomBy(0.8)" class="w-8 h-8 rounded-lg bg-slate-800 hover:bg-slate-700 text-white font-bold flex items-center justify-center" title="Zoom Out">−</button>
+        <button onclick="resetViewport()" class="px-2.5 h-8 rounded-lg bg-slate-800 hover:bg-slate-700 text-xs font-medium text-slate-200" title="Reset & Fit to Screen">Fit View</button>
+      </div>
+
+      <!-- SVG Viewport Wrapper -->
+      <div id="svg-viewport" class="w-full h-full cursor-grab active:cursor-grabbing flex items-center justify-center">
+        <svg id="blueprint-svg" xmlns="http://www.w3.org/2000/svg" class="w-full h-full select-none" viewBox="0 0 1400 1800"></svg>
+      </div>
+    </main>
+
+    <!-- RIGHT SIDEBAR: MASTER RECONCILED MEASUREMENT TABLE & INSPECTOR -->
+    <aside id="sidebar-drawer" class="no-print w-full sm:w-96 lg:w-[410px] bg-slate-900 border-l border-slate-800 flex flex-col shrink-0 z-30 absolute lg:static inset-y-0 right-0 transform translate-x-full lg:translate-x-0 transition-transform duration-200 shadow-2xl lg:shadow-none">
+
+      <!-- Sidebar Header -->
+      <div class="p-3.5 border-b border-slate-800 flex items-center justify-between bg-slate-900/95">
+        <div>
+          <h2 class="text-sm font-bold text-white flex items-center gap-2">
+            <span>Master Reconciled Schedule</span>
+            <span id="table-count-badge" class="px-1.5 py-0.5 text-[10px] font-mono-cad rounded bg-sky-500/20 text-sky-300 border border-sky-500/30">38</span>
+          </h2>
+          <p class="text-[11px] text-slate-400">Hover or click any row to highlight & bring callout to front</p>
+        </div>
+        <button onclick="toggleSidebar()" class="p-1.5 rounded-lg bg-slate-800 text-slate-400 hover:text-white" title="Close Schedule Drawer">
+          ✕
+        </button>
+      </div>
+
+      <!-- Selected Item Inspector Card -->
+      <div id="inspector-card" class="p-3 bg-slate-950/90 border-b border-slate-800">
+        <div class="flex items-center justify-between mb-1">
+          <span id="insp-zone" class="text-[10px] font-mono-cad uppercase tracking-wider px-2 py-0.5 rounded bg-sky-500/20 text-sky-300 border border-sky-500/30">
+            Reconciled Blueprint Spec
+          </span>
+          <span id="insp-rough" class="text-[11px] font-mono-cad text-slate-400">Rough: ~50 ft</span>
+        </div>
+        <div class="flex items-baseline justify-between gap-2 my-1">
+          <h3 id="insp-title" class="text-sm font-bold text-white">Total Lot Width (North–South)</h3>
+          <span id="insp-exact" class="text-base font-mono-cad font-bold text-emerald-400 shrink-0">50.0 ft</span>
+        </div>
+        <p id="insp-notes" class="text-xs text-slate-300 leading-relaxed">
+          Matches 5 precast wall panels across the West back wall (10.0 ft center-to-center per post bay) and 9.0' N + 32.0' House + 9.0' S.
+        </p>
+      </div>
+
+      <!-- Search & Category Filter -->
+      <div class="p-2.5 border-b border-slate-800 bg-slate-900 space-y-2">
+        <div class="relative">
+          <input id="search-input" type="text" oninput="filterTable()" placeholder="Search dimension, patio, garage, AC, fence..." class="w-full bg-slate-950 border border-slate-800 rounded-lg pl-8 pr-3 py-1.5 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-sky-500" />
+          <svg class="w-3.5 h-3.5 text-slate-500 absolute left-2.5 top-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+          </svg>
+        </div>
+        <div class="flex items-center gap-1 overflow-x-auto pb-1 text-[11px]">
+          <button onclick="setZoneFilter('ALL')" data-zone="ALL" class="zone-tab px-2 py-1 rounded bg-sky-600 text-white font-medium shrink-0">All</button>
+          <button onclick="setZoneFilter('Footprint')" data-zone="Footprint" class="zone-tab px-2 py-1 rounded bg-slate-800 text-slate-300 hover:text-white shrink-0">Lot & House</button>
+          <button onclick="setZoneFilter('Backyard')" data-zone="Backyard" class="zone-tab px-2 py-1 rounded bg-slate-800 text-slate-300 hover:text-white shrink-0">Backyard & Patio</button>
+          <button onclick="setZoneFilter('Front')" data-zone="Front" class="zone-tab px-2 py-1 rounded bg-slate-800 text-slate-300 hover:text-white shrink-0">Front & Porch</button>
+          <button onclick="setZoneFilter('North Side')" data-zone="North Side" class="zone-tab px-2 py-1 rounded bg-slate-800 text-slate-300 hover:text-white shrink-0">North Side</button>
+          <button onclick="setZoneFilter('South Side')" data-zone="South Side" class="zone-tab px-2 py-1 rounded bg-slate-800 text-slate-300 hover:text-white shrink-0">South Side</button>
+          <button onclick="setZoneFilter('Driveway')" data-zone="Driveway" class="zone-tab px-2 py-1 rounded bg-slate-800 text-slate-300 hover:text-white shrink-0">Driveway</button>
+          <button onclick="setZoneFilter('Area & Fence')" data-zone="Area & Fence" class="zone-tab px-2 py-1 rounded bg-slate-800 text-slate-300 hover:text-white shrink-0">Sq.Ft. & Fence</button>
+        </div>
+      </div>
+
+      <!-- Scrollable Measurement Table -->
+      <div id="measurement-list" class="flex-1 overflow-y-auto divide-y divide-slate-800/70"></div>
+
+      <!-- Sidebar Footer Summary -->
+      <div class="p-3 bg-slate-950 border-t border-slate-800 text-[11px] font-mono-cad flex items-center justify-between text-slate-400">
+        <span>UNPAVED YARD TOTAL: <strong class="text-emerald-400">~2,710 sq.ft.</strong></span>
+        <span>PATIO: <strong class="text-sky-400">262.5 sq.ft.</strong></span>
+      </div>
+    </aside>
+  </div>
+
+  <!-- ==================== APPLICATION LOGIC ==================== -->
+  <script>
+    /*************************************************************************
+     * 1. CANONICAL ARCHITECTURAL SPECIFICATION (100% LOCKED TO 1.0 FT UNITS)
+     * -----------------------------------------------------------------------
+     * Canonical World Coordinates (wx, wy) in FEET:
+     *   wx = East-West Axis:
+     *     -1.0 to  0.0 : West Rear Precast Concrete Wall (1.0' thick)
+     *      0.0         : Inside (East) face of West Rear Wall
+     *      0.0 to 30.0 : Backyard Depth (30.0')
+     *     17.5 to 30.0 : Concrete Patio Depth (12.5', control joint at 23.75')
+     *     30.0         : Rear (West) House Structural Wall
+     *     30.0 to 59.7 : Main House Structural Depth along South Wall (29.7' structural / ~30.0' nominal)
+     *     30.0 to 73.2 : Continuous North House/Garage Wall (43.2')
+     *     59.7         : Front Door Wall Plane
+     *     59.7 to 65.7 : Covered Front Porch Depth (6.0')
+     *     59.7 to 73.2 : Garage Projection East of Front Door Wall (13.5')
+     *     73.2 to 73.5 : Front Stone Masonry Veneer on Garage Face (0.3' / 3.5")
+     *     73.2 to 96.7 : Concrete Driveway Length to City Sidewalk (23.5')
+     *     96.7 to 100.7: City Sidewalk (4.0' wide)
+     *    100.7 to 106.7: Landscaping Park Strip (6.0' deep)
+     *    106.7 to 108.7: Concrete Curb & Gutter (2.0' wide)
+     *    108.7 to 115.0: Residential Street (East)
+     *
+     *   wy = North-South Axis:
+     *      0.0         : North Property Line
+     *      0.0 to  9.0 : North Side Yard Setback (9.0')
+     *      9.0 to 41.0 : Main House Structural Foundation Width (32.0')
+     *      9.0 to 29.0 : Garage Structural Width (20.0'; stone flares 0.25' N/S to 20.5' exterior)
+     *     11.0 to 27.0 : 2-Car Garage Door (16.0' wide)
+     *     29.0 to 41.0 : Front Porch / Entry Width (12.0' structural; 12.5' with SE stone column base)
+     *     20.0 to 41.0 : Backyard Concrete Patio Width (21.0' wide, joint at 30.5', flush w/ SW corner at 41.0')
+     *      9.0 to 20.0 : Bare Rear House Wall North of Patio (11.0' wide)
+     *     41.0 to 50.0 : South Side Yard Setback (9.0')
+     *     50.0         : South Property Line
+     *************************************************************************/
+
+    const SCALE = 12; // 1.0 foot = 12 SVG vector units (1 SVG unit = 1 inch!)
+
+    // Generous exterior CAD margins (in feet) so concentric Track 1, Track 2, Track 3
+    // dimension lines and leader-line callouts sit cleanly outside the lot boundary.
+    const PAD_WEST_FT  = 29; // wx down to -29'
+    const PAD_EAST_FT  = 27; // wx up to 115 + 27 = 142'
+    const PAD_NORTH_FT = 28; // wy down to -28'
+    const PAD_SOUTH_FT = 28; // wy up to 50 + 28 = 78'
+    const WORLD_MIN_WX = -PAD_WEST_FT;
+    const WORLD_MAX_WX = 115 + PAD_EAST_FT;
+    const WORLD_SPAN_WX = WORLD_MAX_WX - WORLD_MIN_WX; // 171 ft total E-W canvas span
+    const WORLD_MIN_WY = -PAD_NORTH_FT;
+    const WORLD_MAX_WY = 50 + PAD_SOUTH_FT;
+    const WORLD_SPAN_WY = WORLD_MAX_WY - WORLD_MIN_WY; // 106 ft total N-S canvas span
+
+    const STATE = {
+      orientation: 'WEST_UP', // 'WEST_UP' (Default), 'NORTH_UP', 'EAST_UP'
+      theme: 'blueprint',     // 'blueprint', 'cad-dark', 'arch-light'
+      labelMode: 'SMART_ALL',
+      textScale: 1.0,
+      southFenceMode: 'STUCCO_SETBACK', // 'STUCCO_SETBACK' (70.0' N / 57.5' S) or 'SE_CORNER' (70.0' N / 59.7' S)
+      gardenMode: 'PROPOSED_UTAH',      // 'PROPOSED_UTAH' (2+5), 'COURTYARD_PRO' (2+4+1), or 'PERIMETER_L' (4+3)
+      layers: {
+        primaryDims: true,
+        secondaryDims: true,
+        zones: true,
+        utilities: true,
+        grid: true,
+        fence: true,
+        garden: true
+      },
+      highlightedId: null,
+      zoneFilter: 'ALL',
+      measureActive: false,
+      measurePts: [],
+      measureHoverPt: null,
+      // Pan & Zoom state
+      zoom: 1.0,
+      panX: 0,
+      panY: 0,
+      isPanning: false,
+      startPanX: 0,
+      startPanY: 0,
+      sidebarOpen: true
+    };
+
+    // Theme Color Palettes
+    const THEMES = {
+      'blueprint': {
+        canvasBg: '#061527',
+        lotBg: '#0b2545',
+        dirtFill: '#0d2b4e',
+        gridMinor: 'rgba(56, 189, 248, 0.07)',
+        gridMajor: 'rgba(56, 189, 248, 0.17)',
+        propLine: '#f43f5e',
+        wallConcrete: '#1e3a5f',
+        wallStroke: '#7dd3fc',
+        houseFill: '#0f294a',
+        houseStroke: '#ffffff',
+        garageFill: '#0c213b',
+        porchFill: '#163761',
+        concreteFill: '#1b3b66',
+        concreteStroke: '#93c5fd',
+        jointStroke: 'rgba(147, 197, 253, 0.45)',
+        stoneFill: '#f59e0b',
+        dimPrimary: '#38bdf8',
+        dimSecondary: '#67e8f9',
+        witnessLine: 'rgba(125, 211, 252, 0.35)',
+        dimTextBg: '#07192f',
+        dimText: '#f0f9ff',
+        zoneBadgeBg: '#06392f',
+        zoneBadgeBorder: '#34d399',
+        zoneBadgeText: '#a7f3d0',
+        utilBadgeBg: '#1e1b4b',
+        utilBadgeBorder: '#fbbf24',
+        utilBadgeText: '#fef3c7',
+        fenceStroke: '#c084fc',
+        textMain: '#ffffff',
+        textSub: '#93c5fd',
+        streetFill: '#040f1e'
+      },
+      'cad-dark': {
+        canvasBg: '#090d16',
+        lotBg: '#111827',
+        dirtFill: '#151e2e',
+        gridMinor: 'rgba(148, 163, 184, 0.06)',
+        gridMajor: 'rgba(148, 163, 184, 0.15)',
+        propLine: '#fb7185',
+        wallConcrete: '#334155',
+        wallStroke: '#94a3b8',
+        houseFill: '#1e293b',
+        houseStroke: '#f8fafc',
+        garageFill: '#172030',
+        porchFill: '#243247',
+        concreteFill: '#283548',
+        concreteStroke: '#cbd5e1',
+        jointStroke: 'rgba(203, 213, 225, 0.4)',
+        stoneFill: '#f59e0b',
+        dimPrimary: '#38bdf8',
+        dimSecondary: '#94a3b8',
+        witnessLine: 'rgba(148, 163, 184, 0.32)',
+        dimTextBg: '#0f172a',
+        dimText: '#f8fafc',
+        zoneBadgeBg: '#0f2922',
+        zoneBadgeBorder: '#10b981',
+        zoneBadgeText: '#6ee7b7',
+        utilBadgeBg: '#1c1917',
+        utilBadgeBorder: '#f59e0b',
+        utilBadgeText: '#fde68a',
+        fenceStroke: '#a855f7',
+        textMain: '#f8fafc',
+        textSub: '#94a3b8',
+        streetFill: '#06090f'
+      },
+      'arch-light': {
+        canvasBg: '#e2e8f0',
+        lotBg: '#ffffff',
+        dirtFill: '#f8fafc',
+        gridMinor: 'rgba(15, 23, 42, 0.05)',
+        gridMajor: 'rgba(15, 23, 42, 0.13)',
+        propLine: '#e11d48',
+        wallConcrete: '#cbd5e1',
+        wallStroke: '#334155',
+        houseFill: '#e2e8f0',
+        houseStroke: '#0f172a',
+        garageFill: '#dbe4f0',
+        porchFill: '#f1f5f9',
+        concreteFill: '#f1f5f9',
+        concreteStroke: '#475569',
+        jointStroke: 'rgba(71, 85, 105, 0.45)',
+        stoneFill: '#d97706',
+        dimPrimary: '#0284c7',
+        dimSecondary: '#475569',
+        witnessLine: 'rgba(71, 85, 105, 0.35)',
+        dimTextBg: '#ffffff',
+        dimText: '#0f172a',
+        zoneBadgeBg: '#ecfdf5',
+        zoneBadgeBorder: '#059669',
+        zoneBadgeText: '#065f46',
+        utilBadgeBg: '#fffbeb',
+        utilBadgeBorder: '#d97706',
+        utilBadgeText: '#92400e',
+        fenceStroke: '#7e22ce',
+        textMain: '#0f172a',
+        textSub: '#334155',
+        streetFill: '#cbd5e1'
+      }
+    };
+
+    /*************************************************************************
+     * 2. MASTER RECONCILED MEASUREMENT DATASET (36 ITEMS)
+     * -----------------------------------------------------------------------
+     * All dimension strings are organized into Concentric Exterior Tracks
+     * (Track 1 = Inner Sub-segments, Track 2 = Major Structural Zones,
+     * Track 3 = Overall Lot Totals) or clean non-overlapping interior spans
+     * with automatic Screen-Space AABB Collision Resolution.
+     *************************************************************************/
+    const MEASUREMENTS = [
+      // ================= ZONE 1: FOOTPRINT & LOT (EXTERIOR TRACKS 2 & 3) =================
+      {
+        id: 'lot-width',
+        zone: 'Footprint',
+        name: 'Total Lot Width (North–South)',
+        rough: '~50 ft',
+        exact: '50.0 ft',
+        notes: 'Matches 5 precast wall panels across West back wall (10.0 ft center-to-center) and 9.0\' N + 32.0\' House + 9.0\' S.',
+        dim: {
+          x1: -20.5, y1: 0.0, x2: -20.5, y2: 50.0,
+          wx1: 0.0, wy1: 0.0, wx2: 0.0, wy2: 50.0,
+          label: "50.0' TOTAL LOT WIDTH",
+          primary: true
+        }
+      },
+      {
+        id: 'house-width',
+        zone: 'Footprint',
+        name: 'Main House Foundation Width (N–S)',
+        rough: '~32 ft',
+        exact: '32.0 ft',
+        notes: 'Exact structural foundation width between North (Y=9.0\') and South (Y=41.0\') side yards.',
+        dim: {
+          x1: -13.5, y1: 9.0, x2: -13.5, y2: 41.0,
+          wx1: 30.0, wy1: 9.0, wx2: 30.0, wy2: 41.0,
+          label: "32.0' HOUSE FDN WIDTH",
+          primary: true
+        }
+      },
+      {
+        id: 'north-wall-depth',
+        zone: 'Footprint',
+        name: 'Max House Depth — North Wall (E–W)',
+        rough: '43.2 ft',
+        exact: '43.2 ft',
+        notes: 'Continuous stucco wall from NW back corner (X=30.0\') to NE garage corner (X=73.2\').',
+        dim: {
+          x1: 30.0, y1: -13.0, x2: 73.2, y2: -13.0,
+          wx1: 30.0, wy1: 9.0, wx2: 73.2, wy2: 9.0,
+          label: "43.2' MAX HOUSE DEPTH (N. WALL)",
+          primary: true
+        }
+      },
+      {
+        id: 'south-wall-depth',
+        zone: 'Footprint',
+        name: 'Main House Depth — South Wall to Door',
+        rough: '~30 ft',
+        exact: '29.7 ft (30.0\' nom.)',
+        notes: 'From SW back corner (X=30.0\') to SE stucco corner / Front Door plane (X=59.7\'). Plus 13.5\' garage = 43.2\'.',
+        dim: {
+          x1: 30.0, y1: 56.5, x2: 59.7, y2: 56.5,
+          wx1: 30.0, wy1: 41.0, wx2: 59.7, wy2: 41.0,
+          label: "29.7' (30' NOM) S. STUCCO WALL",
+          primary: true
+        }
+      },
+      {
+        id: 'lot-depth-walk',
+        zone: 'Footprint',
+        name: 'Total Lot Depth (Rear Wall to Sidewalk)',
+        rough: 'Derived',
+        exact: '96.7 ft (108.7\' to Curb)',
+        notes: '30.0\' Backyard + 43.2\' North House/Garage Wall + 23.5\' Driveway = 96.7\' to Sidewalk (+12.0\' Walk/Strip/Curb = 108.7\').',
+        dim: {
+          x1: 0.0, y1: -19.5, x2: 96.7, y2: -19.5,
+          wx1: 0.0, wy1: 0.0, wx2: 96.7, wy2: 0.0,
+          label: "96.7' LOT DEPTH TO SIDEWALK",
+          primary: true
+        }
+      },
+
+      // ================= ZONE 2: FRONT FACADE & PORCH (EAST) =================
+      {
+        id: 'garage-width',
+        zone: 'Front',
+        name: 'Garage Front Exterior Width (N–S)',
+        rough: '20.5 ft',
+        exact: '20.5 ft (20.0\' fdn)',
+        notes: '20.0\' foundation (Y=9.0\' to 29.0\') + 0.25\' (3") stone masonry flare on North and South corners = 20.5\'.',
+        dim: {
+          x1: 77.5, y1: 8.75, x2: 77.5, y2: 29.25,
+          wx1: 73.5, wy1: 8.75, wx2: 73.5, wy2: 29.25,
+          label: "20.5' GARAGE EXT (20' FDN)",
+          primary: true
+        }
+      },
+      {
+        id: 'garage-door-width',
+        zone: 'Front',
+        name: '2-Car Garage Door Width & Wing Walls',
+        rough: 'Derived',
+        exact: '16.0 ft door (+2.25\' wings)',
+        notes: 'Standard 16.0\' wide overhead garage door centered between two 2.25\' wide stone-clad wing walls.',
+        dim: {
+          x1: 69.0, y1: 11.0, x2: 69.0, y2: 27.0,
+          label: "16.0' GARAGE DOOR",
+          primary: false
+        }
+      },
+      {
+        id: 'garage-projection',
+        zone: 'Front',
+        name: 'Garage Forward Projection from Door',
+        rough: '13.5 ft',
+        exact: '13.5 ft (13.8\' w/ stone)',
+        notes: 'Distance from Front Door wall plane (X=59.7\') Eastward to the front of the garage (X=73.2\' + 0.3\' stone).',
+        dim: {
+          x1: 59.7, y1: 63.0, x2: 73.2, y2: 63.0,
+          wx1: 59.7, wy1: 29.0, wx2: 73.2, wy2: 29.0,
+          label: "13.5' GARAGE PROJECTION",
+          primary: true
+        }
+      },
+      {
+        id: 'porch-width',
+        zone: 'Front',
+        name: 'Front Porch Width (North–South)',
+        rough: '12.5 ft',
+        exact: '12.0 ft fdn (12.5\' w/ stone)',
+        notes: '12.0\' structural span (Y=29.0\' to 41.0\'); stone base on 3152 pillar flares 0.25\' South for 12.5\' exterior span.',
+        dim: {
+          x1: 55.5, y1: 29.0, x2: 55.5, y2: 41.25,
+          wx1: 59.7, wy1: 29.0, wx2: 59.7, wy2: 41.25,
+          label: "12.5' PORCH W (12' FDN)",
+          primary: true
+        }
+      },
+      {
+        id: 'porch-depth',
+        zone: 'Front',
+        name: 'Covered Front Porch Depth (E–W)',
+        rough: 'Derived',
+        exact: '6.0 ft',
+        notes: 'From Front Door wall (X=59.7\') Eastward to the front edge of the 3152 porch pillar (X=65.7\').',
+        dim: {
+          x1: 59.7, y1: 56.5, x2: 65.7, y2: 56.5,
+          wx1: 59.7, wy1: 41.0, wx2: 65.7, wy2: 41.0,
+          label: "6.0' PORCH",
+          primary: false
+        }
+      },
+      {
+        id: 'porch-to-garage-offset',
+        zone: 'Front',
+        name: 'Porch Pillar to Garage Front Offset',
+        rough: 'Derived',
+        exact: '7.5 ft',
+        notes: 'Distance the garage extends East past the front face of the 3152 porch pillar (13.5\' - 6.0\' = 7.5\').',
+        dim: {
+          x1: 65.7, y1: 56.5, x2: 73.2, y2: 56.5,
+          wx1: 65.7, wy1: 41.0, wx2: 73.2, wy2: 29.0,
+          label: "7.5' OFFSET",
+          primary: false
+        }
+      },
+
+      // ================= ZONE 3: BACKYARD & PATIO (WEST) =================
+      {
+        id: 'backyard-depth',
+        zone: 'Backyard',
+        name: 'Backyard Total Depth (House to Wall)',
+        rough: '~30 ft',
+        exact: '30.0 ft',
+        notes: 'From rear (West) house wall (X=30.0\') to inside face of precast concrete perimeter wall (X=0.0\').',
+        dim: {
+          x1: 0.0, y1: -13.0, x2: 30.0, y2: -13.0,
+          wx1: 0.0, wy1: 0.0, wx2: 30.0, wy2: 0.0,
+          label: "30.0' BACKYARD DEPTH",
+          primary: true
+        }
+      },
+      {
+        id: 'patio-width',
+        zone: 'Backyard',
+        name: 'Back Patio Width (North–South)',
+        rough: '21 ft',
+        exact: '21.0 ft',
+        notes: 'Spans Y=20.0\' to Y=41.0\' (flush with SW house corner). Divided into two 10.5\' halves at Y=30.5\'.',
+        dim: {
+          x1: -6.8, y1: 20.0, x2: -6.8, y2: 41.0,
+          wx1: 17.5, wy1: 20.0, wx2: 17.5, wy2: 41.0,
+          label: "21.0' PATIO WIDTH",
+          primary: true
+        }
+      },
+      {
+        id: 'patio-depth',
+        zone: 'Backyard',
+        name: 'Back Patio Depth (East–West)',
+        rough: '12.5 ft',
+        exact: '12.5 ft',
+        notes: 'Extends West from X=30.0\' to X=17.5\'. Divided by center control joint into two 6.25\' deep halves.',
+        dim: {
+          x1: 17.5, y1: -6.5, x2: 30.0, y2: -6.5,
+          wx1: 17.5, wy1: 20.0, wx2: 30.0, wy2: 20.0,
+          label: "12.5' PATIO D",
+          primary: true
+        }
+      },
+      {
+        id: 'patio-quadrant',
+        zone: 'Backyard',
+        name: 'Patio Control Joint Quadrants (4x)',
+        rough: 'Derived',
+        exact: '10.5 ft W × 6.25 ft D',
+        notes: 'Each of the 4 poured concrete patio quadrants measures 10.5\' N–S by 6.25\' E–W (65.6 sq.ft. each).',
+        dim: {
+          x1: 17.5, y1: 25.25, x2: 23.75, y2: 25.25,
+          label: "6.25'×10.5' QUAD",
+          primary: false
+        }
+      },
+      {
+        id: 'patio-to-wall-dirt',
+        zone: 'Backyard',
+        name: 'Patio-to-West Wall Dirt Clearance',
+        rough: 'Derived',
+        exact: '17.5 ft',
+        notes: 'Unpaved dirt depth West of the concrete patio to the rear precast wall (30.0\' - 12.5\' = 17.5\').',
+        dim: {
+          x1: 0.0, y1: -6.5, x2: 17.5, y2: -6.5,
+          wx1: 0.0, wy1: 0.0, wx2: 17.5, wy2: 20.0,
+          label: "17.5' DIRT TO WALL",
+          primary: true
+        }
+      },
+      {
+        id: 'bare-wall-north-patio',
+        zone: 'Backyard',
+        name: 'Bare Rear House Wall North of Patio',
+        rough: 'Derived',
+        exact: '11.0 ft',
+        notes: 'Unpaved rear house wall section under North window between NW corner (Y=9.0\') and Patio (Y=20.0\').',
+        dim: {
+          x1: -6.8, y1: 9.0, x2: -6.8, y2: 20.0,
+          wx1: 30.0, wy1: 9.0, wx2: 30.0, wy2: 20.0,
+          label: "11.0' BARE WALL",
+          primary: false
+        }
+      },
+      {
+        id: 'dirt-width-north-patio',
+        zone: 'Backyard',
+        name: 'Total Backyard Width North of Patio',
+        rough: 'Derived',
+        exact: '20.0 ft',
+        notes: 'Full unpaved width from North edge of patio (Y=20.0\') to North property line (Y=0.0\'): 11.0\' wall + 9.0\' setback.',
+        dim: {
+          x1: 12.0, y1: 0.0, x2: 12.0, y2: 20.0,
+          label: "20.0' UNPAVED N. OF PATIO",
+          primary: false
+        }
+      },
+      {
+        id: 'dirt-width-south-patio',
+        zone: 'Backyard',
+        name: 'Unpaved Width South of Patio',
+        rough: 'Derived',
+        exact: '9.0 ft',
+        notes: 'Patio South edge is flush with the SW house corner (Y=41.0\'), leaving 9.0\' to the South lot line (Y=50.0\').',
+        dim: {
+          x1: -6.8, y1: 41.0, x2: -6.8, y2: 50.0,
+          wx1: 17.5, wy1: 41.0, wx2: 0.0, wy2: 50.0,
+          label: "9.0' S. SETBACK",
+          primary: false
+        }
+      },
+      {
+        id: 'sliding-door-step',
+        zone: 'Backyard',
+        name: 'Rear Sliding Glass Door & Step',
+        rough: 'Derived',
+        exact: '6.0 ft W × 1.5 ft D',
+        notes: 'Concrete step centered under the 6.0\' wide sliding patio door (Y=21.5\' to 27.5\', 1.5\' South of N patio edge).',
+        callout: {
+          anchorWx: 29.2, anchorWy: 24.5,
+          prefWx: 23.0, prefWy: 15.0,
+          title: "SLIDER STEP (6.0'×1.5')",
+          sub: "1.5' S. of N. Patio Edge",
+          category: 'secondaryDims'
+        }
+      },
+      {
+        id: 'precast-wall-bays',
+        zone: 'Backyard',
+        name: 'West Precast Concrete Wall Bays (5x)',
+        rough: 'Derived',
+        exact: '10.0 ft O.C. (5 Bays)',
+        notes: '5 panels across the 50.0\' rear wall with 1.5\'×1.5\' fluted columns at Y = 0\', 10\', 20\', 30\', 40\', 50\'.',
+        dim: {
+          x1: -6.8, y1: 0.0, x2: -6.8, y2: 9.0,
+          wx1: 0.0, wy1: 0.0, wx2: 30.0, wy2: 9.0,
+          label: "9.0' N. SETBACK",
+          primary: false
+        }
+      },
+
+      // ================= ZONE 4: NORTH SIDE YARD (GARAGE SIDE) =================
+      {
+        id: 'north-setback',
+        zone: 'North Side',
+        name: 'North Side Yard Setback Width',
+        rough: '~9 ft',
+        exact: '9.0 ft',
+        notes: 'From North house/garage wall (Y=9.0\') to North lot line (Y=0.0\'), marked by pink & orange wooden survey stakes.',
+        dim: {
+          x1: -13.5, y1: 0.0, x2: -13.5, y2: 9.0,
+          wx1: 0.0, wy1: 0.0, wx2: 30.0, wy2: 9.0,
+          label: "9.0' N. YARD",
+          primary: true
+        }
+      },
+      {
+        id: 'north-hose-bib',
+        zone: 'North Side',
+        name: 'North Wall Hose Bib (Spigot) Offset',
+        rough: 'Derived',
+        exact: '21.0 ft E of NW Corner',
+        notes: 'Exterior water spigot at X=51.0\', Y=9.0\' (21.0\' East of NW back corner / 22.2\' West of NE garage corner).',
+        dim: {
+          x1: 30.0, y1: -6.5, x2: 51.0, y2: -6.5,
+          wx1: 30.0, wy1: 9.0, wx2: 51.0, wy2: 9.0,
+          label: "21.0' TO HOSE BIB",
+          primary: false
+        }
+      },
+      {
+        id: 'ne-stone-wrap',
+        zone: 'North Side',
+        name: 'NE Garage Corner Stone Wrap Return',
+        rough: 'Derived',
+        exact: '2.0 ft W × 0.25 ft N',
+        notes: 'Front stone veneer wraps 2.0\' back along North garage wall (X=71.2\' to 73.2\') with downspout at corner.',
+        callout: {
+          anchorWx: 72.2, anchorWy: 8.85,
+          prefWx: 66.5, prefWy: -2.2,
+          title: "NE STONE WRAP (2.0')",
+          sub: "+3\" Flare & Downspout",
+          category: 'utilities'
+        }
+      },
+
+      // ================= ZONE 5: SOUTH SIDE YARD (PORCH SIDE) =================
+      {
+        id: 'south-setback',
+        zone: 'South Side',
+        name: 'South Side Yard Setback Width',
+        rough: '~9 ft',
+        exact: '9.0 ft',
+        notes: 'From South house wall (Y=41.0\') to South property line gravel border (Y=50.0\').',
+        dim: {
+          x1: -13.5, y1: 41.0, x2: -13.5, y2: 50.0,
+          wx1: 30.0, wy1: 41.0, wx2: 0.0, wy2: 50.0,
+          label: "9.0' S. YARD",
+          primary: true
+        }
+      },
+      {
+        id: 'south-yard-with-porch',
+        zone: 'South Side',
+        name: 'South Side Length (SW Corner to Porch)',
+        rough: 'Derived',
+        exact: '35.7 ft (36.0\' nom.)',
+        notes: '29.7\' South stucco wall + 6.0\' covered front porch to the front face of the 3152 pillar (X=30.0\' to 65.7\').',
+        dim: {
+          x1: 30.0, y1: 69.5, x2: 65.7, y2: 69.5,
+          wx1: 30.0, wy1: 41.0, wx2: 65.7, wy2: 41.0,
+          label: "35.7' (36' NOM) SW TO PORCH PILLAR",
+          primary: false
+        }
+      },
+      {
+        id: 'ac-condenser-clearance',
+        zone: 'South Side',
+        name: 'AC Condenser Pad & South Walk Clearance',
+        rough: 'Derived',
+        exact: '3.0\'×3.0\' Pad (6.0\' clear)',
+        notes: 'AC unit at X=45.0\'–48.0\', Y=41.0\'–44.0\' leaves 6.0\' of unobstructed walk space to the South lot line.',
+        callout: {
+          anchorWx: 46.5, anchorWy: 42.5,
+          prefWx: 43.0, prefWy: 52.8,
+          title: "AC PAD 3'×3' (6.0' CLEAR)",
+          sub: "~13' W. of SE Corner",
+          category: 'utilities'
+        }
+      },
+
+      // ================= ZONE 6: FRONT YARD, DRIVEWAY & STREETSCAPE (EAST) =================
+      {
+        id: 'driveway-width',
+        zone: 'Driveway',
+        name: 'Main Driveway Width (+Walkway)',
+        rough: 'Derived',
+        exact: '18.0 ft (+3.5\' walk = 21.5\')',
+        notes: 'Three 6.0\' wide main panels across (Y=11.0\' to 29.0\') plus a 3.5\' South porch walkway panel (Y=29.0\' to 32.5\').',
+        dim: {
+          x1: 121.0, y1: 11.0, x2: 121.0, y2: 29.0,
+          wx1: 96.7, wy1: 11.0, wx2: 96.7, wy2: 29.0,
+          label: "18.0' DRIVEWAY (3×6')",
+          primary: true
+        }
+      },
+      {
+        id: 'driveway-length',
+        zone: 'Driveway',
+        name: 'Driveway Length (Garage to Sidewalk)',
+        rough: 'Derived',
+        exact: '23.5 ft',
+        notes: 'Divided into 3 equal concrete slab sections (~7.83\' each) from X=73.2\' (garage) to X=96.7\' (city sidewalk).',
+        dim: {
+          x1: 73.2, y1: -13.0, x2: 96.7, y2: -13.0,
+          wx1: 73.2, wy1: 11.0, wx2: 96.7, wy2: 11.0,
+          label: "23.5' DRIVEWAY LENGTH",
+          primary: true
+        }
+      },
+      {
+        id: 'ne-front-strip-dims',
+        zone: 'Driveway',
+        name: 'NE Front Strip (North of Driveway)',
+        rough: 'Derived',
+        exact: '11.0 ft W × 23.5 ft D',
+        notes: '9.0\' North side yard + 2.0\' garage stone offset North of driveway edge (Y=0.0\' to 11.0\', X=73.2\' to 96.7\').',
+        dim: {
+          x1: 121.0, y1: 0.0, x2: 121.0, y2: 11.0,
+          wx1: 96.7, wy1: 0.0, wx2: 96.7, wy2: 11.0,
+          label: "11.0' NE STRIP",
+          primary: false
+        }
+      },
+      {
+        id: 'se-front-bed-dims',
+        zone: 'Driveway',
+        name: 'SE Front Yard Depth along South Line',
+        rough: 'Derived',
+        exact: '37.0 ft (Walk to SE Corner)',
+        notes: 'From City Sidewalk (X=96.7\') Westward to SE stucco corner (X=59.7\'); 31.0\' from sidewalk to 3152 porch front.',
+        dim: {
+          x1: 59.7, y1: 69.5, x2: 96.7, y2: 69.5,
+          wx1: 59.7, wy1: 50.0, wx2: 96.7, wy2: 50.0,
+          label: "37.0' SE YARD DEPTH TO WALK",
+          primary: true
+        }
+      },
+      {
+        id: 'sidewalk-parkstrip',
+        zone: 'Driveway',
+        name: 'City Sidewalk, Park Strip & Curb',
+        rough: 'Derived',
+        exact: '4.0\' Walk + 6.0\' Strip + 2.0\' Curb',
+        notes: '4.0\' concrete city sidewalk (X=96.7\'–100.7\') + 6.0\' park strip (X=100.7\'–106.7\') + 2.0\' curb & gutter.',
+        dim: {
+          x1: 96.7, y1: -13.0, x2: 108.7, y2: -13.0,
+          wx1: 96.7, wy1: 0.0, wx2: 108.7, wy2: 0.0,
+          label: "12.0' WALK (4') + STRIP (6') + CURB",
+          primary: false
+        }
+      },
+
+      // ================= ZONE 7: AREA & FENCING SUMMARY =================
+      {
+        id: 'area-backyard-dirt',
+        zone: 'Area & Fence',
+        name: 'Backyard Unpaved Dirt Area',
+        rough: 'Calculated',
+        exact: '1,237.5 sq. ft.',
+        notes: 'Total Backyard (50.0\' × 30.0\' = 1,500 sq.ft.) minus Concrete Patio (21.0\' × 12.5\' = 262.5 sq.ft.).',
+        zoneBox: { x1: 0, y1: 0, x2: 30, y2: 50 }
+      },
+      {
+        id: 'area-patio',
+        zone: 'Area & Fence',
+        name: 'Backyard Concrete Patio Area',
+        rough: 'Calculated',
+        exact: '262.5 sq. ft.',
+        notes: '21.0\' N–S width × 12.5\' E–W depth = 262.5 sq.ft. (four 65.625 sq.ft. slabs).',
+        zoneBox: { x1: 17.5, y1: 20.0, x2: 30.0, y2: 41.0 }
+      },
+      {
+        id: 'area-side-yards',
+        zone: 'Area & Fence',
+        name: 'North & South Side Yard Areas',
+        rough: 'Calculated',
+        exact: '388.8 sq.ft. (N) / 270.0 sq.ft. (S)',
+        notes: 'North Side: 9.0\' × 43.2\' = 388.8 sq.ft. South Side: 9.0\' × 30.0\' = 270.0 sq.ft. (360.0 sq.ft. N & 247.5 sq.ft. S inside gates).',
+        zoneBox: { x1: 30.0, y1: 0.0, x2: 70.0, y2: 9.0 }
+      },
+      {
+        id: 'north-vehicle-gate',
+        zone: 'Area & Fence',
+        name: 'North Side Double Vehicle Gate & Setback',
+        rough: 'Set back behind stone',
+        exact: '9.0\' Span (8.0\'–8.5\' Double Gate) @ 3.2\' Setback',
+        notes: 'Set back 3.2\' West of NE garage face (1.2\' behind the 2.0\' stone wrap & downspout) onto flat stucco at X=70.0\'. Leaves 70.0\' North side fence.',
+        dim: {
+          x1: 70.0, y1: -6.5, x2: 73.2, y2: -6.5,
+          wx1: 70.0, wy1: 9.0, wx2: 73.2, wy2: 9.0,
+          label: "3.2' GATE SETBACK",
+          primary: false
+        }
+      },
+      {
+        id: 'south-human-gate',
+        zone: 'Area & Fence',
+        name: 'South Side Pedestrian ("Human") Gate & Setback',
+        rough: 'Set back on stucco',
+        exact: '4.0\' Walk Gate + 5.0\' Wing @ 2.2\' Setback',
+        notes: 'Set back 2.2\' West of SE stucco corner (8.2\' West of 3152 porch stone pillar) onto flat stucco at X=57.5\', just East of gas meter. Leaves 57.5\' South side fence.',
+        dim: {
+          x1: 57.5, y1: 63.0, x2: 65.7, y2: 63.0,
+          wx1: 57.5, wy1: 41.0, wx2: 65.7, wy2: 41.0,
+          label: "8.2' GATE SETBACK FROM PORCH",
+          primary: false
+        }
+      },
+      {
+        id: 'fence-linear-footage',
+        zone: 'Area & Fence',
+        name: 'Total Side Fence & Gate Linear Footage',
+        rough: 'Calculated',
+        exact: '70.0\' N + 57.5\' S (+18.0\' Gate Returns)',
+        notes: '145.5 linear ft total: 70.0\' North fence (30\' backyard + 40\' stucco wall) + 9.0\' N vehicle gate + 57.5\' South fence (30\' backyard + 27.5\' stucco wall) + 9.0\' S walk gate & wing.',
+        zoneBox: { x1: 0.0, y1: 0.0, x2: 70.0, y2: 50.0 }
+      },
+      {
+        id: 'garden-beds-spec',
+        zone: 'Area & Fence',
+        name: 'Raised Garden Beds (7 × 6.0\'×3.0\' N–S Boxes)',
+        rough: '2 Patio + 5 N. Fence',
+        exact: '126.0 sq.ft. Growing Area (7 Boxes @ 18 sq.ft.)',
+        notes: '2 N–S boxes North of Patio (X=17.5\'–25.5\', leaving 4.5\' clear for basement window well) + 5 N–S boxes along North Fence (X=1.5\'–24.5\'). Moving Box N5 to the West Wall opens a 10.2\' wide vehicle gate turnaround.',
+        zoneBox: { x1: 0.5, y1: 0.5, x2: 26.5, y2: 19.0 }
+      }
+    ];
+
+    /*************************************************************************
+     * 3. MATHEMATICAL PROJECTION ENGINE (WEST UP, NORTH UP, EAST UP)
+     * -----------------------------------------------------------------------
+     * Maps canonical feet (wx, wy) -> SVG coordinates (sx, sy) with generous
+     * exterior CAD track margins so all 3 orientations stay 100% upright.
+     *************************************************************************/
+    function getViewportBoundsFt() {
+      if (STATE.orientation === 'WEST_UP' || STATE.orientation === 'EAST_UP') {
+        return { widthFt: WORLD_SPAN_WY, heightFt: WORLD_SPAN_WX };
+      } else {
+        // NORTH_UP
+        return { widthFt: WORLD_SPAN_WX, heightFt: WORLD_SPAN_WY };
+      }
+    }
+
+    function project(wx, wy) {
+      if (STATE.orientation === 'WEST_UP') {
+        // West (wx = -29) at TOP, East (wx = 142) at BOTTOM
+        // South (wy = 78) at LEFT, North (wy = -28) at RIGHT
+        return {
+          x: (WORLD_MAX_WY - wy) * SCALE,
+          y: (wx - WORLD_MIN_WX) * SCALE
+        };
+      } else if (STATE.orientation === 'NORTH_UP') {
+        // North (wy = -28) at TOP, South (wy = 78) at BOTTOM
+        // West (wx = -29) at LEFT, East (wx = 142) at RIGHT
+        return {
+          x: (wx - WORLD_MIN_WX) * SCALE,
+          y: (wy - WORLD_MIN_WY) * SCALE
+        };
+      } else {
+        // EAST_UP: East (wx = 142) at TOP, West (wx = -29) at BOTTOM
+        // North (wy = -28) at LEFT, South (wy = 78) at RIGHT
+        return {
+          x: (wy - WORLD_MIN_WY) * SCALE,
+          y: (WORLD_MAX_WX - wx) * SCALE
+        };
+      }
+    }
+
+    function unproject(sx, sy) {
+      const fx = sx / SCALE;
+      const fy = sy / SCALE;
+      if (STATE.orientation === 'WEST_UP') {
+        return { wx: fy + WORLD_MIN_WX, wy: WORLD_MAX_WY - fx };
+      } else if (STATE.orientation === 'NORTH_UP') {
+        return { wx: fx + WORLD_MIN_WX, wy: fy + WORLD_MIN_WY };
+      } else {
+        return { wx: WORLD_MAX_WX - fy, wy: fx + WORLD_MIN_WY };
+      }
+    }
+
+    function projectRect(wx1, wy1, wx2, wy2) {
+      const p1 = project(wx1, wy1);
+      const p2 = project(wx2, wy2);
+      return {
+        x: Math.min(p1.x, p2.x),
+        y: Math.min(p1.y, p2.y),
+        width: Math.abs(p2.x - p1.x),
+        height: Math.abs(p2.y - p1.y),
+        cx: (p1.x + p2.x) / 2,
+        cy: (p1.y + p2.y) / 2
+      };
+    }
+
+    function projectPoly(pts) {
+      return pts.map(([wx, wy]) => {
+        const p = project(wx, wy);
+        return `${p.x.toFixed(1)},${p.y.toFixed(1)}`;
+      }).join(' ');
+    }
+
+    function formatFeetInches(feetDecimal) {
+      const totalInches = Math.round(Math.abs(feetDecimal) * 12);
+      const ft = Math.floor(totalInches / 12);
+      const ins = totalInches % 12;
+      return `${ft}'-${ins}"`;
+    }
+
+    /*************************************************************************
+     * 4. SCREEN-SPACE AABB ANTI-COLLISION & LEADER-LINE ENGINE
+     * -----------------------------------------------------------------------
+     * Guarantees ZERO overlapping text boxes across all orientations, layers,
+     * and font scales.
+     *************************************************************************/
+    class CADCollisionEngine {
+      constructor(vw, vh) {
+        this.vw = vw;
+        this.vh = vh;
+        this.occupied = []; // Array of { x1, y1, x2, y2, id }
+        this.displacedCount = 0;
+      }
+
+      // Reserve a static obstacle (like Compass Rose or Title Block)
+      reserveBox(x1, y1, x2, y2, id = 'obstacle') {
+        this.occupied.push({
+          x1: Math.min(x1, x2),
+          y1: Math.min(y1, y2),
+          x2: Math.max(x1, x2),
+          y2: Math.max(y1, y2),
+          id
+        });
+      }
+
+      // Check if candidate box [cx - w/2, cy - h/2, cx + w/2, cy + h/2] collides with any placed box
+      hasCollision(cx, cy, w, h, pad = 5) {
+        const x1 = cx - w / 2 - pad;
+        const y1 = cy - h / 2 - pad;
+        const x2 = cx + w / 2 + pad;
+        const y2 = cy + h / 2 + pad;
+
+        // Keep inside canvas margins
+        if (x1 < 12 || y1 < 12 || x2 > this.vw - 12 || y2 > this.vh - 12) {
+          return true;
+        }
+
+        for (let i = 0; i < this.occupied.length; i++) {
+          const b = this.occupied[i];
+          if (!(x2 < b.x1 || x1 > b.x2 || y2 < b.y1 || y1 > b.y2)) {
+            return true;
+          }
+        }
+        return false;
+      }
+
+      // Find the nearest collision-free (cx, cy) starting from preferred (prefX, prefY)
+      placeLabel(prefX, prefY, w, h, options = {}) {
+        const pad = options.pad ?? 5;
+        const axisHint = options.axisHint || 'ANY'; // 'ALONG_X', 'ALONG_Y', or 'ANY'
+
+        // 1. Try exact preferred position first
+        if (!this.hasCollision(prefX, prefY, w, h, pad)) {
+          this.reserveBox(prefX - w / 2, prefY - h / 2, prefX + w / 2, prefY + h / 2, options.id);
+          return { cx: prefX, cy: prefY, displaced: false, dist: 0 };
+        }
+
+        // 2. Deterministic multi-ring search around preferred coordinate
+        // If the label belongs to a dimension line, we first try sliding along the dimension line axis
+        // before stepping perpendicular to it, which keeps track labels aligned!
+        const candidates = [];
+
+        if (axisHint === 'ALONG_X') {
+          for (let dx of [-24, 24, -48, 48, -72, 72]) {
+            candidates.push([prefX + dx, prefY]);
+          }
+          for (let dy of [-22, 22, -42, 42]) {
+            for (let dx of [0, -28, 28, -56, 56]) {
+              candidates.push([prefX + dx, prefY + dy]);
+            }
+          }
+        } else if (axisHint === 'ALONG_Y') {
+          for (let dy of [-22, 22, -44, 44, -66, 66]) {
+            candidates.push([prefX, prefY + dy]);
+          }
+          for (let dx of [-34, 34, -68, 68]) {
+            for (let dy of [0, -24, 24, -48, 48]) {
+              candidates.push([prefX + dx, prefY + dy]);
+            }
+          }
+        }
+
+        // 3. Spiral radial search out to 320px
+        const angleSteps = 16;
+        for (let r = 18; r <= 320; r += 16) {
+          for (let i = 0; i < angleSteps; i++) {
+            const theta = (i * 2 * Math.PI) / angleSteps;
+            candidates.push([
+              prefX + Math.cos(theta) * r * 1.15,
+              prefY + Math.sin(theta) * r
+            ]);
+          }
+        }
+
+        for (const [cx, cy] of candidates) {
+          if (!this.hasCollision(cx, cy, w, h, pad)) {
+            this.reserveBox(cx - w / 2, cy - h / 2, cx + w / 2, cy + h / 2, options.id);
+            const dist = Math.hypot(cx - prefX, cy - prefY);
+            if (dist > 8) this.displacedCount++;
+            return { cx, cy, displaced: dist > 14, dist };
+          }
+        }
+
+        // Fallback if ultra-zoomed text scale
+        this.reserveBox(prefX - w / 2, prefY - h / 2, prefX + w / 2, prefY + h / 2, options.id);
+        return { cx: prefX, cy: prefY, displaced: false, dist: 0 };
+      }
+    }
+
+    // Helper to draw a crisp CAD Dogleg Leader Line from (ax, ay) to label box (cx, cy, w, h)
+    function renderDoglegLeader(ax, ay, cx, cy, w, h, strokeColor) {
+      // Determine which side/corner of the label box is closest to the anchor point
+      const dx = ax - cx;
+      const dy = ay - cy;
+      if (Math.hypot(dx, dy) < 10) return '';
+
+      // Connect to left or right edge with a short 10px horizontal CAD shoulder, or top/bottom
+      let attachX = cx;
+      let attachY = cy;
+      let elbowX = cx;
+      let elbowY = cy;
+
+      if (Math.abs(dx) > w * 0.35) {
+        const side = dx > 0 ? 1 : -1;
+        attachX = cx + side * (w / 2);
+        attachY = cy;
+        elbowX = attachX + side * 10;
+        elbowY = cy;
+      } else {
+        const vSide = dy > 0 ? 1 : -1;
+        attachX = cx;
+        attachY = cy + vSide * (h / 2);
+        elbowX = cx;
+        elbowY = attachY + vSide * 8;
+      }
+
+      return `
+        <g class="cad-leader pointer-events-none">
+          <polyline points="${ax.toFixed(1)},${ay.toFixed(1)} ${elbowX.toFixed(1)},${elbowY.toFixed(1)} ${attachX.toFixed(1)},${attachY.toFixed(1)}"
+                    fill="none" stroke="${strokeColor}" stroke-width="1.35" stroke-dasharray="3,2" opacity="0.92"/>
+          <circle cx="${ax.toFixed(1)}" cy="${ay.toFixed(1)}" r="3.2" fill="${strokeColor}" stroke="#000000" stroke-width="0.8"/>
+        </g>
+      `;
+    }
+
+    /*************************************************************************
+     * 5. SVG CAD RENDERING ENGINE (GEOMETRY + ZERO-OVERLAP LABEL PASS)
+     *************************************************************************/
+    function renderBlueprint() {
+      const svg = document.getElementById('blueprint-svg');
+      const T = THEMES[STATE.theme];
+      const bounds = getViewportBoundsFt();
+      const vw = bounds.widthFt * SCALE;
+      const vh = bounds.heightFt * SCALE;
+      const ts = STATE.textScale;
+
+      document.getElementById('canvas-container').style.backgroundColor = T.canvasBg;
+
+      // Initialize Screen-Space AABB Collision Engine
+      const collider = new CADCollisionEngine(vw, vh);
+
+      // Pre-reserve Compass Rose & Title Block boxes so no label ever touches them
+      const compassX = vw - 82;
+      const compassY = 82;
+      collider.reserveBox(compassX - 54, compassY - 54, compassX + 54, compassY + 54, 'compass');
+      collider.reserveBox(vw / 2 - 335, vh - 68, vw / 2 + 335, vh - 10, 'title-block');
+
+      let out = [];
+
+      // 1. SVG DEFS (Patterns, Markers, Hatching)
+      out.push(`
+        <defs>
+          <pattern id="pat-concrete" width="24" height="24" patternUnits="userSpaceOnUse">
+            <rect width="24" height="24" fill="${T.concreteFill}"/>
+            <circle cx="4" cy="6" r="0.8" fill="${T.concreteStroke}" opacity="0.35"/>
+            <circle cx="16" cy="14" r="1.0" fill="${T.concreteStroke}" opacity="0.3"/>
+            <circle cx="10" cy="20" r="0.7" fill="${T.concreteStroke}" opacity="0.35"/>
+            <circle cx="20" cy="4" r="0.6" fill="${T.concreteStroke}" opacity="0.25"/>
+          </pattern>
+
+          <pattern id="pat-house-hatch" width="16" height="16" patternTransform="rotate(45 0 0)" patternUnits="userSpaceOnUse">
+            <rect width="16" height="16" fill="${T.houseFill}"/>
+            <line x1="0" y1="0" x2="0" y2="16" stroke="${T.houseStroke}" stroke-width="1" opacity="0.09"/>
+          </pattern>
+
+          <pattern id="pat-garage-hatch" width="12" height="12" patternTransform="rotate(-45 0 0)" patternUnits="userSpaceOnUse">
+            <rect width="12" height="12" fill="${T.garageFill}"/>
+            <line x1="0" y1="0" x2="0" y2="12" stroke="${T.houseStroke}" stroke-width="1" opacity="0.12"/>
+          </pattern>
+
+          <pattern id="pat-gravel" width="14" height="14" patternUnits="userSpaceOnUse">
+            <rect width="14" height="14" fill="${T.lotBg}"/>
+            <circle cx="3" cy="4" r="1.3" fill="${T.textSub}" opacity="0.35"/>
+            <circle cx="9" cy="3" r="1.0" fill="${T.textMain}" opacity="0.3"/>
+            <circle cx="6" cy="10" r="1.4" fill="${T.textSub}" opacity="0.35"/>
+            <circle cx="12" cy="11" r="1.1" fill="${T.textMain}" opacity="0.25"/>
+          </pattern>
+
+          <marker id="arrow-pri-start" viewBox="0 0 10 10" refX="2" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+            <path d="M 10 1 L 1 5 L 10 9 z" fill="${T.dimPrimary}"/>
+          </marker>
+          <marker id="arrow-pri-end" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+            <path d="M 0 1 L 9 5 L 0 9 z" fill="${T.dimPrimary}"/>
+          </marker>
+          <marker id="arrow-sec-start" viewBox="0 0 10 10" refX="2" refY="5" markerWidth="5" markerHeight="5" orient="auto">
+            <path d="M 10 1.5 L 1 5 L 10 8.5 z" fill="${T.dimSecondary}"/>
+          </marker>
+          <marker id="arrow-sec-end" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto">
+            <path d="M 0 1.5 L 9 5 L 0 8.5 z" fill="${T.dimSecondary}"/>
+          </marker>
+          <marker id="arrow-hi-start" viewBox="0 0 10 10" refX="2" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto">
+            <path d="M 10 1 L 1 5 L 10 9 z" fill="#fbbf24"/>
+          </marker>
+          <marker id="arrow-hi-end" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto">
+            <path d="M 0 1 L 9 5 L 0 9 z" fill="#fbbf24"/>
+          </marker>
+          <marker id="arrow-meas-start" viewBox="0 0 10 10" refX="2" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+            <path d="M 10 1 L 1 5 L 10 9 z" fill="#fbbf24"/>
+          </marker>
+          <marker id="arrow-meas-end" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+            <path d="M 0 1 L 9 5 L 0 9 z" fill="#fbbf24"/>
+          </marker>
+        </defs>
+      `);
+
+      // Background Canvas Rect
+      out.push(`<rect x="0" y="0" width="${vw}" height="${vh}" fill="${T.canvasBg}"/>`);
+
+      // 2. LOT BASE & UNPAVED DIRT FILL (wx: 0..96.7, wy: 0..50)
+      const lotRect = projectRect(0, 0, 96.7, 50);
+      out.push(`<rect x="${lotRect.x}" y="${lotRect.y}" width="${lotRect.width}" height="${lotRect.height}" fill="${T.dirtFill}"/>`);
+
+      // 3. OPTIONAL 1-FT & 5-FT CAD COORDINATE GRID
+      if (STATE.layers.grid) {
+        out.push(`<g id="cad-grid">`);
+        for (let wx = 0; wx <= 108; wx += 1) {
+          const isMajor = wx % 5 === 0;
+          const p1 = project(wx, 0);
+          const p2 = project(wx, 50);
+          out.push(`<line x1="${p1.x}" y1="${p1.y}" x2="${p2.x}" y2="${p2.y}" stroke="${isMajor ? T.gridMajor : T.gridMinor}" stroke-width="${isMajor ? 1.05 : 0.55}"/>`);
+        }
+        for (let wy = 0; wy <= 50; wy += 1) {
+          const isMajor = wy % 5 === 0;
+          const p1 = project(0, wy);
+          const p2 = project(108.7, wy);
+          out.push(`<line x1="${p1.x}" y1="${p1.y}" x2="${p2.x}" y2="${p2.y}" stroke="${isMajor ? T.gridMajor : T.gridMinor}" stroke-width="${isMajor ? 1.05 : 0.55}"/>`);
+        }
+        out.push(`</g>`);
+      }
+
+      // 4. SOUTH NEIGHBOR WHITE GRAVEL BORDER (wy: 50.0 to 52.8, wx: 30 to 85)
+      const southGravel = projectRect(30, 50.0, 85, 52.8);
+      out.push(`
+        <rect x="${southGravel.x}" y="${southGravel.y}" width="${southGravel.width}" height="${southGravel.height}" fill="url(#pat-gravel)" stroke="${T.wallStroke}" stroke-width="0.6" stroke-dasharray="3,3" opacity="0.7"/>
+      `);
+
+      // 5. STREETSCAPE, CURB, PARK STRIP, SIDEWALK & DRIVEWAY (EAST)
+      const streetRect = projectRect(108.7, -2, 114.5, 52);
+      out.push(`<rect x="${streetRect.x}" y="${streetRect.y}" width="${streetRect.width}" height="${streetRect.height}" fill="${T.streetFill}" stroke="${T.wallStroke}" stroke-width="1"/>`);
+
+      const curbRect = projectRect(106.7, -2, 108.7, 52);
+      out.push(`<rect x="${curbRect.x}" y="${curbRect.y}" width="${curbRect.width}" height="${curbRect.height}" fill="${T.concreteFill}" stroke="${T.concreteStroke}" stroke-width="1"/>`);
+
+      const parkStripRect = projectRect(100.7, 0, 106.7, 50);
+      out.push(`<rect x="${parkStripRect.x}" y="${parkStripRect.y}" width="${parkStripRect.width}" height="${parkStripRect.height}" fill="${T.dirtFill}" stroke="${T.concreteStroke}" stroke-width="0.8"/>`);
+
+      const walkRect = projectRect(96.7, -2, 100.7, 52);
+      out.push(`<rect x="${walkRect.x}" y="${walkRect.y}" width="${walkRect.width}" height="${walkRect.height}" fill="url(#pat-concrete)" stroke="${T.concreteStroke}" stroke-width="1.4"/>`);
+      for (let wy = 0; wy <= 50; wy += 5) {
+        const j1 = project(96.7, wy);
+        const j2 = project(100.7, wy);
+        out.push(`<line x1="${j1.x}" y1="${j1.y}" x2="${j2.x}" y2="${j2.y}" stroke="${T.jointStroke}" stroke-width="0.8"/>`);
+      }
+
+      // Flared Driveway Apron across Park Strip
+      const apronPts = projectPoly([
+        [100.7, 11.0],
+        [106.7, 9.5],
+        [106.7, 30.5],
+        [100.7, 29.0]
+      ]);
+      out.push(`<polygon points="${apronPts}" fill="url(#pat-concrete)" stroke="${T.concreteStroke}" stroke-width="1.3"/>`);
+
+      // Main Concrete Driveway (wx: 73.2 to 96.7 [23.5' long], wy: 11.0 to 29.0 [18.0' wide])
+      const driveRect = projectRect(73.2, 11.0, 96.7, 29.0);
+      out.push(`<rect x="${driveRect.x}" y="${driveRect.y}" width="${driveRect.width}" height="${driveRect.height}" fill="url(#pat-concrete)" stroke="${T.concreteStroke}" stroke-width="1.6"/>`);
+
+      // South Porch Concrete Walkway Extension (wx: 65.7 to 81.0, wy: 29.0 to 32.5 [3.5' wide])
+      const porchWalkRect = projectRect(65.7, 29.0, 81.0, 32.5);
+      out.push(`<rect x="${porchWalkRect.x}" y="${porchWalkRect.y}" width="${porchWalkRect.width}" height="${porchWalkRect.height}" fill="url(#pat-concrete)" stroke="${T.concreteStroke}" stroke-width="1.5"/>`);
+
+      // Driveway Control Joints
+      [17.0, 23.0].forEach(wy => {
+        const p1 = project(73.2, wy);
+        const p2 = project(106.7, wy);
+        out.push(`<line x1="${p1.x}" y1="${p1.y}" x2="${p2.x}" y2="${p2.y}" stroke="${T.jointStroke}" stroke-width="1.1" stroke-dasharray="4,2"/>`);
+      });
+      [81.0, 88.85].forEach(wx => {
+        const p1 = project(wx, 11.0);
+        const p2 = project(wx, 29.0);
+        out.push(`<line x1="${p1.x}" y1="${p1.y}" x2="${p2.x}" y2="${p2.y}" stroke="${T.jointStroke}" stroke-width="1.1" stroke-dasharray="4,2"/>`);
+      });
+      const wj1 = project(73.2, 29.0);
+      const wj2 = project(73.2, 32.5);
+      out.push(`<line x1="${wj1.x}" y1="${wj1.y}" x2="${wj2.x}" y2="${wj2.y}" stroke="${T.jointStroke}" stroke-width="1.1"/>`);
+
+      // 6. BACKYARD CONCRETE PATIO (wx: 17.5 to 30.0 [12.5' deep], wy: 20.0 to 41.0 [21.0' wide])
+      const patioRect = projectRect(17.5, 20.0, 30.0, 41.0);
+      out.push(`<rect x="${patioRect.x}" y="${patioRect.y}" width="${patioRect.width}" height="${patioRect.height}" fill="url(#pat-concrete)" stroke="${T.concreteStroke}" stroke-width="2"/>`);
+
+      const pjEW1 = project(23.75, 20.0);
+      const pjEW2 = project(23.75, 41.0);
+      const pjNS1 = project(17.5, 30.5);
+      const pjNS2 = project(30.0, 30.5);
+      out.push(`
+        <line x1="${pjEW1.x}" y1="${pjEW1.y}" x2="${pjEW2.x}" y2="${pjEW2.y}" stroke="${T.jointStroke}" stroke-width="1.3" stroke-dasharray="5,3"/>
+        <line x1="${pjNS1.x}" y1="${pjNS1.y}" x2="${pjNS2.x}" y2="${pjNS2.y}" stroke="${T.jointStroke}" stroke-width="1.3" stroke-dasharray="5,3"/>
+      `);
+
+      // Rear Sliding Glass Door Concrete Step (wx: 28.5 to 30.0 [1.5' D], wy: 21.5 to 27.5 [6.0' W])
+      const stepRect = projectRect(28.5, 21.5, 30.0, 27.5);
+      out.push(`<rect x="${stepRect.x}" y="${stepRect.y}" width="${stepRect.width}" height="${stepRect.height}" fill="${T.wallConcrete}" stroke="${T.houseStroke}" stroke-width="1.2"/>`);
+
+      // 7. WEST REAR PRECAST CONCRETE PERIMETER WALL (wx: -1.0 to 0.0, wy: 0.0 to 50.0)
+      const rearWallRect = projectRect(-1.0, 0.0, 0.0, 50.0);
+      out.push(`<rect x="${rearWallRect.x}" y="${rearWallRect.y}" width="${rearWallRect.width}" height="${rearWallRect.height}" fill="${T.wallConcrete}" stroke="${T.wallStroke}" stroke-width="1.8"/>`);
+      [0, 10, 20, 30, 40, 50].forEach(wy => {
+        const colRect = projectRect(-1.25, wy - 0.65, 0.25, wy + 0.65);
+        out.push(`<rect x="${colRect.x}" y="${colRect.y}" width="${colRect.width}" height="${colRect.height}" fill="${T.wallStroke}" stroke="${T.houseStroke}" stroke-width="1"/>`);
+      });
+
+      // 8. COVERED FRONT PORCH SLAB & 3152 PILLAR (wx: 59.7 to 65.7 [6.0' D], wy: 29.0 to 41.0 [12.0' W])
+      const porchRect = projectRect(59.7, 29.0, 65.7, 41.0);
+      out.push(`<rect x="${porchRect.x}" y="${porchRect.y}" width="${porchRect.width}" height="${porchRect.height}" fill="${T.porchFill}" stroke="${T.concreteStroke}" stroke-width="1.8"/>`);
+
+      // 9. MAIN HOUSE & GARAGE STRUCTURAL FOOTPRINT
+      const housePolyPts = projectPoly([
+        [30.0, 9.0],
+        [73.2, 9.0],
+        [73.2, 29.0],
+        [59.7, 29.0],
+        [59.7, 41.0],
+        [30.0, 41.0]
+      ]);
+      out.push(`<polygon points="${housePolyPts}" fill="url(#pat-house-hatch)" stroke="${T.houseStroke}" stroke-width="2.8" stroke-linejoin="round"/>`);
+
+      const garageBox = projectRect(51.7, 9.0, 73.2, 29.0);
+      out.push(`<rect x="${garageBox.x}" y="${garageBox.y}" width="${garageBox.width}" height="${garageBox.height}" fill="url(#pat-garage-hatch)" stroke="${T.wallStroke}" stroke-width="1.2" stroke-dasharray="6,4"/>`);
+
+      // 10. STONE MASONRY VENEER FLARES & ARCHITECTURAL OPENINGS
+      const neStone = projectRect(71.2, 8.75, 73.5, 11.0);
+      out.push(`<rect x="${neStone.x}" y="${neStone.y}" width="${neStone.width}" height="${neStone.height}" fill="${T.stoneFill}" stroke="${T.houseStroke}" stroke-width="1"/>`);
+
+      const seGarageStone = projectRect(72.9, 27.0, 73.5, 29.25);
+      out.push(`<rect x="${seGarageStone.x}" y="${seGarageStone.y}" width="${seGarageStone.width}" height="${seGarageStone.height}" fill="${T.stoneFill}" stroke="${T.houseStroke}" stroke-width="1"/>`);
+
+      const pillarRect = projectRect(64.2, 39.5, 65.7, 41.25);
+      out.push(`<rect x="${pillarRect.x}" y="${pillarRect.y}" width="${pillarRect.width}" height="${pillarRect.height}" fill="${T.stoneFill}" stroke="${T.houseStroke}" stroke-width="1.4"/>`);
+
+      const gDoorRect = projectRect(72.7, 11.0, 73.5, 27.0);
+      out.push(`<rect x="${gDoorRect.x}" y="${gDoorRect.y}" width="${gDoorRect.width}" height="${gDoorRect.height}" fill="#0f172a" stroke="#38bdf8" stroke-width="1.6"/>`);
+
+      const fDoorRect = projectRect(59.3, 31.0, 60.1, 34.0);
+      out.push(`<rect x="${fDoorRect.x}" y="${fDoorRect.y}" width="${fDoorRect.width}" height="${fDoorRect.height}" fill="#f59e0b" stroke="${T.houseStroke}" stroke-width="1.2"/>`);
+
+      const fWinRect = projectRect(59.4, 35.5, 60.0, 39.5);
+      out.push(`<rect x="${fWinRect.x}" y="${fWinRect.y}" width="${fWinRect.width}" height="${fWinRect.height}" fill="#38bdf8" stroke="${T.houseStroke}" stroke-width="1"/>`);
+
+      const sliderRect = projectRect(29.6, 21.5, 30.4, 27.5);
+      out.push(`<rect x="${sliderRect.x}" y="${sliderRect.y}" width="${sliderRect.width}" height="${sliderRect.height}" fill="#38bdf8" stroke="${T.houseStroke}" stroke-width="1.4"/>`);
+
+      const nRearWin = projectRect(29.6, 12.5, 30.4, 16.5);
+      out.push(`<rect x="${nRearWin.x}" y="${nRearWin.y}" width="${nRearWin.width}" height="${nRearWin.height}" fill="#38bdf8" stroke="${T.houseStroke}" stroke-width="1"/>`);
+
+      const sRearWin = projectRect(29.6, 32.0, 30.4, 38.0);
+      out.push(`<rect x="${sRearWin.x}" y="${sRearWin.y}" width="${sRearWin.width}" height="${sRearWin.height}" fill="#38bdf8" stroke="${T.houseStroke}" stroke-width="1"/>`);
+
+      const grateRect = projectRect(28.7, 12.5, 30.0, 16.5);
+      out.push(`<rect x="${grateRect.x}" y="${grateRect.y}" width="${grateRect.width}" height="${grateRect.height}" fill="none" stroke="${T.textSub}" stroke-width="0.9" stroke-dasharray="2,2"/>`);
+
+      // 11. PROPERTY BOUNDARY LINES (North wy=0.0, South wy=50.0, West wx=0.0, East Walk wx=96.7)
+      const propPoly = projectPoly([
+        [0.0, 0.0],
+        [96.7, 0.0],
+        [96.7, 50.0],
+        [0.0, 50.0]
+      ]);
+      out.push(`<polygon points="${propPoly}" fill="none" stroke="${T.propLine}" stroke-width="2.2" stroke-dasharray="10,5,2,5"/>`);
+
+      // 12. PLANNED FENCE & GATE GEOMETRY (WITH STUCCO SETBACKS & GATE SWING ARCS)
+      // North Vehicle Gate is set back 3.2' from NE Garage Front (wx = 70.0', which is 1.2' behind the 2.0' stone wrap at wx=71.2')
+      const northGateWx = 70.0;
+      // South Pedestrian Gate is set back 2.2' onto flat stucco behind SE corner (wx = 57.5', 8.2' behind 3152 porch pillar) or at SE corner (59.7')
+      const southEndWx = STATE.southFenceMode === 'STUCCO_SETBACK' ? 57.5 : 59.7;
+
+      if (STATE.layers.fence) {
+        out.push(`<g id="fence-geometry">`);
+
+        // A. North Property Line Fence (wx: 0.0 to 70.0, wy: 0.4) -> 70.0 linear ft
+        const nf1 = project(0.0, 0.4);
+        const nf2 = project(northGateWx, 0.4);
+        out.push(`<line x1="${nf1.x}" y1="${nf1.y}" x2="${nf2.x}" y2="${nf2.y}" stroke="${T.fenceStroke}" stroke-width="3.2" stroke-dasharray="8,4"/>`);
+
+        // B. North Side Double-Leaf Vehicle Gate (wx: 70.0, wy: 0.4 to 9.0)
+        // Hinge posts at wy=0.6 and wy=8.6; center latch at wy=4.6 (two 4.0' leaves = 8.0' clear drive opening)
+        const nPostL = project(northGateWx, 0.6);
+        const nPostR = project(northGateWx, 8.6);
+        const nCenter = project(northGateWx, 4.6);
+        const nSwingL = project(northGateWx - 4.0, 0.6); // Swings 4.0' West into side yard
+        const nSwingR = project(northGateWx - 4.0, 8.6);
+        const nArcMidL = project(northGateWx - 2.83, 0.6 + 2.83);
+        const nArcMidR = project(northGateWx - 2.83, 8.6 - 2.83);
+
+        out.push(`
+          <!-- North Vehicle Gate Closed Frame & Open Leaves -->
+          <line x1="${nPostL.x}" y1="${nPostL.y}" x2="${nPostR.x}" y2="${nPostR.y}" stroke="#f59e0b" stroke-width="2.6" stroke-dasharray="3,2"/>
+          <line x1="${nPostL.x}" y1="${nPostL.y}" x2="${nSwingL.x}" y2="${nSwingL.y}" stroke="#fbbf24" stroke-width="2.4"/>
+          <line x1="${nPostR.x}" y1="${nPostR.y}" x2="${nSwingR.x}" y2="${nSwingR.y}" stroke="#fbbf24" stroke-width="2.4"/>
+          <!-- Dual 90-Degree Vehicle Gate Swing Arcs -->
+          <path d="M ${nCenter.x} ${nCenter.y} Q ${nArcMidL.x} ${nArcMidL.y} ${nSwingL.x} ${nSwingL.y}" fill="none" stroke="#fbbf24" stroke-width="1.3" stroke-dasharray="3,3" opacity="0.9"/>
+          <path d="M ${nCenter.x} ${nCenter.y} Q ${nArcMidR.x} ${nArcMidR.y} ${nSwingR.x} ${nSwingR.y}" fill="none" stroke="#fbbf24" stroke-width="1.3" stroke-dasharray="3,3" opacity="0.9"/>
+          <circle cx="${nPostL.x}" cy="${nPostL.y}" r="3.4" fill="#f59e0b" stroke="#000" stroke-width="1"/>
+          <circle cx="${nPostR.x}" cy="${nPostR.y}" r="3.4" fill="#f59e0b" stroke="#000" stroke-width="1"/>
+        `);
+
+        // C. South Property Line Fence (wx: 0.0 to southEndWx, wy: 49.6) -> 57.5' (or 59.7') linear ft
+        const sf1 = project(0.0, 49.6);
+        const sf2 = project(southEndWx, 49.6);
+        out.push(`<line x1="${sf1.x}" y1="${sf1.y}" x2="${sf2.x}" y2="${sf2.y}" stroke="${T.fenceStroke}" stroke-width="3.2" stroke-dasharray="8,4"/>`);
+
+        // D. South Side Single-Leaf Pedestrian ("Human") Gate (4.0' Walk Gate wy=44.5..48.5 + Fixed Wing Panels wy=41.0..44.5 & 48.5..49.6)
+        const sWallAnchor = project(southEndWx, 41.0);
+        const sGateTop = project(southEndWx, 44.5);
+        const sGateBot = project(southEndWx, 48.5);
+        const sLotAnchor = project(southEndWx, 49.6);
+        const sSwingOpen = project(southEndWx - 4.0, 48.5); // 4.0' walk gate hinged at wy=48.5 swinging West
+        const sArcMid = project(southEndWx - 2.83, 48.5 - 2.83);
+
+        out.push(`
+          <!-- South Fixed Fence Return Wings (5.0' total fixed) -->
+          <line x1="${sWallAnchor.x}" y1="${sWallAnchor.y}" x2="${sGateTop.x}" y2="${sGateTop.y}" stroke="${T.fenceStroke}" stroke-width="3.4"/>
+          <line x1="${sGateBot.x}" y1="${sGateBot.y}" x2="${sLotAnchor.x}" y2="${sLotAnchor.y}" stroke="${T.fenceStroke}" stroke-width="3.4"/>
+          <!-- South 4.0' Pedestrian Walk Gate & Swing Arc -->
+          <line x1="${sGateTop.x}" y1="${sGateTop.y}" x2="${sGateBot.x}" y2="${sGateBot.y}" stroke="#34d399" stroke-width="2.6" stroke-dasharray="3,2"/>
+          <line x1="${sGateBot.x}" y1="${sGateBot.y}" x2="${sSwingOpen.x}" y2="${sSwingOpen.y}" stroke="#34d399" stroke-width="2.4"/>
+          <path d="M ${sGateTop.x} ${sGateTop.y} Q ${sArcMid.x} ${sArcMid.y} ${sSwingOpen.x} ${sSwingOpen.y}" fill="none" stroke="#34d399" stroke-width="1.3" stroke-dasharray="3,3" opacity="0.9"/>
+          <circle cx="${sGateTop.x}" cy="${sGateTop.y}" r="3.2" fill="#34d399" stroke="#000" stroke-width="1"/>
+          <circle cx="${sGateBot.x}" cy="${sGateBot.y}" r="3.2" fill="#34d399" stroke="#000" stroke-width="1"/>
+        `);
+        out.push(`</g>`);
+      }
+
+      // 13. UTILITIES & SURVEY STAKES GEOMETRY (Physical Icons Only — Labels go through Anti-Collision Engine!)
+      if (STATE.layers.utilities) {
+        out.push(`<g id="utilities-geometry">`);
+        // AC Condenser Unit (wx: 45.0..48.0, wy: 41.0..44.0)
+        const acRect = projectRect(45.0, 41.0, 48.0, 44.0);
+        out.push(`
+          <rect x="${acRect.x}" y="${acRect.y}" width="${acRect.width}" height="${acRect.height}" fill="#1e293b" stroke="#f59e0b" stroke-width="1.6"/>
+          <circle cx="${acRect.cx}" cy="${acRect.cy}" r="${Math.min(acRect.width, acRect.height) * 0.33}" fill="none" stroke="#fbbf24" stroke-width="1.2"/>
+        `);
+        // Gas & Electric Meters (wx: 51.0..54.5, wy: 41.0..42.1)
+        const meterRect = projectRect(51.0, 41.0, 54.5, 42.1);
+        out.push(`<rect x="${meterRect.x}" y="${meterRect.y}" width="${meterRect.width}" height="${meterRect.height}" fill="#0284c7" stroke="#ffffff" stroke-width="1"/>`);
+        // North Wall Hose Bib (wx: 51.0, wy: 9.0)
+        const hosePt = project(51.0, 9.0);
+        out.push(`<circle cx="${hosePt.x}" cy="${hosePt.y}" r="5.2" fill="#0ea5e9" stroke="#ffffff" stroke-width="1.5"/>`);
+        // 3 Downspouts
+        [
+          [[30.0, 9.0], [24.0, 6.8]],
+          [[73.2, 8.75], [77.5, 7.2]],
+          [[65.7, 41.0], [72.0, 42.2]]
+        ].forEach(([[x1, y1], [x2, y2]]) => {
+          const p1 = project(x1, y1);
+          const p2 = project(x2, y2);
+          out.push(`
+            <line x1="${p1.x}" y1="${p1.y}" x2="${p2.x}" y2="${p2.y}" stroke="#10b981" stroke-width="2.8" stroke-linecap="round"/>
+            <circle cx="${p1.x}" cy="${p1.y}" r="4.2" fill="#10b981" stroke="#ffffff" stroke-width="1.1"/>
+          `);
+        });
+        // Survey Stakes
+        [[1.5, 0.0], [26.0, 0.0]].forEach(([sx, sy]) => {
+          const sp = project(sx, sy);
+          out.push(`<circle cx="${sp.x}" cy="${sp.y}" r="5.2" fill="#ec4899" stroke="#ffffff" stroke-width="1.5"/>`);
+        });
+        // Trash Bins at NE Garage Corner
+        const bin1 = projectRect(71.0, 6.2, 73.0, 8.2);
+        const bin2 = projectRect(73.3, 6.2, 75.3, 8.2);
+        out.push(`
+          <rect x="${bin1.x}" y="${bin1.y}" width="${bin1.width}" height="${bin1.height}" rx="2" fill="#2563eb" stroke="#ffffff" stroke-width="0.9"/>
+          <rect x="${bin2.x}" y="${bin2.y}" width="${bin2.width}" height="${bin2.height}" rx="2" fill="#1e293b" stroke="#ffffff" stroke-width="0.9"/>
+        `);
+        out.push(`</g>`);
+      }
+
+      // 13B. RAISED GARDEN BOXES LAYER (7 × 6.0'×3.0' BED CONFIGURATIONS)
+      if (STATE.layers.garden) {
+        out.push(`<g id="garden-geometry">`);
+
+        let boxes = [];
+        if (STATE.gardenMode === 'PROPOSED_UTAH') {
+          // User's Proposed 7-Box "Backwards Utah / L" (2 North of Patio + 5 along North Fence, all 6' N-S × 3' E-W):
+          // - 5 N-S boxes (3' E-W × 6' N-S) along North fence (wy: 1.5..7.5) from wx=1.5 to wx=24.5 (2.0' paths between boxes)
+          const nFenceX = [1.5, 6.5, 11.5, 16.5, 21.5];
+          nFenceX.forEach((bx, idx) => {
+            boxes.push({ id: `N${idx + 1}`, wx1: bx, wy1: 1.5, wx2: bx + 3.0, wy2: 7.5, warn: idx === 4 });
+          });
+          // - 2 N-S boxes (3' E-W × 6' N-S) just North of Patio (wy: 12.5..18.5) aligned with West edge of Patio (wx=17.5..20.5 & 22.5..25.5)
+          //   This leaves 4.5' clear (wx=25.5..30.0) in front of the Basement Window Well!
+          const patioX = [17.5, 22.5];
+          patioX.forEach((bx, idx) => {
+            boxes.push({ id: `P${idx + 1}`, wx1: bx, wy1: 12.5, wx2: bx + 3.0, wy2: 18.5, warn: false });
+          });
+
+          // Show 5.5' Pinch Zone at NW House Corner (wx=24.5..30.0, wy=0.5..9.0) where Box N5 narrows Vehicle Gate entry
+          const pinchGate = projectRect(24.5, 0.5, 30.0, 9.0);
+          out.push(`
+            <rect x="${pinchGate.x}" y="${pinchGate.y}" width="${pinchGate.width}" height="${pinchGate.height}" rx="3" fill="rgba(245, 158, 11, 0.16)" stroke="#f59e0b" stroke-width="1.5" stroke-dasharray="4,3"/>
+          `);
+        } else if (STATE.gardenMode === 'COURTYARD_PRO') {
+          // Recommended "Gate-Clear Utah" (2 North of Patio + 4 along North Fence + 1 on Sunny West End = 7 Boxes, all 6' N-S × 3' E-W):
+          // - 4 N-S boxes along North Fence (wy: 1.5..7.5) from wx=1.5 to wx=19.75 (2.25' paths) -> Leaves wx=19.75..30.0 (10.25' wide!) 100% CLEAR for Vehicle Gate!
+          [1.5, 6.75, 12.0, 16.75].forEach((bx, idx) => {
+            boxes.push({ id: `N${idx + 1}`, wx1: bx, wy1: 1.5, wx2: bx + 3.0, wy2: 7.5, warn: false });
+          });
+          // - 2 N-S boxes North of Patio (wy: 12.5..18.5) at wx=16.75..19.75 & 22.0..25.0 (5.0' clear in front of Basement Window Well!)
+          [16.75, 22.0].forEach((bx, idx) => {
+            boxes.push({ id: `P${idx + 1}`, wx1: bx, wy1: 12.5, wx2: bx + 3.0, wy2: 18.5, warn: false });
+          });
+          // - Move the 5th North box to the Sunny West Precast Wall (wx=1.5..4.5, wy=12.5..18.5) facing N-S!
+          boxes.push({ id: 'W1', wx1: 1.5, wy1: 12.5, wx2: 4.5, wy2: 18.5, warn: false });
+
+          // Draw Green 10.25' Wide Vehicle Gate Turnaround Zone
+          const clearDrive = projectRect(19.75, 0.8, 30.0, 11.5);
+          out.push(`
+            <rect x="${clearDrive.x}" y="${clearDrive.y}" width="${clearDrive.width}" height="${clearDrive.height}" rx="4" fill="rgba(16, 185, 129, 0.14)" stroke="#10b981" stroke-width="1.5" stroke-dasharray="5,3"/>
+          `);
+        } else {
+          // Option 3: "Sunny NW Perimeter L" (4 N-S boxes along North Fence + 3 N-S boxes along West Precast Wall = 7 Boxes)
+          // - 4 N-S boxes (3' E-W × 6' N-S) along North Fence (wy: 1.5..7.5) from wx=1.5 to wx=19.75
+          [1.5, 6.75, 12.0, 16.75].forEach((bx, idx) => {
+            boxes.push({ id: `N${idx + 1}`, wx1: bx, wy1: 1.5, wx2: bx + 3.0, wy2: 7.5, warn: false });
+          });
+          // - 3 N-S boxes (3' E-W × 6' N-S) along Sunny West Wall (wx: 1.5..4.5) at wy=10.0..16.0, 18.0..24.0, 26.0..32.0
+          [10.0, 18.0, 26.0].forEach((by, idx) => {
+            boxes.push({ id: `W${idx + 1}`, wx1: 1.5, wy1: by, wx2: 4.5, wy2: by + 6.0, warn: false });
+          });
+        }
+
+        // Render each 6'×3' Cedar/Metal Raised Bed with soil texture & corner posts
+        boxes.forEach(b => {
+          const r = projectRect(b.wx1, b.wy1, b.wx2, b.wy2);
+          const strokeCol = b.warn ? '#fbbf24' : '#84cc16';
+          const fillCol = b.warn ? 'rgba(217, 119, 6, 0.42)' : 'rgba(63, 98, 18, 0.55)';
+          out.push(`
+            <g class="cursor-pointer" onclick="selectMeasurement('garden-beds-spec')">
+              <rect x="${r.x.toFixed(1)}" y="${r.y.toFixed(1)}" width="${r.width.toFixed(1)}" height="${r.height.toFixed(1)}" rx="2.5" fill="${fillCol}" stroke="${strokeCol}" stroke-width="1.8"/>
+              <line x1="${(r.x + 3).toFixed(1)}" y1="${(r.y + r.height / 2).toFixed(1)}" x2="${(r.x + r.width - 3).toFixed(1)}" y2="${(r.y + r.height / 2).toFixed(1)}" stroke="${strokeCol}" stroke-width="0.7" stroke-dasharray="2,2" opacity="0.7"/>
+              <text x="${r.cx.toFixed(1)}" y="${r.cy.toFixed(1)}" fill="#ecfccb" font-family="JetBrains Mono" font-weight="700" font-size="${(6.8 * ts).toFixed(1)}" text-anchor="middle" dominant-baseline="middle">${b.id} (6'×3')</text>
+            </g>
+          `);
+        });
+
+        out.push(`</g>`);
+      }
+
+      // Highlighted Zone Box if user hovers an Area row in the table
+      const activeItem = MEASUREMENTS.find(m => m.id === STATE.highlightedId);
+      if (activeItem && activeItem.zoneBox) {
+        const zb = projectRect(activeItem.zoneBox.x1, activeItem.zoneBox.y1, activeItem.zoneBox.x2, activeItem.zoneBox.y2);
+        out.push(`
+          <rect x="${zb.x}" y="${zb.y}" width="${zb.width}" height="${zb.height}" fill="rgba(245, 158, 11, 0.16)" stroke="#f59e0b" stroke-width="3.5" stroke-dasharray="8,4" class="cad-highlight-pulse"/>
+        `);
+      }
+
+      /***********************************************************************
+       * 14. UNIFIED ZERO-OVERLAP LABEL & DIMENSION LAYOUT PASS
+       * ---------------------------------------------------------------------
+       * We collect all active labels across:
+       *   - Priority 0: Currently Highlighted Item (Always on top)
+       *   - Priority 1: Core Structural Room Titles (Main House, Garage, Driveway)
+       *   - Priority 2: Concentric Exterior & Interior Dimension Lines
+       *   - Priority 3: Yard Sq.Ft. Zone Cards
+       *   - Priority 4: Utilities, Porch, Fence Gates & Survey Callouts
+       ***********************************************************************/
+      const labelQueue = [];
+
+      // A. Core Structural Room Titles (Always visible for context)
+      const structuralCards = [
+        {
+          id: 'struct-house',
+          priority: 1,
+          anchorWx: 43.0, anchorWy: 25.0,
+          prefWx: 43.0, prefWy: 25.0,
+          lines: [
+            { text: 'MAIN HOUSE (3152)', size: 10.5, weight: '700', color: T.textMain },
+            { text: "32.0' W × 43.2' N / 29.7' S", size: 8.8, weight: '600', color: T.dimPrimary },
+            { text: '1,242.4 SQ.FT. FOOTPRINT', size: 7.5, weight: '500', color: T.textSub }
+          ],
+          bg: T.dimTextBg, border: T.wallStroke, leaderColor: T.wallStroke
+        },
+        {
+          id: 'struct-garage',
+          priority: 1,
+          anchorWx: 61.5, anchorWy: 19.0,
+          prefWx: 61.5, prefWy: 19.0,
+          lines: [
+            { text: '2-CAR GARAGE', size: 10.0, weight: '700', color: T.textMain },
+            { text: "20.0' FDN (20.5' W/ STONE)", size: 8.2, weight: '600', color: T.textSub },
+            { text: "+13.5' FORWARD OF DOOR", size: 7.5, weight: '500', color: T.dimPrimary }
+          ],
+          bg: T.dimTextBg, border: T.wallStroke, leaderColor: T.wallStroke
+        },
+        {
+          id: 'struct-driveway',
+          priority: 1,
+          anchorWx: 85.0, anchorWy: 20.0,
+          prefWx: 85.0, prefWy: 20.0,
+          lines: [
+            { text: 'CONCRETE DRIVEWAY', size: 9.5, weight: '700', color: T.textMain },
+            { text: "18.0' W (3×6') × 23.5' L", size: 8.0, weight: '500', color: T.textSub }
+          ],
+          bg: T.dimTextBg, border: T.concreteStroke, leaderColor: T.concreteStroke
+        },
+        {
+          id: 'struct-street',
+          priority: 1,
+          anchorWx: 111.6, anchorWy: 25.0,
+          prefWx: 111.6, prefWy: 25.0,
+          lines: [
+            { text: 'EAST STREET (FRONT FACES WEST)', size: 9.2, weight: '700', color: T.textSub }
+          ],
+          bg: T.streetFill, border: T.wallStroke, leaderColor: T.wallStroke
+        }
+      ];
+      structuralCards.forEach(c => labelQueue.push(c));
+
+      // B. Dimension Lines & Witness Extensions
+      const dimLinesSvg = [];
+      MEASUREMENTS.forEach(m => {
+        if (!m.dim) return;
+        const isPrimary = m.dim.primary;
+        const isHighlighted = STATE.highlightedId === m.id;
+        if (isPrimary && !STATE.layers.primaryDims && !isHighlighted) return;
+        if (!isPrimary && !STATE.layers.secondaryDims && !isHighlighted) return;
+
+        const d = m.dim;
+        const p1 = project(d.x1, d.y1);
+        const p2 = project(d.x2, d.y2);
+        const mx = (p1.x + p2.x) / 2;
+        const my = (p1.y + p2.y) / 2;
+
+        const color = isHighlighted ? '#fbbf24' : (isPrimary ? T.dimPrimary : T.dimSecondary);
+        const strokeW = isHighlighted ? 3.0 : (isPrimary ? 1.65 : 1.15);
+        const markerStart = isHighlighted ? 'url(#arrow-hi-start)' : (isPrimary ? 'url(#arrow-pri-start)' : 'url(#arrow-sec-start)');
+        const markerEnd = isHighlighted ? 'url(#arrow-hi-end)' : (isPrimary ? 'url(#arrow-pri-end)' : 'url(#arrow-sec-end)');
+
+        // Render Witness / Extension lines if exterior track coordinates (wx1, wy1) are provided
+        let witnessSvg = '';
+        if (d.wx1 !== undefined && d.wy1 !== undefined) {
+          const wp1 = project(d.wx1, d.wy1);
+          const wp2 = project(d.wx2, d.wy2);
+          witnessSvg = `
+            <line x1="${wp1.x}" y1="${wp1.y}" x2="${p1.x}" y2="${p1.y}" stroke="${isHighlighted ? '#fbbf24' : T.witnessLine}" stroke-width="${isHighlighted ? 1.4 : 0.85}" stroke-dasharray="3,3"/>
+            <line x1="${wp2.x}" y1="${wp2.y}" x2="${p2.x}" y2="${p2.y}" stroke="${isHighlighted ? '#fbbf24' : T.witnessLine}" stroke-width="${isHighlighted ? 1.4 : 0.85}" stroke-dasharray="3,3"/>
+          `;
+        }
+
+        dimLinesSvg.push(`
+          <g class="cursor-pointer ${isHighlighted ? 'cad-highlight-pulse' : ''}" onclick="selectMeasurement('${m.id}')" onmouseenter="hoverMeasurement('${m.id}')" onmouseleave="hoverMeasurement(null)">
+            ${witnessSvg}
+            <line x1="${p1.x}" y1="${p1.y}" x2="${p2.x}" y2="${p2.y}" stroke="${color}" stroke-width="${strokeW}" marker-start="${markerStart}" marker-end="${markerEnd}"/>
+          </g>
+        `);
+
+        // Determine screen axis of this dimension line so collision resolver slides along the track first
+        const isHorizontalOnScreen = Math.abs(p2.x - p1.x) >= Math.abs(p2.y - p1.y);
+
+        labelQueue.push({
+          id: m.id,
+          measureId: m.id,
+          priority: isHighlighted ? 0 : (isPrimary ? 2 : 3),
+          anchorScreenX: mx,
+          anchorScreenY: my,
+          prefScreenX: mx,
+          prefScreenY: my,
+          axisHint: isHorizontalOnScreen ? 'ALONG_X' : 'ALONG_Y',
+          lines: [
+            {
+              text: d.label,
+              size: isHighlighted ? 9.8 : (isPrimary ? 8.8 : 7.8),
+              weight: isPrimary || isHighlighted ? '700' : '600',
+              color: isHighlighted ? '#fbbf24' : T.dimText
+            }
+          ],
+          bg: T.dimTextBg,
+          border: color,
+          borderW: isHighlighted ? 2.2 : 1.15,
+          leaderColor: color,
+          isHighlighted
+        });
+      });
+
+      // C. Point Callouts from MEASUREMENTS (e.g. Sliding Door Step, AC Condenser, NE Stone Wrap)
+      MEASUREMENTS.forEach(m => {
+        if (!m.callout) return;
+        const c = m.callout;
+        const isHighlighted = STATE.highlightedId === m.id;
+        if (!STATE.layers[c.category] && !isHighlighted) return;
+
+        labelQueue.push({
+          id: m.id,
+          measureId: m.id,
+          priority: isHighlighted ? 0 : 4,
+          anchorWx: c.anchorWx,
+          anchorWy: c.anchorWy,
+          prefWx: c.prefWx,
+          prefWy: c.prefWy,
+          alwaysLeader: true,
+          lines: [
+            { text: c.title, size: 8.2, weight: '700', color: isHighlighted ? '#fbbf24' : T.utilBadgeText },
+            { text: c.sub, size: 7.2, weight: '500', color: T.textSub }
+          ],
+          bg: T.utilBadgeBg,
+          border: isHighlighted ? '#fbbf24' : T.utilBadgeBorder,
+          borderW: isHighlighted ? 2.2 : 1.2,
+          leaderColor: isHighlighted ? '#fbbf24' : T.utilBadgeBorder,
+          isHighlighted
+        });
+      });
+
+      // D. Yard Area Sq.Ft. Zone Badges
+      if (STATE.layers.zones) {
+        const zoneCards = [
+          {
+            id: 'zone-backyard-dirt',
+            measureId: 'area-backyard-dirt',
+            anchorWx: 8.5, anchorWy: 29.0,
+            prefWx: 8.5, prefWy: 29.0,
+            title: 'BACKYARD UNPAVED DIRT',
+            sqft: '1,237.5 SQ. FT.',
+            sub: '1,500 Total − 262.5 Patio'
+          },
+          {
+            id: 'zone-patio',
+            measureId: 'area-patio',
+            anchorWx: 23.75, anchorWy: 34.5,
+            prefWx: 23.75, prefWy: 34.5,
+            title: 'CONCRETE PATIO',
+            sqft: '262.5 SQ. FT.',
+            sub: "21.0' W × 12.5' D (4 Quads)"
+          },
+          {
+            id: 'zone-north-side',
+            measureId: 'area-side-yards',
+            anchorWx: 40.0, anchorWy: 4.5,
+            prefWx: 40.0, prefWy: 4.5,
+            title: 'NORTH SIDE YARD',
+            sqft: '388.8 SQ. FT.',
+            sub: "9.0' W × 43.2' L"
+          },
+          {
+            id: 'zone-south-side',
+            measureId: 'area-side-yards',
+            anchorWx: 36.5, anchorWy: 45.5,
+            prefWx: 36.5, prefWy: 45.5,
+            title: 'SOUTH SIDE YARD',
+            sqft: '270.0 SQ. FT.',
+            sub: "9.0'×30' (324 sq.ft. to Porch)"
+          },
+          {
+            id: 'zone-se-front',
+            measureId: 'se-front-bed-dims',
+            anchorWx: 84.5, anchorWy: 41.5,
+            prefWx: 84.5, prefWy: 41.5,
+            title: 'SE FRONT YARD BED',
+            sqft: '~555.0 SQ. FT.',
+            sub: "17.5'–21.0' W × 27'–37' D"
+          },
+          {
+            id: 'zone-ne-front',
+            measureId: 'ne-front-strip-dims',
+            anchorWx: 85.0, anchorWy: 5.2,
+            prefWx: 85.0, prefWy: 5.2,
+            title: 'NE FRONT STRIP',
+            sqft: '258.5 SQ. FT.',
+            sub: "11.0' W × 23.5' D"
+          }
+        ];
+
+        zoneCards.forEach(z => {
+          const isHighlighted = STATE.highlightedId === z.measureId;
+          labelQueue.push({
+            id: z.id,
+            measureId: z.measureId,
+            priority: isHighlighted ? 0 : 2,
+            anchorWx: z.anchorWx,
+            anchorWy: z.anchorWy,
+            prefWx: z.prefWx,
+            prefWy: z.prefWy,
+            lines: [
+              { text: z.title, size: 7.8, weight: '700', color: T.zoneBadgeText },
+              { text: z.sqft, size: 9.4, weight: '700', color: '#ffffff' },
+              { text: z.sub, size: 7.0, weight: '500', color: T.zoneBadgeText }
+            ],
+            bg: T.zoneBadgeBg,
+            border: isHighlighted ? '#fbbf24' : T.zoneBadgeBorder,
+            borderW: isHighlighted ? 2.2 : 1.3,
+            leaderColor: isHighlighted ? '#fbbf24' : T.zoneBadgeBorder,
+            isHighlighted
+          });
+        });
+      }
+
+      // E. Covered Porch & 3152 Pillar Callouts
+      if (STATE.layers.primaryDims || STATE.layers.secondaryDims) {
+        labelQueue.push({
+          id: 'callout-porch-slab',
+          measureId: 'porch-width',
+          priority: 3,
+          anchorWx: 62.7, anchorWy: 35.0,
+          prefWx: 69.5, prefWy: 37.5,
+          alwaysLeader: true,
+          lines: [
+            { text: 'COVERED PORCH (3152)', size: 8.2, weight: '700', color: T.textMain },
+            { text: "12.0' FDN (12.5' EXT) × 6.0' D", size: 7.2, weight: '500', color: T.textSub }
+          ],
+          bg: T.dimTextBg,
+          border: T.concreteStroke,
+          leaderColor: T.concreteStroke
+        });
+      }
+
+      // F. Additional Utility & Survey Stake Callouts
+      if (STATE.layers.utilities) {
+        const extraUtilCallouts = [
+          {
+            id: 'util-hose-bib',
+            measureId: 'north-hose-bib',
+            anchorWx: 51.0, anchorWy: 9.0,
+            prefWx: 55.0, prefWy: -1.8,
+            title: 'HOSE BIB (SPIGOT)',
+            sub: "21.0' E. of NW Corner"
+          },
+          {
+            id: 'util-meters',
+            measureId: 'south-setback',
+            anchorWx: 52.8, anchorWy: 41.5,
+            prefWx: 54.0, prefWy: 52.8,
+            title: 'GAS & ELEC METERS',
+            sub: "6'–10' W. of SE Corner"
+          },
+          {
+            id: 'util-stakes',
+            measureId: 'north-setback',
+            anchorWx: 26.0, anchorWy: 0.0,
+            prefWx: 21.0, prefWy: -1.8,
+            title: 'PINK SURVEY STAKES',
+            sub: "Marks 9.0' N. Property Line"
+          }
+        ];
+        extraUtilCallouts.forEach(u => {
+          const isHighlighted = STATE.highlightedId === u.measureId;
+          labelQueue.push({
+            id: u.id,
+            measureId: u.measureId,
+            priority: isHighlighted ? 0 : 4,
+            anchorWx: u.anchorWx,
+            anchorWy: u.anchorWy,
+            prefWx: u.prefWx,
+            prefWy: u.prefWy,
+            alwaysLeader: true,
+            lines: [
+              { text: u.title, size: 7.8, weight: '700', color: T.utilBadgeText },
+              { text: u.sub, size: 7.0, weight: '500', color: T.textSub }
+            ],
+            bg: T.utilBadgeBg,
+            border: T.utilBadgeBorder,
+            leaderColor: T.utilBadgeBorder,
+            isHighlighted
+          });
+        });
+      }
+
+      // G. Fence Gate Callouts
+      if (STATE.layers.fence) {
+        const sFenceText = STATE.southFenceMode === 'STUCCO_SETBACK'
+          ? "S. HUMAN GATE (4' WALK + 5' WING)"
+          : "S. HUMAN GATE AT SE CORNER (4' WALK)";
+        const sFenceSub = STATE.southFenceMode === 'STUCCO_SETBACK'
+          ? "57.5' Fence • Setback 2.2' on Stucco (8.2' behind Porch)"
+          : "59.7' Fence • Setback 6.0' behind 3152 Porch Pillar";
+
+        const fenceCallouts = [
+          {
+            id: 'fence-north-gate',
+            measureId: 'north-vehicle-gate',
+            anchorWx: northGateWx, anchorWy: 4.5,
+            prefWx: 80.5, prefWy: -1.8,
+            title: "N. VEHICLE GATE (8'–8.5' DBL DRIVE)",
+            sub: "70.0' Fence • 3.2' Setback (1.2' behind Stone)"
+          },
+          {
+            id: 'fence-south-gate',
+            measureId: 'south-human-gate',
+            anchorWx: southEndWx, anchorWy: 46.5,
+            prefWx: southEndWx + 9.5, prefWy: 53.0,
+            title: sFenceText,
+            sub: sFenceSub
+          }
+        ];
+
+        fenceCallouts.forEach(f => {
+          const isHighlighted = STATE.highlightedId === f.measureId;
+          labelQueue.push({
+            id: f.id,
+            measureId: f.measureId,
+            priority: isHighlighted ? 0 : 3,
+            anchorWx: f.anchorWx,
+            anchorWy: f.anchorWy,
+            prefWx: f.prefWx,
+            prefWy: f.prefWy,
+            alwaysLeader: true,
+            lines: [
+              { text: f.title, size: 7.8, weight: '700', color: '#f3e8ff' },
+              { text: f.sub, size: 6.8, weight: '500', color: '#d8b4fe' }
+            ],
+            bg: '#3b0764',
+            border: T.fenceStroke,
+            leaderColor: T.fenceStroke,
+            isHighlighted
+          });
+        });
+      }
+
+      // H. Garden Plan Callouts
+      if (STATE.layers.garden) {
+        const isHighlighted = STATE.highlightedId === 'garden-beds-spec';
+        if (STATE.gardenMode === 'PROPOSED_UTAH') {
+          labelQueue.push({
+            id: 'garden-callout-main',
+            measureId: 'garden-beds-spec',
+            priority: isHighlighted ? 0 : 3,
+            anchorWx: 23.0, anchorWy: 4.5,
+            prefWx: 14.0, prefWy: -2.0,
+            alwaysLeader: true,
+            lines: [
+              { text: "YOUR 'UTAH' PLAN (2 PATIO + 5 N. FENCE)", size: 7.8, weight: '700', color: '#fef08a' },
+              { text: "4.5' WELL CLEAR • 5.5' GAP AT N. VEHICLE GATE", size: 6.8, weight: '600', color: '#fde047' }
+            ],
+            bg: '#422006',
+            border: '#f59e0b',
+            leaderColor: '#f59e0b',
+            isHighlighted
+          });
+        } else if (STATE.gardenMode === 'COURTYARD_PRO') {
+          labelQueue.push({
+            id: 'garden-callout-main',
+            measureId: 'garden-beds-spec',
+            priority: isHighlighted ? 0 : 3,
+            anchorWx: 18.0, anchorWy: 15.0,
+            prefWx: 12.0, prefWy: -2.0,
+            alwaysLeader: true,
+            lines: [
+              { text: "★ GATE-CLEAR UTAH (2 PATIO + 4 N. + 1 W.)", size: 7.8, weight: '700', color: '#ecfccb' },
+              { text: "10.2' VEHICLE GATE TURNAROUND • 5' WELL CLEAR", size: 6.8, weight: '500', color: '#bef264' }
+            ],
+            bg: '#1a2e05',
+            border: '#84cc16',
+            leaderColor: '#84cc16',
+            isHighlighted
+          });
+        } else {
+          labelQueue.push({
+            id: 'garden-callout-main',
+            measureId: 'garden-beds-spec',
+            priority: isHighlighted ? 0 : 3,
+            anchorWx: 3.0, anchorWy: 18.0,
+            prefWx: -10.0, prefWy: 24.0,
+            alwaysLeader: true,
+            lines: [
+              { text: "SUNNY NW WALL 'L' (4 N. FENCE + 3 W. WALL)", size: 7.8, weight: '700', color: '#ecfccb' },
+              { text: '100% FULL MORNING/AFTERNOON SUN • OPEN PATIO SIDE', size: 6.8, weight: '500', color: '#bef264' }
+            ],
+            bg: '#1a2e05',
+            border: '#84cc16',
+            leaderColor: '#84cc16',
+            isHighlighted
+          });
+        }
+      }
+
+      // Render all dimension lines first
+      out.push(`<g id="dimension-lines-layer">${dimLinesSvg.join('\n')}</g>`);
+
+      // Sort labelQueue by priority (0 = highlighted first, 1 = core structural, 2 = primary dims & zones, 3 = secondary dims, 4 = utilities)
+      labelQueue.sort((a, b) => a.priority - b.priority);
+
+      const resolvedLeadersSvg = [];
+      const resolvedBoxesSvg = [];
+
+      labelQueue.forEach(item => {
+        // Project anchor and preferred center into current screen space
+        const anchorPt = item.anchorScreenX !== undefined
+          ? { x: item.anchorScreenX, y: item.anchorScreenY }
+          : project(item.anchorWx, item.anchorWy);
+
+        const prefPt = item.prefScreenX !== undefined
+          ? { x: item.prefScreenX, y: item.prefScreenY }
+          : project(item.prefWx, item.prefWy);
+
+        // Compute exact bounding box width & height based on text lines and user textScale
+        let maxW = 54;
+        let totalH = 8 * ts;
+        const scaledLines = item.lines.map(line => {
+          const fSize = line.size * ts;
+          const estW = line.text.length * (fSize * 0.61) + 16 * ts;
+          if (estW > maxW) maxW = estW;
+          const lineH = fSize + 4.5 * ts;
+          totalH += lineH;
+          return { ...line, fSize, lineH };
+        });
+
+        // Run Screen-Space AABB Collision Solver
+        const placed = collider.placeLabel(prefPt.x, prefPt.y, maxW, totalH, {
+          id: item.id,
+          pad: 4.5 * ts,
+          axisHint: item.axisHint || 'ANY'
+        });
+
+        // Draw Dogleg Leader Line if item was displaced OR is a point callout
+        const distFromAnchor = Math.hypot(placed.cx - anchorPt.x, placed.cy - anchorPt.y);
+        if ((item.alwaysLeader || placed.displaced) && distFromAnchor > 12) {
+          resolvedLeadersSvg.push(
+            renderDoglegLeader(anchorPt.x, anchorPt.y, placed.cx, placed.cy, maxW, totalH, item.leaderColor || T.dimPrimary)
+          );
+        }
+
+        // Build SVG multi-line pill badge
+        let curY = -totalH / 2 + scaledLines[0].lineH * 0.62 + 2 * ts;
+        const textEls = scaledLines.map((l, idx) => {
+          if (idx > 0) curY += l.lineH;
+          return `<text x="0" y="${curY.toFixed(1)}" fill="${l.color}" font-family="JetBrains Mono" font-weight="${l.weight}" font-size="${l.fSize.toFixed(1)}" text-anchor="middle" dominant-baseline="middle">${l.text}</text>`;
+        }).join('');
+
+        const clickAttr = item.measureId
+          ? `onclick="selectMeasurement('${item.measureId}')" onmouseenter="hoverMeasurement('${item.measureId}')" onmouseleave="hoverMeasurement(null)" class="cursor-pointer ${item.isHighlighted ? 'cad-highlight-pulse' : ''}"`
+          : `class="pointer-events-none"`;
+
+        resolvedBoxesSvg.push(`
+          <g transform="translate(${placed.cx.toFixed(1)}, ${placed.cy.toFixed(1)})" ${clickAttr}>
+            <rect x="${(-maxW / 2).toFixed(1)}" y="${(-totalH / 2).toFixed(1)}" width="${maxW.toFixed(1)}" height="${totalH.toFixed(1)}" rx="${(4.5 * ts).toFixed(1)}" fill="${item.bg}" stroke="${item.border}" stroke-width="${item.borderW || 1.2}" opacity="0.96"/>
+            ${textEls}
+          </g>
+        `);
+      });
+
+      out.push(`<g id="cad-leaders-layer">${resolvedLeadersSvg.join('\n')}</g>`);
+      out.push(`<g id="cad-labels-layer">${resolvedBoxesSvg.join('\n')}</g>`);
+
+      // Update Top Status Badge with verified 0 Overlaps count
+      const statusBadge = document.getElementById('collision-status-badge');
+      if (statusBadge) {
+        statusBadge.textContent = `0 OVERLAPS (${labelQueue.length} LABELS SOLVED)`;
+      }
+
+      // 16. INTERACTIVE TAPE MEASURE OVERLAY
+      if (STATE.measureActive && STATE.measurePts.length > 0) {
+        const ptA = STATE.measurePts[0];
+        const ptB = STATE.measurePts.length > 1 ? STATE.measurePts[1] : STATE.measureHoverPt;
+        const pA = project(ptA.wx, ptA.wy);
+
+        out.push(`<g id="tape-measure-overlay">`);
+        out.push(`<circle cx="${pA.x}" cy="${pA.y}" r="6" fill="#fbbf24" stroke="#000" stroke-width="1.5"/>`);
+
+        if (ptB) {
+          const pB = project(ptB.wx, ptB.wy);
+          const dx = Math.abs(ptB.wx - ptA.wx);
+          const dy = Math.abs(ptB.wy - ptA.wy);
+          const dist = Math.hypot(dx, dy);
+          const area = dx * dy;
+          const box = projectRect(ptA.wx, ptA.wy, ptB.wx, ptB.wy);
+
+          if (dx > 0.2 && dy > 0.2) {
+            out.push(`<rect x="${box.x}" y="${box.y}" width="${box.width}" height="${box.height}" fill="rgba(251, 191, 36, 0.1)" stroke="#fbbf24" stroke-width="1.2" stroke-dasharray="4,4"/>`);
+          }
+          out.push(`
+            <line x1="${pA.x}" y1="${pA.y}" x2="${pB.x}" y2="${pB.y}" stroke="#fbbf24" stroke-width="2.5" marker-start="url(#arrow-meas-start)" marker-end="url(#arrow-meas-end)"/>
+            <circle cx="${pB.x}" cy="${pB.y}" r="6" fill="#fbbf24" stroke="#000" stroke-width="1.5"/>
+          `);
+
+          const mx = (pA.x + pB.x) / 2;
+          const my = (pA.y + pB.y) / 2;
+          out.push(`
+            <g transform="translate(${mx}, ${my})">
+              <rect x="-74" y="-20" width="148" height="40" rx="6" fill="#0f172a" stroke="#fbbf24" stroke-width="1.8"/>
+              <text x="0" y="-6" fill="#fbbf24" font-family="JetBrains Mono" font-weight="700" font-size="10.5" text-anchor="middle" dominant-baseline="middle">${dist.toFixed(2)}' (${formatFeetInches(dist)})</text>
+              <text x="0" y="9" fill="#e2e8f0" font-family="JetBrains Mono" font-size="8" text-anchor="middle" dominant-baseline="middle">ΔE/W: ${dx.toFixed(1)}' | ΔN/S: ${dy.toFixed(1)}'</text>
+            </g>
+          `);
+
+          document.getElementById('meas-dist').textContent = `${dist.toFixed(2)} ft`;
+          document.getElementById('meas-arch').textContent = `${formatFeetInches(dist)} exact`;
+          document.getElementById('meas-area').textContent = `${area.toFixed(1)} sq.ft.`;
+          document.getElementById('meas-coords').textContent = `ΔE/W: ${dx.toFixed(1)}' × ΔN/S: ${dy.toFixed(1)}'`;
+        }
+        out.push(`</g>`);
+      }
+
+      // 17. COMPASS ROSE & ARCHITECTURAL TITLE BLOCK
+      out.push(renderCompassAndTitleBlock(vw, vh, T));
+
+      svg.setAttribute('viewBox', `0 0 ${vw} ${vh}`);
+      svg.innerHTML = out.join('\n');
+      applyViewportTransform();
+    }
+
+    function renderCompassAndTitleBlock(vw, vh, T) {
+      const c0 = project(50, 25);
+      const cN = project(50, 20);
+      const angleN = Math.atan2(cN.y - c0.y, cN.x - c0.x) * (180 / Math.PI) + 90;
+
+      const compassX = vw - 82;
+      const compassY = 82;
+
+      return `
+        <!-- Compass Rose -->
+        <g transform="translate(${compassX}, ${compassY})">
+          <circle cx="0" cy="0" r="42" fill="${T.dimTextBg}" stroke="${T.wallStroke}" stroke-width="1.5" opacity="0.95"/>
+          <circle cx="0" cy="0" r="34" fill="none" stroke="${T.gridMajor}" stroke-width="1" stroke-dasharray="3,3"/>
+          <g transform="rotate(${angleN})">
+            <polygon points="0,-32 -7,0 0,-6 7,0" fill="#ef4444"/>
+            <polygon points="0,32 -6,0 0,6 6,0" fill="${T.textSub}"/>
+            <text x="0" y="-35" fill="#ef4444" font-family="JetBrains Mono" font-weight="700" font-size="10" text-anchor="middle">N</text>
+            <text x="0" y="42" fill="${T.textSub}" font-family="JetBrains Mono" font-weight="700" font-size="9" text-anchor="middle">S</text>
+            <text x="38" y="3" fill="${T.dimPrimary}" font-family="JetBrains Mono" font-weight="700" font-size="9" text-anchor="middle">E</text>
+            <text x="-38" y="3" fill="${T.dimPrimary}" font-family="JetBrains Mono" font-weight="700" font-size="9" text-anchor="middle">W</text>
+          </g>
+        </g>
+
+        <!-- Architectural Engineering Title Block & Visual Scale Bar -->
+        <g transform="translate(${vw / 2}, ${vh - 36})">
+          <rect x="-325" y="-24" width="650" height="44" rx="6" fill="${T.dimTextBg}" stroke="${T.wallStroke}" stroke-width="1.5" opacity="0.96"/>
+          <text x="-310" y="-7" fill="${T.textMain}" font-family="JetBrains Mono" font-weight="700" font-size="10.2" text-anchor="start">SHEET A-101: LOT 3152 MASTER SITE & LANDSCAPE PLAN (ZERO-OVERLAP CAD)</text>
+          <text x="-310" y="9" fill="${T.textSub}" font-family="JetBrains Mono" font-size="8.4" text-anchor="start">LOT: 50.0' W × 96.7' D (TO WALK) | HOUSE: 32.0' W × 43.2' N / 29.7' S | PATIO: 21.0' × 12.5'</text>
+
+          <!-- Graphic 14-Ft Scale Bar (12 units/ft) -->
+          <g transform="translate(150, -10)">
+            <rect x="0" y="0" width="60" height="7" fill="${T.dimPrimary}" stroke="${T.houseStroke}" stroke-width="0.8"/>
+            <rect x="60" y="0" width="60" height="7" fill="${T.dimTextBg}" stroke="${T.houseStroke}" stroke-width="0.8"/>
+            <rect x="120" y="0" width="48" height="7" fill="${T.dimPrimary}" stroke="${T.houseStroke}" stroke-width="0.8"/>
+            <text x="0" y="18" fill="${T.textMain}" font-family="JetBrains Mono" font-size="8" text-anchor="middle">0'</text>
+            <text x="60" y="18" fill="${T.textMain}" font-family="JetBrains Mono" font-size="8" text-anchor="middle">5'</text>
+            <text x="120" y="18" fill="${T.textMain}" font-family="JetBrains Mono" font-size="8" text-anchor="middle">10'</text>
+            <text x="168" y="18" fill="${T.textMain}" font-family="JetBrains Mono" font-size="8" text-anchor="middle">14' SCALE</text>
+          </g>
+        </g>
+      `;
+    }
+
+    /*************************************************************************
+     * 6. MASTER MEASUREMENT TABLE & INTERACTIVE INSPECTOR
+     *************************************************************************/
+    function renderTable() {
+      const list = document.getElementById('measurement-list');
+      const query = (document.getElementById('search-input').value || '').toLowerCase().trim();
+
+      const filtered = MEASUREMENTS.filter(m => {
+        const matchZone = STATE.zoneFilter === 'ALL' || m.zone === STATE.zoneFilter;
+        const matchQuery = !query ||
+          m.name.toLowerCase().includes(query) ||
+          m.exact.toLowerCase().includes(query) ||
+          m.notes.toLowerCase().includes(query) ||
+          m.zone.toLowerCase().includes(query);
+        return matchZone && matchQuery;
+      });
+
+      document.getElementById('table-count-badge').textContent = filtered.length;
+
+      list.innerHTML = filtered.map(m => {
+        const isSelected = STATE.highlightedId === m.id;
+        return `
+          <div id="row-${m.id}"
+               onclick="selectMeasurement('${m.id}')"
+               onmouseenter="hoverMeasurement('${m.id}')"
+               onmouseleave="hoverMeasurement(null)"
+               class="p-3 cursor-pointer transition-colors ${isSelected ? 'bg-sky-500/20 border-l-4 border-sky-400' : 'hover:bg-slate-800/70'}">
+            <div class="flex items-center justify-between gap-2 mb-1">
+              <span class="text-[10px] font-mono-cad uppercase px-1.5 py-0.5 rounded bg-slate-800 text-slate-300 border border-slate-700">${m.zone}</span>
+              <span class="text-[11px] font-mono-cad text-slate-400">Rough: <span class="text-slate-300">${m.rough}</span></span>
+            </div>
+            <div class="flex items-baseline justify-between gap-2">
+              <h4 class="text-xs font-semibold text-white">${m.name}</h4>
+              <span class="text-xs font-mono-cad font-bold text-emerald-400 shrink-0">${m.exact}</span>
+            </div>
+            <p class="text-[11px] text-slate-400 mt-1 line-clamp-2">${m.notes}</p>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function updateInspectorCard(id) {
+      const item = MEASUREMENTS.find(m => m.id === id) || MEASUREMENTS[0];
+      document.getElementById('insp-zone').textContent = item.zone;
+      document.getElementById('insp-rough').textContent = `Your Rough: ${item.rough}`;
+      document.getElementById('insp-title').textContent = item.name;
+      document.getElementById('insp-exact').textContent = item.exact;
+      document.getElementById('insp-notes').textContent = item.notes;
+    }
+
+    function hoverMeasurement(id) {
+      STATE.highlightedId = id;
+      if (id) updateInspectorCard(id);
+      renderBlueprint();
+    }
+
+    function selectMeasurement(id) {
+      STATE.highlightedId = id;
+      updateInspectorCard(id);
+      renderTable();
+      renderBlueprint();
+      const row = document.getElementById(`row-${id}`);
+      if (row) row.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+
+    function filterTable() {
+      renderTable();
+    }
+
+    function setZoneFilter(zone) {
+      STATE.zoneFilter = zone;
+      document.querySelectorAll('.zone-tab').forEach(btn => {
+        if (btn.dataset.zone === zone) {
+          btn.className = 'zone-tab px-2 py-1 rounded bg-sky-600 text-white font-medium shrink-0';
+        } else {
+          btn.className = 'zone-tab px-2 py-1 rounded bg-slate-800 text-slate-300 hover:text-white shrink-0';
+        }
+      });
+      renderTable();
+    }
+
+    /*************************************************************************
+     * 7. UI CONTROLS: ORIENTATION, LABEL MODES, TEXT SCALE, FENCE, TAPE
+     *************************************************************************/
+    function setOrientation(orient) {
+      STATE.orientation = orient;
+      const map = {
+        'WEST_UP': 'orient-west',
+        'NORTH_UP': 'orient-north',
+        'EAST_UP': 'orient-east'
+      };
+      document.querySelectorAll('.orient-btn').forEach(btn => {
+        btn.className = 'orient-btn px-2.5 py-1 rounded-md text-xs font-medium transition-all text-slate-400 hover:text-white';
+      });
+      document.getElementById(map[orient]).className = 'orient-btn px-2.5 py-1 rounded-md text-xs font-medium transition-all bg-sky-600 text-white shadow';
+      resetViewport();
+      renderBlueprint();
+    }
+
+    function setTheme(themeName) {
+      STATE.theme = themeName;
+      renderBlueprint();
+    }
+
+    function setLabelMode(mode) {
+      STATE.labelMode = mode;
+      if (mode === 'SMART_ALL') {
+        STATE.layers.primaryDims = true;
+        STATE.layers.secondaryDims = true;
+        STATE.layers.zones = true;
+        STATE.layers.utilities = true;
+        STATE.layers.fence = true;
+      } else if (mode === 'CLEAN_OVERVIEW') {
+        STATE.layers.primaryDims = true;
+        STATE.layers.secondaryDims = false;
+        STATE.layers.zones = true;
+        STATE.layers.utilities = false;
+        STATE.layers.fence = true;
+      } else if (mode === 'DIMS_ONLY') {
+        STATE.layers.primaryDims = true;
+        STATE.layers.secondaryDims = true;
+        STATE.layers.zones = false;
+        STATE.layers.utilities = false;
+        STATE.layers.fence = false;
+      } else if (mode === 'ZONES_ONLY') {
+        STATE.layers.primaryDims = false;
+        STATE.layers.secondaryDims = false;
+        STATE.layers.zones = true;
+        STATE.layers.utilities = false;
+        STATE.layers.fence = false;
+      } else if (mode === 'UTILITIES_FENCE') {
+        STATE.layers.primaryDims = true;
+        STATE.layers.secondaryDims = false;
+        STATE.layers.zones = false;
+        STATE.layers.utilities = true;
+        STATE.layers.fence = true;
+      }
+      syncLayerButtonsUI();
+      renderBlueprint();
+    }
+
+    function syncLayerButtonsUI() {
+      ['primaryDims', 'secondaryDims', 'zones', 'utilities', 'fence', 'garden', 'grid'].forEach(key => {
+        const btn = document.getElementById(`layer-${key}`);
+        if (!btn) return;
+        if (STATE.layers[key]) {
+          btn.classList.remove('opacity-40', 'line-through');
+        } else {
+          btn.classList.add('opacity-40', 'line-through');
+        }
+      });
+      document.getElementById('fence-options-bar').style.display = STATE.layers.fence ? 'flex' : 'none';
+      const gardenBar = document.getElementById('garden-options-bar');
+      if (gardenBar) gardenBar.style.display = STATE.layers.garden ? 'flex' : 'none';
+    }
+
+    function setGardenMode(mode) {
+      STATE.gardenMode = mode;
+      const map = {
+        'PROPOSED_UTAH': 'garden-mode-utah',
+        'COURTYARD_PRO': 'garden-mode-courtyard',
+        'PERIMETER_L': 'garden-mode-perimeter'
+      };
+      Object.entries(map).forEach(([k, btnId]) => {
+        const el = document.getElementById(btnId);
+        if (!el) return;
+        if (k === mode) {
+          el.className = 'px-1.5 py-0.5 rounded bg-lime-600 text-white font-mono-cad text-[10px]';
+        } else {
+          el.className = 'px-1.5 py-0.5 rounded bg-slate-800 text-slate-400 hover:text-white font-mono-cad text-[10px]';
+        }
+      });
+      renderBlueprint();
+    }
+
+    function toggleLayer(layerKey) {
+      STATE.layers[layerKey] = !STATE.layers[layerKey];
+      syncLayerButtonsUI();
+      renderBlueprint();
+    }
+
+    function setTextScale(val) {
+      STATE.textScale = parseFloat(val);
+      document.getElementById('text-scale-readout').textContent = `${Math.round(STATE.textScale * 100)}%`;
+      renderBlueprint();
+    }
+
+    function setSouthFenceMode(mode) {
+      STATE.southFenceMode = mode;
+      const btn60 = document.getElementById('fence-mode-60');
+      const btn66 = document.getElementById('fence-mode-66');
+      if (mode === 'STUCCO_SETBACK') {
+        btn60.className = 'px-1.5 py-0.5 rounded bg-purple-600 text-white font-mono-cad text-[10px]';
+        btn66.className = 'px-1.5 py-0.5 rounded bg-slate-800 text-slate-400 hover:text-white font-mono-cad text-[10px]';
+      } else {
+        btn66.className = 'px-1.5 py-0.5 rounded bg-purple-600 text-white font-mono-cad text-[10px]';
+        btn60.className = 'px-1.5 py-0.5 rounded bg-slate-800 text-slate-400 hover:text-white font-mono-cad text-[10px]';
+      }
+      renderBlueprint();
+    }
+
+    function toggleMeasureTool() {
+      STATE.measureActive = !STATE.measureActive;
+      const btn = document.getElementById('measure-btn');
+      const hud = document.getElementById('measure-hud');
+      if (STATE.measureActive) {
+        btn.className = 'px-2.5 py-1.5 rounded-lg text-xs font-semibold border border-amber-400 bg-amber-500/20 text-amber-300 flex items-center gap-1.5 transition-all shadow-lg';
+        hud.classList.remove('hidden');
+      } else {
+        btn.className = 'px-2.5 py-1.5 rounded-lg text-xs font-semibold border border-slate-700 bg-slate-800/90 hover:bg-slate-700 text-slate-200 flex items-center gap-1.5 transition-all';
+        hud.classList.add('hidden');
+        clearMeasurePoints();
+      }
+      renderBlueprint();
+    }
+
+    function clearMeasurePoints() {
+      STATE.measurePts = [];
+      STATE.measureHoverPt = null;
+      document.getElementById('meas-dist').textContent = '—';
+      document.getElementById('meas-arch').textContent = '—';
+      document.getElementById('meas-area').textContent = '—';
+      document.getElementById('meas-coords').textContent = 'ΔE/W & ΔN/S';
+      renderBlueprint();
+    }
+
+    function toggleSidebar() {
+      const drawer = document.getElementById('sidebar-drawer');
+      STATE.sidebarOpen = !STATE.sidebarOpen;
+      if (STATE.sidebarOpen) {
+        drawer.classList.remove('translate-x-full', 'lg:hidden');
+      } else {
+        drawer.classList.add('translate-x-full', 'lg:hidden');
+      }
+    }
+
+    /*************************************************************************
+     * 8. VIEWPORT PAN, ZOOM & MAGNETIC SNAP COORDINATE TRACKING
+     *************************************************************************/
+    const KEY_SNAP_POINTS = [
+      [0, 0], [0, 50], [30, 0], [30, 50],
+      [30, 9], [30, 20], [30, 41],
+      [17.5, 20], [17.5, 30.5], [17.5, 41],
+      [23.75, 20], [23.75, 30.5], [23.75, 41],
+      [59.7, 29], [59.7, 41],
+      [65.7, 29], [65.7, 41],
+      [73.2, 9], [73.2, 11], [73.2, 27], [73.2, 29],
+      [96.7, 0], [96.7, 11], [96.7, 29], [96.7, 50],
+      [51.0, 9], [46.5, 44]
+    ];
+
+    function snapWorldCoord(wx, wy) {
+      const snapEnabled = document.getElementById('snap-toggle')?.checked;
+      if (!snapEnabled) return { wx, wy };
+
+      // First check magnetic snap to key structural corners within 0.9 ft
+      for (const [kx, ky] of KEY_SNAP_POINTS) {
+        if (Math.hypot(wx - kx, wy - ky) < 0.9) {
+          return { wx: kx, wy: ky };
+        }
+      }
+      // Otherwise snap to 0.25 ft (3 inch) increments
+      return {
+        wx: Math.round(wx * 4) / 4,
+        wy: Math.round(wy * 4) / 4
+      };
+    }
+
+    function getSVGCoordsFromEvent(evt) {
+      const svg = document.getElementById('blueprint-svg');
+      const pt = svg.createSVGPoint();
+      pt.x = evt.clientX;
+      pt.y = evt.clientY;
+      const ctm = svg.getScreenCTM();
+      if (!ctm) return { wx: 0, wy: 0 };
+      const transformed = pt.matrixTransform(ctm.inverse());
+      return unproject(transformed.x, transformed.y);
+    }
+
+    function applyViewportTransform() {
+      const svg = document.getElementById('blueprint-svg');
+      svg.style.transform = `translate(${STATE.panX}px, ${STATE.panY}px) scale(${STATE.zoom})`;
+      svg.style.transformOrigin = 'center center';
+      document.getElementById('zoom-readout').textContent = `${Math.round(STATE.zoom * 100)}%`;
+    }
+
+    function zoomBy(factor) {
+      STATE.zoom = Math.max(0.4, Math.min(5.0, STATE.zoom * factor));
+      applyViewportTransform();
+    }
+
+    function resetViewport() {
+      STATE.zoom = 1.0;
+      STATE.panX = 0;
+      STATE.panY = 0;
+      applyViewportTransform();
+    }
+
+    function setupCanvasInteractions() {
+      const viewport = document.getElementById('svg-viewport');
+
+      viewport.addEventListener('wheel', (e) => {
+        e.preventDefault();
+        const factor = e.deltaY < 0 ? 1.12 : 0.89;
+        zoomBy(factor);
+      }, { passive: false });
+
+      viewport.addEventListener('mousedown', (e) => {
+        if (e.button !== 0) return;
+        if (STATE.measureActive) {
+          const raw = getSVGCoordsFromEvent(e);
+          const snapped = snapWorldCoord(raw.wx, raw.wy);
+          if (STATE.measurePts.length >= 2) {
+            STATE.measurePts = [snapped];
+          } else {
+            STATE.measurePts.push(snapped);
+          }
+          renderBlueprint();
+          return;
+        }
+        STATE.isPanning = true;
+        STATE.startPanX = e.clientX - STATE.panX;
+        STATE.startPanY = e.clientY - STATE.panY;
+      });
+
+      window.addEventListener('mousemove', (e) => {
+        const raw = getSVGCoordsFromEvent(e);
+        const snapped = snapWorldCoord(raw.wx, raw.wy);
+        if (raw.wx >= -10 && raw.wx <= 120 && raw.wy >= -10 && raw.wy <= 60) {
+          document.getElementById('cursor-readout').textContent =
+            `E/W: ${snapped.wx.toFixed(1)}' | N/S: ${snapped.wy.toFixed(1)}'`;
+        }
+
+        if (STATE.measureActive && STATE.measurePts.length === 1) {
+          STATE.measureHoverPt = snapped;
+          renderBlueprint();
+        }
+
+        if (!STATE.isPanning) return;
+        STATE.panX = e.clientX - STATE.startPanX;
+        STATE.panY = e.clientY - STATE.startPanY;
+        applyViewportTransform();
+      });
+
+      window.addEventListener('mouseup', () => {
+        STATE.isPanning = false;
+      });
+    }
+
+    /*************************************************************************
+     * 8. EXPORT TO STANDALONE VECTOR .SVG & HIGH-RES .PNG
+     *************************************************************************/
+    function exportSVG() {
+      const svgEl = document.getElementById('blueprint-svg');
+      const clone = svgEl.cloneNode(true);
+      clone.style.transform = '';
+      const serializer = new XMLSerializer();
+      let source = serializer.serializeToString(clone);
+      if (!source.match(/^<svg[^>]+xmlns="http\:\/\/www\.w3\.org\/2000\/svg"/)) {
+        source = source.replace(/^<svg/, '<svg xmlns="http://www.w3.org/2000/svg"');
+      }
+      const blob = new Blob([source], { type: 'image/svg+xml;charset=utf-8' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `3152_Master_CAD_Blueprint_${STATE.orientation}.svg`;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    }
+
+    function exportPNG() {
+      const svgEl = document.getElementById('blueprint-svg');
+      const clone = svgEl.cloneNode(true);
+      clone.style.transform = '';
+      const vb = svgEl.viewBox.baseVal;
+      const scaleFactor = 2; // 2x High-DPI export
+      const canvas = document.createElement('canvas');
+      canvas.width = vb.width * scaleFactor;
+      canvas.height = vb.height * scaleFactor;
+      const ctx = canvas.getContext('2d');
+
+      const serializer = new XMLSerializer();
+      const svgStr = serializer.serializeToString(clone);
+      const img = new Image();
+      const svgBlob = new Blob([svgStr], { type: 'image/svg+xml;charset=utf-8' });
+      const url = URL.createObjectURL(svgBlob);
+
+      img.onload = function () {
+        ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+        URL.revokeObjectURL(url);
+        const pngUrl = canvas.toDataURL('image/png');
+        const a = document.createElement('a');
+        a.href = pngUrl;
+        a.download = `3152_Master_CAD_Blueprint_${STATE.orientation}.png`;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+      };
+      img.src = url;
+    }
+
+    // Initialize Application on Load
+    window.onload = function () {
+      renderTable();
+      renderBlueprint();
+      setupCanvasInteractions();
+    };
+  </script>
+</body>
+</html>

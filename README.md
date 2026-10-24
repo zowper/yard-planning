@@ -1,0 +1,48 @@
+# Lot 3152 — Master Yard Planning & Decision Hub
+
+**Whole-Property Landscape & Hardscape Master Plan for Jared & Melinda Carter**  
+**Scope:** Front Yard & Covered Porch · North & South Side Yards · Backyard & Patio · Street Park Strips
+
+---
+
+## 🌐 Live Interactive Portal (GitHub Pages)
+
+- **Main Decision Hub (`index.html`):** [https://zowper.github.io/yard-planning/](https://zowper.github.io/yard-planning/)
+- **Standalone 2D CAD Architectural Blueprint:** [https://zowper.github.io/yard-planning/Original%20Planning%20Information/cad_architectural_blueprint_3152.html](https://zowper.github.io/yard-planning/Original%20Planning%20Information/cad_architectural_blueprint_3152.html)
+
+---
+
+## 🧭 Property Overview & Reconciled Dimensions
+
+- **Compass Orientation:**
+  - Standing in the street facing the front of the house = Looking **West** (`wx = 108.7'` to `0.0'`)
+  - Looking out the front door toward the street = Looking **East**
+  - **North Side (`wy = 0.0'` to `9.0'`, Right side from street):** Continuous `43.2 ft` stucco garage/house wall, water spigot (`wx = 51.0'`), pink survey stakes, and planned **8.5' Double-Swing Vehicle Gate** (`wx = 70.0'`).
+  - **South Side (`wy = 41.0'` to `50.0'`, Left side from street):** `29.7 ft` main house wall to front door plane (`wx = 59.7'`), covered front porch (`3152` stone column at `wx = 65.7'`), gas/electric meters (`wx = 51.0'–54.5'`), `3'×3'` AC condenser pad (`wx = 45.0'–48.0'`), and planned **4.0' Single-Swing Pedestrian Gate** (`wx = 57.5'`).
+
+| Property Zone | Reconciled Dimensions | Area / Specification |
+| :--- | :--- | :--- |
+| **Total Lot Footprint** | `50.0' W (N–S) × 96.7' D` to Sidewalk (`108.7'` to Curb) | `4,835.0 sq ft` to Sidewalk (`5,435.0 sq ft` to Curb) |
+| **Backyard & Patio (West)** | `50.0' W × 30.0' D` (`wx = 0.0'–30.0'`) | `1,500.0 sq ft` total (`1,237.5 sq ft` unpaved + `262.5 sq ft` patio) |
+| **Existing Concrete Patio** | `21.0' N–S × 12.5' E–W` (4 quadrants @ `10.5' × 6.25'`) | `262.5 sq ft` (`17.5'` dirt to West wall; `20.0'` open North of patio) |
+| **North Side Yard (Garage)** | `9.0' W × 43.2' D` (`wx = 30.0'–73.2'`, `wy = 0.0'–9.0'`) | `388.8 sq ft` raw / `360.0 sq ft` enclosed inside vehicle gate (`wx = 70.0'`) |
+| **South Side Yard (Porch)** | `9.0' W × 29.7' D` (`wx = 30.0'–59.7'`, `wy = 41.0'–50.0'`) | `270.0 sq ft` raw / `247.5 sq ft` enclosed inside walk gate (`wx = 57.5'`) |
+| **SE Front Yard (South of Drive)** | `17.5'–21.0' W × 27.0'–37.0' D` (`wx = 59.7'–96.7'`) | `555.0 sq ft` unpaved lawn/bed area + green utility transformer box |
+| **NE Front Strip (North of Drive)** | `11.0' W × 23.5' D` (`wx = 73.2'–96.7'`, `wy = 0.0'–11.0'`) | `258.5 sq ft` unpaved strip leading to North double gate |
+| **6.0' Street Park Strips** | `6.0' D` (`wx = 100.7'–106.7'`) between `4'` Sidewalk & `2'` Curb | `~126.0 sq ft` South Strip (`21' L`) + `~66.0 sq ft` North Strip (`11' L`) |
+| **White Vinyl Perimeter Fence** | `70.0' N + 57.5' S + 18.0' Gate Returns` | `145.5 linear ft` total white vinyl privacy fence |
+| **Raised Cedar Garden Beds** | `7 Boxes @ 6.0' × 3.0'` (oriented N–S in NW sun zone) | `126.0 sq ft` total growing area (`18.0 sq ft` per box) |
+
+---
+
+## 📁 Repository Contents
+
+- [`index.html`](./index.html) — Interactive Whole-Yard Planning & Decision Hub for Jared & Melinda.
+- [`Original Planning Information/`](./Original%20Planning%20Information/)
+  - [`cad_architectural_blueprint_3152.html`](./Original%20Planning%20Information/cad_architectural_blueprint_3152.html) — Interactive 2D SVG CAD Architectural Blueprint with orientation switcher (`WEST_UP`, `NORTH_UP`, `EAST_UP`), 3 raised garden bed layouts, fence setback toggle, tape measure tool, and SVG/PNG/CSV export.
+  - [`Lot_3152_Master_Yard_Measurements.csv`](./Original%20Planning%20Information/Lot_3152_Master_Yard_Measurements.csv) — All 44 reconciled site measurements with CAD coordinates (`wx, wy`) and notes.
+  - [`lot_3152_master_project_context_cad_specification.md`](./Original%20Planning%20Information/lot_3152_master_project_context_cad_specification.md) — Canonical architectural specification, coordinate geometry, fencing/gate plan, and garden bed layouts.
+  - [`landscape_design_master_context_specification.md`](./Original%20Planning%20Information/landscape_design_master_context_specification.md) — Track B (Maximum-Grass / Zero-Footprint) vs. Track A (Lush S-Curve & Gravel Pad), material palette, lighting, and plant schedule.
+  - [`backyard_and_side_yard_master_planning_summary.md`](./Original%20Planning%20Information/backyard_and_side_yard_master_planning_summary.md) — Side-yard fence setback symmetry analysis and propane fire pit placement study.
+- [`photos_backyard_ideas/`](./photos_backyard_ideas/) — AI landscape & hardscape concept renders (Backyard View 1 & View 2 Baseline/Upgraded, South Side Yard Flagstone Walkway & AC Screen, Front Yard).
+- [`photos_current_backyard/`](./photos_current_backyard/) — All 30 original Pixel Motion Photos (`.MP.jpg`) from the October 2026 property walkaround (Front Yard, Park Strips, Driveway, North Side Yard, South Side Yard, and Backyard/Patio), plus fast-loading web thumbnails in `photos_current_backyard/thumbs/`.
