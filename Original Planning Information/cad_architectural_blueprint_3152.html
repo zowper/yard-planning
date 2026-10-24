@@ -403,7 +403,7 @@
       labelMode: 'SMART_ALL',
       textScale: 1.0,
       southFenceMode: 'STUCCO_SETBACK', // 'STUCCO_SETBACK' (70.0' N / 57.5' S) or 'SE_CORNER' (70.0' N / 59.7' S)
-      gardenMode: 'PROPOSED_UTAH',      // 'PROPOSED_UTAH' (2+5), 'COURTYARD_PRO' (2+4+1), or 'PERIMETER_L' (4+3)
+      gardenMode: 'FIVE_NORTH_85',      // 'FIVE_NORTH_85' (5 N. Fence Planters @ 8.5' to grass), 'PROPOSED_UTAH', 'COURTYARD_PRO', or 'PERIMETER_L'
       layers: {
         primaryDims: true,
         secondaryDims: true,
@@ -1023,11 +1023,11 @@
       {
         id: 'area-side-yards',
         zone: 'Area & Fence',
-        name: 'North & South Side Yard Areas',
-        rough: 'Calculated',
-        exact: '388.8 sq.ft. (N) / 270.0 sq.ft. (S)',
-        notes: 'North Side: 9.0\' × 43.2\' = 388.8 sq.ft. South Side: 9.0\' × 30.0\' = 270.0 sq.ft. (360.0 sq.ft. N & 247.5 sq.ft. S inside gates).',
-        zoneBox: { x1: 30.0, y1: 0.0, x2: 70.0, y2: 9.0 }
+        name: 'North Side Cement Pad & South Side Yard',
+        rough: 'Full Cement N. Side',
+        exact: '388.8 sq.ft. N. Cement / 270.0 sq.ft. S.',
+        notes: 'North Side Yard (9.0\' × 43.2\' = 388.8 sq.ft.; 360.0 sq.ft. inside 70.0\' gate) is completely poured cement on the North side of the home. South Side: 9.0\' × 30.0\' = 270.0 sq.ft.',
+        zoneBox: { x1: 30.0, y1: 0.0, x2: 73.2, y2: 9.0 }
       },
       {
         id: 'north-vehicle-gate',
@@ -1067,13 +1067,55 @@
         zoneBox: { x1: 0.0, y1: 0.0, x2: 70.0, y2: 50.0 }
       },
       {
+        id: 'west-wall-juniper-bed',
+        zone: 'Backyard',
+        name: 'Western Wall Juniper & Plant Bed Depth',
+        rough: '4 ft deep',
+        exact: '4.0\' Bed + 6" Paver (4.5\' to Grass)',
+        notes: 'Runs along the entire 50.0\' Western precast wall (X=0.0\' to 4.0\', 200 sq.ft.) for juniper trees & accent plants, bordered by 6" (0.5\') flush pavers (X=4.0\'–4.5\') with 45° corners.',
+        dim: {
+          x1: 0.0, y1: 36.0, x2: 4.5, y2: 36.0,
+          label: "4.0' W. BED + 6\" PAVER",
+          primary: false
+        },
+        zoneBox: { x1: 0.0, y1: 0.0, x2: 4.5, y2: 50.0 }
+      },
+      {
+        id: 'south-fence-berry-bed',
+        zone: 'Backyard',
+        name: 'Southern Fence Berry, Pea, Kiwi & Shade Bed',
+        rough: '2 ft deep',
+        exact: '2.0\' Bed + 6" Paver (2.5\' to Grass)',
+        notes: 'Runs along the entire Southern fence (Y=48.0\' to 50.0\') for raspberries, sugar snap peas, alpine strawberries, hardy kiwis & shade-loving plants, plus 6" pavers (Y=47.5\'–48.0\').',
+        dim: {
+          x1: 11.0, y1: 47.5, x2: 11.0, y2: 50.0,
+          label: "2.0' S. BED + 6\" PAVER",
+          primary: false
+        },
+        zoneBox: { x1: 0.0, y1: 47.5, x2: 57.5, y2: 50.0 }
+      },
+      {
         id: 'garden-beds-spec',
-        zone: 'Area & Fence',
-        name: 'Raised Garden Beds (7 × 6.0\'×3.0\' N–S Boxes)',
-        rough: '2 Patio + 5 N. Fence',
-        exact: '126.0 sq.ft. Growing Area (7 Boxes @ 18 sq.ft.)',
-        notes: '2 N–S boxes North of Patio (X=17.5\'–25.5\', leaving 4.5\' clear for basement window well) + 5 N–S boxes along North Fence (X=1.5\'–24.5\'). Moving Box N5 to the West Wall opens a 10.2\' wide vehicle gate turnaround.',
-        zoneBox: { x1: 0.5, y1: 0.5, x2: 26.5, y2: 19.0 }
+        zone: 'Backyard',
+        name: 'Northern Fence Planters (5 × 3.0\' W × 6.0\' D N–S)',
+        rough: '5 Planters (8.5\' to Grass)',
+        exact: '8.0\' Bed (1\'+6\'+1\') + 6" Paver = 8.5\' Total',
+        notes: '5 N–S planters (3.0\' W × 6.0\' D = 90 sq.ft. growing area) in the backyard only (X=0\'–30\'). 1.0\' space at North fence (Y=0\'–1\') + 6.0\' planter (Y=1\'–7\') + 1.0\' South space (Y=7\'–8\') + 6" (0.5\') paver (Y=8.0\'–8.5\') = 8.5\' from fence to grass.',
+        dim: {
+          x1: 21.0, y1: 0.0, x2: 21.0, y2: 8.5,
+          label: "8.5' N. PLANTER ZONE (8'+6\")",
+          primary: false
+        },
+        zoneBox: { x1: 4.0, y1: 0.0, x2: 30.0, y2: 8.5 }
+      },
+      {
+        id: 'front-yard-paver-beds',
+        zone: 'Front',
+        name: 'Front Yard 2.0\' Planting Beds & 6" Chamfered Pavers',
+        rough: '2 ft wide + 6" pavers',
+        exact: '2.0\' Beds + 6" Pavers (45° Corners)',
+        notes: '2.0\' wide planting beds along Driveway (Y=29\'–31\'), Porch Walkway (Y=32.5\'–34.5\'), Front of Porch (X=65.7\'–67.7\'), 2.0\' off Green Utility Box, and 2.0\' off South Property Line (Y=48\'–50\'), all bordered by 6" flush pavers with 45° chamfered corners.',
+        zoneBox: { x1: 65.7, y1: 29.0, x2: 96.7, y2: 50.0 }
       }
     ];
 
@@ -1651,64 +1693,133 @@
         out.push(`</g>`);
       }
 
-      // 13A. 6-INCH PAVER EDGING (0.5' WIDE) + 45° CHAMFERED CORNERS + 2.0' FOUNDATION DRIP BUFFER
+      // 13A. NORTH SIDE YARD CEMENT PAD + BACKYARD & FRONT YARD BEDS + 6" PAVER EDGING (45° CHAMFERED CORNERS)
       if (STATE.layers.paverEdging) {
         out.push(`<g id="paver-edging-geometry">`);
 
-        // 1. Rear House Wall 2.0' Foundation Drip Buffer (wx: 28.0..30.0, wy: 9.0..20.0)
+        // 0. North Side Yard Full Cement Pad (wx: 30.0..73.2, wy: 0.0..9.0 = 388.8 sq.ft. on North side of home)
+        const northCementRect = projectRect(30.0, 0.0, 73.2, 9.0);
+        out.push(`
+          <rect x="${northCementRect.x.toFixed(1)}" y="${northCementRect.y.toFixed(1)}" width="${northCementRect.width.toFixed(1)}" height="${northCementRect.height.toFixed(1)}"
+                fill="url(#pat-concrete)" stroke="${T.concreteStroke}" stroke-width="1.5" opacity="0.95"/>
+        `);
+        [40.8, 51.6, 62.4, 70.0].forEach(wx => {
+          const cj1 = project(wx, 0.0);
+          const cj2 = project(wx, 9.0);
+          out.push(`<line x1="${cj1.x.toFixed(1)}" y1="${cj1.y.toFixed(1)}" x2="${cj2.x.toFixed(1)}" y2="${cj2.y.toFixed(1)}" stroke="${T.jointStroke}" stroke-width="1.0" stroke-dasharray="4,2"/>`);
+        });
+
+        // 1. Backyard Western Wall 4.0' Deep Juniper & Plant Bed (wx: 0.0..4.0, wy: 0.0..50.0)
+        const westBedRect = projectRect(0.0, 0.0, 4.0, 50.0);
+        out.push(`
+          <rect x="${westBedRect.x.toFixed(1)}" y="${westBedRect.y.toFixed(1)}" width="${westBedRect.width.toFixed(1)}" height="${westBedRect.height.toFixed(1)}"
+                fill="rgba(21, 128, 61, 0.22)" stroke="#4ade80" stroke-width="1.0" stroke-dasharray="3,2"/>
+        `);
+        // Subtle Juniper tree canopy symbols along the 4.0' Western wall bed (wx=2.0')
+        [4.0, 10.0, 16.0, 22.0, 28.0, 34.0, 40.0, 45.5].forEach(wy => {
+          const jp = project(2.0, wy);
+          out.push(`<circle cx="${jp.x.toFixed(1)}" cy="${jp.y.toFixed(1)}" r="${(1.45 * SCALE).toFixed(1)}" fill="rgba(22, 163, 74, 0.35)" stroke="#86efac" stroke-width="1.1"/>`);
+        });
+
+        // 2. Backyard & Side Southern Fence 2.0' Deep Berry, Snap Pea, Strawberry, Kiwi & Shade Bed (wy: 48.0..50.0, wx: 0.0..57.5)
+        const southBedRect = projectRect(0.0, 48.0, southEndWx, 50.0);
+        out.push(`
+          <rect x="${southBedRect.x.toFixed(1)}" y="${southBedRect.y.toFixed(1)}" width="${southBedRect.width.toFixed(1)}" height="${southBedRect.height.toFixed(1)}"
+                fill="rgba(16, 185, 129, 0.20)" stroke="#34d399" stroke-width="1.0" stroke-dasharray="3,2"/>
+        `);
+        // Subtle berry/kiwi/shade plant markers along the 2.0' Southern fence bed (wy=49.0')
+        [6.5, 11.5, 16.5, 21.5, 26.5].forEach(wx => {
+          const sp = project(wx, 49.0);
+          out.push(`<circle cx="${sp.x.toFixed(1)}" cy="${sp.y.toFixed(1)}" r="${(0.75 * SCALE).toFixed(1)}" fill="rgba(52, 211, 153, 0.4)" stroke="#a7f3d0" stroke-width="0.9"/>`);
+        });
+
+        // 3. Northern Backyard Planter Zone (wx: 4.0..30.0, wy: 0.0..8.0 = 8.0' deep bed; +0.5' paver = 8.5' total to grass)
+        const northPlanterBedRect = projectRect(4.0, 0.0, 30.0, 8.0);
+        out.push(`
+          <rect x="${northPlanterBedRect.x.toFixed(1)}" y="${northPlanterBedRect.y.toFixed(1)}" width="${northPlanterBedRect.width.toFixed(1)}" height="${northPlanterBedRect.height.toFixed(1)}"
+                fill="url(#pat-gravel)" stroke="#94a3b8" stroke-width="1.1" stroke-dasharray="3,2" opacity="0.88"/>
+        `);
+
+        // 4. Rear House Wall 2.0' Foundation Drip Buffer (wx: 28.0..30.0, wy: 8.0..20.0)
         // Encloses the 4.0'x1.3' Basement Egress Window Well (wx: 28.7..30.0) so grass/mower never touches stucco or window grate
-        const dripBuf = projectRect(28.0, 9.0, 30.0, 20.0);
+        const dripBuf = projectRect(28.0, 8.0, 30.0, 20.0);
         out.push(`
           <rect x="${dripBuf.x.toFixed(1)}" y="${dripBuf.y.toFixed(1)}" width="${dripBuf.width.toFixed(1)}" height="${dripBuf.height.toFixed(1)}"
                 fill="url(#pat-gravel)" stroke="#94a3b8" stroke-width="1.2" stroke-dasharray="3,2" opacity="0.85"/>
         `);
 
-        // 2. Backyard Lawn Polygon with 6" (0.5') Paver Edging & 45° Chamfered Corners (2.0' × 2.0' 45° cuts)
-        // Note: Along the flat Concrete Patio (wx=17.5, wy=20.0..41.0), the concrete slab itself is the flush mower edge!
-        // The 6" paver strip borders the West bed (wx=3.5), South bed (wy=47.0), and North Garden Pad (wy=19.5) with 45° corners.
-        const byLawnPts = STATE.gardenMode === 'PERIMETER_L'
+        // 5. Backyard Lawn Polygon with 6" (0.5') Paver Edging & 45° Chamfered Corners (2.0' × 2.0' 45° cuts)
+        // In FIVE_NORTH_85 (Default Master Plan):
+        //   - West grass edge is at wx = 4.5' (4.0' juniper bed + 0.5' paver)
+        //   - North grass edge is at wy = 8.5' (1.0' N space + 6.0' planter + 1.0' S space = 8.0' bed + 0.5' paver = 8.5' total!)
+        //   - South grass edge is at wy = 47.5' (2.0' berry/shade bed + 0.5' paver = 2.5' from S fence)
+        //   - East grass edge meets flat Concrete Patio (wx=17.5', wy=20.0..41.0) and 2.0' Rear Wall Buffer + 0.5' paver (wx=27.5')
+        const byLawnPts = STATE.gardenMode === 'FIVE_NORTH_85'
           ? [
-              [5.5, 11.0],  // NW 45° chamfer start
-              [7.5, 9.0],   // NW 45° chamfer end along N garden edge
-              [26.0, 9.0],  // NE 45° chamfer start near 2' foundation buffer
-              [28.0, 11.0], // NE 45° chamfer end along wx=28.0' foundation drip buffer
-              [28.0, 20.0], // Meets North edge of Patio
-              [17.5, 20.0], // Follows West edge of Concrete Patio (no pavers needed along flat concrete!)
+              [4.5, 10.5],  // NW 45° chamfer start along West bed (wx=4.5')
+              [6.5, 8.5],   // NW 45° chamfer end along North planter zone (wy=8.5' = 8.0' bed + 6" paver)
+              [25.5, 8.5],  // NE 45° chamfer start along North planter zone (wy=8.5')
+              [27.5, 10.5], // NE 45° chamfer end along 2.0' Rear Wall buffer + 6" paver (wx=27.5')
+              [27.5, 20.0], // Meets North edge of Concrete Patio
+              [17.5, 20.0], // Follows West edge of Concrete Patio (flat concrete = built-in mower strip)
               [17.5, 41.0], // SW corner of Concrete Patio
-              [28.0, 41.0], // South of Patio to SW house corner line
-              [28.0, 45.0], // SE 45° chamfer start
-              [26.0, 47.0], // SE 45° chamfer end along South bed
-              [5.5, 47.0],  // SW 45° chamfer start
-              [3.5, 45.0],  // SW 45° chamfer end along West bed
-              [3.5, 33.5],  // Steps around West garden bed W3
-              [5.5, 31.5]   // 45° chamfer into West garden bed line
+              [27.5, 41.0], // South edge of Concrete Patio to SE lawn pocket
+              [27.5, 45.5], // SE 45° chamfer start
+              [25.5, 47.5], // SE 45° chamfer end along 2.0' South fence bed + 6" paver (wy=47.5')
+              [6.5, 47.5],  // SW 45° chamfer start along South bed (wy=47.5')
+              [4.5, 45.5]   // SW 45° chamfer end along 4.0' West wall bed + 6" paver (wx=4.5')
+            ]
+          : STATE.gardenMode === 'PERIMETER_L'
+          ? [
+              [5.5, 10.5],
+              [7.5, 8.5],
+              [25.5, 8.5],
+              [27.5, 10.5],
+              [27.5, 20.0],
+              [17.5, 20.0],
+              [17.5, 41.0],
+              [27.5, 41.0],
+              [27.5, 45.5],
+              [25.5, 47.5],
+              [6.5, 47.5],
+              [4.5, 45.5],
+              [4.5, 33.5],
+              [5.5, 31.5]
             ]
           : [
-              [3.5, 21.5],  // NW 45° chamfer start (West bed to Garden pad)
-              [5.5, 19.5],  // NW 45° chamfer end along Garden pad (wy=19.5')
-              [17.5, 19.5], // Meets NW corner of Concrete Patio
-              [17.5, 41.0], // Follows West edge of Concrete Patio (flat concrete = built-in mower edge)
-              [28.0, 41.0], // South edge of Concrete Patio
-              [28.0, 45.0], // SE 45° chamfer start
-              [26.0, 47.0], // SE 45° chamfer end along South fence bed (wy=47.0')
-              [5.5, 47.0],  // SW 45° chamfer start
-              [3.5, 45.0]   // SW 45° chamfer end along West precast wall bed (wx=3.5')
+              [4.5, 21.5],
+              [6.5, 19.5],
+              [17.5, 19.5],
+              [17.5, 41.0],
+              [27.5, 41.0],
+              [27.5, 45.5],
+              [25.5, 47.5],
+              [6.5, 47.5],
+              [4.5, 45.5]
             ];
 
         const byLawnSvgPoly = projectPoly(byLawnPts);
         out.push(`
-          <polygon points="${byLawnSvgPoly}" fill="rgba(16, 185, 129, 0.14)" stroke="none"/>
+          <polygon points="${byLawnSvgPoly}" fill="rgba(16, 185, 129, 0.16)" stroke="none"/>
         `);
 
         // Draw the 6" (0.5' wide) Paver Edging Strip along the non-concrete edges of the Backyard Lawn
-        const byPaverChains = STATE.gardenMode === 'PERIMETER_L'
+        // Centerline of the 0.5' paver sits 0.25' outside the grass boundary
+        const byPaverChains = STATE.gardenMode === 'FIVE_NORTH_85'
           ? [
-              [[17.5, 41.0], [28.0, 41.0], [28.0, 45.0], [26.0, 47.0], [5.5, 47.0], [3.5, 45.0], [3.5, 33.5], [5.5, 31.5], [5.5, 11.0], [7.5, 9.0], [26.0, 9.0], [28.0, 11.0], [28.0, 20.0]]
+              [
+                [17.5, 41.0], [27.75, 41.0], [27.75, 45.6], [25.6, 47.75],
+                [6.4, 47.75], [4.25, 45.6], [4.25, 10.4], [6.4, 8.25],
+                [25.6, 8.25], [27.75, 10.4], [27.75, 20.0], [17.5, 20.0]
+              ]
+            ]
+          : STATE.gardenMode === 'PERIMETER_L'
+          ? [
+              [[17.5, 41.0], [27.75, 41.0], [27.75, 45.5], [25.5, 47.75], [6.5, 47.75], [4.25, 45.5], [4.25, 33.5], [5.5, 31.5], [5.5, 10.5], [7.5, 8.25], [25.5, 8.25], [27.75, 10.5], [27.75, 20.0]]
             ]
           : [
-              [[17.5, 19.5], [5.5, 19.5], [3.5, 21.5], [3.5, 45.0], [5.5, 47.0], [26.0, 47.0], [28.0, 45.0], [28.0, 41.0]],
-              // Plus straight 6" paver border along the 2.0' Rear Wall Foundation Buffer (wx=28.0', wy=9.0..20.0)
-              [[28.0, 9.0], [28.0, 20.0]]
+              [[17.5, 19.5], [6.5, 19.5], [4.25, 21.5], [4.25, 45.5], [6.5, 47.75], [25.5, 47.75], [27.75, 45.5], [27.75, 41.0]],
+              [[27.75, 8.5], [27.75, 20.0]]
             ];
 
         byPaverChains.forEach(chain => {
@@ -1716,124 +1827,146 @@
             const p = project(wx, wy);
             return `${p.x.toFixed(1)},${p.y.toFixed(1)}`;
           }).join(' ');
-          // 0.5' (6 inch) wide paver band (0.5 * SCALE = 6px wide) with paver joint dashes
           out.push(`
-            <polyline points="${ptsStr}" fill="none" stroke="#cbd5e1" stroke-width="${(0.55 * SCALE).toFixed(1)}" stroke-linecap="square" stroke-linejoin="bevel" opacity="0.92"/>
-            <polyline points="${ptsStr}" fill="none" stroke="#334155" stroke-width="${(0.55 * SCALE).toFixed(1)}" stroke-dasharray="2,${(1.0 * SCALE - 2).toFixed(1)}" stroke-linejoin="bevel" opacity="0.65"/>
+            <polyline points="${ptsStr}" fill="none" stroke="#cbd5e1" stroke-width="${(0.5 * SCALE).toFixed(1)}" stroke-linecap="square" stroke-linejoin="bevel" opacity="0.94"/>
+            <polyline points="${ptsStr}" fill="none" stroke="#334155" stroke-width="${(0.5 * SCALE).toFixed(1)}" stroke-dasharray="2,${(1.0 * SCALE - 2).toFixed(1)}" stroke-linejoin="bevel" opacity="0.65"/>
             <polyline points="${ptsStr}" fill="none" stroke="#2dd4bf" stroke-width="1.2" stroke-linejoin="bevel" opacity="0.9"/>
           `);
         });
 
-        // 3. SE Front Yard Lawn Polygon with 6" Paver Edging & 45° Chamfered Corners
-        // Along Porch Walkway (wy=32.5'), Driveway (wy=29.0'), and City Sidewalk (wx=96.7'), flat concrete is already flush!
-        // 6" Paver Edging + 45° Chamfers frame the West Foundation Bed (wx=66.0'), South Border Bed (wy=47.5'), and Green Utility Box Pocket (wx=88.0..94.0, wy=38.0..47.5).
+        // 6. SE Front Yard 2.0' Wide Planting Beds ("Front Garden Boxes/Beds") + 6" Paver Edging with 45° Chamfered Corners
+        // - 2.0' wide planting bed along Driveway (wy=29.0..31.0, wx=81.0..96.7) + 6" paver (wy=31.0..31.5)
+        // - 2.0' wide planting bed along Porch Walkway (wy=32.5..34.5, wx=65.7..81.0 & wx=81.0..83.0) + 6" paver (wy=34.5..35.0, wx=83.0..83.5)
+        // - 2.0' wide planting bed along Front Side of Porch (wx=65.7..67.7, wy=32.5..50.0) + 6" paver (wx=67.7..68.2)
+        // - 2.0' wide planting bed along South Property Line (wy=48.0..50.0, wx=57.5..96.7) + 6" paver (wy=47.5..48.0)
+        // - 2.0' plant buffer off Green Utility Box (box at wx=91.0..94.5, wy=43.5..46.5 -> bed extends to wx=89.0, wy=41.5; +6" paver to wx=88.5, wy=41.0)
+        const seOuterBedPoly = projectPoly([
+          [65.7, 32.5], [81.0, 32.5], [81.0, 29.0], [96.7, 29.0],
+          [96.7, 50.0], [57.5, 50.0], [57.5, 41.0], [65.7, 41.0]
+        ]);
+        out.push(`
+          <polygon points="${seOuterBedPoly}" fill="rgba(21, 128, 61, 0.18)" stroke="none"/>
+        `);
+
         const frontLawnPts = [
-          [66.0, 32.5], // Meets concrete porch walkway
-          [81.0, 32.5], // Along porch walkway South edge
-          [81.0, 29.0], // Steps to main concrete driveway South edge
-          [96.7, 29.0], // Meets City Sidewalk at driveway corner
-          [96.7, 38.0], // Along City Sidewalk down to Utility Box bed
-          [94.0, 38.0], // Utility Box bed North edge
-          [92.5, 39.5], // 45° paver chamfer around Green Utility Box
-          [89.0, 39.5], // West of Green Utility Box
-          [87.5, 41.0], // 45° paver chamfer West of Utility Box
-          [87.5, 46.0], // 45° paver chamfer to South border bed
-          [86.0, 47.5], // South border bed (wy=47.5')
-          [68.0, 47.5], // SW 45° paver chamfer start
-          [66.0, 45.5]  // SW 45° paver chamfer end along Front Foundation Bed (wx=66.0')
+          [96.7, 31.5], // Meets City Sidewalk south of 2.0' Driveway bed + 6" paver
+          [85.0, 31.5], // Runs West along 2.0' Driveway bed + 6" paver (wy=31.5')
+          [83.5, 33.0], // 45° chamfer at driveway-to-walkway step
+          [83.5, 33.5], // Short N-S run along 2.0' step bed + 6" paver (wx=83.5')
+          [82.0, 35.0], // 45° chamfer into Porch Walkway bed
+          [70.2, 35.0], // Runs West along 2.0' Porch Walkway bed + 6" paver (wy=35.0')
+          [68.2, 37.0], // NW 45° chamfer into Front-of-Porch 2.0' bed
+          [68.2, 45.5], // Runs South along 2.0' Front-of-Porch bed + 6" paver (wx=68.2')
+          [70.2, 47.5], // SW 45° chamfer into 2.0' South Property Line bed
+          [86.5, 47.5], // Runs East along 2.0' South Property Line bed + 6" paver (wy=47.5')
+          [88.5, 45.5], // 45° chamfer around Green Utility Box (2.0' off box + 6" paver)
+          [88.5, 42.5], // West side of Green Utility Box buffer (wx=88.5')
+          [90.0, 41.0], // 45° chamfer North-West of Green Utility Box
+          [96.7, 41.0]  // North side of Green Utility Box buffer (wy=41.0') to City Sidewalk
         ];
         const frontLawnSvgPoly = projectPoly(frontLawnPts);
         out.push(`
-          <polygon points="${frontLawnSvgPoly}" fill="rgba(16, 185, 129, 0.14)" stroke="none"/>
+          <polygon points="${frontLawnSvgPoly}" fill="${T.dirtFill}" stroke="none"/>
+          <polygon points="${frontLawnSvgPoly}" fill="rgba(16, 185, 129, 0.18)" stroke="none"/>
         `);
 
+        // 6" (0.5') Paver Edging Chain with 45° Chamfered Corners around the entire SE Front Lawn (except where lawn meets flat concrete sidewalk)
         const frontPaverChain = [
-          [96.7, 38.0], [94.0, 38.0], [92.5, 39.5], [89.0, 39.5], [87.5, 41.0],
-          [87.5, 46.0], [86.0, 47.5], [68.0, 47.5], [66.0, 45.5], [66.0, 32.5]
+          [96.7, 31.25], [84.9, 31.25], [83.25, 32.9], [83.25, 33.4], [81.9, 34.75],
+          [70.1, 34.75], [67.95, 36.9], [67.95, 45.6], [70.1, 47.75], [86.6, 47.75],
+          [88.75, 45.6], [88.75, 42.4], [90.1, 41.25], [96.7, 41.25]
         ];
         const frontPaverStr = frontPaverChain.map(([wx, wy]) => {
           const p = project(wx, wy);
           return `${p.x.toFixed(1)},${p.y.toFixed(1)}`;
         }).join(' ');
         out.push(`
-          <polyline points="${frontPaverStr}" fill="none" stroke="#cbd5e1" stroke-width="${(0.55 * SCALE).toFixed(1)}" stroke-linecap="square" stroke-linejoin="bevel" opacity="0.92"/>
-          <polyline points="${frontPaverStr}" fill="none" stroke="#334155" stroke-width="${(0.55 * SCALE).toFixed(1)}" stroke-dasharray="2,${(1.0 * SCALE - 2).toFixed(1)}" stroke-linejoin="bevel" opacity="0.65"/>
+          <polyline points="${frontPaverStr}" fill="none" stroke="#cbd5e1" stroke-width="${(0.5 * SCALE).toFixed(1)}" stroke-linecap="square" stroke-linejoin="bevel" opacity="0.94"/>
+          <polyline points="${frontPaverStr}" fill="none" stroke="#334155" stroke-width="${(0.5 * SCALE).toFixed(1)}" stroke-dasharray="2,${(1.0 * SCALE - 2).toFixed(1)}" stroke-linejoin="bevel" opacity="0.65"/>
           <polyline points="${frontPaverStr}" fill="none" stroke="#2dd4bf" stroke-width="1.2" stroke-linejoin="bevel" opacity="0.9"/>
         `);
 
-        // Green Utility Transformer Box icon in SE Front Yard (wx: 89.5..93.0, wy: 40.5..43.5)
-        const transRect = projectRect(89.5, 40.5, 93.0, 43.5);
+        // Subtle ornamental plant symbols inside the 2.0' Front Yard beds
+        [
+          [85.0, 30.0], [90.0, 30.0], [94.5, 30.0], // Along 2' Driveway bed
+          [70.0, 33.5], [75.0, 33.5], [79.5, 33.5], // Along 2' Walkway bed
+          [66.7, 36.0], [66.7, 40.0], [66.7, 44.5], // Along 2' Porch front bed
+          [72.0, 49.0], [78.0, 49.0], [84.0, 49.0], // Along 2' South property line bed
+          [90.0, 42.3], [92.8, 42.3], [89.8, 45.0]  // 2' around Green Utility Box
+        ].forEach(([px, py]) => {
+          const pt = project(px, py);
+          out.push(`<circle cx="${pt.x.toFixed(1)}" cy="${pt.y.toFixed(1)}" r="${(0.65 * SCALE).toFixed(1)}" fill="rgba(52, 211, 153, 0.42)" stroke="#86efac" stroke-width="0.9"/>`);
+        });
+
+        // Green Utility Transformer Box in SE Front Yard (wx: 91.0..94.5 [3.5'], wy: 43.5..46.5 [3.0'])
+        const transRect = projectRect(91.0, 43.5, 94.5, 46.5);
         out.push(`
-          <rect x="${transRect.x.toFixed(1)}" y="${transRect.y.toFixed(1)}" width="${transRect.width.toFixed(1)}" height="${transRect.height.toFixed(1)}" rx="2" fill="#15803d" stroke="#86efac" stroke-width="1.4"/>
+          <rect x="${transRect.x.toFixed(1)}" y="${transRect.y.toFixed(1)}" width="${transRect.width.toFixed(1)}" height="${transRect.height.toFixed(1)}" rx="2" fill="#15803d" stroke="#86efac" stroke-width="1.5"/>
+          <text x="${transRect.cx.toFixed(1)}" y="${transRect.cy.toFixed(1)}" fill="#dcfce7" font-family="JetBrains Mono" font-weight="700" font-size="${(5.8 * ts).toFixed(1)}" text-anchor="middle" dominant-baseline="middle">BOX</text>
         `);
 
         out.push(`</g>`);
       }
 
-      // 13B. RAISED GARDEN BOXES LAYER (7 × 6.0'×3.0' BED CONFIGURATIONS)
+      // 13B. RAISED GARDEN PLANTERS LAYER (5 × 3.0' W × 6.0' D N–S PLANTERS ALONG NORTH FENCE)
       if (STATE.layers.garden) {
         out.push(`<g id="garden-geometry">`);
 
         let boxes = [];
-        if (STATE.gardenMode === 'PROPOSED_UTAH') {
-          // User's Proposed 7-Box "Backwards Utah / L" (2 North of Patio + 5 along North Fence, all 6' N-S × 3' E-W):
-          // - 5 N-S boxes (3' E-W × 6' N-S) along North fence (wy: 1.5..7.5) from wx=1.5 to wx=24.5 (2.0' paths between boxes)
-          const nFenceX = [1.5, 6.5, 11.5, 16.5, 21.5];
-          nFenceX.forEach((bx, idx) => {
-            boxes.push({ id: `N${idx + 1}`, wx1: bx, wy1: 1.5, wx2: bx + 3.0, wy2: 7.5, warn: idx === 4 });
+        if (STATE.gardenMode === 'FIVE_NORTH_85') {
+          // Master Plan: 5 Planters running North-to-South (3.0' E-W wide × 6.0' N-S deep) in the Backyard (wx: 4.0..30.0)
+          // - 1.0' space at North Fence (wy: 0.0..1.0)
+          // - 6.0' deep planter (wy: 1.0..7.0)
+          // - 1.0' space at South end (wy: 7.0..8.0) -> 8.0' bed depth + 0.5' (6") pavers (wy: 8.0..8.5) = 8.5' total to grass!
+          // - Evenly spaced east of the 4.0' West juniper bed with 2.0' walk paths between boxes:
+          //   N1: 5.5..8.5, N2: 10.5..13.5, N3: 15.5..18.5, N4: 20.5..23.5, N5: 25.5..28.5
+          [5.5, 10.5, 15.5, 20.5, 25.5].forEach((bx, idx) => {
+            boxes.push({ id: `N${idx + 1}`, wx1: bx, wy1: 1.0, wx2: bx + 3.0, wy2: 7.0, warn: false });
           });
-          // - 2 N-S boxes (3' E-W × 6' N-S) just North of Patio (wy: 12.5..18.5) aligned with West edge of Patio (wx=17.5..20.5 & 22.5..25.5)
-          //   This leaves 4.5' clear (wx=25.5..30.0) in front of the Basement Window Well!
+        } else if (STATE.gardenMode === 'PROPOSED_UTAH') {
+          const nFenceX = [5.0, 9.8, 14.6, 19.4, 24.2];
+          nFenceX.forEach((bx, idx) => {
+            boxes.push({ id: `N${idx + 1}`, wx1: bx, wy1: 1.0, wx2: bx + 3.0, wy2: 7.0, warn: idx === 4 });
+          });
           const patioX = [17.5, 22.5];
           patioX.forEach((bx, idx) => {
             boxes.push({ id: `P${idx + 1}`, wx1: bx, wy1: 12.5, wx2: bx + 3.0, wy2: 18.5, warn: false });
           });
-
-          // Show 5.5' Pinch Zone at NW House Corner (wx=24.5..30.0, wy=0.5..9.0) where Box N5 narrows Vehicle Gate entry
-          const pinchGate = projectRect(24.5, 0.5, 30.0, 9.0);
+          const pinchGate = projectRect(24.2, 0.5, 30.0, 9.0);
           out.push(`
             <rect x="${pinchGate.x}" y="${pinchGate.y}" width="${pinchGate.width}" height="${pinchGate.height}" rx="3" fill="rgba(245, 158, 11, 0.16)" stroke="#f59e0b" stroke-width="1.5" stroke-dasharray="4,3"/>
           `);
         } else if (STATE.gardenMode === 'COURTYARD_PRO') {
-          // Recommended "Gate-Clear Utah" (2 North of Patio + 4 along North Fence + 1 on Sunny West End = 7 Boxes, all 6' N-S × 3' E-W):
-          // - 4 N-S boxes along North Fence (wy: 1.5..7.5) from wx=1.5 to wx=19.75 (2.25' paths) -> Leaves wx=19.75..30.0 (10.25' wide!) 100% CLEAR for Vehicle Gate!
-          [1.5, 6.75, 12.0, 16.75].forEach((bx, idx) => {
-            boxes.push({ id: `N${idx + 1}`, wx1: bx, wy1: 1.5, wx2: bx + 3.0, wy2: 7.5, warn: false });
+          [5.0, 9.8, 14.6, 19.4].forEach((bx, idx) => {
+            boxes.push({ id: `N${idx + 1}`, wx1: bx, wy1: 1.0, wx2: bx + 3.0, wy2: 7.0, warn: false });
           });
-          // - 2 N-S boxes North of Patio (wy: 12.5..18.5) at wx=16.75..19.75 & 22.0..25.0 (5.0' clear in front of Basement Window Well!)
           [16.75, 22.0].forEach((bx, idx) => {
             boxes.push({ id: `P${idx + 1}`, wx1: bx, wy1: 12.5, wx2: bx + 3.0, wy2: 18.5, warn: false });
           });
-          // - Move the 5th North box to the Sunny West Precast Wall (wx=1.5..4.5, wy=12.5..18.5) facing N-S!
-          boxes.push({ id: 'W1', wx1: 1.5, wy1: 12.5, wx2: 4.5, wy2: 18.5, warn: false });
-
-          // Draw Green 10.25' Wide Vehicle Gate Turnaround Zone
-          const clearDrive = projectRect(19.75, 0.8, 30.0, 11.5);
+          boxes.push({ id: 'W1', wx1: 1.0, wy1: 12.5, wx2: 4.0, wy2: 18.5, warn: false });
+          const clearDrive = projectRect(22.4, 0.8, 30.0, 11.5);
           out.push(`
             <rect x="${clearDrive.x}" y="${clearDrive.y}" width="${clearDrive.width}" height="${clearDrive.height}" rx="4" fill="rgba(16, 185, 129, 0.14)" stroke="#10b981" stroke-width="1.5" stroke-dasharray="5,3"/>
           `);
         } else {
-          // Option 3: "Sunny NW Perimeter L" (4 N-S boxes along North Fence + 3 N-S boxes along West Precast Wall = 7 Boxes)
-          // - 4 N-S boxes (3' E-W × 6' N-S) along North Fence (wy: 1.5..7.5) from wx=1.5 to wx=19.75
-          [1.5, 6.75, 12.0, 16.75].forEach((bx, idx) => {
-            boxes.push({ id: `N${idx + 1}`, wx1: bx, wy1: 1.5, wx2: bx + 3.0, wy2: 7.5, warn: false });
+          [5.0, 9.8, 14.6, 19.4].forEach((bx, idx) => {
+            boxes.push({ id: `N${idx + 1}`, wx1: bx, wy1: 1.0, wx2: bx + 3.0, wy2: 7.0, warn: false });
           });
-          // - 3 N-S boxes (3' E-W × 6' N-S) along Sunny West Wall (wx: 1.5..4.5) at wy=10.0..16.0, 18.0..24.0, 26.0..32.0
           [10.0, 18.0, 26.0].forEach((by, idx) => {
-            boxes.push({ id: `W${idx + 1}`, wx1: 1.5, wy1: by, wx2: 4.5, wy2: by + 6.0, warn: false });
+            boxes.push({ id: `W${idx + 1}`, wx1: 1.0, wy1: by, wx2: 4.0, wy2: by + 6.0, warn: false });
           });
         }
 
-        // Render each 6'×3' Cedar/Metal Raised Bed with soil texture & corner posts
+        // Render each 3'×6' Raised Planter with soil texture & corner posts
         boxes.forEach(b => {
           const r = projectRect(b.wx1, b.wy1, b.wx2, b.wy2);
           const strokeCol = b.warn ? '#fbbf24' : '#84cc16';
-          const fillCol = b.warn ? 'rgba(217, 119, 6, 0.42)' : 'rgba(63, 98, 18, 0.55)';
+          const fillCol = b.warn ? 'rgba(217, 119, 6, 0.42)' : 'rgba(63, 98, 18, 0.62)';
           out.push(`
             <g class="cursor-pointer" onclick="selectMeasurement('garden-beds-spec')">
               <rect x="${r.x.toFixed(1)}" y="${r.y.toFixed(1)}" width="${r.width.toFixed(1)}" height="${r.height.toFixed(1)}" rx="2.5" fill="${fillCol}" stroke="${strokeCol}" stroke-width="1.8"/>
               <line x1="${(r.x + 3).toFixed(1)}" y1="${(r.y + r.height / 2).toFixed(1)}" x2="${(r.x + r.width - 3).toFixed(1)}" y2="${(r.y + r.height / 2).toFixed(1)}" stroke="${strokeCol}" stroke-width="0.7" stroke-dasharray="2,2" opacity="0.7"/>
-              <text x="${r.cx.toFixed(1)}" y="${r.cy.toFixed(1)}" fill="#ecfccb" font-family="JetBrains Mono" font-weight="700" font-size="${(6.8 * ts).toFixed(1)}" text-anchor="middle" dominant-baseline="middle">${b.id} (6'×3')</text>
+              <text x="${r.cx.toFixed(1)}" y="${r.cy.toFixed(1)}" fill="#ecfccb" font-family="JetBrains Mono" font-weight="700" font-size="${(6.6 * ts).toFixed(1)}" text-anchor="middle" dominant-baseline="middle">${b.id} (3'×6')</text>
             </g>
           `);
         });
@@ -2012,11 +2145,11 @@
           {
             id: 'zone-backyard-dirt',
             measureId: 'area-backyard-dirt',
-            anchorWx: 8.5, anchorWy: 29.0,
-            prefWx: 8.5, prefWy: 29.0,
-            title: 'BACKYARD UNPAVED DIRT',
-            sqft: '1,237.5 SQ. FT.',
-            sub: '1,500 Total − 262.5 Patio'
+            anchorWx: 11.0, anchorWy: 27.0,
+            prefWx: 11.0, prefWy: 27.0,
+            title: 'BACKYARD LAWN (679 SQ.FT.)',
+            sqft: '8.5\' N • 4.5\' W • 2.5\' S TO GRASS',
+            sub: '6" Flush Pavers + 45° Chamfered Corners'
           },
           {
             id: 'zone-patio',
@@ -2032,9 +2165,9 @@
             measureId: 'area-side-yards',
             anchorWx: 40.0, anchorWy: 4.5,
             prefWx: 40.0, prefWy: 4.5,
-            title: 'NORTH SIDE YARD',
-            sqft: '388.8 SQ. FT.',
-            sub: "9.0' W × 43.2' L"
+            title: 'NORTH SIDE CEMENT PAD',
+            sqft: '388.8 SQ. FT. CEMENT',
+            sub: "9.0' W × 43.2' L (Full Concrete)"
           },
           {
             id: 'zone-south-side',
@@ -2043,16 +2176,16 @@
             prefWx: 36.5, prefWy: 45.5,
             title: 'SOUTH SIDE YARD',
             sqft: '270.0 SQ. FT.',
-            sub: "9.0'×30' (324 sq.ft. to Porch)"
+            sub: "9.0'×30' (+2' S. Fence Bed)"
           },
           {
             id: 'zone-se-front',
-            measureId: 'se-front-bed-dims',
-            anchorWx: 84.5, anchorWy: 41.5,
-            prefWx: 84.5, prefWy: 41.5,
-            title: 'SE FRONT YARD BED',
-            sqft: '~555.0 SQ. FT.',
-            sub: "17.5'–21.0' W × 27'–37' D"
+            measureId: 'front-yard-paver-beds',
+            anchorWx: 78.5, anchorWy: 41.2,
+            prefWx: 78.5, prefWy: 41.2,
+            title: 'SE FRONT LAWN & 2\' BEDS',
+            sqft: '2\' BEDS + 6" PAVERS (45°)',
+            sub: '2\' Drive/Walk/Porch/Box/Prop.Line'
           },
           {
             id: 'zone-ne-front',
@@ -2077,7 +2210,7 @@
             prefWy: z.prefWy,
             lines: [
               { text: z.title, size: 7.8, weight: '700', color: T.zoneBadgeText },
-              { text: z.sqft, size: 9.4, weight: '700', color: '#ffffff' },
+              { text: z.sqft, size: 8.8, weight: '700', color: '#ffffff' },
               { text: z.sub, size: 7.0, weight: '500', color: T.zoneBadgeText }
             ],
             bg: T.zoneBadgeBg,
@@ -2210,10 +2343,27 @@
         });
       }
 
-      // H. Garden Plan Callouts
+      // H. Garden & Perimeter Planting Bed Callouts
       if (STATE.layers.garden) {
         const isHighlighted = STATE.highlightedId === 'garden-beds-spec';
-        if (STATE.gardenMode === 'PROPOSED_UTAH') {
+        if (STATE.gardenMode === 'FIVE_NORTH_85') {
+          labelQueue.push({
+            id: 'garden-callout-main',
+            measureId: 'garden-beds-spec',
+            priority: isHighlighted ? 0 : 3,
+            anchorWx: 17.0, anchorWy: 4.0,
+            prefWx: 13.0, prefWy: -2.2,
+            alwaysLeader: true,
+            lines: [
+              { text: "★ 5 N. FENCE PLANTERS (3'W × 6'D N–S)", size: 7.8, weight: '700', color: '#ecfccb' },
+              { text: "1' N/S SPACE (8' BED) + 6\" PAVER = 8.5' TO GRASS", size: 6.8, weight: '600', color: '#bef264' }
+            ],
+            bg: '#1a2e05',
+            border: '#84cc16',
+            leaderColor: '#84cc16',
+            isHighlighted
+          });
+        } else if (STATE.gardenMode === 'PROPOSED_UTAH') {
           labelQueue.push({
             id: 'garden-callout-main',
             measureId: 'garden-beds-spec',
@@ -2222,8 +2372,8 @@
             prefWx: 14.0, prefWy: -2.0,
             alwaysLeader: true,
             lines: [
-              { text: "YOUR 'UTAH' PLAN (2 PATIO + 5 N. FENCE)", size: 7.8, weight: '700', color: '#fef08a' },
-              { text: "4.5' WELL CLEAR • 5.5' GAP AT N. VEHICLE GATE", size: 6.8, weight: '600', color: '#fde047' }
+              { text: "7-BOX 'UTAH' PLAN (2 PATIO + 5 N. FENCE)", size: 7.8, weight: '700', color: '#fef08a' },
+              { text: "4.5' WELL CLEAR • 5.8' GAP AT N. VEHICLE GATE", size: 6.8, weight: '600', color: '#fde047' }
             ],
             bg: '#422006',
             border: '#f59e0b',
@@ -2239,8 +2389,8 @@
             prefWx: 12.0, prefWy: -2.0,
             alwaysLeader: true,
             lines: [
-              { text: "★ GATE-CLEAR UTAH (2 PATIO + 4 N. + 1 W.)", size: 7.8, weight: '700', color: '#ecfccb' },
-              { text: "10.2' VEHICLE GATE TURNAROUND • 5' WELL CLEAR", size: 6.8, weight: '500', color: '#bef264' }
+              { text: "7-BOX GATE-CLEAR UTAH (2 PATIO + 4 N. + 1 W.)", size: 7.8, weight: '700', color: '#ecfccb' },
+              { text: "7.6' VEHICLE GATE TURNAROUND • 5' WELL CLEAR", size: 6.8, weight: '500', color: '#bef264' }
             ],
             bg: '#1a2e05',
             border: '#84cc16',
@@ -2256,7 +2406,7 @@
             prefWx: -10.0, prefWy: 24.0,
             alwaysLeader: true,
             lines: [
-              { text: "SUNNY NW WALL 'L' (4 N. FENCE + 3 W. WALL)", size: 7.8, weight: '700', color: '#ecfccb' },
+              { text: "7-BOX NW WALL 'L' (4 N. FENCE + 3 W. WALL)", size: 7.8, weight: '700', color: '#ecfccb' },
               { text: '100% FULL MORNING/AFTERNOON SUN • OPEN PATIO SIDE', size: 6.8, weight: '500', color: '#bef264' }
             ],
             bg: '#1a2e05',
@@ -2265,6 +2415,43 @@
             isHighlighted
           });
         }
+      }
+
+      if (STATE.layers.paverEdging) {
+        labelQueue.push(
+          {
+            id: 'callout-west-juniper-bed',
+            measureId: 'west-wall-juniper-bed',
+            priority: STATE.highlightedId === 'west-wall-juniper-bed' ? 0 : 3,
+            anchorWx: 2.0, anchorWy: 22.0,
+            prefWx: -9.5, prefWy: 18.0,
+            alwaysLeader: true,
+            lines: [
+              { text: "4.0' W. JUNIPER & PLANT BED", size: 7.6, weight: '700', color: '#bbf7d0' },
+              { text: '+6" Paver = 4.5\' Total to Grass', size: 6.8, weight: '500', color: '#86efac' }
+            ],
+            bg: '#052e16',
+            border: '#22c55e',
+            leaderColor: '#22c55e',
+            isHighlighted: STATE.highlightedId === 'west-wall-juniper-bed'
+          },
+          {
+            id: 'callout-south-berry-bed',
+            measureId: 'south-fence-berry-bed',
+            priority: STATE.highlightedId === 'south-fence-berry-bed' ? 0 : 3,
+            anchorWx: 16.0, anchorWy: 49.0,
+            prefWx: 16.0, prefWy: 53.2,
+            alwaysLeader: true,
+            lines: [
+              { text: "2.0' S. BERRY, PEA, KIWI & SHADE BED", size: 7.6, weight: '700', color: '#a7f3d0' },
+              { text: 'Raspberries • Snap Peas • Strawberries • Hardy Kiwi', size: 6.6, weight: '500', color: '#6ee7b7' }
+            ],
+            bg: '#064e3b',
+            border: '#10b981',
+            leaderColor: '#10b981',
+            isHighlighted: STATE.highlightedId === 'south-fence-berry-bed'
+          }
+        );
       }
 
       // Render all dimension lines first
@@ -2594,6 +2781,7 @@
     function setGardenMode(mode) {
       STATE.gardenMode = mode;
       const map = {
+        'FIVE_NORTH_85': 'garden-mode-five',
         'PROPOSED_UTAH': 'garden-mode-utah',
         'COURTYARD_PRO': 'garden-mode-courtyard',
         'PERIMETER_L': 'garden-mode-perimeter'

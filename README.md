@@ -39,15 +39,17 @@
 | Property Zone | Reconciled Dimensions | Area / Specification |
 | :--- | :--- | :--- |
 | **Total Lot Footprint** | `50.0' W (N–S) × 96.7' D` to Sidewalk (`108.7'` to Curb) | `4,835.0 sq ft` to Sidewalk (`5,435.0 sq ft` to Curb) |
-| **Backyard & Patio (West)** | `50.0' W × 30.0' D` (`wx = 0.0'–30.0'`) | `1,500.0 sq ft` total (`1,237.5 sq ft` unpaved + `262.5 sq ft` patio) |
-| **Existing Concrete Patio** | `21.0' N–S × 12.5' E–W` (4 quadrants @ `10.5' × 6.25'`) | `262.5 sq ft` (`17.5'` dirt to West wall; `20.0'` open North of patio) |
-| **North Side Yard (Garage)** | `9.0' W × 43.2' D` (`wx = 30.0'–73.2'`, `wy = 0.0'–9.0'`) | `388.8 sq ft` raw / `360.0 sq ft` enclosed inside vehicle gate (`wx = 70.0'`) |
+| **Backyard & Patio (West)** | `50.0' W × 30.0' D` (`wx = 0.0'–30.0'`) | `1,500.0 sq ft` total (`679.0 sq ft` lawn + `262.5 sq ft` patio + perimeter beds/planters) |
+| **Backyard Western Wall Bed** | `4.0' D × 50.0' L` (`+6"` paver = `4.5'` to grass) | `200.0 sq ft` (`wx = 0.0'–4.0'`) for juniper trees & accent plants |
+| **Southern Fence Berry & Shade Bed** | `2.0' D` (`+6"` paver = `2.5'` to grass) | `wy = 48.0'–50.0'` for raspberries, sugar snap peas, alpine strawberries, hardy kiwis & shade plants |
+| **Northern Backyard Planter Zone** | `5 Planters @ 3.0' W × 6.0' D` (running N–S) | `8.0' D` (`1'` N space + `6'` planter + `1'` S space) + `6"` paver = **`8.5'` total from N. fence to grass** (`wx = 0.0'–30.0'` only) |
+| **Existing Concrete Patio** | `21.0' N–S × 12.5' E–W` (4 quadrants @ `10.5' × 6.25'`) | `262.5 sq ft` (`17.5'` to West wall; `20.0'` North of patio) |
+| **North Side Yard (Garage)** | `9.0' W × 43.2' D` (`wx = 30.0'–73.2'`, `wy = 0.0'–9.0'`) | **Completely Cement (Poured Concrete):** `388.8 sq ft` total (`360.0 sq ft` inside `wx = 70.0'` vehicle gate) |
 | **South Side Yard (Porch)** | `9.0' W × 29.7' D` (`wx = 30.0'–59.7'`, `wy = 41.0'–50.0'`) | `270.0 sq ft` raw / `247.5 sq ft` enclosed inside walk gate (`wx = 57.5'`) |
-| **SE Front Yard (South of Drive)** | `17.5'–21.0' W × 27.0'–37.0' D` (`wx = 59.7'–96.7'`) | `555.0 sq ft` unpaved lawn/bed area + green utility transformer box |
-| **NE Front Strip (North of Drive)** | `11.0' W × 23.5' D` (`wx = 73.2'–96.7'`, `wy = 0.0'–11.0'`) | `258.5 sq ft` unpaved strip leading to North double gate |
+| **SE Front Yard (South of Drive)** | `17.5'–21.0' W × 27.0'–37.0' D` (`wx = 59.7'–96.7'`) | `555.0 sq ft` framed by **2.0' wide planting beds** (along driveway, walkway, front of porch, 2.0' off green utility box, and 2.0' off South property line) + **6" flush pavers with 45° chamfered corners** |
+| **NE Front Strip (North of Drive)** | `11.0' W × 23.5' D` (`wx = 73.2'–96.7'`, `wy = 0.0'–11.0'`) | `258.5 sq ft` leading to North double gate |
 | **6.0' Street Park Strips** | `6.0' D` (`wx = 100.7'–106.7'`) between `4'` Sidewalk & `2'` Curb | `~126.0 sq ft` South Strip (`21' L`) + `~66.0 sq ft` North Strip (`11' L`) |
 | **White Vinyl Perimeter Fence** | `70.0' N + 57.5' S + 18.0' Gate Returns` | `145.5 linear ft` total white vinyl privacy fence |
-| **Raised Cedar Garden Beds** | `7 Boxes @ 6.0' × 3.0'` (oriented N–S in NW sun zone) | `126.0 sq ft` total growing area (`18.0 sq ft` per box) |
 | **Flush Lawn Paver Edging** | `6" Wide (0.5') Straight Pavers + 45° Chamfered Corners` | Soil-flush mower strip + `2.0'` foundation rock/mulch drip buffer |
 
 ---
