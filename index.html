@@ -189,10 +189,10 @@
             All 6 Years (2026–2031)
           </button>
           <button onclick="filterBudgetYear('2026', this)" class="budget-year-btn px-2.5 py-1 rounded-lg text-xs font-bold bg-slate-200 text-slate-900 hover:bg-slate-300 transition">
-            2026 · S. Fence &amp; Gate
+            2026 · S. Fence (50%) &amp; Gate
           </button>
           <button onclick="filterBudgetYear('2027', this)" class="budget-year-btn px-2.5 py-1 rounded-lg text-xs font-bold bg-slate-200 text-slate-900 hover:bg-slate-300 transition">
-            2027 · Sprinklers, Pavers, Grass &amp; Plants
+            2027 · N. Fence/Gate, Sprinklers, Pavers, Grass &amp; Plants
           </button>
           <button onclick="filterBudgetYear('2028', this)" class="budget-year-btn px-2.5 py-1 rounded-lg text-xs font-bold bg-slate-200 text-slate-900 hover:bg-slate-300 transition">
             2028 · N. Cement Pad &amp; Walk
@@ -577,50 +577,71 @@
       {
         year: '2026',
         phaseNum: 1,
-        title: 'South Fence & Person Gate',
+        title: 'South Vinyl Fence (50% Neighbor Split) & Person Gate (100% Ours)',
         badgeColor: 'bg-emerald-100 text-emerald-900 border-emerald-300',
         hybridDefault: 'PRO',
-        summary: 'Enclose the South property line (57.5\') and install the 9.0\' South pedestrian ("person") gate return at wx = 57.5\' (set back 2.2\' West of the SE stucco corner behind the meters).',
-        phaseNote: 'Setting the 4.0\' person gate at wx = 57.5\' hides the gas/electric meters and AC unit inside the gate while keeping the 3152 front porch stone column 100% exposed.',
+        summary: 'Enclose the South property line (57.5\' white vinyl fence split 50/50 with our South neighbor) and install our 9.0\' South pedestrian ("person") gate return at wx = 57.5\' (100% our cost; set back 2.2\' West of the SE stucco corner behind the meters).',
+        phaseNote: 'Cost-Split Rule: We split the 57.5\' shared South property-line fence & 8 line post footings 50/50 with our South neighbor (saving $1,210 Pro / $750 DIY), while paying 100% for our own 4.0\' walk gate, 5.0\' return wings, and gate hardware.',
         items: [
           {
-            name: 'South Property Line White Vinyl Privacy Fence (6\' Tall)',
-            spec: '57.5 lin ft along South boundary (wx = 0.0\'–57.5\': 30.0\' backyard + 27.5\' South side yard)',
-            qty: '57.5 lin ft',
-            diyCost: 1495,
-            diyRange: '$1,350–$1,650',
-            proCost: 2415,
-            proRange: '$2,150–$2,680'
+            name: 'South Property Line White Vinyl Privacy Fence (6\' Tall — 50% Neighbor Split)',
+            spec: '57.5 lin ft along South boundary (wx = 0.0\'–57.5\': 30.0\' backyard + 27.5\' South side yard) — Full fence cost ($2,420 Pro / $1,500 DIY) split 50/50 with South neighbor',
+            qty: '57.5 lin ft (50% Share)',
+            diyCost: 750,
+            diyRange: '$675–$825',
+            proCost: 1210,
+            proRange: '$1,075–$1,340'
           },
           {
-            name: 'South Pedestrian ("Person") Gate & Fixed Vinyl Return Wings',
-            spec: '9.0\' span at wx = 57.5\' (4.0\' single-swing walk gate aligned with 4\'+ grass corridor + 5.0\' fixed vinyl wings)',
-            qty: '9.0 lin ft (1 Gate)',
+            name: 'South Pedestrian ("Person") Gate & Fixed Vinyl Return Wings (100% Our Cost)',
+            spec: '9.0\' span at wx = 57.5\' (4.0\' single-swing walk gate aligned with 4\'+ grass corridor + 5.0\' fixed vinyl wings) — Paid 100% by us',
+            qty: '9.0 lin ft (1 Gate · 100%)',
             diyCost: 425,
             diyRange: '$375–$475',
             proCost: 725,
             proRange: '$650–$800'
           },
           {
-            name: 'Post Footings, Aluminum Gate Stiffeners & Self-Latching Hardware',
-            spec: '11 post holes, ~22 bags (80 lb) concrete, internal steel/aluminum gate stiffeners & stainless latch/hinges',
-            qty: '11 Posts + Hardware',
-            diyCost: 230,
-            diyRange: '$200–$260',
-            proCost: 310,
-            proRange: '$275–$350'
+            name: 'Post Footings (50% Line Split) & Gate Stiffeners / Hardware (100% Gate Cost)',
+            spec: '50% share of 8 shared boundary post footings + 100% our cost for 3 gate/return post footings, internal aluminum gate stiffeners & stainless self-latching hardware',
+            qty: '8 Shared (50%) + 3 Gate (100%)',
+            diyCost: 160,
+            diyRange: '$140–$180',
+            proCost: 215,
+            proRange: '$190–$245'
           }
         ]
       },
       {
         year: '2027',
         phaseNum: 2,
-        title: 'Sprinkler System, Pavers, Grass, Mulch & Plants (In-Ground Flat Dirt Garden)',
+        title: 'North Vinyl Fence (50% Split) & Gate (100% Ours) + Sprinklers, Pavers, Grass & Plants',
         badgeColor: 'bg-teal-100 text-teal-900 border-teal-300',
         hybridDefault: 'DIY',
-        summary: 'Install underground irrigation, straight flush Home Depot Holland paver mow strips (45° corners where grass meets mulch, gravel, or the home; no pavers where grass meets the driveway, patio, sidewalk, or cement pad), all front/back/South-wrap sod, dark bark mulch, perimeter trees/perennials, and in-ground garden plants directly in the flat dirt garden area (no raised beds or gravel yet).',
-        phaseNote: '2027 Garden Plan: All vegetable & garden plants go directly into the amended flat dirt plot (8.0\' × 23.0\' along the North fence) framed by the permanent flush paver strip—saving raised beds and crushed rock for Phase 5 (2030).',
+        hybridBadgeLabel: 'Pro Fence + DIY Landscape',
+        summary: 'Install the 70.0\' North white vinyl fence (split 50/50 with our North neighbor) and our 8.5\' double-swing vehicle gate at wx = 70.0\' (100% our cost), plus underground irrigation, straight flush Home Depot Holland paver mow strips (45° corners where grass meets mulch, gravel, or the home; no pavers where grass meets concrete), all sod, dark bark mulch, perimeter trees/perennials, and in-ground flat dirt garden plants.',
+        phaseNote: '2027 Fence + Garden Plan: We split the 70.0\' North boundary fence 50/50 with our North neighbor (saving $1,590 Pro / $990 DIY) and pay 100% for our 8.5\' double vehicle gate; all vegetable plants go directly into the flat 8\'×23\' dirt plot (saving raised beds & rock for 2030).',
         items: [
+          {
+            name: 'North Property Line White Vinyl Privacy Fence (6\' Tall — 50% Neighbor Split)',
+            spec: '70.0 lin ft along North boundary (wx = 0.0\'–70.0\': 30.0\' backyard + 40.0\' North side yard) + 10 line post footings — Full cost ($3,180 Pro / $1,980 DIY) split 50/50 with North neighbor',
+            qty: '70.0 lin ft (50% Share)',
+            hybridDefault: 'PRO',
+            diyCost: 990,
+            diyRange: '$890–$1,090',
+            proCost: 1590,
+            proRange: '$1,425–$1,750'
+          },
+          {
+            name: 'North Double-Swing Vehicle Gate & Heavy-Duty Hardware (100% Our Cost)',
+            spec: '9.0\' span at wx = 70.0\' (8.5\' clear opening, two 4.25\' steel-framed vinyl leaves set back 3.2\' West of NE garage face) + steel-core hinge post stiffeners, ball-bearing hinges, dual drop rods & gate footings — Paid 100% by us',
+            qty: '9.0 lin ft (8.5\' Dbl Gate · 100%)',
+            hybridDefault: 'PRO',
+            diyCost: 850,
+            diyRange: '$750–$950',
+            proCost: 1350,
+            proRange: '$1,200–$1,500'
+          },
           {
             name: 'Underground Sprinkler System (Turf Zones + Garden Stub-Out)',
             spec: 'Smart Wi-Fi controller, PVB backflow, manifold valves, PVC mainline, pop-up MP Rotators (Backyard, 4\'+ S. wrap & Front lawn) + capped stub-out at North garden',
@@ -868,8 +889,9 @@
       if (activeBudgetMode === 'PRO') {
         return { cost: item.proCost, range: item.proRange, tag: 'Pro' };
       }
-      // HYBRID mode uses phase.hybridDefault
-      if (phase.hybridDefault === 'PRO') {
+      // HYBRID mode uses item.hybridDefault if present, else phase.hybridDefault
+      const mode = item.hybridDefault || phase.hybridDefault;
+      if (mode === 'PRO') {
         return { cost: item.proCost, range: item.proRange, tag: 'Pro Install' };
       }
       return { cost: item.diyCost, range: item.diyRange, tag: 'DIY / Direct' };
@@ -964,9 +986,11 @@
       containerEl.innerHTML = visiblePhases.map(phase => {
         const phaseTotal = getPhaseTotal(phase);
         const modeBadge = activeBudgetMode === 'HYBRID'
-          ? (phase.hybridDefault === 'PRO'
-              ? '<span class="px-2 py-0.5 rounded text-[11px] font-bold bg-slate-800 text-white">Pro Turnkey</span>'
-              : '<span class="px-2 py-0.5 rounded text-[11px] font-bold bg-emerald-700 text-white">DIY / Direct</span>')
+          ? (phase.hybridBadgeLabel
+              ? `<span class="px-2 py-0.5 rounded text-[11px] font-bold bg-slate-800 text-white">${phase.hybridBadgeLabel}</span>`
+              : (phase.hybridDefault === 'PRO'
+                  ? '<span class="px-2 py-0.5 rounded text-[11px] font-bold bg-slate-800 text-white">Pro Turnkey</span>'
+                  : '<span class="px-2 py-0.5 rounded text-[11px] font-bold bg-emerald-700 text-white">DIY / Direct</span>'))
           : (activeBudgetMode === 'PRO'
               ? '<span class="px-2 py-0.5 rounded text-[11px] font-bold bg-slate-800 text-white">Pro Turnkey</span>'
               : '<span class="px-2 py-0.5 rounded text-[11px] font-bold bg-emerald-700 text-white">DIY</span>');

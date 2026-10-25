@@ -172,8 +172,8 @@
 
         <!-- Cumulative Year Stepper Buttons -->
         <div class="grid grid-cols-6 gap-1">
-          <button onclick="setCumulativeYear(2026)" id="yr-step-2026" class="yr-step-btn py-1 rounded text-[10px] font-mono-cad font-bold bg-emerald-600 text-white border border-emerald-400/50" title="Show Plan Through Phase 1 (2026: S. Fence & Gate)">2026</button>
-          <button onclick="setCumulativeYear(2027)" id="yr-step-2027" class="yr-step-btn py-1 rounded text-[10px] font-mono-cad font-bold bg-emerald-600 text-white border border-emerald-400/50" title="Show Plan Through Phase 2 (2027: Sprinklers, Pavers, Grass & Plants)">2027</button>
+          <button onclick="setCumulativeYear(2026)" id="yr-step-2026" class="yr-step-btn py-1 rounded text-[10px] font-mono-cad font-bold bg-emerald-600 text-white border border-emerald-400/50" title="Show Plan Through Phase 1 (2026: South Vinyl Fence [50% Split] & Person Gate)">2026</button>
+          <button onclick="setCumulativeYear(2027)" id="yr-step-2027" class="yr-step-btn py-1 rounded text-[10px] font-mono-cad font-bold bg-emerald-600 text-white border border-emerald-400/50" title="Show Plan Through Phase 2 (2027: North Vinyl Fence [50% Split] & Gate + Sprinklers, Pavers, Grass & Plants)">2027</button>
           <button onclick="setCumulativeYear(2028)" id="yr-step-2028" class="yr-step-btn py-1 rounded text-[10px] font-mono-cad font-bold bg-emerald-600 text-white border border-emerald-400/50" title="Show Plan Through Phase 3 (2028: N. Cement Pad & 3' Rear Walk)">2028</button>
           <button onclick="setCumulativeYear(2029)" id="yr-step-2029" class="yr-step-btn py-1 rounded text-[10px] font-mono-cad font-bold bg-emerald-600 text-white border border-emerald-400/50" title="Show Plan Through Phase 4 (2029: Patio Awning & Furniture)">2029</button>
           <button onclick="setCumulativeYear(2030)" id="yr-step-2030" class="yr-step-btn py-1 rounded text-[10px] font-mono-cad font-bold bg-emerald-600 text-white border border-emerald-400/50" title="Show Plan Through Phase 5 (2030: 5 Raised Cedar Beds, Drip & Rock)">2030</button>
@@ -244,7 +244,7 @@
           <div class="flex items-center gap-1.5"><span class="w-3 h-3 rounded-sm bg-[#92400e] border border-amber-300 shrink-0"></span><span>Awning &amp; Patio (P4)</span></div>
           <div class="flex items-center gap-1.5"><span class="w-3 h-3 rounded-sm bg-[#b45309] border border-lime-400 shrink-0"></span><span>5 Cedar Planters (P5)</span></div>
           <div class="flex items-center gap-1.5"><span class="w-3 h-3 rounded-sm bg-[#a8a29e] border border-slate-400 shrink-0"></span><span>Crushed Granite (P5)</span></div>
-          <div class="flex items-center gap-1.5"><span class="w-3 h-3 rounded-sm bg-[#c084fc] border border-white/40 shrink-0"></span><span>Vinyl Fence &amp; Gates (P1)</span></div>
+          <div class="flex items-center gap-1.5"><span class="w-3 h-3 rounded-sm bg-[#c084fc] border border-white/40 shrink-0"></span><span>Vinyl Fence/Gates (P1/P2)</span></div>
           <div class="flex items-center gap-1.5"><span class="w-3 h-3 rounded-sm bg-[#fde047] border border-amber-500 shrink-0"></span><span>2700K Lighting (P6)</span></div>
         </div>
       </div>
@@ -383,10 +383,12 @@
         houseStructure: true,
         existingConcrete: true,
         neighbors: true,
-        // Phase 1 (2026): South Fence & Gate
-        fenceLines: true,
-        fenceGates: true,
-        // Phase 2 (2027): Sprinklers, Pavers, Grass, Mulch & Plants
+        // Phase 1 (2026): South Vinyl Fence (50% Split) & Person Gate (100% Ours)
+        southFence: true,
+        southGate: true,
+        // Phase 2 (2027): North Vinyl Fence (50% Split) & Gate (100% Ours) + Sprinklers, Pavers, Grass, Mulch & Plants
+        northFence: true,
+        northGate: true,
         irrigation: false,
         pavers: true,
         grass: true,
@@ -432,28 +434,36 @@
         id: 'phase-1',
         year: 2026,
         badge: '2026 · Phase 1',
-        title: 'South Fence & Gates',
-        accent: 'border-purple-500/40 bg-purple-950/20',
+        title: 'South Vinyl Fence & Gate',
+        subtitle: '57.5\' S. Fence (50% Split) + 4\' Walk Gate (100% Ours)',
+        accent: '#c084fc',
+        bgTint: 'rgba(88, 28, 135, 0.18)',
+        borderTint: 'rgba(192, 132, 252, 0.45)',
         badgeClass: 'bg-purple-500/20 text-purple-300 border-purple-500/40',
         layers: [
-          { key: 'fenceLines', label: 'Vinyl Privacy Fence (57.5\' S + 70\' N)', swatch: '#c084fc' },
-          { key: 'fenceGates', label: 'Stucco-Setback Gates (4\' S & 8.5\' N)', swatch: '#34d399' }
+          { key: 'southFence', label: 'South Vinyl Fence (57.5\' · 50% Split)', meta: 'wx = 0.0\'–57.5\', wy = 50.0\' · Split w/ S. Neighbor', swatch: '#c084fc' },
+          { key: 'southGate', label: 'South 4.0\' Walk Gate & Wings (100% Ours)', meta: 'wx = 57.5\' (2.2\' Stucco Setback) · Paid 100% by Us', swatch: '#34d399' }
         ]
       },
       {
         id: 'phase-2',
         year: 2027,
         badge: '2027 · Phase 2',
-        title: 'Sprinklers, Pavers, Grass & Plants',
-        accent: 'border-emerald-500/40 bg-emerald-950/20',
+        title: 'N. Fence/Gate, Pavers, Grass & Plants',
+        subtitle: '70\' N. Fence (50% Split) + 8.5\' Gate (100% Ours) + Landscape',
+        accent: '#34d399',
+        bgTint: 'rgba(6, 78, 59, 0.18)',
+        borderTint: 'rgba(52, 211, 153, 0.45)',
         badgeClass: 'bg-emerald-500/20 text-emerald-300 border-emerald-500/40',
         layers: [
-          { key: 'pavers', label: '6" Flush Pavers (Grass-to-Mulch/Gravel/Home · 45°)', swatch: '#2dd4bf' },
-          { key: 'grass', label: 'Sod / Lawn (BY + 4\'+ S. Wrap + Front)', swatch: '#22c55e' },
-          { key: 'beds', label: 'Bark Mulch Beds & Flat-Dirt Garden', swatch: '#854d0e' },
-          { key: 'westWallPlants', label: 'W. Wall 5+4 Hybrid Trees & Perennials', swatch: '#4ade80' },
-          { key: 'yardPlants', label: 'S. Berry Bed, Front Maple & Box Screen', swatch: '#f43f5e' },
-          { key: 'irrigation', label: 'Underground Sprinklers & Spray Arcs', swatch: '#38bdf8' }
+          { key: 'northFence', label: 'North Vinyl Fence (70.0\' · 50% Split)', meta: 'wx = 0.0\'–70.0\', wy = 0.0\' · Split w/ N. Neighbor', swatch: '#c084fc' },
+          { key: 'northGate', label: 'North 8.5\' Double Vehicle Gate (100% Ours)', meta: 'wx = 70.0\' (3.2\' Garage Setback) · Paid 100% by Us', swatch: '#fbbf24' },
+          { key: 'pavers', label: '6" Flush Pavers (Grass-to-Mulch/Gravel/Home · 45°)', meta: '195 lin ft Holland Pavers · None @ Concrete', swatch: '#2dd4bf' },
+          { key: 'grass', label: 'Sod / Lawn (BY + 4\'+ S. Wrap + Front)', meta: '1,344 sq ft Total Open Turf', swatch: '#22c55e' },
+          { key: 'beds', label: 'Bark Mulch Beds & Flat-Dirt Garden', meta: 'W. Wall, S. Berry, Front Beds & 8\'×23\' Dirt Plot', swatch: '#854d0e' },
+          { key: 'westWallPlants', label: 'W. Wall 5+4 Hybrid Trees & Perennials', meta: '5 Leafy Pillars + 4 Junipers + 10 Under-Story', swatch: '#4ade80' },
+          { key: 'yardPlants', label: 'S. Berry Bed, Front Maple & Box Screen', meta: 'Raspberries, Kiwi, Maple & 3-Sided Grass Screen', swatch: '#f43f5e' },
+          { key: 'irrigation', label: 'Underground Sprinklers & Spray Arcs', meta: '6–8 Turf Zones + N. Garden Stub-Out', swatch: '#38bdf8' }
         ]
       },
       {
@@ -461,11 +471,14 @@
         year: 2028,
         badge: '2028 · Phase 3',
         title: 'North Cement Pad & 3\' Rear Walk',
-        accent: 'border-sky-500/40 bg-sky-950/20',
+        subtitle: '388.8 sq ft N. Side Pad + 33 sq ft Rear House Walk',
+        accent: '#38bdf8',
+        bgTint: 'rgba(12, 74, 110, 0.18)',
+        borderTint: 'rgba(56, 189, 248, 0.45)',
         badgeClass: 'bg-sky-500/20 text-sky-300 border-sky-500/40',
         layers: [
-          { key: 'northCementPad', label: 'N. Side Poured Cement Pad (9\'×43.2\')', swatch: '#7dd3fc' },
-          { key: 'rearSidewalk', label: 'Rear Wall Concrete Walk (3\'×11\')', swatch: '#bae6fd' }
+          { key: 'northCementPad', label: 'N. Side Poured Cement Pad (9\'×43.2\')', meta: '388.8 sq ft · No Pavers Where Grass Meets Pad', swatch: '#7dd3fc' },
+          { key: 'rearSidewalk', label: 'Rear Wall Concrete Walk (3\'×11\')', meta: '33.0 sq ft · Links Patio to N. Cement Pad', swatch: '#bae6fd' }
         ]
       },
       {
@@ -473,11 +486,14 @@
         year: 2029,
         badge: '2029 · Phase 4',
         title: 'Patio Awning & Lounge Furniture',
-        accent: 'border-amber-500/40 bg-amber-950/20',
+        subtitle: 'Attached 2-Pillar Timber Awning + L-Sectional + Fire Table',
+        accent: '#f59e0b',
+        bgTint: 'rgba(120, 53, 15, 0.18)',
+        borderTint: 'rgba(245, 158, 11, 0.45)',
         badgeClass: 'bg-amber-500/20 text-amber-300 border-amber-500/40',
         layers: [
-          { key: 'patioAwning', label: 'Dark-Espresso Timber Patio Awning', swatch: '#92400e' },
-          { key: 'patioFurniture', label: 'L-Sectional Sofa, Rug & Fire Table', swatch: '#f59e0b' }
+          { key: 'patioAwning', label: 'Dark-Espresso Timber Patio Awning', meta: '2 Outer West Pillars · 0 House Pillars', swatch: '#92400e' },
+          { key: 'patioFurniture', label: 'L-Sectional Sofa, Rug & Fire Table', meta: '262.5 sq ft Patio Lounge · 0 sq ft Grass Lost', swatch: '#f59e0b' }
         ]
       },
       {
@@ -485,12 +501,15 @@
         year: 2030,
         badge: '2030 · Phase 5',
         title: '5 Raised Cedar Beds, Drip & Rock',
-        accent: 'border-lime-500/40 bg-lime-950/20',
+        subtitle: 'Upgrades 2027 Flat Dirt Garden to 5 N–S Planters',
+        accent: '#84cc16',
+        bgTint: 'rgba(54, 83, 20, 0.18)',
+        borderTint: 'rgba(132, 204, 22, 0.45)',
         badgeClass: 'bg-lime-500/20 text-lime-300 border-lime-500/40',
         layers: [
-          { key: 'planters', label: '5 N–S Raised Cedar Planters (3\'×6\')', swatch: '#84cc16' },
-          { key: 'gardenRock', label: '3/8" Crushed Granite Garden Paths', swatch: '#a8a29e' },
-          { key: 'gardenDrip', label: 'Per-Box Grid Drip Irrigation Lines', swatch: '#0ea5e9' }
+          { key: 'planters', label: '5 N–S Raised Cedar Planters (3\'×6\')', meta: 'N1–N5 (90 sq ft Growing Area · 8.5\' to Grass)', swatch: '#84cc16' },
+          { key: 'gardenRock', label: '3/8" Crushed Granite Garden Paths', meta: '94 sq ft Compacted Granite (1.75\' Paths)', swatch: '#a8a29e' },
+          { key: 'gardenDrip', label: 'Per-Box Grid Drip Irrigation Lines', meta: '1/2" Risers & 1/4" Emitter Grids', swatch: '#0ea5e9' }
         ]
       },
       {
@@ -498,11 +517,14 @@
         year: 2031,
         badge: '2031 · Phase 6',
         title: 'Landscape Lighting & Porch Swing',
-        accent: 'border-yellow-500/40 bg-yellow-950/20',
+        subtitle: '12V 2700K LED Uplights, Bistro Lights & 3152 Swing',
+        accent: '#fde047',
+        bgTint: 'rgba(113, 63, 18, 0.18)',
+        borderTint: 'rgba(253, 224, 71, 0.45)',
         badgeClass: 'bg-yellow-500/20 text-yellow-300 border-yellow-500/40',
         layers: [
-          { key: 'lighting', label: '12V 2700K Uplights & Bistro Lights', swatch: '#fde047' },
-          { key: 'porchSwing', label: 'Hanging Front Porch Swing (3152)', swatch: '#fb923c' }
+          { key: 'lighting', label: '12V 2700K Uplights & Bistro Lights', meta: '21 Brass/Black LED Uplights + Patio String Lights', swatch: '#fde047' },
+          { key: 'porchSwing', label: 'Hanging Front Porch Swing (3152)', meta: '4\'–5\' Cedar/Polywood Swing on 6\'×12\' Porch', swatch: '#fb923c' }
         ]
       },
       {
@@ -510,12 +532,15 @@
         year: null,
         badge: 'Baseline',
         title: 'Existing Property & Hardscape',
-        accent: 'border-slate-700 bg-slate-900/60',
+        subtitle: 'Lot 3152 House, Garage, Patio, Driveway & Neighbors',
+        accent: '#94a3b8',
+        bgTint: 'rgba(15, 23, 42, 0.6)',
+        borderTint: 'rgba(100, 116, 139, 0.45)',
         badgeClass: 'bg-slate-800 text-slate-300 border-slate-600',
         layers: [
-          { key: 'houseStructure', label: 'House (3152), Garage, Porch & W. Wall', swatch: '#64748b' },
-          { key: 'existingConcrete', label: 'Existing Patio, Driveway & Sidewalks', swatch: '#94a3b8' },
-          { key: 'neighbors', label: 'Neighbor Contrast (Dirt N / White Rock S)', swatch: '#e2e8f0' }
+          { key: 'houseStructure', label: 'House (3152), Garage, Porch & W. Wall', meta: 'Slab-on-Grade · 0 Window Wells', swatch: '#64748b' },
+          { key: 'existingConcrete', label: 'Existing Patio, Driveway & Sidewalks', meta: '21\'×12.5\' Patio + 18\'×23.5\' Drive + 4\' Walk', swatch: '#94a3b8' },
+          { key: 'neighbors', label: 'Neighbor Contrast (Dirt N / White Rock S)', meta: 'wy < 0\' Bare Dirt · wy > 50\' White Rocks', swatch: '#e2e8f0' }
         ]
       },
       {
@@ -523,14 +548,17 @@
         year: null,
         badge: 'CAD Overlays',
         title: 'Dimensions, Labels, Utilities & Grid',
-        accent: 'border-slate-700 bg-slate-900/60',
+        subtitle: 'Engineering Callouts, Tracks & 1-Ft Grid',
+        accent: '#38bdf8',
+        bgTint: 'rgba(15, 23, 42, 0.6)',
+        borderTint: 'rgba(56, 189, 248, 0.35)',
         badgeClass: 'bg-slate-800 text-sky-300 border-slate-600',
         layers: [
-          { key: 'primaryDims', label: 'Major Exterior Dimension Tracks', swatch: '#38bdf8' },
-          { key: 'secondaryDims', label: 'Sub-Segments & Interior Spans', swatch: '#67e8f9' },
-          { key: 'zones', label: 'Sq.Ft. Area & Zone Callout Cards', swatch: '#34d399' },
-          { key: 'utilities', label: 'Utilities (AC, Meters, Box, Spigot)', swatch: '#fbbf24' },
-          { key: 'grid', label: '1-Ft / 5-Ft Engineering Grid', swatch: '#475569' }
+          { key: 'primaryDims', label: 'Major Exterior Dimension Tracks', meta: 'Concentric Tracks 1–3', swatch: '#38bdf8' },
+          { key: 'secondaryDims', label: 'Sub-Segments & Interior Spans', meta: 'Setbacks, Clearances & Bed Depths', swatch: '#67e8f9' },
+          { key: 'zones', label: 'Sq.Ft. Area & Zone Callout Cards', meta: 'Zero-Overlap AABB Callout Pills', swatch: '#34d399' },
+          { key: 'utilities', label: 'Utilities (AC, Meters, Box, Spigot)', meta: 'AC Pad, Gas/Elec Meters, Hose Bib & Box', swatch: '#fbbf24' },
+          { key: 'grid', label: '1-Ft / 5-Ft Engineering Grid', meta: '1:1 Coordinate Grid (wx, wy)', swatch: '#475569' }
         ]
       }
     ];
@@ -1309,10 +1337,10 @@
       {
         id: 'north-vehicle-gate',
         zone: 'Area & Fence',
-        name: 'North Side Double Vehicle Gate & Setback',
-        rough: 'Locked at X=70.0\'',
-        exact: '9.0\' Span (8.5\' Double Gate) @ 3.2\' Setback',
-        notes: 'Set back 3.2\' West of NE garage face (1.2\' behind the 2.0\' stone wrap & downspout) onto flat stucco at X=70.0\'.',
+        name: 'North Side Double Vehicle Gate & Setback (2027 · Phase 2)',
+        rough: '2027 · X=70.0\'',
+        exact: '9.0\' Span (8.5\' Double Gate · 100% Ours) + 70\' Fence (50% Split)',
+        notes: 'Installed in 2027 (Phase 2): 70.0\' North vinyl fence is split 50/50 with North neighbor; 8.5\' double vehicle gate (set back 3.2\' West of NE garage face at X=70.0\') is paid 100% by us.',
         dim: {
           x1: 70.0, y1: -6.5, x2: 73.2, y2: -6.5,
           wx1: 70.0, wy1: 9.0, wx2: 73.2, wy2: 9.0,
@@ -1323,10 +1351,10 @@
       {
         id: 'south-human-gate',
         zone: 'Area & Fence',
-        name: 'South Side Pedestrian Gate & Setback',
-        rough: 'Locked at X=57.5\'',
-        exact: '4.0\' Walk Gate + 5.0\' Wing @ 2.2\' Setback',
-        notes: 'Set back 2.2\' West of SE stucco corner (8.2\' West of 3152 porch stone pillar) at X=57.5\', enclosing meters & AC unit.',
+        name: 'South Side Pedestrian Gate & Setback (2026 · Phase 1)',
+        rough: '2026 · X=57.5\'',
+        exact: '4.0\' Walk Gate + 5.0\' Wing (100% Ours) + 57.5\' Fence (50% Split)',
+        notes: 'Installed in 2026 (Phase 1): 57.5\' South vinyl fence is split 50/50 with South neighbor; 4.0\' walk gate + 5.0\' wings (set back 2.2\' West of SE stucco corner at X=57.5\') is paid 100% by us.',
         dim: {
           x1: 57.5, y1: 63.0, x2: 65.7, y2: 63.0,
           wx1: 57.5, wy1: 41.0, wx2: 65.7, wy2: 41.0,
@@ -2301,38 +2329,33 @@
         out.push(`<polygon points="${propPoly}" fill="none" stroke="${T.propLine}" stroke-width="2.0" stroke-dasharray="10,5,2,5"/>`);
       }
 
-      // 19. PHASE 1 (2026) WHITE VINYL PRIVACY FENCE ('fenceLines') & STUCCO-SETBACK GATES ('fenceGates')
-      if (L.fenceLines) {
+      // 19. WHITE VINYL PRIVACY FENCE & STUCCO-SETBACK GATES (Phase 1 2026: South Fence & Gate | Phase 2 2027: North Fence & Gate)
+      if (L.southFence || L.northFence) {
         const nf1 = project(0.0, 0.4), nf2 = project(LOCKED_NORTH_GATE_WX, 0.4);
         const sf1 = project(0.0, 49.6), sf2 = project(LOCKED_SOUTH_GATE_WX, 49.6);
         const fCol = isDrone ? '#f8fafc' : T.fenceStroke;
-        out.push(`
-          <g id="layer-fence-lines" ${isDrone ? 'filter="url(#shadow-shrub)"' : ''}>
-            <line x1="${nf1.x}" y1="${nf1.y}" x2="${nf2.x}" y2="${nf2.y}" stroke="${fCol}" stroke-width="${isDrone ? 3.8 : 3.2}" stroke-dasharray="${isDrone ? 'none' : '8,4'}"/>
-            <line x1="${sf1.x}" y1="${sf1.y}" x2="${sf2.x}" y2="${sf2.y}" stroke="${fCol}" stroke-width="${isDrone ? 3.8 : 3.2}" stroke-dasharray="${isDrone ? 'none' : '8,4'}"/>
-          </g>
-        `);
+        out.push(`<g id="layer-fence-lines" ${isDrone ? 'filter="url(#shadow-shrub)"' : ''}>`);
+        if (L.northFence) {
+          out.push(`<line x1="${nf1.x}" y1="${nf1.y}" x2="${nf2.x}" y2="${nf2.y}" stroke="${fCol}" stroke-width="${isDrone ? 3.8 : 3.2}" stroke-dasharray="${isDrone ? 'none' : '8,4'}"/>`);
+        }
+        if (L.southFence) {
+          out.push(`<line x1="${sf1.x}" y1="${sf1.y}" x2="${sf2.x}" y2="${sf2.y}" stroke="${fCol}" stroke-width="${isDrone ? 3.8 : 3.2}" stroke-dasharray="${isDrone ? 'none' : '8,4'}"/>`);
+        }
+        out.push(`</g>`);
       }
 
-      if (L.fenceGates) {
-        const nPostL = project(LOCKED_NORTH_GATE_WX, 0.6);
-        const nPostR = project(LOCKED_NORTH_GATE_WX, 8.6);
-        const nCenter = project(LOCKED_NORTH_GATE_WX, 4.6);
-        const nSwingL = project(LOCKED_NORTH_GATE_WX - 4.0, 0.6);
-        const nSwingR = project(LOCKED_NORTH_GATE_WX - 4.0, 8.6);
-        const nArcMidL = project(LOCKED_NORTH_GATE_WX - 2.83, 0.6 + 2.83);
-        const nArcMidR = project(LOCKED_NORTH_GATE_WX - 2.83, 8.6 - 2.83);
-
-        const sWallAnchor = project(LOCKED_SOUTH_GATE_WX, 41.0);
-        const sGateTop = project(LOCKED_SOUTH_GATE_WX, 44.5);
-        const sGateBot = project(LOCKED_SOUTH_GATE_WX, 48.5);
-        const sLotAnchor = project(LOCKED_SOUTH_GATE_WX, 49.6);
-        const sSwingOpen = project(LOCKED_SOUTH_GATE_WX - 4.0, 48.5);
-        const sArcMid = project(LOCKED_SOUTH_GATE_WX - 2.83, 48.5 - 2.83);
-
-        out.push(`
-          <g id="layer-fence-gates">
-            <!-- North 8.5' Double Vehicle Gate (wx=70.0') -->
+      if (L.southGate || L.northGate) {
+        out.push(`<g id="layer-fence-gates">`);
+        if (L.northGate) {
+          const nPostL = project(LOCKED_NORTH_GATE_WX, 0.6);
+          const nPostR = project(LOCKED_NORTH_GATE_WX, 8.6);
+          const nCenter = project(LOCKED_NORTH_GATE_WX, 4.6);
+          const nSwingL = project(LOCKED_NORTH_GATE_WX - 4.0, 0.6);
+          const nSwingR = project(LOCKED_NORTH_GATE_WX - 4.0, 8.6);
+          const nArcMidL = project(LOCKED_NORTH_GATE_WX - 2.83, 0.6 + 2.83);
+          const nArcMidR = project(LOCKED_NORTH_GATE_WX - 2.83, 8.6 - 2.83);
+          out.push(`
+            <!-- North 8.5' Double Vehicle Gate (wx=70.0' · 2027 Phase 2 · 100% Ours) -->
             <line x1="${nPostL.x}" y1="${nPostL.y}" x2="${nPostR.x}" y2="${nPostR.y}" stroke="#f59e0b" stroke-width="2.6" stroke-dasharray="3,2"/>
             <line x1="${nPostL.x}" y1="${nPostL.y}" x2="${nSwingL.x}" y2="${nSwingL.y}" stroke="#fbbf24" stroke-width="2.2"/>
             <line x1="${nPostR.x}" y1="${nPostR.y}" x2="${nSwingR.x}" y2="${nSwingR.y}" stroke="#fbbf24" stroke-width="2.2"/>
@@ -2340,8 +2363,18 @@
             <path d="M ${nCenter.x} ${nCenter.y} Q ${nArcMidR.x} ${nArcMidR.y} ${nSwingR.x} ${nSwingR.y}" fill="none" stroke="#fbbf24" stroke-width="1.2" stroke-dasharray="3,3"/>
             <circle cx="${nPostL.x}" cy="${nPostL.y}" r="3.2" fill="#f59e0b" stroke="#000" stroke-width="1"/>
             <circle cx="${nPostR.x}" cy="${nPostR.y}" r="3.2" fill="#f59e0b" stroke="#000" stroke-width="1"/>
+          `);
+        }
 
-            <!-- South 4.0' Pedestrian Walk Gate & 5.0' Fixed Wings (wx=57.5') -->
+        if (L.southGate) {
+          const sWallAnchor = project(LOCKED_SOUTH_GATE_WX, 41.0);
+          const sGateTop = project(LOCKED_SOUTH_GATE_WX, 44.5);
+          const sGateBot = project(LOCKED_SOUTH_GATE_WX, 48.5);
+          const sLotAnchor = project(LOCKED_SOUTH_GATE_WX, 49.6);
+          const sSwingOpen = project(LOCKED_SOUTH_GATE_WX - 4.0, 48.5);
+          const sArcMid = project(LOCKED_SOUTH_GATE_WX - 2.83, 48.5 - 2.83);
+          out.push(`
+            <!-- South 4.0' Pedestrian Walk Gate & 5.0' Fixed Wings (wx=57.5' · 2026 Phase 1 · 100% Ours) -->
             <line x1="${sWallAnchor.x}" y1="${sWallAnchor.y}" x2="${sGateTop.x}" y2="${sGateTop.y}" stroke="${isDrone ? '#f8fafc' : T.fenceStroke}" stroke-width="3.4"/>
             <line x1="${sGateBot.x}" y1="${sGateBot.y}" x2="${sLotAnchor.x}" y2="${sLotAnchor.y}" stroke="${isDrone ? '#f8fafc' : T.fenceStroke}" stroke-width="3.4"/>
             <line x1="${sGateTop.x}" y1="${sGateTop.y}" x2="${sGateBot.x}" y2="${sGateBot.y}" stroke="#34d399" stroke-width="2.6" stroke-dasharray="3,2"/>
@@ -2349,8 +2382,9 @@
             <path d="M ${sGateTop.x} ${sGateTop.y} Q ${sArcMid.x} ${sArcMid.y} ${sSwingOpen.x} ${sSwingOpen.y}" fill="none" stroke="#34d399" stroke-width="1.2" stroke-dasharray="3,3"/>
             <circle cx="${sGateTop.x}" cy="${sGateTop.y}" r="3.0" fill="#34d399" stroke="#000" stroke-width="1"/>
             <circle cx="${sGateBot.x}" cy="${sGateBot.y}" r="3.0" fill="#34d399" stroke="#000" stroke-width="1"/>
-          </g>
-        `);
+          `);
+        }
+        out.push(`</g>`);
       }
 
       // 20. UTILITIES & SURVEY STAKES LAYER ('utilities')
@@ -2660,11 +2694,9 @@
       }
 
       // C. Queue Gate & Utility Callouts
-      if (L.fenceGates) {
+      if (L.northGate) {
         const ngAnchor = project(LOCKED_NORTH_GATE_WX, 4.6);
-        const sgAnchor = project(LOCKED_SOUTH_GATE_WX, 46.5);
-        const ngW = 194 * ts, ngH = 29 * ts;
-        const sgW = 204 * ts, sgH = 29 * ts;
+        const ngW = 204 * ts, ngH = 29 * ts;
 
         labelTasks.push({
           id: 'gate-north-call',
@@ -2681,11 +2713,16 @@
           renderFn: (cx, cy) => `
             <g class="cursor-pointer" onclick="selectMeasurement('north-gate-opening')">
               <rect x="${(cx - ngW / 2).toFixed(1)}" y="${(cy - ngH / 2).toFixed(1)}" width="${ngW.toFixed(1)}" height="${ngH.toFixed(1)}" rx="3.5" fill="${T.dimBg}" stroke="#fbbf24" stroke-width="1.2"/>
-              <text x="${cx.toFixed(1)}" y="${(cy - 2.5 * ts).toFixed(1)}" fill="#fbbf24" font-family="JetBrains Mono" font-size="${(7.8 * ts).toFixed(1)}" font-weight="700" text-anchor="middle">NORTH 8.5' DOUBLE GATE (wx=70.0')</text>
-              <text x="${cx.toFixed(1)}" y="${(cy + 7.5 * ts).toFixed(1)}" fill="#fde68a" font-family="JetBrains Mono" font-size="${(6.7 * ts).toFixed(1)}" font-weight="600" text-anchor="middle">3.2' W of NE Garage · Two 4.0' Leaves</text>
+              <text x="${cx.toFixed(1)}" y="${(cy - 2.5 * ts).toFixed(1)}" fill="#fbbf24" font-family="JetBrains Mono" font-size="${(7.6 * ts).toFixed(1)}" font-weight="700" text-anchor="middle">2027 NORTH 8.5' DOUBLE GATE (wx=70.0')</text>
+              <text x="${cx.toFixed(1)}" y="${(cy + 7.5 * ts).toFixed(1)}" fill="#fde68a" font-family="JetBrains Mono" font-size="${(6.6 * ts).toFixed(1)}" font-weight="600" text-anchor="middle">100% Ours · 70' Fence 50% Neighbor Split</text>
             </g>
           `
         });
+      }
+
+      if (L.southGate) {
+        const sgAnchor = project(LOCKED_SOUTH_GATE_WX, 46.5);
+        const sgW = 206 * ts, sgH = 29 * ts;
 
         labelTasks.push({
           id: 'gate-south-call',
@@ -2702,8 +2739,8 @@
           renderFn: (cx, cy) => `
             <g class="cursor-pointer" onclick="selectMeasurement('south-gate-opening')">
               <rect x="${(cx - sgW / 2).toFixed(1)}" y="${(cy - sgH / 2).toFixed(1)}" width="${sgW.toFixed(1)}" height="${sgH.toFixed(1)}" rx="3.5" fill="${T.dimBg}" stroke="#34d399" stroke-width="1.2"/>
-              <text x="${cx.toFixed(1)}" y="${(cy - 2.5 * ts).toFixed(1)}" fill="#34d399" font-family="JetBrains Mono" font-size="${(7.8 * ts).toFixed(1)}" font-weight="700" text-anchor="middle">SOUTH 4.0' WALK GATE (wx=57.5')</text>
-              <text x="${cx.toFixed(1)}" y="${(cy + 7.5 * ts).toFixed(1)}" fill="#a7f3d0" font-family="JetBrains Mono" font-size="${(6.7 * ts).toFixed(1)}" font-weight="600" text-anchor="middle">2.2' W of SE Corner · Clear of 3152 Pillar</text>
+              <text x="${cx.toFixed(1)}" y="${(cy - 2.5 * ts).toFixed(1)}" fill="#34d399" font-family="JetBrains Mono" font-size="${(7.6 * ts).toFixed(1)}" font-weight="700" text-anchor="middle">2026 SOUTH 4.0' WALK GATE (wx=57.5')</text>
+              <text x="${cx.toFixed(1)}" y="${(cy + 7.5 * ts).toFixed(1)}" fill="#a7f3d0" font-family="JetBrains Mono" font-size="${(6.6 * ts).toFixed(1)}" font-weight="600" text-anchor="middle">100% Ours · 57.5' Fence 50% Neighbor Split</text>
             </g>
           `
         });
@@ -2963,9 +3000,9 @@
     function setCumulativeYear(targetYear) {
       STATE.activeMilestoneYear = targetYear;
       PHASE_GROUPS.forEach(group => {
-        if (group.id === 'baseline') {
+        if (group.id === 'base-property' || group.id === 'baseline') {
           group.layers.forEach(l => { STATE.layers[l.key] = true; });
-        } else if (group.id === 'cad_overlays') {
+        } else if (group.id === 'cad-overlays' || group.id === 'cad_overlays') {
           // Keep existing CAD overlay state untouched unless in Drone mode
         } else {
           const shouldEnable = group.year <= targetYear;
@@ -2979,9 +3016,9 @@
     function setAllBuildPhases(enableBuildPhases) {
       STATE.activeMilestoneYear = enableBuildPhases ? 'ALL' : 'BASELINE';
       PHASE_GROUPS.forEach(group => {
-        if (group.id === 'baseline') {
+        if (group.id === 'base-property' || group.id === 'baseline') {
           group.layers.forEach(l => { STATE.layers[l.key] = true; });
-        } else if (group.id === 'cad_overlays') {
+        } else if (group.id === 'cad-overlays' || group.id === 'cad_overlays') {
           // Preserve CAD overlay state
         } else {
           group.layers.forEach(l => { STATE.layers[l.key] = enableBuildPhases; });
@@ -3010,7 +3047,7 @@
     }
 
     function toggleFenceAll() {
-      const keys = ['fenceLines', 'fenceGates'];
+      const keys = ['southFence', 'southGate', 'northFence', 'northGate'];
       const allOn = keys.every(k => STATE.layers[k]);
       keys.forEach(k => { STATE.layers[k] = !allOn; });
       STATE.activeMilestoneYear = null;
@@ -3047,12 +3084,12 @@
     function syncLayerButtonsUI() {
       // Sync Cumulative Year Buttons
       [2026, 2027, 2028, 2029, 2030, 2031].forEach(yr => {
-        const btn = document.getElementById(`yr-btn-${yr}`);
+        const btn = document.getElementById(`yr-step-${yr}`) || document.getElementById(`yr-btn-${yr}`);
         if (!btn) return;
         const isActive = STATE.activeMilestoneYear === yr;
         btn.className = isActive
-          ? 'px-1.5 py-1 rounded text-[10px] font-mono font-bold bg-sky-400 text-slate-950 border border-sky-300 shadow-sm transition-all'
-          : 'px-1.5 py-1 rounded text-[10px] font-mono font-bold bg-slate-800 text-slate-200 hover:bg-slate-700 border border-slate-600 transition-all';
+          ? 'yr-step-btn py-1 rounded text-[10px] font-mono-cad font-bold bg-sky-400 text-slate-950 border border-sky-300 shadow-sm transition-all'
+          : 'yr-step-btn py-1 rounded text-[10px] font-mono-cad font-bold bg-emerald-600 text-white border border-emerald-400/50 hover:bg-emerald-500 transition-all';
       });
 
       // Sync Quick Material Buttons
@@ -3063,7 +3100,7 @@
         { id: 'qbtn-plants', active: STATE.layers.westWallPlants && STATE.layers.yardPlants },
         { id: 'qbtn-beds', active: STATE.layers.beds },
         { id: 'qbtn-planters', active: STATE.layers.planters },
-        { id: 'qbtn-fence', active: STATE.layers.fenceLines && STATE.layers.fenceGates },
+        { id: 'qbtn-fence', active: STATE.layers.southFence && STATE.layers.southGate && STATE.layers.northFence && STATE.layers.northGate },
         { id: 'qbtn-patio', active: STATE.layers.patioAwning && STATE.layers.patioFurniture },
         { id: 'qbtn-lighting', active: STATE.layers.lighting && STATE.layers.porchSwing },
         { id: 'qbtn-dims', active: STATE.layers.primaryDims || STATE.layers.secondaryDims || STATE.layers.zones }

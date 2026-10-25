@@ -19,18 +19,20 @@ This document records the architectural, spatial, and structural rationale behin
   * **South Side (Main House Stucco Wall Run):** $29.7\text{ ft}$ deep (`wx = 30.0'` to `59.7'` SE stucco corner, plus $6.0\text{ ft}$ covered front porch to `wx = 65.7'`)
 * **Backyard Depth:** $30.0\text{ ft}$ from the rear house wall (`wx = 30.0'`) to the inside face of the Western precast concrete wall (`wx = 0.0'`)
 * **Existing Rear Concrete Patio:** $21.0\text{ ft wide (N–S)} \times 12.5\text{ ft deep (E–W)}$ ($262.5\text{ sq ft}$ slab at `wx = 17.5'–30.0', wy = 20.0'–41.0'`)
-* **Perimeter Fencing Material:** $6\text{ ft}$ tall tan/almond or white vinyl privacy fencing (`145.5 lin ft` total across North & South runs and gates)
+* **Perimeter Fencing Material, Neighbor Cost Split & Phased Schedule:** $6\text{ ft}$ tall white vinyl privacy fencing (`145.5 lin ft` total):
+  * **50/50 Neighbor Fence Split (`127.5 lin ft`):** Shared property-line fences ($57.5\text{ lin ft}$ South fence in **2026** + $70.0\text{ lin ft}$ North fence in **2027**) are **split 50/50 with our South and North neighbors**.
+  * **100% Our Gate Cost (`18.0 lin ft`):** Both side-yard gates and house-side returns ($9.0\text{ lin ft}$ South pedestrian gate & fixed wing in **2026** + $9.0\text{ lin ft}$ North double-swing vehicle gate in **2027**) are **paid 100% by us**.
 * **Neighbor Boundary Contrast:**
   * **North Neighbor (`wy < 0.0'`):** Completely empty bare dirt outside the $9.0\text{ ft}$ North property line.
   * **South Neighbor (`wy > 50.0'`):** White rock xeriscape outside the $9.0\text{ ft}$ South property line.
 
 ---
 
-## 2. Locked-In Side-Yard Fence Setback & Gate Architecture
+## 2. Locked-In Side-Yard Fence Setback, Cost Split & Phased Gate Architecture
 
-### Locked-In Configuration (`STUCCO_SETBACK` — `145.5 lin ft` Total)
-* **North Side Double Vehicle Gate (`wx = 70.0', wy = 0.0'–9.0'`):** Set back **$3.2\text{ ft}$ West of the NE garage corner** (`wx = 73.2'`), which places the hinge/latch post **$1.2\text{ ft}$ behind the $2.0\text{ ft}$ stone masonry wrap return** (`wx = 71.2'–73.2'`) and corner downspout splash block directly onto flat stucco. Uses an **$8.0'\text{–}8.5'$ double-swing steel-frame vinyl vehicle gate** across the $9.0\text{ ft}$ cement pad, leaving **$70.0\text{ lin ft}$** of North side fence (`wx = 0.0'–70.0'`).
-* **South Side Pedestrian Gate (`wx = 57.5', wy = 41.0'–50.0'`):** Set back **$2.2\text{ ft}$ West of the SE stucco corner** (`wx = 59.7'`, or $8.2\text{ ft}$ West of the `3152` front porch stone pillar at `wx = 65.7'`) directly onto flat stucco just East of the gas and electric meters (`wx = 51.0'–54.5'`). Uses a **$4.0\text{ ft}$ pedestrian walk gate + $5.0\text{ ft}$ vinyl wing panel**, enclosing the utility meters and AC condenser (`wx = 45.0'–48.0'`) inside the gate and leaving **$57.5\text{ lin ft}$** of South side fence (`wx = 0.0'–57.5'`).
+### Locked-In Configuration (`STUCCO_SETBACK` — `145.5 lin ft` Total: `2026 South` $\rightarrow$ `2027 North`)
+* **2026 Phase 1 — South Side Fence (50% Neighbor Split) & Pedestrian Gate (100% Ours) (`wx = 57.5', wy = 41.0'–50.0'`):** Set back **$2.2\text{ ft}$ West of the SE stucco corner** (`wx = 59.7'`, or $8.2\text{ ft}$ West of the `3152` front porch stone pillar at `wx = 65.7'`) directly onto flat stucco just East of the gas and electric meters (`wx = 51.0'–54.5'`). Uses a **$4.0\text{ ft}$ pedestrian walk gate + $5.0\text{ ft}$ vinyl wing panel** (**paid 100% by us**: $\$725$ Pro / $\$425$ DIY + $\$215$ Pro / $\$160$ DIY footings/hardware), enclosing the utility meters and AC condenser (`wx = 45.0'–48.0'`) inside the gate and leaving **$57.5\text{ lin ft}$** of South property-line fence (`wx = 0.0'–57.5'`, **split 50/50 with our South neighbor**: our 50% share is $\$1,210$ Pro / $\$750$ DIY; **2026 Phase 1 total = $\$2,150$ Pro / $\$1,335$ DIY**).
+* **2027 Phase 2 — North Side Fence (50% Neighbor Split) & Double Vehicle Gate (100% Ours) (`wx = 70.0', wy = 0.0'–9.0'`):** Set back **$3.2\text{ ft}$ West of the NE garage corner** (`wx = 73.2'`), which places the hinge/latch post **$1.2\text{ ft}$ behind the $2.0\text{ ft}$ stone masonry wrap return** (`wx = 71.2'–73.2'`) and corner downspout splash block directly onto flat stucco. Uses an **$8.0'\text{–}8.5'$ double-swing steel-frame vinyl vehicle gate** across the $9.0\text{ ft}$ cement pad (**paid 100% by us**: $\$1,350$ Pro / $\$850$ DIY), leaving **$70.0\text{ lin ft}$** of North property-line fence (`wx = 0.0'–70.0'`, **split 50/50 with our North neighbor**: our 50% share is $\$1,590$ Pro / $\$990$ DIY; **2027 North fence + gate total = $\$2,940$ Pro / $\$1,840$ DIY**).
 * **Relative Symmetry Strategy:** Both gates step $2.2\text{ to }3.2\text{ ft}$ back from their respective front stucco corners rather than forcing street-line alignment across the stepped facade.
 
 ### Why Relative Stucco Setback (`2.2'–3.2'`) Was Chosen Over Alternatives
@@ -104,7 +106,7 @@ project_context:
     depth_from_house_ft: 30.0
     width_ft: 50.0
     west_wall: "50.0 ft precast concrete privacy wall (5 panels @ 10.0 ft O.C., columns at wy=0,10,20,30,40,50)"
-    fencing_material: "6 ft Privacy Vinyl Fence & Gates (145.5 lin ft total)"
+    fencing_material: "6 ft White Privacy Vinyl Fence & Gates (145.5 lin ft total: 57.5' South fence & 9.0' walk gate in 2026; 70.0' North fence & 9.0' double vehicle gate in 2027)"
   patio:
     depth_ft: 12.5
     width_ft: 21.0
@@ -114,6 +116,10 @@ project_context:
 locked_in_decisions:
   side_yard_fencing:
     strategy: "Relative Stucco Setback (3.2 ft North setback at wx=70.0' behind 2.0' stone wrap; 2.2 ft South stucco setback at wx=57.5' enclosing meters)"
+    cost_sharing_rule: "50/50 split with neighbors on shared property-line vinyl fences (57.5' South + 70.0' North = 127.5 lin ft); 100% our cost on both gates and house-side returns (9.0' South walk gate/wing + 9.0' North double vehicle gate = 18.0 lin ft)"
+    phased_installation_schedule:
+      year_2026_phase_1: "South vinyl fence (57.5 lin ft @ 50% neighbor split) + South pedestrian walk gate & fixed wings (9.0 lin ft @ 100% our cost) = $2,150 Pro / $1,335 DIY"
+      year_2027_phase_2: "North vinyl fence (70.0 lin ft @ 50% neighbor split) + North double-swing vehicle gate (9.0 lin ft @ 100% our cost) = $2,940 Pro / $1,840 DIY"
     north_gate_wx_ft: 70.0
     south_gate_wx_ft: 57.5
     north_setback_ft: 3.2
