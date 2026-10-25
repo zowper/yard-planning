@@ -313,7 +313,7 @@
         <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
         <div>
           <span class="font-bold text-white">Eye-Level Walk Mode (5.7' Height):</span>
-          <span class="text-slate-200 ml-1">Use <kbd class="px-1.5 py-0.5 bg-slate-800 rounded border border-slate-700 font-mono-cad text-[10px]">W</kbd><kbd class="px-1.5 py-0.5 bg-slate-800 rounded border border-slate-700 font-mono-cad text-[10px]">A</kbd><kbd class="px-1.5 py-0.5 bg-slate-800 rounded border border-slate-700 font-mono-cad text-[10px]">S</kbd><kbd class="px-1.5 py-0.5 bg-slate-800 rounded border border-slate-700 font-mono-cad text-[10px]">D</kbd> or Arrow keys to walk, drag mouse to look around, or click ground to teleport.</span>
+          <span class="text-slate-200 ml-1">Click &amp; drag (Street View style) to look around, use <kbd class="px-1.5 py-0.5 bg-slate-800 rounded border border-slate-700 font-mono-cad text-[10px]">W</kbd><kbd class="px-1.5 py-0.5 bg-slate-800 rounded border border-slate-700 font-mono-cad text-[10px]">A</kbd><kbd class="px-1.5 py-0.5 bg-slate-800 rounded border border-slate-700 font-mono-cad text-[10px]">S</kbd><kbd class="px-1.5 py-0.5 bg-slate-800 rounded border border-slate-700 font-mono-cad text-[10px]">D</kbd> or Arrows to walk, or click the ground target ring to step there.</span>
         </div>
         <button onclick="window.setNavMode('ORBIT')"
                 class="px-2 py-1 rounded bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-[11px]">
@@ -2269,8 +2269,16 @@
       // 1. 5× Leafy Columnar Pillars (S1–S5 at wy = 5, 15, 25, 35, 45; wx = 2.0')
       //    'Standing Ovation' Serviceberry (Amelanchier alnifolia 'Obelisk', ~15.5' tall × 4.2' W)
       [5.0, 15.0, 25.0, 35.0, 45.0].forEach((wy, idx) => {
+        const treeStaticGrp = new THREE.Group();
+        treeStaticGrp.position.set(2.0, 0, wy);
+
         const treeGrp = new THREE.Group();
         treeGrp.position.set(2.0, 0, wy);
+
+        // Basal root flare collar (stationary on ground)
+        const baseCollar = new THREE.Mesh(new THREE.CylinderGeometry(0.28, 0.44, 0.35, 10), MAT.woodBark);
+        baseCollar.position.set(0, 0.18, 0);
+        treeStaticGrp.add(baseCollar);
 
         // Multi-stem woody trunk & ascending winter-visible branch skeleton (7 natural fluted stems)
         const stemSpecs = [
@@ -2284,7 +2292,7 @@
         ];
         stemSpecs.forEach(([ox, oz, rx, rz, hStem], sIdx) => {
           const stem = new THREE.Mesh(
-            new THREE.CylinderGeometry(0.04, 0.15, hStem, 8),
+            new THREE.CylinderGeometry(0.045, 0.15, hStem, 10),
             MAT.woodBark
           );
           stem.position.set(ox, hStem / 2, oz);
@@ -2295,14 +2303,14 @@
           // Secondary ascending lateral branch forks
           for (let b = 0; b < 4; b++) {
             const bh = 4.2 + b * 2.35;
-            const twig = new THREE.Mesh(new THREE.CylinderGeometry(0.02, 0.048, 2.7, 6), MAT.woodBark);
+            const twig = new THREE.Mesh(new THREE.CylinderGeometry(0.02, 0.048, 2.7, 8), MAT.woodBark);
             const ang = (sIdx * 1.15 + b * 1.85);
             twig.position.set(ox + Math.cos(ang) * 0.48, bh, oz + Math.sin(ang) * 0.48);
             twig.rotation.set(Math.sin(ang) * 0.42, 0, Math.cos(ang) * 0.42);
             treeGrp.add(twig);
 
             // Winter frost cap on branch forks
-            const frost = new THREE.Mesh(new THREE.SphereGeometry(0.20, 8, 6), MAT.snowWhite);
+            const frost = new THREE.Mesh(new THREE.SphereGeometry(0.20, 10, 8), MAT.snowWhite);
             frost.scale.set(1.45, 0.42, 1.45);
             frost.position.set(ox + Math.cos(ang) * 0.68, bh + 0.85, oz + Math.sin(ang) * 0.68);
             frost.visible = false;
@@ -2311,23 +2319,23 @@
           }
         });
 
-        // High-Fidelity Multi-Clustered Columnar Foliage Crown (24 organic sub-canopy puffs instead of 5 balls)
+        // High-Fidelity Multi-Clustered Columnar Foliage Crown (28 smooth organic sub-canopy lobes with leaf-cluster bump texture)
         const canopyGroup = new THREE.Group();
-        for (let c = 0; c < 24; c++) {
-          const hFrac = c / 23;
-          const cy = 4.2 + hFrac * 10.8;
+        for (let c = 0; c < 28; c++) {
+          const hFrac = c / 27;
+          const cy = 4.0 + hFrac * 11.0;
           const envRadius = hFrac < 0.4
-            ? (0.95 + (hFrac / 0.4) * 0.75)
-            : (1.70 - ((hFrac - 0.4) / 0.6) * 1.15);
+            ? (0.98 + (hFrac / 0.4) * 0.78)
+            : (1.76 - ((hFrac - 0.4) / 0.6) * 1.18);
           const theta = c * 2.39996 + idx * 0.8;
-          const rDist = (c % 3 === 0) ? envRadius * 0.35 : envRadius * 0.78;
+          const rDist = (c % 3 === 0) ? envRadius * 0.32 : envRadius * 0.78;
           const lx = Math.cos(theta) * rDist;
           const lz = Math.sin(theta) * rDist;
-          const puffRadius = 0.82 + (c % 4) * 0.14;
+          const puffRadius = 0.84 + (c % 4) * 0.14;
 
-          const puff = new THREE.Mesh(new THREE.IcosahedronGeometry(puffRadius, 2), MAT.serviceberryFoliage);
+          const puff = new THREE.Mesh(new THREE.SphereGeometry(puffRadius, 12, 10), MAT.serviceberryFoliage);
           puff.position.set(lx, cy, lz);
-          puff.scale.set(1.12, 0.92, 1.12);
+          puff.scale.set(1.14, 0.90, 1.14);
           puff.rotation.set(c * 0.4, c * 0.7, 0);
           puff.castShadow = true;
           puff.receiveShadow = true;
@@ -2338,8 +2346,8 @@
 
         // SPRING SHOWCASE: Detailed 5-Petal 'Standing Ovation' Blossom Panicles (Amelanchier alnifolia 'Obelisk')
         const blossomGroup = new THREE.Group();
-        for (let b = 0; b < 64; b++) {
-          const hFrac = b / 64;
+        for (let b = 0; b < 68; b++) {
+          const hFrac = b / 68;
           const by = 3.7 + hFrac * 11.4;
           const radiusAtH = (hFrac < 0.45 ? (1.25 + hFrac * 1.55) : (1.95 - (hFrac - 0.45) * 1.65));
           const theta = b * 2.39996 + idx * 1.1;
@@ -2357,12 +2365,12 @@
 
         // SUMMER SHOWCASE: Dark Purple-Blue Juneberry Clusters
         const berryGroup = new THREE.Group();
-        for (let j = 0; j < 28; j++) {
-          const hFrac = j / 28;
+        for (let j = 0; j < 30; j++) {
+          const hFrac = j / 30;
           const by = 4.2 + hFrac * 10.2;
           const radiusAtH = 1.60 - Math.abs(hFrac - 0.45) * 0.85;
           const theta = j * 2.4 + idx;
-          const berry = new THREE.Mesh(new THREE.SphereGeometry(0.13, 8, 8), MAT.juneberryFruit);
+          const berry = new THREE.Mesh(new THREE.SphereGeometry(0.13, 10, 10), MAT.juneberryFruit);
           berry.position.set(Math.cos(theta) * radiusAtH, by, Math.sin(theta) * radiusAtH);
           berryGroup.add(berry);
         }
@@ -2370,125 +2378,153 @@
         treeGrp.add(berryGroup);
         SEASON_GROUPS.serviceberryBerries.push(berryGroup);
 
-        // Spring Fallen White Blossom Petals on the Mulch around each 'Standing Ovation' tree
+        // Spring Fallen White Blossom Petals on the Mulch (placed in treeStaticGrp so ground petals NEVER tilt when tree sways!)
         const petalRing = new THREE.Group();
         for (let p = 0; p < 18; p++) {
           const ang = (p / 18) * Math.PI * 2 + rng() * 0.5;
           const dist = 0.45 + rng() * 1.45;
-          const petal = new THREE.Mesh(new THREE.CircleGeometry(0.09 + rng() * 0.06, 6), MAT.blossomWhite);
+          const petal = new THREE.Mesh(new THREE.CircleGeometry(0.09 + rng() * 0.06, 8), MAT.blossomWhite);
           petal.rotation.x = -Math.PI / 2;
           petal.position.set(Math.cos(ang) * dist, 0.105, Math.sin(ang) * dist);
           petalRing.add(petal);
         }
-        treeGrp.add(petalRing);
+        treeStaticGrp.add(petalRing);
         SEASON_GROUPS.mulchPetalsSpring.push(petalRing);
 
-        // Fall Fallen Red/Orange Autumn Leaves on the Mulch around each tree
+        // Fall Fallen Red/Orange Autumn Leaves on the Mulch (stationary in treeStaticGrp)
         const fallLeafRing = new THREE.Group();
         const fallLeafMat1 = new THREE.MeshStandardMaterial({ color: '#ea580c', roughness: 0.8 });
         const fallLeafMat2 = new THREE.MeshStandardMaterial({ color: '#dc2626', roughness: 0.8 });
         for (let p = 0; p < 20; p++) {
           const ang = (p / 20) * Math.PI * 2 + rng() * 0.5;
           const dist = 0.45 + rng() * 1.55;
-          const leaf = new THREE.Mesh(new THREE.CircleGeometry(0.11 + rng() * 0.08, 5), p % 2 === 0 ? fallLeafMat1 : fallLeafMat2);
+          const leaf = new THREE.Mesh(new THREE.CircleGeometry(0.11 + rng() * 0.08, 7), p % 2 === 0 ? fallLeafMat1 : fallLeafMat2);
           leaf.rotation.x = -Math.PI / 2;
           leaf.position.set(Math.cos(ang) * dist, 0.105, Math.sin(ang) * dist);
           fallLeafRing.add(leaf);
         }
         fallLeafRing.visible = false;
-        treeGrp.add(fallLeafRing);
+        treeStaticGrp.add(fallLeafRing);
         SEASON_GROUPS.mulchLeavesFall.push(fallLeafRing);
 
+        gWestPlants.add(treeStaticGrp);
         gWestPlants.add(treeGrp);
-        SEASON_GROUPS.windSwayMeshes.push({ mesh: treeGrp, phase: idx * 1.3, amp: 0.012 });
+        SEASON_GROUPS.windSwayMeshes.push({ mesh: treeGrp, phase: idx * 1.3, amp: 0.011 });
       });
 
       // 2. 4× Evergreen Upright Column Junipers (J1–J4 at wy = 10, 20, 30, 40; wx = 2.0')
-      //    High-Fidelity Multi-Bough Feathery Columnar Spire (18 ascending evergreen whorls instead of 3 simple cones)
+      //    High-Fidelity Multi-Bough Feathery Columnar Spire (18 ascending evergreen whorls + organic side sprays)
       [10.0, 20.0, 30.0, 40.0].forEach((wy, idx) => {
         const junGrp = new THREE.Group();
         junGrp.position.set(2.0, 0, wy);
 
-        const trunk = new THREE.Mesh(new THREE.CylinderGeometry(0.10, 0.24, 15.5, 8), MAT.woodBark);
+        const trunk = new THREE.Mesh(new THREE.CylinderGeometry(0.10, 0.24, 15.5, 10), MAT.woodBark);
         trunk.position.set(0, 7.75, 0);
         junGrp.add(trunk);
 
-        // 16 layered feathery evergreen whorls spiraling up the 18.2' tall × 3.2' wide column
-        for (let w = 0; w < 16; w++) {
-          const wFrac = w / 15;
-          const cy = 2.2 + wFrac * 14.5;
-          const rad = (1.65 * (1.0 - wFrac * 0.62)) + (w % 2) * 0.08;
+        // 18 layered feathery evergreen whorls + organic scale-foliage tufts spiraling up the 18.2' tall × 3.2' wide column
+        for (let w = 0; w < 18; w++) {
+          const wFrac = w / 17;
+          const cy = 2.0 + wFrac * 14.8;
+          const rad = (1.68 * (1.0 - wFrac * 0.64)) + (w % 2) * 0.08;
           const hCone = 2.8 - wFrac * 0.9;
-          const bough = new THREE.Mesh(new THREE.ConeGeometry(rad, hCone, 9), MAT.juniperFoliage);
+          const bough = new THREE.Mesh(new THREE.ConeGeometry(rad, hCone, 14), MAT.juniperFoliage);
           const offAng = w * 2.1 + idx;
           bough.position.set(Math.cos(offAng) * 0.08, cy, Math.sin(offAng) * 0.08);
           bough.rotation.y = w * 0.55;
           bough.castShadow = true;
           bough.receiveShadow = true;
           junGrp.add(bough);
+
+          // Feathery lateral foliage tufts so the conifer looks organically layered instead of a geometric cone
+          for (let t = 0; t < 3; t++) {
+            const tAng = offAng + (t * Math.PI * 2) / 3;
+            const tuft = new THREE.Mesh(new THREE.SphereGeometry(rad * 0.42, 8, 7), MAT.juniperFoliage);
+            tuft.scale.set(0.95, 1.35, 0.95);
+            tuft.position.set(Math.cos(tAng) * (rad * 0.58), cy - 0.35, Math.sin(tAng) * (rad * 0.58));
+            tuft.castShadow = true;
+            junGrp.add(tuft);
+          }
         }
         // Tapered spire leader tip
-        const spireTip = new THREE.Mesh(new THREE.ConeGeometry(0.55, 2.8, 8), MAT.juniperFoliage);
+        const spireTip = new THREE.Mesh(new THREE.ConeGeometry(0.55, 2.8, 12), MAT.juniperFoliage);
         spireTip.position.set(0, 17.2, 0);
         spireTip.castShadow = true;
         junGrp.add(spireTip);
 
         // Winter Snow Cap on Juniper Crown
-        const junSnow = new THREE.Mesh(new THREE.ConeGeometry(0.88, 4.8, 10), MAT.snowWhite);
+        const junSnow = new THREE.Mesh(new THREE.ConeGeometry(0.88, 4.8, 12), MAT.snowWhite);
         junSnow.position.set(0, 16.4, 0);
         junSnow.visible = false;
         junGrp.add(junSnow);
         SEASON_GROUPS.juniperSnowCaps.push(junSnow);
 
         gWestPlants.add(junGrp);
-        SEASON_GROUPS.windSwayMeshes.push({ mesh: junGrp, phase: idx * 1.7 + 0.5, amp: 0.008 });
+        SEASON_GROUPS.windSwayMeshes.push({ mesh: junGrp, phase: idx * 1.7 + 0.5, amp: 0.007 });
       });
 
       // 3. 10-Spot Perennial & Ornamental Grass Under-Story along wx = 2.95'
-      const catmintLeafMat = new THREE.MeshStandardMaterial({ color: '#15803d', roughness: 0.82 });
-      const catmintSpikeMat = new THREE.MeshStandardMaterial({ color: '#7c3aed', roughness: 0.68 });
-      const coneflowerPetalMat = new THREE.MeshStandardMaterial({ color: '#ec4899', roughness: 0.65 });
-      const coneflowerCenterMat = new THREE.MeshStandardMaterial({ color: '#b45309', roughness: 0.7 });
+      const catmintLeafMat = new THREE.MeshStandardMaterial({
+        color: '#228b46',
+        map: foliageLeafTex,
+        bumpMap: foliageLeafBumpTex,
+        bumpScale: 0.05,
+        roughness: 0.78
+      });
+      const catmintSpikeMat = new THREE.MeshStandardMaterial({ color: '#7c3aed', roughness: 0.62 });
+      const coneflowerPetalMat = new THREE.MeshStandardMaterial({ color: '#ec4899', roughness: 0.58, side: THREE.DoubleSide });
+      const coneflowerCenterMat = new THREE.MeshStandardMaterial({ color: '#b45309', roughness: 0.65 });
 
       [3.2, 7.5, 12.5, 17.5, 22.5, 27.5, 32.5, 37.5, 42.5, 46.8].forEach((wy, idx) => {
         if (idx % 2 === 0) {
-          // Multi-Spike Purple Catmint Mound + Blooming Echinacea Coneflower Clump
+          // Multi-Lobe Organic Purple Catmint Mound + Blooming Echinacea Coneflower Clump
           const catGrp = new THREE.Group();
           catGrp.position.set(2.9, 0.08, wy - 0.55);
-          const baseFoliage = new THREE.Mesh(new THREE.IcosahedronGeometry(0.68, 2), catmintLeafMat);
-          baseFoliage.scale.set(1.1, 0.55, 1.25);
-          baseFoliage.position.set(0, 0.35, 0);
-          baseFoliage.castShadow = true;
-          catGrp.add(baseFoliage);
-          for (let s = 0; s < 10; s++) {
-            const ang = (s / 10) * Math.PI * 2;
-            const r = 0.15 + (s % 3) * 0.18;
-            const spike = new THREE.Mesh(new THREE.ConeGeometry(0.075, 0.75, 6), catmintSpikeMat);
-            spike.position.set(Math.cos(ang) * r, 0.78, Math.sin(ang) * r);
-            spike.rotation.x = Math.sin(ang) * 0.22;
-            spike.rotation.z = -Math.cos(ang) * 0.22;
+          for (let l = 0; l < 5; l++) {
+            const lAng = (l / 5) * Math.PI * 2;
+            const lr = l === 0 ? 0 : 0.24;
+            const lobe = new THREE.Mesh(new THREE.SphereGeometry(0.46, 10, 8), catmintLeafMat);
+            lobe.scale.set(1.15, 0.62, 1.25);
+            lobe.position.set(Math.cos(lAng) * lr, 0.30, Math.sin(lAng) * lr);
+            lobe.castShadow = true;
+            catGrp.add(lobe);
+          }
+          for (let s = 0; s < 12; s++) {
+            const ang = (s / 12) * Math.PI * 2;
+            const r = 0.14 + (s % 3) * 0.19;
+            const spike = new THREE.Mesh(new THREE.ConeGeometry(0.068, 0.78, 8), catmintSpikeMat);
+            spike.position.set(Math.cos(ang) * r, 0.76, Math.sin(ang) * r);
+            spike.rotation.x = Math.sin(ang) * 0.24;
+            spike.rotation.z = -Math.cos(ang) * 0.24;
             catGrp.add(spike);
           }
           gWestPlants.add(catGrp);
 
-          // Blooming Echinacea Coneflower Clump (7 distinct daisy-like flower heads with copper cones)
+          // Blooming Echinacea Coneflower Clump (7 botanical daisy flower heads with drooping ray petals & copper seed cones)
           const echGrp = new THREE.Group();
           echGrp.position.set(3.12, 0.08, wy + 0.80);
-          const echBase = new THREE.Mesh(new THREE.IcosahedronGeometry(0.52, 1), catmintLeafMat);
-          echBase.scale.set(1.0, 0.6, 1.0);
-          echBase.position.set(0, 0.3, 0);
-          echGrp.add(echBase);
-          for (let f = 0; f < 6; f++) {
-            const ang = (f / 6) * Math.PI * 2;
-            const r = f === 0 ? 0 : 0.28;
+          for (let l = 0; l < 4; l++) {
+            const lAng = (l / 4) * Math.PI * 2;
+            const echBase = new THREE.Mesh(new THREE.SphereGeometry(0.38, 10, 8), catmintLeafMat);
+            echBase.scale.set(1.1, 0.58, 1.1);
+            echBase.position.set(Math.cos(lAng) * 0.14, 0.26, Math.sin(lAng) * 0.14);
+            echGrp.add(echBase);
+          }
+          for (let f = 0; f < 7; f++) {
+            const ang = (f / 7) * Math.PI * 2;
+            const r = f === 0 ? 0 : 0.29;
             const fx = Math.cos(ang) * r;
             const fz = Math.sin(ang) * r;
-            const fh = 0.85 + (f % 3) * 0.14;
-            const petals = new THREE.Mesh(new THREE.CylinderGeometry(0.20, 0.14, 0.05, 10), coneflowerPetalMat);
-            petals.position.set(fx, fh, fz);
+            const fh = 0.84 + (f % 3) * 0.14;
+            const stem = new THREE.Mesh(new THREE.CylinderGeometry(0.018, 0.024, fh, 6), catmintLeafMat);
+            stem.position.set(fx, fh * 0.5, fz);
+            echGrp.add(stem);
+            const petals = new THREE.Mesh(new THREE.ConeGeometry(0.21, 0.08, 12, 1, true), coneflowerPetalMat);
+            petals.position.set(fx, fh - 0.02, fz);
             echGrp.add(petals);
-            const coneCenter = new THREE.Mesh(new THREE.SphereGeometry(0.085, 8, 6), coneflowerCenterMat);
-            coneCenter.position.set(fx, fh + 0.04, fz);
+            const coneCenter = new THREE.Mesh(new THREE.SphereGeometry(0.085, 10, 8), coneflowerCenterMat);
+            coneCenter.scale.set(1.0, 0.85, 1.0);
+            coneCenter.position.set(fx, fh + 0.03, fz);
             echGrp.add(coneCenter);
           }
           gWestPlants.add(echGrp);
@@ -2496,7 +2532,7 @@
           // Multi-Blade 'Karl Foerster' Feather Reed Grass Fountain
           const grassGrp = buildFeatherReedGrass(2.95, wy, 1.0);
           gWestPlants.add(grassGrp);
-          SEASON_GROUPS.windSwayMeshes.push({ mesh: grassGrp, phase: wy, amp: 0.022 });
+          SEASON_GROUPS.windSwayMeshes.push({ mesh: grassGrp, phase: wy, amp: 0.020 });
         }
       });
     }
@@ -2507,26 +2543,27 @@
     //        (wx = 66.0..67.45, wy = 33.0..41.0 — 100% South of the wy=29.0..32.5 Porch Sidewalk!)
     //        + curving down the continuous 2.0' South Front Bed toward the SE Corner!
     //     2) High-Fidelity Upright-Oval Norwegian Sunset® Maple centered in the SE Front Lawn (wx = 83.0', wy = 39.5')
+    //        (NO floating ground circle artifact — stationary root flare/ground leaves separated from wind-swaying crown!)
     {
       const gFrontPlants = LAYER_GROUPS.frontPlants;
       const gYardPlants = LAYER_GROUPS.yardPlants;
 
       // Hyacinth Jewel-Toned Palette Materials (Royal Purple, Delft Blue, Rose Pink, Pure Pearl White & Soft Lilac)
       const hyacinthPalette = [
-        new THREE.MeshStandardMaterial({ color: '#9333ea', emissive: new THREE.Color('#6b21a8'), emissiveIntensity: 0.14, roughness: 0.50 }), // Royal Purple
-        new THREE.MeshStandardMaterial({ color: '#2563eb', emissive: new THREE.Color('#1d4ed8'), emissiveIntensity: 0.14, roughness: 0.50 }), // Delft Blue
-        new THREE.MeshStandardMaterial({ color: '#ec4899', emissive: new THREE.Color('#be185d'), emissiveIntensity: 0.14, roughness: 0.50 }), // Rose Pink
-        new THREE.MeshStandardMaterial({ color: '#f8fafc', emissive: new THREE.Color('#e2e8f0'), emissiveIntensity: 0.14, roughness: 0.45 }), // Pure Pearl White
-        new THREE.MeshStandardMaterial({ color: '#c084fc', emissive: new THREE.Color('#7e22ce'), emissiveIntensity: 0.14, roughness: 0.50 })  // Soft Lilac
+        new THREE.MeshStandardMaterial({ color: '#9333ea', emissive: new THREE.Color('#6b21a8'), emissiveIntensity: 0.14, roughness: 0.46 }), // Royal Purple
+        new THREE.MeshStandardMaterial({ color: '#2563eb', emissive: new THREE.Color('#1d4ed8'), emissiveIntensity: 0.14, roughness: 0.46 }), // Delft Blue
+        new THREE.MeshStandardMaterial({ color: '#ec4899', emissive: new THREE.Color('#be185d'), emissiveIntensity: 0.14, roughness: 0.46 }), // Rose Pink
+        new THREE.MeshStandardMaterial({ color: '#f8fafc', emissive: new THREE.Color('#e2e8f0'), emissiveIntensity: 0.14, roughness: 0.42 }), // Pure Pearl White
+        new THREE.MeshStandardMaterial({ color: '#c084fc', emissive: new THREE.Color('#7e22ce'), emissiveIntensity: 0.14, roughness: 0.46 })  // Soft Lilac
       ];
-      const hyacinthLeafMat = new THREE.MeshStandardMaterial({ color: '#15803d', roughness: 0.65, side: THREE.DoubleSide });
+      const hyacinthLeafMat = new THREE.MeshStandardMaterial({ color: '#15803d', roughness: 0.60, side: THREE.DoubleSide });
 
-      // Pre-build Compound BufferGeometries for Hyacinth Basal Leaf Rosette (6 strap leaves + 3 stalks) & 18-Floret Raceme Spike!
+      // Pre-build Compound BufferGeometries for Hyacinth Basal Leaf Rosette (6 strap leaves + 3 stalks) & 22-Floret Star-Bell Raceme Spike!
       const hyBasalRosetteGeo = (() => {
         const parts = [];
         for (let l = 0; l < 6; l++) {
           const ang = (l / 6) * Math.PI * 2;
-          const g = new THREE.ConeGeometry(0.085, 0.62, 5);
+          const g = new THREE.ConeGeometry(0.088, 0.64, 7);
           g.scale(1.0, 1.0, 0.42);
           g.rotateX(0.36);
           g.rotateY(-ang);
@@ -2534,7 +2571,7 @@
           parts.push(g);
         }
         [[0, 0, 0.88], [-0.14, 0.11, 0.78], [0.14, -0.10, 0.82]].forEach(([ox, oz, hSpike]) => {
-          const st = new THREE.CylinderGeometry(0.025, 0.035, hSpike * 0.72, 6);
+          const st = new THREE.CylinderGeometry(0.025, 0.035, hSpike * 0.72, 8);
           st.translate(ox, hSpike * 0.36, oz);
           parts.push(st);
         });
@@ -2553,13 +2590,13 @@
 
       const hyRacemeSpikeGeo = (() => {
         const parts = [];
-        for (let f = 0; f < 18; f++) {
-          const fFrac = f / 17;
-          const fy = 0.30 + fFrac * 0.56;
-          const rRing = (1.0 - fFrac * 0.42) * 0.088;
+        for (let f = 0; f < 22; f++) {
+          const fFrac = f / 21;
+          const fy = 0.28 + fFrac * 0.58;
+          const rRing = (1.0 - fFrac * 0.42) * 0.090;
           const fAng = f * 2.39996;
-          const g = new THREE.DodecahedronGeometry(0.056, 0);
-          g.scale(1.18, 0.85, 1.18);
+          const g = new THREE.SphereGeometry(0.056, 7, 6);
+          g.scale(1.22, 0.84, 1.22);
           g.translate(Math.cos(fAng) * rRing, fy, Math.sin(fAng) * rRing);
           parts.push(g);
         }
@@ -2619,20 +2656,30 @@
       }
 
       // 1C. Summer & Fall Companion Dwarf Perennials in the Porch-Front Bed (strictly wy = 33.4..40.6, never on the sidewalk!)
-      const summerLavMat = new THREE.MeshStandardMaterial({ color: '#7c3aed', roughness: 0.72 });
-      const summerCoralMat = new THREE.MeshStandardMaterial({ color: '#e11d48', roughness: 0.72 });
-      const summerLeafMat = new THREE.MeshStandardMaterial({ color: '#15803d', roughness: 0.8 });
+      const summerLavMat = new THREE.MeshStandardMaterial({ color: '#7c3aed', roughness: 0.68 });
+      const summerCoralMat = new THREE.MeshStandardMaterial({ color: '#e11d48', roughness: 0.68 });
+      const summerLeafMat = new THREE.MeshStandardMaterial({
+        color: '#228b46',
+        map: foliageLeafTex,
+        bumpMap: foliageLeafBumpTex,
+        bumpScale: 0.04,
+        roughness: 0.78
+      });
       for (let wy = 33.4; wy <= 40.6; wy += 1.2) {
         const pGrp = new THREE.Group();
         pGrp.position.set(66.65, 0.09, wy);
-        const foliage = new THREE.Mesh(new THREE.IcosahedronGeometry(0.42, 1), summerLeafMat);
-        foliage.scale.set(1.1, 0.6, 1.1);
-        foliage.position.set(0, 0.25, 0);
-        pGrp.add(foliage);
+        for (let l = 0; l < 4; l++) {
+          const lAng = (l / 4) * Math.PI * 2;
+          const foliage = new THREE.Mesh(new THREE.SphereGeometry(0.32, 10, 8), summerLeafMat);
+          foliage.scale.set(1.15, 0.58, 1.15);
+          foliage.position.set(Math.cos(lAng) * 0.12, 0.22, Math.sin(lAng) * 0.12);
+          pGrp.add(foliage);
+        }
         const bloomMat = (Math.round(wy) % 2 === 0) ? summerLavMat : summerCoralMat;
-        for (let b = 0; b < 7; b++) {
-          const ang = (b / 7) * Math.PI * 2;
-          const bMesh = new THREE.Mesh(new THREE.DodecahedronGeometry(0.11, 0), bloomMat);
+        for (let b = 0; b < 9; b++) {
+          const ang = (b / 9) * Math.PI * 2;
+          const bMesh = new THREE.Mesh(new THREE.SphereGeometry(0.10, 8, 8), bloomMat);
+          bMesh.scale.set(1.1, 0.75, 1.1);
           bMesh.position.set(Math.cos(ang) * 0.22, 0.52 + (b % 2) * 0.08, Math.sin(ang) * 0.22);
           pGrp.add(bMesh);
         }
@@ -2644,36 +2691,36 @@
       // 2. Front Yard Specimen Shade Tree: Norwegian Sunset® Maple (Acer truncatum × platanoides 'Keithsform')
       //    Centered in SE Front Lawn at (wx = 83.0', wy = 39.5') with Recommended 20'–25' W × 30'–35' H Space
       //    (17.3' from Porch Pillar, 10.5' from Driveway, 10.5' from S. Lot Line, 13.7' from Sidewalk, 6.8' Clear Trunk Under-Canopy Sightline!)
+      //    NOTE: Ground root flare & fallen autumn leaves are placed in `mapleStaticGrp` (NOT in windSwayMeshes),
+      //    and the old `matureCanopyRing` ground circle is completely removed so there is zero ring/circle artifact as the tree sways!
+      const mapleStaticGrp = new THREE.Group();
+      mapleStaticGrp.position.set(SE_MAPLE_WX, 0, SE_MAPLE_WY);
+
       const mapleGrp = new THREE.Group();
       mapleGrp.position.set(SE_MAPLE_WX, 0, SE_MAPLE_WY);
 
-      // Subtle Ground-Level Ring Depicting Recommended Mature Canopy Space (21.0' Dia / 10.5' Radius)
-      const matureCanopyRing = new THREE.Mesh(
-        new THREE.RingGeometry(10.32, 10.50, 64),
-        new THREE.MeshBasicMaterial({
-          color: '#fb923c',
-          transparent: true,
-          opacity: 0.34,
-          side: THREE.DoubleSide,
-          depthWrite: false
-        })
-      );
-      matureCanopyRing.rotation.x = Math.PI / 2;
-      matureCanopyRing.position.set(0, 0.11, 0);
-      mapleGrp.add(matureCanopyRing);
+      // Fluted Root Flare Buttress (stationary on the mulched tree ring)
+      const rootFlare = new THREE.Mesh(new THREE.CylinderGeometry(0.38, 0.72, 1.1, 14), MAT.woodBark);
+      rootFlare.position.set(0, 0.50, 0);
+      rootFlare.castShadow = true;
+      mapleStaticGrp.add(rootFlare);
+      for (let r = 0; r < 5; r++) {
+        const rAng = (r / 5) * Math.PI * 2 + 0.3;
+        const buttress = new THREE.Mesh(new THREE.CylinderGeometry(0.08, 0.24, 0.95, 8), MAT.woodBark);
+        buttress.position.set(Math.cos(rAng) * 0.38, 0.36, Math.sin(rAng) * 0.38);
+        buttress.rotation.z = -Math.cos(rAng) * 0.42;
+        buttress.rotation.x = Math.sin(rAng) * 0.42;
+        buttress.castShadow = true;
+        mapleStaticGrp.add(buttress);
+      }
 
       // Single Straight Central-Leader Trunk (6.8' Clear Trunk Height Below Lowest Limbs for Walk-Under & Porch Swing Sightline!)
-      const rootFlare = new THREE.Mesh(new THREE.CylinderGeometry(0.42, 0.68, 0.9, 12), MAT.woodBark);
-      rootFlare.position.set(0, 0.45, 0);
-      rootFlare.castShadow = true;
-      mapleGrp.add(rootFlare);
-
-      const mainTrunk = new THREE.Mesh(new THREE.CylinderGeometry(0.18, 0.42, 16.5, 12), MAT.woodBark);
+      const mainTrunk = new THREE.Mesh(new THREE.CylinderGeometry(0.18, 0.40, 16.5, 14), MAT.woodBark);
       mainTrunk.position.set(0, 8.25, 0);
       mainTrunk.castShadow = true;
       mapleGrp.add(mainTrunk);
 
-      // Upright-Oval Ascending Scaffold Limbs & Tiered Canopy Lobes (h = 7.4' to 21.5', ~14.5' W Established Crown)
+      // Upright-Oval Ascending Scaffold Limbs & Tiered High-Detail Canopy Lobes (h = 7.4' to 21.8', ~14.8' W Established Crown)
       const mapleScaffolds = [
         // [bx, by, bz, forkY, padRadius]
         [-3.4, 9.6,  1.8, 6.8, 2.35],
@@ -2701,7 +2748,7 @@
         // Ascending structural scaffold branch from central leader (forkY >= 6.8' clear trunk!)
         const dx = bx, dy = by - forkY, dz = bz;
         const limbLen = Math.hypot(dx, dy, dz);
-        const limb = new THREE.Mesh(new THREE.CylinderGeometry(0.07, 0.17, limbLen, 8), MAT.woodBark);
+        const limb = new THREE.Mesh(new THREE.CylinderGeometry(0.075, 0.18, limbLen, 10), MAT.woodBark);
         limb.position.set(dx * 0.5, forkY + dy * 0.5, dz * 0.5);
         limb.quaternion.setFromUnitVectors(
           new THREE.Vector3(0, 1, 0),
@@ -2710,10 +2757,10 @@
         limb.castShadow = true;
         mapleGrp.add(limb);
 
-        // Secondary sub-branches for rich winter architectural silhouette
-        [[-0.45, 0.65, 0.35], [0.48, 0.72, -0.38]].forEach(([sx, sy, sz]) => {
-          const subLen = Math.hypot(sx, sy, sz) * 1.35;
-          const sub = new THREE.Mesh(new THREE.CylinderGeometry(0.035, 0.07, subLen, 6), MAT.woodBark);
+        // Secondary & tertiary sub-branches for rich winter architectural silhouette
+        [[-0.45, 0.65, 0.35], [0.48, 0.72, -0.38], [0.15, 0.85, 0.42]].forEach(([sx, sy, sz]) => {
+          const subLen = Math.hypot(sx, sy, sz) * 1.45;
+          const sub = new THREE.Mesh(new THREE.CylinderGeometry(0.032, 0.075, subLen, 8), MAT.woodBark);
           sub.position.set(bx + sx * 0.5, by + sy * 0.4, bz + sz * 0.5);
           sub.quaternion.setFromUnitVectors(
             new THREE.Vector3(0, 1, 0),
@@ -2723,31 +2770,37 @@
           mapleGrp.add(sub);
         });
 
-        // Upright-oval glossy maple foliage clouds (3 overlapping clouds per scaffold limb)
-        [[0, 0, 0, 1.0], [-0.75, -0.25, 0.55, 0.82], [0.70, 0.35, -0.55, 0.78]].forEach(([ox, oy, oz, sMul], pIdx) => {
-          const pad = new THREE.Mesh(new THREE.IcosahedronGeometry(padRad * sMul, 2), MAT.mapleFoliage);
+        // Smooth, multi-layered glossy maple foliage clouds (4 overlapping organic sub-canopy lobes per scaffold limb)
+        [
+          [0, 0, 0, 1.0, 1.12, 0.92, 1.12],
+          [-0.82, -0.22, 0.58, 0.84, 1.18, 0.88, 1.08],
+          [0.76, 0.38, -0.58, 0.80, 1.08, 0.95, 1.16],
+          [0.18, 0.68, 0.42, 0.72, 1.14, 0.90, 1.14]
+        ].forEach(([ox, oy, oz, sMul, sx, sy, sz], pIdx) => {
+          const pad = new THREE.Mesh(new THREE.SphereGeometry(padRad * sMul, 14, 12), MAT.mapleFoliage);
           pad.position.set(bx + ox, by + oy, bz + oz);
-          pad.scale.set(1.08, 1.15, 1.08); // Upright-oval Norwegian Sunset Maple crown habit
-          pad.rotation.y = bIdx * 1.1 + pIdx * 0.8;
+          pad.scale.set(sx, sy, sz);
+          pad.rotation.set((bIdx + pIdx) * 0.25, bIdx * 1.1 + pIdx * 0.8, 0);
           pad.castShadow = true;
           pad.receiveShadow = true;
           mapleCanopyGrp.add(pad);
         });
 
         // Spring yellow-green maple corymb flower clusters on outer crown
-        for (let c = 0; c < 3; c++) {
-          const cAng = (c / 3) * Math.PI * 2 + bIdx * 0.7;
-          const corymb = new THREE.Mesh(new THREE.DodecahedronGeometry(0.24, 0), corymbMat);
+        for (let c = 0; c < 4; c++) {
+          const cAng = (c / 4) * Math.PI * 2 + bIdx * 0.7;
+          const corymb = new THREE.Mesh(new THREE.SphereGeometry(0.24, 8, 8), corymbMat);
+          corymb.scale.set(1.2, 0.75, 1.2);
           corymb.position.set(
-            bx + Math.cos(cAng) * (padRad * 0.75),
+            bx + Math.cos(cAng) * (padRad * 0.78),
             by + 0.35 + (c % 2) * 0.35,
-            bz + Math.sin(cAng) * (padRad * 0.75)
+            bz + Math.sin(cAng) * (padRad * 0.78)
           );
           mapleCorymbGrp.add(corymb);
         }
 
         // Winter frost cap on bare Norwegian Sunset Maple scaffold branches
-        const mSnow = new THREE.Mesh(new THREE.SphereGeometry(0.38, 8, 6), MAT.snowWhite);
+        const mSnow = new THREE.Mesh(new THREE.SphereGeometry(0.38, 10, 8), MAT.snowWhite);
         mSnow.scale.set(1.7, 0.38, 1.7);
         mSnow.position.set(bx * 0.75, forkY + (by - forkY) * 0.78 + 0.08, bz * 0.75);
         mSnow.visible = false;
@@ -2755,137 +2808,152 @@
         SEASON_GROUPS.mapleSnowCaps.push(mSnow);
       });
 
-      // Scattered fallen fiery orange-red maple leaves on the 6.0' mulch ring in Fall mode
+      // Scattered fallen fiery orange-red maple leaves on the 6.0' mulch ring in Fall mode (stationary in mapleStaticGrp!)
       const mapleFallLeafGrp = new THREE.Group();
       const fallMapleLeafMat1 = new THREE.MeshStandardMaterial({ color: '#ea580c', roughness: 0.75 });
       const fallMapleLeafMat2 = new THREE.MeshStandardMaterial({ color: '#dc2626', roughness: 0.75 });
       for (let lf = 0; lf < 28; lf++) {
         const lAng = (lf / 28) * Math.PI * 2 + (lf % 3) * 0.4;
-        const lRad = 0.55 + ((lf * 0.37) % 2.25);
+        const lRad = 0.55 + ((lf * 0.37) % 2.15);
         const leaf = new THREE.Mesh(
-          new THREE.ConeGeometry(0.14, 0.04, 5),
+          new THREE.CircleGeometry(0.14, 7),
           lf % 2 === 0 ? fallMapleLeafMat1 : fallMapleLeafMat2
         );
-        leaf.position.set(Math.cos(lAng) * lRad, 0.10, Math.sin(lAng) * lRad);
-        leaf.rotation.y = lAng;
+        leaf.rotation.x = -Math.PI / 2;
+        leaf.position.set(Math.cos(lAng) * lRad, 0.105, Math.sin(lAng) * lRad);
         mapleFallLeafGrp.add(leaf);
       }
       mapleFallLeafGrp.visible = false;
-      mapleGrp.add(mapleFallLeafGrp);
+      mapleStaticGrp.add(mapleFallLeafGrp);
       SEASON_GROUPS.mulchLeavesFall.push(mapleFallLeafGrp);
 
       mapleGrp.add(mapleCanopyGrp);
       mapleGrp.add(mapleCorymbGrp);
       SEASON_GROUPS.mapleCanopies.push(mapleCanopyGrp);
       SEASON_GROUPS.mapleSpringCorymbs.push(mapleCorymbGrp);
+      gFrontPlants.add(mapleStaticGrp);
       gFrontPlants.add(mapleGrp);
-      SEASON_GROUPS.windSwayMeshes.push({ mesh: mapleGrp, phase: 2.2, amp: 0.008 });
+      SEASON_GROUPS.windSwayMeshes.push({ mesh: mapleGrp, phase: 2.2, amp: 0.007 });
 
       // 3. Phase 2 (2027): 3-Sided Utility Box Karl Foerster Grass Screen (wx: 91.8..95.6, wy: 44.4..49.2 — strictly inside SE mulch bed!)
       [[92.4, 44.5], [94.0, 44.5], [95.6, 44.5], [91.8, 46.2], [91.8, 48.0], [93.8, 49.1]].forEach(([gx, gy]) => {
-        const grassClump = new THREE.Group();
-        grassClump.position.set(gx, 0.08, gy);
-        const gMat = new THREE.MeshStandardMaterial({ color: '#4d7c0f', roughness: 0.78 });
-        const pMat = new THREE.MeshStandardMaterial({ color: '#fde047', roughness: 0.65 });
-        for (let b = 0; b < 14; b++) {
-          const ang = (b / 14) * Math.PI * 2;
-          const blade = new THREE.Mesh(new THREE.ConeGeometry(0.08, 2.2, 4), gMat);
-          blade.position.set(Math.cos(ang) * 0.18, 1.0, Math.sin(ang) * 0.18);
-          blade.rotation.x = Math.sin(ang) * 0.25;
-          blade.rotation.z = -Math.cos(ang) * 0.25;
-          blade.castShadow = true;
-          grassClump.add(blade);
-        }
-        for (let p = 0; p < 5; p++) {
-          const ang = (p / 5) * Math.PI * 2;
-          const plume = new THREE.Mesh(new THREE.CylinderGeometry(0.04, 0.07, 1.4, 6), pMat);
-          plume.position.set(Math.cos(ang) * 0.12, 2.6, Math.sin(ang) * 0.12);
-          grassClump.add(plume);
-        }
+        const grassClump = buildFeatherReedGrass(gx, gy, 0.92);
         gFrontPlants.add(grassClump);
+        SEASON_GROUPS.windSwayMeshes.push({ mesh: grassClump, phase: gx * 0.5 + gy, amp: 0.016 });
       });
 
       // 4. Phase 2 (2027): 6.0' Street Park Strip Drought-Tolerant Perennials + Natural Landscape Boulders
       //    Strictly placed inside North Park Strip (wx: 100.7..106.7, wy: 0.0..9.5) & South Park Strip (wx: 100.7..106.7, wy: 30.5..50.0)
-      const sageFoliageMat = new THREE.MeshStandardMaterial({ color: '#15803d', roughness: 0.82 });
-      const sageBloomMat = new THREE.MeshStandardMaterial({ color: '#6366f1', roughness: 0.70 });
-      const yarrowBloomMat = new THREE.MeshStandardMaterial({ color: '#facc15', roughness: 0.68 });
+      const sageFoliageMat = new THREE.MeshStandardMaterial({
+        color: '#1f7a4c',
+        map: foliageLeafTex,
+        bumpMap: foliageLeafBumpTex,
+        bumpScale: 0.05,
+        roughness: 0.80
+      });
+      const sageBloomMat = new THREE.MeshStandardMaterial({ color: '#6366f1', roughness: 0.65 });
+      const yarrowBloomMat = new THREE.MeshStandardMaterial({ color: '#facc15', roughness: 0.62 });
       [[103.6, 2.8], [103.6, 7.2], [103.6, 33.0], [103.6, 38.0], [103.6, 43.0], [103.6, 47.5]].forEach(([px, py], pIdx) => {
         const shrubGrp = new THREE.Group();
         shrubGrp.position.set(px, 0.09, py);
-        for (let c = 0; c < 5; c++) {
-          const ang = (c / 5) * Math.PI * 2;
-          const r = c === 0 ? 0 : 0.32;
-          const lobe = new THREE.Mesh(new THREE.IcosahedronGeometry(0.46, 1), sageFoliageMat);
-          lobe.position.set(Math.cos(ang) * r, 0.38, Math.sin(ang) * r);
-          lobe.scale.set(1.1, 0.75, 1.1);
+        for (let c = 0; c < 7; c++) {
+          const ang = (c / 7) * Math.PI * 2;
+          const r = c === 0 ? 0 : 0.34;
+          const lobe = new THREE.Mesh(new THREE.SphereGeometry(0.44, 10, 8), sageFoliageMat);
+          lobe.position.set(Math.cos(ang) * r, 0.36, Math.sin(ang) * r);
+          lobe.scale.set(1.15, 0.72, 1.15);
           lobe.castShadow = true;
           shrubGrp.add(lobe);
-          const flower = new THREE.Mesh(
-            new THREE.ConeGeometry(0.09, 0.45, 6),
-            pIdx % 2 === 0 ? sageBloomMat : yarrowBloomMat
-          );
-          flower.position.set(Math.cos(ang) * r, 0.82, Math.sin(ang) * r);
-          shrubGrp.add(flower);
+          if (pIdx % 2 === 0) {
+            // Russian Sage spire panicles
+            const flower = new THREE.Mesh(new THREE.ConeGeometry(0.085, 0.52, 8), sageBloomMat);
+            flower.position.set(Math.cos(ang) * r, 0.82, Math.sin(ang) * r);
+            flower.rotation.x = Math.sin(ang) * 0.18;
+            flower.rotation.z = -Math.cos(ang) * 0.18;
+            shrubGrp.add(flower);
+          } else {
+            // Moonshine Yarrow flat-topped golden umbel clusters
+            const umbel = new THREE.Mesh(new THREE.CylinderGeometry(0.18, 0.06, 0.08, 10), yarrowBloomMat);
+            umbel.position.set(Math.cos(ang) * r, 0.76, Math.sin(ang) * r);
+            shrubGrp.add(umbel);
+          }
         }
         gFrontPlants.add(shrubGrp);
       });
 
-      // Multi-faceted Granite & Sandstone Landscape Boulders in Park Strips, NE Rock Bed & SE Mulch Bed (never on lawn/pavers!)
-      const boulderMat1 = new THREE.MeshStandardMaterial({ color: '#78716c', roughness: 0.92 });
-      const boulderMat2 = new THREE.MeshStandardMaterial({ color: '#a8a29e', roughness: 0.88 });
+      // Sculpted Wasatch Granite & Sandstone Landscape Boulders in Park Strips, NE Rock Bed & SE Mulch Bed (never on lawn/pavers!)
+      const boulderMat1 = new THREE.MeshStandardMaterial({ color: '#78716c', bumpMap: barkTex, bumpScale: 0.08, roughness: 0.90 });
+      const boulderMat2 = new THREE.MeshStandardMaterial({ color: '#a8a29e', bumpMap: barkTex, bumpScale: 0.08, roughness: 0.86 });
       [[103.4, 5.0], [103.8, 35.5], [103.2, 45.2], [82.0, 4.5], [90.2, 48.8]].forEach(([bx, by], bIdx) => {
         const bGrp = new THREE.Group();
         bGrp.position.set(bx, 0.08, by);
-        const mainRock = new THREE.Mesh(new THREE.DodecahedronGeometry(0.78, 1), bIdx % 2 === 0 ? boulderMat1 : boulderMat2);
-        mainRock.position.set(0, 0.35, 0);
-        mainRock.scale.set(1.35, 0.68, 1.12);
+        const mainRock = new THREE.Mesh(new THREE.IcosahedronGeometry(0.80, 2), bIdx % 2 === 0 ? boulderMat1 : boulderMat2);
+        mainRock.position.set(0, 0.32, 0);
+        mainRock.scale.set(1.38, 0.64, 1.14);
         mainRock.rotation.set(bIdx * 0.5, bIdx * 1.2, 0.2);
         mainRock.castShadow = true;
+        mainRock.receiveShadow = true;
         bGrp.add(mainRock);
-        const companionRock = new THREE.Mesh(new THREE.DodecahedronGeometry(0.45, 1), bIdx % 2 === 0 ? boulderMat2 : boulderMat1);
-        companionRock.position.set(0.65, 0.22, 0.35);
-        companionRock.scale.set(1.2, 0.62, 0.95);
+        const companionRock = new THREE.Mesh(new THREE.IcosahedronGeometry(0.48, 2), bIdx % 2 === 0 ? boulderMat2 : boulderMat1);
+        companionRock.position.set(0.68, 0.20, 0.36);
+        companionRock.scale.set(1.22, 0.58, 0.96);
         companionRock.castShadow = true;
         bGrp.add(companionRock);
+        const accentCobble = new THREE.Mesh(new THREE.IcosahedronGeometry(0.28, 2), boulderMat1);
+        accentCobble.position.set(-0.55, 0.14, 0.42);
+        accentCobble.scale.set(1.15, 0.55, 1.05);
+        bGrp.add(accentCobble);
         gFrontPlants.add(bGrp);
       });
 
       // 5. Phase 3 (2028): Backyard South Fence Cane Berry Espalier & Shade Hosta Bed (wy = 48.9' — Open AC Unit at wx = 45..48 untouched)
-      const berryLeafMat = new THREE.MeshStandardMaterial({ color: '#15803d', roughness: 0.78 });
-      const caneBerryFruitMat = new THREE.MeshStandardMaterial({ color: '#be123c', roughness: 0.45 });
-      const shadeHostaMat = new THREE.MeshStandardMaterial({ color: '#0d9488', roughness: 0.72, side: THREE.DoubleSide });
+      const berryLeafMat = new THREE.MeshStandardMaterial({
+        color: '#15803d',
+        map: foliageLeafTex,
+        bumpMap: foliageLeafBumpTex,
+        bumpScale: 0.05,
+        roughness: 0.74
+      });
+      const caneBerryFruitMat = new THREE.MeshStandardMaterial({ color: '#be123c', roughness: 0.35, metalness: 0.05 });
+      const shadeHostaMat = new THREE.MeshStandardMaterial({
+        color: '#0d9488',
+        map: foliageLeafTex,
+        bumpMap: foliageLeafBumpTex,
+        bumpScale: 0.03,
+        roughness: 0.68,
+        side: THREE.DoubleSide
+      });
       [6.5, 11.5, 16.5, 21.5, 26.5, 34.0, 41.0, 49.5, 54.5].forEach((wx, sIdx) => {
         const isSun = wx < 30.0;
         const plantGrp = new THREE.Group();
         plantGrp.position.set(wx, 0.09, 48.85);
         if (isSun) {
-          // Multi-cane Blackberry / Raspberry Bush with arching canes & ruby berry clusters
+          // Multi-cane Blackberry / Raspberry Bush with arching canes, serrated leaf clusters & drupelet berry clusters
           for (let c = 0; c < 7; c++) {
             const cOff = (c - 3) * 0.28;
-            const cane = new THREE.Mesh(new THREE.CylinderGeometry(0.025, 0.04, 2.5, 6), MAT.woodBark);
-            cane.position.set(cOff, 1.25, (c % 2 - 0.5) * 0.2);
-            cane.rotation.z = (c - 3) * 0.08;
+            const cane = new THREE.Mesh(new THREE.CylinderGeometry(0.025, 0.04, 2.6, 8), MAT.woodBark);
+            cane.position.set(cOff, 1.30, (c % 2 - 0.5) * 0.2);
+            cane.rotation.z = (c - 3) * 0.09;
             plantGrp.add(cane);
-            const foliageCluster = new THREE.Mesh(new THREE.IcosahedronGeometry(0.42, 1), berryLeafMat);
-            foliageCluster.position.set(cOff * 1.1, 1.1 + (c % 3) * 0.45, 0);
-            foliageCluster.scale.set(1.15, 0.85, 0.75);
+            const foliageCluster = new THREE.Mesh(new THREE.SphereGeometry(0.42, 10, 8), berryLeafMat);
+            foliageCluster.position.set(cOff * 1.1, 1.15 + (c % 3) * 0.45, 0);
+            foliageCluster.scale.set(1.18, 0.85, 0.78);
             foliageCluster.castShadow = true;
             plantGrp.add(foliageCluster);
-            const berry = new THREE.Mesh(new THREE.SphereGeometry(0.08, 6, 6), caneBerryFruitMat);
-            berry.position.set(cOff * 1.1, 1.35 + (c % 2) * 0.35, -0.28);
+            const berry = new THREE.Mesh(new THREE.SphereGeometry(0.085, 8, 8), caneBerryFruitMat);
+            berry.position.set(cOff * 1.1, 1.38 + (c % 2) * 0.35, -0.28);
             plantGrp.add(berry);
           }
         } else {
-          // Ribbed Blue-Green Shade Hosta Rosette (12 broad overlapping heart-shaped leaves)
-          for (let l = 0; l < 12; l++) {
-            const ang = (l / 12) * Math.PI * 2 + sIdx * 0.4;
-            const r = 0.22 + (l % 2) * 0.18;
-            const leaf = new THREE.Mesh(new THREE.SphereGeometry(0.34, 8, 6), shadeHostaMat);
-            leaf.scale.set(0.85, 0.18, 1.45);
-            leaf.position.set(Math.cos(ang) * r, 0.28 + (l % 2) * 0.12, Math.sin(ang) * r * 0.75);
+          // Ribbed Blue-Green Shade Hosta Rosette (14 broad overlapping heart-shaped leaves)
+          for (let l = 0; l < 14; l++) {
+            const ang = (l / 14) * Math.PI * 2 + sIdx * 0.4;
+            const r = 0.20 + (l % 2) * 0.19;
+            const leaf = new THREE.Mesh(new THREE.SphereGeometry(0.35, 10, 8), shadeHostaMat);
+            leaf.scale.set(0.88, 0.16, 1.48);
+            leaf.position.set(Math.cos(ang) * r, 0.26 + (l % 2) * 0.12, Math.sin(ang) * r * 0.75);
             leaf.rotation.y = -ang;
-            leaf.rotation.x = 0.25;
+            leaf.rotation.x = 0.28;
             leaf.castShadow = true;
             plantGrp.add(leaf);
           }
@@ -2954,6 +3022,7 @@
     // --- I. PHASE 4 (2029) & PHASE 5 (2030): NORTH COMPACTED ROAD BASE PAD/PATH & OPTION #1C OPEN 2-PILLAR SOLID-ROOF AWNING ---
     const fireFlames = [];
     const ceilingFanRotors = [];
+    const awningLightObjects = [];
     let firePointLight = null;
     {
       // 1. North Side 9.0' x 40.0' Compacted Road Base Pad Inside Gate (wx: 27.0..70.0, wy: 0.0..9.0 = 360.0 sq ft inside gate)
@@ -2966,17 +3035,18 @@
       //    100% OPEN ON ALL SIDES (No Privacy Wall): Strictly TWO outer West corner 8x8 posts at (wx=18.0', wy=20.5' & 40.5') and ZERO house posts!
       const gAwning = LAYER_GROUPS.patioAwning;
       [20.5, 40.5].forEach(wy => {
-        // Simpson Strong-Tie Black Powder-Coated Post Base + Bolts
+        // Simpson Strong-Tie Black Powder-Coated Post Base + Decorative Hex Bolts
         addBox(gAwning, 17.55, wy - 0.45, 18.45, wy + 0.45, 0.16, 0.82, MAT.simpsonHardware, true, true);
+        addBox(gAwning, 17.50, wy - 0.50, 18.50, wy + 0.50, 0.16, 0.24, MAT.simpsonHardware, false, false);
         // 8x8 Stained Douglas Fir / Western Red Cedar Timber Post (8.6' clear height)
         addBox(gAwning, 17.65, wy - 0.35, 18.35, wy + 0.35, 0.16, 8.85, MAT.espressoTimber, true, true);
-        // Decorative Knee Braces
+        // Chamfered 45° Timber Knee Braces + Simpson Bolt Plates
         addBox(gAwning, 17.75, wy - 1.4, 18.25, wy - 0.35, 7.6, 8.6, MAT.espressoTimber, true, true);
         if (wy === 20.5) {
           addBox(gAwning, 17.75, wy + 0.35, 18.25, wy + 1.4, 7.6, 8.6, MAT.espressoTimber, true, true);
         }
         addBox(gAwning, 18.35, wy - 0.25, 19.4, wy + 0.25, 7.7, 8.7, MAT.espressoTimber, true, true);
-        // Simpson Structural Post-to-Beam T-Strap
+        // Simpson Structural Post-to-Beam Ornamented T-Strap
         addBox(gAwning, 17.52, wy - 0.55, 18.48, wy + 0.55, 8.45, 9.15, MAT.simpsonHardware, false, false);
       });
 
@@ -3000,7 +3070,7 @@
       for (let zSeam = -10.5; zSeam <= 10.5; zSeam += 1.5) {
         addBox(roofSlopeGroup, -6.8, zSeam - 0.05, 6.25, zSeam + 0.05, 0.46, 0.56, MAT.standingSeamMetal, true, true);
       }
-      // Western Eave Fascia, Rain Gutter & Downspout
+      // Western Eave Fascia, Rain Gutter & Downspout at SW Post
       addBox(roofSlopeGroup, -7.05, -11.0, -6.75, 11.0, 0.12, 0.48, MAT.darkTrim, true, true);
       const awningRoofSnow = addBox(roofSlopeGroup, -6.7, -10.8, 6.1, 10.8, 0.50, 0.65, MAT.snowWhite, false, true);
       awningRoofSnow.visible = false;
@@ -3064,58 +3134,313 @@
         ledDome.position.set(0, 8.25, 0);
         fanGroup.add(ledDome);
 
+        // Warm 2700K Downward PointLight for each Ceiling Fan LED Dome (tied strictly to gAwning!)
+        const fanLight = new THREE.PointLight('#fde047', 2.4, 26, 1.35);
+        fanLight.position.set(0, 7.95, 0);
+        fanGroup.add(fanLight);
+        awningLightObjects.push({
+          type: 'point',
+          light: fanLight,
+          sunsetInt: 1.85,
+          nightInt: 2.85
+        });
+
         gAwning.add(fanGroup);
       });
-      // (100% Open on All Sides — No South Privacy Slat Wall)
 
-      // 4. Patio Outdoor L-Sectional Lounge Sofa, Throw Pillows & 50,000 BTU Propane Fire Table ('patioFurniture')
+      // 3C. Commercial-Grade 2700K Shatterproof S14 Bistro String Lights Hung Strictly Around the OUTSIDE Perimeter of the Awning
+      //     Installed alongside the Option #1C Awning & Ceiling Fans in Phase 5 (2030) — NEVER floating when the awning is hidden!
+      //     Draped in natural catenary scallops with weatherproof black SJTW cords, wrought-iron eye-hooks, vertical socket drops & warm S14 bulbs
+      //     along the 3 outer open eaves: North Outer Rafter (wy=19.92'), West Front Header Beam (wx=17.62'), and South Outer Rafter (wy=41.08').
+      const bistroSocketGeo = new THREE.CylinderGeometry(0.036, 0.044, 0.095, 10);
+      const bistroDropWireGeo = new THREE.CylinderGeometry(0.012, 0.012, 0.09, 6);
+      const bistroBulbGeo = new THREE.SphereGeometry(0.078, 12, 10);
+      bistroBulbGeo.scale(0.84, 1.28, 0.84); // Authentic S14 Edison teardrop silhouette
+      const bistroHookGeo = new THREE.TorusGeometry(0.045, 0.012, 6, 12);
+
+      function addPerimeterBistroScallopRun(x1, y1, z1, x2, y2, z2, numScallops, sagDepth, bulbsPerScallop) {
+        for (let s = 0; s < numScallops; s++) {
+          const tA = s / numScallops;
+          const tB = (s + 1) / numScallops;
+          const ax = x1 + (x2 - x1) * tA;
+          const ay = y1 + (y2 - y1) * tA;
+          const az = z1 + (z2 - z1) * tA;
+          const bx = x1 + (x2 - x1) * tB;
+          const by = y1 + (y2 - y1) * tB;
+          const bz = z1 + (z2 - z1) * tB;
+
+          // Wrought-iron screw-eye hook at scallop anchor point
+          const hook = new THREE.Mesh(bistroHookGeo, MAT.simpsonHardware);
+          hook.position.set(ax, ay + 0.03, az);
+          gAwning.add(hook);
+          if (s === numScallops - 1) {
+            const endHook = new THREE.Mesh(bistroHookGeo, MAT.simpsonHardware);
+            endHook.position.set(bx, by + 0.03, bz);
+            gAwning.add(endHook);
+          }
+
+          // Natural catenary scallop curve between anchor hooks
+          const curvePts = [];
+          const curveSegs = 20;
+          for (let i = 0; i <= curveSegs; i++) {
+            const u = i / curveSegs;
+            const px = ax + (bx - ax) * u;
+            const pz = az + (bz - az) * u;
+            // Catenary sag profile: zero at u=0 and u=1, maximum sagDepth at u=0.5
+            const catenarySag = sagDepth * (4.0 * u * (1.0 - u));
+            const py = (ay + (by - ay) * u) - catenarySag;
+            curvePts.push(new THREE.Vector3(px, py, pz));
+          }
+          const catenaryCurve = new THREE.CatmullRomCurve3(curvePts);
+          const cordGeo = new THREE.TubeGeometry(catenaryCurve, 20, 0.018, 6, false);
+          const cordMesh = new THREE.Mesh(cordGeo, MAT.bistroCord);
+          cordMesh.castShadow = true;
+          gAwning.add(cordMesh);
+
+          // Hang S14 bulbs vertically from weatherproof sockets along the scallop curve
+          for (let b = 0; b < bulbsPerScallop; b++) {
+            const uBulb = (b + 0.5) / bulbsPerScallop;
+            const pt = catenaryCurve.getPointAt(uBulb);
+
+            const dropWire = new THREE.Mesh(bistroDropWireGeo, MAT.bistroCord);
+            dropWire.position.set(pt.x, pt.y - 0.045, pt.z);
+            gAwning.add(dropWire);
+
+            const socket = new THREE.Mesh(bistroSocketGeo, MAT.bistroCord);
+            socket.position.set(pt.x, pt.y - 0.105, pt.z);
+            gAwning.add(socket);
+
+            const bulb = new THREE.Mesh(bistroBulbGeo, MAT.bistroBulb);
+            bulb.position.set(pt.x, pt.y - 0.195, pt.z);
+            gAwning.add(bulb);
+          }
+        }
+      }
+
+      // 1) North Outer Rafter Perimeter Scallop Run (wy = 19.90', from House Ledger wx=29.75' h=9.56' down to NW Post wx=17.80' h=8.85')
+      addPerimeterBistroScallopRun(29.75, 9.56, 19.90, 17.80, 8.85, 19.90, 3, 0.44, 4);
+      // 2) West Front Header Beam Perimeter Scallop Run (wx = 17.58', from NW Post wy=19.90' h=8.85' across to SW Post wy=41.10' h=8.85')
+      addPerimeterBistroScallopRun(17.58, 8.85, 19.90, 17.58, 8.85, 41.10, 5, 0.48, 4);
+      // 3) South Outer Rafter Perimeter Scallop Run (wy = 41.10', from SW Post wx=17.80' h=8.85' up to House Ledger wx=29.75' h=9.56')
+      addPerimeterBistroScallopRun(17.80, 8.85, 41.10, 29.75, 9.56, 41.10, 3, 0.44, 4);
+
+      // Perimeter Bistro Warm Glow PointLights along the North, West, and South outer awning edges (strictly inside gAwning!)
+      [
+        [23.5, 8.35, 19.90, 1.15],
+        [17.55, 8.20, 25.00, 1.25],
+        [17.55, 8.20, 35.80, 1.25],
+        [23.5, 8.35, 41.10, 1.15]
+      ].forEach(([lx, ly, lz, mult]) => {
+        const bLight = new THREE.PointLight('#fbbf24', 1.5, 18, 1.45);
+        bLight.position.set(lx, ly, lz);
+        gAwning.add(bLight);
+        awningLightObjects.push({
+          type: 'point',
+          light: bLight,
+          sunsetInt: 1.15 * mult,
+          nightInt: 1.75 * mult
+        });
+      });
+
+      // 4. High-Detail Patio Outdoor L-Sectional Lounge Sofa, Throw Pillows & 50,000 BTU Propane Fire Table ('patioFurniture')
+      //    ORIENTATION FIXED TO MATCH TARGET RENDERS (render_patio_awning_option_1c_solid_roof.jpg & render_backyard_pergola_north_planters.jpg):
+      //    - LONG SIDE OF L-SECTIONAL is right against the Rear House Wall (wx = 26.55'–29.55', wy = 28.80'–39.60', South of the wy=22–28 sliding door), facing WEST!
+      //    - SHORT SIDE OF L-SECTIONAL returns along the South edge of the patio (wx = 21.55'–29.55', wy = 36.60'–39.60'), facing NORTH!
+      //    - 50,000 BTU Propane Fire Table is centered in the open pocket (wx = 21.80'–24.55', wy = 30.80'–35.20') with ceramic driftwood logs & glass wind guard!
       const gFurn = LAYER_GROUPS.patioFurniture;
-      addBox(gFurn, 19.0, 29.5, 27.6, 39.6, 0.16, 0.21, MAT.patioRug, false, true);
-      // L-Sectional Base & Backrests
-      addBox(gFurn, 19.3, 30.2, 22.1, 38.8, 0.21, 1.35, MAT.sofaBase, true, true);
-      addBox(gFurn, 19.3, 36.0, 26.8, 38.8, 0.21, 1.35, MAT.sofaBase, true, true);
-      addBox(gFurn, 19.3, 30.2, 20.0, 38.8, 1.35, 2.75, MAT.sofaBase, true, true);
-      addBox(gFurn, 19.3, 38.1, 26.8, 38.8, 1.35, 2.75, MAT.sofaBase, true, true);
-      // Individual Seat Cushions & Back Cushions
-      addBox(gFurn, 20.0, 30.4, 22.0, 36.0, 1.35, 1.78, MAT.sofaCushion, true, true);
-      addBox(gFurn, 20.0, 36.0, 26.6, 38.1, 1.35, 1.78, MAT.sofaCushion, true, true);
-      addBox(gFurn, 20.0, 30.4, 20.5, 36.0, 1.78, 2.65, MAT.sofaCushion, true, true);
-      addBox(gFurn, 20.0, 37.6, 26.6, 38.1, 1.78, 2.65, MAT.sofaCushion, true, true);
-      // Jewel-Toned Accent Throw Pillows on Patio Sectional
-      const pillowMatTeal = new THREE.MeshStandardMaterial({ color: '#0d9488', roughness: 0.75 });
-      const pillowMatBerry = new THREE.MeshStandardMaterial({ color: '#db2777', roughness: 0.75 });
-      [[20.5, 31.2, pillowMatTeal], [20.5, 37.3, pillowMatBerry], [25.6, 37.4, pillowMatTeal]].forEach(([px, pz, pMat]) => {
-        const pillow = new THREE.Mesh(new THREE.BoxGeometry(0.45, 0.85, 0.85), pMat);
-        pillow.position.set(px, 2.15, pz);
-        pillow.rotation.z = 0.22;
+
+      // Woven Outdoor Area Rug + Contrasting Border Binding (wx: 19.5..29.6, wy: 28.4..39.9)
+      const rugBorderMat = new THREE.MeshStandardMaterial({ color: '#1e293b', roughness: 0.9 });
+      addBox(gFurn, 19.45, 28.35, 29.65, 39.95, 0.16, 0.195, rugBorderMat, false, true);
+      addBox(gFurn, 19.70, 28.60, 29.40, 39.70, 0.165, 0.21, MAT.patioRug, false, true);
+
+      // Tapered Espresso Block Legs Under L-Sectional Frame (y = 0.21' to 0.42')
+      const legPositions = [
+        [26.75, 29.00], [29.35, 29.00], [26.75, 33.00], [29.35, 33.00],
+        [26.75, 36.75], [29.35, 39.35], [24.20, 36.75], [24.20, 39.35],
+        [21.75, 36.75], [21.75, 39.35]
+      ];
+      legPositions.forEach(([lx, lz]) => {
+        addBox(gFurn, lx - 0.12, lz - 0.12, lx + 0.12, lz + 0.12, 0.21, 0.42, MAT.simpsonHardware, true, false);
+      });
+
+      // Woven All-Weather Espresso Wicker Deck Base (y = 0.42' to 1.28')
+      // Long East Wing against House Wall (wx = 26.55..29.55, wy = 28.80..39.60)
+      addBox(gFurn, 26.55, 28.80, 29.55, 39.60, 0.42, 1.28, MAT.sofaBase, true, true);
+      // Short South Wing along South Patio Edge (wx = 21.55..26.55, wy = 36.60..39.60)
+      addBox(gFurn, 21.55, 36.60, 26.55, 39.60, 0.42, 1.28, MAT.sofaBase, true, true);
+      // Brushed Aluminum Lower Accent Trim Rail around Wicker Base
+      addBox(gFurn, 26.52, 28.78, 26.58, 36.62, 0.44, 0.52, MAT.sofaCushionPiping, false, false);
+      addBox(gFurn, 21.53, 36.57, 26.58, 36.63, 0.44, 0.52, MAT.sofaCushionPiping, false, false);
+
+      // Structural Wicker Backrests & Wide Track Armrests
+      // 1) Long East Backrest against Rear House Wall (wx = 28.92..29.55, wy = 28.80..39.60, y = 1.28..2.82)
+      addBox(gFurn, 28.92, 28.80, 29.55, 39.60, 1.28, 2.82, MAT.sofaBase, true, true);
+      // 2) Short South Backrest along South Patio Edge (wx = 21.55..29.55, wy = 38.98..39.60, y = 1.28..2.82)
+      addBox(gFurn, 21.55, 38.98, 29.55, 39.60, 1.28, 2.82, MAT.sofaBase, true, true);
+      // 3) North Track Armrest on Long Wing (wx = 26.55..29.55, wy = 28.80..29.32, y = 1.28..2.18)
+      addBox(gFurn, 26.55, 28.80, 29.55, 29.32, 1.28, 2.18, MAT.sofaBase, true, true);
+      // 4) West Track Armrest on Short Wing (wx = 21.55..22.08, wy = 36.60..39.60, y = 1.28..2.18)
+      addBox(gFurn, 21.55, 36.60, 22.08, 39.60, 1.28, 2.18, MAT.sofaBase, true, true);
+
+      // Helper to build an individual plush Sunbrella Seat Cushion with double-welt piping seams
+      function addPlushSeatCushion(x1, z1, x2, z2) {
+        addBox(gFurn, x1, z1, x2, z2, 1.28, 1.76, MAT.sofaCushion, true, true);
+        // Subtle crowned top center for plush upholstery feel
+        addBox(gFurn, x1 + 0.08, z1 + 0.08, x2 - 0.08, z2 - 0.08, 1.76, 1.81, MAT.sofaCushion, false, true);
+        // Contrast piping welt around top & bottom perimeter edges
+        addBox(gFurn, x1 - 0.015, z1 - 0.015, x2 + 0.015, z2 + 0.015, 1.73, 1.765, MAT.sofaCushionPiping, false, false);
+        addBox(gFurn, x1 - 0.015, z1 - 0.015, x2 + 0.015, z2 + 0.015, 1.29, 1.325, MAT.sofaCushionPiping, false, false);
+      }
+
+      // 4 Individual Seat Cushions along the Long House Wing (wx = 26.58..28.92, wy = 29.34..36.62) + SE Corner Cushion
+      const eastSeatRanges = [
+        [29.34, 31.13],
+        [31.17, 32.96],
+        [33.00, 34.79],
+        [34.83, 36.62]
+      ];
+      eastSeatRanges.forEach(([z1, z2]) => {
+        addPlushSeatCushion(26.58, z1, 28.92, z2);
+      });
+      // SE Corner Seat Cushion (wx = 26.58..28.92, wy = 36.66..38.96)
+      addPlushSeatCushion(26.58, 36.66, 28.92, 38.96);
+
+      // 2 Individual Seat Cushions along the Short South Wing (wx = 22.10..26.54, wy = 36.62..38.96)
+      const southSeatRanges = [
+        [22.10, 24.30],
+        [24.34, 26.54]
+      ];
+      southSeatRanges.forEach(([x1, x2]) => {
+        addPlushSeatCushion(x1, 36.62, x2, 38.96);
+      });
+
+      // Ergonomically Tilted Plush Backrest Cushions with Button-Tufting Indents
+      // 5 Back Cushions along the Long East House Wall (facing WEST toward the fire table)
+      [
+        [29.36, 31.12],
+        [31.18, 32.95],
+        [33.01, 34.78],
+        [34.84, 36.61],
+        [36.67, 38.45]
+      ].forEach(([z1, z2]) => {
+        const zMid = (z1 + z2) * 0.5;
+        const zLen = (z2 - z1) - 0.04;
+        const backPillow = new THREE.Mesh(new THREE.BoxGeometry(0.46, 0.98, zLen), MAT.sofaCushion);
+        backPillow.position.set(28.66, 2.26, zMid);
+        backPillow.rotation.z = -0.14; // Tilted back against the East backrest facing West
+        backPillow.castShadow = true;
+        backPillow.receiveShadow = true;
+        gFurn.add(backPillow);
+      });
+
+      // 3 Back Cushions along the Short South Patio Edge (facing NORTH toward the fire table & house)
+      [
+        [22.12, 24.28],
+        [24.34, 26.50],
+        [26.56, 28.42]
+      ].forEach(([x1, x2]) => {
+        const xMid = (x1 + x2) * 0.5;
+        const xLen = (x2 - x1) - 0.04;
+        const backPillow = new THREE.Mesh(new THREE.BoxGeometry(xLen, 0.98, 0.46), MAT.sofaCushion);
+        backPillow.position.set(xMid, 2.26, 38.72);
+        backPillow.rotation.x = 0.14; // Tilted back against the South backrest facing North
+        backPillow.castShadow = true;
+        backPillow.receiveShadow = true;
+        gFurn.add(backPillow);
+      });
+
+      // Sculpted Puffy Throw Pillows (tapered pillow geometry instead of blocky cubes!)
+      const pillowGeo = (() => {
+        const g = new THREE.SphereGeometry(0.46, 14, 12);
+        const pos = g.attributes.position;
+        for (let i = 0; i < pos.count; i++) {
+          let x = pos.getX(i), y = pos.getY(i), z = pos.getZ(i);
+          // Pinch corners slightly and flatten depth for a tailored throw-pillow silhouette
+          const cornerPinch = 1.0 + 0.22 * Math.abs(y * z);
+          pos.setXYZ(i, x * 0.42, y * 0.92 * cornerPinch, z * 0.92 * cornerPinch);
+        }
+        g.computeVertexNormals();
+        return g;
+      })();
+      const pillowMatTeal = new THREE.MeshStandardMaterial({ color: '#0d9488', map: cushionFabricTex, roughness: 0.72 });
+      const pillowMatBerry = new THREE.MeshStandardMaterial({ color: '#db2777', map: cushionFabricTex, roughness: 0.72 });
+      const pillowMatGold = new THREE.MeshStandardMaterial({ color: '#f59e0b', map: cushionFabricTex, roughness: 0.72 });
+      [
+        [28.25, 2.08, 29.75, 0.20, 0.35, -0.18, pillowMatTeal],   // North armrest corner on East wing
+        [28.28, 2.08, 33.85, 0.05, 0.12, -0.22, pillowMatGold],   // Mid East wing accent pillow
+        [28.20, 2.12, 38.25, -0.18, 0.78, -0.20, pillowMatBerry], // SE L-corner anchor pillow
+        [27.55, 2.06, 38.30, -0.20, 0.55, -0.15, pillowMatTeal],  // SE L-corner companion pillow
+        [22.55, 2.08, 38.25, -0.18, 1.25, 0.15, pillowMatBerry]   // West armrest corner on South wing
+      ].forEach(([px, py, pz, rx, ry, rz, pMat]) => {
+        const pillow = new THREE.Mesh(pillowGeo, pMat);
+        pillow.position.set(px, py, pz);
+        pillow.rotation.set(rx, ry, rz);
         pillow.castShadow = true;
         gFurn.add(pillow);
       });
 
-      // 50,000 BTU Rectangular Propane Fire Table (wx: 23.0..25.6, wy: 32.0..34.8) with Fire Glass & Logs
-      addBox(gFurn, 23.0, 32.0, 25.6, 34.8, 0.21, 2.1, MAT.fireTableBody, true, true);
-      addBox(gFurn, 22.8, 31.8, 25.8, 35.0, 2.1, 2.28, MAT.darkTrim, true, true);
-      // Glowing Amber/Blue Fire Glass Bed
-      addBox(gFurn, 23.6, 32.5, 25.0, 34.3, 2.28, 2.36, new THREE.MeshStandardMaterial({
+      // 50,000 BTU Rectangular Propane Fire Table Centered in the L-Sectional Pocket (wx: 21.85..24.55, wy: 30.80..35.20)
+      // Recessed Toe-Kick Base
+      addBox(gFurn, 22.05, 31.00, 24.35, 35.00, 0.21, 0.38, MAT.simpsonHardware, true, true);
+      // Paneled Architectural Bronze Body + Framed Side Louvers
+      addBox(gFurn, 21.90, 30.85, 24.50, 35.15, 0.38, 2.08, MAT.fireTableBody, true, true);
+      addBox(gFurn, 21.86, 31.25, 24.54, 32.85, 0.58, 1.88, MAT.darkTrim, false, false);
+      addBox(gFurn, 21.86, 33.15, 24.54, 34.75, 0.58, 1.88, MAT.darkTrim, false, false);
+      // Stainless Steel Igniter & Flame Control Dial Panel on North End
+      addBox(gFurn, 22.85, 30.82, 23.55, 30.86, 1.55, 1.92, MAT.acMetal, false, false);
+      // Wide Overhanging Honed Slate Tabletop Rim (wx: 21.65..24.75, wy: 30.60..35.40, y: 2.08..2.26)
+      addBox(gFurn, 21.65, 30.60, 24.75, 35.40, 2.08, 2.26, MAT.darkTrim, true, true);
+      // Stainless Burner Tray & Glowing Crushed Sapphire/Amber Fire-Glass Bed
+      addBox(gFurn, 22.40, 31.40, 24.00, 34.60, 2.24, 2.30, MAT.acMetal, false, false);
+      addBox(gFurn, 22.48, 31.48, 23.92, 34.52, 2.30, 2.36, new THREE.MeshStandardMaterial({
         color: '#38bdf8',
         emissive: new THREE.Color('#f59e0b'),
-        emissiveIntensity: 1.5,
-        roughness: 0.2
+        emissiveIntensity: 1.65,
+        roughness: 0.18,
+        metalness: 0.35
       }), false, false);
 
-      // Flickering 3D Flame Cones
-      for (let fz = 32.7; fz <= 34.1; fz += 0.28) {
-        const cone = new THREE.Mesh(new THREE.ConeGeometry(0.18, 0.72, 8), MAT.fireFlame);
-        cone.position.set(24.3, 2.68, fz);
-        gFurn.add(cone);
-        fireFlames.push({ mesh: cone, baseZ: fz, phase: fz * 3.7 });
+      // Tempered Glass Wind-Guard Shield around Burner Pan (wx: 22.35..24.05, wy: 31.35..34.65, y: 2.26..2.82)
+      addBox(gFurn, 22.35, 31.35, 24.05, 31.40, 2.26, 2.82, MAT.lanternGlass, false, false);
+      addBox(gFurn, 22.35, 34.60, 24.05, 34.65, 2.26, 2.82, MAT.lanternGlass, false, false);
+      addBox(gFurn, 22.35, 31.35, 22.40, 34.65, 2.26, 2.82, MAT.lanternGlass, false, false);
+      addBox(gFurn, 24.00, 31.35, 24.05, 34.65, 2.26, 2.82, MAT.lanternGlass, false, false);
+      // Chrome Glass-Clamp Corner Clips
+      [[22.36, 31.36], [24.04, 31.36], [22.36, 34.64], [24.04, 34.64]].forEach(([cx, cz]) => {
+        addBox(gFurn, cx - 0.04, cz - 0.04, cx + 0.04, cz + 0.04, 2.70, 2.78, MAT.acMetal, false, false);
+      });
+
+      // Sculpted Ceramic Driftwood Logs resting on the Fire Glass Bed
+      [
+        [23.20, 2.40, 32.15, 0.08, 0.42, 1.48, 1.15],
+        [23.18, 2.42, 33.05, -0.06, -0.35, 1.52, 1.25],
+        [23.22, 2.40, 33.90, 0.05, 0.28, 1.46, 1.10]
+      ].forEach(([lx, ly, lz, rx, ry, rz, len]) => {
+        const log = new THREE.Mesh(new THREE.CylinderGeometry(0.085, 0.105, len, 10), MAT.woodBark);
+        log.position.set(lx, ly, lz);
+        log.rotation.set(rx, ry, rz);
+        gFurn.add(log);
+      });
+
+      // Dual-Layer Flickering 3D Flame Ribbon (Outer Orange Flame + Inner White-Gold Core)
+      for (let fz = 31.75; fz <= 34.25; fz += 0.28) {
+        const outerCone = new THREE.Mesh(new THREE.ConeGeometry(0.17, 0.72, 10), MAT.fireFlame);
+        outerCone.position.set(23.20 + Math.sin(fz * 5.0) * 0.05, 2.66, fz);
+        gFurn.add(outerCone);
+        fireFlames.push({ mesh: outerCone, baseZ: fz, phase: fz * 3.7 });
+
+        const innerCore = new THREE.Mesh(new THREE.ConeGeometry(0.095, 0.48, 8), MAT.fireFlameCore);
+        innerCore.position.set(23.20 + Math.sin(fz * 5.0) * 0.05, 2.56, fz);
+        gFurn.add(innerCore);
+        fireFlames.push({ mesh: innerCore, baseZ: fz, phase: fz * 3.7 + 0.8 });
       }
-      firePointLight = new THREE.PointLight('#fb923c', 2.4, 20, 1.4);
-      firePointLight.position.set(24.3, 3.3, 33.4);
+      firePointLight = new THREE.PointLight('#fb923c', 2.4, 22, 1.35);
+      firePointLight.position.set(23.20, 3.35, 33.00);
       gFurn.add(firePointLight);
     }
 
-    // --- J. PHASE 4 (2029): 5 N–S RAISED CEDAR PLANTERS (3'×6'), COMPACTED ROAD BASE & 4-SEASON CROPS ---
+    // --- J. PHASE 4 (2029): 5 N–S RAISED CEDAR PLANTERS (3'×6'), COMPACTED ROAD BASE & HIGH-DETAIL 4-SEASON CROPS ---
     {
       // 1. Compacted Road Base Garden Paths (wx: 4.0..27.0, wy: 0.0..8.25)
       addBox(LAYER_GROUPS.gardenRock, 4.0, 0.0, 27.0, 8.25, 0.0, 0.08, MAT.crushedRock, false, true);
@@ -3123,57 +3448,149 @@
       // 2. 5 Raised Western Red Cedar Garden Boxes (N1–N5 at wx = 5.0, 9.75, 14.5, 19.25, 24.0; wy = 1.0..7.0)
       const gPlanters = LAYER_GROUPS.planters;
       const gDrip = LAYER_GROUPS.gardenDrip;
-      const springLeafMat = new THREE.MeshStandardMaterial({ color: '#4ade80', roughness: 0.75 });
-      const summerVineMat = new THREE.MeshStandardMaterial({ color: '#15803d', roughness: 0.78 });
-      const ripeTomatoMat = new THREE.MeshStandardMaterial({ color: '#ef4444', roughness: 0.35 });
-      const pumpkinMat = new THREE.MeshStandardMaterial({ color: '#f97316', roughness: 0.55 });
-      const fallKaleMat = new THREE.MeshStandardMaterial({ color: '#6b21a8', roughness: 0.8 });
-      const cageWireMat = new THREE.MeshStandardMaterial({ color: '#64748b', metalness: 0.7, roughness: 0.35 });
+      const springLettuceOuterMat = new THREE.MeshStandardMaterial({ color: '#22c55e', roughness: 0.65, side: THREE.DoubleSide });
+      const springLettuceHeartMat = new THREE.MeshStandardMaterial({ color: '#86efac', roughness: 0.58, side: THREE.DoubleSide });
+      const summerVineMat = new THREE.MeshStandardMaterial({
+        color: '#15803d',
+        map: foliageLeafTex,
+        bumpMap: foliageLeafBumpTex,
+        bumpScale: 0.04,
+        roughness: 0.75
+      });
+      const ripeTomatoMat = new THREE.MeshStandardMaterial({ color: '#ef4444', roughness: 0.25, metalness: 0.08 });
+      const unripeTomatoMat = new THREE.MeshStandardMaterial({ color: '#f59e0b', roughness: 0.28, metalness: 0.05 });
+      const bellPepperMat = new THREE.MeshStandardMaterial({ color: '#dc2626', roughness: 0.22, metalness: 0.10 });
+      const pumpkinMat = new THREE.MeshStandardMaterial({ color: '#ea580c', roughness: 0.42 });
+      const squashMat = new THREE.MeshStandardMaterial({ color: '#fbbf24', roughness: 0.48 });
+      const fallKaleMat = new THREE.MeshStandardMaterial({
+        color: '#581c87',
+        map: foliageLeafTex,
+        bumpMap: foliageLeafBumpTex,
+        bumpScale: 0.05,
+        roughness: 0.72
+      });
+      const cageWireMat = new THREE.MeshStandardMaterial({ color: '#94a3b8', metalness: 0.78, roughness: 0.28 });
+      const bambooStakeMat = new THREE.MeshStandardMaterial({ color: '#ca8a04', roughness: 0.65 });
       const dripMat = new THREE.MeshStandardMaterial({ color: '#0284c7', roughness: 0.5 });
+
+      // Pre-built Multi-Leaf Butterhead Lettuce Rosette Geometry (10 cupped leaves)
+      const lettuceHeadGeo = (() => {
+        const parts = [];
+        for (let l = 0; l < 10; l++) {
+          const isInner = l >= 6;
+          const ang = (l / (isInner ? 4 : 6)) * Math.PI * 2 + (isInner ? 0.5 : 0);
+          const r = isInner ? 0.11 : 0.21;
+          const leaf = new THREE.SphereGeometry(isInner ? 0.17 : 0.23, 8, 6);
+          leaf.scale(1.15, 0.35, 0.95);
+          leaf.rotateZ(isInner ? 0.45 : 0.22);
+          leaf.rotateY(ang);
+          leaf.translate(Math.cos(ang) * r, isInner ? 0.16 : 0.10, Math.sin(ang) * r);
+          parts.push(leaf);
+        }
+        const posList = [], normList = [];
+        parts.forEach(g => {
+          const ni = g.index ? g.toNonIndexed() : g;
+          const p = ni.attributes.position.array, n = ni.attributes.normal.array;
+          for (let i = 0; i < p.length; i++) posList.push(p[i]);
+          for (let i = 0; i < n.length; i++) normList.push(n[i]);
+        });
+        const bg = new THREE.BufferGeometry();
+        bg.setAttribute('position', new THREE.Float32BufferAttribute(posList, 3));
+        bg.setAttribute('normal', new THREE.Float32BufferAttribute(normList, 3));
+        return bg;
+      })();
+
+      // Pre-built Ribbed Harvest Pumpkin Geometry (8 radial gourd lobes)
+      const ribbedPumpkinGeo = (() => {
+        const parts = [];
+        for (let r = 0; r < 8; r++) {
+          const ang = (r / 8) * Math.PI * 2;
+          const lobe = new THREE.SphereGeometry(0.32, 10, 8);
+          lobe.scale(0.68, 0.86, 1.08);
+          lobe.rotateY(ang);
+          lobe.translate(Math.cos(ang) * 0.14, 0.26, Math.sin(ang) * 0.14);
+          parts.push(lobe);
+        }
+        const posList = [], normList = [];
+        parts.forEach(g => {
+          const ni = g.index ? g.toNonIndexed() : g;
+          const p = ni.attributes.position.array, n = ni.attributes.normal.array;
+          for (let i = 0; i < p.length; i++) posList.push(p[i]);
+          for (let i = 0; i < n.length; i++) normList.push(n[i]);
+        });
+        const bg = new THREE.BufferGeometry();
+        bg.setAttribute('position', new THREE.Float32BufferAttribute(posList, 3));
+        bg.setAttribute('normal', new THREE.Float32BufferAttribute(normList, 3));
+        return bg;
+      })();
 
       addBox(gDrip, 4.8, 0.65, 27.0, 0.78, 0.09, 0.16, dripMat, false, false);
 
       [5.0, 9.75, 14.5, 19.25, 24.0].forEach((bx, idx) => {
         const wx1 = bx, wx2 = bx + 3.0, wy1 = 1.0, wy2 = 7.0, boxH = 1.85;
-        // Cedar Side & End Planks + Corner 4x4 Posts + Cap Trim Ledge
-        addBox(gPlanters, wx1, wy1, wx2, wy1 + 0.18, 0.08, boxH, MAT.cedarPlanter, true, true);
-        addBox(gPlanters, wx1, wy2 - 0.18, wx2, wy2, 0.08, boxH, MAT.cedarPlanter, true, true);
-        addBox(gPlanters, wx1, wy1, wx1 + 0.18, wy2, 0.08, boxH, MAT.cedarPlanter, true, true);
-        addBox(gPlanters, wx2 - 0.18, wy1, wx2, wy2, 0.08, boxH, MAT.cedarPlanter, true, true);
+        // Cedar Side & End Planks (with horizontal board seam grooves) + Corner 4x4 Posts + Cap Trim Ledge
+        [0.08, 0.66, 1.24].forEach(plankY => {
+          const hTop = Math.min(boxH, plankY + 0.56);
+          addBox(gPlanters, wx1, wy1, wx2, wy1 + 0.18, plankY, hTop, MAT.cedarPlanter, true, true);
+          addBox(gPlanters, wx1, wy2 - 0.18, wx2, wy2, plankY, hTop, MAT.cedarPlanter, true, true);
+          addBox(gPlanters, wx1, wy1, wx1 + 0.18, wy2, plankY, hTop, MAT.cedarPlanter, true, true);
+          addBox(gPlanters, wx2 - 0.18, wy1, wx2, wy2, plankY, hTop, MAT.cedarPlanter, true, true);
+        });
         // Cedar Top Cap Trim Ledge
         addBox(gPlanters, wx1 - 0.08, wy1 - 0.08, wx2 + 0.08, wy1 + 0.22, boxH, boxH + 0.1, MAT.cedarPlanter, true, true);
         addBox(gPlanters, wx1 - 0.08, wy2 - 0.22, wx2 + 0.08, wy2 + 0.08, boxH, boxH + 0.1, MAT.cedarPlanter, true, true);
         addBox(gPlanters, wx1 - 0.08, wy1, wx1 + 0.22, wy2, boxH, boxH + 0.1, MAT.cedarPlanter, true, true);
         addBox(gPlanters, wx2 - 0.22, wy1, wx2 + 0.08, wy2, boxH, boxH + 0.1, MAT.cedarPlanter, true, true);
-        // Black Metal Corner Brackets
+        // Black Powder-Coated Corner Brackets
         [[wx1, wy1], [wx2, wy1], [wx1, wy2], [wx2, wy2]].forEach(([cx, cz]) => {
-          addBox(gPlanters, cx - 0.12, cz - 0.12, cx + 0.12, cz + 0.12, boxH - 0.4, boxH + 0.02, MAT.simpsonHardware, false, false);
+          addBox(gPlanters, cx - 0.12, cz - 0.12, cx + 0.12, cz + 0.12, boxH - 0.45, boxH + 0.02, MAT.simpsonHardware, false, false);
+          addBox(gPlanters, cx - 0.12, cz - 0.12, cx + 0.12, cz + 0.12, 0.25, 0.65, MAT.simpsonHardware, false, false);
         });
 
         // Rich Organic Raised-Bed Soil
         addBox(gPlanters, wx1 + 0.18, wy1 + 0.18, wx2 - 0.18, wy2 - 0.18, 0.08, boxH - 0.10, MAT.soilDark, false, true);
 
-        // Wire Tomato Cages / Trellis Frames on Beds N1, N3, N5
+        // 3-Ring Galvanized Wire Tomato Cages with 3 Vertical Support Legs on Beds N1, N3, N5
         if (idx % 2 === 0) {
           [wy1 + 1.6, wy1 + 4.4].forEach(cy => {
-            const ring1 = new THREE.Mesh(new THREE.TorusGeometry(0.48, 0.025, 6, 16), cageWireMat);
-            ring1.rotation.x = Math.PI / 2;
-            ring1.position.set(wx1 + 1.5, boxH + 1.2, cy);
-            gPlanters.add(ring1);
-            const ring2 = new THREE.Mesh(new THREE.TorusGeometry(0.58, 0.025, 6, 16), cageWireMat);
-            ring2.rotation.x = Math.PI / 2;
-            ring2.position.set(wx1 + 1.5, boxH + 2.3, cy);
-            gPlanters.add(ring2);
+            const cx = wx1 + 1.5;
+            [[0.38, 0.75], [0.48, 1.55], [0.58, 2.35]].forEach(([rCage, hCage]) => {
+              const ring = new THREE.Mesh(new THREE.TorusGeometry(rCage, 0.022, 6, 18), cageWireMat);
+              ring.rotation.x = Math.PI / 2;
+              ring.position.set(cx, boxH + hCage, cy);
+              gPlanters.add(ring);
+            });
+            for (let v = 0; v < 3; v++) {
+              const vAng = (v / 3) * Math.PI * 2;
+              const leg = new THREE.Mesh(new THREE.CylinderGeometry(0.018, 0.018, 2.55, 6), cageWireMat);
+              leg.position.set(cx + Math.cos(vAng) * 0.46, boxH + 1.22, cy + Math.sin(vAng) * 0.46);
+              leg.rotation.z = -Math.cos(vAng) * 0.08;
+              leg.rotation.x = Math.sin(vAng) * 0.08;
+              gPlanters.add(leg);
+            }
+          });
+        } else {
+          // A-Frame Bamboo Pea/Bean Trellis Stakes on Beds N2 & N4
+          [wy1 + 1.5, wy1 + 3.0, wy1 + 4.5].forEach(cy => {
+            [-0.55, 0.55].forEach(xOff => {
+              const pole = new THREE.Mesh(new THREE.CylinderGeometry(0.028, 0.035, 2.75, 6), bambooStakeMat);
+              pole.position.set(wx1 + 1.5 + xOff * 0.5, boxH + 1.25, cy);
+              pole.rotation.z = xOff > 0 ? 0.22 : -0.22;
+              gPlanters.add(pole);
+            });
           });
         }
 
-        // SPRING CROPS: Fresh Lettuce Rosettes, Spinach Rows & Pea Shoots
+        // SPRING CROPS: Multi-Leaf Butterhead Lettuce Rosettes, Crisp Romaine Hearts & Climbing Pea Tendrils
         const springGrp = new THREE.Group();
-        for (let vy = wy1 + 0.9; vy <= wy2 - 0.8; vy += 1.15) {
-          for (let vx = wx1 + 0.85; vx <= wx2 - 0.8; vx += 1.3) {
-            const rosette = new THREE.Mesh(new THREE.DodecahedronGeometry(0.38, 1), springLeafMat);
-            rosette.position.set(vx, boxH + 0.12, vy);
-            rosette.scale.set(1.15, 0.65, 1.15);
+        for (let vy = wy1 + 0.85; vy <= wy2 - 0.80; vy += 1.08) {
+          for (let vx = wx1 + 0.82; vx <= wx2 - 0.78; vx += 1.32) {
+            const rosette = new THREE.Mesh(
+              lettuceHeadGeo,
+              ((Math.round(vx + vy) % 2 === 0) ? springLettuceOuterMat : springLettuceHeartMat)
+            );
+            rosette.position.set(vx, boxH - 0.06, vy);
+            rosette.rotation.y = (vx * 2.1 + vy * 1.3);
             rosette.castShadow = true;
             springGrp.add(rosette);
           }
@@ -3181,22 +3598,47 @@
         gPlanters.add(springGrp);
         SEASON_GROUPS.cropsSpring.push(springGrp);
 
-        // SUMMER CROPS: Tall Leafy Tomato Vines with Bright Red Ripe Tomatoes & Peppers
+        // SUMMER CROPS: Multi-Tiered Leafy Tomato Bushes with Glossy Red/Amber Fruit Clusters & Bell Peppers
         const summerGrp = new THREE.Group();
         for (let vy = wy1 + 1.0; vy <= wy2 - 0.9; vy += 1.35) {
           for (let vx = wx1 + 0.85; vx <= wx2 - 0.8; vx += 1.3) {
-            const bushH = idx % 2 === 0 ? 1.85 : 1.05;
-            const vine = new THREE.Mesh(new THREE.DodecahedronGeometry(0.56, 1), summerVineMat);
-            vine.position.set(vx, boxH + bushH * 0.5, vy);
-            vine.scale.set(1.0, bushH, 1.0);
-            vine.castShadow = true;
-            summerGrp.add(vine);
-            // Bright red ripe tomatoes
-            if (idx % 2 === 0) {
-              [[-0.35, 0.4, 0.25], [0.32, 0.9, -0.22], [0.15, 1.3, 0.35]].forEach(([tx, ty, tz]) => {
-                const tom = new THREE.Mesh(new THREE.SphereGeometry(0.13, 8, 8), ripeTomatoMat);
+            const isTomatoBed = idx % 2 === 0;
+            const bushH = isTomatoBed ? 2.15 : 1.15;
+            // Multi-lobed leafy bush canopy instead of a single block
+            for (let bLobe = 0; bLobe < 4; bLobe++) {
+              const lFrac = bLobe / 3;
+              const lobeRad = (0.48 - lFrac * 0.14);
+              const lobe = new THREE.Mesh(new THREE.SphereGeometry(lobeRad, 10, 8), summerVineMat);
+              const lAng = bLobe * 2.2 + vy;
+              lobe.position.set(
+                vx + Math.cos(lAng) * 0.12,
+                boxH + 0.32 + lFrac * (bushH - 0.45),
+                vy + Math.sin(lAng) * 0.12
+              );
+              lobe.scale.set(1.12, 0.88, 1.12);
+              lobe.castShadow = true;
+              summerGrp.add(lobe);
+            }
+            if (isTomatoBed) {
+              // Ripe red & golden-orange heirloom tomatoes hanging on the vine
+              [
+                [-0.34, 0.48, 0.22, ripeTomatoMat],
+                [0.32, 0.88, -0.24, ripeTomatoMat],
+                [-0.22, 1.28, -0.28, unripeTomatoMat],
+                [0.24, 1.56, 0.26, ripeTomatoMat],
+                [0.08, 1.85, -0.18, ripeTomatoMat]
+              ].forEach(([tx, ty, tz, tMat]) => {
+                const tom = new THREE.Mesh(new THREE.SphereGeometry(0.115, 10, 10), tMat);
+                tom.scale.set(1.08, 0.90, 1.08);
                 tom.position.set(vx + tx, boxH + ty, vy + tz);
                 summerGrp.add(tom);
+              });
+            } else {
+              // Glossy sweet bell peppers on Beds N2 & N4
+              [[-0.22, 0.42, 0.18], [0.24, 0.62, -0.16]].forEach(([px, py, pz]) => {
+                const pep = new THREE.Mesh(new THREE.CylinderGeometry(0.085, 0.065, 0.20, 8), bellPepperMat);
+                pep.position.set(vx + px, boxH + py, vy + pz);
+                summerGrp.add(pep);
               });
             }
           }
@@ -3205,17 +3647,34 @@
         gPlanters.add(summerGrp);
         SEASON_GROUPS.cropsSummer.push(summerGrp);
 
-        // FALL CROPS: Harvest Orange Pumpkins, Squash & Purple Kale
+        // FALL CROPS: Ribbed Harvest Pumpkins with Woody Peduncle Stems, Golden Squash & Ruffled Tuscan Kale
         const fallGrp = new THREE.Group();
         for (let vy = wy1 + 1.1; vy <= wy2 - 1.0; vy += 1.5) {
-          const pump = new THREE.Mesh(new THREE.SphereGeometry(0.45, 12, 8), pumpkinMat);
-          pump.position.set(wx1 + 1.15, boxH + 0.24, vy);
-          pump.scale.set(1.15, 0.78, 1.15);
+          const px = wx1 + 1.10;
+          const pump = new THREE.Mesh(ribbedPumpkinGeo, pumpkinMat);
+          pump.position.set(px, boxH - 0.04, vy);
+          pump.rotation.y = vy * 0.9;
           pump.castShadow = true;
           fallGrp.add(pump);
 
-          const kale = new THREE.Mesh(new THREE.DodecahedronGeometry(0.46, 1), fallKaleMat);
-          kale.position.set(wx1 + 2.05, boxH + 0.25, vy);
+          // Curved woody pumpkin stem
+          const pStem = new THREE.Mesh(new THREE.CylinderGeometry(0.028, 0.052, 0.22, 8), MAT.woodBark);
+          pStem.position.set(px + 0.02, boxH + 0.50, vy);
+          pStem.rotation.z = 0.28;
+          fallGrp.add(pStem);
+
+          // Companion golden winter squash
+          const squash = new THREE.Mesh(new THREE.SphereGeometry(0.22, 10, 8), squashMat);
+          squash.scale.set(0.85, 1.35, 0.85);
+          squash.rotation.z = 1.25;
+          squash.position.set(px - 0.35, boxH + 0.12, vy + 0.42);
+          squash.castShadow = true;
+          fallGrp.add(squash);
+
+          // Multi-leaf ruffled purple kale rosette
+          const kale = new THREE.Mesh(lettuceHeadGeo, fallKaleMat);
+          kale.position.set(wx1 + 2.08, boxH - 0.02, vy);
+          kale.scale.set(1.25, 1.55, 1.25);
           kale.castShadow = true;
           fallGrp.add(kale);
         }
@@ -3410,7 +3869,7 @@
       });
     }
 
-    // --- L. PHASE 3 (2028): HANGING FRONT PORCH SWING ('porchSwing') & 2700K LIGHTING ('lighting') ---
+    // --- L. PHASE 3 (2028): HANGING FRONT PORCH SWING ('porchSwing') & 12V 2700K LANDSCAPE UPLIGHTS ('lighting') ---
     const nightLightObjects = [];
     let porchSwingPivot = null;
     {
@@ -3459,7 +3918,9 @@
       });
       gSwing.add(porchSwingPivot);
 
-      // 2. 12V 2700K Landscape Uplights & Patio Bistro String Lights ('lighting')
+      // 2. 12V 2700K Cast-Brass Landscape & Tree Uplights ('lighting' — Phase 3)
+      //    (Note: Patio bistro string lights are installed with the Option #1C Awning in `LAYER_GROUPS.patioAwning`,
+      //     and house garage sconces & porch lights are permanently attached to `LAYER_GROUPS.house`!)
       const gLight = LAYER_GROUPS.lighting;
       const coneGlowMat = new THREE.MeshBasicMaterial({
         color: '#fde047',
@@ -3468,46 +3929,36 @@
         side: THREE.DoubleSide,
         depthWrite: false
       });
+      const brassFixtureMat = new THREE.MeshStandardMaterial({ color: '#78350f', roughness: 0.35, metalness: 0.78 });
 
       const uplightCoords = [
         [2.4, 5.0], [2.4, 10.0], [2.4, 15.0], [2.4, 20.0], [2.4, 25.0],
         [2.4, 30.0], [2.4, 35.0], [2.4, 40.0], [2.4, 45.0],
         [7.5, 7.8], [15.5, 7.8], [23.5, 7.8],
-        [18.0, 20.5], [18.0, 40.5],
-        [SE_MAPLE_WX, SE_MAPLE_WY], [66.6, 36.8], [66.6, 40.2]
+        [SE_MAPLE_WX - 1.2, SE_MAPLE_WY - 0.8], [SE_MAPLE_WX + 1.2, SE_MAPLE_WY + 0.8],
+        [66.6, 35.2], [66.6, 39.4]
       ];
       uplightCoords.forEach(([lx, ly]) => {
-        const fixture = new THREE.Mesh(new THREE.CylinderGeometry(0.14, 0.18, 0.28, 8), MAT.simpsonHardware);
-        fixture.position.set(lx, 0.16, ly);
-        gLight.add(fixture);
+        const stake = new THREE.Mesh(new THREE.CylinderGeometry(0.04, 0.04, 0.16, 8), MAT.simpsonHardware);
+        stake.position.set(lx, 0.12, ly);
+        gLight.add(stake);
 
-        const glowCone = new THREE.Mesh(new THREE.ConeGeometry(1.6, 5.0, 12, 1, true), coneGlowMat);
-        glowCone.position.set(lx, 2.6, ly);
+        const body = new THREE.Mesh(new THREE.CylinderGeometry(0.15, 0.12, 0.32, 12), brassFixtureMat);
+        body.position.set(lx, 0.28, ly);
+        body.rotation.z = 0.18;
+        gLight.add(body);
+
+        const lens = new THREE.Mesh(new THREE.CircleGeometry(0.13, 12), MAT.archBulb);
+        lens.rotation.x = -Math.PI / 2;
+        lens.position.set(lx, 0.445, ly);
+        gLight.add(lens);
+
+        const glowCone = new THREE.Mesh(new THREE.ConeGeometry(1.65, 5.2, 14, 1, true), coneGlowMat);
+        glowCone.position.set(lx, 2.75, ly);
         glowCone.rotation.x = Math.PI;
         gLight.add(glowCone);
         nightLightObjects.push(glowCone);
       });
-
-      // Overhead 2700K Patio Bistro String Lights suspended beneath Option #1C Solid Roof
-      const bistroRows = [22.0, 27.5, 33.0, 38.5];
-      bistroRows.forEach(wy => {
-        for (let wx = 19.2; wx <= 28.8; wx += 1.9) {
-          const sag = Math.sin(((wx - 18.0) / 12.0) * Math.PI) * 0.35;
-          const bulb = new THREE.Mesh(new THREE.SphereGeometry(0.13, 8, 8), MAT.bistroBulb);
-          bulb.position.set(wx, 8.85 - sag, wy);
-          gLight.add(bulb);
-        }
-      });
-
-      const patioNightLight1 = new THREE.PointLight('#fde047', 2.4, 28, 1.3);
-      patioNightLight1.position.set(23.75, 8.15, 25.5);
-      gLight.add(patioNightLight1);
-      nightLightObjects.push(patioNightLight1);
-
-      const patioNightLight2 = new THREE.PointLight('#fde047', 2.4, 28, 1.3);
-      patioNightLight2.position.set(23.75, 8.15, 35.5);
-      gLight.add(patioNightLight2);
-      nightLightObjects.push(patioNightLight2);
 
       const westWallNightLight1 = new THREE.PointLight('#fde047', 1.8, 32, 1.3);
       westWallNightLight1.position.set(4.0, 5.5, 15.0);
@@ -3519,13 +3970,8 @@
       gLight.add(westWallNightLight2);
       nightLightObjects.push(westWallNightLight2);
 
-      const frontNightLight = new THREE.PointLight('#fbbf24', 1.9, 30, 1.3);
-      frontNightLight.position.set(66.5, 5.5, 36.8);
-      gLight.add(frontNightLight);
-      nightLightObjects.push(frontNightLight);
-
-      const mapleNightLight = new THREE.PointLight('#fbbf24', 1.8, 25, 1.3);
-      mapleNightLight.position.set(SE_MAPLE_WX, 4.5, SE_MAPLE_WY);
+      const mapleNightLight = new THREE.PointLight('#fbbf24', 2.2, 28, 1.3);
+      mapleNightLight.position.set(SE_MAPLE_WX, 4.8, SE_MAPLE_WY);
       gLight.add(mapleNightLight);
       nightLightObjects.push(mapleNightLight);
     }
@@ -3688,9 +4134,10 @@
 
       if (mode === 'DAY') {
         const btn = document.getElementById('light-day');
-        btn.classList.add('bg-sky-600', 'text-white', 'shadow');
+        if (btn) btn.classList.add('bg-sky-600', 'text-white', 'shadow');
         scene.background.set(isWinter ? '#bae6fd' : '#7dd3fc');
         scene.fog.color.set(isWinter ? '#e0f2fe' : '#bae6fd');
+        scene.environmentIntensity = 0.85;
         hemiLight.color.set('#ffffff');
         hemiLight.groundColor.set(isWinter ? '#94a3b8' : '#334155');
         hemiLight.intensity = isWinter ? 1.05 : 0.88;
@@ -3698,46 +4145,87 @@
         sunLight.intensity = 1.95;
         sunLight.position.set(-48, 62, 42);
         MAT.windowGlass.emissiveIntensity = 0.05;
-        MAT.bistroBulb.emissiveIntensity = 0.6;
+        MAT.archBulb.emissiveIntensity = 0.06;
+        MAT.lanternGlass.emissiveIntensity = 0.0;
+        MAT.bistroBulb.emissiveIntensity = 0.12;
         firePointLight.intensity = isWinter ? 2.4 : 1.2;
+
+        // Turn off architectural garage sconces & porch lights during bright daytime
+        houseLightObjects.forEach(item => {
+          if (item.type === 'point') item.light.intensity = 0.0;
+          else if (item.type === 'cone') item.mesh.material.opacity = 0.0;
+        });
+        // Turn off awning ceiling fan LED domes & perimeter bistro lights during daytime
+        awningLightObjects.forEach(item => {
+          if (item.type === 'point') item.light.intensity = 0.0;
+        });
+        // Turn off Phase 3 12V landscape uplights during daytime
         nightLightObjects.forEach(obj => {
-          if (obj.isLight) obj.intensity = 0.25;
-          else obj.material.opacity = 0.04;
+          if (obj.isLight) obj.intensity = 0.0;
+          else obj.material.opacity = 0.0;
         });
       } else if (mode === 'SUNSET') {
         const btn = document.getElementById('light-sunset');
-        btn.classList.add('bg-amber-600', 'text-white', 'shadow');
+        if (btn) btn.classList.add('bg-amber-600', 'text-white', 'shadow');
         scene.background.set('#fb923c');
         scene.fog.color.set('#fed7aa');
+        scene.environmentIntensity = 0.55;
         hemiLight.color.set('#fed7aa');
         hemiLight.groundColor.set('#1e1b4b');
         hemiLight.intensity = 0.62;
         sunLight.color.set('#f97316');
-        sunLight.intensity = 1.65;
+        sunLight.intensity = 1.60;
         sunLight.position.set(-75, 24, 38);
-        MAT.windowGlass.emissiveIntensity = 0.65;
-        MAT.bistroBulb.emissiveIntensity = 2.0;
+        MAT.windowGlass.emissiveIntensity = 0.72;
+        MAT.archBulb.emissiveIntensity = 2.85;
+        MAT.lanternGlass.emissiveIntensity = 0.60;
+        MAT.bistroBulb.emissiveIntensity = 2.45;
         firePointLight.intensity = 2.8;
+
+        // Turn ON Garage Coach Sconces, Front Porch Sconce & Recessed Downlights, Rear Patio Sconce & Streetlamp at Sunset!
+        houseLightObjects.forEach(item => {
+          if (item.type === 'point') item.light.intensity = item.sunsetInt;
+          else if (item.type === 'cone') item.mesh.material.opacity = item.sunsetOp;
+        });
+        // Turn ON Awning Perimeter Bistro Lights & Ceiling Fan LED Domes at Sunset!
+        awningLightObjects.forEach(item => {
+          if (item.type === 'point') item.light.intensity = item.sunsetInt;
+        });
+        // Turn ON Phase 3 12V Landscape Uplights at Sunset!
         nightLightObjects.forEach(obj => {
-          if (obj.isLight) obj.intensity = 1.6;
+          if (obj.isLight) obj.intensity = 1.65;
           else obj.material.opacity = 0.18;
         });
       } else if (mode === 'NIGHT') {
         const btn = document.getElementById('light-night');
-        btn.classList.add('bg-indigo-600', 'text-white', 'shadow');
+        if (btn) btn.classList.add('bg-indigo-600', 'text-white', 'shadow');
         scene.background.set('#090d1a');
         scene.fog.color.set('#090d1a');
+        scene.environmentIntensity = 0.25;
         hemiLight.color.set('#38bdf8');
         hemiLight.groundColor.set('#090d16');
         hemiLight.intensity = 0.28;
         sunLight.color.set('#64748b');
         sunLight.intensity = 0.22;
         sunLight.position.set(-35, 65, 20);
-        MAT.windowGlass.emissiveIntensity = 1.35;
-        MAT.bistroBulb.emissiveIntensity = 3.2;
+        MAT.windowGlass.emissiveIntensity = 1.38;
+        MAT.archBulb.emissiveIntensity = 4.40;
+        MAT.lanternGlass.emissiveIntensity = 1.15;
+        MAT.bistroBulb.emissiveIntensity = 3.80;
         firePointLight.intensity = 3.8;
+
+        // Full Architectural Illumination on Garage Sconces, Front Porch Lights, Rear Patio Sconce & Streetlamp at Night!
+        houseLightObjects.forEach(item => {
+          if (item.type === 'point') item.light.intensity = item.nightInt;
+          else if (item.type === 'cone') item.mesh.material.opacity = item.nightOp;
+        });
+        // Full Illumination on Awning Perimeter Scalloped Bistro Lights & Ceiling Fan LED Domes at Night!
+        awningLightObjects.forEach(item => {
+          if (item.type === 'point') item.light.intensity = item.nightInt;
+        });
+        // Full Illumination on Phase 3 12V Landscape Uplights at Night!
         nightLightObjects.forEach(obj => {
-          if (obj.isLight) obj.intensity = 2.6;
+          if (obj.isLight) obj.intensity = 2.65;
           else obj.material.opacity = 0.28;
         });
       }
@@ -4030,26 +4518,70 @@
     };
 
     /*************************************************************************
-     * 10. FIRST-PERSON EYE-LEVEL WALK MODE (WASD / ARROWS / CLICK GROUND)
+     * 10. FIRST-PERSON EYE-LEVEL WALK MODE (STREET VIEW DRAG / WASD / GROUND RING)
      *************************************************************************/
     const walkKeys = { w: false, a: false, s: false, d: false, up: false, down: false, left: false, right: false };
     let walkYaw = 0;
     let walkPitch = 0;
     let isPointerDown = false;
+    let isDraggingWalk = false;
+    let pointerDownX = 0;
+    let pointerDownY = 0;
     let lastPointerX = 0;
     let lastPointerY = 0;
+    let dragPathDist = 0;
+    let walkHoverValid = false;
+    const walkHoverTarget = new THREE.Vector3();
+    let walkGlideAnim = null;
+
+    // Google Street View Ground Target Reticle (Shown only when hovering on unobstructed walkable ground in Walk Mode)
+    const walkReticle = new THREE.Group();
+    walkReticle.visible = false;
+    {
+      const outerRing = new THREE.Mesh(
+        new THREE.RingGeometry(0.88, 1.18, 36),
+        new THREE.MeshBasicMaterial({ color: '#ffffff', side: THREE.DoubleSide, transparent: true, opacity: 0.92, depthWrite: false })
+      );
+      outerRing.rotation.x = -Math.PI / 2;
+      outerRing.renderOrder = 6;
+      walkReticle.add(outerRing);
+
+      const innerDisc = new THREE.Mesh(
+        new THREE.CircleGeometry(0.72, 32),
+        new THREE.MeshBasicMaterial({ color: '#10b981', side: THREE.DoubleSide, transparent: true, opacity: 0.35, depthWrite: false })
+      );
+      innerDisc.rotation.x = -Math.PI / 2;
+      innerDisc.position.y = -0.003;
+      innerDisc.renderOrder = 5;
+      walkReticle.add(innerDisc);
+
+      const centerDot = new THREE.Mesh(
+        new THREE.CircleGeometry(0.16, 20),
+        new THREE.MeshBasicMaterial({ color: '#ffffff', side: THREE.DoubleSide, transparent: true, opacity: 0.95, depthWrite: false })
+      );
+      centerDot.rotation.x = -Math.PI / 2;
+      centerDot.position.y = 0.003;
+      centerDot.renderOrder = 7;
+      walkReticle.add(centerDot);
+      scene.add(walkReticle);
+    }
 
     window.setNavMode = function(mode) {
       STATE.navMode = mode;
       const orbitBtn = document.getElementById('nav-orbit');
       const walkBtn = document.getElementById('nav-walk');
       const hud = document.getElementById('walk-mode-hud');
+      walkGlideAnim = null;
+      isPointerDown = false;
+      isDraggingWalk = false;
+      dragPathDist = 0;
 
       if (mode === 'WALK') {
         orbitBtn.className = 'px-2.5 py-1 rounded-lg text-xs font-bold transition-all text-slate-200 hover:text-white';
         walkBtn.className = 'px-2.5 py-1 rounded-lg text-xs font-bold transition-all bg-emerald-600 text-white shadow flex items-center gap-1';
         hud.classList.remove('hidden');
         controls.enabled = false;
+        renderer.domElement.style.cursor = 'grab';
 
         if (camera.position.y > 14 || camera.position.x < -2 || camera.position.x > 115) {
           camera.position.set(12.5, 5.7, 32.0);
@@ -4067,6 +4599,9 @@
         orbitBtn.className = 'px-2.5 py-1 rounded-lg text-xs font-bold transition-all bg-emerald-600 text-white shadow';
         walkBtn.className = 'px-2.5 py-1 rounded-lg text-xs font-bold transition-all text-slate-200 hover:text-white flex items-center gap-1';
         hud.classList.add('hidden');
+        walkReticle.visible = false;
+        walkHoverValid = false;
+        renderer.domElement.style.cursor = '';
         controls.enabled = true;
         const dir = new THREE.Vector3();
         camera.getWorldDirection(dir);
@@ -4094,6 +4629,9 @@
       if (e.key === 'ArrowDown') walkKeys.down = true;
       if (e.key === 'ArrowLeft') walkKeys.left = true;
       if (e.key === 'ArrowRight') walkKeys.right = true;
+      if (STATE.navMode === 'WALK' && ['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'].includes(e.key)) {
+        e.preventDefault();
+      }
     });
     window.addEventListener('keyup', (e) => {
       const k = e.key.toLowerCase();
@@ -4111,47 +4649,159 @@
     const mouseNDC = new THREE.Vector2();
     const groundPlane = new THREE.Plane(new THREE.Vector3(0, 1, 0), 0);
     const intersectPt = new THREE.Vector3();
+    const tempWorldNormal = new THREE.Vector3();
+
+    function isInsideBuildingFootprint(wx, wy) {
+      // Main 2-story house core (wx: 30.0..59.7, wy: 9.0..41.0) & attached garage (wx: 59.7..73.2, wy: 9.0..29.0)
+      if (wx >= 29.4 && wx <= 60.1 && wy >= 8.5 && wy <= 41.5) return true;
+      if (wx >= 59.5 && wx <= 73.8 && wy >= 8.5 && wy <= 29.5) return true;
+      // South neighbor house footprint
+      if (wx >= 32.5 && wx <= 72.5 && wy >= 58.5 && wy <= 86.5) return true;
+      return false;
+    }
+
+    function updateWalkGroundReticle(clientX, clientY) {
+      if (STATE.navMode !== 'WALK' || isPointerDown) {
+        walkHoverValid = false;
+        walkReticle.visible = false;
+        return;
+      }
+      const rect = renderer.domElement.getBoundingClientRect();
+      mouseNDC.x = ((clientX - rect.left) / rect.width) * 2 - 1;
+      mouseNDC.y = -((clientY - rect.top) / rect.height) * 2 + 1;
+      raycaster.setFromCamera(mouseNDC, camera);
+
+      // Must point downward below the horizon
+      if (raycaster.ray.direction.y > -0.04) {
+        walkHoverValid = false;
+        walkReticle.visible = false;
+        renderer.domElement.style.cursor = 'grab';
+        return;
+      }
+
+      const raycastRoots = [
+        ...Object.keys(LAYER_GROUPS)
+          .filter(k => k !== 'irrigation' && k !== 'lighting')
+          .map(k => LAYER_GROUPS[k]),
+        flatDirtGardenGroup
+      ];
+      const hits = raycaster.intersectObjects(raycastRoots, true);
+      const firstHit = hits.find(h => {
+        const mat = h.object.material;
+        if (!mat) return false;
+        if (mat.depthWrite === false) return false;
+        if (mat.transparent && mat.opacity < 0.15) return false;
+        return true;
+      });
+
+      if (firstHit && firstHit.distance >= 1.2 && firstHit.distance <= 85.0 && firstHit.point.y >= -0.15 && firstHit.point.y <= 0.60 && firstHit.face) {
+        tempWorldNormal.copy(firstHit.face.normal).transformDirection(firstHit.object.matrixWorld);
+        const wx = firstHit.point.x;
+        const wy = firstHit.point.z;
+        if (
+          Math.abs(tempWorldNormal.y) > 0.78 &&
+          wx >= 0.8 && wx <= 115.0 &&
+          wy >= -6.0 && wy <= 56.0 &&
+          !isInsideBuildingFootprint(wx, wy)
+        ) {
+          walkHoverValid = true;
+          walkHoverTarget.copy(firstHit.point);
+          walkReticle.position.set(wx, firstHit.point.y + 0.03, wy);
+          walkReticle.visible = true;
+          renderer.domElement.style.cursor = 'pointer';
+          return;
+        }
+      }
+
+      walkHoverValid = false;
+      walkReticle.visible = false;
+      renderer.domElement.style.cursor = 'grab';
+    }
 
     renderer.domElement.addEventListener('pointerdown', (e) => {
+      if (e.button !== 0) return;
       isPointerDown = true;
+      isDraggingWalk = false;
+      pointerDownX = e.clientX;
+      pointerDownY = e.clientY;
       lastPointerX = e.clientX;
       lastPointerY = e.clientY;
+      dragPathDist = 0;
+      if (STATE.navMode === 'WALK') {
+        updateWalkGroundReticle(e.clientX, e.clientY);
+      }
     });
-    window.addEventListener('pointerup', (e) => {
-      if (STATE.navMode === 'WALK' && isPointerDown && Math.hypot(e.clientX - lastPointerX, e.clientY - lastPointerY) < 5) {
-        const rect = renderer.domElement.getBoundingClientRect();
+
+    window.addEventListener('pointermove', (e) => {
+      const rect = renderer.domElement.getBoundingClientRect();
+      if (e.clientX >= rect.left && e.clientX <= rect.right && e.clientY >= rect.top && e.clientY <= rect.bottom) {
         mouseNDC.x = ((e.clientX - rect.left) / rect.width) * 2 - 1;
         mouseNDC.y = -((e.clientY - rect.top) / rect.height) * 2 + 1;
         raycaster.setFromCamera(mouseNDC, camera);
         if (raycaster.ray.intersectPlane(groundPlane, intersectPt)) {
-          if (intersectPt.x >= 0.5 && intersectPt.x <= 112 && intersectPt.z >= -5 && intersectPt.z <= 55) {
-            camera.position.set(intersectPt.x, 5.7, intersectPt.z);
-            updateWalkCameraLook();
-          }
+          const rx = Math.max(0, Math.min(108.7, intersectPt.x));
+          const ry = Math.max(0, Math.min(50.0, intersectPt.z));
+          const readout = document.getElementById('cursor-coords-readout');
+          if (readout) readout.textContent = `wx: ${rx.toFixed(1)}' · wy: ${ry.toFixed(1)}'`;
         }
       }
-      isPointerDown = false;
-    });
-    renderer.domElement.addEventListener('pointermove', (e) => {
-      const rect = renderer.domElement.getBoundingClientRect();
-      mouseNDC.x = ((e.clientX - rect.left) / rect.width) * 2 - 1;
-      mouseNDC.y = -((e.clientY - rect.top) / rect.height) * 2 + 1;
-      raycaster.setFromCamera(mouseNDC, camera);
-      if (raycaster.ray.intersectPlane(groundPlane, intersectPt)) {
-        const rx = Math.max(0, Math.min(108.7, intersectPt.x));
-        const ry = Math.max(0, Math.min(50.0, intersectPt.z));
-        const readout = document.getElementById('cursor-coords-readout');
-        if (readout) readout.textContent = `wx: ${rx.toFixed(1)}' · wy: ${ry.toFixed(1)}'`;
-      }
 
-      if (STATE.navMode === 'WALK' && isPointerDown) {
+      if (STATE.navMode !== 'WALK') return;
+
+      if (isPointerDown) {
         const dx = e.clientX - lastPointerX;
         const dy = e.clientY - lastPointerY;
         lastPointerX = e.clientX;
         lastPointerY = e.clientY;
-        walkYaw -= dx * 0.0045;
-        walkPitch = Math.max(-0.75, Math.min(0.75, walkPitch - dy * 0.0045));
+        dragPathDist += Math.hypot(dx, dy);
+        const distFromStart = Math.hypot(e.clientX - pointerDownX, e.clientY - pointerDownY);
+
+        if (distFromStart > 3 || dragPathDist > 3) {
+          isDraggingWalk = true;
+          walkGlideAnim = null;
+          walkReticle.visible = false;
+          renderer.domElement.style.cursor = 'grabbing';
+        }
+
+        // Google Street View grab-and-drag panorama turning:
+        // Dragging right (dx > 0) pulls the scene right (camera turns left -> walkYaw increases).
+        // Dragging down (dy > 0) pulls the scene down (camera tilts up -> walkPitch increases).
+        const radPerPx = (THREE.MathUtils.degToRad(camera.fov) / Math.max(320, viewportEl.clientHeight)) * 1.65;
+        walkYaw += dx * radPerPx;
+        walkPitch = Math.max(-0.85, Math.min(0.85, walkPitch + dy * radPerPx));
         updateWalkCameraLook();
+      } else {
+        updateWalkGroundReticle(e.clientX, e.clientY);
+      }
+    });
+
+    window.addEventListener('pointerup', (e) => {
+      if (STATE.navMode === 'WALK' && isPointerDown) {
+        const distFromStart = Math.hypot(e.clientX - pointerDownX, e.clientY - pointerDownY);
+        const wasCleanClick = !isDraggingWalk && dragPathDist <= 3 && distFromStart <= 3 && e.target === renderer.domElement;
+
+        if (wasCleanClick && walkHoverValid) {
+          const targetEyeY = 5.7 + Math.max(0, walkHoverTarget.y - 0.12);
+          walkGlideAnim = {
+            startPos: camera.position.clone(),
+            endPos: new THREE.Vector3(walkHoverTarget.x, targetEyeY, walkHoverTarget.z),
+            startTime: performance.now(),
+            duration: 260
+          };
+        }
+      }
+      isPointerDown = false;
+      isDraggingWalk = false;
+      dragPathDist = 0;
+      if (STATE.navMode === 'WALK') {
+        updateWalkGroundReticle(e.clientX, e.clientY);
+      }
+    });
+
+    renderer.domElement.addEventListener('pointerleave', () => {
+      if (STATE.navMode === 'WALK' && !isPointerDown) {
+        walkHoverValid = false;
+        walkReticle.visible = false;
       }
     });
 
@@ -4379,12 +5029,19 @@
         const forward = (walkKeys.w || walkKeys.up ? 1 : 0) - (walkKeys.s || walkKeys.down ? 1 : 0);
         const strafe = (walkKeys.d || walkKeys.right ? 1 : 0) - (walkKeys.a || walkKeys.left ? 1 : 0);
         if (forward !== 0 || strafe !== 0) {
+          walkGlideAnim = null;
           camera.position.x += (Math.sin(walkYaw) * forward - Math.cos(walkYaw) * strafe) * moveSpeed;
           camera.position.z += (Math.cos(walkYaw) * forward + Math.sin(walkYaw) * strafe) * moveSpeed;
           camera.position.x = Math.max(-10, Math.min(122, camera.position.x));
           camera.position.z = Math.max(-15, Math.min(65, camera.position.z));
           camera.position.y = 5.7;
           updateWalkCameraLook();
+        } else if (walkGlideAnim) {
+          const t = Math.min(1, (now - walkGlideAnim.startTime) / walkGlideAnim.duration);
+          const ease = 1 - Math.pow(1 - t, 3);
+          camera.position.lerpVectors(walkGlideAnim.startPos, walkGlideAnim.endPos, ease);
+          updateWalkCameraLook();
+          if (t >= 1) walkGlideAnim = null;
         }
       }
 
