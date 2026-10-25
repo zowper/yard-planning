@@ -741,16 +741,52 @@
       }
     });
 
-    // 6. North Neighbor Bare Dirt
-    const bareDirtTex = makeCanvasTexture(256, 256, 0.25, 0.25, (ctx, w, h) => {
-      ctx.fillStyle = '#6b5544';
+    // 6. Lot 3152 Baseline & North Neighbor Warm Utah Sandy-Loam Dirt (Matched to PXL_20261022_162150878.MP.jpg & PXL_20261022_162032048.MP.jpg)
+    const bareDirtTex = makeCanvasTexture(512, 512, 0.22, 0.22, (ctx, w, h) => {
+      // Warm dry Utah sandy-tan base
+      ctx.fillStyle = '#b99c7d';
       ctx.fillRect(0, 0, w, h);
-      for (let i = 0; i < 4000; i++) {
+      // Natural graded sand & dry silt patches
+      for (let p = 0; p < 160; p++) {
+        const px = rng() * w, py = rng() * h, pr = 14 + rng() * 34;
+        const g = ctx.createRadialGradient(px, py, 2, px, py, pr);
+        const lightPatch = rng() > 0.48;
+        g.addColorStop(0, lightPatch ? 'rgba(218, 195, 168, 0.34)' : 'rgba(150, 121, 93, 0.30)');
+        g.addColorStop(1, 'rgba(185, 156, 125, 0)');
+        ctx.fillStyle = g;
+        ctx.beginPath();
+        ctx.arc(px, py, pr, 0, Math.PI * 2);
+        ctx.fill();
+      }
+      // Fine sand grains & sandy-loam micro-texture
+      for (let i = 0; i < 14000; i++) {
+        const x = rng() * w, y = rng() * h, v = rng();
+        ctx.fillStyle = v > 0.66 ? '#d2b89a' : (v > 0.33 ? '#a38567' : '#8c6e52');
+        ctx.fillRect(x, y, 1.8, 1.8);
+      }
+      // Scattered small native pebbles & gravel flecks (seen in the backyard & front yard photos)
+      for (let k = 0; k < 1200; k++) {
         const x = rng() * w, y = rng() * h;
-        ctx.fillStyle = rng() > 0.5 ? '#806754' : '#544234';
-        ctx.fillRect(x, y, 2.2, 2.2);
+        const rx = 1.4 + rng() * 2.8, ry = 1.1 + rng() * 2.2, ang = rng() * Math.PI;
+        ctx.fillStyle = 'rgba(58, 43, 30, 0.35)';
+        ctx.beginPath();
+        ctx.ellipse(x + 0.8, y + 0.8, rx, ry, ang, 0, Math.PI * 2);
+        ctx.fill();
+        const pv = rng();
+        ctx.fillStyle = pv > 0.65 ? '#dfd1c0' : (pv > 0.3 ? '#7c654f' : '#5e4b3a');
+        ctx.beginPath();
+        ctx.ellipse(x, y, rx, ry, ang, 0, Math.PI * 2);
+        ctx.fill();
       }
     });
+    const bareDirtBumpTex = makeCanvasTexture(256, 256, 0.22, 0.22, (ctx, w, h) => {
+      ctx.fillStyle = '#808080';
+      ctx.fillRect(0, 0, w, h);
+      for (let i = 0; i < 6500; i++) {
+        ctx.fillStyle = rng() > 0.5 ? '#c8c8c8' : '#424242';
+        ctx.fillRect(rng() * w, rng() * h, 2.0, 2.0);
+      }
+    }, true);
 
     // 7. Broom-Finished Poured Concrete with Control Joints
     const concreteTex = makeCanvasTexture(512, 512, 0.14, 0.14, (ctx, w, h) => {
@@ -1078,9 +1114,9 @@
       }),
       bareDirt: new THREE.MeshStandardMaterial({
         map: bareDirtTex,
-        bumpMap: bareDirtTex,
-        bumpScale: 0.05,
-        roughness: 0.95
+        bumpMap: bareDirtBumpTex,
+        bumpScale: 0.06,
+        roughness: 0.94
       }),
       concrete: new THREE.MeshStandardMaterial({
         map: concreteTex,
@@ -1292,6 +1328,22 @@
       const d = Math.abs(wy2 - wy1);
       const h = Math.abs(h2 - h1);
       const geo = new THREE.BoxGeometry(w, h, d);
+      // Scale UVs to world feet for ground/landscape materials whose textures use world-foot repeat values
+      if (
+        material === MAT.bareDirt ||
+        material === MAT.whiteRocks ||
+        material === MAT.crushedRock ||
+        material === MAT.mulch ||
+        material === MAT.soilDark ||
+        material === MAT.turf ||
+        (material && material.userData && material.userData.worldScaleUV)
+      ) {
+        const uvAttr = geo.attributes.uv;
+        for (let i = 0; i < uvAttr.count; i++) {
+          uvAttr.setXY(i, uvAttr.getX(i) * w, uvAttr.getY(i) * d);
+        }
+        uvAttr.needsUpdate = true;
+      }
       const mesh = new THREE.Mesh(geo, material);
       mesh.position.set((wx1 + wx2) / 2, (h1 + h2) / 2, (wy1 + wy2) / 2);
       mesh.castShadow = castShadow;
@@ -1664,8 +1716,10 @@
     // --- A. NEIGHBOR CONTEXT, WASATCH MOUNTAIN HORIZON & STREET ENVIRONMENT ('neighborContext') ---
     {
       const g = LAYER_GROUPS.neighborContext;
-      // Expansive Ground Horizon Plane so there is never an empty void edge
-      addBox(g, -280, -280, 360, 320, -0.55, -0.04, new THREE.MeshStandardMaterial({ color: '#1e293b', roughness: 0.96 }), false, true);
+      // Expansive Warm Utah Desert-Earth Horizon Plane so the ground around the neighborhood is never black
+      const horizonEarthMat = new THREE.MeshStandardMaterial({ map: bareDirtTex, bumpMap: bareDirtBumpTex, bumpScale: 0.04, color: '#a88d72', roughness: 0.96 });
+      horizonEarthMat.userData.worldScaleUV = true;
+      addBox(g, -280, -280, 360, 320, -0.55, -0.04, horizonEarthMat, false, true);
 
       // 360° Distant Utah Wasatch Mountain Range Silhouette Ring (Matches the mountain backdrop in Lot 3152 photos!)
       const mtnGroup = new THREE.Group();
@@ -1695,8 +1749,8 @@
       }
       g.add(mtnGroup);
 
-      // North Neighbor (wy: -36..0): Bare Unplanted Dirt Lot
-      addBox(g, -28, -36, 108.7, 0.0, -0.02, 0.04, MAT.bareDirt, false, true);
+      // North Neighbor (wy: -36..0): Bare Unplanted Sandy Dirt Lot
+      addBox(g, -28, -36, 108.7, 0.0, -0.02, 0.035, MAT.bareDirt, false, true);
       // South Neighbor (wy: 50..88): White River Rock Xeriscape (Including their Park Strip!)
       addBox(g, 0, 50.0, 96.7, 88.0, -0.02, 0.04, MAT.whiteRocks, false, true);
       addBox(g, 100.7, 50.0, 106.7, 88.0, -0.02, 0.05, MAT.whiteRocks, false, true);
@@ -1794,9 +1848,15 @@
       }
     }
 
-    // --- B. EXISTING CONCRETE SURFACES ('existingConcrete' — 100% Aligned with Garage, Porch & Park Strips) ---
+    // --- B. EXISTING BASELINE SANDY DIRT LOT & CONCRETE SURFACES ('existingConcrete' — 100% Aligned with Garage, Porch & Park Strips) ---
     {
       const g = LAYER_GROUPS.existingConcrete;
+      // 0. Existing Baseline Sandy-Loam Dirt Across Entire Lot 3152 (wx: 0.0..106.7, wy: 0.0..50.0, y: -0.02..0.025)
+      //    Visible in Baseline (2025), Base Only, and any unbuilt phase areas (sits cleanly beneath y=0.08..0.16 turf, mulch, rock & concrete)
+      addBox(g, 0.0, 0.0, 106.7, 50.0, -0.02, 0.025, MAT.bareDirt, false, true);
+      // Also attach a lower base sandy dirt grade (-0.03..0.018) to LAYER_GROUPS.house so Lot 3152 is sandy dirt even if existingConcrete is toggled off
+      addBox(LAYER_GROUPS.house, 0.0, 0.0, 106.7, 50.0, -0.03, 0.018, MAT.bareDirt, false, true);
+
       // 1. Existing 21.0' x 12.5' Backyard Concrete Patio (wx: 17.5..30.0, wy: 20.0..41.0) + Scored 2x3 Control Joints
       addBox(g, 17.5, 20.0, 30.0, 41.0, 0.0, 0.16, MAT.concrete, false, true);
       addBox(g, 23.72, 20.0, 23.78, 41.0, 0.16, 0.168, MAT.concreteGroove, false, false);
@@ -4117,15 +4177,19 @@
       if (isSpring) {
         MAT.turf.color.set('#ffffff');
         MAT.mulch.color.set('#ffffff');
+        MAT.bareDirt.color.set('#ffffff');
       } else if (isSummer) {
         MAT.turf.color.set('#e2f5e4');
         MAT.mulch.color.set('#ffffff');
+        MAT.bareDirt.color.set('#ffffff');
       } else if (isFall) {
         MAT.turf.color.set('#d9e5b4');
         MAT.mulch.color.set('#f5d0b5');
+        MAT.bareDirt.color.set('#f7ead9');
       } else if (isWinter) {
         MAT.turf.color.set('#e2e8f0'); // Frost/snow-covered lawn
         MAT.mulch.color.set('#cbd5e1'); // Snow-dusted mulch beds
+        MAT.bareDirt.color.set('#dbe4ee'); // Frost-dusted sandy dirt
         particleMat.color.set('#ffffff'); // Gently falling winter snowflakes
         particleMat.size = 0.34;
         particleMat.opacity = 0.90;

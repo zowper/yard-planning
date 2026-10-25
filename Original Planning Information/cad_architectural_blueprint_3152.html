@@ -568,13 +568,26 @@
           ctx.beginPath(); ctx.ellipse(x, y, rx, ry, rng() * Math.PI, 0, Math.PI * 2); ctx.fill();
         }
       });
-      DRONE_TEXTURES.bareDirt = makeTex(160, 160, (ctx, w, h) => {
-        ctx.fillStyle = '#7c5c43';
+      DRONE_TEXTURES.bareDirt = makeTex(192, 192, (ctx, w, h) => {
+        ctx.fillStyle = '#b99c7d';
         ctx.fillRect(0, 0, w, h);
-        for (let i = 0; i < 2200; i++) {
+        for (let p = 0; p < 36; p++) {
+          const px = rng() * w, py = rng() * h, pr = 10 + rng() * 20;
+          const g = ctx.createRadialGradient(px, py, 1, px, py, pr);
+          g.addColorStop(0, rng() > 0.48 ? 'rgba(218, 195, 168, 0.32)' : 'rgba(150, 121, 93, 0.28)');
+          g.addColorStop(1, 'rgba(185, 156, 125, 0)');
+          ctx.fillStyle = g;
+          ctx.beginPath(); ctx.arc(px, py, pr, 0, Math.PI * 2); ctx.fill();
+        }
+        for (let i = 0; i < 3200; i++) {
           const v = rng();
-          ctx.fillStyle = v > 0.7 ? '#947155' : (v > 0.35 ? '#694b35' : '#543b28');
-          ctx.fillRect(rng() * w, rng() * h, 2.2, 2.0);
+          ctx.fillStyle = v > 0.66 ? '#d2b89a' : (v > 0.33 ? '#a38567' : '#8c6e52');
+          ctx.fillRect(rng() * w, rng() * h, 1.8, 1.8);
+        }
+        for (let k = 0; k < 280; k++) {
+          const x = rng() * w, y = rng() * h, rx = 1.2 + rng() * 1.8, ry = 1.0 + rng() * 1.4;
+          ctx.fillStyle = rng() > 0.5 ? '#dfd1c0' : '#6e5742';
+          ctx.beginPath(); ctx.ellipse(x, y, rx, ry, rng() * Math.PI, 0, Math.PI * 2); ctx.fill();
         }
       });
       DRONE_TEXTURES.concrete = makeTex(160, 160, (ctx, w, h) => {
@@ -823,28 +836,28 @@
 
       out.push(`<rect x="0" y="0" width="${vw}" height="${vh}" fill="${canvasBg}"/>`);
 
-      // 2. LOT BASE
-      const lotRect = projectRect(0, 0, 96.7, 50);
-      const lotFill = isDrone ? 'url(#drone-bare-dirt)' : (isColor ? '#452c1e' : T.dirtFill);
+      // 2. LOT BASE (Warm Utah Sandy Dirt across full Lot 0..96.7 & 6' Park Strips 100.7..106.7 in Baseline / Unbuilt areas)
+      const lotRect = projectRect(0, 0, 106.7, 50);
+      const lotFill = isDrone ? 'url(#drone-bare-dirt)' : (isColor ? '#b59676' : 'rgba(185, 156, 125, 0.18)');
       out.push(`<rect x="${lotRect.x}" y="${lotRect.y}" width="${lotRect.width}" height="${lotRect.height}" fill="${lotFill}"/>`);
 
-      // 3. NEIGHBOR CONTRAST (North = Bare Dirt, South = White Rocks)
+      // 3. NEIGHBOR CONTRAST (North = Bare Sandy Dirt, South = White Rocks)
       if (L.neighbors) {
-        const northN = projectRect(0.0, -4.5, 96.7, 0.0);
-        const southN = projectRect(0.0, 50.0, 96.7, 54.5);
+        const northN = projectRect(0.0, -4.5, 106.7, 0.0);
+        const southN = projectRect(0.0, 50.0, 106.7, 54.5);
         if (isDrone) {
           out.push(`
-            <rect x="${northN.x.toFixed(1)}" y="${northN.y.toFixed(1)}" width="${northN.width.toFixed(1)}" height="${northN.height.toFixed(1)}" fill="url(#drone-bare-dirt)" stroke="#5c4028" stroke-width="0.8"/>
+            <rect x="${northN.x.toFixed(1)}" y="${northN.y.toFixed(1)}" width="${northN.width.toFixed(1)}" height="${northN.height.toFixed(1)}" fill="url(#drone-bare-dirt)" stroke="#8c6e52" stroke-width="0.8"/>
             <rect x="${southN.x.toFixed(1)}" y="${southN.y.toFixed(1)}" width="${southN.width.toFixed(1)}" height="${southN.height.toFixed(1)}" fill="url(#drone-white-rocks)" stroke="#cbd5e1" stroke-width="0.8"/>
           `);
         } else if (isColor) {
           out.push(`
-            <rect x="${northN.x.toFixed(1)}" y="${northN.y.toFixed(1)}" width="${northN.width.toFixed(1)}" height="${northN.height.toFixed(1)}" fill="#784f33" stroke="#b45309" stroke-width="1" stroke-dasharray="4,3"/>
+            <rect x="${northN.x.toFixed(1)}" y="${northN.y.toFixed(1)}" width="${northN.width.toFixed(1)}" height="${northN.height.toFixed(1)}" fill="#a8896a" stroke="#854d0e" stroke-width="1" stroke-dasharray="4,3"/>
             <rect x="${southN.x.toFixed(1)}" y="${southN.y.toFixed(1)}" width="${southN.width.toFixed(1)}" height="${southN.height.toFixed(1)}" fill="#f1f5f9" stroke="#94a3b8" stroke-width="1" stroke-dasharray="4,3"/>
           `);
         } else {
           out.push(`
-            <rect x="${northN.x.toFixed(1)}" y="${northN.y.toFixed(1)}" width="${northN.width.toFixed(1)}" height="${northN.height.toFixed(1)}" fill="rgba(120, 83, 55, 0.22)" stroke="${T.wallStroke}" stroke-width="0.6" stroke-dasharray="3,3"/>
+            <rect x="${northN.x.toFixed(1)}" y="${northN.y.toFixed(1)}" width="${northN.width.toFixed(1)}" height="${northN.height.toFixed(1)}" fill="rgba(185, 156, 125, 0.22)" stroke="${T.wallStroke}" stroke-width="0.6" stroke-dasharray="3,3"/>
             <rect x="${southN.x.toFixed(1)}" y="${southN.y.toFixed(1)}" width="${southN.width.toFixed(1)}" height="${southN.height.toFixed(1)}" fill="rgba(241, 245, 249, 0.28)" stroke="#e2e8f0" stroke-width="0.8" stroke-dasharray="3,3"/>
           `);
         }
