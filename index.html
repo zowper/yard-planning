@@ -54,7 +54,7 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 flex flex-wrap items-center justify-center sm:justify-between gap-2">
       <div class="flex flex-wrap items-center gap-1.5 text-xs font-semibold">
         <span class="px-2.5 py-1 rounded-full bg-emerald-100 text-emerald-900 border border-emerald-300">W. Wall: 5+4 Hybrid (5 Leafy Pillars + 4 Column Junipers)</span>
-        <span class="px-2.5 py-1 rounded-full bg-amber-100 text-amber-900 border border-emerald-300">2-Pillar Attached Awning + Bistro Lights + L-Sectional + Fire Table</span>
+        <span class="px-2.5 py-1 rounded-full bg-amber-100 text-amber-900 border border-emerald-300">Solid-Roof 2-Pillar Timber Awning (#1C) + Bistro Lights + L-Sectional + Fire Table</span>
         <span class="px-2.5 py-1 rounded-full bg-lime-100 text-lime-900 border border-lime-300">5 N–S Planters (3'&times;6') + 3' Rear Walk</span>
         <span class="px-2.5 py-1 rounded-full bg-teal-100 text-teal-900 border border-teal-300">Pavers @ Grass-to-Mulch/Gravel/Home (45&deg;) &middot; No Pavers @ Concrete</span>
         <span class="px-2.5 py-1 rounded-full bg-slate-200 text-slate-900 border border-slate-300">N. Neighbor: Bare Dirt &middot; S. Neighbor: White Rocks</span>
@@ -63,20 +63,20 @@
     </div>
   </section>
 
-  <!-- 1. Visual Concepts (What We Want — All 12 Angles) -->
+  <!-- 1. Visual Concepts (What We Want — All 13 Angles) -->
   <section id="concepts" class="py-8 max-w-7xl mx-auto px-4 sm:px-6 w-full">
     <div class="flex flex-wrap items-center justify-between gap-2 mb-4">
       <div class="flex items-center gap-2">
         <h2 class="text-lg font-bold text-slate-900">Target Design</h2>
-        <span class="px-2 py-0.5 rounded-md text-xs font-mono-code font-bold bg-emerald-100 text-emerald-900 border border-emerald-300">12 Angles</span>
+        <span class="px-2 py-0.5 rounded-md text-xs font-mono-code font-bold bg-emerald-100 text-emerald-900 border border-emerald-300">13 Angles</span>
       </div>
 
       <div class="flex flex-wrap items-center gap-1.5">
         <button onclick="filterConcepts('ALL', this)" class="concept-filter-btn px-2.5 py-1 rounded-lg text-xs font-bold bg-emerald-700 text-white transition">
-          All (12)
+          All (13)
         </button>
         <button onclick="filterConcepts('BACKYARD', this)" class="concept-filter-btn px-2.5 py-1 rounded-lg text-xs font-bold bg-slate-200 text-slate-900 hover:bg-slate-300 transition">
-          Backyard (6)
+          Backyard (7)
         </button>
         <button onclick="filterConcepts('NORTH_SIDE', this)" class="concept-filter-btn px-2.5 py-1 rounded-lg text-xs font-bold bg-slate-200 text-slate-900 hover:bg-slate-300 transition">
           North (2)
@@ -285,6 +285,15 @@
 
   <script>
     const CONCEPT_RENDERS = [
+      {
+        id: 'patio-awning-option-1c-solid-roof',
+        zone: 'BACKYARD',
+        badge: 'Patio Awning · Locked Option #1C',
+        title: 'Solid-Roof 2-Pillar Timber Awning: 1×6 T&G Cedar Ceiling + Matte-Black Metal Roof (0 House Posts)',
+        renderUrl: 'photos_backyard_ideas/render_patio_awning_option_1c_solid_roof.jpg',
+        beforeThumb: 'photos_current_backyard/thumbs/PXL_20261022_162150878.MP.jpg',
+        beforeFull: 'photos_current_backyard/PXL_20261022_162150878.MP.jpg'
+      },
       {
         id: 'backyard-pergola-planters',
         zone: 'BACKYARD',
@@ -748,20 +757,20 @@
       {
         year: '2029',
         phaseNum: 4,
-        title: 'House-Attached 2-Pillar Timber Patio Awning, L-Sectional & Propane Fire Table',
+        title: 'Option #1C Solid-Roof 2-Pillar Timber Patio Awning, L-Sectional & Propane Fire Table',
         badgeColor: 'bg-amber-100 text-amber-950 border-amber-300',
         hybridDefault: 'DIY',
-        summary: 'Outfit the existing 21.0\' × 12.5\' (262.5 sq ft) backyard concrete patio with a house-attached 2-pillar dark-espresso timber awning/pergola (2 outer West corner pillars, 0 pillars against the home), warm 2700K bistro string lights, L-shaped sectional furniture, and a long rectangular propane fire table.',
-        phaseNote: 'Keeps 100% of the leisure & fire-lounge footprint strictly on the existing 262.5 sq ft concrete patio slab so 0 sq ft of backyard grass is lost.',
+        summary: 'Outfit the existing 21.0\' × 12.5\' (262.5 sq ft) backyard concrete patio with the locked Option #1C house-attached 2-pillar dark-espresso timber awning (2 outer West corner pillars, 0 pillars against the home) featuring a 100% solid opaque roof (1×6 T&G cedar wood ceiling underneath + matte-black standing-seam steel roof & front rain gutter on top), warm 2700K bistro string lights, L-shaped sectional furniture, and a long rectangular propane fire table.',
+        phaseNote: 'Keeps 100% of the leisure & fire-lounge footprint strictly on the existing 262.5 sq ft concrete patio slab so 0 sq ft of backyard grass is lost, while 100% solid roof protection preserves patio furniture and cushions year-round.',
         items: [
           {
-            name: 'House-Attached 2-Pillar Dark-Espresso Heavy-Timber Patio Awning / Pergola (21.0\' × 12.5\')',
-            spec: 'Ledger-mounted to rear house wall (wx = 30.0\') with ONLY 2 pillars (6×6 or 8×8) on the outer West corners (wx = 18.0\', wy = 20.5\' & 40.5\') and 0 pillars against the home; 21.0\' clear-span Glulam/flitch West beam, 45° knee braces, Simpson black steel hardware & N–S shade purlins',
-            qty: '1 Attached 2-Pillar Awning',
-            diyCost: 2200,
-            diyRange: '$1,800–$2,600',
-            proCost: 3600,
-            proRange: '$3,000–$4,200'
+            name: 'Option #1C: House-Attached 2-Pillar Heavy-Timber Patio Awning with Solid T&G Wood Ceiling & Matte-Black Metal Roof (21.0\' × 12.5\')',
+            spec: 'Ledger-mounted to rear house wall (wx = 30.0\') with ONLY 2 pillars (6×6 or 8×8) on the outer West corners (wx = 18.0\', wy = 20.5\' & 40.5\') and 0 pillars against the home; 21.0\' clear-span Glulam/flitch West beam, 45° knee braces, Simpson black steel hardware, warm 1×6 tongue-and-groove cedar ceiling decking underneath + matte-black standing-seam architectural steel roof & front rain gutter on top (zero translucent plastic)',
+            qty: '1 Solid-Roof 2-Pillar Awning (#1C)',
+            diyCost: 2950,
+            diyRange: '$2,650–$3,450',
+            proCost: 4600,
+            proRange: '$4,200–$5,500'
           },
           {
             name: 'Weather-Resistant L-Shaped Patio Lounge Sectional Set',

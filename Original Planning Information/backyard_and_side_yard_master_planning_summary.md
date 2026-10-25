@@ -147,10 +147,11 @@ locked_in_decisions:
     flat_concrete_edges: "Where grass meets the driveway, a patio, a sidewalk (3.0' rear sidewalk, 3.5' front porch sidewalk/walkway, or 4.0' city sidewalk), or the 9.0' x 43.2' North side cement pad, there are NOT any pavers (flat poured concrete acts directly as the flush mower edge)"
   fire_pit_and_patio_lounge:
     fuel_type: "Propane (20 lb concealed tank inside fire table base)"
-    location: "Existing 21.0 ft x 12.5 ft Concrete Patio under a House-Attached 2-Pillar Dark-Espresso Heavy-Timber Awning / Pergola (2 outer West corner pillars, 0 pillars against the home) with Warm 2700K Bistro String Lights"
+    location: "Existing 21.0 ft x 12.5 ft Concrete Patio under a House-Attached 2-Pillar Dark-Espresso Heavy-Timber Patio Awning with a Solid 1x6 T&G Cedar Wood Ceiling & Matte-Black Standing-Seam Metal Roof (Option #1C: 2 outer West corner pillars, 0 pillars against the home, 0 middle posts, zero translucent plastic) and Warm 2700K Bistro String Lights"
     patio_awning_structure:
-      mounting_type: "House-Attached Ledger-Mounted Timber Awning / Pergola (Strictly 2 Outer Corner Pillars; 0 Pillars Against Home; 0 Center Posts)"
-      house_ledger_attachment: "2x10 or 2x12 x 21.0 ft pressure-treated/cedar ledger board lag-bolted (Simpson LedgerLOK / structural screws with SkyLift waterproof standoff spacers) directly into the 2nd-floor rim joist along the rear house wall at wx = 30.0', wy = 20.0' to 41.0' (~9.5-10.0 ft height above slab) — ZERO vertical posts against the home"
+      locked_option: "Option #1C — Custom House-Attached 2-Pillar Heavy-Timber Patio Awning with 100% Solid Opaque Roof (1x6 T&G Cedar Ceiling Decking + Matte-Black Standing-Seam Steel Roof & Front Rain Gutter)"
+      mounting_type: "House-Attached Ledger-Mounted Timber Awning (Strictly 2 Outer Corner Pillars; 0 Pillars Against Home; 0 Center Posts)"
+      house_ledger_attachment: "2x10 or 2x12 x 21.0 ft pressure-treated/cedar ledger board lag-bolted (Simpson LedgerLOK / structural screws with SkyLift waterproof standoff spacers & matte-black steel head-wall Z-flashing) directly into the 2nd-floor rim joist along the rear house wall at wx = 30.0', wy = 20.0' to 41.0' (~9.5-10.0 ft height above slab) — ZERO vertical posts against the home"
       outer_corner_pillars:
         total_pillar_count: 2
         house_wall_pillar_count: 0
@@ -160,7 +161,7 @@ locked_in_decisions:
         south_west_pillar_p2: "wx = 18.0', wy = 40.5' (6 in inset from South/West slab edges)"
         clear_west_span_ft: 20.0
       west_front_header_beam: "21.0 ft continuous clear-span beam across West edge (wx = 18.0', wy = 20.0'-41.0' at 8.5-9.0 ft underside clearance): either 3.5 in x 11.875 in architectural exterior Glulam beam OR steel-flitch-plate double 2x12 box beam, braced at both outer corner posts by 45-degree timber knee braces (4x6 or 6x6)"
-      rafters_and_shade_canopy: "14x 2x8 E-W rafters @ 18 in O.C. spanning 12.5 ft from house ledger (wx = 30.0') to West header beam (wx = 18.0') with 12 in decorative notched West tail overhang (to wx = 17.0'); topped with 24x 2x2 N-S shade purlins @ 4.5 in O.C. (3 in open gap) + optional flat smoked-bronze polycarbonate UV/rain top sheet (Palram Suntuf / SkyPoly EZ-Glaze) + commercial warm 2700K Edison LED bistro string lights"
+      rafters_and_solid_roof_assembly: "14x 2x8 E-W rafters @ 18 in O.C. spanning 12.5 ft from house ledger (wx = 30.0') to West header beam (wx = 18.0') with 12 in decorative notched West tail overhang (to wx = 17.0'); topped with warm natural/amber-sealed 1x6 tongue-and-groove (T&G) Western Red Cedar ceiling decking facing downward + high-temp peel-and-stick ice-and-water underlayment + sleek low-profile 26ga/24ga matte-black / charcoal standing-seam architectural steel roof panels (1/2 in:12 in to 1 in:12 in pitch) + matte-black 5 in K-style front rain gutter & corner downspout + commercial warm 2700K Edison LED bistro string lights (zero polycarbonate/plastic roof sheets)"
     seating_and_table: "L-Shaped Outdoor Patio Sectional Furniture + Long Rectangular Dual-Purpose Propane Fire Table (50,000 BTU with flush metal lid)"
     patio_zoning:
       zone_1_entry_grill_width_ft: 9.5

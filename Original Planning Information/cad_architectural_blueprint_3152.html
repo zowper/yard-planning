@@ -1032,7 +1032,7 @@
         name: 'Back Patio Width (North–South)',
         rough: '21 ft',
         exact: '21.0 ft',
-        notes: 'Spans Y=20.0\' to Y=41.0\' (flush with SW house corner). Divided into two 10.5\' halves at Y=30.5\'.',
+        notes: 'Spans Y=20.0\' to Y=41.0\' (flush with SW house corner). Covered by Option #1C House-Attached 2-Pillar Solid-Roof Timber Awning (21.0\' clear West span between P1 @ Y=20.5\' & P2 @ Y=40.5\'; 0 house posts, 0 middle posts).',
         dim: {
           x1: -6.8, y1: 20.0, x2: -6.8, y2: 41.0,
           wx1: 17.5, wy1: 20.0, wx2: 17.5, wy2: 41.0,
@@ -1046,7 +1046,7 @@
         name: 'Back Patio Depth (East–West)',
         rough: '12.5 ft',
         exact: '12.5 ft',
-        notes: 'Extends West from X=30.0\' to X=17.5\'. Divided by center control joint into two 6.25\' deep halves.',
+        notes: 'Extends West from X=30.0\' (house ledger board) to X=17.5\' (outer West corner pillars P1/P2 @ X=18.0\', rafter tails to X=17.0\'). Covered by 1x6 T&G cedar ceiling + matte-black standing-seam metal roof.',
         dim: {
           x1: 17.5, y1: -6.5, x2: 30.0, y2: -6.5,
           wx1: 17.5, wy1: 20.0, wx2: 30.0, wy2: 20.0,
@@ -1319,10 +1319,10 @@
       {
         id: 'area-patio',
         zone: 'Area & Fence',
-        name: 'Backyard Concrete Patio & Awning Zone',
+        name: 'Backyard Concrete Patio & Solid-Roof 2-Pillar Awning Zone (#1C)',
         rough: 'Locked Phase 4',
         exact: '262.5 sq. ft. (21.0\' × 12.5\')',
-        notes: 'Covered by dark-espresso timber awning with 2700K bistro string lights, L-shaped sectional, rug & propane fire table.',
+        notes: 'Covered by Option #1C house-attached 2-pillar dark-espresso timber awning (0 house posts, 2 outer West corner posts) with solid 1x6 T&G cedar wood ceiling, matte-black standing-seam metal roof & front gutter, 2700K bistro string lights, L-shaped sectional, rug & propane fire table.',
         zoneBox: { x1: 17.5, y1: 20.0, x2: 30.0, y2: 41.0 }
       },
       {
@@ -2203,9 +2203,11 @@
             out.push(`<line x1="${pr1.x.toFixed(1)}" y1="${pr1.y.toFixed(1)}" x2="${pr2.x.toFixed(1)}" y2="${pr2.y.toFixed(1)}" stroke="${isColor ? '#d97706' : 'rgba(120, 53, 15, 0.55)'}" stroke-width="1.6"/>`);
           }
         });
-        [[18.0, 20.5], [18.0, 40.5], [29.4, 20.5], [29.4, 40.5]].forEach(([px, py]) => {
+        const ledgerBeam = projectRect(29.65, 20.3, 30.0, 40.7);
+        out.push(`<rect x="${ledgerBeam.x.toFixed(1)}" y="${ledgerBeam.y.toFixed(1)}" width="${ledgerBeam.width.toFixed(1)}" height="${ledgerBeam.height.toFixed(1)}" fill="#451a03" stroke="#d97706" stroke-width="0.9"/>`);
+        [[18.0, 20.5], [18.0, 40.5]].forEach(([px, py]) => {
           const post = projectRect(px - 0.35, py - 0.35, px + 0.35, py + 0.35);
-          out.push(`<rect x="${post.x.toFixed(1)}" y="${post.y.toFixed(1)}" width="${post.width.toFixed(1)}" height="${post.height.toFixed(1)}" fill="#78350f" stroke="#fde68a" stroke-width="1.0"/>`);
+          out.push(`<rect x="${post.x.toFixed(1)}" y="${post.y.toFixed(1)}" width="${post.width.toFixed(1)}" height="${post.height.toFixed(1)}" fill="#78350f" stroke="#fde68a" stroke-width="1.2"/>`);
         });
         out.push(`</g>`);
       }
@@ -2546,7 +2548,7 @@
             wx: 23.75, wy: 30.5, priority: 75, measId: 'patio-width-ns',
             lines: [
               { text: 'BACKYARD PATIO (262.5 SQ FT)', size: 9.2, weight: 800, color: T.textMain },
-              { text: '21.0\' N-S × 12.5\' E-W + 2029 Awning & Lounge', size: 7.5, weight: 600, color: T.dimPrimary }
+              { text: '21.0\'×12.5\' + 2029 Solid-Roof 2-Pillar Awning (#1C)', size: 7.5, weight: 600, color: T.dimPrimary }
             ],
             borderColor: T.concreteStroke
           },
