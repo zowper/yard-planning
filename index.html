@@ -59,11 +59,11 @@
   <section class="bg-white border-b border-slate-200 py-3">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 flex flex-wrap items-center justify-center sm:justify-between gap-2">
       <div class="flex flex-wrap items-center gap-1.5 text-xs font-semibold">
-        <span class="px-2.5 py-1 rounded-full bg-emerald-100 text-emerald-900 border border-emerald-300">W. Wall: 5+4 Hybrid (5 Leafy Pillars + 4 Column Junipers)</span>
-        <span class="px-2.5 py-1 rounded-full bg-amber-100 text-amber-900 border border-emerald-300">Solid-Roof 2-Pillar Timber Awning (#1C) + Bistro Lights + L-Sectional + Fire Table</span>
-        <span class="px-2.5 py-1 rounded-full bg-lime-100 text-lime-900 border border-lime-300">5 N–S Planters (3'&times;6') + Compacted Road Base N. Pad &amp; 3' Rear Path</span>
+        <span class="px-2.5 py-1 rounded-full bg-emerald-100 text-emerald-900 border border-emerald-300">W. Wall: 5+4 Hybrid &middot; 2' S. Bed to Green Box &middot; Grass Under S. Gate</span>
+        <span class="px-2.5 py-1 rounded-full bg-amber-100 text-amber-900 border border-emerald-300">Open Solid-Roof 2-Pillar Awning (#1C, No Privacy Wall) &middot; Open AC Unit</span>
+        <span class="px-2.5 py-1 rounded-full bg-lime-100 text-lime-900 border border-lime-300">Compacted Road Base: N. Pad, 3' Rear Path &amp; Around 5 N–S Garden Boxes</span>
         <span class="px-2.5 py-1 rounded-full bg-teal-100 text-teal-900 border border-teal-300">Pavers @ Grass-to-Mulch/Road Base/Home (45&deg;) &middot; No Pavers @ Concrete</span>
-        <span class="px-2.5 py-1 rounded-full bg-slate-200 text-slate-900 border border-slate-300">N. Neighbor: Bare Dirt &middot; S. Neighbor: White Rocks</span>
+        <span class="px-2.5 py-1 rounded-full bg-slate-200 text-slate-900 border border-slate-300">White Rock Park Strips &amp; NE Side (to N. Gate) &middot; N. Neighbor: Bare Dirt</span>
       </div>
       <span class="text-xs font-mono-code font-semibold text-slate-500 hidden xl:inline">50.0' &times; 96.7' Lot</span>
     </div>
@@ -105,20 +105,37 @@
     </div>
   </section>
 
-  <!-- 2. Interactive 1:1 3D Architectural & Landscape Model (Three.js) -->
+  <!-- 2. Interactive 1:1 3D Architectural & 4-Season Landscape Model (Three.js) -->
   <section id="model3d" class="py-6 max-w-7xl mx-auto px-4 sm:px-6 w-full">
     <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
       <div>
         <div class="flex flex-wrap items-center gap-2">
-          <h2 class="text-lg font-bold text-slate-900">Interactive 3D Property Model (1:1 Scale)</h2>
-          <span class="px-2 py-0.5 rounded-md text-xs font-mono-code font-bold bg-amber-100 text-amber-900 border border-amber-300">Orbit 3D &middot; Eye-Level Walk Mode &middot; Day / Night 2700K</span>
+          <h2 class="text-lg font-bold text-slate-900">Ultra-HD 1:1 3D Property Model &amp; 4-Season Switcher</h2>
+          <span class="px-2 py-0.5 rounded-md text-xs font-mono-code font-bold bg-pink-100 text-pink-900 border border-pink-300">'Standing Ovation' Blossoms &middot; Melinda's Hyacinths &middot; SE Corner Maple</span>
         </div>
         <p class="text-xs text-slate-600 mt-0.5">
-          Explore the finished Lot 3152 yard in true 1:1 3D scale. Orbit 360&deg;, walk around at eye level (<kbd class="px-1 py-0.5 rounded bg-slate-200 text-slate-800 font-mono-code text-[10px]">WASD</kbd> / <kbd class="px-1 py-0.5 rounded bg-slate-200 text-slate-800 font-mono-code text-[10px]">Arrows</kbd>), toggle 2026–2030 build phases, swing gates open, or preview 2700K nighttime lighting.
+          Explore Lot 3152 across all 4 seasons (defaulting to <strong>Spring</strong> with snow-white 'Standing Ovation' Serviceberry blossoms &amp; Melinda's front-porch Hyacinths, plus the Japanese Maple relocated to the SE corner at <code class="font-mono-code text-[11px]">wx=87', wy=46.8'</code> so the porch swing sightline is 100% clear).
         </p>
       </div>
 
       <div class="flex flex-wrap items-center gap-1.5">
+        <!-- 4-Season Switcher Pills -->
+        <div class="inline-flex items-center bg-slate-200/80 p-1 rounded-xl border border-slate-300 gap-1">
+          <button onclick="setPortalSeason('SPRING', this)" class="m3d-season-pill px-2.5 py-1 rounded-lg text-xs font-bold bg-pink-600 text-white shadow-sm transition">
+            &#127800; Spring
+          </button>
+          <button onclick="setPortalSeason('SUMMER', this)" class="m3d-season-pill px-2.5 py-1 rounded-lg text-xs font-bold text-slate-900 hover:bg-slate-300 transition">
+            &#9728;&#65039; Summer
+          </button>
+          <button onclick="setPortalSeason('FALL', this)" class="m3d-season-pill px-2.5 py-1 rounded-lg text-xs font-bold text-slate-900 hover:bg-slate-300 transition">
+            &#127810; Fall
+          </button>
+          <button onclick="setPortalSeason('WINTER', this)" class="m3d-season-pill px-2.5 py-1 rounded-lg text-xs font-bold text-slate-900 hover:bg-slate-300 transition">
+            &#10052;&#65039; Winter
+          </button>
+        </div>
+
+        <!-- Lighting Switcher Pills -->
         <button onclick="set3DLighting('DAY', this)" class="m3d-light-pill px-2.5 py-1.5 rounded-lg text-xs font-bold bg-emerald-700 text-white transition">
           Daylight
         </button>
@@ -339,7 +356,7 @@
         id: 'patio-awning-option-1c-solid-roof',
         zone: 'BACKYARD',
         badge: 'Patio Awning · Locked Option #1C',
-        title: 'Solid-Roof 2-Pillar Timber Awning: 1×6 T&G Cedar Ceiling + Matte-Black Metal Roof (0 House Posts)',
+        title: 'Open Solid-Roof 2-Pillar Timber Awning (No Privacy Wall, 0 House Posts): T&G Ceiling + Metal Roof',
         renderUrl: 'photos_backyard_ideas/render_patio_awning_option_1c_solid_roof.jpg',
         beforeThumb: 'photos_current_backyard/thumbs/PXL_20261022_162150878.MP.jpg',
         beforeFull: 'photos_current_backyard/PXL_20261022_162150878.MP.jpg'
@@ -348,7 +365,7 @@
         id: 'backyard-pergola-planters',
         zone: 'BACKYARD',
         badge: 'Backyard · Looking East',
-        title: 'Attached 2-Pillar Awning (0 House Posts), L-Sectional, Fire Table & 5 Planters',
+        title: 'Open 2-Pillar Awning (No Privacy Wall), L-Sectional, Fire Table & 5 Planters on Road Base',
         renderUrl: 'photos_backyard_ideas/render_backyard_pergola_north_planters.jpg',
         beforeThumb: 'photos_current_backyard/thumbs/PXL_20261022_004857161.MP.jpg',
         beforeFull: 'photos_current_backyard/PXL_20261022_004857161.MP.jpg'
@@ -357,7 +374,7 @@
         id: 'backyard-west-juniper-patio',
         zone: 'BACKYARD',
         badge: 'Backyard · Looking NW',
-        title: 'W. Wall Screen, Attached 2-Pillar Awning & Bistro Lights, L-Sectional & Fire Table',
+        title: 'W. Wall Screen, Open 2-Pillar Awning & Bistro Lights, L-Sectional & Fire Table',
         renderUrl: 'photos_backyard_ideas/render_backyard_west_juniper_bed_patio.jpg',
         beforeThumb: 'photos_current_backyard/thumbs/PXL_20261022_004940478.MP.jpg',
         beforeFull: 'photos_current_backyard/PXL_20261022_004940478.MP.jpg'
@@ -366,7 +383,7 @@
         id: 'backyard-nw-planters-sidewalk',
         zone: 'BACKYARD',
         badge: 'Backyard · Looking SE from NW',
-        title: '5 N–S Planters (3\'×6\'), 45° Chamfered Pavers, 3\' Rear Walk & Bare Dirt N. Neighbor',
+        title: '5 N–S Planters (3\'×6\') on Compacted Road Base, 45° Pavers, 3\' Road Base Walk & Bare Dirt N. Neighbor',
         renderUrl: 'photos_backyard_ideas/render_backyard_nw_five_planters_sidewalk.jpg',
         beforeThumb: 'photos_current_backyard/thumbs/PXL_20261022_004913415.MP.jpg',
         beforeFull: 'photos_current_backyard/PXL_20261022_004913415.MP.jpg'
@@ -375,7 +392,7 @@
         id: 'backyard-sw-berry-juniper',
         zone: 'BACKYARD',
         badge: 'Backyard · Looking SW',
-        title: 'W. Wall Screen, 2\' S. Berry Bed, 4\'+ S. Grass Wrap & Attached 2-Pillar Awning',
+        title: 'W. Wall Screen, Continuous 2\' S. Bed, 4\'+ S. Grass Under Gate & Open 2-Pillar Awning',
         renderUrl: 'photos_backyard_ideas/render_backyard_south_berry_west_juniper_panoramic.jpg',
         beforeThumb: 'photos_current_backyard/thumbs/PXL_20261022_004925322.MP.jpg',
         beforeFull: 'photos_current_backyard/PXL_20261022_004925322.MP.jpg'
@@ -384,7 +401,7 @@
         id: 'backyard-full-50ft-span-ten-junipers',
         zone: 'BACKYARD',
         badge: 'Backyard · Full 50\' Span Looking S',
-        title: 'Full 50\' Span: W. Wall Screen, 45° Chamfered Pavers & Attached 2-Pillar Awning',
+        title: 'Full 50\' Span: W. Wall Screen, 45° Chamfered Pavers & Open 2-Pillar Awning (No Privacy Wall)',
         renderUrl: 'photos_backyard_ideas/render_backyard_full_50ft_span_ten_junipers.jpg',
         beforeThumb: 'photos_current_backyard/thumbs/PXL_20261022_162216594.MP.jpg',
         beforeFull: 'photos_current_backyard/PXL_20261022_162216594.MP.jpg'
@@ -393,7 +410,7 @@
         id: 'backyard-sw-corner-patio-awning',
         zone: 'BACKYARD',
         badge: 'Backyard · Looking NE from SW Corner',
-        title: 'Attached 2-Pillar Awning (0 House Posts), L-Sectional, Fire Table & 4\'+ S. Grass',
+        title: 'Open 2-Pillar Awning (No Privacy Wall, 0 House Posts), L-Sectional, Fire Table & 4\'+ S. Grass',
         renderUrl: 'photos_backyard_ideas/render_backyard_sw_corner_patio_awning_south_corridor.jpg',
         beforeThumb: 'photos_current_backyard/thumbs/PXL_20261022_162141898.MP.jpg',
         beforeFull: 'photos_current_backyard/PXL_20261022_162141898.MP.jpg'
@@ -402,7 +419,7 @@
         id: 'north-side-cement-corridor',
         zone: 'NORTH_SIDE',
         badge: 'North Side · Looking East',
-        title: 'Narrow 9\'×43.2\' Compacted Road Base Pad, 3\' Road Base Path & 8.5\' Gate',
+        title: 'Narrow 9\'×40\' Compacted Road Base Pad (Inside Gate), 3\' Road Base Path & 8.5\' Gate',
         renderUrl: 'photos_backyard_ideas/render_north_side_cement_pad_corridor.jpg',
         beforeThumb: 'photos_current_backyard/thumbs/PXL_20261022_162209617.MP.jpg',
         beforeFull: 'photos_current_backyard/PXL_20261022_162209617.MP.jpg'
@@ -411,7 +428,7 @@
         id: 'north-vehicle-gate-ne-strip',
         zone: 'NORTH_SIDE',
         badge: 'North Gate · Looking West',
-        title: 'Narrow 9\' N. Gate (3.2\' Setback) vs. Empty Bare Dirt North Neighbor',
+        title: 'White Decorative Rock NE Side Yard (Stopping at 8.5\' N. Gate) vs. Bare Dirt N. Neighbor',
         renderUrl: 'photos_backyard_ideas/render_north_vehicle_gate_ne_strip.jpg',
         beforeThumb: 'photos_current_backyard/thumbs/PXL_20261022_162017040.MP.jpg',
         beforeFull: 'photos_current_backyard/PXL_20261022_162017040.MP.jpg'
@@ -420,7 +437,7 @@
         id: 'south-side-flagstone-ac',
         zone: 'SOUTH_SIDE',
         badge: 'South Side · Looking West',
-        title: 'Narrow 9\' S. Corridor: 4\'+ Grass Wrap, 45° Chamfered Pavers & AC Screen',
+        title: 'Narrow 9\' S. Corridor: Continuous 2\' S. Bed, 4\'+ Grass Under Gate & Completely Open AC Unit',
         renderUrl: 'photos_backyard_ideas/render_south_side_flagstone_ac_screen.jpg',
         beforeThumb: 'photos_current_backyard/thumbs/PXL_20261022_004709213.MP.jpg',
         beforeFull: 'photos_current_backyard/PXL_20261022_004709213.MP.jpg'
@@ -429,7 +446,7 @@
         id: 'south-gate-porch-entry',
         zone: 'SOUTH_SIDE',
         badge: 'South Gate · Looking West',
-        title: 'Narrow 9\' S. Gate, 45° Chamfered Paver Corner & White Rocks South Neighbor',
+        title: 'S. Gate: Grass Continuing Under Gate, Continuous 2\' S. Bed to Green Box & White Rocks S. Neighbor',
         renderUrl: 'photos_backyard_ideas/render_south_gate_porch_entry.jpg',
         beforeThumb: 'photos_current_backyard/thumbs/PXL_20261022_162104480.MP.jpg',
         beforeFull: 'photos_current_backyard/PXL_20261022_162104480.MP.jpg'
@@ -438,7 +455,7 @@
         id: 'front-se-lawn-chamfered',
         zone: 'FRONT_PARK',
         badge: 'Front SE · Looking NW',
-        title: '2\' Beds, Prominent 45° Chamfered Pavers, Utility Box Screen & Neighbor Contrast',
+        title: 'Continuous 2\' S. Bed to Green Box, Grass Under S. Gate, 45° Pavers & White Rock Park Strips',
         renderUrl: 'photos_backyard_ideas/render_front_se_lawn_chamfered_beds.jpg',
         beforeThumb: 'photos_current_backyard/thumbs/PXL_20261022_004655951.MP.jpg',
         beforeFull: 'photos_current_backyard/PXL_20261022_004655951.MP.jpg'
@@ -447,7 +464,7 @@
         id: 'front-full-elevation-park-strips',
         zone: 'FRONT_PARK',
         badge: 'Front Full · Looking West',
-        title: 'Full Front: 6\' Park Strips, 45° Pavers, White Rocks S. & Bare Dirt N. Neighbors',
+        title: 'Full Front: White Decorative Rock in 6\' Park Strips & NE Side Yard (Matching South Neighbors)',
         renderUrl: 'photos_backyard_ideas/render_front_full_elevation_park_strips.jpg',
         beforeThumb: 'photos_current_backyard/thumbs/PXL_20261022_004640801.MP.jpg',
         beforeFull: 'photos_current_backyard/PXL_20261022_004640801.MP.jpg'
@@ -639,7 +656,7 @@
         title: 'South Vinyl Fence (50% Neighbor Split) & Person Gate (100% Ours)',
         badgeColor: 'bg-emerald-100 text-emerald-900 border-emerald-300',
         hybridDefault: 'PRO',
-        summary: 'Enclose the South property line (57.5\' white vinyl fence split 50/50 with our South neighbor) and install our 9.0\' South pedestrian ("person") gate return at wx = 57.5\' (100% our cost; set back 2.2\' West of the SE stucco corner behind the meters).',
+        summary: 'Enclose the South property line (57.5\' white vinyl fence split 50/50 with our South neighbor) and install our 9.0\' South pedestrian ("person") gate return at wx = 57.5\' over the continuous grass corridor (100% our cost; set back 2.2\' West of the SE stucco corner behind the meters).',
         phaseNote: 'Cost-Split Rule: We split the 57.5\' shared South property-line fence & 8 line post footings 50/50 with our South neighbor (saving $1,210 Pro / $750 DIY), while paying 100% for our own 4.0\' walk gate, 5.0\' return wings, and gate hardware.',
         items: [
           {
@@ -653,7 +670,7 @@
           },
           {
             name: 'South Pedestrian ("Person") Gate & Fixed Vinyl Return Wings (100% Our Cost)',
-            spec: '9.0\' span at wx = 57.5\' (4.0\' single-swing walk gate aligned with 4\'+ grass corridor + 5.0\' fixed vinyl wings) — Paid 100% by us',
+            spec: '9.0\' span at wx = 57.5\' (4.0\' single-swing walk gate aligned over the continuous wy = 43.5\'–47.5\' grass corridor + 5.0\' fixed vinyl wings) — Paid 100% by us',
             qty: '9.0 lin ft (1 Gate · 100%)',
             diyCost: 425,
             diyRange: '$375–$475',
@@ -674,12 +691,12 @@
       {
         year: '2027',
         phaseNum: 2,
-        title: 'North Fence/Gate + Sprinklers + Grass Seed + All Pavers + Front Trees/Mulch',
+        title: 'North Fence/Gate + Sprinklers + Grass Seed (Under Gate) + All Pavers + Front Trees & White Rock',
         badgeColor: 'bg-teal-100 text-teal-900 border-teal-300',
         hybridDefault: 'DIY',
         hybridBadgeLabel: 'Pro Fence + DIY Turf/Front',
-        summary: 'Install the 70.0\' North white vinyl fence (50/50 neighbor split) and our 8.5\' double-swing vehicle gate at wx = 70.0\' (100% our cost), trench the complete 6–8 zone underground sprinkler system, lay all ~206 lin ft of flush Holland paver mow strips (Front & Back, including the 11.0\' rear compacted road base path edge), seed all 1,400 sq ft of lawn (saving $730+ vs. sod), and complete the Front Yard focal tree, utility box grass screen, park strips & front bark mulch.',
-        phaseNote: '2027 Split Strategy: Laying both Front & Back flush pavers (~206 lin ft) and grass seed (1,400 sq ft) right after sprinkler trenching gives the entire yard a finished lawn in Year 2 while deferring backyard trees, mulch, lighting & porch swing to 2028 (cutting 2027 by $2,300).',
+        summary: 'Install the 70.0\' North white vinyl fence (50/50 neighbor split) and our 8.5\' double-swing vehicle gate at wx = 70.0\' (100% our cost), trench the complete 6–8 zone underground sprinkler system, lay all ~206 lin ft of flush Holland paver mow strips (Front & Back, including the 11.0\' rear compacted road base path edge and continuous strips under the South gate), seed all 1,400 sq ft of lawn continuing under the South gate (saving $730+ vs. sod), and complete the Front Yard focal tree, continuous 2.0\' South planting bed to the green box, and white decorative rock in both 6.0\' park strips and the NE side yard up to the North gate (matching our South neighbors).',
+        phaseNote: '2027 Split Strategy: Laying both Front & Back flush pavers (~206 lin ft) and grass seed (1,400 sq ft continuing under the South gate) right after sprinkler trenching gives the entire yard a finished continuous lawn in Year 2 while deferring backyard trees, mulch, lighting & porch swing to 2028 (cutting 2027 by $2,300).',
         items: [
           {
             name: 'North Property Line White Vinyl Privacy Fence (6\' Tall — 50% Neighbor Split)',
@@ -703,7 +720,7 @@
           },
           {
             name: 'Multi-Zone Underground Sprinkler System (Full Turf Zones + Garden Stub-Out)',
-            spec: 'Smart Wi-Fi controller, PVB backflow, manifold valves, PVC mainline, pop-up MP Rotators (Backyard, 4\'+ S. wrap & Front lawn) + capped stub-out at North garden',
+            spec: 'Smart Wi-Fi controller, PVB backflow, manifold valves, PVC mainline, pop-up MP Rotators (Backyard, 4\'+ S. wrap continuing under gate & Front lawn) + capped stub-out at North garden',
             qty: '6–8 Zones (~1,345 sq ft)',
             diyCost: 1350,
             diyRange: '$1,150–$1,550',
@@ -712,7 +729,7 @@
           },
           {
             name: 'Flush Lawn Paver Mow Strip — Front & Back (45° Chamfered Corners)',
-            spec: 'Installed everywhere grass meets mulch, gravel/road base, or the home (no pavers where grass meets concrete driveway, patio, or sidewalk) — Home Depot Pavestone Holland Pavers (7.87"×3.94"×2.36"; 75\' Front + 131\' Back/Side including the 11.0\' rear road base path edge) + base & polymeric sand',
+            spec: 'Installed everywhere grass meets mulch, gravel/road base, or the home (continuing under the South gate along both sides of the lawn; no pavers where grass meets concrete driveway, patio, or sidewalk) — Home Depot Pavestone Holland Pavers (7.87"×3.94"×2.36"; 75\' Front + 131\' Back/Side including the 11.0\' rear road base path edge) + base & polymeric sand',
             qty: '206 lin ft (330–660 pcs)',
             diyCost: 450,
             diyRange: '$350–$565',
@@ -720,8 +737,8 @@
             proRange: '$1,150–$1,550'
           },
           {
-            name: 'Grass Seed & Topsoil Grading — Front & Back (Backyard, 4\'+ S. Wrap & Front Lawn)',
-            spec: '4 cu yds screened topsoil leveling + premium Kentucky Bluegrass / Perennial Rye / Turf-Type Tall Fescue seed blend across 555 sq ft SE Front, 679 sq ft Backyard & 110 sq ft South side wrap + starter fertilizer & peat moss/tackifier mulch',
+            name: 'Grass Seed & Topsoil Grading — Front & Back (Continuing Under South Gate)',
+            spec: '4 cu yds screened topsoil leveling + premium Kentucky Bluegrass / Perennial Rye / Turf-Type Tall Fescue seed blend across 555 sq ft SE Front, 679 sq ft Backyard & 110 sq ft South side wrap continuing directly under the wx = 57.5\' South gate + starter fertilizer & peat moss/tackifier mulch',
             qty: '1,400 sq ft Seeded Lawn',
             diyCost: 320,
             diyRange: '$250–$390',
@@ -729,9 +746,9 @@
             proRange: '$800–$1,100'
           },
           {
-            name: 'Front Yard Focal Tree, Utility Box Grass Screen, Park Strips & Front Mulch',
-            spec: '1× Front Japanese Maple/Crabapple in porch bed, 6× Karl Foerster feather reed grasses (3-sided green utility box screen), front boxwoods/lavender, 2.0 cu yds front dark shredded bark mulch + weed barrier & water-wise 6.0\' street park strips',
-            qty: '1 Tree + ~12 Plants + 2 yd³ Mulch',
+            name: 'Melinda\'s Fragrant Spring Hyacinth Border, SE Corner Japanese Maple & White Decorative Rock (Park Strips & NE Side Yard)',
+            spec: 'Dense jewel-toned spring Hyacinth drifts (Royal Purple, Delft Blue, Rose Pink & Pearl White) + summer companion perennials in the 2.0\' porch-front bed (wx = 65.2\'–67.2\', right in front of the 3152 hanging porch swing) and curving down the 2.0\' South bed, 1× Sculptural Red Japanese Maple relocated to the SE Front Corner Anchor (wx = 87.0\', wy = 46.8\') so the porch swing view is 100% unobstructed, 6× Karl Foerster grasses (3-sided utility box screen), front bark mulch + white decorative rock in both 6.0\' street park strips (192 sq ft) and NE side yard (287.3 sq ft)',
+            qty: '1 SE Tree + ~50 Hyacinth Bulbs + 12 Plants + White Rock',
             diyCost: 460,
             diyRange: '$380–$540',
             proCost: 900,
@@ -742,15 +759,15 @@
       {
         year: '2028',
         phaseNum: 3,
-        title: 'Backyard Trees/Plants/Mulch (In-Ground Garden) + Lighting + Porch Swing',
+        title: 'Backyard \'Standing Ovation\' Serviceberries/Mulch (In-Ground Garden & Open AC Unit) + Lighting + Porch Swing',
         badgeColor: 'bg-indigo-100 text-indigo-900 border-indigo-300',
         hybridDefault: 'DIY',
-        summary: 'Plant the West Wall 5+4 Designer Hybrid trees & 10-spot perennial under-story, plant the South fence berry/kiwi/pea trellis & shade bed, till the 8\'×23\' in-ground flat-dirt vegetable garden, bury low-voltage wire right before laying 3.5 cu yds of backyard bark mulch, install all 2700K Front & Back LED lighting, and hang the 3152 front porch swing.',
+        summary: 'Plant the West Wall 5+4 Designer Hybrid trees (5× \'Standing Ovation\' Serviceberry pillars with snow-white spring blossoms, summer Juneberries & fiery red-orange fall foliage + 4× Evergreen Column Junipers) & 10-spot perennial under-story, plant the 2.0\' South fence berry/kiwi/pea trellis & shade bed (connecting into the front-yard South bed to the green box; AC unit remains completely open with no cover or shroud), till the 8\'×23\' in-ground flat-dirt vegetable garden, bury low-voltage wire right before laying 3.5 cu yds of backyard bark mulch, install all 2700K Front & Back LED lighting, and hang the 3152 front porch swing looking out over Melinda\'s hyacinths.',
         phaseNote: 'Sequencing Win: Burying the 12/2 low-voltage landscape wire in the bare backyard perimeter beds right before laying weed barrier fabric and 3.5 cu yds of bark mulch avoids ever digging up finished mulch later, and brings lighting & the porch swing 3 years sooner.',
         items: [
           {
-            name: 'Western Wall Trees (5+4 Designer Hybrid) & 10-Spot Under-Story Ribbon',
-            spec: '5× Leafy Columnar Pillars (\'Standing Ovation\' Serviceberry, \'Crimson Spire\' Oak, or \'Parkland Pillar\' Birch centered in the 5 panels) + 4× Upright Column Junipers ($20 Home Depot or \'Taylor\' Junipers at the 4 interior columns) + 10-spot under-story of Catmint/Russian Sage, Coneflower & Karl Foerster Grasses',
+            name: 'Western Wall Trees (5+4 Designer Hybrid: \'Standing Ovation\' Serviceberries + Junipers) & 10-Spot Under-Story',
+            spec: '5× \'Standing Ovation\' Serviceberry Columnar Pillars (Amelanchier alnifolia \'Obelisk\', centered in the 5 panels at wy = 5\',15\',25\',35\',45\' — snow-white spring blossoms for Melinda, sweet purple-blue summer Juneberries & fiery fall color) + 4× Upright Evergreen Column Junipers ($20 Home Depot or \'Taylor\' Junipers at the 4 interior columns) + 10-spot under-story of Catmint/Russian Sage, Coneflower & Karl Foerster Grasses',
             qty: '9 Trees + 15 Perennials',
             diyCost: 890,
             diyRange: '$490–$1,030',
@@ -758,9 +775,9 @@
             proRange: '$1,150–$1,750'
           },
           {
-            name: 'South Fence Berry/Kiwi/Pea Bed, Shade Hostas & Cedar AC Screen',
-            spec: 'Trellised raspberries, hardy kiwi (\'Issai\'), sugar snap peas & alpine strawberries along South fence (wy = 48.0\'–50.0\'), shade hostas/ferns along South house wall + horizontal dark-espresso cedar slat AC screen',
-            qty: '~16 Berry/Shade Plants + AC Screen',
+            name: 'South Fence 2.0\' Berry/Kiwi/Pea Bed & Shade Hostas (AC Unit Completely Open)',
+            spec: 'Trellised raspberries, hardy kiwi (\'Issai\'), sugar snap peas & alpine strawberries along the entire South fence (wx = 0.0\'–57.5\', wy = 48.0\'–50.0\', continuing in the front yard all the way to the green box) + shade hostas/ferns along the 2.0\' South house buffer (AC unit on its 3\'×3\' pad at wx = 45.0\'–48.0\' is completely open with no cover or shroud)',
+            qty: '~16 Berry/Shade Plants & Trellis',
             diyCost: 340,
             diyRange: '$280–$400',
             proCost: 650,
@@ -768,7 +785,7 @@
           },
           {
             name: 'Backyard & Side Yard Dark Shredded Bark Mulch & Weed Barrier Fabric',
-            spec: '3" depth across 4.0\' West wall bed (200 sq ft), 2.0\' South berry bed (115 sq ft) & 2.0\' South house buffer (60 sq ft) + commercial geotextile fabric installed right after burying low-voltage lighting cable',
+            spec: '3" depth across 4.0\' West wall bed (200 sq ft), 2.0\' South fence bed (115 sq ft) & 2.0\' South house buffer (60 sq ft) + commercial geotextile fabric installed right after burying low-voltage lighting cable',
             qty: '3.5 cu yds (~375 sq ft)',
             diyCost: 240,
             diyRange: '$200–$280',
@@ -816,16 +833,16 @@
       {
         year: '2029',
         phaseNum: 4,
-        title: 'North Compacted Road Base Pad + Rear Road Base Path + 5 Raised Cedar Garden Beds',
+        title: 'North Compacted Road Base Pad + Rear Road Base Path + 5 Raised Cedar Garden Beds & Road Base Walkways',
         badgeColor: 'bg-lime-100 text-lime-900 border-lime-300',
         hybridDefault: 'DIY',
-        summary: 'Install the 9.0\' × 43.2\' North side compacted road base utility pad and 3.0\' × 11.0\' rear house compacted road base path to the patio, build the 5 North-to-South raised cedar garden boxes (N1–N5), connect dedicated grid drip manifolds, and compact the 94 sq ft of garden walkways from the same bulk road base delivery.',
-        phaseNote: 'Single Bulk Delivery & Compactor Synergy: Combining the 388.8 sq ft North utility pad, 33.0 sq ft rear path, and 94.0 sq ft garden walkways into one ~11.5-ton Utah 3/4"-minus road base delivery and a single plate-compactor rental saves ~$3,350 vs. poured concrete and finishes the North corridor in one weekend.',
+        summary: 'Install the 9.0\' × 40.0\' North side compacted road base utility pad (inside the wx = 70.0\' gate) and 3.0\' × 11.0\' rear house compacted road base path to the patio, build the 5 North-to-South raised cedar garden boxes (N1–N5), connect dedicated grid drip manifolds, and compact the 94 sq ft of road base walkways around the garden boxes from the same bulk road base delivery.',
+        phaseNote: 'Single Bulk Delivery & Compactor Synergy: Combining the 360.0 sq ft North utility pad (inside the gate), 33.0 sq ft rear path to the patio, and 94.0 sq ft around the garden boxes into one ~11.0-ton Utah 3/4"-minus road base delivery and a single plate-compactor rental saves ~$3,350 vs. poured concrete and finishes the North corridor in one weekend.',
         items: [
           {
-            name: 'North Side Compacted Road Base Pad (9.0\' × 43.2\') & Rear House Road Base Path (3.0\' × 11.0\')',
-            spec: '4"–5" compacted Utah 3/4"-minus Untreated Road Base (~9.0 tons) over commercial geotextile stabilization fabric across the North utility pad (wx = 30.0\'–73.2\', wy = 0.0\'–9.0\'; 388.8 sq ft) and rear house path to patio (wx = 27.0\'–30.0\', wy = 9.0\'–20.0\'; 33.0 sq ft) + vibratory plate compactor rental',
-            qty: '421.8 sq ft (~9.0 Tons)',
+            name: 'North Side Compacted Road Base Pad (9.0\' × 40.0\' Inside Gate) & Rear House Road Base Path (3.0\' × 11.0\')',
+            spec: '4"–5" compacted Utah 3/4"-minus Untreated Road Base (~8.5 tons) over commercial geotextile stabilization fabric across the North utility pad inside the gate (wx = 30.0\'–70.0\', wy = 0.0\'–9.0\'; 360.0 sq ft) and rear house path to patio (wx = 27.0\'–30.0\', wy = 9.0\'–20.0\'; 33.0 sq ft) + vibratory plate compactor rental',
+            qty: '393.0 sq ft (~8.5 Tons)',
             diyCost: 650,
             diyRange: '$525–$775',
             proCost: 1450,
@@ -850,9 +867,9 @@
             proRange: '$580–$780'
           },
           {
-            name: 'Dedicated Raised-Bed Grid Drip System & Compacted Road Base Garden Walkways',
-            spec: 'Connects to 2027 stub-out (25 PSI regulator, filter, 1/2" poly risers with per-box shutoffs & 1/4" emitter grids) + 2.5 tons compacted 3/4"-minus road base across the 4× 1.75\' walkways between beds and 1.0\' N/S borders (94 sq ft net area)',
-            qty: '5 Box Drip Grids + 94 sq ft Paths',
+            name: 'Dedicated Raised-Bed Grid Drip System & Compacted Road Base Around Garden Boxes',
+            spec: 'Connects to 2027 stub-out (25 PSI regulator, filter, 1/2" poly risers with per-box shutoffs & 1/4" emitter grids) + 2.5 tons compacted 3/4"-minus road base across the 4× 1.75\' walkways between beds and 1.0\' N/S borders around the garden boxes (94 sq ft net area)',
+            qty: '5 Box Drip Grids + 94 sq ft Road Base',
             diyCost: 420,
             diyRange: '$340–$500',
             proCost: 920,
@@ -863,16 +880,16 @@
       {
         year: '2030',
         phaseNum: 5,
-        title: 'Option #1C Solid-Roof 2-Pillar Timber Patio Awning, L-Sectional & Propane Fire Table',
+        title: 'Option #1C Open Solid-Roof 2-Pillar Timber Patio Awning (No Privacy Wall), L-Sectional & Propane Fire Table',
         badgeColor: 'bg-amber-100 text-amber-950 border-amber-300',
         hybridDefault: 'DIY',
-        summary: 'Complete the 5-year master plan by outfitting the existing 21.0\' × 12.5\' (262.5 sq ft) backyard concrete patio with the locked Option #1C house-attached 2-pillar dark-espresso timber awning (2 outer West corner pillars, 0 pillars against the home) featuring a 100% solid opaque roof (1×6 T&G cedar wood ceiling underneath + matte-black standing-seam steel roof & front rain gutter on top), L-shaped sectional furniture, and a long rectangular propane fire table.',
-        phaseNote: 'Keeps 100% of the leisure & fire-lounge footprint strictly on the existing 262.5 sq ft concrete patio slab so 0 sq ft of backyard grass is lost, while 100% solid roof protection preserves patio furniture and cushions year-round.',
+        summary: 'Complete the 5-year master plan by outfitting the existing 21.0\' × 12.5\' (262.5 sq ft) backyard concrete patio with the locked Option #1C house-attached 2-pillar dark-espresso timber awning — 100% open on all sides with no privacy wall (2 outer West corner pillars, 0 pillars against the home) — featuring a 100% solid opaque roof (1×6 T&G cedar wood ceiling underneath + matte-black standing-seam steel roof & front rain gutter on top), L-shaped sectional furniture, and a long rectangular propane fire table.',
+        phaseNote: 'Keeps 100% of the leisure & fire-lounge footprint strictly on the existing 262.5 sq ft concrete patio slab so 0 sq ft of backyard grass is lost, while the open-sided solid roof preserves sightlines and protects patio furniture and cushions year-round.',
         items: [
           {
-            name: 'Option #1C: House-Attached 2-Pillar Heavy-Timber Patio Awning with Solid T&G Wood Ceiling & Matte-Black Metal Roof (21.0\' × 12.5\')',
-            spec: 'Ledger-mounted to rear house wall (wx = 30.0\') with ONLY 2 pillars (6×6 or 8×8) on the outer West corners (wx = 18.0\', wy = 20.5\' & 40.5\') and 0 pillars against the home; 21.0\' clear-span Glulam/flitch West beam, 45° knee braces, Simpson black steel hardware, warm 1×6 tongue-and-groove cedar ceiling decking underneath + matte-black standing-seam architectural steel roof & front rain gutter on top (zero translucent plastic)',
-            qty: '1 Solid-Roof 2-Pillar Awning (#1C)',
+            name: 'Option #1C: House-Attached 2-Pillar Heavy-Timber Patio Awning — 100% Open on All Sides, No Privacy Wall (21.0\' × 12.5\')',
+            spec: 'Ledger-mounted to rear house wall (wx = 30.0\') with ONLY 2 pillars (6×6 or 8×8) on the outer West corners (wx = 18.0\', wy = 20.5\' & 40.5\'), 0 pillars against the home, and 0 privacy walls/screens (100% open on all sides); 21.0\' clear-span Glulam/flitch West beam, 45° knee braces, Simpson black steel hardware, warm 1×6 tongue-and-groove cedar ceiling decking underneath + matte-black standing-seam architectural steel roof & front rain gutter on top (zero translucent plastic)',
+            qty: '1 Open Solid-Roof 2-Pillar Awning (#1C)',
             diyCost: 2950,
             diyRange: '$2,650–$3,450',
             proCost: 4600,
@@ -1152,6 +1169,29 @@
             ? 'px-2.5 py-1.5 rounded-lg text-xs font-bold bg-emerald-100 text-emerald-900 border border-emerald-300 hover:bg-emerald-200 transition'
             : 'px-2.5 py-1.5 rounded-lg text-xs font-bold bg-slate-200 text-slate-800 hover:bg-slate-300 transition';
         }
+      }
+    }
+
+    function setPortalSeason(season, btnEl) {
+      document.querySelectorAll('.m3d-season-pill').forEach(b => {
+        b.className = 'm3d-season-pill px-2.5 py-1 rounded-lg text-xs font-bold text-slate-900 hover:bg-slate-300 transition';
+      });
+      if (btnEl) {
+        const activeColors = {
+          SPRING: 'bg-pink-600 text-white shadow-sm',
+          SUMMER: 'bg-emerald-700 text-white shadow-sm',
+          FALL:   'bg-amber-600 text-white shadow-sm',
+          WINTER: 'bg-sky-600 text-white shadow-sm'
+        };
+        btnEl.className = `m3d-season-pill px-2.5 py-1 rounded-lg text-xs font-bold transition ${activeColors[season] || activeColors.SPRING}`;
+      }
+      const m3dIframe = document.getElementById('model3d-iframe');
+      if (m3dIframe && m3dIframe.contentWindow) {
+        m3dIframe.contentWindow.postMessage({ type: 'SET_3D_SEASON', season }, '*');
+      }
+      const bpIframe = document.getElementById('blueprint-iframe');
+      if (bpIframe && bpIframe.contentWindow) {
+        bpIframe.contentWindow.postMessage({ type: 'SET_CAD_SEASON', season }, '*');
       }
     }
 

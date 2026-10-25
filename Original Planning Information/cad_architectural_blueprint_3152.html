@@ -59,22 +59,52 @@
       </div>
     </div>
 
-    <!-- Center: 3 View Modes (Blueprint / Colored / Photo View) -->
-    <div class="flex items-center bg-slate-950 p-1 rounded-lg border border-slate-800">
-      <button id="vmode-cad" onclick="setRenderStyle('CAD')"
-              class="px-4 py-1.5 rounded-md text-xs font-semibold transition-colors duration-150 flex items-center gap-1.5">
-        <span>Blueprint</span>
-      </button>
-      <button id="vmode-color" onclick="setRenderStyle('COLOR_SHAPES')"
-              class="px-4 py-1.5 rounded-md text-xs font-semibold transition-colors duration-150 flex items-center gap-1.5">
-        <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
-        <span>Colored</span>
-      </button>
-      <button id="vmode-drone" onclick="setRenderStyle('DRONE')"
-              class="px-4 py-1.5 rounded-md text-xs font-semibold transition-colors duration-150 flex items-center gap-1.5">
-        <span class="w-2 h-2 rounded-full bg-amber-400"></span>
-        <span>Photo View</span>
-      </button>
+    <!-- Center: 3 View Modes (Blueprint / Colored / Photo View) + 4-Season Switcher -->
+    <div class="flex flex-wrap items-center gap-2">
+      <div class="flex items-center bg-slate-950 p-1 rounded-lg border border-slate-800">
+        <button id="vmode-cad" onclick="setRenderStyle('CAD')"
+                class="px-3.5 py-1.5 rounded-md text-xs font-semibold transition-colors duration-150 flex items-center gap-1.5">
+          <span>Blueprint</span>
+        </button>
+        <button id="vmode-color" onclick="setRenderStyle('COLOR_SHAPES')"
+                class="px-3.5 py-1.5 rounded-md text-xs font-semibold transition-colors duration-150 flex items-center gap-1.5">
+          <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+          <span>Colored</span>
+        </button>
+        <button id="vmode-drone" onclick="setRenderStyle('DRONE')"
+                class="px-3.5 py-1.5 rounded-md text-xs font-semibold transition-colors duration-150 flex items-center gap-1.5">
+          <span class="w-2 h-2 rounded-full bg-amber-400"></span>
+          <span>Photo View</span>
+        </button>
+      </div>
+
+      <!-- 4-Season Switcher (Default: SPRING) -->
+      <div class="flex items-center bg-slate-800/90 p-1 rounded-lg border border-slate-700">
+        <button id="cad-season-spring" onclick="setCADSeason('SPRING')"
+                class="cad-season-btn px-2.5 py-1 rounded text-xs font-bold transition-all bg-pink-600 text-white shadow flex items-center gap-1"
+                title="Spring — Snow-White 'Standing Ovation' Blossoms & Melinda's Front-Porch Hyacinths">
+          <span>&#127800;</span>
+          <span class="hidden md:inline">Spring</span>
+        </button>
+        <button id="cad-season-summer" onclick="setCADSeason('SUMMER')"
+                class="cad-season-btn px-2.5 py-1 rounded text-xs font-bold transition-all text-slate-200 hover:text-white flex items-center gap-1"
+                title="Summer — Lush Green Canopy, Juneberries & Tomatoes">
+          <span>&#9728;&#65039;</span>
+          <span class="hidden md:inline">Summer</span>
+        </button>
+        <button id="cad-season-fall" onclick="setCADSeason('FALL')"
+                class="cad-season-btn px-2.5 py-1 rounded text-xs font-bold transition-all text-slate-200 hover:text-white flex items-center gap-1"
+                title="Fall — Fiery Orange-Red Serviceberries & Scarlet Maple">
+          <span>&#127810;</span>
+          <span class="hidden md:inline">Fall</span>
+        </button>
+        <button id="cad-season-winter" onclick="setCADSeason('WINTER')"
+                class="cad-season-btn px-2.5 py-1 rounded text-xs font-bold transition-all text-slate-200 hover:text-white flex items-center gap-1"
+                title="Winter — Bare Deciduous Branch Skeletons & Evergreen Junipers">
+          <span>&#10052;&#65039;</span>
+          <span class="hidden md:inline">Winter</span>
+        </button>
+      </div>
     </div>
 
     <!-- Right: Simple Labels & Measurements Toggles -->
@@ -154,12 +184,12 @@
       <div id="color-shapes-legend" class="hidden absolute top-4 left-4 z-20 bg-slate-900/90 backdrop-blur-md p-4 rounded-lg border border-slate-700/80 max-w-xs text-xs pointer-events-none">
         <div class="font-semibold text-slate-200 text-xs mb-2">Color Key</div>
         <div class="grid grid-cols-2 gap-x-4 gap-y-1.5 text-[11px] text-slate-300">
-          <div class="flex items-center gap-2"><span class="w-3 h-3 rounded-sm bg-[#22c55e] shrink-0"></span><span>Seeded Lawn</span></div>
+          <div class="flex items-center gap-2"><span class="w-3 h-3 rounded-sm bg-[#22c55e] shrink-0"></span><span>Lawn (Under Gate)</span></div>
           <div class="flex items-center gap-2"><span class="w-3 h-3 rounded-sm bg-[#2dd4bf] shrink-0"></span><span>45° Paver Edging</span></div>
-          <div class="flex items-center gap-2"><span class="w-3 h-3 rounded-sm bg-[#854d0e] shrink-0"></span><span>Bark Mulch Beds</span></div>
-          <div class="flex items-center gap-2"><span class="w-3 h-3 rounded-sm bg-[#16a34a] shrink-0"></span><span>Trees &amp; Plants</span></div>
-          <div class="flex items-center gap-2"><span class="w-3 h-3 rounded-sm bg-[#a8a29e] shrink-0"></span><span>Road Base Pad/Path</span></div>
-          <div class="flex items-center gap-2"><span class="w-3 h-3 rounded-sm bg-[#b45309] shrink-0"></span><span>2-Pillar Awning</span></div>
+          <div class="flex items-center gap-2"><span class="w-3 h-3 rounded-sm bg-[#854d0e] shrink-0"></span><span>2' S. &amp; W. Mulch</span></div>
+          <div class="flex items-center gap-2"><span class="w-3 h-3 rounded-sm bg-[#f1f5f9] border border-slate-400 shrink-0"></span><span>White Rock Strips</span></div>
+          <div class="flex items-center gap-2"><span class="w-3 h-3 rounded-sm bg-[#a8a29e] shrink-0"></span><span>Road Base Pad/Beds</span></div>
+          <div class="flex items-center gap-2"><span class="w-3 h-3 rounded-sm bg-[#b45309] shrink-0"></span><span>Open Awning (#1C)</span></div>
           <div class="flex items-center gap-2"><span class="w-3 h-3 rounded-sm bg-[#84cc16] shrink-0"></span><span>5 Cedar Planters</span></div>
           <div class="flex items-center gap-2"><span class="w-3 h-3 rounded-sm bg-[#c084fc] shrink-0"></span><span>Vinyl Fence/Gates</span></div>
         </div>
@@ -233,7 +263,11 @@
     const LOCKED_NORTH_GATE_WX = 70.0;
     const LOCKED_SOUTH_GATE_WX = 57.5;
 
+    const SE_MAPLE_WX = 87.0;
+    const SE_MAPLE_WY = 46.8;
+
     const STATE = {
+      season: 'SPRING',           // 'SPRING' | 'SUMMER' | 'FALL' | 'WINTER'
       orientation: 'WEST_UP',     // 'WEST_UP' | 'NORTH_UP' | 'EAST_UP'
       renderStyle: 'COLOR_SHAPES',// 'CAD' | 'COLOR_SHAPES' | 'DRONE'
       theme: 'blueprint',
@@ -287,26 +321,26 @@
     // Phase-to-Photo mapping for Photo View (whole-phase visualization photos, not per-element)
     const PHASE_PHOTOS = {
       'phase-1': [
-        { title: 'Phase 1 (2026) · South Vinyl Fence & 4\' Walk Gate', url: '../photos_backyard_ideas/render_south_gate_porch_entry.jpg' },
-        { title: 'Phase 1 (2026) · South Side Corridor & Fence Line', url: '../photos_backyard_ideas/render_south_side_flagstone_ac_screen.jpg' }
+        { title: 'Phase 1 (2026) · South Vinyl Fence & 4\' Walk Gate (Grass & 2\' Bed Under Gate)', url: '../photos_backyard_ideas/render_south_gate_porch_entry.jpg' },
+        { title: 'Phase 1 (2026) · South Side Corridor & Open AC Unit (No Cover/Shroud)', url: '../photos_backyard_ideas/render_south_side_flagstone_ac_screen.jpg' }
       ],
       'phase-2': [
-        { title: 'Phase 2 (2027) · North Double Gate & NE Strip', url: '../photos_backyard_ideas/render_north_vehicle_gate_ne_strip.jpg' },
-        { title: 'Phase 2 (2027) · Front Lawn, Maple, Grasses & 45° Pavers', url: '../photos_backyard_ideas/render_front_se_lawn_chamfered_beds.jpg' },
-        { title: 'Phase 2 (2027) · Full Front Elevation & 6\' Park Strips', url: '../photos_backyard_ideas/render_front_full_elevation_park_strips.jpg' }
+        { title: 'Phase 2 (2027) · North Double Gate & White Rock NE Strip (Stops at Fence)', url: '../photos_backyard_ideas/render_north_vehicle_gate_ne_strip.jpg' },
+        { title: 'Phase 2 (2027) · Front Lawn, Melinda\'s Hyacinths, SE Maple & 45° Pavers', url: '../photos_backyard_ideas/render_front_se_lawn_chamfered_beds.jpg' },
+        { title: 'Phase 2 (2027) · Full Front Elevation & White Rock 6\' Park Strips', url: '../photos_backyard_ideas/render_front_full_elevation_park_strips.jpg' }
       ],
       'phase-3': [
-        { title: 'Phase 3 (2028) · West Wall 5+4 Trees & Mulch Beds', url: '../photos_backyard_ideas/render_backyard_full_50ft_span_ten_junipers.jpg' },
+        { title: 'Phase 3 (2028) · West Wall 5+4 (\'Standing Ovation\' Blossoms & Junipers)', url: '../photos_backyard_ideas/render_backyard_full_50ft_span_ten_junipers.jpg' },
         { title: 'Phase 3 (2028) · 2700K Uplights & Patio Bistro Lights', url: '../photos_backyard_ideas/render_backyard_west_juniper_bed_patio.jpg' }
       ],
       'phase-4': [
-        { title: 'Phase 4 (2029) · 9\'×43.2\' Road Base Pad & 3\' Rear Path', url: '../photos_backyard_ideas/render_north_side_cement_pad_corridor.jpg' },
-        { title: 'Phase 4 (2029) · 5 Raised Cedar Beds & Road Base Paths', url: '../photos_backyard_ideas/render_backyard_nw_five_planters_sidewalk.jpg' },
-        { title: 'Phase 4 (2029) · Backyard Looking East with 5 Planters', url: '../photos_backyard_ideas/render_backyard_pergola_north_planters.jpg' }
+        { title: 'Phase 4 (2029) · 9\'×40\' Road Base Pad & 3\' Rear Path to Patio', url: '../photos_backyard_ideas/render_north_side_cement_pad_corridor.jpg' },
+        { title: 'Phase 4 (2029) · 5 Raised Cedar Beds Surrounded by Compacted Road Base', url: '../photos_backyard_ideas/render_backyard_nw_five_planters_sidewalk.jpg' },
+        { title: 'Phase 4 (2029) · Backyard Looking East with 5 Planters in Road Base', url: '../photos_backyard_ideas/render_backyard_pergola_north_planters.jpg' }
       ],
       'phase-5': [
-        { title: 'Phase 5 (2030) · Solid-Roof 2-Pillar Timber Awning (#1C)', url: '../photos_backyard_ideas/render_patio_awning_option_1c_solid_roof.jpg' },
-        { title: 'Phase 5 (2030) · Patio Lounge, L-Sectional & Fire Table', url: '../photos_backyard_ideas/render_backyard_sw_corner_patio_awning_south_corridor.jpg' }
+        { title: 'Phase 5 (2030) · Open Solid-Roof 2-Pillar Timber Awning (#1C — No Privacy Wall)', url: '../photos_backyard_ideas/render_patio_awning_option_1c_solid_roof.jpg' },
+        { title: 'Phase 5 (2030) · Open Patio Lounge, L-Sectional & Fire Table', url: '../photos_backyard_ideas/render_backyard_sw_corner_patio_awning_south_corridor.jpg' }
       ]
     };
 
@@ -316,7 +350,7 @@
         year: 2026,
         badge: 'Phase 1 · 2026',
         title: 'South Fence & Walk Gate',
-        cost: '$2,150',
+        cost: '$2,113',
         subtitle: '57.5\' S. Fence (50% Split) + 4\' Gate',
         accent: '#c084fc',
         layers: [
@@ -328,17 +362,17 @@
         id: 'phase-2',
         year: 2027,
         badge: 'Phase 2 · 2027',
-        title: 'N. Fence, Seed, Pavers & Front',
-        cost: '$5,520',
-        subtitle: '70\' N. Fence/Gate, Sprinklers, Pavers, Seed & Front',
+        title: 'N. Fence, Sprinklers, Pavers & Hyacinths',
+        cost: '$5,610',
+        subtitle: '70\' N. Fence, Sprinklers, Pavers, Porch Hyacinths & SE Maple',
         accent: '#34d399',
         layers: [
           { key: 'northFence', label: 'North Vinyl Fence (70.0\')', swatch: '#c084fc', defaultOn: true },
           { key: 'northGate', label: 'North 8.5\' Double Gate', swatch: '#fbbf24', defaultOn: true },
-          { key: 'grass', label: 'Seeded Lawn (Back, S. Wrap & Front)', swatch: '#22c55e', defaultOn: true },
-          { key: 'pavers', label: '45° Holland Paver Mow Strip (~206\')', swatch: '#2dd4bf', defaultOn: true },
-          { key: 'frontBeds', label: 'Front Yard Mulch Beds & Park Strips', swatch: '#854d0e', defaultOn: true },
-          { key: 'frontPlants', label: 'Front Maple, Box Screen & Shrubs', swatch: '#f43f5e', defaultOn: true },
+          { key: 'grass', label: 'Sod (BY) + Seeded Front Lawn', swatch: '#22c55e', defaultOn: true },
+          { key: 'pavers', label: '45° Holland Paver Mow Strip (~195\')', swatch: '#2dd4bf', defaultOn: true },
+          { key: 'frontBeds', label: '2\' Front Porch Hyacinth Bed & Park Strips', swatch: '#f1f5f9', defaultOn: true },
+          { key: 'frontPlants', label: 'Melinda\'s Hyacinths, SE Maple & Box Screen', swatch: '#f43f5e', defaultOn: true },
           { key: 'irrigation', label: 'Underground Sprinkler Arcs (6–8 Zones)', swatch: '#38bdf8', defaultOn: false }
         ]
       },
@@ -346,13 +380,13 @@
         id: 'phase-3',
         year: 2028,
         badge: 'Phase 3 · 2028',
-        title: 'Backyard Trees, Lighting & Swing',
+        title: '\'Standing Ovation\' Trees, Lights & Swing',
         cost: '$3,580',
-        subtitle: 'West 5+4 Trees, Mulch, 2700K Lights & Swing',
+        subtitle: 'W. Wall 5+4 Blossoms, 2\' S. Bed, 2700K Lights & Swing',
         accent: '#818cf8',
         layers: [
-          { key: 'beds', label: 'Backyard & South Mulch Beds + Flat Garden', swatch: '#854d0e', defaultOn: true },
-          { key: 'westWallPlants', label: 'West Wall 5+4 Hybrid Trees & Perennials', swatch: '#4ade80', defaultOn: true },
+          { key: 'beds', label: 'West & Continuous 2\' S. Mulch Beds + Flat Garden', swatch: '#854d0e', defaultOn: true },
+          { key: 'westWallPlants', label: 'W. Wall 5+4 (\'Standing Ovation\' Blossoms & Junipers)', swatch: '#f472b6', defaultOn: true },
           { key: 'yardPlants', label: 'South Berry/Kiwi Trellis & Shade Bed', swatch: '#f43f5e', defaultOn: true },
           { key: 'lighting', label: '2700K Uplights, Path & Bistro Lights', swatch: '#fde047', defaultOn: true },
           { key: 'porchSwing', label: 'Front Porch Hanging Swing (3152)', swatch: '#fb923c', defaultOn: true }
@@ -364,13 +398,13 @@
         badge: 'Phase 4 · 2029',
         title: 'Road Base Pad/Path & 5 Cedar Beds',
         cost: '$2,600',
-        subtitle: '9\'×43.2\' Road Base Pad + 3\' Path + 5 Planters',
+        subtitle: '9\'×40\' Road Base Pad + 3\' Path + 5 Planters in Road Base',
         accent: '#84cc16',
         layers: [
-          { key: 'northCementPad', label: 'North Road Base Pad (9\'×43.2\')', swatch: '#a8a29e', defaultOn: true },
+          { key: 'northCementPad', label: 'North Road Base Pad (9\'×40\' to Gate)', swatch: '#a8a29e', defaultOn: true },
           { key: 'rearSidewalk', label: 'Rear Wall Road Base Path (3\'×11\')', swatch: '#d6d3d1', defaultOn: true },
           { key: 'planters', label: '5 Raised Cedar Planters (N1–N5)', swatch: '#84cc16', defaultOn: true },
-          { key: 'gardenRock', label: 'Compacted Road Base Garden Paths', swatch: '#a8a29e', defaultOn: true },
+          { key: 'gardenRock', label: 'Compacted Road Base Around Garden Boxes', swatch: '#a8a29e', defaultOn: true },
           { key: 'gardenDrip', label: 'Per-Box Grid Drip Lines', swatch: '#0ea5e9', defaultOn: false }
         ]
       },
@@ -378,12 +412,12 @@
         id: 'phase-5',
         year: 2030,
         badge: 'Phase 5 · 2030',
-        title: '2-Pillar Solid Awning & Patio Set',
+        title: 'Open 2-Pillar Solid Awning & Patio Set',
         cost: '$5,250',
-        subtitle: 'Solid-Roof Timber Awning + L-Sofa + Fire Pit',
+        subtitle: 'Open Solid-Roof Awning (No Privacy Wall) + Sofa',
         accent: '#f59e0b',
         layers: [
-          { key: 'patioAwning', label: '2-Pillar Solid-Roof Awning (#1C)', swatch: '#92400e', defaultOn: true },
+          { key: 'patioAwning', label: 'Open 2-Pillar Solid-Roof Awning (#1C)', swatch: '#92400e', defaultOn: true },
           { key: 'patioFurniture', label: 'L-Sectional Sofa & Fire Table', swatch: '#f59e0b', defaultOn: true }
         ]
       }
@@ -422,18 +456,18 @@
       { id: 'lot-width', primary: true, wx1: 0.0, wy1: 0.0, wx2: 0.0, wy2: 50.0, offset: -14.0, label: "50.0' LOT WIDTH" },
       { id: 'lot-depth', primary: true, wx1: 0.0, wy1: 0.0, wx2: 96.7, wy2: 0.0, offset: -14.0, label: "96.7' LOT DEPTH TO WALK" },
       { id: 'backyard-depth', primary: true, wx1: 0.0, wy1: 0.0, wx2: 30.0, wy2: 0.0, offset: -7.5, label: "30.0' BACKYARD" },
-      { id: 'north-wall-depth', primary: true, wx1: 30.0, wy1: 9.0, wx2: 73.2, wy2: 9.0, offset: -16.5, label: "43.2' N. HOUSE / ROAD BASE PAD" },
-      { id: 'driveway-length', primary: true, wx1: 73.2, wy1: 11.0, wx2: 96.7, wy2: 11.0, offset: -18.5, label: "23.5' DRIVEWAY" },
+      { id: 'north-wall-depth', primary: true, wx1: 30.0, wy1: 9.0, wx2: 70.0, wy2: 9.0, offset: -16.5, label: "40.0' N. ROAD BASE PAD (TO GATE)" },
+      { id: 'driveway-length', primary: true, wx1: 73.2, wy1: 11.0, wx2: 96.7, wy2: 11.0, offset: -18.5, label: "23.5' DRIVEWAY / WHITE ROCK NE STRIP" },
       { id: 'house-width', primary: true, wx1: 30.0, wy1: 9.0, wx2: 30.0, wy2: 41.0, offset: -9.5, label: "32.0' HOUSE WIDTH" },
       { id: 'north-setback', primary: false, wx1: 30.0, wy1: 0.0, wx2: 30.0, wy2: 9.0, offset: -9.5, label: "9.0' N. SIDE" },
       { id: 'south-setback', primary: false, wx1: 30.0, wy1: 41.0, wx2: 30.0, wy2: 50.0, offset: -9.5, label: "9.0' S. SIDE" },
-      { id: 'patio-dims', primary: false, wx1: 17.5, wy1: 20.0, wx2: 17.5, wy2: 41.0, offset: -4.5, label: "21.0' × 12.5' PATIO" },
+      { id: 'patio-dims', primary: false, wx1: 17.5, wy1: 20.0, wx2: 17.5, wy2: 41.0, offset: -4.5, label: "21.0' × 12.5' PATIO (OPEN AWNING)" },
       { id: 'patio-to-wall', primary: false, wx1: 0.0, wy1: 20.0, wx2: 17.5, wy2: 20.0, offset: 0, label: "17.5' PATIO TO W. WALL" },
       { id: 'west-bed-depth', primary: false, wx1: 0.0, wy1: 35.0, wx2: 4.5, wy2: 35.0, offset: 0, label: "4.5' W. BED + PAVER" },
-      { id: 'north-planter-depth', primary: false, wx1: 16.0, wy1: 0.0, wx2: 16.0, wy2: 8.5, offset: 0, label: "8.5' PLANTER ZONE" },
+      { id: 'north-planter-depth', primary: false, wx1: 16.0, wy1: 0.0, wx2: 16.0, wy2: 8.5, offset: 0, label: "8.5' PLANTER ZONE (ROAD BASE)" },
       { id: 'rear-walk-dims', primary: false, wx1: 28.5, wy1: 9.0, wx2: 28.5, wy2: 20.0, offset: 0, label: "3'×11' ROAD BASE PATH" },
-      { id: 'south-wall-depth', primary: true, wx1: 30.0, wy1: 50.0, wx2: 59.7, wy2: 50.0, offset: 9.5, label: "29.7' S. WALL" },
-      { id: 'se-front-depth', primary: true, wx1: 59.7, wy1: 50.0, wx2: 96.7, wy2: 50.0, offset: 9.5, label: "37.0' FRONT LAWN DEPTH" },
+      { id: 'south-wall-depth', primary: true, wx1: 30.0, wy1: 50.0, wx2: 59.7, wy2: 50.0, offset: 9.5, label: "29.7' S. WALL (2' BED + 4' GRASS)" },
+      { id: 'se-front-depth', primary: true, wx1: 59.7, wy1: 50.0, wx2: 96.7, wy2: 50.0, offset: 9.5, label: "37.0' FRONT LAWN & 2' S. BED TO GREEN BOX" },
       { id: 'driveway-width', primary: true, wx1: 96.7, wy1: 11.0, wx2: 96.7, wy2: 29.0, offset: 14.5, label: "18.0' DRIVEWAY W" }
     ];
 
@@ -810,11 +844,11 @@
         `);
       }
 
-      // 5. PHASE 4 (2029) COMPACTED ROAD BASE PAD & REAR PATH
+      // 5. PHASE 4 (2029) COMPACTED ROAD BASE PAD (Inside North Gate wx=30.0'–70.0') & REAR PATH (wx=27.0'–30.0')
       const roadBaseFill = isDrone ? 'url(#drone-crushed-rock)' : (isColor ? '#a8a29e' : 'url(#pat-gravel)');
       const roadBaseStroke = isDrone ? '#64748b' : (isColor ? '#e7e5e4' : '#cbd5e1');
       if (L.northCementPad) {
-        const nPad = projectRect(30.0, 0.0, 73.2, 9.0);
+        const nPad = projectRect(30.0, 0.0, LOCKED_NORTH_GATE_WX, 9.0);
         out.push(`<rect x="${nPad.x.toFixed(1)}" y="${nPad.y.toFixed(1)}" width="${nPad.width.toFixed(1)}" height="${nPad.height.toFixed(1)}" fill="${roadBaseFill}" stroke="${roadBaseStroke}" stroke-width="1.6"/>`);
       }
       if (L.rearSidewalk) {
@@ -822,24 +856,37 @@
         out.push(`<rect x="${rWalk.x.toFixed(1)}" y="${rWalk.y.toFixed(1)}" width="${rWalk.width.toFixed(1)}" height="${rWalk.height.toFixed(1)}" fill="${roadBaseFill}" stroke="${roadBaseStroke}" stroke-width="1.6"/>`);
       }
 
-      // 6A. PHASE 2 (2027) FRONT YARD MULCH BEDS & PARK STRIPS
+      // 6A. PHASE 2 (2027) FRONT YARD MULCH BEDS (2' S. Bed Continuing to Green Box + Porch Bed) & WHITE DECORATIVE ROCK (Park Strips + NE Side Yard Stopping at North Fence)
       const mulchFill = isDrone ? 'url(#drone-mulch)' : (isColor ? '#78350f' : 'rgba(21, 128, 61, 0.24)');
       const mulchStroke = isDrone ? '#1c1008' : (isColor ? '#b45309' : '#4ade80');
       const rockBufFill = isDrone ? 'url(#drone-crushed-rock)' : (isColor ? '#a8a29e' : 'url(#pat-gravel)');
+      const whiteRockFill = isDrone ? 'url(#drone-white-rocks)' : (isColor ? '#f1f5f9' : 'rgba(241, 245, 249, 0.32)');
+      const whiteRockStroke = isDrone ? '#cbd5e1' : (isColor ? '#94a3b8' : '#e2e8f0');
 
       if (L.frontBeds) {
-        const seOuterBedPoly = projectPoly([
-          [65.7, 32.5], [81.0, 32.5], [81.0, 29.0], [96.7, 29.0],
-          [96.7, 50.0], [LOCKED_SOUTH_GATE_WX, 50.0], [LOCKED_SOUTH_GATE_WX, 41.0], [65.7, 41.0]
+        // Continuous 2.0' South planting bed in the front yard (wx=57.5'–96.7', wy=48.0'–50.0') all the way to the 3-sided green utility box bed
+        const frontSouthBedToBoxPoly = projectPoly([
+          [LOCKED_SOUTH_GATE_WX, 48.0], [88.6, 48.0], [90.75, 45.6], [90.75, 44.4],
+          [92.1, 43.0], [96.7, 43.0], [96.7, 50.0], [LOCKED_SOUTH_GATE_WX, 50.0]
         ]);
-        const neStrip = projectRect(73.2, 0.0, 96.7, 11.0);
+        // 2.0' Front-of-porch and South-of-porch foundation planting bed (leaving wy=43.5'–47.5' open for continuous grass under the gate!)
+        const frontPorchBedPoly = projectPoly([
+          [LOCKED_SOUTH_GATE_WX, 41.0], [65.7, 41.0], [65.7, 32.5], [68.0, 32.5],
+          [68.0, 41.35], [66.05, 43.25], [LOCKED_SOUTH_GATE_WX, 43.25]
+        ]);
+        // White decorative rock in NE side yard going up to North side yard (stopping at wx=70.0' fence) + both 6.0' street park strips
+        const neWhiteRockPoly = projectPoly([
+          [LOCKED_NORTH_GATE_WX, 0.0], [96.7, 0.0], [96.7, 11.0],
+          [73.2, 11.0], [73.2, 9.0], [LOCKED_NORTH_GATE_WX, 9.0]
+        ]);
         const nPark = projectRect(100.7, 0.0, 106.7, 9.5);
         const sPark = projectRect(100.7, 30.5, 106.7, 50.0);
         out.push(`
-          <polygon points="${seOuterBedPoly}" fill="${mulchFill}" stroke="${mulchStroke}" stroke-width="1"/>
-          <rect x="${neStrip.x.toFixed(1)}" y="${neStrip.y.toFixed(1)}" width="${neStrip.width.toFixed(1)}" height="${neStrip.height.toFixed(1)}" fill="${rockBufFill}" stroke="#64748b" stroke-width="0.9"/>
-          <rect x="${nPark.x.toFixed(1)}" y="${nPark.y.toFixed(1)}" width="${nPark.width.toFixed(1)}" height="${nPark.height.toFixed(1)}" fill="${rockBufFill}" stroke="#64748b" stroke-width="0.9"/>
-          <rect x="${sPark.x.toFixed(1)}" y="${sPark.y.toFixed(1)}" width="${sPark.width.toFixed(1)}" height="${sPark.height.toFixed(1)}" fill="${rockBufFill}" stroke="#64748b" stroke-width="0.9"/>
+          <polygon points="${frontSouthBedToBoxPoly}" fill="${mulchFill}" stroke="${mulchStroke}" stroke-width="1"/>
+          <polygon points="${frontPorchBedPoly}" fill="${mulchFill}" stroke="${mulchStroke}" stroke-width="1"/>
+          <polygon points="${neWhiteRockPoly}" fill="${whiteRockFill}" stroke="${whiteRockStroke}" stroke-width="1.1"/>
+          <rect x="${nPark.x.toFixed(1)}" y="${nPark.y.toFixed(1)}" width="${nPark.width.toFixed(1)}" height="${nPark.height.toFixed(1)}" fill="${whiteRockFill}" stroke="${whiteRockStroke}" stroke-width="1.1"/>
+          <rect x="${sPark.x.toFixed(1)}" y="${sPark.y.toFixed(1)}" width="${sPark.width.toFixed(1)}" height="${sPark.height.toFixed(1)}" fill="${whiteRockFill}" stroke="${whiteRockStroke}" stroke-width="1.1"/>
         `);
       }
 
@@ -861,34 +908,27 @@
         }
       }
 
-      // 7. PHASE 4 (2029) COMPACTED ROAD BASE GARDEN WALKWAYS
+      // 7. PHASE 4 (2029) COMPACTED ROAD BASE AROUND GARDEN BOXES
       if (L.gardenRock) {
         const gBed = projectRect(4.0, 0.0, 27.0, 8.0);
         const gRockFill = isDrone ? 'url(#drone-crushed-rock)' : (isColor ? '#a8a29e' : 'url(#pat-gravel)');
         out.push(`<rect x="${gBed.x.toFixed(1)}" y="${gBed.y.toFixed(1)}" width="${gBed.width.toFixed(1)}" height="${gBed.height.toFixed(1)}" fill="${gRockFill}" stroke="#94a3b8" stroke-width="1.1"/>`);
       }
 
-      // 8. PHASE 2 (2027) SEEDED LAWN TURF
-      const byLawnPts = [
+      // 8. PHASE 2 (2027) UNIFIED CONTINUOUS LAWN TURF (Continuing Under South Gate Into Front Yard!)
+      const unifiedLawnPts = [
         [4.5, 10.5], [6.5, 8.5], [25.0, 8.5], [26.5, 10.0], [26.5, 20.0],
         [17.5, 20.0], [17.5, 41.0], [30.0, 41.0], [32.5, 43.5],
-        [LOCKED_SOUTH_GATE_WX, 43.5], [LOCKED_SOUTH_GATE_WX, 47.5],
+        [66.05, 43.5], [68.2, 41.35], [68.2, 32.5], [81.0, 32.5], [81.0, 29.0], [96.7, 29.0],
+        [96.7, 43.0], [92.0, 43.0], [90.5, 44.5], [90.5, 45.5], [88.5, 47.5],
         [6.5, 47.5], [4.5, 45.5]
-      ];
-      const frontLawnPts = [
-        [96.7, 29.0], [81.0, 29.0], [81.0, 32.5], [68.2, 32.5],
-        [68.2, 45.5], [70.2, 47.5], [88.5, 47.5], [90.5, 45.5],
-        [90.5, 44.5], [92.0, 43.0], [96.7, 43.0]
       ];
       if (L.grass) {
         const turfFill = isDrone ? 'url(#drone-turf)' : (isColor ? '#22c55e' : 'rgba(16, 185, 129, 0.25)');
         const turfStroke = isDrone ? '#14532d' : (isColor ? '#15803d' : '#10b981');
         out.push(`
-          <polygon points="${projectPoly(byLawnPts)}" fill="${turfFill}" stroke="${turfStroke}" stroke-width="1.2"/>
-          <polygon points="${projectPoly(frontLawnPts)}" fill="${turfFill}" stroke="${turfStroke}" stroke-width="1.2"/>
+          <polygon points="${projectPoly(unifiedLawnPts)}" fill="${turfFill}" stroke="${turfStroke}" stroke-width="1.2"/>
         `);
-      } else if (L.frontBeds) {
-        out.push(`<polygon points="${projectPoly(frontLawnPts)}" fill="${lotFill}" stroke="none"/>`);
       }
 
       // 9. SUBTLE GRID IN BLUEPRINT VIEW
@@ -905,12 +945,11 @@
         out.push(`</g>`);
       }
 
-      // 10. PHASE 2 (2027) 6" HOLLAND PAVERS WITH 45° CHAMFERED CORNERS (Including 11.0' Rear Road Base Path Edge!)
+      // 10. PHASE 2 (2027) CONTINUOUS 6" HOLLAND PAVERS WITH 45° CHAMFERED CORNERS (Continuing Under South Gate!)
       if (L.pavers) {
         const paverChains = [
-          [[30.0, 41.0], [32.6, 43.25], [LOCKED_SOUTH_GATE_WX, 43.25]],
-          [[LOCKED_SOUTH_GATE_WX, 47.75], [6.4, 47.75], [4.25, 45.6], [4.25, 10.4], [6.4, 8.25], [24.85, 8.25], [26.75, 10.15], [26.75, 20.0]],
-          [[67.95, 32.5], [67.95, 45.6], [70.1, 47.75], [88.6, 47.75], [90.75, 45.6], [90.75, 44.4], [92.1, 43.25], [96.7, 43.25]]
+          [[30.0, 41.0], [32.6, 43.25], [66.05, 43.25], [67.95, 41.35], [67.95, 32.5]],
+          [[26.75, 20.0], [26.75, 10.15], [24.85, 8.25], [6.4, 8.25], [4.25, 10.4], [4.25, 45.6], [6.4, 47.75], [88.6, 47.75], [90.75, 45.6], [90.75, 44.4], [92.1, 43.25], [96.7, 43.25]]
         ];
         paverChains.forEach(chain => {
           const ptsStr = chain.map(([wx, wy]) => {
@@ -937,7 +976,7 @@
           [6.5, 9.0, 11.0], [16.5, 9.0, 11.0], [26.5, 9.0, 10.5],
           [5.0, 22.0, 12.5], [17.0, 20.5, 12.0], [5.0, 34.0, 12.5],
           [17.0, 40.5, 12.0], [6.5, 47.0, 11.0], [18.0, 47.0, 11.0],
-          [70.0, 36.0, 11.0], [82.0, 35.0, 11.0], [95.0, 32.5, 11.0]
+          [60.0, 45.5, 8.0], [70.0, 36.0, 11.0], [82.0, 35.0, 11.0], [95.0, 32.5, 11.0]
         ];
         heads.forEach(([hx, hy, radFt]) => {
           const hp = project(hx, hy);
@@ -987,7 +1026,7 @@
         });
       }
 
-      // 13. HOUSE STRUCTURE
+      // 13. HOUSE STRUCTURE + COMPLETELY OPEN AC UNIT (NO COVER/SHROUD) + GREEN UTILITY BOX
       if (L.houseStructure) {
         const rearWall = projectRect(-1.0, 0.0, 0.0, 50.0);
         const wallFill = isDrone ? '#a8a29e' : (isColor ? '#94a3b8' : T.wallConcrete);
@@ -1027,6 +1066,21 @@
 
         const pillarRect = projectRect(64.2, 39.5, 65.7, 41.25);
         out.push(`<rect x="${pillarRect.x}" y="${pillarRect.y}" width="${pillarRect.width}" height="${pillarRect.height}" fill="${T.stoneFill}" stroke="${T.houseStroke}" stroke-width="1.2"/>`);
+
+        // Completely Open AC Condenser Pad & Unit (3.0' × 3.0' at wx=45.0'–48.0', wy=41.0'–44.0' — NO cover or shroud!)
+        const acPad = projectRect(45.0, 41.0, 48.0, 44.0);
+        const acUnit = projectRect(45.35, 41.35, 47.65, 43.65);
+        out.push(`
+          <rect x="${acPad.x.toFixed(1)}" y="${acPad.y.toFixed(1)}" width="${acPad.width.toFixed(1)}" height="${acPad.height.toFixed(1)}" fill="#94a3b8" stroke="#e2e8f0" stroke-width="1"/>
+          <rect x="${acUnit.x.toFixed(1)}" y="${acUnit.y.toFixed(1)}" width="${acUnit.width.toFixed(1)}" height="${acUnit.height.toFixed(1)}" rx="2" fill="#475569" stroke="#cbd5e1" stroke-width="1.1"/>
+          <circle cx="${acUnit.cx.toFixed(1)}" cy="${acUnit.cy.toFixed(1)}" r="${(0.75 * SCALE).toFixed(1)}" fill="#1e293b" stroke="#94a3b8" stroke-width="0.9"/>
+        `);
+
+        // Green Utility Transformer Box in SE Front Corner (wx=93.0'–96.4', wy=45.5'–48.5')
+        const greenBox = projectRect(93.0, 45.5, 96.4, 48.5);
+        out.push(`
+          <rect x="${greenBox.x.toFixed(1)}" y="${greenBox.y.toFixed(1)}" width="${greenBox.width.toFixed(1)}" height="${greenBox.height.toFixed(1)}" rx="2" fill="#166534" stroke="#86efac" stroke-width="1.4"/>
+        `);
       }
 
       // 14. PHASE 3 (2028) PORCH SWING
@@ -1035,7 +1089,7 @@
         out.push(`<rect x="${swingRect.x.toFixed(1)}" y="${swingRect.y.toFixed(1)}" width="${swingRect.width.toFixed(1)}" height="${swingRect.height.toFixed(1)}" rx="2" fill="#ea580c" stroke="#fed7aa" stroke-width="1.3"/>`);
       }
 
-      // 15. PHASE 5 (2030) PATIO FURNITURE + 2-PILLAR SOLID-ROOF AWNING (Option #1C: Strictly 2 West Pillars, 0 House Pillars!)
+      // 15. PHASE 5 (2030) PATIO FURNITURE + OPEN 2-PILLAR SOLID-ROOF AWNING (Option #1C: Strictly 2 West Pillars, 0 House Pillars, NO Privacy Wall!)
       if (L.patioFurniture) {
         const rugRect = projectRect(18.8, 29.2, 27.6, 39.8);
         const sofaSouth = projectRect(19.4, 37.0, 27.0, 39.6);
@@ -1057,7 +1111,7 @@
         const awningFrame = projectRect(17.7, 20.3, 30.0, 40.7);
         out.push(`<g id="layer-patio-awning">`);
         if (isDrone) {
-          // Solid matte-black standing-seam metal roof top with semi-transparent cutaway so furniture remains visible
+          // Solid matte-black standing-seam metal roof top with semi-transparent cutaway so furniture remains visible (100% open sides, NO privacy wall)
           out.push(`<rect x="${awningFrame.x.toFixed(1)}" y="${awningFrame.y.toFixed(1)}" width="${awningFrame.width.toFixed(1)}" height="${awningFrame.height.toFixed(1)}" fill="rgba(24, 24, 27, 0.62)" stroke="#78350f" stroke-width="2.4"/>`);
         } else if (isColor) {
           out.push(`<rect x="${awningFrame.x.toFixed(1)}" y="${awningFrame.y.toFixed(1)}" width="${awningFrame.width.toFixed(1)}" height="${awningFrame.height.toFixed(1)}" fill="rgba(180, 83, 9, 0.32)" stroke="#f59e0b" stroke-width="2.0"/>`);
@@ -1068,7 +1122,7 @@
           const pr1 = project(17.7, wy), pr2 = project(30.0, wy);
           out.push(`<line x1="${pr1.x.toFixed(1)}" y1="${pr1.y.toFixed(1)}" x2="${pr2.x.toFixed(1)}" y2="${pr2.y.toFixed(1)}" stroke="${isDrone ? '#27272a' : '#d97706'}" stroke-width="1.5" opacity="0.8"/>`);
         });
-        // Strictly TWO Pillars on the Outer West Corners (wx=18.0', wy=20.5' & 40.5') and ZERO against house!
+        // Strictly TWO Pillars on the Outer West Corners (wx=18.0', wy=20.5' & 40.5'), ZERO against house, ZERO privacy walls!
         [[18.0, 20.5], [18.0, 40.5]].forEach(([px, py]) => {
           const post = projectRect(px - 0.45, py - 0.45, px + 0.45, py + 0.45);
           out.push(`<rect x="${post.x.toFixed(1)}" y="${post.y.toFixed(1)}" width="${post.width.toFixed(1)}" height="${post.height.toFixed(1)}" fill="#78350f" stroke="#fef08a" stroke-width="1.4"/>`);
@@ -1076,16 +1130,49 @@
         out.push(`</g>`);
       }
 
-      // 16. PHASE 3 (2028) WEST WALL 5+4 DESIGNER HYBRID TREES & UNDER-STORY
+      // 16. PHASE 3 (2028) WEST WALL 5+4 DESIGNER HYBRID TREES ('Standing Ovation' Serviceberries + Junipers + Under-Story)
       if (L.westWallPlants) {
+        const isSpring = STATE.season === 'SPRING';
+        const isSummer = STATE.season === 'SUMMER';
+        const isFall   = STATE.season === 'FALL';
+        const isWinter = STATE.season === 'WINTER';
         out.push(`<g id="layer-west-wall-plants">`);
         [5.0, 15.0, 25.0, 35.0, 45.0].forEach((wy, idx) => {
           const lp = project(2.0, wy);
           const rad = 1.75 * SCALE;
+          const fillCol = isWinter
+            ? 'rgba(148, 163, 184, 0.28)'
+            : (isFall ? '#ea580c' : (isSpring ? '#22c55e' : '#16a34a'));
+          const strokeCol = isWinter ? '#e2e8f0' : (isFall ? '#fed7aa' : (isSpring ? '#ffffff' : '#bbf7d0'));
           out.push(`
-            <circle cx="${lp.x.toFixed(1)}" cy="${lp.y.toFixed(1)}" r="${rad.toFixed(1)}" fill="${isDrone || isColor ? '#16a34a' : 'rgba(34, 197, 94, 0.5)'}" stroke="#bbf7d0" stroke-width="1.5" ${isDrone ? 'filter="url(#shadow-tree)"' : ''}/>
-            <circle cx="${lp.x.toFixed(1)}" cy="${lp.y.toFixed(1)}" r="${(rad * 0.55).toFixed(1)}" fill="#15803d"/>
+            <circle cx="${lp.x.toFixed(1)}" cy="${lp.y.toFixed(1)}" r="${rad.toFixed(1)}" fill="${fillCol}" stroke="${strokeCol}" stroke-width="1.6" ${isDrone ? 'filter="url(#shadow-tree)"' : ''}/>
+            ${!isWinter ? `<circle cx="${lp.x.toFixed(1)}" cy="${lp.y.toFixed(1)}" r="${(rad * 0.55).toFixed(1)}" fill="${isFall ? '#dc2626' : '#15803d'}"/>` : ''}
           `);
+          // Spring snow-white 'Standing Ovation' blossom clusters around each pillar!
+          if (isSpring) {
+            for (let b = 0; b < 8; b++) {
+              const ang = (b / 8) * Math.PI * 2;
+              const bx = lp.x + Math.cos(ang) * (rad * 0.72);
+              const by = lp.y + Math.sin(ang) * (rad * 0.72);
+              out.push(`<circle cx="${bx.toFixed(1)}" cy="${by.toFixed(1)}" r="${(0.36 * SCALE).toFixed(1)}" fill="#ffffff" stroke="#fbcfe8" stroke-width="0.9"/>`);
+            }
+          } else if (isSummer) {
+            // Summer dark-blue Juneberry fruit dots
+            for (let b = 0; b < 6; b++) {
+              const ang = (b / 6) * Math.PI * 2;
+              const bx = lp.x + Math.cos(ang) * (rad * 0.65);
+              const by = lp.y + Math.sin(ang) * (rad * 0.65);
+              out.push(`<circle cx="${bx.toFixed(1)}" cy="${by.toFixed(1)}" r="${(0.24 * SCALE).toFixed(1)}" fill="#4c1d95" stroke="#c4b5fd" stroke-width="0.6"/>`);
+            }
+          } else if (isWinter) {
+            // Winter bare branch star
+            for (let b = 0; b < 4; b++) {
+              const ang = (b / 4) * Math.PI;
+              const dx = Math.cos(ang) * (rad * 0.78);
+              const dy = Math.sin(ang) * (rad * 0.78);
+              out.push(`<line x1="${(lp.x - dx).toFixed(1)}" y1="${(lp.y - dy).toFixed(1)}" x2="${(lp.x + dx).toFixed(1)}" y2="${(lp.y + dy).toFixed(1)}" stroke="#cbd5e1" stroke-width="1.1"/>`);
+            }
+          }
           if (STATE.showLabels) {
             out.push(`<text x="${lp.x.toFixed(1)}" y="${(lp.y + 2.5).toFixed(1)}" fill="#ffffff" font-family="JetBrains Mono" font-size="6.5" font-weight="700" text-anchor="middle">S${idx + 1}</text>`);
           }
@@ -1094,7 +1181,7 @@
           const jp = project(1.75, wy);
           const jRad = 1.25 * SCALE;
           out.push(`
-            <circle cx="${jp.x.toFixed(1)}" cy="${jp.y.toFixed(1)}" r="${jRad.toFixed(1)}" fill="${isDrone || isColor ? '#047857' : 'rgba(16, 185, 129, 0.55)'}" stroke="#6ee7b7" stroke-width="1.3" ${isDrone ? 'filter="url(#shadow-tree)"' : ''}/>
+            <circle cx="${jp.x.toFixed(1)}" cy="${jp.y.toFixed(1)}" r="${jRad.toFixed(1)}" fill="${isDrone || isColor ? '#047857' : 'rgba(16, 185, 129, 0.55)'}" stroke="${isWinter ? '#f8fafc' : '#6ee7b7'}" stroke-width="1.3" ${isDrone ? 'filter="url(#shadow-tree)"' : ''}/>
           `);
           if (STATE.showLabels) {
             out.push(`<text x="${jp.x.toFixed(1)}" y="${(jp.y + 2.2).toFixed(1)}" fill="#ecfdf5" font-family="JetBrains Mono" font-size="6.0" font-weight="700" text-anchor="middle">J${idx + 1}</text>`);
@@ -1108,12 +1195,39 @@
         out.push(`</g>`);
       }
 
-      // 17A. PHASE 2 (2027) FRONT YARD PLANTS (Front Maple, Utility Box Screen, Park Strips)
+      // 17A. PHASE 2 (2027) FRONT YARD PLANTS:
+      //      1) Melinda's Fragrant Jewel-Toned Hyacinth Border in the 2' Porch-Front Bed (wx=65.2'–67.2', wy=31.5'–42.0') & 2' South Bed
+      //      2) Relocated Sculptural Red Japanese Maple at SE Corner Anchor (wx=87.0', wy=46.8') so the '3152' Porch Swing view is 100% clear!
       if (L.frontPlants) {
+        const isSpring = STATE.season === 'SPRING';
+        const isFall   = STATE.season === 'FALL';
+        const isWinter = STATE.season === 'WINTER';
         out.push(`<g id="layer-front-plants">`);
-        const maplePt = project(66.8, 36.2);
-        out.push(`<circle cx="${maplePt.x.toFixed(1)}" cy="${maplePt.y.toFixed(1)}" r="${(1.65 * SCALE).toFixed(1)}" fill="#be123c" stroke="#fda4af" stroke-width="1.5" ${isDrone ? 'filter="url(#shadow-tree)"' : ''}/>`);
-        [[66.7, 40.5], [66.7, 44.5], [72.0, 49.0], [78.0, 49.0], [84.0, 49.0], [92.0, 44.4], [94.7, 44.4], [91.8, 46.8], [103.5, 3.5], [103.5, 7.5], [103.5, 35.0], [103.5, 41.0], [103.5, 46.5]].forEach(([px, py]) => {
+
+        // 1. Relocated SE Corner Japanese Maple at (87.0, 46.8)
+        const maplePt = project(SE_MAPLE_WX, SE_MAPLE_WY);
+        const mRad = 1.85 * SCALE;
+        const mapleFill = isWinter ? 'rgba(190, 18, 60, 0.25)' : (isFall ? '#ef4444' : '#be123c');
+        out.push(`<circle cx="${maplePt.x.toFixed(1)}" cy="${maplePt.y.toFixed(1)}" r="${mRad.toFixed(1)}" fill="${mapleFill}" stroke="${isWinter ? '#f8fafc' : '#fda4af'}" stroke-width="1.6" ${isDrone ? 'filter="url(#shadow-tree)"' : ''}/>`);
+        if (!isWinter) {
+          out.push(`<circle cx="${maplePt.x.toFixed(1)}" cy="${maplePt.y.toFixed(1)}" r="${(mRad * 0.55).toFixed(1)}" fill="${isFall ? '#f97316' : '#881337'}"/>`);
+        }
+
+        // 2. Melinda's Fragrant Jewel-Toned Hyacinth Drift in the 2' Porch-Front Bed (right in front of the 3152 Porch Swing!) & South Bed
+        const hyacinthPalette = ['#9333ea', '#2563eb', '#ec4899', '#f8fafc', '#c084fc'];
+        const hyacinthCoords = [
+          [66.1, 31.8], [66.1, 33.0], [66.1, 34.2], [66.1, 35.4], [66.1, 36.6],
+          [66.1, 37.8], [66.1, 39.0], [66.1, 40.2], [66.1, 41.4], [66.1, 42.4],
+          [67.5, 49.0], [70.0, 49.0], [72.5, 49.0], [75.0, 49.0], [77.5, 49.0], [80.0, 49.0], [82.5, 49.0]
+        ];
+        hyacinthCoords.forEach(([hx, hy], idx) => {
+          const hp = project(hx, hy);
+          const col = isSpring ? hyacinthPalette[idx % hyacinthPalette.length] : (isWinter ? '#cbd5e1' : '#7c3aed');
+          out.push(`<circle cx="${hp.x.toFixed(1)}" cy="${hp.y.toFixed(1)}" r="${(0.48 * SCALE).toFixed(1)}" fill="${col}" stroke="#ffffff" stroke-width="0.9"/>`);
+        });
+
+        // 3. 3-Sided Utility Box Grass Screen & 6.0' Street Park Strip Perennials
+        [[92.0, 44.4], [94.7, 44.4], [91.8, 46.8], [103.5, 3.5], [103.5, 7.5], [103.5, 35.0], [103.5, 41.0], [103.5, 46.5]].forEach(([px, py]) => {
           const pt = project(px, py);
           out.push(`<circle cx="${pt.x.toFixed(1)}" cy="${pt.y.toFixed(1)}" r="${(0.65 * SCALE).toFixed(1)}" fill="#15803d" stroke="#86efac" stroke-width="1"/>`);
         });
@@ -1155,8 +1269,8 @@
 
       if (L.southGate) {
         const sWall = project(LOCKED_SOUTH_GATE_WX, 41.0), sLot = project(LOCKED_SOUTH_GATE_WX, 49.6);
-        const sTop = project(LOCKED_SOUTH_GATE_WX, 44.5), sBot = project(LOCKED_SOUTH_GATE_WX, 48.5);
-        const sSwing = project(LOCKED_SOUTH_GATE_WX - 4.0, 48.5);
+        const sTop = project(LOCKED_SOUTH_GATE_WX, 43.5), sBot = project(LOCKED_SOUTH_GATE_WX, 47.5);
+        const sSwing = project(LOCKED_SOUTH_GATE_WX - 4.0, 47.5);
         out.push(`
           <line x1="${sWall.x}" y1="${sWall.y}" x2="${sLot.x}" y2="${sLot.y}" stroke="#34d399" stroke-width="3"/>
           <line x1="${sBot.x}" y1="${sBot.y}" x2="${sSwing.x}" y2="${sSwing.y}" stroke="#34d399" stroke-width="2"/>
@@ -1169,7 +1283,7 @@
           [2.0, 5.0], [1.75, 10.0], [2.0, 15.0], [1.75, 20.0], [2.0, 25.0],
           [1.75, 30.0], [2.0, 35.0], [1.75, 40.0], [2.0, 45.0],
           [7.5, 7.8], [13.5, 7.8], [19.5, 7.8], [25.5, 7.8],
-          [66.8, 36.2], [65.2, 40.5], [75.0, 33.5], [85.0, 30.2]
+          [SE_MAPLE_WX, SE_MAPLE_WY], [65.2, 40.5], [75.0, 33.5], [85.0, 30.2]
         ];
         uplightCoords.forEach(([lx, ly]) => {
           const lp = project(lx, ly);
@@ -1246,13 +1360,18 @@
           { wx: 62.5, wy: 19.0, title: '2-CAR GARAGE', sub: '20\' × 21.5\'', color: '#e2e8f0', border: '#64748b', show: L.houseStructure },
           { wx: 85.0, wy: 20.0, title: 'CONCRETE DRIVEWAY', sub: '18\' × 23.5\'', color: '#e2e8f0', border: '#64748b', show: L.existingConcrete },
           { wx: 11.5, wy: 28.0, title: 'BACKYARD LAWN (679 SQ FT)', sub: '45° Pavers @ Mulch/Road Base · None @ Concrete', color: '#4ade80', border: '#10b981', show: L.grass },
-          { wx: 23.8, wy: 30.5, title: 'PATIO & 2-PILLAR SOLID AWNING', sub: 'Phase 5 (2030) · 2 West Pillars · 0 House Pillars', color: '#fbbf24', border: '#f59e0b', show: L.patioAwning || L.existingConcrete },
-          { wx: 15.5, wy: 4.2, title: L.planters ? '5 RAISED CEDAR BEDS (3\'×6\')' : 'NORTH GARDEN PLOT', sub: L.planters ? 'Phase 4 (2029) · Road Base Paths' : 'Phase 3 (2028) · Flat Dirt Garden', color: '#bef264', border: '#84cc16', show: L.planters || L.beds },
-          { wx: 51.5, wy: 4.5, title: 'NORTH COMPACTED ROAD BASE PAD', sub: 'Phase 4 (2029) · 9\' × 43.2\' (389 sq ft)', color: '#e7e5e4', border: '#a8a29e', show: L.northCementPad },
-          { wx: 43.0, wy: 45.5, title: 'SOUTH GRASS CORRIDOR', sub: '4\'+ Seeded Lawn Wrap + 2\' Berry Bed', color: '#34d399', border: '#10b981', show: L.grass },
-          { wx: 80.5, wy: 40.5, title: 'FRONT LAWN (555 SQ FT)', sub: 'Phase 2 (2027) · 2\' Beds + 45° Paver Corners', color: '#4ade80', border: '#10b981', show: L.grass },
-          { wx: 70.0, wy: 4.5, title: 'NORTH 8.5\' DOUBLE GATE', sub: 'Phase 2 (2027) · 70\' Fence (50% Split)', color: '#fbbf24', border: '#f59e0b', show: L.northGate },
-          { wx: 57.5, wy: 45.5, title: 'SOUTH 4\' WALK GATE', sub: 'Phase 1 (2026) · 57.5\' Fence (50% Split)', color: '#c084fc', border: '#a855f7', show: L.southGate },
+          { wx: 23.8, wy: 30.5, title: 'PATIO & OPEN 2-PILLAR AWNING', sub: 'Phase 5 (2030) · 2 West Pillars · No Privacy Wall', color: '#fbbf24', border: '#f59e0b', show: L.patioAwning || L.existingConcrete },
+          { wx: 15.5, wy: 4.2, title: L.planters ? '5 RAISED CEDAR BEDS (3\'×6\')' : 'NORTH GARDEN PLOT', sub: L.planters ? 'Phase 4 (2029) · Surrounded by Road Base' : 'Phase 3 (2028) · Flat Dirt Garden', color: '#bef264', border: '#84cc16', show: L.planters || L.beds },
+          { wx: 50.0, wy: 4.5, title: 'NORTH COMPACTED ROAD BASE PAD', sub: 'Phase 4 (2029) · 9\' × 40\' to Gate (360 sq ft)', color: '#e7e5e4', border: '#a8a29e', show: L.northCementPad },
+          { wx: 84.5, wy: 5.5, title: 'WHITE DECORATIVE ROCK (NE STRIP)', sub: 'Stops at North Fence · Matches S. Neighbors', color: '#f8fafc', border: '#cbd5e1', show: L.frontBeds },
+          { wx: 103.7, wy: 40.0, title: 'WHITE ROCK PARK STRIPS (6\')', sub: 'Matches South Neighbors', color: '#f8fafc', border: '#cbd5e1', show: L.frontBeds },
+          { wx: 65.5, wy: 37.5, title: "MELINDA'S HYACINTHS & 3152 SWING", sub: '2\' Porch Bed · Unobstructed View to Street', color: '#f472b6', border: '#ec4899', show: L.frontPlants || L.porchSwing },
+          { wx: SE_MAPLE_WX, wy: SE_MAPLE_WY, title: 'SE CORNER JAPANESE MAPLE', sub: 'Relocated to (87\', 46.8\') · Clears Porch Swing', color: '#fda4af', border: '#e11d48', show: L.frontPlants },
+          { wx: 46.5, wy: 42.5, title: 'OPEN AC UNIT (3\'×3\')', sub: 'No Cover or Shroud', color: '#cbd5e1', border: '#64748b', show: L.houseStructure },
+          { wx: 43.0, wy: 45.5, title: 'SOUTH GRASS & 2\' BED', sub: 'Continues Under Gate to Front / Green Box', color: '#34d399', border: '#10b981', show: L.grass },
+          { wx: 80.5, wy: 39.5, title: '555 SQ FT SE FRONT LAWN', sub: 'Grass Continues Under Gate · 45° Pavers', color: '#4ade80', border: '#10b981', show: L.grass },
+          { wx: 70.0, wy: 4.5, title: 'NORTH 8.5\' DOUBLE GATE', sub: 'Phase 2 (2027) · Road Base Inside / White Rock Outside', color: '#fbbf24', border: '#f59e0b', show: L.northGate },
+          { wx: 57.5, wy: 45.5, title: 'SOUTH 4\' WALK GATE', sub: 'Phase 1 (2026) · Grass & 2\' Bed Continue Under Gate', color: '#c084fc', border: '#a855f7', show: L.southGate },
           { wx: 48.0, wy: -2.5, title: 'NORTH NEIGHBOR: BARE DIRT', sub: '', color: '#fcd34d', border: '#b45309', show: L.neighbors },
           { wx: 48.0, wy: 52.5, title: 'SOUTH NEIGHBOR: WHITE ROCKS', sub: '', color: '#f8fafc', border: '#cbd5e1', show: L.neighbors }
         ];
@@ -1738,16 +1857,48 @@
       });
     })();
 
+    function setCADSeason(rawSeason) {
+      const season = String(rawSeason || 'SPRING').toUpperCase();
+      STATE.season = season;
+      document.querySelectorAll('.cad-season-btn').forEach(b => {
+        b.className = 'cad-season-btn px-2.5 py-1 rounded text-xs font-bold transition-all text-slate-200 hover:text-white flex items-center gap-1';
+      });
+      const map = {
+        SPRING: { id: 'cad-season-spring', cls: 'bg-pink-600 text-white shadow' },
+        SUMMER: { id: 'cad-season-summer', cls: 'bg-emerald-600 text-white shadow' },
+        FALL:   { id: 'cad-season-fall',   cls: 'bg-amber-600 text-white shadow' },
+        WINTER: { id: 'cad-season-winter', cls: 'bg-sky-600 text-white shadow' }
+      };
+      const cfg = map[season] || map.SPRING;
+      const btn = document.getElementById(cfg.id);
+      if (btn) {
+        btn.className = `cad-season-btn px-2.5 py-1 rounded text-xs font-bold transition-all flex items-center gap-1 ${cfg.cls}`;
+      }
+      renderBlueprint();
+    }
+
+    window.addEventListener('message', (e) => {
+      if (!e.data || typeof e.data !== 'object') return;
+      if (e.data.type === 'SET_CAD_SEASON' && e.data.season) {
+        setCADSeason(e.data.season);
+      }
+    });
+
     window.addEventListener('DOMContentLoaded', () => {
       const params = new URLSearchParams(window.location.search);
       const styleParam = (params.get('style') || '').toUpperCase();
       if (['CAD', 'COLOR_SHAPES', 'DRONE'].includes(styleParam)) {
         STATE.renderStyle = styleParam;
       }
+      const seasonParam = (params.get('season') || '').toUpperCase();
+      if (['SPRING', 'SUMMER', 'FALL', 'WINTER'].includes(seasonParam)) {
+        STATE.season = seasonParam;
+      }
       const yearParam = parseInt(params.get('year'), 10);
       if ([2026, 2027, 2028, 2029, 2030].includes(yearParam)) {
         setCumulativeYear(yearParam);
       }
+      setCADSeason(STATE.season);
       setRenderStyle(STATE.renderStyle);
       resetView();
     });
