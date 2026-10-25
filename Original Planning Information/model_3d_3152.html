@@ -90,7 +90,7 @@
           </span>
         </div>
         <p class="text-[10px] text-slate-400 truncate">
-          'Standing Ovation' Spring Blossoms • Melinda's Porch Hyacinths • SE Corner Japanese Maple • #1C 2-Pillar Awning
+          'Standing Ovation' Spring Blossoms • Melinda's Porch Hyacinths • Norwegian Sunset Maple (20'–25' Space) • #1C Awning &amp; 2× 52" Lighted Fans
         </p>
       </div>
     </div>
@@ -113,7 +113,7 @@
         </button>
         <button id="season-fall" onclick="window.setSeasonMode('FALL')"
                 class="season-btn px-2.5 py-1 rounded-lg text-xs font-bold transition-all text-slate-200 hover:text-white flex items-center gap-1"
-                title="Fall — Fiery Orange-Red 'Standing Ovation' Serviceberries, Scarlet Maple & Harvest Pumpkins">
+                title="Fall — Fiery Orange-Red 'Standing Ovation' Serviceberries, Norwegian Sunset Maple & Harvest Pumpkins">
           <span>&#127810;</span>
           <span>Fall</span>
         </button>
@@ -205,7 +205,7 @@
         1. Backyard Overview
       </button>
       <button id="cam-btn-patio" onclick="window.goToCameraPreset('PATIO_AWNING_1C', this)" class="cam-preset-btn px-2.5 py-1 rounded-lg text-[11px] font-semibold bg-slate-800 text-slate-100 hover:bg-slate-700 transition">
-        2. Patio &amp; #1C Solid Awning (2 Pillars)
+        2. Patio, #1C Awning &amp; 2× 52" Lighted Fans
       </button>
       <button id="cam-btn-west" onclick="window.goToCameraPreset('WEST_WALL_5PLUS4', this)" class="cam-preset-btn px-2.5 py-1 rounded-lg text-[11px] font-semibold bg-slate-800 text-slate-100 hover:bg-slate-700 transition">
         3. West Wall ('Standing Ovation' Blossoms)
@@ -220,7 +220,7 @@
         6. South 4'+ Grass Wrap &amp; 4' Gate
       </button>
       <button id="cam-btn-porch" onclick="window.goToCameraPreset('PORCH_SWING_HYACINTHS', this)" class="cam-preset-btn px-2.5 py-1 rounded-lg text-[11px] font-semibold bg-slate-800 text-pink-200 border border-pink-500/30 hover:bg-slate-700 transition">
-        7. 3152 Porch Swing, Hyacinths &amp; SE Maple
+        7. 3152 Porch Swing, Hyacinths &amp; Norwegian Sunset Maple
       </button>
       <button id="cam-btn-front" onclick="window.goToCameraPreset('FRONT_ELEVATION', this)" class="cam-preset-btn px-2.5 py-1 rounded-lg text-[11px] font-semibold bg-slate-800 text-slate-100 hover:bg-slate-700 transition">
         8. Front Yard &amp; 6' Park Strips
@@ -296,7 +296,7 @@
       <!-- Footer Summary Spec -->
       <div class="p-2.5 border-t border-slate-800 bg-slate-950/90 text-[10px] text-slate-300 flex items-center justify-between font-mono-cad">
         <span>Scale: 1 unit = 1.0 ft</span>
-        <span class="text-emerald-400 font-bold">DIY Target: $16,668</span>
+        <span class="text-emerald-400 font-bold">5-Yr Hybrid: $19,650</span>
       </div>
     </aside>
 
@@ -341,7 +341,7 @@
           Lot 3152 — Ultra-HD 4-Season Master Model (2026–2031)
         </h2>
         <p id="insp-desc" class="text-xs text-slate-200 mt-1 leading-relaxed">
-          Showing Spring blossoms on the 5 'Standing Ovation' Serviceberries along the West wall, Melinda's fragrant jewel-toned Hyacinths right in front of the '3152' porch swing, and the Sculptural Japanese Maple relocated to the SE corner (wx=87', wy=46.8') so the porch swing view is 100% clear.
+          Showing Spring blossoms on the 5 'Standing Ovation' Serviceberries along the West wall, Melinda's fragrant jewel-toned Hyacinths right in front of the '3152' porch swing, and the Norwegian Sunset Maple centered at (wx=83', wy=39.5') with its recommended 20'–25' W canopy space and 6' mulched ring.
         </p>
       </div>
 
@@ -369,8 +369,8 @@
      *************************************************************************/
     const LOCKED_SOUTH_GATE_WX = 57.5; // 57.5' South Fence (50% Split) + 4.0' Walk Gate
     const LOCKED_NORTH_GATE_WX = 70.0; // 70.0' North Fence (50% Split) + 8.5' Double Vehicle Gate (3.2' behind NE garage face)
-    const SE_MAPLE_WX = 87.0;          // Relocated Japanese Maple at SE Front Corner Anchor (clears porch swing sightline!)
-    const SE_MAPLE_WY = 46.8;
+    const SE_MAPLE_WX = 83.0;          // Norwegian Sunset Maple centered in SE Front Lawn (20'–25' W recommended space!)
+    const SE_MAPLE_WY = 39.5;
 
     const PHASE_GROUPS = [
       {
@@ -415,10 +415,10 @@
         layers: [
           { key: 'northFence', label: 'North Vinyl Fence (70.0\' · 50% Split)', swatch: '#a855f7' },
           { key: 'northGate', label: 'North 8.5\' Double Vehicle Gate (wx=70.0\')', swatch: '#f59e0b' },
-          { key: 'pavers', label: '6" Flush Holland Pavers (~206\' · 45° Corners)', swatch: '#2dd4bf' },
+          { key: 'pavers', label: '6" Flush Holland Pavers (~215\' · 45° Corners)', swatch: '#2dd4bf' },
           { key: 'sod', label: 'Seeded Lawn Continuing Under South Gate', swatch: '#22c55e' },
-          { key: 'frontBeds', label: '2\' S. Bed to Green Box + White Rock Park Strips & NE Side', swatch: '#e2e8f0' },
-          { key: 'frontPlants', label: 'Melinda\'s Hyacinths, SE Maple & Green Box Screen', swatch: '#f43f5e' },
+          { key: 'frontBeds', label: '2\' S. Bed, 6\' Tree Ring + White Rock Park Strips & NE Side', swatch: '#e2e8f0' },
+          { key: 'frontPlants', label: 'Melinda\'s Hyacinths, Norwegian Sunset Maple & Box Screen', swatch: '#f43f5e' },
           { key: 'irrigation', label: '5-Zone Head-to-Head Sprinklers & PC Drip', swatch: '#38bdf8' }
         ]
       },
@@ -460,13 +460,13 @@
         id: 'phase-5-2030',
         year: 2030,
         badge: '2030 · Phase 5',
-        title: 'Option #1C Open 2-Pillar Solid-Roof Awning & Lounge ($5,250)',
-        subtitle: '100% Open Solid-Roof Awning (No Privacy Wall) + L-Sectional + Fire Table',
+        title: 'Option #1C Open 2-Pillar Solid Awning, 2× 52" Lighted Fans & Lounge ($5,800)',
+        subtitle: '100% Open Solid-Roof Awning + 2× 52" Lighted Ceiling Fans + L-Sectional + Fire Table',
         badgeClass: 'bg-amber-950/90 text-amber-200 border-amber-500/40',
         bgTint: 'rgba(120, 53, 15, 0.18)',
         borderTint: 'rgba(245, 158, 11, 0.35)',
         layers: [
-          { key: 'patioAwning', label: 'Option #1C Open 2-Pillar Solid-Roof Awning (No Privacy Wall)', swatch: '#f59e0b' },
+          { key: 'patioAwning', label: 'Option #1C Open 2-Pillar Solid Awning & 2× 52" Lighted Fans', swatch: '#f59e0b' },
           { key: 'patioFurniture', label: 'L-Sectional Sofa & Propane Fire Table', swatch: '#fb923c' }
         ]
       }
@@ -859,6 +859,46 @@
       }
     });
 
+    // 14. White Staggered Shake-Shingle Siding Texture (Front 2nd-Story Gable Over Garage)
+    const whiteShakeTex = makeCanvasTexture(512, 512, 3, 3, (ctx, w, h) => {
+      ctx.fillStyle = '#f8fafc';
+      ctx.fillRect(0, 0, w, h);
+      const rows = 10;
+      const rh = h / rows;
+      for (let r = 0; r < rows; r++) {
+        const y = r * rh;
+        ctx.fillStyle = 'rgba(100, 116, 139, 0.32)';
+        ctx.fillRect(0, y + rh - 3, w, 3);
+        let x = (r % 2) * 22;
+        while (x < w) {
+          const sw = 32 + Math.floor(rng() * 28);
+          const shade = 244 + Math.floor((rng() - 0.5) * 10);
+          ctx.fillStyle = `rgb(${shade},${shade + 1},${shade + 3})`;
+          ctx.fillRect(x + 1, y + 1, sw - 2, rh - 4);
+          ctx.fillStyle = 'rgba(148, 163, 184, 0.35)';
+          ctx.fillRect(x, y, 1.5, rh - 2);
+          x += sw;
+        }
+      }
+    });
+
+    // 15. Horizontal Gray Lap Siding Texture (Front Recessed 2nd-Story & Porch Wing)
+    const lapSidingTex = makeCanvasTexture(512, 512, 2, 2, (ctx, w, h) => {
+      ctx.fillStyle = '#cbd5e1';
+      ctx.fillRect(0, 0, w, h);
+      const rows = 12;
+      const rh = h / rows;
+      for (let r = 0; r < rows; r++) {
+        const y = r * rh;
+        const grad = ctx.createLinearGradient(0, y, 0, y + rh);
+        grad.addColorStop(0, '#d8dee6');
+        grad.addColorStop(0.85, '#c2cbd6');
+        grad.addColorStop(1, '#94a3b8');
+        ctx.fillStyle = grad;
+        ctx.fillRect(0, y, w, rh);
+      }
+    });
+
     /*************************************************************************
      * 4. SHARED PBR MATERIALS (WITH BUMP RELIEF & SEASONAL HOOKS)
      *************************************************************************/
@@ -900,6 +940,7 @@
         bumpScale: 0.02,
         roughness: 0.80
       }),
+      concreteGroove: new THREE.MeshStandardMaterial({ color: '#94a3b8', roughness: 0.9 }),
       newConcrete: new THREE.MeshStandardMaterial({
         map: concreteTex,
         bumpMap: concreteTex,
@@ -921,6 +962,18 @@
         bumpScale: 0.03,
         roughness: 0.85
       }),
+      whiteShake: new THREE.MeshStandardMaterial({
+        map: whiteShakeTex,
+        bumpMap: whiteShakeTex,
+        bumpScale: 0.04,
+        roughness: 0.75
+      }),
+      lapSiding: new THREE.MeshStandardMaterial({
+        map: lapSidingTex,
+        bumpMap: lapSidingTex,
+        bumpScale: 0.04,
+        roughness: 0.78
+      }),
       foundation: new THREE.MeshStandardMaterial({ color: '#b8ab99', roughness: 0.88 }),
       stoneVeneer: new THREE.MeshStandardMaterial({
         map: stackedStoneTex,
@@ -934,7 +987,7 @@
         bumpScale: 0.08,
         roughness: 0.82
       }),
-      darkTrim: new THREE.MeshStandardMaterial({ color: '#1e2229', roughness: 0.45, metalness: 0.25 }),
+      darkTrim: new THREE.MeshStandardMaterial({ color: '#1e2229', roughness: 0.42, metalness: 0.25 }),
       whiteTrim: new THREE.MeshStandardMaterial({ color: '#f8fafc', roughness: 0.36 }),
       vinylFence: new THREE.MeshStandardMaterial({ color: '#f8fafc', roughness: 0.32, metalness: 0.05 }),
       paverBrick: new THREE.MeshStandardMaterial({
@@ -973,7 +1026,7 @@
         emissive: new THREE.Color('#f59e0b'),
         emissiveIntensity: 0.05
       }),
-      garageDoor: new THREE.MeshStandardMaterial({ color: '#f1f5f9', roughness: 0.45 }),
+      garageDoor: new THREE.MeshStandardMaterial({ color: '#181b20', roughness: 0.38, metalness: 0.22 }),
       acUnit: new THREE.MeshStandardMaterial({ color: '#475569', roughness: 0.5, metalness: 0.45 }),
       utilityBox: new THREE.MeshStandardMaterial({ color: '#15803d', roughness: 0.45, metalness: 0.25 }),
       sofaBase: new THREE.MeshStandardMaterial({ color: '#27272a', roughness: 0.7 }),
@@ -1012,7 +1065,7 @@
     };
 
     /*************************************************************************
-     * 5. HELPER GEOMETRY BUILDERS
+     * 5. HELPER GEOMETRY BUILDERS (ARCHITECTURAL ROOFS, WINDOWS & SLABS)
      *************************************************************************/
     function addBox(parent, wx1, wy1, wx2, wy2, h1, h2, material, castShadow = true, receiveShadow = true) {
       const w = Math.abs(wx2 - wx1);
@@ -1043,37 +1096,206 @@
       return mesh;
     }
 
-    // Helper: Framed Window with 3D Exterior Trim, Sill, Muntin Grids & Glass
-    function addDetailedWindow(parent, wx, wy, hBottom, width, height, facing) {
+    // Helper: Build a True Pitched Gable Section (Triangular Wall Pediment + 2 Sloped Roof Planes + Charcoal Fascia Bargeboards + Ridge Cap)
+    // ridgeAxis = 'X' (ridge runs West-to-East, front/back gable) or 'Z' (ridge runs North-to-South, side gable)
+    function addGableRoofAssembly(parent, wx1, wy1, wx2, wy2, eaveH, ridgeRise, ridgeAxis, wallMat, addSnow = true) {
+      const grp = new THREE.Group();
+      const overhang = 0.85;
+      if (ridgeAxis === 'X') {
+        const wyMid = (wy1 + wy2) / 2;
+        const halfSpan = (wy2 - wy1) / 2 + overhang;
+        const slopeLen = Math.hypot(halfSpan, ridgeRise);
+        const slopeAngle = Math.atan2(ridgeRise, halfSpan);
+        const runX = (wx2 - wx1) + overhang * 2;
+        const cx = (wx1 + wx2) / 2;
+
+        // Triangular Gable Pediment Wall (extruded along X from wx1 to wx2)
+        const pedShape = new THREE.Shape();
+        pedShape.moveTo(wy1, 0);
+        pedShape.lineTo(wy2, 0);
+        pedShape.lineTo(wyMid, ridgeRise);
+        pedShape.closePath();
+        const pedGeo = new THREE.ExtrudeGeometry(pedShape, { depth: wx2 - wx1, bevelEnabled: false });
+        pedGeo.rotateY(Math.PI / 2);
+        const pedMesh = new THREE.Mesh(pedGeo, wallMat);
+        pedMesh.position.set(wx1, eaveH, wy1 + wy2); // Wait: rotateY(+PI/2) maps local X -> -Z. Let's use clean vertices instead!
+      }
+      return grp;
+    }
+
+    // Clean, Exact Triangular Prism Builder for Gable Pediments & Roof Volumes
+    function addGableSection(parent, wx1, wy1, wx2, wy2, eaveH, ridgeRise, ridgeAxis, wallMat, hasCorbels = false) {
+      const overhangX = 0.8;
+      const overhangZ = 0.8;
+
+      if (ridgeAxis === 'X') {
+        // Ridge runs West-to-East (East/West facing gable like the 2nd-story white shake gable over the garage)
+        const wyMid = (wy1 + wy2) / 2;
+        const halfSpan = (wy2 - wy1) / 2 + overhangZ;
+        const slopeLen = Math.hypot(halfSpan, ridgeRise);
+        const ang = Math.atan2(ridgeRise, halfSpan);
+        const lenX = (wx2 - wx1) + overhangX * 2;
+        const cx = (wx1 + wx2) / 2;
+
+        // Stepped triangular pediment wall slices for crisp UV mapping
+        const steps = 10;
+        for (let s = 0; s < steps; s++) {
+          const t1 = s / steps;
+          const t2 = (s + 1) / steps;
+          const h1 = eaveH + t1 * ridgeRise;
+          const h2 = eaveH + t2 * ridgeRise;
+          const inset = ((t1 + t2) * 0.5) * ((wy2 - wy1) / 2);
+          addBox(parent, wx1, wy1 + inset, wx2, wy2 - inset, h1, h2, wallMat, true, true);
+        }
+
+        // North & South pitched roof planes
+        [-1, 1].forEach(dir => {
+          const planeGrp = new THREE.Group();
+          planeGrp.position.set(cx, eaveH + ridgeRise * 0.5, wyMid + dir * (halfSpan * 0.5));
+          planeGrp.rotation.x = dir * ang;
+
+          const shingleSlab = new THREE.Mesh(new THREE.BoxGeometry(lenX, 0.28, slopeLen), MAT.shingleRoof);
+          shingleSlab.castShadow = true;
+          shingleSlab.receiveShadow = true;
+          planeGrp.add(shingleSlab);
+
+          // Charcoal Fascia Trim along outer eave & East/West rake edges
+          const fascia = new THREE.Mesh(new THREE.BoxGeometry(lenX + 0.08, 0.36, 0.18), MAT.darkTrim);
+          fascia.position.set(0, -0.04, dir * (slopeLen * 0.5));
+          planeGrp.add(fascia);
+
+          const rakeEast = new THREE.Mesh(new THREE.BoxGeometry(0.22, 0.38, slopeLen + 0.1), MAT.darkTrim);
+          rakeEast.position.set(lenX * 0.5, -0.02, 0);
+          planeGrp.add(rakeEast);
+
+          // Winter Snow Layer on Roof Slope
+          const snowSlab = new THREE.Mesh(new THREE.BoxGeometry(lenX - 0.2, 0.16, slopeLen - 0.2), MAT.snowWhite);
+          snowSlab.position.set(0, 0.20, 0);
+          snowSlab.visible = false;
+          planeGrp.add(snowSlab);
+          SEASON_GROUPS.winterSnowBlankets.push(snowSlab);
+
+          parent.add(planeGrp);
+        });
+
+        // Ridge Cap
+        addBox(parent, wx1 - overhangX, wyMid - 0.25, wx2 + overhangX + 0.1, wyMid + 0.25, eaveH + ridgeRise - 0.05, eaveH + ridgeRise + 0.22, MAT.darkTrim, true, false);
+
+        // Decorative White Craftsman Corbel Brackets on Front Gable (seen in PXL_20261022_162032048.MP.jpg)
+        if (hasCorbels) {
+          [
+            [wyMid, eaveH + ridgeRise - 0.85],
+            [wy1 + 1.8, eaveH + 0.85],
+            [wy2 - 1.8, eaveH + 0.85]
+          ].forEach(([cy, ch]) => {
+            addBox(parent, wx2, cy - 0.14, wx2 + 0.65, cy + 0.14, ch - 0.18, ch, MAT.whiteTrim, true, false);
+            addBox(parent, wx2, cy - 0.14, wx2 + 0.18, cy + 0.14, ch - 0.85, ch, MAT.whiteTrim, true, false);
+            // Diagonal corbel strut
+            const strut = new THREE.Mesh(new THREE.BoxGeometry(0.68, 0.14, 0.14), MAT.whiteTrim);
+            strut.position.set(wx2 + 0.32, ch - 0.42, cy);
+            strut.rotation.z = 0.72;
+            parent.add(strut);
+          });
+        }
+      } else {
+        // Ridge runs North-to-South (Z axis, like the main 2-story side-gable house roof seen in PXL_20261022_162056602.MP.jpg)
+        const wxMid = (wx1 + wx2) / 2;
+        const halfSpan = (wx2 - wx1) / 2 + overhangX;
+        const slopeLen = Math.hypot(halfSpan, ridgeRise);
+        const ang = Math.atan2(ridgeRise, halfSpan);
+        const lenZ = (wy2 - wy1) + overhangZ * 2;
+        const cz = (wy1 + wy2) / 2;
+
+        const steps = 12;
+        for (let s = 0; s < steps; s++) {
+          const t1 = s / steps;
+          const t2 = (s + 1) / steps;
+          const h1 = eaveH + t1 * ridgeRise;
+          const h2 = eaveH + t2 * ridgeRise;
+          const inset = ((t1 + t2) * 0.5) * ((wx2 - wx1) / 2);
+          addBox(parent, wx1 + inset, wy1, wx2 - inset, wy2, h1, h2, wallMat, true, true);
+        }
+
+        // West & East pitched roof planes
+        [-1, 1].forEach(dir => {
+          const planeGrp = new THREE.Group();
+          planeGrp.position.set(wxMid + dir * (halfSpan * 0.5), eaveH + ridgeRise * 0.5, cz);
+          planeGrp.rotation.z = -dir * ang;
+
+          const shingleSlab = new THREE.Mesh(new THREE.BoxGeometry(slopeLen, 0.28, lenZ), MAT.shingleRoof);
+          shingleSlab.castShadow = true;
+          shingleSlab.receiveShadow = true;
+          planeGrp.add(shingleSlab);
+
+          const fascia = new THREE.Mesh(new THREE.BoxGeometry(0.18, 0.38, lenZ + 0.1), MAT.darkTrim);
+          fascia.position.set(dir * (slopeLen * 0.5), -0.04, 0);
+          planeGrp.add(fascia);
+
+          const rakeNorth = new THREE.Mesh(new THREE.BoxGeometry(slopeLen + 0.1, 0.38, 0.22), MAT.darkTrim);
+          rakeNorth.position.set(0, -0.02, -lenZ * 0.5);
+          planeGrp.add(rakeNorth);
+
+          const rakeSouth = new THREE.Mesh(new THREE.BoxGeometry(slopeLen + 0.1, 0.38, 0.22), MAT.darkTrim);
+          rakeSouth.position.set(0, -0.02, lenZ * 0.5);
+          planeGrp.add(rakeSouth);
+
+          const snowSlab = new THREE.Mesh(new THREE.BoxGeometry(slopeLen - 0.2, 0.16, lenZ - 0.2), MAT.snowWhite);
+          snowSlab.position.set(0, 0.20, 0);
+          snowSlab.visible = false;
+          planeGrp.add(snowSlab);
+          SEASON_GROUPS.winterSnowBlankets.push(snowSlab);
+
+          parent.add(planeGrp);
+        });
+
+        addBox(parent, wxMid - 0.25, wy1 - overhangZ, wxMid + 0.25, wy2 + overhangZ, eaveH + ridgeRise - 0.05, eaveH + ridgeRise + 0.22, MAT.darkTrim, true, false);
+      }
+    }
+
+    // Helper: Framed Window with 3D Exterior Trim, Sill, Muntin Grids, Glass & Optional Shutters
+    function addDetailedWindow(parent, wx, wy, hBottom, width, height, facing, opts = {}) {
       const grp = new THREE.Group();
       const isEW = facing === 'WEST' || facing === 'EAST';
-      const sign = (facing === 'EAST' || facing === 'SOUTH') ? 1 : -1;
+      const panes = opts.panes || 2;
 
       if (isEW) {
-        // Glass pane
+        // Recessed Glass Pane
         addBox(grp, wx - 0.06, wy - width / 2, wx + 0.06, wy + width / 2, hBottom, hBottom + height, MAT.windowGlass, false, false);
-        // Outer white frame + sill
-        addBox(grp, wx - 0.14, wy - width / 2 - 0.18, wx + 0.14, wy - width / 2, hBottom - 0.1, hBottom + height + 0.15, MAT.whiteTrim, true, true);
-        addBox(grp, wx - 0.14, wy + width / 2, wx + 0.14, wy + width / 2 + 0.18, hBottom - 0.1, hBottom + height + 0.15, MAT.whiteTrim, true, true);
-        addBox(grp, wx - 0.14, wy - width / 2 - 0.18, wx + 0.14, wy + width / 2 + 0.18, hBottom + height, hBottom + height + 0.18, MAT.whiteTrim, true, true);
-        addBox(grp, wx - 0.22, wy - width / 2 - 0.24, wx + 0.22, wy + width / 2 + 0.24, hBottom - 0.16, hBottom, MAT.whiteTrim, true, true);
-        // Center vertical & horizontal muntin bars
-        addBox(grp, wx - 0.10, wy - 0.06, wx + 0.10, wy + 0.06, hBottom, hBottom + height, MAT.whiteTrim, false, false);
-        addBox(grp, wx - 0.10, wy - width / 2, wx + 0.10, wy + width / 2, hBottom + height * 0.5 - 0.05, hBottom + height * 0.5 + 0.05, MAT.whiteTrim, false, false);
+        // Crisp 3D White Exterior Trim Casing + Projecting Sill
+        addBox(grp, wx - 0.15, wy - width / 2 - 0.20, wx + 0.15, wy - width / 2, hBottom - 0.1, hBottom + height + 0.18, MAT.whiteTrim, true, true);
+        addBox(grp, wx - 0.15, wy + width / 2, wx + 0.15, wy + width / 2 + 0.20, hBottom - 0.1, hBottom + height + 0.18, MAT.whiteTrim, true, true);
+        addBox(grp, wx - 0.16, wy - width / 2 - 0.24, wx + 0.16, wy + width / 2 + 0.24, hBottom + height, hBottom + height + 0.22, MAT.whiteTrim, true, true);
+        addBox(grp, wx - 0.24, wy - width / 2 - 0.26, wx + 0.24, wy + width / 2 + 0.26, hBottom - 0.18, hBottom, MAT.whiteTrim, true, true);
+        // Vertical Mullion Bars
+        for (let p = 1; p < panes; p++) {
+          const py = (wy - width / 2) + (width * p) / panes;
+          addBox(grp, wx - 0.11, py - 0.06, wx + 0.11, py + 0.06, hBottom, hBottom + height, MAT.whiteTrim, false, false);
+        }
+        // Optional Charcoal Board-and-Batten Shutters (Front 2nd-Story Gable Window)
+        if (opts.shutters) {
+          const shutW = 1.15;
+          [-1, 1].forEach(side => {
+            const sy1 = side < 0 ? (wy - width / 2 - 0.25 - shutW) : (wy + width / 2 + 0.25);
+            const sy2 = sy1 + shutW;
+            addBox(grp, wx - 0.14, sy1, wx + 0.18, sy2, hBottom - 0.05, hBottom + height + 0.05, MAT.darkTrim, true, true);
+            // Horizontal batten bars on shutter
+            addBox(grp, wx + 0.16, sy1 - 0.02, wx + 0.22, sy2 + 0.02, hBottom + height * 0.22, hBottom + height * 0.28, MAT.darkTrim, false, false);
+            addBox(grp, wx + 0.16, sy1 - 0.02, wx + 0.22, sy2 + 0.02, hBottom + height * 0.72, hBottom + height * 0.78, MAT.darkTrim, false, false);
+          });
+        }
       } else {
         addBox(grp, wx - width / 2, wy - 0.06, wx + width / 2, wy + 0.06, hBottom, hBottom + height, MAT.windowGlass, false, false);
-        addBox(grp, wx - width / 2 - 0.18, wy - 0.14, wx - width / 2, wy + 0.14, hBottom - 0.1, hBottom + height + 0.15, MAT.whiteTrim, true, true);
-        addBox(grp, wx + width / 2, wy - 0.14, wx + width / 2 + 0.18, wy + 0.14, hBottom - 0.1, hBottom + height + 0.15, MAT.whiteTrim, true, true);
-        addBox(grp, wx - width / 2 - 0.18, wy - 0.14, wx + width / 2 + 0.18, wy + 0.14, hBottom + height, hBottom + height + 0.18, MAT.whiteTrim, true, true);
-        addBox(grp, wx - width / 2 - 0.24, wy - 0.22, wx + width / 2 + 0.24, wy + 0.22, hBottom - 0.16, hBottom, MAT.whiteTrim, true, true);
-        addBox(grp, wx - 0.06, wy - 0.10, wx + 0.06, wy + 0.10, hBottom, hBottom + height, MAT.whiteTrim, false, false);
-        addBox(grp, wx - width / 2, wy - 0.10, wx + width / 2, wy + 0.10, hBottom + height * 0.5 - 0.05, hBottom + height * 0.5 + 0.05, MAT.whiteTrim, false, false);
+        addBox(grp, wx - width / 2 - 0.20, wy - 0.15, wx - width / 2, wy + 0.15, hBottom - 0.1, hBottom + height + 0.18, MAT.whiteTrim, true, true);
+        addBox(grp, wx + width / 2, wy - 0.15, wx + width / 2 + 0.20, wy + 0.15, hBottom - 0.1, hBottom + height + 0.18, MAT.whiteTrim, true, true);
+        addBox(grp, wx - width / 2 - 0.22, wy - 0.16, wx + width / 2 + 0.22, wy + 0.16, hBottom + height, hBottom + height + 0.22, MAT.whiteTrim, true, true);
+        addBox(grp, wx - width / 2 - 0.26, wy - 0.24, wx + width / 2 + 0.26, wy + 0.24, hBottom - 0.18, hBottom, MAT.whiteTrim, true, true);
+        addBox(grp, wx - 0.06, wy - 0.11, wx + 0.06, wy + 0.11, hBottom, hBottom + height, MAT.whiteTrim, false, false);
       }
       parent.add(grp);
     }
 
     /*************************************************************************
-     * 6. BUILD ALL 1:1 3D LAYERS
+     * 6. BUILD ALL 1:1 3D LAYERS (100% MATCHED TO CAD BLUEPRINT & SITE PHOTOS)
      *************************************************************************/
 
     // --- A. NEIGHBOR CONTEXT & STREET ENVIRONMENT ('neighborContext') ---
@@ -1081,234 +1303,304 @@
       const g = LAYER_GROUPS.neighborContext;
       addBox(g, -45, -45, 145, 95, -0.45, -0.02, new THREE.MeshStandardMaterial({ color: '#1e293b', roughness: 0.95 }), false, true);
       // North Neighbor (wy: -24..0): Bare Unplanted Dirt
-      addBox(g, 0, -24, 96.7, 0.0, -0.02, 0.04, MAT.bareDirt, false, true);
-      // South Neighbor (wy: 50..74): White River Rock Xeriscape
+      addBox(g, 0, -24, 108.7, 0.0, -0.02, 0.04, MAT.bareDirt, false, true);
+      // South Neighbor (wy: 50..74): White River Rock Xeriscape (Including their Park Strip!)
       addBox(g, 0, 50.0, 96.7, 74.0, -0.02, 0.04, MAT.whiteRocks, false, true);
+      addBox(g, 100.7, 50.0, 106.7, 74.0, -0.02, 0.05, MAT.whiteRocks, false, true);
       // West Utility / City Works Corridor (wx: -28..0)
       addBox(g, -28, -24, 0.0, 74.0, -0.02, 0.03, MAT.asphalt, false, true);
-      // East Street Asphalt + Concrete Curb & Gutter (wx: 102.7..128.0)
-      addBox(g, 102.7, -24, 103.3, 74.0, 0.0, 0.45, MAT.concrete, false, true);
-      addBox(g, 103.3, -24, 128.0, 74.0, -0.02, 0.08, MAT.asphalt, false, true);
+      // East Concrete Curb & Gutter (wx: 106.7..108.7, with depressed curb cut at driveway apron wy: 9.5..30.5)
+      addBox(g, 106.7, -24.0, 108.7, 9.5, 0.0, 0.42, MAT.concrete, true, true);
+      addBox(g, 106.7, 9.5, 108.7, 30.5, 0.0, 0.12, MAT.concrete, false, true); // Rolled curb cut at driveway apron
+      addBox(g, 106.7, 30.5, 108.7, 74.0, 0.0, 0.42, MAT.concrete, true, true);
+      // East Street Asphalt Roadway (wx: 108.7..136.0 — completely clear of the 6.0' park strips at wx=100.7..106.7!)
+      addBox(g, 108.7, -24.0, 136.0, 74.0, -0.02, 0.06, MAT.asphalt, false, true);
     }
 
-    // --- B. EXISTING CONCRETE SURFACES ('existingConcrete') ---
+    // --- B. EXISTING CONCRETE SURFACES ('existingConcrete' — 100% Aligned with Garage, Porch & Park Strips) ---
     {
       const g = LAYER_GROUPS.existingConcrete;
-      // 1. Existing 21.0' x 12.5' Backyard Concrete Patio (wx: 18.0..30.0, wy: 20.0..41.0)
-      addBox(g, 18.0, 20.0, 30.0, 41.0, 0.0, 0.16, MAT.concrete, false, true);
-      // 2. Covered Front Porch Concrete Deck & Entry Walk (wx: 60.0..65.2, wy: 31.0..41.0)
-      addBox(g, 60.0, 31.0, 65.2, 41.0, 0.0, 0.55, MAT.concrete, true, true);
-      addBox(g, 65.2, 31.0, 73.2, 35.0, 0.0, 0.14, MAT.concrete, false, true);
-      // 3. 18.0' Concrete Driveway (wx: 73.2..96.7, wy: 9.0..27.0) + Driveway Apron
-      addBox(g, 73.2, 9.0, 96.7, 27.0, 0.0, 0.12, MAT.concrete, false, true);
-      addBox(g, 96.7, 9.0, 102.7, 27.0, 0.0, 0.10, MAT.concrete, false, true);
-      // 4. 4.0' Public Concrete Sidewalk (wx: 96.7..100.7)
+      // 1. Existing 21.0' x 12.5' Backyard Concrete Patio (wx: 17.5..30.0, wy: 20.0..41.0) + Scored 2x3 Control Joints
+      addBox(g, 17.5, 20.0, 30.0, 41.0, 0.0, 0.16, MAT.concrete, false, true);
+      addBox(g, 23.72, 20.0, 23.78, 41.0, 0.16, 0.168, MAT.concreteGroove, false, false);
+      [27.0, 34.0].forEach(jy => {
+        addBox(g, 17.5, jy - 0.03, 30.0, jy + 0.03, 0.16, 0.168, MAT.concreteGroove, false, false);
+      });
+
+      // 2. Covered Front Porch Concrete Deck (wx: 59.7..65.7, wy: 29.0..41.0)
+      addBox(g, 59.7, 29.0, 65.7, 41.0, 0.0, 0.52, MAT.concrete, true, true);
+      // 3.5' Concrete Front Porch Entry Walkway (wx: 65.7..81.0, wy: 29.0..32.5) — Connects Porch Door to Driveway!
+      addBox(g, 65.7, 29.0, 81.0, 32.5, 0.0, 0.13, MAT.concrete, false, true);
+      addBox(g, 73.2, 29.0, 73.26, 32.5, 0.13, 0.138, MAT.concreteGroove, false, false);
+
+      // 3. 18.0' Concrete Driveway (wx: 73.2..96.7, wy: 11.0..29.0) — Centered & Aligned with Garage (wy: 9.0..29.0)!
+      addBox(g, 73.2, 11.0, 96.7, 29.0, 0.0, 0.13, MAT.concrete, false, true);
+      // Scored 3x3 Driveway Control Joints (seen in PXL_20261022_162032048.MP.jpg)
+      [17.0, 23.0].forEach(jy => {
+        addBox(g, 73.2, jy - 0.03, 96.7, jy + 0.03, 0.13, 0.138, MAT.concreteGroove, false, false);
+      });
+      [81.0, 88.8].forEach(jx => {
+        addBox(g, jx - 0.03, 11.0, jx + 0.03, 29.0, 0.13, 0.138, MAT.concreteGroove, false, false);
+      });
+
+      // 4. 4.0' Public Concrete Sidewalk (wx: 96.7..100.7, wy: -24.0..74.0) + Scored 4.0' Transverse Joints
       addBox(g, 96.7, -24.0, 100.7, 74.0, 0.0, 0.13, MAT.concrete, false, true);
+      for (let sy = -20.0; sy <= 70.0; sy += 5.0) {
+        addBox(g, 96.7, sy - 0.025, 100.7, sy + 0.025, 0.13, 0.138, MAT.concreteGroove, false, false);
+      }
+
+      // 5. Flared Concrete Driveway Apron Across the 6.0' Park Strip (wx: 100.7..106.7, wy: 11.0..29.0 flaring to 9.5..30.5)
+      const apronPts = [[100.7, 11.0], [106.7, 9.5], [106.7, 30.5], [100.7, 29.0]];
+      addPolygonExtrusion(g, apronPts, 0.0, 0.125, MAT.concrete, true);
+      [17.0, 23.0].forEach(jy => {
+        addBox(g, 100.7, jy - 0.03, 106.7, jy + 0.03, 0.125, 0.133, MAT.concreteGroove, false, false);
+      });
     }
 
     // --- C. EXISTING 6' WESTERN PRECAST CONCRETE WALL ('westPrecastWall') ---
     {
       const g = LAYER_GROUPS.westPrecastWall;
       for (let i = 0; i < 5; i++) {
-        const wy1 = i * 10.0 + 0.5;
-        const wy2 = (i + 1) * 10.0 - 0.5;
-        addBox(g, -0.35, wy1, 0.35, wy2, 0.0, 6.0, MAT.precastWall, true, true);
-        addBox(g, -0.45, wy1, 0.45, wy2, 6.0, 6.22, MAT.precastCap, true, true);
+        const wy1 = i * 10.0 + 0.55;
+        const wy2 = (i + 1) * 10.0 - 0.55;
+        addBox(g, -0.32, wy1, 0.32, wy2, 0.0, 6.0, MAT.precastWall, true, true);
+        // Molded Precast Panel Cap
+        addBox(g, -0.44, wy1, 0.44, wy2, 6.0, 6.24, MAT.precastCap, true, true);
       }
       for (let c = 0; c <= 5; c++) {
         const cy = c * 10.0;
         addBox(g, -0.58, cy - 0.58, 0.58, cy + 0.58, 0.0, 6.5, MAT.precastWall, true, true);
-        addBox(g, -0.72, cy - 0.72, 0.72, cy + 0.72, 6.5, 6.78, MAT.precastCap, true, true);
-        const snowCap = addBox(g, -0.70, cy - 0.70, 0.70, cy + 0.70, 6.78, 6.95, MAT.snowWhite, false, true);
+        addBox(g, -0.74, cy - 0.74, 0.74, cy + 0.74, 6.5, 6.82, MAT.precastCap, true, true);
+        const snowCap = addBox(g, -0.70, cy - 0.70, 0.70, cy + 0.70, 6.82, 6.98, MAT.snowWhite, false, true);
         snowCap.visible = false;
         SEASON_GROUPS.winterSnowBlankets.push(snowCap);
       }
     }
 
-    // --- D. LOT 3152 TWO-STORY HOUSE, 2-CAR GARAGE & COVERED FRONT PORCH ('house') ---
+    // --- D. LOT 3152 TWO-STORY CRAFTSMAN HOUSE, 2-CAR GARAGE & COVERED FRONT PORCH ('house') ---
+    //     Modeled directly from site photos PXL_20261022_162032048.MP.jpg, PXL_20261022_162056602.MP.jpg & PXL_20261022_162150878.MP.jpg
     {
       const g = LAYER_GROUPS.house;
 
-      // 1. Main 2-Story Living Volume (wx: 30.0..60.0, wy: 9.0..41.0, height: 19.5')
-      addBox(g, 30.0, 9.0, 60.0, 41.0, 0.0, 1.2, MAT.foundation, true, true);
-      addBox(g, 30.0, 9.0, 60.0, 41.0, 1.2, 19.5, MAT.stucco, true, true);
-      // Architectural Belly Band Trim between 1st & 2nd floor
-      addBox(g, 29.88, 8.88, 60.12, 41.12, 10.0, 10.35, MAT.whiteTrim, true, true);
+      // 1. Main 2-Story House Core (wx: 30.0..59.7, wy: 9.0..41.0, eave height: 19.2')
+      addBox(g, 30.0, 9.0, 59.7, 41.0, 0.0, 1.2, MAT.foundation, true, true);
+      addBox(g, 30.0, 9.0, 59.7, 41.0, 1.2, 19.2, MAT.stucco, true, true);
+      // Front 2nd-Floor Recessed Wall Over Porch (wx: 59.5..59.85, wy: 26.5..41.0) in Gray Horizontal Lap Siding
+      addBox(g, 59.5, 26.5, 59.88, 41.0, 10.2, 19.2, MAT.lapSiding, true, true);
+      // Subtle Stucco Horizontal Expansion Joint at 1st/2nd Floor Line (h = 10.2')
+      addBox(g, 29.92, 8.92, 59.78, 41.08, 10.15, 10.30, MAT.whiteTrim, false, false);
 
-      // Hip Roof over Main 2-Story House
-      const mainRoofGeo = new THREE.ConeGeometry(24.5, 6.8, 4);
-      mainRoofGeo.rotateY(Math.PI / 4);
-      const mainRoof = new THREE.Mesh(mainRoofGeo, MAT.shingleRoof);
-      mainRoof.scale.set(0.95, 1.0, 1.02);
-      mainRoof.position.set(45.0, 19.5 + 3.4, 25.0);
-      mainRoof.castShadow = true;
-      mainRoof.receiveShadow = true;
-      g.add(mainRoof);
+      // Main 2-Story Side-Gable Roof (Ridge running N–S along wx = 44.85', wy = 9.0..41.0, rise = 5.4')
+      addGableSection(g, 30.0, 9.0, 59.7, 41.0, 19.2, 5.4, 'Z', MAT.stucco, false);
 
-      // Winter Snow Overlay on Main Roof
-      const mainRoofSnow = new THREE.Mesh(mainRoofGeo, MAT.snowWhite);
-      mainRoofSnow.scale.set(0.94, 0.98, 1.01);
-      mainRoofSnow.position.set(45.0, 19.5 + 3.58, 25.0);
-      mainRoofSnow.visible = false;
-      g.add(mainRoofSnow);
-      SEASON_GROUPS.winterSnowBlankets.push(mainRoofSnow);
+      // 2. Attached 1st-Floor 2-Car Garage Volume (wx: 59.7..73.2, wy: 9.0..29.0, height: 10.2')
+      addBox(g, 59.7, 9.0, 73.2, 29.0, 0.0, 1.0, MAT.foundation, true, true);
+      addBox(g, 59.7, 9.0, 73.2, 29.0, 1.0, 10.2, MAT.stucco, true, true);
 
-      // 2. Attached 2-Car Garage Volume (wx: 60.0..73.2, wy: 9.0..31.0, height: 11.8')
-      addBox(g, 60.0, 9.0, 73.2, 31.0, 0.0, 1.2, MAT.foundation, true, true);
-      addBox(g, 60.0, 9.0, 73.2, 31.0, 1.2, 11.8, MAT.stucco, true, true);
+      // Full-Height Stacked Ledger Stone Facade on East Garage Wall (wx: 73.0..73.45, wy: 8.75..29.25, h: 0.4..9.8')
+      // + 2.0' North Return & 3.8' High South Return Along Porch Walkway (matching PXL_20261022_162056602.MP.jpg!)
+      addBox(g, 73.0, 8.75, 73.48, 11.0, 0.4, 9.8, MAT.stoneVeneer, true, true);   // North stone pier
+      addBox(g, 73.0, 27.0, 73.48, 29.25, 0.4, 9.8, MAT.stoneVeneer, true, true);  // South stone pier
+      addBox(g, 73.0, 11.0, 73.48, 27.0, 8.2, 9.8, MAT.stoneVeneer, true, true);   // Stone lintel above garage door
+      addBox(g, 71.2, 8.75, 73.48, 9.15, 0.4, 3.8, MAT.stoneVeneer, true, true);   // 2.0' NE corner stone wrap
+      addBox(g, 71.15, 8.68, 73.55, 9.22, 3.8, 4.0, MAT.precastCap, true, true);
+      // South Garage Wall Stone Wainscot (along porch walkway wx: 59.7..73.48, wy: 28.85..29.25, h: 0.4..3.8')
+      addBox(g, 59.7, 28.85, 73.48, 29.25, 0.4, 3.8, MAT.stoneVeneer, true, true);
+      addBox(g, 59.7, 28.78, 73.0, 29.32, 3.8, 4.02, MAT.precastCap, true, true);
+      // Gray Lap Siding on South Garage Wall Above Stone Wainscot (wx: 59.7..73.2, wy: 28.9..29.15, h: 4.02..10.2')
+      addBox(g, 59.7, 28.9, 73.2, 29.18, 4.02, 10.2, MAT.lapSiding, true, true);
 
-      // Stacked Stone Masonry Wainscot on Front Garage Face & 2.0' NE Corner Wrap
-      addBox(g, 73.0, 9.0, 73.45, 31.0, 0.0, 3.8, MAT.stoneVeneer, true, true);
-      addBox(g, 71.2, 8.85, 73.45, 9.25, 0.0, 3.8, MAT.stoneVeneer, true, true);
-      // Stone Wainscot Cap Ledge
-      addBox(g, 72.95, 8.9, 73.55, 31.1, 3.8, 4.0, MAT.precastCap, true, true);
-      addBox(g, 71.15, 8.75, 73.55, 9.3, 3.8, 4.0, MAT.precastCap, true, true);
-
-      // 16' Insulated Sectional 2-Car Garage Door (wx: 73.3, wy: 12.0..28.0) with Recessed Panels & Top Windows
-      addBox(g, 73.15, 11.7, 73.48, 28.3, 0.0, 8.25, MAT.whiteTrim, true, true);
-      addBox(g, 73.25, 12.0, 73.52, 28.0, 0.05, 8.0, MAT.garageDoor, true, true);
-      for (let panelY = 1.6; panelY <= 6.4; panelY += 1.6) {
-        addBox(g, 73.52, 12.2, 73.57, 27.8, panelY - 0.04, panelY + 0.04, MAT.darkTrim, false, false);
+      // 16.0' × 8.0' Matte-Black 2-Car Carriage Garage Door (wx: 73.25, wy: 11.0..27.0) — Aligned with Driveway (wy: 11.0..29.0)!
+      // White Exterior Jamb Trim
+      addBox(g, 73.15, 10.75, 73.52, 11.05, 0.0, 8.25, MAT.whiteTrim, true, true);
+      addBox(g, 73.15, 26.95, 73.52, 27.25, 0.0, 8.25, MAT.whiteTrim, true, true);
+      addBox(g, 73.15, 10.75, 73.52, 27.25, 8.0, 8.25, MAT.whiteTrim, true, true);
+      // Matte-Black Door Leaf
+      addBox(g, 73.22, 11.0, 73.46, 27.0, 0.02, 8.0, MAT.garageDoor, true, true);
+      // 4 Rows × 8 Columns of Raised 3D Carriage Panels + Top Row of 8 Glass Window Lites
+      for (let col = 0; col < 8; col++) {
+        const cy1 = 11.25 + col * 1.95;
+        const cy2 = cy1 + 1.65;
+        // 3 Lower Rows of Raised Black Panels
+        for (let row = 0; row < 3; row++) {
+          const rh1 = 0.25 + row * 1.95;
+          const rh2 = rh1 + 1.55;
+          addBox(g, 73.44, cy1, 73.54, cy2, rh1, rh2, MAT.darkTrim, false, true);
+        }
+        // Top Row Glass Window Lite with White Inner Frame
+        addBox(g, 73.44, cy1 - 0.05, 73.54, cy2 + 0.05, 6.20, 7.65, MAT.darkTrim, false, false);
+        addBox(g, 73.46, cy1 + 0.08, 73.56, cy2 - 0.08, 6.32, 7.52, MAT.windowGlass, false, false);
       }
-      // Top carriage windows on garage door
-      for (let wy = 13.2; wy <= 26.8; wy += 3.3) {
-        addBox(g, 73.48, wy - 1.1, 73.58, wy + 1.1, 6.65, 7.65, MAT.windowGlass, false, false);
-      }
-      // Exterior Coach Lanterns flanking the Garage Door
-      [10.6, 29.5].forEach(wy => {
-        addBox(g, 73.45, wy - 0.25, 73.85, wy + 0.25, 5.8, 6.6, MAT.simpsonHardware, true, false);
-        addBox(g, 73.55, wy - 0.16, 73.80, wy + 0.16, 5.9, 6.45, MAT.bistroBulb, false, false);
+
+      // Black Carriage Coach Lanterns Flanking the Garage Door (wy = 9.9' & 28.1')
+      [9.9, 28.1].forEach(wy => {
+        addBox(g, 73.48, wy - 0.22, 73.88, wy + 0.22, 5.8, 6.65, MAT.simpsonHardware, true, false);
+        addBox(g, 73.56, wy - 0.14, 73.82, wy + 0.14, 5.92, 6.48, MAT.bistroBulb, false, false);
       });
 
-      // Hip Roof over Garage
-      const garRoofGeo = new THREE.ConeGeometry(16.2, 4.8, 4);
-      garRoofGeo.rotateY(Math.PI / 4);
-      const garRoof = new THREE.Mesh(garRoofGeo, MAT.shingleRoof);
-      garRoof.scale.set(0.75, 1.0, 1.05);
-      garRoof.position.set(65.5, 11.8 + 2.4, 20.0);
-      garRoof.castShadow = true;
-      g.add(garRoof);
+      // 3. 2nd-Story Front Gable Cantilever Over the Garage (seen in PXL_20261022_162032048.MP.jpg!)
+      //    3A. Recessed North 2nd-Story Bay (wx: 55.0..71.5, wy: 9.0..12.2, h: 10.2..18.6') in Gray Lap Siding + Casement Window
+      addBox(g, 55.0, 9.0, 71.5, 12.2, 10.2, 18.6, MAT.lapSiding, true, true);
+      addDetailedWindow(g, 71.5, 10.6, 12.8, 2.2, 3.6, 'EAST', { panes: 1 });
+      addGableSection(g, 55.0, 9.0, 71.5, 14.5, 18.6, 3.2, 'X', MAT.lapSiding, false);
+      // Lower Garage Eyebrow Roof Return under North Bay (wx: 71.5..74.0, wy: 8.6..12.5, h: 9.8..10.5')
+      addBox(g, 71.4, 8.6, 74.1, 29.4, 9.8, 10.25, MAT.shingleRoof, true, true);
+      addBox(g, 73.95, 8.55, 74.2, 29.45, 9.75, 10.15, MAT.darkTrim, true, false);
 
-      const garRoofSnow = new THREE.Mesh(garRoofGeo, MAT.snowWhite);
-      garRoofSnow.scale.set(0.74, 0.98, 1.04);
-      garRoofSnow.position.set(65.5, 11.8 + 2.55, 20.0);
-      garRoofSnow.visible = false;
-      g.add(garRoofSnow);
-      SEASON_GROUPS.winterSnowBlankets.push(garRoofSnow);
+      //    3B. Projecting White Shake-Shingle 2nd-Story Gable Volume (wx: 55.0..73.6, wy: 12.0..27.2, h: 10.25..19.0')
+      addBox(g, 55.0, 12.0, 73.6, 27.2, 10.25, 19.0, MAT.whiteShake, true, true);
+      addBox(g, 54.9, 11.9, 73.7, 27.3, 10.15, 10.45, MAT.whiteTrim, true, true); // Crisp white belly band
+      // Large Double Window Centered in White Shake Gable (wy = 19.6') with Charcoal Board-and-Batten Shutters!
+      addDetailedWindow(g, 73.6, 19.6, 12.4, 5.2, 4.6, 'EAST', { panes: 2, shutters: true });
+      // Pitched East-Facing Gable Roof with 3 White Craftsman Corbel Brackets!
+      addGableSection(g, 55.0, 12.0, 73.6, 27.2, 19.0, 4.4, 'X', MAT.whiteShake, true);
 
-      // 3. Covered Front Porch Roof, Craftsman Entry Door & Stacked-Stone '3152' Address Column
-      addBox(g, 60.0, 30.8, 65.5, 41.2, 9.2, 10.1, MAT.shingleRoof, true, true);
-      addBox(g, 60.0, 31.0, 65.2, 41.0, 8.95, 9.2, MAT.tgCedarCeiling, false, true);
-      const porchRoofSnow = addBox(g, 60.1, 30.9, 65.4, 41.1, 10.1, 10.28, MAT.snowWhite, false, true);
+      // 4. Covered Front Porch (wx: 59.7..65.7, wy: 29.0..41.0), '3152' Stone Column, Craftsman Entry Door & Porch Window
+      // Sloped Shed/Hip Porch Roof (h: 9.2' at eave wx=66.2' rising to 10.8' at house wall wx=59.7')
+      const porchRoofGrp = new THREE.Group();
+      porchRoofGrp.position.set(62.9, 10.0, 35.0);
+      porchRoofGrp.rotation.z = -Math.atan2(1.4, 6.8);
+      addBox(porchRoofGrp, -3.6, -6.2, 3.6, 6.4, -0.18, 0.18, MAT.shingleRoof, true, true);
+      addBox(porchRoofGrp, 3.45, -6.25, 3.7, 6.45, -0.22, 0.16, MAT.darkTrim, true, false);
+      const porchRoofSnow = addBox(porchRoofGrp, -3.4, -6.0, 3.4, 6.2, 0.18, 0.34, MAT.snowWhite, false, true);
       porchRoofSnow.visible = false;
       SEASON_GROUPS.winterSnowBlankets.push(porchRoofSnow);
+      g.add(porchRoofGrp);
+      // Warm Tongue-and-Groove Porch Ceiling Soffit (h = 9.05')
+      addBox(g, 59.7, 29.0, 65.7, 41.0, 8.95, 9.18, MAT.tgCedarCeiling, false, true);
+      addBox(g, 65.4, 29.0, 65.8, 41.2, 8.55, 9.15, MAT.whiteTrim, true, true); // White porch header beam
 
-      // '3152' Stacked-Stone Address Column at SE Porch Corner (wx: 63.8..65.2, wy: 39.6..41.0)
-      addBox(g, 63.8, 39.6, 65.2, 41.0, 0.55, 4.2, MAT.stoneVeneer, true, true);
-      addBox(g, 63.68, 39.48, 65.32, 41.12, 4.2, 4.42, MAT.precastCap, true, true);
-      addBox(g, 64.15, 39.95, 64.85, 40.65, 4.42, 9.0, MAT.whiteTrim, true, true);
-      // North Porch Support Column (wx: 64.2..64.8, wy: 31.2..31.8)
-      addBox(g, 63.9, 31.0, 65.1, 32.1, 0.55, 3.8, MAT.stoneVeneer, true, true);
-      addBox(g, 64.2, 31.25, 64.8, 31.85, 3.8, 9.0, MAT.whiteTrim, true, true);
+      // Stacked-Stone Wainscot along Front Porch House Wall (wx: 59.7..60.15, wy: 32.8..41.0, h: 0.52..3.8')
+      addBox(g, 59.7, 32.8, 60.15, 41.0, 0.52, 3.8, MAT.stoneVeneer, true, true);
+      addBox(g, 59.7, 32.75, 60.25, 41.05, 3.8, 4.02, MAT.precastCap, true, true);
+      // Gray Horizontal Lap Siding on Porch Wall Above Stone Wainscot (h: 4.02..9.05')
+      addBox(g, 59.7, 29.0, 60.05, 41.0, 4.02, 9.05, MAT.lapSiding, true, true);
 
-      // Address Plaque '3152' on East Face of SE Stone Column
+      // '3152' Stacked-Stone Pedestal & White Craftsman Upper Column at SE Porch Corner (wx: 64.2..65.7, wy: 39.5..41.25)
+      addBox(g, 64.2, 39.5, 65.7, 41.25, 0.52, 3.8, MAT.stoneVeneer, true, true);
+      addBox(g, 64.08, 39.38, 65.82, 41.37, 3.8, 4.05, MAT.precastCap, true, true);
+      addBox(g, 64.55, 39.85, 65.45, 40.85, 4.05, 8.95, MAT.whiteTrim, true, true);
+
+      // Vertical '3152' Craftsman Address Plaque on East Face of White Upper Column (matching PXL_20261022_162056602.MP.jpg!)
       const addrCanvas = document.createElement('canvas');
-      addrCanvas.width = 256; addrCanvas.height = 128;
+      addrCanvas.width = 128; addrCanvas.height = 320;
       const actx = addrCanvas.getContext('2d');
-      actx.fillStyle = '#0f172a';
-      actx.fillRect(0, 0, 256, 128);
-      actx.strokeStyle = '#d97706';
-      actx.lineWidth = 8;
-      actx.strokeRect(8, 8, 240, 112);
       actx.fillStyle = '#f8fafc';
-      actx.font = 'bold 68px Inter, sans-serif';
+      actx.fillRect(0, 0, 128, 320);
+      actx.strokeStyle = '#cbd5e1';
+      actx.lineWidth = 6;
+      actx.strokeRect(4, 4, 120, 312);
+      actx.fillStyle = '#0f172a';
+      actx.font = 'bold 58px Inter, sans-serif';
       actx.textAlign = 'center';
       actx.textBaseline = 'middle';
-      actx.fillText('3152', 128, 66);
+      ['3', '1', '5', '2'].forEach((ch, idx) => {
+        actx.fillText(ch, 64, 52 + idx * 72);
+      });
       const addrTex = new THREE.CanvasTexture(addrCanvas);
       addrTex.colorSpace = THREE.SRGBColorSpace;
-      addBox(g, 65.21, 39.8, 65.28, 40.8, 5.2, 5.9, new THREE.MeshStandardMaterial({ map: addrTex, roughness: 0.3 }), false, false);
+      addBox(g, 65.44, 40.05, 65.50, 40.65, 5.2, 7.8, new THREE.MeshStandardMaterial({ map: addrTex, roughness: 0.35 }), false, false);
 
-      // Craftsman Paneled Front Entry Door (wx: 60.05, wy: 32.0..34.6) + Welcome Mat
-      addBox(g, 59.9, 31.75, 60.22, 34.85, 0.55, 7.65, MAT.whiteTrim, true, true);
-      addBox(g, 60.02, 32.0, 60.26, 34.6, 0.58, 7.4, new THREE.MeshStandardMaterial({ color: '#451a03', roughness: 0.55 }), true, true);
-      addBox(g, 60.22, 32.3, 60.30, 34.3, 4.8, 7.0, MAT.windowGlass, false, false); // Door upper glass lite
-      addBox(g, 60.25, 34.25, 60.38, 34.4, 3.4, 3.85, new THREE.MeshStandardMaterial({ color: '#d97706', metalness: 0.85, roughness: 0.2 }), false, false); // Brass handle
-      addBox(g, 60.5, 31.9, 62.3, 34.7, 0.55, 0.61, new THREE.MeshStandardMaterial({ color: '#78350f', roughness: 0.95 }), false, true); // Coir Welcome Mat
-
-      // 4. Framed Rear, Side & Front Windows + Sliding Glass Patio Door
-      // Rear 6' Sliding Glass Patio Door (wx: 30.0, wy: 24.5..30.5, h: 1.2..8.0) + Concrete Step
-      addDetailedWindow(g, 30.0, 27.5, 1.2, 6.0, 6.8, 'WEST');
-      addBox(g, 28.4, 24.2, 30.0, 30.8, 0.16, 0.72, MAT.concrete, true, true);
-      // Rear 1st-Floor Living Room Window (wx: 30.0, wy: 34.0..38.0)
-      addDetailedWindow(g, 30.0, 36.0, 3.2, 4.2, 4.6, 'WEST');
-      // Rear 2nd-Floor Windows (wx: 30.0, wy: 13.5, 23.0, 34.5)
-      [13.5, 23.0, 34.5].forEach(wy => {
-        addDetailedWindow(g, 30.0, wy, 12.2, 3.6, 4.4, 'WEST');
+      // Matte-Black 3-Panel Craftsman Front Entry Door (wx: 59.75, wy: 29.8..32.8 — Direct Line with Porch Walkway wy: 29.0..32.5!)
+      addBox(g, 59.65, 29.55, 60.15, 33.05, 0.52, 7.65, MAT.whiteTrim, true, true);
+      addBox(g, 59.75, 29.8, 60.18, 32.8, 0.55, 7.45, MAT.darkTrim, true, true);
+      // Recessed Door Panels + Brass Handle + Coir Welcome Mat
+      [1.2, 3.2, 5.2].forEach(dh => {
+        addBox(g, 60.16, 30.15, 60.22, 32.45, dh, dh + 1.45, new THREE.MeshStandardMaterial({ color: '#0f172a', roughness: 0.5 }), false, false);
       });
-      // Front 1st-Floor Porch Window (wx: 60.0, wy: 37.2, right behind the porch swing)
-      addDetailedWindow(g, 60.0, 37.5, 2.8, 3.8, 4.6, 'EAST');
-      // Front 2nd-Floor Windows (wx: 60.0, wy: 16.0, 26.0, 36.0)
-      [16.0, 26.0, 36.0].forEach(wy => {
-        addDetailedWindow(g, 60.0, wy, 12.2, 3.8, 4.4, 'EAST');
+      addBox(g, 60.18, 32.3, 60.32, 32.45, 3.4, 3.85, new THREE.MeshStandardMaterial({ color: '#d97706', metalness: 0.85, roughness: 0.2 }), false, false);
+      addBox(g, 60.4, 29.7, 62.2, 32.9, 0.52, 0.58, new THREE.MeshStandardMaterial({ color: '#78350f', roughness: 0.95 }), false, true);
+
+      // Front 1st-Floor Porch Window (wx: 59.75, wy: 35.2 — Right next to the entry door & behind the porch swing)
+      addDetailedWindow(g, 60.0, 35.2, 3.2, 2.8, 4.2, 'EAST', { panes: 1 });
+      // Front 2nd-Floor 3-Lite Horizontal Transom Window Above Porch Roof (wx: 59.85, wy: 35.5, h: 13.5..15.8')
+      addDetailedWindow(g, 59.85, 35.5, 13.5, 7.6, 2.3, 'EAST', { panes: 3 });
+
+      // 5. Rear & Side Windows Matching Rear Elevation Photo (PXL_20261022_162150878.MP.jpg)
+      // Rear 1st-Floor North Window (wx: 30.0, wy: 15.5)
+      addDetailedWindow(g, 30.0, 15.5, 3.8, 4.0, 4.0, 'WEST', { panes: 2 });
+      // Rear 6.0' Sliding Glass Patio Door (wx: 30.0, wy: 24.5, h: 1.2..8.0') + Concrete Step
+      addDetailedWindow(g, 30.0, 24.5, 1.2, 6.0, 6.8, 'WEST', { panes: 2 });
+      addBox(g, 28.3, 21.3, 30.0, 27.7, 0.16, 0.78, MAT.concrete, true, true);
+      // Rear 1st-Floor Large Living Room Window (wx: 30.0, wy: 34.8)
+      addDetailedWindow(g, 30.0, 34.8, 3.2, 6.0, 4.8, 'WEST', { panes: 2 });
+      // Rear 2nd-Floor 3 Double-Hung Windows (wx: 30.0, wy: 14.5, 24.5, 35.0)
+      [14.5, 24.5, 35.0].forEach(wy => {
+        addDetailedWindow(g, 30.0, wy, 12.6, 4.2, 4.2, 'WEST', { panes: 2 });
       });
 
-      // Architectural Downspouts at House Corners
-      [[30.1, 9.15], [30.1, 40.85], [59.9, 40.85], [73.1, 9.15]].forEach(([dx, dz]) => {
-        addBox(g, dx - 0.12, dz - 0.12, dx + 0.12, dz + 0.12, 0.2, 11.8, MAT.darkTrim, true, false);
+      // Architectural Black Downspouts & Gutters
+      [[30.1, 9.15, 19.2], [30.1, 40.85, 19.2], [65.55, 40.95, 9.0], [73.3, 8.9, 10.0]].forEach(([dx, dz, dh]) => {
+        addBox(g, dx - 0.12, dz - 0.12, dx + 0.12, dz + 0.12, 0.2, dh, MAT.darkTrim, true, false);
       });
 
-      // 5. Existing AC Condenser on South Side of House (wx: 43.5..46.5, wy: 41.2..43.0) + Green Utility Box (wx: 93.0..96.4, wy: 45.5..48.5)
-      addBox(g, 43.3, 41.1, 46.7, 43.0, 0.0, 0.25, MAT.concrete, true, true);
-      addBox(g, 43.6, 41.3, 46.4, 42.8, 0.25, 3.1, MAT.acUnit, true, true);
-      // Fan grille on top of AC condenser
-      const fanRing = new THREE.Mesh(new THREE.CylinderGeometry(0.55, 0.55, 0.06, 16), MAT.simpsonHardware);
-      fanRing.position.set(45.0, 3.12, 42.05);
+      // 6. Existing Completely Open AC Condenser (3.0' × 3.0' at wx: 45.0..48.0, wy: 41.0..44.0 — NO Cover or Shroud!)
+      //    + Gas & Electric Utility Meters on South House Wall (wx: 51.5..54.5, wy: 41.0..41.8)
+      addBox(g, 45.0, 41.0, 48.0, 44.0, 0.0, 0.24, MAT.concrete, true, true);
+      addBox(g, 45.35, 41.35, 47.65, 43.65, 0.24, 3.05, MAT.acUnit, true, true);
+      // Louvered grille fins & top fan guard on AC condenser
+      const fanRing = new THREE.Mesh(new THREE.CylinderGeometry(0.75, 0.75, 0.08, 20), MAT.simpsonHardware);
+      fanRing.position.set(46.5, 3.06, 42.5);
       g.add(fanRing);
+      // Gas & Electric Meters on South Wall
+      addBox(g, 51.5, 41.0, 52.6, 41.6, 1.2, 3.0, new THREE.MeshStandardMaterial({ color: '#94a3b8', metalness: 0.5, roughness: 0.4 }), true, false);
+      addBox(g, 53.2, 41.0, 54.2, 41.5, 3.8, 5.2, new THREE.MeshStandardMaterial({ color: '#94a3b8', metalness: 0.5, roughness: 0.4 }), true, false);
 
-      // Green Telecom / Transformer Box at SE Corner
-      addBox(g, 92.8, 45.3, 96.6, 48.7, 0.0, 0.2, MAT.concrete, true, true);
-      addBox(g, 93.0, 45.5, 96.4, 48.5, 0.2, 2.85, MAT.utilityBox, true, true);
+      // 7. Green Telecom / Transformer Box at SE Front Corner (wx: 93.0..96.4, wy: 45.5..48.5)
+      addBox(g, 92.8, 45.3, 96.6, 48.7, 0.0, 0.22, MAT.concrete, true, true);
+      addBox(g, 93.0, 45.5, 96.4, 48.5, 0.22, 2.85, MAT.utilityBox, true, true);
+      addBox(g, 92.95, 45.45, 96.45, 48.55, 2.70, 2.88, new THREE.MeshStandardMaterial({ color: '#14532d', roughness: 0.4 }), true, false);
     }
 
     // --- E. PHASE 2 (2027) & PHASE 3 (2028): SOD/LAWN ('sod'), BEDS ('frontBeds' / 'beds'), & 45° HOLLAND PAVERS ('pavers') ---
+    //     100% Matched to CAD Blueprint Polygons (Zero Overlap with Porch Walkway or Driveway!)
     {
       // 1. CONTINUOUS LAWN ZONE ('sod' — Backyard + 4.0'+ South Side Corridor Continuing Under South Gate into SE Front Lawn)
       const gSod = LAYER_GROUPS.sod;
       const unifiedLawnPts = [
-        [4.5, 11.2], [7.2, 8.5], [24.85, 8.5], [26.5, 10.15],
-        [26.5, 20.0], [18.0, 20.0], [18.0, 41.0], [28.0, 41.0],
-        [28.0, 43.5], [65.2, 43.5], [67.2, 41.5], [67.2, 35.0],
-        [73.2, 35.0], [73.2, 27.0], [96.7, 27.0],
-        [96.7, 44.0], [91.5, 44.0], [91.5, 47.5],
-        [7.2, 47.5], [4.5, 44.8]
+        [4.5, 10.5], [6.5, 8.5], [25.0, 8.5], [26.5, 10.0], [26.5, 20.0],
+        [17.5, 20.0], [17.5, 41.0], [30.0, 41.0], [32.5, 43.5],
+        [66.05, 43.5], [68.2, 41.35], [68.2, 32.5], [81.0, 32.5], [81.0, 29.0], [96.7, 29.0],
+        [96.7, 43.0], [92.0, 43.0], [90.5, 44.5], [90.5, 45.5], [88.5, 47.5],
+        [6.5, 47.5], [4.5, 45.5]
       ];
       addPolygonExtrusion(gSod, unifiedLawnPts, 0.0, 0.10, MAT.turf, true);
 
       // 2. PHASE 2 (2027) FRONT PORCH HYACINTH BED, CONTINUOUS 2' SOUTH BED TO GREEN BOX & WHITE ROCK PARK STRIPS/NE SIDE ('frontBeds')
       const gFrontBeds = LAYER_GROUPS.frontBeds;
-      // Front Porch 2.0' Foundation Bed (wx: 65.2..67.2, wy: 31.0..43.0) — Home of Melinda's Fragrant Spring Hyacinths!
-      addBox(gFrontBeds, 65.2, 31.0, 67.2, 43.0, 0.0, 0.09, MAT.mulch, false, true);
-      // Continuous 2.0' South Front Property-Line Bed (wx: 57.5..96.7, wy: 48.0..50.0) All the Way to the Green Utility Box + Surround
-      addBox(gFrontBeds, 57.5, 48.0, 96.7, 50.0, 0.0, 0.09, MAT.mulch, false, true);
-      addBox(gFrontBeds, 92.0, 44.0, 96.7, 48.0, 0.0, 0.09, MAT.mulch, false, true);
-      // SE Corner Focal Tree Mulch Pocket around Relocated Japanese Maple (wx: 84.8..91.2, wy: 45.2..48.2)
-      addBox(gFrontBeds, 84.8, 45.2, 91.2, 48.2, 0.0, 0.09, MAT.mulch, false, true);
+      // Front-of-Porch & South-of-Porch 2.0' Foundation Mulch Bed (Strictly South of the wy=29.0..32.5 Porch Walkway!)
+      const frontPorchBedPts = [
+        [LOCKED_SOUTH_GATE_WX, 41.0], [65.7, 41.0], [65.7, 32.5], [68.0, 32.5],
+        [68.0, 41.35], [66.05, 43.25], [LOCKED_SOUTH_GATE_WX, 43.25]
+      ];
+      addPolygonExtrusion(gFrontBeds, frontPorchBedPts, 0.0, 0.09, MAT.mulch, true);
+
+      // Continuous 2.0' South Front Property-Line Bed (wx: 57.5..96.7, wy: 48.0..50.0) All the Way to the 3-Sided Green Utility Box Bed
+      const frontSouthBedToBoxPts = [
+        [LOCKED_SOUTH_GATE_WX, 48.0], [88.6, 48.0], [90.75, 45.6], [90.75, 44.4],
+        [92.1, 43.0], [96.7, 43.0], [96.7, 50.0], [LOCKED_SOUTH_GATE_WX, 50.0]
+      ];
+      addPolygonExtrusion(gFrontBeds, frontSouthBedToBoxPts, 0.0, 0.09, MAT.mulch, true);
+
+      // SE Corner Mulch Pocket around Relocated Japanese Maple (wx: 84.5..91.0, wy: 45.2..48.2)
+      addBox(gFrontBeds, 84.5, 45.2, 91.0, 48.2, 0.0, 0.09, MAT.mulch, false, true);
+
       // NE Front & Side Yard White Decorative Rock Going Up to the North Side Yard (Stopping at wx = 70.0' North Fence/Gate)
-      addBox(gFrontBeds, 73.2, 0.0, 96.7, 11.0, 0.0, 0.08, MAT.whiteRocks, false, true);
-      addBox(gFrontBeds, 70.0, 0.0, 73.2, 9.0, 0.0, 0.08, MAT.whiteRocks, false, true);
-      // 6.0' Street Park Strips (wx: 100.7..106.7, North & South of Driveway) — White Decorative Rock Matching South Neighbors
+      const neWhiteRockPts = [
+        [LOCKED_NORTH_GATE_WX, 0.0], [96.7, 0.0], [96.7, 11.0],
+        [73.2, 11.0], [73.2, 9.0], [LOCKED_NORTH_GATE_WX, 9.0]
+      ];
+      addPolygonExtrusion(gFrontBeds, neWhiteRockPts, 0.0, 0.08, MAT.whiteRocks, true);
+
+      // 6.0' Street Park Strips Between Sidewalk (100.7') and Curb (106.7') — White Decorative Rock Matching South Neighbors!
       addBox(gFrontBeds, 100.7, 0.0, 106.7, 9.5, 0.0, 0.09, MAT.whiteRocks, false, true);
       addBox(gFrontBeds, 100.7, 30.5, 106.7, 50.0, 0.0, 0.09, MAT.whiteRocks, false, true);
 
       // 3. PHASE 3 (2028) BACKYARD & SIDE MULCH BEDS ('beds')
       const gBeds = LAYER_GROUPS.beds;
-      // Western 4.0' Deep Mulch Bed (wx: 0.0..4.0, wy: 0.0..50.0)
       addBox(gBeds, 0.0, 0.0, 4.0, 50.0, 0.0, 0.09, MAT.mulch, false, true);
-      // Continuous South 2.0' Berry & Shade Mulch Bed Down Entire South Fence (wx: 4.0..57.5, wy: 48.0..50.0)
-      addBox(gBeds, 4.0, 48.0, 57.5, 50.0, 0.0, 0.09, MAT.mulch, false, true);
-      // South House Foundation 2.0' Buffer (wx: 28.0..65.2, wy: 41.0..43.0 — Open AC Unit on 3'×3' Pad)
-      addBox(gBeds, 28.0, 41.0, 65.2, 43.0, 0.0, 0.09, MAT.mulch, false, true);
+      addBox(gBeds, 4.0, 48.0, LOCKED_SOUTH_GATE_WX, 50.0, 0.0, 0.09, MAT.mulch, false, true);
+      addBox(gBeds, 30.0, 41.0, LOCKED_SOUTH_GATE_WX, 43.25, 0.0, 0.09, MAT.crushedRock, false, true);
 
       // 2028 Flat-Dirt Vegetable Garden Plot (visible when beds=ON and 2029 gardenRock=OFF)
       addBox(flatDirtGardenGroup, 4.0, 0.0, 27.0, 8.25, 0.0, 0.08, MAT.soilDark, false, true);
@@ -1327,25 +1619,70 @@
         gPavers.add(mesh);
       }
 
-      // Backyard West Wall Paver Run + 45° NW, NE (Rear Road Base Path) & SW Chamfered Corners + Continuous Runs Under South Gate
-      addPaverSegment(26.75, 20.0, 26.75, 10.15); // Along 11.0' Rear House Compacted Road Base Path (wx = 26.75')
-      addPaverSegment(26.75, 10.15, 24.85, 8.25); // 45° NE Corner Chamfer at Rear Path & Garden Zone
-      addPaverSegment(24.85, 8.25, 7.2, 8.25);    // Along NW 5-Planter Compacted Road Base Zone (wy = 8.25')
-      addPaverSegment(7.2, 8.25, 4.25, 11.2);     // 45° NW Corner Chamfer
-      addPaverSegment(4.25, 11.2, 4.25, 44.8);    // Along West Wall 5+4 Bed (wx = 4.25')
-      addPaverSegment(4.25, 44.8, 7.2, 47.75);    // 45° SW Corner Chamfer
-      addPaverSegment(7.2, 47.75, 91.5, 47.75);   // Continuous Along 2.0' South Bed (Under South Gate) to Utility Box Screen
-      addPaverSegment(91.5, 47.75, 91.5, 44.0);   // West of Utility Box Screen
-      addPaverSegment(91.5, 44.0, 96.7, 44.0);    // North of Utility Box Screen to Sidewalk
-      addPaverSegment(28.0, 43.25, 65.2, 43.25);  // Continuous Along South House Buffer (Under South Gate) to Front Porch Bed
-      addPaverSegment(65.2, 43.25, 67.45, 41.0);  // 45° Front Porch Corner Chamfer
-      addPaverSegment(67.45, 41.0, 67.45, 35.0);  // East of 2.0' Front Porch Hyacinth Bed
+      // Paver Chain 1: South House Buffer & Front Porch Hyacinth Bed (Continuing Under South Gate, Stopping at Porch Walkway wy=32.5')
+      const chain1 = [[30.0, 41.0], [32.6, 43.25], [66.05, 43.25], [67.95, 41.35], [67.95, 32.5]];
+      for (let i = 0; i < chain1.length - 1; i++) {
+        addPaverSegment(chain1[i][0], chain1[i][1], chain1[i + 1][0], chain1[i + 1][1]);
+      }
+
+      // Paver Chain 2: Rear 11' Road Base Path + NW 5-Planter Zone + West Wall 5+4 Bed + Continuous 2' South Bed to Green Box
+      const chain2 = [
+        [26.75, 20.0], [26.75, 10.15], [24.85, 8.25], [6.4, 8.25], [4.25, 10.4],
+        [4.25, 45.6], [6.4, 47.75], [88.6, 47.75], [90.75, 45.6], [90.75, 44.4],
+        [92.1, 43.25], [96.7, 43.25]
+      ];
+      for (let i = 0; i < chain2.length - 1; i++) {
+        addPaverSegment(chain2[i][0], chain2[i][1], chain2[i + 1][0], chain2[i + 1][1]);
+      }
     }
 
     // --- F. PHASE 3 (2028): WESTERN BACK WALL 5+4 DESIGNER HYBRID ('westWallPlants') ---
-    //     Featuring 5× 'Standing Ovation' Serviceberries (with Spring Blossoms!) + 4× Evergreen Junipers + 10-Spot Under-Story
+    //     High-Fidelity Botanical 3D Models:
+    //     5× 'Standing Ovation' Serviceberries (with multi-forked woody skeletons & 5-petal Spring blossom clusters!)
+    //     + 4× Multi-Bough Evergreen Column Junipers + 10-Spot Multi-Blade Grass & Perennial Under-Story
     {
       const gWestPlants = LAYER_GROUPS.westWallPlants;
+
+      // Helper: Build a multi-blade arching 'Karl Foerster' Feather Reed Grass Fountain + Golden Plumes
+      function buildFeatherReedGrass(wx, wy, scaleH = 1.0) {
+        const grassGrp = new THREE.Group();
+        grassGrp.position.set(wx, 0.08, wy);
+        const bladeMat = new THREE.MeshStandardMaterial({ color: '#4d7c0f', roughness: 0.78, side: THREE.DoubleSide });
+        const plumeMat = new THREE.MeshStandardMaterial({ color: '#fde047', roughness: 0.62 });
+        const stalkMat = new THREE.MeshStandardMaterial({ color: '#a3e635', roughness: 0.75 });
+
+        // 22 arching basal grass blades arranged in a fountain rosette
+        for (let b = 0; b < 22; b++) {
+          const ang = (b / 22) * Math.PI * 2 + (b % 3) * 0.12;
+          const tilt = 0.22 + (b % 4) * 0.11;
+          const hBlade = (1.7 + (b % 3) * 0.35) * scaleH;
+          const blade = new THREE.Mesh(new THREE.ConeGeometry(0.08, hBlade, 4), bladeMat);
+          blade.position.set(Math.cos(ang) * 0.22, hBlade * 0.45, Math.sin(ang) * 0.22);
+          blade.rotation.x = Math.sin(ang) * tilt;
+          blade.rotation.z = -Math.cos(ang) * tilt;
+          blade.castShadow = true;
+          grassGrp.add(blade);
+        }
+
+        // 9 vertical golden wheat-like flower plumes rising above the foliage fountain
+        for (let p = 0; p < 9; p++) {
+          const ang = (p / 9) * Math.PI * 2;
+          const rOff = p === 0 ? 0 : (0.14 + (p % 2) * 0.12);
+          const px = Math.cos(ang) * rOff;
+          const pz = Math.sin(ang) * rOff;
+          const hStalk = (2.6 + (p % 3) * 0.28) * scaleH;
+
+          const stalk = new THREE.Mesh(new THREE.CylinderGeometry(0.018, 0.028, hStalk, 5), stalkMat);
+          stalk.position.set(px, hStalk * 0.5, pz);
+          grassGrp.add(stalk);
+
+          const plumeHead = new THREE.Mesh(new THREE.CylinderGeometry(0.04, 0.08, 1.15 * scaleH, 7), plumeMat);
+          plumeHead.position.set(px, hStalk + 0.35 * scaleH, pz);
+          plumeHead.castShadow = true;
+          grassGrp.add(plumeHead);
+        }
+        return grassGrp;
+      }
 
       // 1. 5× Leafy Columnar Pillars (S1–S5 at wy = 5, 15, 25, 35, 45; wx = 2.0')
       //    'Standing Ovation' Serviceberry (Amelanchier alnifolia 'Obelisk', ~15.5' tall × 4.2' W)
@@ -1353,18 +1690,19 @@
         const treeGrp = new THREE.Group();
         treeGrp.position.set(2.0, 0, wy);
 
-        // Multi-stem woody trunk & ascending winter-visible branch skeleton
-        const stemAngles = [
-          [0, 0, 0, 0],
-          [-0.22, -0.18, 0.08, 0.06],
-          [0.20, 0.16, -0.07, -0.05],
-          [-0.14, 0.22, 0.05, -0.07],
-          [0.16, -0.20, -0.06, 0.06]
+        // Multi-stem woody trunk & ascending winter-visible branch skeleton (7 natural fluted stems)
+        const stemSpecs = [
+          [0.0, 0.0, 0.02, -0.01, 13.4],
+          [-0.24, -0.20, 0.09, 0.07, 12.2],
+          [0.22, 0.18, -0.08, -0.06, 12.5],
+          [-0.18, 0.24, 0.06, -0.08, 11.8],
+          [0.20, -0.22, -0.07, 0.08, 11.9],
+          [-0.08, -0.28, 0.10, 0.02, 11.0],
+          [0.10, 0.28, -0.09, -0.03, 11.2]
         ];
-        stemAngles.forEach(([ox, oz, rx, rz], sIdx) => {
-          const hStem = sIdx === 0 ? 12.8 : 11.2;
+        stemSpecs.forEach(([ox, oz, rx, rz, hStem], sIdx) => {
           const stem = new THREE.Mesh(
-            new THREE.CylinderGeometry(0.05, 0.16, hStem, 8),
+            new THREE.CylinderGeometry(0.04, 0.15, hStem, 8),
             MAT.woodBark
           );
           stem.position.set(ox, hStem / 2, oz);
@@ -1372,76 +1710,99 @@
           stem.castShadow = true;
           treeGrp.add(stem);
 
-          // Upper fine twig forks (visible in Winter & peeking through blossoms in Spring)
-          for (let b = 0; b < 3; b++) {
-            const bh = 5.5 + b * 2.6;
-            const twig = new THREE.Mesh(new THREE.CylinderGeometry(0.025, 0.05, 2.8, 6), MAT.woodBark);
-            const ang = (sIdx * 1.3 + b * 2.1);
-            twig.position.set(ox + Math.cos(ang) * 0.45, bh, oz + Math.sin(ang) * 0.45);
-            twig.rotation.set(Math.sin(ang) * 0.38, 0, Math.cos(ang) * 0.38);
+          // Secondary ascending lateral branch forks
+          for (let b = 0; b < 4; b++) {
+            const bh = 4.2 + b * 2.35;
+            const twig = new THREE.Mesh(new THREE.CylinderGeometry(0.02, 0.048, 2.7, 6), MAT.woodBark);
+            const ang = (sIdx * 1.15 + b * 1.85);
+            twig.position.set(ox + Math.cos(ang) * 0.48, bh, oz + Math.sin(ang) * 0.48);
+            twig.rotation.set(Math.sin(ang) * 0.42, 0, Math.cos(ang) * 0.42);
             treeGrp.add(twig);
 
             // Winter frost cap on branch forks
-            const frost = new THREE.Mesh(new THREE.SphereGeometry(0.22, 8, 6), MAT.snowWhite);
-            frost.scale.set(1.4, 0.45, 1.4);
-            frost.position.set(ox + Math.cos(ang) * 0.65, bh + 0.9, oz + Math.sin(ang) * 0.65);
+            const frost = new THREE.Mesh(new THREE.SphereGeometry(0.20, 8, 6), MAT.snowWhite);
+            frost.scale.set(1.45, 0.42, 1.45);
+            frost.position.set(ox + Math.cos(ang) * 0.68, bh + 0.85, oz + Math.sin(ang) * 0.68);
             frost.visible = false;
             treeGrp.add(frost);
             SEASON_GROUPS.serviceberryFrost.push(frost);
           }
         });
 
-        // Tiered Columnar Leaf Canopy Clusters (S1–S5)
+        // High-Fidelity Multi-Clustered Columnar Foliage Crown (24 organic sub-canopy puffs instead of 5 balls)
         const canopyGroup = new THREE.Group();
-        const tiers = [
-          [0, 5.2, 0, 1.85, 2.3, 1.85],
-          [0.15, 7.8, -0.12, 2.05, 2.5, 2.05],
-          [-0.12, 10.4, 0.15, 1.90, 2.4, 1.90],
-          [0.08, 12.8, -0.08, 1.55, 2.1, 1.55],
-          [0, 14.6, 0, 1.10, 1.5, 1.10]
-        ];
-        tiers.forEach(([lx, ly, lz, sx, sy, sz]) => {
-          const lobe = new THREE.Mesh(new THREE.DodecahedronGeometry(1.0, 2), MAT.serviceberryFoliage);
-          lobe.position.set(lx, ly, lz);
-          lobe.scale.set(sx, sy, sz);
-          lobe.castShadow = true;
-          lobe.receiveShadow = true;
-          canopyGroup.add(lobe);
-        });
+        for (let c = 0; c < 24; c++) {
+          const hFrac = c / 23;
+          const cy = 4.2 + hFrac * 10.8;
+          // Obelisk profile: widest around middle (40% height), tapering cleanly at top
+          const envRadius = hFrac < 0.4
+            ? (0.95 + (hFrac / 0.4) * 0.75)
+            : (1.70 - ((hFrac - 0.4) / 0.6) * 1.15);
+          const theta = c * 2.39996 + idx * 0.8;
+          const rDist = (c % 3 === 0) ? envRadius * 0.35 : envRadius * 0.78;
+          const lx = Math.cos(theta) * rDist;
+          const lz = Math.sin(theta) * rDist;
+          const puffRadius = 0.82 + (c % 4) * 0.14;
+
+          const puff = new THREE.Mesh(new THREE.IcosahedronGeometry(puffRadius, 2), MAT.serviceberryFoliage);
+          puff.position.set(lx, cy, lz);
+          puff.scale.set(1.12, 0.92, 1.12);
+          puff.rotation.set(c * 0.4, c * 0.7, 0);
+          puff.castShadow = true;
+          puff.receiveShadow = true;
+          canopyGroup.add(puff);
+        }
         treeGrp.add(canopyGroup);
         SEASON_GROUPS.serviceberryCanopies.push(canopyGroup);
 
-        // SPRING SHOWCASE: Dense Snow-White 'Standing Ovation' Blossom Clusters (Amelanchier alnifolia 'Obelisk')
+        // SPRING SHOWCASE: Detailed 5-Petal 'Standing Ovation' Blossom Panicles (Amelanchier alnifolia 'Obelisk')
         const blossomGroup = new THREE.Group();
-        for (let b = 0; b < 58; b++) {
-          const hFrac = b / 58;
-          const by = 3.8 + hFrac * 11.2;
-          const radiusAtH = (hFrac < 0.5 ? (1.4 + hFrac * 1.4) : (2.1 - (hFrac - 0.5) * 1.8));
-          const theta = b * 2.39996 + idx * 1.1; // Golden angle spiral around columnar crown
+        const stamenMat = new THREE.MeshBasicMaterial({ color: '#fde047' });
+        for (let b = 0; b < 68; b++) {
+          const hFrac = b / 68;
+          const by = 3.7 + hFrac * 11.4;
+          const radiusAtH = (hFrac < 0.45 ? (1.25 + hFrac * 1.55) : (1.95 - (hFrac - 0.45) * 1.65));
+          const theta = b * 2.39996 + idx * 1.1;
           const bx = Math.cos(theta) * radiusAtH;
           const bz = Math.sin(theta) * radiusAtH;
 
-          const cluster = new THREE.Mesh(
-            new THREE.DodecahedronGeometry(0.28 + (b % 3) * 0.07, 1),
-            b % 4 === 0 ? MAT.blossomPinkCenter : MAT.blossomWhite
-          );
-          cluster.position.set(bx, by, bz);
-          cluster.scale.set(1.25, 0.85, 1.25);
-          blossomGroup.add(cluster);
+          const panicle = new THREE.Group();
+          panicle.position.set(bx, by, bz);
+          panicle.lookAt(bx * 2.5, by + 0.5, bz * 2.5);
+
+          // 5 star-like white/blush petals + golden center per blossom cluster
+          const petalMat = (b % 5 === 0) ? MAT.blossomPinkCenter : MAT.blossomWhite;
+          for (let p = 0; p < 5; p++) {
+            const pAng = (p / 5) * Math.PI * 2;
+            const petal = new THREE.Mesh(new THREE.SphereGeometry(0.14, 6, 5), petalMat);
+            petal.scale.set(0.75, 1.45, 0.35);
+            petal.position.set(Math.cos(pAng) * 0.16, Math.sin(pAng) * 0.16, 0);
+            petal.rotation.z = pAng - Math.PI / 2;
+            panicle.add(petal);
+          }
+          const centerDot = new THREE.Mesh(new THREE.SphereGeometry(0.07, 6, 6), stamenMat);
+          centerDot.position.set(0, 0, 0.04);
+          panicle.add(centerDot);
+
+          blossomGroup.add(panicle);
         }
         treeGrp.add(blossomGroup);
         SEASON_GROUPS.serviceberryBlossoms.push(blossomGroup);
 
-        // SUMMER SHOWCASE: Editable Dark Purple-Blue Juneberry Clusters
+        // SUMMER SHOWCASE: Dark Purple-Blue Juneberry Clusters (3 berries per cluster)
         const berryGroup = new THREE.Group();
-        for (let j = 0; j < 28; j++) {
-          const hFrac = j / 28;
+        for (let j = 0; j < 26; j++) {
+          const hFrac = j / 26;
           const by = 4.2 + hFrac * 10.2;
-          const radiusAtH = 1.65 - Math.abs(hFrac - 0.45) * 0.9;
+          const radiusAtH = 1.60 - Math.abs(hFrac - 0.45) * 0.85;
           const theta = j * 2.4 + idx;
-          const berry = new THREE.Mesh(new THREE.SphereGeometry(0.14, 8, 8), MAT.juneberryFruit);
-          berry.position.set(Math.cos(theta) * radiusAtH, by, Math.sin(theta) * radiusAtH);
-          berryGroup.add(berry);
+          const cx = Math.cos(theta) * radiusAtH;
+          const cz = Math.sin(theta) * radiusAtH;
+          [[0, 0, 0], [0.11, 0.08, -0.06], [-0.09, -0.07, 0.08]].forEach(([ox, oy, oz]) => {
+            const berry = new THREE.Mesh(new THREE.SphereGeometry(0.10, 8, 8), MAT.juneberryFruit);
+            berry.position.set(cx + ox, by + oy, cz + oz);
+            berryGroup.add(berry);
+          });
         }
         berryGroup.visible = false;
         treeGrp.add(berryGroup);
@@ -1449,10 +1810,10 @@
 
         // Spring Fallen White Blossom Petals on the Mulch around each 'Standing Ovation' tree
         const petalRing = new THREE.Group();
-        for (let p = 0; p < 18; p++) {
-          const ang = (p / 18) * Math.PI * 2 + rng() * 0.5;
-          const dist = 0.5 + rng() * 1.5;
-          const petal = new THREE.Mesh(new THREE.CircleGeometry(0.11 + rng() * 0.08, 6), MAT.blossomWhite);
+        for (let p = 0; p < 20; p++) {
+          const ang = (p / 20) * Math.PI * 2 + rng() * 0.5;
+          const dist = 0.45 + rng() * 1.45;
+          const petal = new THREE.Mesh(new THREE.CircleGeometry(0.09 + rng() * 0.06, 6), MAT.blossomWhite);
           petal.rotation.x = -Math.PI / 2;
           petal.position.set(Math.cos(ang) * dist, 0.105, Math.sin(ang) * dist);
           petalRing.add(petal);
@@ -1464,10 +1825,10 @@
         const fallLeafRing = new THREE.Group();
         const fallLeafMat1 = new THREE.MeshStandardMaterial({ color: '#ea580c', roughness: 0.8 });
         const fallLeafMat2 = new THREE.MeshStandardMaterial({ color: '#dc2626', roughness: 0.8 });
-        for (let p = 0; p < 20; p++) {
-          const ang = (p / 20) * Math.PI * 2 + rng() * 0.5;
-          const dist = 0.5 + rng() * 1.6;
-          const leaf = new THREE.Mesh(new THREE.CircleGeometry(0.13 + rng() * 0.09, 5), p % 2 === 0 ? fallLeafMat1 : fallLeafMat2);
+        for (let p = 0; p < 22; p++) {
+          const ang = (p / 22) * Math.PI * 2 + rng() * 0.5;
+          const dist = 0.45 + rng() * 1.55;
+          const leaf = new THREE.Mesh(new THREE.CircleGeometry(0.11 + rng() * 0.08, 5), p % 2 === 0 ? fallLeafMat1 : fallLeafMat2);
           leaf.rotation.x = -Math.PI / 2;
           leaf.position.set(Math.cos(ang) * dist, 0.105, Math.sin(ang) * dist);
           fallLeafRing.add(leaf);
@@ -1481,26 +1842,38 @@
       });
 
       // 2. 4× Evergreen Upright Column Junipers (J1–J4 at wy = 10, 20, 30, 40; wx = 2.0')
+      //    High-Fidelity Multi-Bough Feathery Columnar Spire (18 ascending evergreen whorls instead of 3 simple cones)
       [10.0, 20.0, 30.0, 40.0].forEach((wy, idx) => {
         const junGrp = new THREE.Group();
         junGrp.position.set(2.0, 0, wy);
 
-        const trunk = new THREE.Mesh(new THREE.CylinderGeometry(0.14, 0.24, 3.0, 8), MAT.woodBark);
-        trunk.position.set(0, 1.5, 0);
+        const trunk = new THREE.Mesh(new THREE.CylinderGeometry(0.10, 0.24, 15.5, 8), MAT.woodBark);
+        trunk.position.set(0, 7.75, 0);
         junGrp.add(trunk);
 
-        // Layered Evergreen Conical Tiers (18.5' tall × 3.2' W)
-        [[6.2, 1.65, 9.5], [10.8, 1.35, 8.5], [14.8, 0.95, 7.2]].forEach(([cy, rad, h]) => {
-          const cone = new THREE.Mesh(new THREE.ConeGeometry(rad, h, 14), MAT.juniperFoliage);
-          cone.position.set(0, cy, 0);
-          cone.castShadow = true;
-          cone.receiveShadow = true;
-          junGrp.add(cone);
-        });
+        // 16 layered feathery evergreen whorls spiraling up the 18.2' tall × 3.2' wide column
+        for (let w = 0; w < 16; w++) {
+          const wFrac = w / 15;
+          const cy = 2.2 + wFrac * 14.5;
+          const rad = (1.65 * (1.0 - wFrac * 0.62)) + (w % 2) * 0.08;
+          const hCone = 2.8 - wFrac * 0.9;
+          const bough = new THREE.Mesh(new THREE.ConeGeometry(rad, hCone, 9), MAT.juniperFoliage);
+          const offAng = w * 2.1 + idx;
+          bough.position.set(Math.cos(offAng) * 0.08, cy, Math.sin(offAng) * 0.08);
+          bough.rotation.y = w * 0.55;
+          bough.castShadow = true;
+          bough.receiveShadow = true;
+          junGrp.add(bough);
+        }
+        // Tapered spire leader tip
+        const spireTip = new THREE.Mesh(new THREE.ConeGeometry(0.55, 2.8, 8), MAT.juniperFoliage);
+        spireTip.position.set(0, 17.2, 0);
+        spireTip.castShadow = true;
+        junGrp.add(spireTip);
 
         // Winter Snow Cap on Juniper Crown
-        const junSnow = new THREE.Mesh(new THREE.ConeGeometry(0.98, 5.5, 12), MAT.snowWhite);
-        junSnow.position.set(0, 15.8, 0);
+        const junSnow = new THREE.Mesh(new THREE.ConeGeometry(0.88, 4.8, 10), MAT.snowWhite);
+        junSnow.position.set(0, 16.4, 0);
         junSnow.visible = false;
         junGrp.add(junSnow);
         SEASON_GROUPS.juniperSnowCaps.push(junSnow);
@@ -1510,167 +1883,223 @@
       });
 
       // 3. 10-Spot Perennial & Ornamental Grass Under-Story along wx = 2.95'
-      const catmintMat = new THREE.MeshStandardMaterial({ color: '#7c3aed', roughness: 0.75 });
-      const coneflowerMat = new THREE.MeshStandardMaterial({ color: '#ec4899', roughness: 0.72 });
-      const reedGrassBaseMat = new THREE.MeshStandardMaterial({ color: '#4d7c0f', roughness: 0.82 });
-      const reedPlumeMat = new THREE.MeshStandardMaterial({ color: '#fde047', roughness: 0.65 });
+      const catmintLeafMat = new THREE.MeshStandardMaterial({ color: '#15803d', roughness: 0.82 });
+      const catmintSpikeMat = new THREE.MeshStandardMaterial({ color: '#7c3aed', roughness: 0.68 });
+      const coneflowerPetalMat = new THREE.MeshStandardMaterial({ color: '#ec4899', roughness: 0.65 });
+      const coneflowerCenterMat = new THREE.MeshStandardMaterial({ color: '#b45309', roughness: 0.7 });
 
       [3.2, 7.5, 12.5, 17.5, 22.5, 27.5, 32.5, 37.5, 42.5, 46.8].forEach((wy, idx) => {
         if (idx % 2 === 0) {
-          // Purple Catmint / Russian Sage + Magenta Coneflower Pair
-          const mound = new THREE.Mesh(new THREE.DodecahedronGeometry(0.85, 1), catmintMat);
-          mound.position.set(2.9, 0.72, wy - 0.55);
-          mound.scale.set(0.95, 0.78, 1.15);
-          mound.castShadow = true;
-          gWestPlants.add(mound);
+          // Multi-Spike Purple Catmint Mound + Blooming Echinacea Coneflower Clump
+          const catGrp = new THREE.Group();
+          catGrp.position.set(2.9, 0.08, wy - 0.55);
+          const baseFoliage = new THREE.Mesh(new THREE.IcosahedronGeometry(0.68, 2), catmintLeafMat);
+          baseFoliage.scale.set(1.1, 0.55, 1.25);
+          baseFoliage.position.set(0, 0.35, 0);
+          baseFoliage.castShadow = true;
+          catGrp.add(baseFoliage);
+          for (let s = 0; s < 14; s++) {
+            const ang = (s / 14) * Math.PI * 2;
+            const r = 0.15 + (s % 3) * 0.18;
+            const spike = new THREE.Mesh(new THREE.ConeGeometry(0.075, 0.75, 6), catmintSpikeMat);
+            spike.position.set(Math.cos(ang) * r, 0.78, Math.sin(ang) * r);
+            spike.rotation.x = Math.sin(ang) * 0.22;
+            spike.rotation.z = -Math.cos(ang) * 0.22;
+            catGrp.add(spike);
+          }
+          gWestPlants.add(catGrp);
 
-          const cone = new THREE.Mesh(new THREE.DodecahedronGeometry(0.68, 1), coneflowerMat);
-          cone.position.set(3.15, 0.75, wy + 0.85);
-          cone.scale.set(1.0, 0.85, 1.0);
-          cone.castShadow = true;
-          gWestPlants.add(cone);
+          // Blooming Echinacea Coneflower Clump (7 distinct daisy-like flower heads with copper cones)
+          const echGrp = new THREE.Group();
+          echGrp.position.set(3.12, 0.08, wy + 0.80);
+          const echBase = new THREE.Mesh(new THREE.IcosahedronGeometry(0.52, 1), catmintLeafMat);
+          echBase.scale.set(1.0, 0.6, 1.0);
+          echBase.position.set(0, 0.3, 0);
+          echGrp.add(echBase);
+          for (let f = 0; f < 7; f++) {
+            const ang = (f / 7) * Math.PI * 2;
+            const r = f === 0 ? 0 : 0.28;
+            const fx = Math.cos(ang) * r;
+            const fz = Math.sin(ang) * r;
+            const fh = 0.85 + (f % 3) * 0.14;
+            const stem = new THREE.Mesh(new THREE.CylinderGeometry(0.02, 0.025, fh, 5), catmintLeafMat);
+            stem.position.set(fx, fh * 0.5, fz);
+            echGrp.add(stem);
+            const petals = new THREE.Mesh(new THREE.CylinderGeometry(0.20, 0.14, 0.05, 10), coneflowerPetalMat);
+            petals.position.set(fx, fh, fz);
+            echGrp.add(petals);
+            const coneCenter = new THREE.Mesh(new THREE.SphereGeometry(0.085, 8, 6), coneflowerCenterMat);
+            coneCenter.position.set(fx, fh + 0.04, fz);
+            echGrp.add(coneCenter);
+          }
+          gWestPlants.add(echGrp);
         } else {
-          // Upright 'Karl Foerster' Feather Reed Grass (3.8' tall with golden plumes)
-          const grassGrp = new THREE.Group();
-          grassGrp.position.set(2.95, 0, wy);
-          const grassBase = new THREE.Mesh(new THREE.CylinderGeometry(0.62, 0.38, 2.4, 12), reedGrassBaseMat);
-          grassBase.position.set(0, 1.25, 0);
-          grassBase.castShadow = true;
-          grassGrp.add(grassBase);
-
-          const plume = new THREE.Mesh(new THREE.CylinderGeometry(0.42, 0.52, 1.65, 12), reedPlumeMat);
-          plume.position.set(0, 3.05, 0);
-          plume.castShadow = true;
-          grassGrp.add(plume);
-
+          // Multi-Blade 'Karl Foerster' Feather Reed Grass Fountain
+          const grassGrp = buildFeatherReedGrass(2.95, wy, 1.0);
           gWestPlants.add(grassGrp);
-          SEASON_GROUPS.windSwayMeshes.push({ mesh: grassGrp, phase: wy, amp: 0.025 });
+          SEASON_GROUPS.windSwayMeshes.push({ mesh: grassGrp, phase: wy, amp: 0.022 });
         }
       });
     }
 
     // --- G. PHASE 2 (2027) FRONT PLANTS ('frontPlants') & PHASE 3 (2028) BACKYARD PLANTS ('yardPlants') ---
     //     Featuring:
-    //     1) Melinda's Fragrant Jewel-Toned Hyacinth Border right in front of the '3152' Porch Swing (wx=65.4..67.0, wy=31.4..40.5)
-    //        + curving down the 2' South Front Bed toward the SE Corner!
-    //     2) Sculptural Red Japanese Maple relocated to the SE Front Corner Anchor (wx = 87.0', wy = 46.8') so it NEVER blocks the porch swing!
+    //     1) Melinda's Fragrant Jewel-Toned Hyacinth Border strictly inside the 2.0' Porch-Front Mulch Bed
+    //        (wx = 66.0..67.45, wy = 33.0..41.0 — 100% South of the wy=29.0..32.5 Porch Sidewalk!)
+    //        + curving down the continuous 2.0' South Front Bed toward the SE Corner!
+    //     2) High-Fidelity Multi-Tiered Red Japanese Maple at the SE Front Corner Anchor (wx = 87.0', wy = 46.8')
     {
       const gFrontPlants = LAYER_GROUPS.frontPlants;
       const gYardPlants = LAYER_GROUPS.yardPlants;
 
-      // Hyacinth Jewel-Toned Palette Materials (Royal Purple, Delft Blue, Rose Pink, Soft Lilac & Pure White)
+      // Hyacinth Jewel-Toned Palette Materials (Royal Purple, Delft Blue, Rose Pink, Pure Pearl White & Soft Lilac)
       const hyacinthPalette = [
-        new THREE.MeshStandardMaterial({ color: '#9333ea', emissive: new THREE.Color('#6b21a8'), emissiveIntensity: 0.15, roughness: 0.55 }), // Royal Purple
-        new THREE.MeshStandardMaterial({ color: '#2563eb', emissive: new THREE.Color('#1d4ed8'), emissiveIntensity: 0.15, roughness: 0.55 }), // Delft Blue
-        new THREE.MeshStandardMaterial({ color: '#ec4899', emissive: new THREE.Color('#be185d'), emissiveIntensity: 0.15, roughness: 0.55 }), // Rose Pink
-        new THREE.MeshStandardMaterial({ color: '#f8fafc', emissive: new THREE.Color('#e2e8f0'), emissiveIntensity: 0.15, roughness: 0.50 }), // Pure Pearl White
-        new THREE.MeshStandardMaterial({ color: '#c084fc', emissive: new THREE.Color('#7e22ce'), emissiveIntensity: 0.15, roughness: 0.55 })  // Soft Lilac
+        new THREE.MeshStandardMaterial({ color: '#9333ea', emissive: new THREE.Color('#6b21a8'), emissiveIntensity: 0.14, roughness: 0.50 }), // Royal Purple
+        new THREE.MeshStandardMaterial({ color: '#2563eb', emissive: new THREE.Color('#1d4ed8'), emissiveIntensity: 0.14, roughness: 0.50 }), // Delft Blue
+        new THREE.MeshStandardMaterial({ color: '#ec4899', emissive: new THREE.Color('#be185d'), emissiveIntensity: 0.14, roughness: 0.50 }), // Rose Pink
+        new THREE.MeshStandardMaterial({ color: '#f8fafc', emissive: new THREE.Color('#e2e8f0'), emissiveIntensity: 0.14, roughness: 0.45 }), // Pure Pearl White
+        new THREE.MeshStandardMaterial({ color: '#c084fc', emissive: new THREE.Color('#7e22ce'), emissiveIntensity: 0.14, roughness: 0.50 })  // Soft Lilac
       ];
-      const hyacinthLeafMat = new THREE.MeshStandardMaterial({ color: '#16a34a', roughness: 0.68 });
+      const hyacinthLeafMat = new THREE.MeshStandardMaterial({ color: '#15803d', roughness: 0.65, side: THREE.DoubleSide });
+      const hyacinthStemMat = new THREE.MeshStandardMaterial({ color: '#166534', roughness: 0.70 });
 
-      // Helper to build a lush 3D Hyacinth Clump (basal strap leaves + 3 dense cylindrical flower spikes)
+      // Shared geometries for high-fidelity multi-floret Hyacinth racemes (keeps draw calls fast & crisp)
+      const hyLeafGeo = new THREE.ConeGeometry(0.085, 0.62, 5);
+      const hyStemGeo = new THREE.CylinderGeometry(0.025, 0.035, 0.72, 6);
+      const hyFloretGeo = new THREE.DodecahedronGeometry(0.055, 0);
+
+      // Helper to build a true botanical 3D Hyacinth Clump (~0.92' tall: 6 boat-shaped basal leaves + 3 multi-floret raceme spikes)
       function addHyacinthClump(wx, wy, colorIdx) {
         const clump = new THREE.Group();
         clump.position.set(wx, 0.09, wy);
 
-        // Basal rosette of 6 strap leaves
+        // Basal whorl of 6 arching strap leaves
         for (let l = 0; l < 6; l++) {
-          const ang = (l / 6) * Math.PI * 2;
-          const leaf = new THREE.Mesh(new THREE.ConeGeometry(0.14, 0.85, 5), hyacinthLeafMat);
-          leaf.position.set(Math.cos(ang) * 0.18, 0.35, Math.sin(ang) * 0.18);
-          leaf.rotation.x = Math.sin(ang) * 0.35;
-          leaf.rotation.z = -Math.cos(ang) * 0.35;
+          const ang = (l / 6) * Math.PI * 2 + (colorIdx % 3) * 0.2;
+          const leaf = new THREE.Mesh(hyLeafGeo, hyacinthLeafMat);
+          leaf.position.set(Math.cos(ang) * 0.13, 0.26, Math.sin(ang) * 0.13);
+          leaf.scale.set(1.0, 1.0, 0.42);
+          leaf.rotation.y = -ang;
+          leaf.rotation.x = 0.36;
           clump.add(leaf);
         }
 
-        // 3 Plump Cylindrical Hyacinth Flower Spikes per clump
-        [[0, 0, 1.18], [-0.18, 0.14, 1.02], [0.18, -0.14, 1.06]].forEach(([ox, oz, hSpike], sIdx) => {
+        // 3 Dense Raceme Flower Spikes per bulb clump (16 individual 3D star-bell florets per spike!)
+        [[0, 0, 0.88], [-0.14, 0.11, 0.78], [0.14, -0.10, 0.82]].forEach(([ox, oz, hSpike], sIdx) => {
           const mat = hyacinthPalette[(colorIdx + sIdx) % hyacinthPalette.length];
-          const stem = new THREE.Mesh(new THREE.CylinderGeometry(0.04, 0.05, hSpike * 0.55, 6), hyacinthLeafMat);
-          stem.position.set(ox, hSpike * 0.28, oz);
+          const stem = new THREE.Mesh(hyStemGeo, hyacinthStemMat);
+          stem.position.set(ox, hSpike * 0.42, oz);
           clump.add(stem);
 
-          // Plump florets spike
-          const spike = new THREE.Mesh(new THREE.CylinderGeometry(0.16, 0.19, hSpike * 0.65, 10), mat);
-          spike.position.set(ox, hSpike * 0.68, oz);
-          spike.castShadow = true;
-          clump.add(spike);
-
-          const tip = new THREE.Mesh(new THREE.SphereGeometry(0.16, 8, 8), mat);
-          tip.position.set(ox, hSpike * 1.0, oz);
-          clump.add(tip);
+          // 16 tightly packed star-bell florets spiraling up the raceme
+          for (let f = 0; f < 16; f++) {
+            const fFrac = f / 15;
+            const fy = hSpike * (0.34 + fFrac * 0.64);
+            const rRing = (1.0 - fFrac * 0.45) * 0.085;
+            const fAng = f * 2.39996;
+            const floret = new THREE.Mesh(hyFloretGeo, mat);
+            floret.position.set(ox + Math.cos(fAng) * rRing, fy, oz + Math.sin(fAng) * rRing);
+            floret.scale.set(1.15, 0.85, 1.15);
+            floret.castShadow = true;
+            clump.add(floret);
+          }
         });
 
         gFrontPlants.add(clump);
         SEASON_GROUPS.hyacinthSpikes.push(clump);
       }
 
-      // 1A. Melinda's Primary Fragrant Hyacinth Drift in the 2.0' Porch-Front Bed (wx: 65.5..66.9, wy: 31.4..42.4)
-      //     Right in front of the Hanging Cedar Porch Swing (wy: 35.8..40.0) & '3152' Stone Column!
+      // 1A. Melinda's Primary Fragrant Hyacinth Drift in the 2.0' Porch-Front Mulch Bed
+      //     STRICTLY South of the wy = 29.0..32.5 Concrete Porch Entry Walkway!
+      //     Planted inside wx = 66.05..67.40, wy = 33.05..40.95 (Right in front of the Hanging Porch Swing & '3152' Column!)
       let hCount = 0;
-      for (let wy = 31.5; wy <= 42.3; wy += 0.65) {
-        addHyacinthClump(65.75 + (hCount % 2) * 0.35, wy, hCount);
-        addHyacinthClump(66.55 - (hCount % 2) * 0.25, wy + 0.3, hCount + 2);
+      for (let wy = 33.05; wy <= 40.95; wy += 0.62) {
+        addHyacinthClump(66.15 + (hCount % 2) * 0.28, wy, hCount);
+        addHyacinthClump(67.05 - (hCount % 2) * 0.22, wy + 0.28, hCount + 2);
         hCount++;
       }
-      // 1B. Sweeping Hyacinth Ribbon along the 2.0' South Front Bed leading to the SE Japanese Maple (wx: 66.0..84.5, wy: 48.6..49.4)
-      for (let wx = 66.5; wx <= 84.5; wx += 1.15) {
+      // South-of-Porch Foundation Turn (wx = 59.5..65.5, wy = 41.6..42.7)
+      for (let wx = 59.8; wx <= 65.4; wx += 0.95) {
+        addHyacinthClump(wx, 42.1 + (hCount % 2) * 0.35, hCount);
+        hCount++;
+      }
+      // 1B. Sweeping Hyacinth Ribbon along the Continuous 2.0' South Front Bed leading to the SE Japanese Maple (wx = 64.0..84.2, wy = 48.55..49.35)
+      for (let wx = 64.0; wx <= 84.2; wx += 1.10) {
         addHyacinthClump(wx, 48.65 + (hCount % 2) * 0.45, hCount);
         hCount++;
       }
 
-      // 1C. Summer & Fall Companion Dwarf Perennials in the Porch-Front Bed (visible when Season is SUMMER or FALL)
-      const summerLavMat = new THREE.MeshStandardMaterial({ color: '#7c3aed', roughness: 0.75 });
-      const summerCoralMat = new THREE.MeshStandardMaterial({ color: '#e11d48', roughness: 0.75 });
-      for (let wy = 31.8; wy <= 42.0; wy += 1.4) {
-        const lav = new THREE.Mesh(new THREE.DodecahedronGeometry(0.55, 1), wy % 2.8 < 1.4 ? summerLavMat : summerCoralMat);
-        lav.position.set(66.15, 0.48, wy);
-        lav.scale.set(0.95, 0.75, 0.95);
-        lav.visible = false;
-        lav.castShadow = true;
-        gFrontPlants.add(lav);
-        SEASON_GROUPS.summerFrontBlooms.push(lav);
+      // 1C. Summer & Fall Companion Dwarf Perennials in the Porch-Front Bed (strictly wy = 33.4..40.6, never on the sidewalk!)
+      const summerLavMat = new THREE.MeshStandardMaterial({ color: '#7c3aed', roughness: 0.72 });
+      const summerCoralMat = new THREE.MeshStandardMaterial({ color: '#e11d48', roughness: 0.72 });
+      const summerLeafMat = new THREE.MeshStandardMaterial({ color: '#15803d', roughness: 0.8 });
+      for (let wy = 33.4; wy <= 40.6; wy += 1.2) {
+        const pGrp = new THREE.Group();
+        pGrp.position.set(66.65, 0.09, wy);
+        const foliage = new THREE.Mesh(new THREE.IcosahedronGeometry(0.42, 1), summerLeafMat);
+        foliage.scale.set(1.1, 0.6, 1.1);
+        foliage.position.set(0, 0.25, 0);
+        pGrp.add(foliage);
+        const bloomMat = (Math.round(wy) % 2 === 0) ? summerLavMat : summerCoralMat;
+        for (let b = 0; b < 7; b++) {
+          const ang = (b / 7) * Math.PI * 2;
+          const bMesh = new THREE.Mesh(new THREE.DodecahedronGeometry(0.11, 0), bloomMat);
+          bMesh.position.set(Math.cos(ang) * 0.22, 0.52 + (b % 2) * 0.08, Math.sin(ang) * 0.22);
+          pGrp.add(bMesh);
+        }
+        pGrp.visible = false;
+        gFrontPlants.add(pGrp);
+        SEASON_GROUPS.summerFrontBlooms.push(pGrp);
       }
 
-      // 2. Relocated Front Yard Focal Tree: Sculptural Red Japanese Maple at SE Corner Anchor (wx = 87.0', wy = 46.8')
+      // 2. Relocated Front Yard Focal Tree: Sculptural Multi-Tiered Red Japanese Maple at SE Corner Anchor (wx = 87.0', wy = 46.8')
       //    100% clear of the hanging porch swing sightline while framing the front lawn from the street!
       const mapleGrp = new THREE.Group();
       mapleGrp.position.set(SE_MAPLE_WX, 0, SE_MAPLE_WY);
 
-      // Sculptural multi-stem twisted Japanese Maple trunk & 7 architectural branches
-      const mainTrunk = new THREE.Mesh(new THREE.CylinderGeometry(0.18, 0.34, 3.2, 10), MAT.woodBark);
-      mainTrunk.position.set(0, 1.6, 0);
+      // Sculptural crooked multi-stem Japanese Maple trunk & 7 architectural scaffold limbs
+      const mainTrunk = new THREE.Mesh(new THREE.CylinderGeometry(0.16, 0.36, 3.0, 10), MAT.woodBark);
+      mainTrunk.position.set(0, 1.5, 0);
+      mainTrunk.rotation.z = 0.06;
       mainTrunk.castShadow = true;
       mapleGrp.add(mainTrunk);
 
-      const mapleBranches = [
-        [0, 3.8, 0, 0, 0, 2.6, 1.35, 2.6],
-        [-1.1, 4.9, 0.8, 0.28, 0.32, 2.1, 1.15, 2.1],
-        [1.0, 5.3, -0.7, -0.25, -0.30, 2.0, 1.10, 2.0],
-        [-0.7, 6.2, -0.9, -0.30, 0.22, 1.85, 1.05, 1.85],
-        [0.9, 6.6, 0.8, 0.26, -0.28, 1.75, 1.0, 1.75],
-        [0.0, 7.4, 0.1, 0.05, 0.05, 1.95, 1.05, 1.95]
+      const mapleScaffolds = [
+        // [bx, by, bz, rx, rz, padRadius]
+        [0.0, 4.2, 0.0, 0.0, 0.0, 1.65],
+        [-1.35, 5.0, 0.95, 0.32, 0.36, 1.45],
+        [1.25, 5.4, -0.85, -0.28, -0.34, 1.40],
+        [-0.95, 6.2, -1.10, -0.34, 0.26, 1.35],
+        [1.15, 6.6, 0.95, 0.30, -0.30, 1.30],
+        [-0.55, 7.3, 0.45, 0.16, 0.18, 1.25],
+        [0.35, 7.9, -0.25, -0.10, -0.12, 1.35]
       ];
       const mapleCanopyGrp = new THREE.Group();
-      mapleBranches.forEach(([bx, by, bz, rx, rz, sx, sy, sz], bIdx) => {
+      mapleScaffolds.forEach(([bx, by, bz, rx, rz, padRad], bIdx) => {
         if (bIdx > 0) {
-          const limb = new THREE.Mesh(new THREE.CylinderGeometry(0.06, 0.14, 3.2, 8), MAT.woodBark);
-          limb.position.set(bx * 0.55, by - 1.2, bz * 0.55);
+          const limbLen = Math.hypot(bx, by - 2.4, bz);
+          const limb = new THREE.Mesh(new THREE.CylinderGeometry(0.05, 0.13, limbLen, 8), MAT.woodBark);
+          limb.position.set(bx * 0.52, 2.4 + (by - 2.4) * 0.52, bz * 0.52);
           limb.rotation.set(rx, 0, rz);
           limb.castShadow = true;
           mapleGrp.add(limb);
         }
-        const crown = new THREE.Mesh(new THREE.DodecahedronGeometry(1.0, 2), MAT.mapleFoliage);
-        crown.position.set(bx, by, bz);
-        crown.scale.set(sx, sy, sz);
-        crown.castShadow = true;
-        crown.receiveShadow = true;
-        mapleCanopyGrp.add(crown);
+
+        // Layered horizontal umbrella-style laceleaf foliage pads (3 overlapping clouds per scaffold limb = 21 clouds total)
+        [[0, 0, 0, 1.0], [-0.55, -0.18, 0.42, 0.78], [0.52, 0.15, -0.45, 0.74]].forEach(([ox, oy, oz, sMul], pIdx) => {
+          const pad = new THREE.Mesh(new THREE.IcosahedronGeometry(padRad * sMul, 2), MAT.mapleFoliage);
+          pad.position.set(bx + ox, by + oy, bz + oz);
+          pad.scale.set(1.38, 0.52, 1.38); // Characteristic flat umbrella layering of Japanese Maple
+          pad.rotation.y = bIdx * 1.1 + pIdx * 0.8;
+          pad.castShadow = true;
+          pad.receiveShadow = true;
+          mapleCanopyGrp.add(pad);
+        });
 
         // Winter frost cap on bare Japanese Maple branches
-        const mSnow = new THREE.Mesh(new THREE.SphereGeometry(0.32, 8, 6), MAT.snowWhite);
-        mSnow.scale.set(1.5, 0.4, 1.5);
-        mSnow.position.set(bx * 0.75, by - 0.3, bz * 0.75);
+        const mSnow = new THREE.Mesh(new THREE.SphereGeometry(0.30, 8, 6), MAT.snowWhite);
+        mSnow.scale.set(1.6, 0.38, 1.6);
+        mSnow.position.set(bx * 0.8, by - 0.25, bz * 0.8);
         mSnow.visible = false;
         mapleGrp.add(mSnow);
         SEASON_GROUPS.mapleSnowCaps.push(mSnow);
@@ -1680,44 +2109,116 @@
       gFrontPlants.add(mapleGrp);
       SEASON_GROUPS.windSwayMeshes.push({ mesh: mapleGrp, phase: 2.2, amp: 0.010 });
 
-      // 3. Phase 2 (2027): 3-Sided Utility Box Karl Foerster Grass Screen (wx: 92..95.4, wy: 44.5..49.1)
-      const reedGrassMat = new THREE.MeshStandardMaterial({ color: '#65a30d', roughness: 0.82 });
-      [[92.0, 44.5], [93.8, 44.5], [95.4, 44.5], [92.0, 46.2], [92.0, 47.8], [93.8, 49.1]].forEach(([gx, gy]) => {
-        const reed = new THREE.Mesh(new THREE.CylinderGeometry(0.48, 0.34, 3.6, 10), reedGrassMat);
-        reed.position.set(gx, 1.8, gy);
-        reed.castShadow = true;
-        gFrontPlants.add(reed);
+      // 3. Phase 2 (2027): 3-Sided Utility Box Karl Foerster Grass Screen (wx: 91.8..95.4, wy: 44.2..49.1)
+      [[91.8, 44.3], [93.6, 44.3], [95.4, 44.3], [91.8, 46.2], [91.8, 48.0], [93.8, 49.1]].forEach(([gx, gy]) => {
+        const grassClump = new THREE.Group();
+        grassClump.position.set(gx, 0.08, gy);
+        const gMat = new THREE.MeshStandardMaterial({ color: '#4d7c0f', roughness: 0.78 });
+        const pMat = new THREE.MeshStandardMaterial({ color: '#fde047', roughness: 0.65 });
+        for (let b = 0; b < 14; b++) {
+          const ang = (b / 14) * Math.PI * 2;
+          const blade = new THREE.Mesh(new THREE.ConeGeometry(0.08, 2.2, 4), gMat);
+          blade.position.set(Math.cos(ang) * 0.18, 1.0, Math.sin(ang) * 0.18);
+          blade.rotation.x = Math.sin(ang) * 0.25;
+          blade.rotation.z = -Math.cos(ang) * 0.25;
+          blade.castShadow = true;
+          grassClump.add(blade);
+        }
+        for (let p = 0; p < 5; p++) {
+          const ang = (p / 5) * Math.PI * 2;
+          const plume = new THREE.Mesh(new THREE.CylinderGeometry(0.04, 0.07, 1.4, 6), pMat);
+          plume.position.set(Math.cos(ang) * 0.12, 2.6, Math.sin(ang) * 0.12);
+          grassClump.add(plume);
+        }
+        gFrontPlants.add(grassClump);
       });
 
-      // 4. Phase 2 (2027): 6.0' Street Park Strip Perennials + Decorative Landscape Boulders
-      const berryMat = new THREE.MeshStandardMaterial({ color: '#15803d', roughness: 0.82 });
-      [[103.5, 3.5], [103.5, 7.5], [103.5, 31.0], [103.5, 36.5], [103.5, 42.0], [103.5, 46.8]].forEach(([px, py]) => {
-        const bush = new THREE.Mesh(new THREE.DodecahedronGeometry(0.78, 1), berryMat);
-        bush.position.set(px, 0.65, py);
-        bush.scale.set(1.1, 0.8, 1.1);
-        bush.castShadow = true;
-        gFrontPlants.add(bush);
-      });
-      [[103.2, 5.5], [103.8, 34.0], [103.0, 44.5], [82.0, 4.5], [85.8, 47.5]].forEach(([bx, by]) => {
-        const boulder = new THREE.Mesh(new THREE.DodecahedronGeometry(0.85, 1), new THREE.MeshStandardMaterial({ color: '#78716c', roughness: 0.9 }));
-        boulder.position.set(bx, 0.45, by);
-        boulder.scale.set(1.35, 0.75, 1.15);
-        boulder.castShadow = true;
-        gFrontPlants.add(boulder);
+      // 4. Phase 2 (2027): 6.0' Street Park Strip Drought-Tolerant Perennials + Natural Landscape Boulders
+      //    Strictly placed inside North Park Strip (wx: 100.7..106.7, wy: 0.0..9.5) & South Park Strip (wx: 100.7..106.7, wy: 30.5..50.0)
+      const sageFoliageMat = new THREE.MeshStandardMaterial({ color: '#15803d', roughness: 0.82 });
+      const sageBloomMat = new THREE.MeshStandardMaterial({ color: '#6366f1', roughness: 0.70 });
+      const yarrowBloomMat = new THREE.MeshStandardMaterial({ color: '#facc15', roughness: 0.68 });
+      [[103.6, 2.8], [103.6, 7.2], [103.6, 33.0], [103.6, 38.0], [103.6, 43.0], [103.6, 47.5]].forEach(([px, py], pIdx) => {
+        const shrubGrp = new THREE.Group();
+        shrubGrp.position.set(px, 0.09, py);
+        for (let c = 0; c < 5; c++) {
+          const ang = (c / 5) * Math.PI * 2;
+          const r = c === 0 ? 0 : 0.32;
+          const lobe = new THREE.Mesh(new THREE.IcosahedronGeometry(0.46, 1), sageFoliageMat);
+          lobe.position.set(Math.cos(ang) * r, 0.38, Math.sin(ang) * r);
+          lobe.scale.set(1.1, 0.75, 1.1);
+          lobe.castShadow = true;
+          shrubGrp.add(lobe);
+          const flower = new THREE.Mesh(
+            new THREE.ConeGeometry(0.09, 0.45, 6),
+            pIdx % 2 === 0 ? sageBloomMat : yarrowBloomMat
+          );
+          flower.position.set(Math.cos(ang) * r, 0.82, Math.sin(ang) * r);
+          shrubGrp.add(flower);
+        }
+        gFrontPlants.add(shrubGrp);
       });
 
-      // 5. Phase 3 (2028): Backyard South Fence Berry, Kiwi & Shade Bed (wy = 48.9' — AC Unit at wx = 43.6..46.4 is Completely Open with No Cover or Shroud)
-      const shadeHostaMat = new THREE.MeshStandardMaterial({ color: '#0d9488', roughness: 0.8 });
-      [6.5, 11.5, 16.5, 21.5, 26.5, 34.0, 41.0, 49.0, 54.5].forEach(wx => {
+      // Multi-faceted Granite & Sandstone Landscape Boulders in Park Strips & NE Rock Bed
+      const boulderMat1 = new THREE.MeshStandardMaterial({ color: '#78716c', roughness: 0.92 });
+      const boulderMat2 = new THREE.MeshStandardMaterial({ color: '#a8a29e', roughness: 0.88 });
+      [[103.4, 5.0], [103.8, 35.5], [103.2, 45.2], [82.0, 4.5], [85.6, 47.4]].forEach(([bx, by], bIdx) => {
+        const bGrp = new THREE.Group();
+        bGrp.position.set(bx, 0.08, by);
+        const mainRock = new THREE.Mesh(new THREE.DodecahedronGeometry(0.78, 1), bIdx % 2 === 0 ? boulderMat1 : boulderMat2);
+        mainRock.position.set(0, 0.35, 0);
+        mainRock.scale.set(1.35, 0.68, 1.12);
+        mainRock.rotation.set(bIdx * 0.5, bIdx * 1.2, 0.2);
+        mainRock.castShadow = true;
+        bGrp.add(mainRock);
+        const companionRock = new THREE.Mesh(new THREE.DodecahedronGeometry(0.45, 1), bIdx % 2 === 0 ? boulderMat2 : boulderMat1);
+        companionRock.position.set(0.65, 0.22, 0.35);
+        companionRock.scale.set(1.2, 0.62, 0.95);
+        companionRock.castShadow = true;
+        bGrp.add(companionRock);
+        gFrontPlants.add(bGrp);
+      });
+
+      // 5. Phase 3 (2028): Backyard South Fence Cane Berry Espalier & Shade Hosta Bed (wy = 48.9' — Open AC Unit at wx = 45..48 untouched)
+      const berryLeafMat = new THREE.MeshStandardMaterial({ color: '#15803d', roughness: 0.78 });
+      const caneBerryFruitMat = new THREE.MeshStandardMaterial({ color: '#be123c', roughness: 0.45 });
+      const shadeHostaMat = new THREE.MeshStandardMaterial({ color: '#0d9488', roughness: 0.72, side: THREE.DoubleSide });
+      [6.5, 11.5, 16.5, 21.5, 26.5, 34.0, 41.0, 49.5, 54.5].forEach((wx, sIdx) => {
         const isSun = wx < 30.0;
-        const shrub = new THREE.Mesh(
-          new THREE.DodecahedronGeometry(isSun ? 0.85 : 0.75, 1),
-          isSun ? berryMat : shadeHostaMat
-        );
-        shrub.position.set(wx, isSun ? 1.4 : 0.75, 48.9);
-        shrub.scale.set(1.1, isSun ? 1.6 : 0.85, 0.8);
-        shrub.castShadow = true;
-        gYardPlants.add(shrub);
+        const plantGrp = new THREE.Group();
+        plantGrp.position.set(wx, 0.09, 48.85);
+        if (isSun) {
+          // Multi-cane Blackberry / Raspberry Bush with arching canes & ruby berry clusters
+          for (let c = 0; c < 7; c++) {
+            const cOff = (c - 3) * 0.28;
+            const cane = new THREE.Mesh(new THREE.CylinderGeometry(0.025, 0.04, 2.5, 6), MAT.woodBark);
+            cane.position.set(cOff, 1.25, (c % 2 - 0.5) * 0.2);
+            cane.rotation.z = (c - 3) * 0.08;
+            plantGrp.add(cane);
+            const foliageCluster = new THREE.Mesh(new THREE.IcosahedronGeometry(0.42, 1), berryLeafMat);
+            foliageCluster.position.set(cOff * 1.1, 1.1 + (c % 3) * 0.45, 0);
+            foliageCluster.scale.set(1.15, 0.85, 0.75);
+            foliageCluster.castShadow = true;
+            plantGrp.add(foliageCluster);
+            const berry = new THREE.Mesh(new THREE.SphereGeometry(0.08, 6, 6), caneBerryFruitMat);
+            berry.position.set(cOff * 1.1, 1.35 + (c % 2) * 0.35, -0.28);
+            plantGrp.add(berry);
+          }
+        } else {
+          // Ribbed Blue-Green Shade Hosta Rosette (12 broad overlapping heart-shaped leaves)
+          for (let l = 0; l < 12; l++) {
+            const ang = (l / 12) * Math.PI * 2 + sIdx * 0.4;
+            const r = 0.22 + (l % 2) * 0.18;
+            const leaf = new THREE.Mesh(new THREE.SphereGeometry(0.34, 8, 6), shadeHostaMat);
+            leaf.scale.set(0.85, 0.18, 1.45);
+            leaf.position.set(Math.cos(ang) * r, 0.28 + (l % 2) * 0.12, Math.sin(ang) * r * 0.75);
+            leaf.rotation.y = -ang;
+            leaf.rotation.x = 0.25;
+            leaf.castShadow = true;
+            plantGrp.add(leaf);
+          }
+        }
+        gYardPlants.add(plantGrp);
       });
     }
 
@@ -1780,6 +2281,7 @@
 
     // --- I. PHASE 4 (2029) & PHASE 5 (2030): NORTH COMPACTED ROAD BASE PAD/PATH & OPTION #1C OPEN 2-PILLAR SOLID-ROOF AWNING ---
     const fireFlames = [];
+    const ceilingFanRotors = [];
     let firePointLight = null;
     {
       // 1. North Side 9.0' x 40.0' Compacted Road Base Pad Inside Gate (wx: 27.0..70.0, wy: 0.0..9.0 = 360.0 sq ft inside gate)
@@ -1833,6 +2335,65 @@
       SEASON_GROUPS.winterSnowBlankets.push(awningRoofSnow);
 
       gAwning.add(roofSlopeGroup);
+
+      // 3B. Two 52" Wet/Damp-Rated Outdoor Ceiling Fans with Built-In Dimmable Warm (2700K/3000K) LED Light Kits (F1 @ wy=25.5', F2 @ wy=35.5')
+      //     Centered along wx=23.75' (10.0' O.C.); LED diffuser dome sits BELOW the 5 dark-espresso blades for 100% zero blade strobing!
+      [25.5, 35.5].forEach((fanWy, fanIdx) => {
+        const fanWx = 23.75;
+        const fanGroup = new THREE.Group();
+        fanGroup.position.set(fanWx, 0, fanWy);
+
+        // 2x8 Rafter Cross-Blocking & UL 70-lb Fan-Rated Saddle Canopy at Ceiling (h ≈ 9.28'–9.52')
+        addBox(fanGroup, -0.35, -0.95, 0.35, 0.95, 9.28, 9.52, MAT.espressoTimber, true, true);
+        const canopy = new THREE.Mesh(new THREE.CylinderGeometry(0.32, 0.24, 0.16, 16), MAT.simpsonHardware);
+        canopy.position.set(0, 9.24, 0);
+        fanGroup.add(canopy);
+
+        // 6" Matte-Black Downrod + Motor Housing Hub (blade clearance ≈ 8.35' above patio slab)
+        const downrod = new THREE.Mesh(new THREE.CylinderGeometry(0.06, 0.06, 0.72, 12), MAT.simpsonHardware);
+        downrod.position.set(0, 8.85, 0);
+        fanGroup.add(downrod);
+
+        const motorHub = new THREE.Mesh(new THREE.CylinderGeometry(0.46, 0.44, 0.26, 20), MAT.simpsonHardware);
+        motorHub.position.set(0, 8.42, 0);
+        motorHub.castShadow = true;
+        fanGroup.add(motorHub);
+
+        // Rotating 5-Blade Assembly (52" sweep diameter = 2.17' radius in dark walnut/espresso ABS)
+        const rotorGroup = new THREE.Group();
+        rotorGroup.position.set(0, 8.42, 0);
+        rotorGroup.rotation.y = fanIdx * 0.6;
+        for (let b = 0; b < 5; b++) {
+          const bladePivot = new THREE.Group();
+          bladePivot.rotation.y = (b / 5) * Math.PI * 2;
+          const arm = new THREE.Mesh(new THREE.BoxGeometry(0.38, 0.04, 0.14), MAT.simpsonHardware);
+          arm.position.set(0.52, 0, 0);
+          bladePivot.add(arm);
+          const blade = new THREE.Mesh(new THREE.BoxGeometry(1.62, 0.035, 0.42), MAT.espressoTimber);
+          blade.position.set(1.36, 0, 0);
+          blade.rotation.x = 0.18; // 10° aerodynamic blade pitch
+          blade.castShadow = true;
+          bladePivot.add(blade);
+          rotorGroup.add(bladePivot);
+        }
+        fanGroup.add(rotorGroup);
+        ceilingFanRotors.push(rotorGroup);
+
+        // Integrated Dimmable Warm (2700K/3000K) Frosted LED Light Kit Dome Mounted Underneath Motor Hub (Below Blades = 0% Strobing)
+        const ledTrimRing = new THREE.Mesh(new THREE.CylinderGeometry(0.40, 0.36, 0.08, 20), MAT.simpsonHardware);
+        ledTrimRing.position.set(0, 8.26, 0);
+        fanGroup.add(ledTrimRing);
+
+        const ledDome = new THREE.Mesh(
+          new THREE.SphereGeometry(0.34, 18, 12, 0, Math.PI * 2, Math.PI * 0.45, Math.PI * 0.55),
+          MAT.bistroBulb
+        );
+        ledDome.scale.set(1.0, 0.48, 1.0);
+        ledDome.position.set(0, 8.25, 0);
+        fanGroup.add(ledDome);
+
+        gAwning.add(fanGroup);
+      });
       // (100% Open on All Sides — No South Privacy Slat Wall)
 
       // 4. Patio Outdoor L-Sectional Lounge Sofa, Throw Pillows & 50,000 BTU Propane Fire Table ('patioFurniture')
@@ -2244,13 +2805,13 @@
         }
       });
 
-      const patioNightLight1 = new THREE.PointLight('#fde047', 2.2, 26, 1.3);
-      patioNightLight1.position.set(23.5, 8.4, 26.0);
+      const patioNightLight1 = new THREE.PointLight('#fde047', 2.4, 28, 1.3);
+      patioNightLight1.position.set(23.75, 8.15, 25.5);
       gLight.add(patioNightLight1);
       nightLightObjects.push(patioNightLight1);
 
-      const patioNightLight2 = new THREE.PointLight('#fde047', 2.2, 26, 1.3);
-      patioNightLight2.position.set(23.5, 8.4, 36.0);
+      const patioNightLight2 = new THREE.PointLight('#fde047', 2.4, 28, 1.3);
+      patioNightLight2.position.set(23.75, 8.15, 35.5);
       gLight.add(patioNightLight2);
       nightLightObjects.push(patioNightLight2);
 
@@ -2502,10 +3063,10 @@
         layer: 'patioAwning',
         wx: 21.5, wy: 30.5, h: 10.6,
         badge: '2030 · PHASE 5 (OPTION #1C — OPEN)',
-        short: '#1C Open 2-Pillar Solid Awning',
+        short: '#1C Open 2-Pillar Solid Awning + 2× 52" Fans',
         color: '#f59e0b',
-        title: 'Option #1C House-Attached 2-Pillar Solid-Roof Timber Awning (100% Open, No Privacy Wall)',
-        desc: "Attached to the house ledger at wx=30.0' with strictly TWO outer West corner 8×8 pillars (wx=18.0', wy=20.5' & 40.5'), ZERO house pillars, and ZERO privacy walls (100% open on all sides). Features a 100% opaque 1×6 T&G cedar wood ceiling underneath, matte-black standing-seam metal roof & rain gutter on top, 2700K bistro lights, L-sectional sofa, and 50,000 BTU propane fire table."
+        title: 'Option #1C House-Attached 2-Pillar Solid-Roof Timber Awning + 2× 52" LED Ceiling Fans',
+        desc: "Attached to the house ledger at wx=30.0' with strictly TWO outer West corner 8×8 pillars (wx=18.0', wy=20.5' & 40.5'), ZERO house pillars, and ZERO privacy walls (100% open on all sides). Features a 100% opaque 1×6 T&G cedar wood ceiling underneath, matte-black standing-seam metal roof & rain gutter on top, 2× 52\" wet/damp-rated outdoor ceiling fans (wx=23.75', wy=25.5' & 35.5') with built-in dimmable warm (2700K/3000K) LED light domes (100% strobing-free), 2700K bistro lights, L-sectional sofa, and 50,000 BTU propane fire table."
       },
       {
         id: 'pin-west-wall',
@@ -2688,15 +3249,15 @@
         pos: [-22, 30, 62],
         target: [22, 4.5, 25],
         badge: 'OVERVIEW · FULL BACKYARD',
-        title: "Lot 3152 — Backyard, Open Option #1C Awning, 'Standing Ovation' Blossoms & 5 Cedar Beds",
-        desc: "Full 50' × 30' backyard preserving 679 sq ft of open turf continuing under the South gate, framed by the 5+4 West wall privacy screen (5 'Standing Ovation' Serviceberries + 4 Junipers), 5 N–S cedar planters on compacted road base, 3' rear road base path, and the open Option #1C 2-pillar solid-roof timber patio awning."
+        title: "Lot 3152 — Backyard, Open Option #1C Awning (+ 2× 52\" LED Fans), 'Standing Ovation' Blossoms & 5 Cedar Beds",
+        desc: "Full 50' × 30' backyard preserving 679 sq ft of open turf continuing under the South gate, framed by the 5+4 West wall privacy screen (5 'Standing Ovation' Serviceberries + 4 Junipers), 5 N–S cedar planters on compacted road base, 3' rear road base path, and the open Option #1C 2-pillar solid-roof timber patio awning with 2× 52\" LED ceiling fans."
       },
       PATIO_AWNING_1C: {
         pos: [7.5, 6.2, 35.5],
         target: [25.5, 5.2, 29.5],
         badge: '2030 · PHASE 5 (OPTION #1C — OPEN)',
-        title: 'Option #1C House-Attached 2-Pillar Solid-Roof Heavy-Timber Awning (100% Open, No Privacy Wall)',
-        desc: "Eye-level view looking East into the 21.0' × 12.5' patio: 100% open on all sides with no privacy wall, strictly TWO outer West corner 8×8 pillars (wx=18.0', wy=20.5' & 40.5'), ZERO house pillars, warm 1×6 T&G cedar wood ceiling underneath, matte-black standing-seam metal roof & gutter on top, 2700K bistro lights, L-sectional & propane fire table."
+        title: 'Option #1C House-Attached 2-Pillar Solid-Roof Heavy-Timber Awning + 2× 52" LED Ceiling Fans',
+        desc: "Eye-level view looking East into the 21.0' × 12.5' patio: 100% open on all sides with no privacy wall, strictly TWO outer West corner 8×8 pillars (wx=18.0', wy=20.5' & 40.5'), ZERO house pillars, warm 1×6 T&G cedar wood ceiling underneath, matte-black standing-seam metal roof & gutter on top, 2× 52\" wet/damp-rated outdoor ceiling fans with built-in dimmable warm (2700K/3000K) LED light domes (100% strobing-free), 2700K bistro lights, L-sectional & propane fire table."
       },
       WEST_WALL_5PLUS4: {
         pos: [18.5, 7.0, 44.0],
@@ -3160,11 +3721,14 @@
         porchSwingPivot.rotation.z = Math.sin(timeSec * 1.1) * 0.035;
       }
 
-      // 4. Flickering Propane Fire Table Flames
+      // 4. Flickering Propane Fire Table Flames & Spinning 52" Patio Ceiling Fans
       const flameSec = now * 0.005;
       fireFlames.forEach(f => {
         const s = 0.85 + 0.25 * Math.sin(flameSec * 2.2 + f.phase);
         f.mesh.scale.set(1, s, 1);
+      });
+      ceilingFanRotors.forEach(r => {
+        r.rotation.y += dt * 3.2;
       });
 
       // 5. Seasonal Floating Particles (Petals / Fireflies / Leaves / Snowflakes)

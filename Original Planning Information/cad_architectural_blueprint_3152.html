@@ -299,8 +299,8 @@
     const LOCKED_NORTH_GATE_WX = 70.0;
     const LOCKED_SOUTH_GATE_WX = 57.5;
 
-    const SE_MAPLE_WX = 87.0;
-    const SE_MAPLE_WY = 46.8;
+    const SE_MAPLE_WX = 83.0;
+    const SE_MAPLE_WY = 39.5;
 
     const STATE = {
       season: 'SPRING',           // 'SPRING' | 'SUMMER' | 'FALL' | 'WINTER'
@@ -362,7 +362,7 @@
       ],
       'phase-2': [
         { title: 'Phase 2 (2027) · North Double Gate & White Rock NE Strip (Stops at Fence)', url: '../photos_backyard_ideas/render_north_vehicle_gate_ne_strip.jpg' },
-        { title: 'Phase 2 (2027) · Front Lawn, Melinda\'s Hyacinths, SE Maple & 45° Pavers', url: '../photos_backyard_ideas/render_front_se_lawn_chamfered_beds.jpg' },
+        { title: 'Phase 2 (2027) · Front Lawn, Melinda\'s Hyacinths, Norwegian Sunset Maple & 45° Pavers', url: '../photos_backyard_ideas/render_front_se_lawn_chamfered_beds.jpg' },
         { title: 'Phase 2 (2027) · Full Front Elevation & White Rock 6\' Park Strips', url: '../photos_backyard_ideas/render_front_full_elevation_park_strips.jpg' }
       ],
       'phase-3': [
@@ -400,15 +400,15 @@
         badge: 'Phase 2 · 2027',
         title: 'N. Fence, Sprinklers, Pavers & Hyacinths',
         cost: '$5,610',
-        subtitle: '70\' N. Fence, Sprinklers, Pavers, Porch Hyacinths & SE Maple',
+        subtitle: '70\' N. Fence, Sprinklers, Pavers, Hyacinths & Norwegian Sunset Maple',
         accent: '#34d399',
         layers: [
           { key: 'northFence', label: 'North Vinyl Fence (70.0\')', swatch: '#c084fc', defaultOn: true },
           { key: 'northGate', label: 'North 8.5\' Double Gate', swatch: '#fbbf24', defaultOn: true },
           { key: 'grass', label: 'Sod (BY) + Seeded Front Lawn', swatch: '#22c55e', defaultOn: true },
-          { key: 'pavers', label: '45° Holland Paver Mow Strip (~195\')', swatch: '#2dd4bf', defaultOn: true },
-          { key: 'frontBeds', label: '2\' Front Porch Hyacinth Bed & Park Strips', swatch: '#f1f5f9', defaultOn: true },
-          { key: 'frontPlants', label: 'Melinda\'s Hyacinths, SE Maple & Box Screen', swatch: '#f43f5e', defaultOn: true },
+          { key: 'pavers', label: '45° Holland Paver Mow Strip (~215\')', swatch: '#2dd4bf', defaultOn: true },
+          { key: 'frontBeds', label: '2\' Porch Bed, 6\' Tree Ring & Park Strips', swatch: '#f1f5f9', defaultOn: true },
+          { key: 'frontPlants', label: 'Melinda\'s Hyacinths, Norwegian Sunset Maple & Box Screen', swatch: '#f43f5e', defaultOn: true },
           { key: 'irrigation', label: '5-Zone Head-to-Head Sprinklers & PC Drip', swatch: '#38bdf8', defaultOn: false }
         ]
       },
@@ -967,6 +967,15 @@
         `);
       }
 
+      // 8B. RECOMMENDED 6.0' DIAMETER (3.0' RADIUS) MULCHED ROOT-FLARE TREE RING FOR NORWEGIAN SUNSET MAPLE (wx=83.0', wy=39.5')
+      if (L.frontBeds) {
+        const mapleRingPt = project(SE_MAPLE_WX, SE_MAPLE_WY);
+        const mapleRingRad = 3.0 * SCALE;
+        out.push(`
+          <circle cx="${mapleRingPt.x.toFixed(1)}" cy="${mapleRingPt.y.toFixed(1)}" r="${mapleRingRad.toFixed(1)}" fill="${mulchFill}" stroke="${mulchStroke}" stroke-width="1.1"/>
+        `);
+      }
+
       // 9. SUBTLE GRID IN BLUEPRINT VIEW
       if (STATE.renderStyle === 'CAD') {
         out.push(`<g id="layer-grid">`);
@@ -981,11 +990,17 @@
         out.push(`</g>`);
       }
 
-      // 10. PHASE 2 (2027) CONTINUOUS 6" HOLLAND PAVERS WITH 45° CHAMFERED CORNERS (Continuing Under South Gate!)
+      // 10. PHASE 2 (2027) CONTINUOUS 6" HOLLAND PAVERS WITH 45° CHAMFERED CORNERS (Continuing Under South Gate + 6' Tree Ring!)
       if (L.pavers) {
+        const treeOctPts = [];
+        for (let i = 0; i <= 8; i++) {
+          const ang = (i * Math.PI) / 4 + Math.PI / 8;
+          treeOctPts.push([SE_MAPLE_WX + Math.cos(ang) * 3.15, SE_MAPLE_WY + Math.sin(ang) * 3.15]);
+        }
         const paverChains = [
           [[30.0, 41.0], [32.6, 43.25], [66.05, 43.25], [67.95, 41.35], [67.95, 32.5]],
-          [[26.75, 20.0], [26.75, 10.15], [24.85, 8.25], [6.4, 8.25], [4.25, 10.4], [4.25, 45.6], [6.4, 47.75], [88.6, 47.75], [90.75, 45.6], [90.75, 44.4], [92.1, 43.25], [96.7, 43.25]]
+          [[26.75, 20.0], [26.75, 10.15], [24.85, 8.25], [6.4, 8.25], [4.25, 10.4], [4.25, 45.6], [6.4, 47.75], [88.6, 47.75], [90.75, 45.6], [90.75, 44.4], [92.1, 43.25], [96.7, 43.25]],
+          treeOctPts
         ];
         paverChains.forEach(chain => {
           const ptsStr = chain.map(([wx, wy]) => {
@@ -1021,12 +1036,16 @@
           <polyline points="${lateralSouthCorridor}" fill="none" stroke="#c084fc" stroke-width="1.1" stroke-dasharray="3,3" opacity="0.65"/>
         `);
 
-        // Zone 4: 30 PSI Pressure-Compensating Drip Tubing (West 5+4 Bed, Cont. 2' South Bed to Green Box, Porch Hyacinths & SE Maple)
+        // Zone 4: 30 PSI Pressure-Compensating Drip Tubing (West 5+4 Bed, Cont. 2' South Bed to Green Box, Porch Hyacinths & Norwegian Sunset Maple 6' Ring)
         const westDripPts = projectPoly([[28.5, 7.8], [2.2, 7.8], [2.2, 2.0], [2.2, 49.0], [95.0, 49.0], [95.0, 44.2], [91.8, 44.2]]);
         const porchDripPts = projectPoly([[66.2, 49.0], [66.2, 31.8]]);
+        const mapleDripFeedPts = projectPoly([[SE_MAPLE_WX, 49.0], [SE_MAPLE_WX, SE_MAPLE_WY + 2.3]]);
+        const mapleDripCenter = project(SE_MAPLE_WX, SE_MAPLE_WY);
         out.push(`
           <polyline points="${westDripPts}" fill="none" stroke="#fb923c" stroke-width="1.8" stroke-dasharray="4,2.5" opacity="0.9"/>
           <polyline points="${porchDripPts}" fill="none" stroke="#fb923c" stroke-width="1.8" stroke-dasharray="4,2.5" opacity="0.9"/>
+          <polyline points="${mapleDripFeedPts}" fill="none" stroke="#fb923c" stroke-width="1.6" stroke-dasharray="3,2.5" opacity="0.85"/>
+          <circle cx="${mapleDripCenter.x.toFixed(1)}" cy="${mapleDripCenter.y.toFixed(1)}" r="${(2.3 * SCALE).toFixed(1)}" fill="none" stroke="#fb923c" stroke-width="1.6" stroke-dasharray="3.5,2" opacity="0.9"/>
         `);
 
         // Helper to build a directional pie-sector SVG polygon in world coordinates (0°=East +wx, 90°=South +wy, 180°=West -wx, 270°=North -wy)
@@ -1384,28 +1403,54 @@
 
       // 17A. PHASE 2 (2027) FRONT YARD PLANTS:
       //      1) Melinda's Fragrant Jewel-Toned Hyacinth Border in the 2' Porch-Front Bed (wx=65.2'–67.2', wy=31.5'–42.0') & 2' South Bed
-      //      2) Relocated Sculptural Red Japanese Maple at SE Corner Anchor (wx=87.0', wy=46.8') so the '3152' Porch Swing view is 100% clear!
+      //      2) Norwegian Sunset Maple (Acer truncatum × platanoides 'Keithsform') centered at (wx=83.0', wy=39.5') with 20'–25' W recommended space & 6' mulch ring!
       if (L.frontPlants) {
         const isSpring = STATE.season === 'SPRING';
         const isFall   = STATE.season === 'FALL';
         const isWinter = STATE.season === 'WINTER';
         out.push(`<g id="layer-front-plants">`);
 
-        // 1. Relocated SE Corner Japanese Maple at (87.0, 46.8)
+        // 1. Norwegian Sunset Maple at (wx=83.0', wy=39.5') — Recommended 20'–25' W Mature Space (r=10.5' clearance envelope) + 11' Established Crown (r=5.5')
         const maplePt = project(SE_MAPLE_WX, SE_MAPLE_WY);
-        const mRad = 1.85 * SCALE;
-        const mapleFill = isWinter ? 'rgba(190, 18, 60, 0.25)' : (isFall ? '#ef4444' : '#be123c');
-        out.push(`<circle cx="${maplePt.x.toFixed(1)}" cy="${maplePt.y.toFixed(1)}" r="${mRad.toFixed(1)}" fill="${mapleFill}" stroke="${isWinter ? '#f8fafc' : '#fda4af'}" stroke-width="1.6" ${isDrone ? 'filter="url(#shadow-tree)"' : ''}/>`);
+        const matureClearanceRad = 10.5 * SCALE; // 21.0' diameter mature canopy space indicator (within 20'–25' W spec)
+        const mRad = 5.5 * SCALE;                // 11.0' diameter established upright-oval shade canopy
+        const mapleFill = isWinter
+          ? 'rgba(234, 88, 12, 0.16)'
+          : (isFall ? '#ea580c' : (isSpring ? '#16a34a' : '#15803d'));
+        const mapleInnerFill = isFall ? '#f59e0b' : (isSpring ? '#22c55e' : '#166534');
+        const mapleStroke = isWinter ? '#f8fafc' : (isFall ? '#fed7aa' : (isSpring ? '#fb923c' : '#86efac'));
+
+        // Dashed 21' Diameter (10.5' Radius) Recommended Mature Canopy Space Envelope (17.3' from porch, 10.5' from driveway/S. lot line, 13.7' from walk)
+        out.push(`<circle cx="${maplePt.x.toFixed(1)}" cy="${maplePt.y.toFixed(1)}" r="${matureClearanceRad.toFixed(1)}" fill="rgba(251, 146, 60, 0.05)" stroke="#fdba74" stroke-width="1.15" stroke-dasharray="4,3" opacity="0.8"/>`);
+        out.push(`<circle cx="${maplePt.x.toFixed(1)}" cy="${maplePt.y.toFixed(1)}" r="${mRad.toFixed(1)}" fill="${mapleFill}" stroke="${mapleStroke}" stroke-width="1.8" ${isDrone ? 'filter="url(#shadow-tree)"' : ''}/>`);
         if (!isWinter) {
-          out.push(`<circle cx="${maplePt.x.toFixed(1)}" cy="${maplePt.y.toFixed(1)}" r="${(mRad * 0.55).toFixed(1)}" fill="${isFall ? '#f97316' : '#881337'}"/>`);
+          out.push(`<circle cx="${maplePt.x.toFixed(1)}" cy="${maplePt.y.toFixed(1)}" r="${(mRad * 0.58).toFixed(1)}" fill="${mapleInnerFill}" opacity="0.9"/>`);
+          if (isSpring) {
+            // Spring yellow-green maple corymb flower clusters & bronze-red new leaf tips
+            for (let b = 0; b < 8; b++) {
+              const ang = (b / 8) * Math.PI * 2;
+              const bx = maplePt.x + Math.cos(ang) * (mRad * 0.72);
+              const by = maplePt.y + Math.sin(ang) * (mRad * 0.72);
+              out.push(`<circle cx="${bx.toFixed(1)}" cy="${by.toFixed(1)}" r="${(0.38 * SCALE).toFixed(1)}" fill="#bef264" stroke="#ecfccb" stroke-width="0.8"/>`);
+            }
+          }
+        } else {
+          // Winter bare upright-oval scaffold branch star
+          for (let b = 0; b < 6; b++) {
+            const ang = (b / 6) * Math.PI;
+            const dx = Math.cos(ang) * (mRad * 0.82);
+            const dy = Math.sin(ang) * (mRad * 0.82);
+            out.push(`<line x1="${(maplePt.x - dx).toFixed(1)}" y1="${(maplePt.y - dy).toFixed(1)}" x2="${(maplePt.x + dx).toFixed(1)}" y2="${(maplePt.y + dy).toFixed(1)}" stroke="#e2e8f0" stroke-width="1.2"/>`);
+          }
         }
+        out.push(`<circle cx="${maplePt.x.toFixed(1)}" cy="${maplePt.y.toFixed(1)}" r="${(0.38 * SCALE).toFixed(1)}" fill="#78350f" stroke="#fde68a" stroke-width="0.9"/>`);
 
         // 2. Melinda's Fragrant Jewel-Toned Hyacinth Drift in the 2' Porch-Front Bed (right in front of the 3152 Porch Swing!) & South Bed
         const hyacinthPalette = ['#9333ea', '#2563eb', '#ec4899', '#f8fafc', '#c084fc'];
         const hyacinthCoords = [
           [66.1, 31.8], [66.1, 33.0], [66.1, 34.2], [66.1, 35.4], [66.1, 36.6],
           [66.1, 37.8], [66.1, 39.0], [66.1, 40.2], [66.1, 41.4], [66.1, 42.4],
-          [67.5, 49.0], [70.0, 49.0], [72.5, 49.0], [75.0, 49.0], [77.5, 49.0], [80.0, 49.0], [82.5, 49.0]
+          [67.5, 49.0], [70.0, 49.0], [72.5, 49.0], [75.0, 49.0], [77.5, 49.0], [80.0, 49.0], [82.5, 49.0], [85.0, 49.0], [87.5, 49.0]
         ];
         hyacinthCoords.forEach(([hx, hy], idx) => {
           const hp = project(hx, hy);
@@ -1553,10 +1598,10 @@
           { wx: 84.5, wy: 5.5, title: 'WHITE DECORATIVE ROCK (NE STRIP)', sub: 'Stops at North Fence · Matches S. Neighbors', color: '#f8fafc', border: '#cbd5e1', show: L.frontBeds },
           { wx: 103.7, wy: 40.0, title: 'WHITE ROCK PARK STRIPS (6\')', sub: 'Matches South Neighbors', color: '#f8fafc', border: '#cbd5e1', show: L.frontBeds },
           { wx: 65.5, wy: 37.5, title: "MELINDA'S HYACINTHS & 3152 SWING", sub: '2\' Porch Bed · Unobstructed View to Street', color: '#f472b6', border: '#ec4899', show: L.frontPlants || L.porchSwing },
-          { wx: SE_MAPLE_WX, wy: SE_MAPLE_WY, title: 'SE CORNER JAPANESE MAPLE', sub: 'Relocated to (87\', 46.8\') · Clears Porch Swing', color: '#fda4af', border: '#e11d48', show: L.frontPlants },
+          { wx: SE_MAPLE_WX, wy: SE_MAPLE_WY, title: 'NORWEGIAN SUNSET MAPLE', sub: '(83\', 39.5\') · 20\'–25\' W Space · 6\' Mulch Ring', color: '#fdba74', border: '#ea580c', show: L.frontPlants },
           { wx: 46.5, wy: 42.5, title: 'OPEN AC UNIT (3\'×3\')', sub: 'No Cover or Shroud', color: '#cbd5e1', border: '#64748b', show: L.houseStructure },
           { wx: 43.0, wy: 45.5, title: 'SOUTH GRASS & 2\' BED', sub: 'Continues Under Gate to Front / Green Box', color: '#34d399', border: '#10b981', show: L.grass },
-          { wx: 80.5, wy: 39.5, title: '555 SQ FT SE FRONT LAWN', sub: 'Grass Continues Under Gate · 45° Pavers', color: '#4ade80', border: '#10b981', show: L.grass },
+          { wx: 73.5, wy: 43.5, title: '555 SQ FT SE FRONT LAWN', sub: 'Grass Continues Under Gate · 45° Pavers', color: '#4ade80', border: '#10b981', show: L.grass },
           { wx: 70.0, wy: 4.5, title: 'NORTH 8.5\' DOUBLE GATE', sub: 'Phase 2 (2027) · Road Base Inside / White Rock Outside', color: '#fbbf24', border: '#f59e0b', show: L.northGate },
           { wx: 57.5, wy: 45.5, title: 'SOUTH 4\' WALK GATE', sub: 'Phase 1 (2026) · Grass & 2\' Bed Continue Under Gate', color: '#c084fc', border: '#a855f7', show: L.southGate },
           { wx: 48.0, wy: -2.5, title: 'NORTH NEIGHBOR: BARE DIRT', sub: '', color: '#fcd34d', border: '#b45309', show: L.neighbors },
