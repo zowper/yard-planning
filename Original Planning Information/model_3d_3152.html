@@ -1629,7 +1629,8 @@
     scene.add(sunLight);
     scene.add(sunLight.target);
 
-    window.setLightingMode = function(mode) {
+    window.setLightingMode = function(rawMode) {
+      const mode = String(rawMode || 'DAY').toUpperCase();
       STATE.lightingMode = mode;
       document.querySelectorAll('.light-btn').forEach(b => {
         b.classList.remove('bg-sky-600', 'bg-amber-600', 'bg-indigo-600', 'text-white', 'shadow');
