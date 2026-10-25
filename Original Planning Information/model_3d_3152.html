@@ -341,7 +341,7 @@
           Lot 3152 — Ultra-HD 4-Season Master Model (2026–2031)
         </h2>
         <p id="insp-desc" class="text-xs text-slate-200 mt-1 leading-relaxed">
-          Showing Spring blossoms on the 5 'Standing Ovation' Serviceberries along the West wall, Melinda's fragrant jewel-toned Hyacinths right in front of the '3152' porch swing, and the Norwegian Sunset Maple centered at (wx=83', wy=39.5') with its recommended 20'–25' W canopy space and 6' mulched ring.
+          Showing Spring blossoms on the 5 'Standing Ovation' Serviceberries along the West wall, Melinda's fragrant jewel-toned Hyacinths right in front of the '3152' porch swing, and the high-canopy Norwegian Sunset Maple (~29' H × 20'–25' W) centered at (wx=83', wy=39.5') with an 8.0'–9.5' clear trunk attachment and 11'–12'+ outer lawn clearance ceiling.
         </p>
       </div>
 
@@ -2762,8 +2762,10 @@
       }
 
       // 2. Front Yard Specimen Shade Tree: Norwegian Sunset® Maple (Acer truncatum × platanoides 'Keithsform')
-      //    Centered in SE Front Lawn at (wx = 83.0', wy = 39.5') with Recommended 20'–25' W × 30'–35' H Space
-      //    (17.3' from Porch Pillar, 10.5' from Driveway, 10.5' from S. Lot Line, 13.7' from Sidewalk, 6.8' Clear Trunk Under-Canopy Sightline!)
+      //    Centered in SE Front Lawn at (wx = 83.0', wy = 39.5') with Recommended 20'–25' W × 30'–35' H Space (~28'–32' H Utah Stature)
+      //    (17.3' from Porch Pillar, 10.5' from Driveway, 10.5' from S. Lot Line, 13.7' from Sidewalk;
+      //     Staged High-Canopy Architecture: 8.5'–9.2' Clear Trunk Attachment [aligned w/ ~9.5' Porch Roof Eave] ->
+      //     45° Ascending Scaffold Limbs -> 11.5'–12.2'+ Outer Lawn Clearance Ceiling + 15% Airy Interior Crown Thinning!)
       //    NOTE: Ground root flare & fallen autumn leaves are placed in `mapleStaticGrp` (NOT in windSwayMeshes),
       //    and the old `matureCanopyRing` ground circle is completely removed so there is zero ring/circle artifact as the tree sways!
       const mapleStaticGrp = new THREE.Group();
@@ -2773,40 +2775,49 @@
       mapleGrp.position.set(SE_MAPLE_WX, 0, SE_MAPLE_WY);
 
       // Fluted Root Flare Buttress (stationary on the mulched tree ring)
-      const rootFlare = new THREE.Mesh(new THREE.CylinderGeometry(0.38, 0.72, 1.1, 14), MAT.woodBark);
-      rootFlare.position.set(0, 0.50, 0);
+      const rootFlare = new THREE.Mesh(new THREE.CylinderGeometry(0.40, 0.76, 1.15, 14), MAT.woodBark);
+      rootFlare.position.set(0, 0.52, 0);
       rootFlare.castShadow = true;
       mapleStaticGrp.add(rootFlare);
       for (let r = 0; r < 5; r++) {
         const rAng = (r / 5) * Math.PI * 2 + 0.3;
-        const buttress = new THREE.Mesh(new THREE.CylinderGeometry(0.08, 0.24, 0.95, 8), MAT.woodBark);
-        buttress.position.set(Math.cos(rAng) * 0.38, 0.36, Math.sin(rAng) * 0.38);
+        const buttress = new THREE.Mesh(new THREE.CylinderGeometry(0.085, 0.25, 1.0, 8), MAT.woodBark);
+        buttress.position.set(Math.cos(rAng) * 0.40, 0.38, Math.sin(rAng) * 0.40);
         buttress.rotation.z = -Math.cos(rAng) * 0.42;
         buttress.rotation.x = Math.sin(rAng) * 0.42;
         buttress.castShadow = true;
         mapleStaticGrp.add(buttress);
       }
 
-      // Single Straight Central-Leader Trunk (6.8' Clear Trunk Height Below Lowest Limbs for Walk-Under & Porch Swing Sightline!)
-      const mainTrunk = new THREE.Mesh(new THREE.CylinderGeometry(0.18, 0.40, 16.5, 14), MAT.woodBark);
-      mainTrunk.position.set(0, 8.25, 0);
+      // Single Straight Central-Leader Trunk (8.5'–9.2' Clear Trunk Attachment Aligned w/ ~9.5' Porch Eave; Reaches 21.5' Into Upper Crown)
+      const mainTrunk = new THREE.Mesh(new THREE.CylinderGeometry(0.16, 0.44, 21.5, 14), MAT.woodBark);
+      mainTrunk.position.set(0, 10.75, 0);
       mainTrunk.castShadow = true;
       mapleGrp.add(mainTrunk);
 
-      // Upright-Oval Ascending Scaffold Limbs & Tiered High-Detail Canopy Lobes (h = 7.4' to 21.8', ~14.8' W Established Crown)
+      // High-Canopy 45° Ascending Scaffold Limbs & 15%-Thinned Airy Canopy Lobes
+      // Lowest forks at forkY = 8.5'–9.2' sweep up at ~45° to by = 13.6'–14.4' (with zero downward-drooping lobes),
+      // creating an 11.6'–12.4'+ clear outer lawn ceiling and a ~29.1' total mature crown height!
       const mapleScaffolds = [
-        // [bx, by, bz, forkY, padRadius]
-        [-3.4, 9.6,  1.8, 6.8, 2.35],
-        [ 3.5, 9.8, -1.7, 6.9, 2.35],
-        [-2.0, 10.4, -3.3, 7.1, 2.30],
-        [ 2.1, 10.6,  3.2, 7.2, 2.30],
-        [-3.9, 13.0, -0.5, 9.2, 2.55],
-        [ 3.8, 13.3,  0.7, 9.4, 2.55],
-        [-0.8, 13.8,  3.7, 9.6, 2.45],
-        [ 0.9, 14.0, -3.6, 9.8, 2.45],
-        [-2.3, 16.4,  1.9, 12.2, 2.25],
-        [ 2.2, 16.6, -1.8, 12.4, 2.25],
-        [ 0.0, 18.8,  0.0, 14.5, 2.45]
+        // Tier 1: Lowest High-Canopy Scaffolds (forkY = 8.5'–9.2' at trunk -> by = 13.6'–14.4' outer canopy = 11.6'–12.4'+ clear lawn ceiling!)
+        [-4.5, 13.6,  2.4,  8.5, 2.15],
+        [ 4.6, 13.9, -2.3,  8.7, 2.15],
+        [-2.5, 14.1, -4.4,  9.0, 2.10],
+        [ 2.6, 14.4,  4.3,  9.2, 2.10],
+        // Tier 2: Mid-Crown Structural Scaffolds (forkY = 11.8'–12.7' -> by = 17.6'–18.8', ~18'–19' W spread)
+        [-5.4, 17.6, -0.7, 11.8, 2.40],
+        [ 5.3, 18.0,  0.9, 12.1, 2.40],
+        [-1.0, 18.5,  5.2, 12.4, 2.35],
+        [ 1.1, 18.8, -5.1, 12.7, 2.35],
+        // Tier 3: Upper-Mid Ascending Scaffolds (forkY = 15.5'–16.5' -> by = 21.8'–23.0')
+        [-3.8, 21.8,  2.9, 15.5, 2.25],
+        [ 3.7, 22.2, -2.8, 15.8, 2.25],
+        [-2.7, 22.6, -3.5, 16.2, 2.20],
+        [ 2.8, 23.0,  3.4, 16.5, 2.20],
+        // Tier 4: Upper Crown & Central Leader Apex (forkY = 18.6'–20.2' -> by = 24.6'–26.4', total tree top ~29.1' H)
+        [-1.8, 24.6,  1.4, 18.6, 2.10],
+        [ 1.7, 25.0, -1.5, 19.0, 2.10],
+        [ 0.0, 26.4,  0.0, 20.2, 2.25]
       ];
       const mapleCanopyGrp = new THREE.Group();
       const mapleCorymbGrp = new THREE.Group();
@@ -2818,10 +2829,10 @@
       });
 
       mapleScaffolds.forEach(([bx, by, bz, forkY, padRad], bIdx) => {
-        // Ascending structural scaffold branch from central leader (forkY >= 6.8' clear trunk!)
+        // 45° ascending structural scaffold branch from central leader (forkY >= 8.5' clear trunk attachment!)
         const dx = bx, dy = by - forkY, dz = bz;
         const limbLen = Math.hypot(dx, dy, dz);
-        const limb = new THREE.Mesh(new THREE.CylinderGeometry(0.075, 0.18, limbLen, 10), MAT.woodBark);
+        const limb = new THREE.Mesh(new THREE.CylinderGeometry(0.075, 0.185, limbLen, 10), MAT.woodBark);
         limb.position.set(dx * 0.5, forkY + dy * 0.5, dz * 0.5);
         limb.quaternion.setFromUnitVectors(
           new THREE.Vector3(0, 1, 0),
@@ -2830,10 +2841,10 @@
         limb.castShadow = true;
         mapleGrp.add(limb);
 
-        // Secondary & tertiary sub-branches for rich winter architectural silhouette
-        [[-0.45, 0.65, 0.35], [0.48, 0.72, -0.38], [0.15, 0.85, 0.42]].forEach(([sx, sy, sz]) => {
-          const subLen = Math.hypot(sx, sy, sz) * 1.45;
-          const sub = new THREE.Mesh(new THREE.CylinderGeometry(0.032, 0.075, subLen, 8), MAT.woodBark);
+        // Secondary & tertiary ascending sub-branches (visible through the 15%-thinned airy interior crown & in Winter)
+        [[-0.52, 0.78, 0.40], [0.55, 0.84, -0.42], [0.18, 0.96, 0.48]].forEach(([sx, sy, sz]) => {
+          const subLen = Math.hypot(sx, sy, sz) * 1.55;
+          const sub = new THREE.Mesh(new THREE.CylinderGeometry(0.034, 0.078, subLen, 8), MAT.woodBark);
           sub.position.set(bx + sx * 0.5, by + sy * 0.4, bz + sz * 0.5);
           sub.quaternion.setFromUnitVectors(
             new THREE.Vector3(0, 1, 0),
@@ -2843,12 +2854,13 @@
           mapleGrp.add(sub);
         });
 
-        // Smooth, multi-layered glossy maple foliage clouds (4 overlapping organic sub-canopy lobes per scaffold limb)
+        // 15%-Thinned Airy High-Canopy Foliage Clouds (4 ascending sub-canopy lobes per scaffold limb;
+        // oy >= 0.08 ensures ZERO downward-drooping twigs below the 45° limb plane so outer lawn clearance stays 11.5'–12.2'+!)
         [
-          [0, 0, 0, 1.0, 1.12, 0.92, 1.12],
-          [-0.82, -0.22, 0.58, 0.84, 1.18, 0.88, 1.08],
-          [0.76, 0.38, -0.58, 0.80, 1.08, 0.95, 1.16],
-          [0.18, 0.68, 0.42, 0.72, 1.14, 0.90, 1.14]
+          [0, 0.08, 0, 0.94, 1.12, 0.88, 1.12],
+          [-0.88, 0.18, 0.62, 0.78, 1.16, 0.86, 1.08],
+          [0.84, 0.42, -0.62, 0.76, 1.08, 0.90, 1.14],
+          [0.18, 0.72, 0.46, 0.68, 1.12, 0.88, 1.12]
         ].forEach(([ox, oy, oz, sMul, sx, sy, sz], pIdx) => {
           const pad = new THREE.Mesh(new THREE.SphereGeometry(padRad * sMul, 14, 12), MAT.mapleFoliage);
           pad.position.set(bx + ox, by + oy, bz + oz);
@@ -4343,17 +4355,17 @@
         short: "Melinda's Hyacinths & 3152 Swing",
         color: '#ec4899',
         title: "Melinda's Fragrant Spring Hyacinth Border & Unobstructed '3152' Hanging Porch Swing",
-        desc: "Dense jewel-toned drifts of Royal Purple, Delft Blue, Rose Pink & Pearl White Hyacinths planted right in the 2.0' porch-front bed (wx=65.2'–67.2') directly in front of the hanging cedar porch swing and curving down the continuous 2.0' South bed to the green box. Centering the Norwegian Sunset Maple out at (wx=83.0', wy=39.5') with a 6.8' clear trunk keeps the porch swing sightline 100% open and gives the Hyacinths full sun!"
+        desc: "Dense jewel-toned drifts of Royal Purple, Delft Blue, Rose Pink & Pearl White Hyacinths planted right in the 2.0' porch-front bed (wx=65.2'–67.2') directly in front of the hanging cedar porch swing and curving down the continuous 2.0' South bed to the green box. Centering the Norwegian Sunset Maple out at (wx=83.0', wy=39.5') with an 8.0'–9.5' clear trunk attachment (and 11'–12'+ outer lawn clearance ceiling) keeps the porch swing sightline 100% open and gives the Hyacinths full sun!"
       },
       {
         id: 'pin-se-maple',
         layer: 'frontPlants',
-        wx: SE_MAPLE_WX, wy: SE_MAPLE_WY, h: 17.5,
-        badge: '2027 · PHASE 2 (NORWEGIAN SUNSET MAPLE)',
-        short: 'Norwegian Sunset Maple (20\'–25\' W Space)',
+        wx: SE_MAPLE_WX, wy: SE_MAPLE_WY, h: 21.5,
+        badge: '2027 · PHASE 2 (HIGH-CANOPY NORWEGIAN SUNSET MAPLE)',
+        short: 'Norwegian Sunset Maple (11\'–12\'+ Lawn Clear)',
         color: '#ea580c',
         title: "Norwegian Sunset® Maple (Acer truncatum × platanoides 'Keithsform') at SE Front Lawn Center (wx=83.0', wy=39.5')",
-        desc: "Stately upright-oval hybrid shade tree (30'–35' H × 20'–25' W mature size) centered in the open SE Front Lawn at (wx=83.0', wy=39.5') inside a 6.0' diameter mulched root-flare ring (bordered by octagonal 45° Holland pavers & Zone 4 PC drip ring). Provides full recommended structural clearances: 17.3' East of porch pillar (23.3' from front door wall), 10.5' South of driveway, 10.5' North of South lot line, 13.7' West of sidewalk, and 11.7' NW of the green utility box—with a 6.8' clear single trunk so the '3152' porch swing looks cleanly under the canopy!"
+        desc: "Stately upright-oval hybrid shade tree (30'–35' H × 20'–25' W spec; ~28'–32' H in Utah alkaline clay) centered in the SE Front Lawn at (wx=83.0', wy=39.5') inside a 6.0' diameter mulched root-flare ring (17.3' E of porch pillar, 10.5' S of driveway, 10.5' N of South lot line, 13.7' W of sidewalk, 11.7' NW of green box). Pruned in 3 stages to an 8.0'–9.5' clear trunk attachment (matching the ~9.5' porch roof eave) with 45° ascending limbs that create a massively open 11.0'–12.0'+ outer lawn clearance ceiling + 15% airy interior crown thinning (avoiding the 50% lollipop ratio & Utah SW sunscald of a 15' bare trunk)!"
       },
       {
         id: 'pin-planters',
@@ -4548,15 +4560,15 @@
         pos: [77.5, 5.6, 37.5],
         target: [62.2, 3.2, 36.8],
         badge: "MELINDA'S FRONT PORCH SHOWCASE",
-        title: "'3152' Hanging Cedar Porch Swing, Fragrant Spring Hyacinths & Norwegian Sunset Maple",
-        desc: "Close-up of the '3152' covered front porch hanging swing with dense jewel-toned Hyacinths (Royal Purple, Delft Blue, Rose Pink & Pearl White) blooming strictly inside the 2.0' porch-front mulch bed (South of the entry sidewalk) and curving down the continuous 2.0' South bed. Centering the Norwegian Sunset Maple at (wx=83.0', wy=39.5') with a 6.8' clear trunk gives the porch swing a 100% open under-canopy view!"
+        title: "'3152' Hanging Cedar Porch Swing, Fragrant Spring Hyacinths & High-Canopy Norwegian Sunset Maple",
+        desc: "Close-up of the '3152' covered front porch hanging swing with dense jewel-toned Hyacinths (Royal Purple, Delft Blue, Rose Pink & Pearl White) blooming strictly inside the 2.0' porch-front mulch bed (South of the entry sidewalk) and curving down the continuous 2.0' South bed. Centering the Norwegian Sunset Maple at (wx=83.0', wy=39.5') with an 8.0'–9.5' clear trunk attachment and 11'–12'+ outer lawn clearance ceiling gives the porch swing a massively open under-canopy view!"
       },
       FRONT_ELEVATION: {
         pos: [122.0, 14.5, 31.0],
         target: [68.0, 5.5, 29.5],
         badge: 'FRONT ELEVATION & NORWEGIAN SUNSET MAPLE',
-        title: "Front Elevation: Aligned 18' Driveway & Garage, 6' White Rock Park Strips, Hyacinth Bed & Norwegian Sunset Maple",
-        desc: "Looking West from the street across the 6.0' white decorative rock park strips (wx=100.7'–106.7'), flared driveway apron & 18.0' driveway aligned with the 16.0' black carriage garage door, 3.5' porch walkway, Melinda's Hyacinths in the 2.0' porch-front bed, and the stately Norwegian Sunset Maple centered at (wx=83.0', wy=39.5') with its full 20'–25' W recommended canopy space."
+        title: "Front Elevation: Aligned 18' Driveway & Garage, 6' White Rock Park Strips, Hyacinth Bed & High-Canopy Norwegian Sunset Maple",
+        desc: "Looking West from the street across the 6.0' white decorative rock park strips (wx=100.7'–106.7'), flared driveway apron & 18.0' driveway aligned with the 16.0' black carriage garage door, 3.5' porch walkway, Melinda's Hyacinths in the 2.0' porch-front bed, and the stately ~29' H Norwegian Sunset Maple centered at (wx=83.0', wy=39.5') with its 8.0'–9.5' clear trunk attachment (aligned with the ~9.5' porch eave) and 11'–12'+ outer lawn clearance ceiling."
       },
       TOP_DRONE_3D: {
         pos: [48.0, 108.0, 25.1],
