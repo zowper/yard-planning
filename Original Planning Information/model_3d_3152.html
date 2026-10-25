@@ -1570,7 +1570,8 @@
       sGrp.add(botFinial);
 
       // 5. Warm Seeded Glass Lantern Chamber + Inner Vintage Edison Filament Bulb
-      const glassChamber = new THREE.Mesh(new THREE.BoxGeometry(0.25, 0.44, 0.25), MAT.lanternGlass);
+      MAT.lanternGlass.depthWrite = false;
+      const glassChamber = new THREE.Mesh(new THREE.BoxGeometry(0.26, 0.44, 0.26), MAT.lanternGlass);
       glassChamber.position.set(cx, -0.08, 0);
       sGrp.add(glassChamber);
 
@@ -1578,12 +1579,12 @@
       socket.position.set(cx, -0.24, 0);
       sGrp.add(socket);
 
-      const edisonBulb = new THREE.Mesh(new THREE.SphereGeometry(0.075, 12, 10), MAT.archBulb);
-      edisonBulb.scale.set(0.85, 1.35, 0.85);
-      edisonBulb.position.set(cx, -0.10, 0);
+      const edisonBulb = new THREE.Mesh(new THREE.SphereGeometry(0.095, 12, 10), MAT.archBulb);
+      edisonBulb.scale.set(0.88, 1.35, 0.88);
+      edisonBulb.position.set(cx, -0.09, 0);
       sGrp.add(edisonBulb);
 
-      // 6. Soft Warm 2700K Downward/Wall-Wash Light Cone & Halo (Visible at Sunset & Night)
+      // 6. Soft Warm 2700K Downward/Wall-Wash Light Cone & Lantern Halo Sphere (Visible at Sunset & Night)
       const sconceGlowMat = new THREE.MeshBasicMaterial({
         color: '#fde047',
         transparent: true,
@@ -1591,20 +1592,31 @@
         side: THREE.DoubleSide,
         depthWrite: false
       });
-      const washCone = new THREE.Mesh(new THREE.ConeGeometry(1.35, 3.6, 16, 1, true), sconceGlowMat);
-      washCone.position.set(cx, -1.85, 0);
+      const washCone = new THREE.Mesh(new THREE.ConeGeometry(1.55, 4.2, 18, 1, true), sconceGlowMat);
+      washCone.position.set(cx, -2.05, 0);
       sGrp.add(washCone);
 
+      const haloMat = new THREE.MeshBasicMaterial({
+        color: '#fef08a',
+        transparent: true,
+        opacity: 0.0,
+        depthWrite: false
+      });
+      const haloSphere = new THREE.Mesh(new THREE.SphereGeometry(0.36, 14, 12), haloMat);
+      haloSphere.position.set(cx, -0.08, 0);
+      sGrp.add(haloSphere);
+
       // 7. True Dynamic Three.js PointLight (positioned slightly clear of the wall & cage so it illuminates the facade & ground)
-      const ptLight = new THREE.PointLight('#ffb74d', 0.0, lightRange, 1.35);
-      ptLight.position.set(dirX * 0.95, -0.15, 0);
+      const ptLight = new THREE.PointLight('#fbbf24', 0.0, lightRange, 1.25);
+      ptLight.position.set(dirX * 1.15, -0.15, 0);
       sGrp.add(ptLight);
 
       houseLightObjects.push({
         light: ptLight,
         maxIntensity: maxIntensity,
         glowMesh: washCone,
-        maxOpacity: 0.22
+        maxOpacity: 0.24,
+        haloMesh: haloSphere
       });
 
       parent.add(sGrp);
@@ -2184,6 +2196,7 @@
     //     High-Fidelity Botanical 3D Models:
     //     5× 'Standing Ovation' Serviceberries (with multi-forked woody skeletons & 5-petal Spring blossom clusters!)
     //     + 4× Multi-Bough Evergreen Column Junipers + 10-Spot Multi-Blade Grass & Perennial Under-Story
+    let buildFeatherReedGrass;
     {
       const gWestPlants = LAYER_GROUPS.westWallPlants;
 
@@ -2249,7 +2262,7 @@
         return mergeBufferGeos(parts);
       })();
 
-      function buildFeatherReedGrass(wx, wy, scaleH = 1.0) {
+      buildFeatherReedGrass = function(wx, wy, scaleH = 1.0) {
         const grassGrp = new THREE.Group();
         grassGrp.position.set(wx, 0.08, wy);
         grassGrp.scale.set(1.0, scaleH, 1.0);
@@ -2264,7 +2277,7 @@
         plumesMesh.castShadow = true;
         grassGrp.add(plumesMesh);
         return grassGrp;
-      }
+      };
 
       // 1. 5× Leafy Columnar Pillars (S1–S5 at wy = 5, 15, 25, 35, 45; wx = 2.0')
       //    'Standing Ovation' Serviceberry (Amelanchier alnifolia 'Obelisk', ~15.5' tall × 4.2' W)
@@ -4152,8 +4165,9 @@
 
         // Turn off architectural garage sconces & porch lights during bright daytime
         houseLightObjects.forEach(item => {
-          if (item.type === 'point') item.light.intensity = 0.0;
-          else if (item.type === 'cone') item.mesh.material.opacity = 0.0;
+          if (item.light) item.light.intensity = 0.0;
+          if (item.glowMesh) item.glowMesh.material.opacity = 0.0;
+          if (item.haloMesh) item.haloMesh.material.opacity = 0.0;
         });
         // Turn off awning ceiling fan LED domes & perimeter bistro lights during daytime
         awningLightObjects.forEach(item => {
@@ -4177,15 +4191,16 @@
         sunLight.intensity = 1.60;
         sunLight.position.set(-75, 24, 38);
         MAT.windowGlass.emissiveIntensity = 0.72;
-        MAT.archBulb.emissiveIntensity = 2.85;
-        MAT.lanternGlass.emissiveIntensity = 0.60;
+        MAT.archBulb.emissiveIntensity = 3.20;
+        MAT.lanternGlass.emissiveIntensity = 0.85;
         MAT.bistroBulb.emissiveIntensity = 2.45;
         firePointLight.intensity = 2.8;
 
         // Turn ON Garage Coach Sconces, Front Porch Sconce & Recessed Downlights, Rear Patio Sconce & Streetlamp at Sunset!
         houseLightObjects.forEach(item => {
-          if (item.type === 'point') item.light.intensity = item.sunsetInt;
-          else if (item.type === 'cone') item.mesh.material.opacity = item.sunsetOp;
+          if (item.light) item.light.intensity = (item.maxIntensity || 3.2) * 0.85;
+          if (item.glowMesh) item.glowMesh.material.opacity = (item.maxOpacity || 0.24) * 0.85;
+          if (item.haloMesh) item.haloMesh.material.opacity = 0.45;
         });
         // Turn ON Awning Perimeter Bistro Lights & Ceiling Fan LED Domes at Sunset!
         awningLightObjects.forEach(item => {
@@ -4209,15 +4224,16 @@
         sunLight.intensity = 0.22;
         sunLight.position.set(-35, 65, 20);
         MAT.windowGlass.emissiveIntensity = 1.38;
-        MAT.archBulb.emissiveIntensity = 4.40;
-        MAT.lanternGlass.emissiveIntensity = 1.15;
+        MAT.archBulb.emissiveIntensity = 4.80;
+        MAT.lanternGlass.emissiveIntensity = 1.40;
         MAT.bistroBulb.emissiveIntensity = 3.80;
         firePointLight.intensity = 3.8;
 
         // Full Architectural Illumination on Garage Sconces, Front Porch Lights, Rear Patio Sconce & Streetlamp at Night!
         houseLightObjects.forEach(item => {
-          if (item.type === 'point') item.light.intensity = item.nightInt;
-          else if (item.type === 'cone') item.mesh.material.opacity = item.nightOp;
+          if (item.light) item.light.intensity = (item.maxIntensity || 3.2) * 1.35;
+          if (item.glowMesh) item.glowMesh.material.opacity = (item.maxOpacity || 0.24) * 1.20;
+          if (item.haloMesh) item.haloMesh.material.opacity = 0.65;
         });
         // Full Illumination on Awning Perimeter Scalloped Bistro Lights & Ceiling Fan LED Domes at Night!
         awningLightObjects.forEach(item => {

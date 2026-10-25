@@ -416,15 +416,15 @@
         id: 'phase-3',
         year: 2028,
         badge: 'Phase 3 · 2028',
-        title: '\'Standing Ovation\' Trees, Lights & Swing',
+        title: '\'Standing Ovation\' Trees, Uplights & Swing',
         cost: '$3,580',
-        subtitle: 'W. Wall 5+4 Blossoms, 2\' S. Bed, 2700K Lights & Swing',
+        subtitle: 'W. Wall 5+4 Blossoms, 2\' S. Bed, 12V Uplights & Swing',
         accent: '#818cf8',
         layers: [
           { key: 'beds', label: 'West & Continuous 2\' S. Mulch Beds + Flat Garden', swatch: '#854d0e', defaultOn: true },
           { key: 'westWallPlants', label: 'W. Wall 5+4 (\'Standing Ovation\' Blossoms & Junipers)', swatch: '#f472b6', defaultOn: true },
           { key: 'yardPlants', label: 'South Berry/Kiwi Trellis & Shade Bed', swatch: '#f43f5e', defaultOn: true },
-          { key: 'lighting', label: '2700K Uplights, Path & Bistro Lights', swatch: '#fde047', defaultOn: true },
+          { key: 'lighting', label: '12V 2700K Landscape & Tree Uplights', swatch: '#fde047', defaultOn: true },
           { key: 'porchSwing', label: 'Front Porch Hanging Swing (3152)', swatch: '#fb923c', defaultOn: true }
         ]
       },
@@ -448,12 +448,12 @@
         id: 'phase-5',
         year: 2030,
         badge: 'Phase 5 · 2030',
-        title: 'Open 2-Pillar Awning, 2 Lighted Fans & Sofa',
+        title: 'Open 2-Pillar Awning, Fans, Bistro Lights & Sofa',
         cost: '$5,800',
-        subtitle: 'Open Solid Awning + 2× 52" Lighted Ceiling Fans + Sofa',
+        subtitle: 'Open Solid Awning + 2× 52" Fans + Perimeter Bistro Lights + Sofa',
         accent: '#f59e0b',
         layers: [
-          { key: 'patioAwning', label: 'Open 2-Pillar Solid Awning (#1C) & 2× 52" Lighted Fans', swatch: '#92400e', defaultOn: true },
+          { key: 'patioAwning', label: 'Open 2-Pillar Solid Awning (#1C), 2× 52" Fans & Bistro Lights', swatch: '#92400e', defaultOn: true },
           { key: 'patioFurniture', label: 'L-Sectional Sofa & Fire Table', swatch: '#f59e0b', defaultOn: true }
         ]
       }
@@ -1287,11 +1287,12 @@
 
       // 15. PHASE 5 (2030) PATIO FURNITURE + OPEN 2-PILLAR SOLID-ROOF AWNING (Option #1C: Strictly 2 West Pillars, 0 House Pillars, NO Privacy Wall!)
       if (L.patioFurniture) {
-        const rugRect = projectRect(18.8, 29.2, 27.6, 39.8);
-        const sofaSouth = projectRect(19.4, 37.0, 27.0, 39.6);
-        const sofaEast = projectRect(24.5, 30.2, 27.0, 39.6);
-        const fireTable = projectRect(20.4, 31.2, 23.0, 35.8);
-        const flameBar = projectRect(21.35, 32.1, 22.05, 34.9);
+        const rugRect = projectRect(19.45, 28.35, 29.65, 39.95);
+        // Long side against the Rear House Wall (wx = 26.55..29.55, wy = 28.80..39.60) facing West; Short side along South edge (wx = 21.55..29.55, wy = 36.60..39.60) facing North
+        const sofaEast = projectRect(26.55, 28.80, 29.55, 39.60);
+        const sofaSouth = projectRect(21.55, 36.60, 29.55, 39.60);
+        const fireTable = projectRect(21.65, 30.60, 24.75, 35.40);
+        const flameBar = projectRect(22.85, 31.50, 23.55, 34.50);
         out.push(`
           <g id="layer-patio-furniture">
             <rect x="${rugRect.x.toFixed(1)}" y="${rugRect.y.toFixed(1)}" width="${rugRect.width.toFixed(1)}" height="${rugRect.height.toFixed(1)}" rx="2" fill="rgba(51, 65, 85, 0.5)" stroke="#94a3b8" stroke-width="1"/>
@@ -1346,6 +1347,18 @@
           if (STATE.showLabels) {
             out.push(`<text x="${fp.x.toFixed(1)}" y="${(fp.y - fanSweepRad - 3.5).toFixed(1)}" fill="#fef08a" font-family="JetBrains Mono" font-size="6.5" font-weight="700" text-anchor="middle">${fid} (52" LED FAN)</text>`);
           }
+        });
+        // Perimeter 2700K Scalloped Bistro String Lights around the OUTSIDE of the Awning Only (North eave, West header beam, South eave)
+        const bistroPerimeterPts = [
+          [29.6, 20.1], [25.8, 20.1], [21.8, 20.1], [17.7, 20.1],
+          [17.7, 24.3], [17.7, 28.5], [17.7, 32.5], [17.7, 36.7], [17.7, 40.9],
+          [21.8, 40.9], [25.8, 40.9], [29.6, 40.9]
+        ];
+        out.push(`<polyline points="${projectPoly(bistroPerimeterPts)}" fill="none" stroke="#18181b" stroke-width="1.4"/>`);
+        out.push(`<polyline points="${projectPoly(bistroPerimeterPts)}" fill="none" stroke="#fde047" stroke-width="0.9" stroke-dasharray="2,2"/>`);
+        bistroPerimeterPts.forEach(([bx, by]) => {
+          const bp = project(bx, by);
+          out.push(`<circle cx="${bp.x.toFixed(1)}" cy="${bp.y.toFixed(1)}" r="5.5" fill="url(#glow-2700k)"/><circle cx="${bp.x.toFixed(1)}" cy="${bp.y.toFixed(1)}" r="1.9" fill="#fef9c3" stroke="#f59e0b" stroke-width="0.6"/>`);
         });
         out.push(`</g>`);
       }
@@ -1523,7 +1536,7 @@
         `);
       }
 
-      // 19. PHASE 3 (2028) 2700K LANDSCAPE LIGHTING
+      // 19. PHASE 3 (2028) 12V 2700K LANDSCAPE & TREE UPLIGHTS
       if (L.lighting) {
         const uplightCoords = [
           [2.0, 5.0], [1.75, 10.0], [2.0, 15.0], [1.75, 20.0], [2.0, 25.0],
@@ -1537,12 +1550,6 @@
             <circle cx="${lp.x.toFixed(1)}" cy="${lp.y.toFixed(1)}" r="${(isDrone ? 2.4 : 1.6) * SCALE}" fill="url(#glow-2700k)" pointer-events="none"/>
             <circle cx="${lp.x.toFixed(1)}" cy="${lp.y.toFixed(1)}" r="2.2" fill="#fef08a" stroke="#f59e0b" stroke-width="0.8"/>
           `);
-        });
-        const bistroPts = [[18.5, 21.0], [21.0, 24.5], [23.5, 28.0], [26.0, 31.5], [23.5, 35.0], [21.0, 38.5], [18.5, 40.2]];
-        out.push(`<polyline points="${projectPoly(bistroPts)}" fill="none" stroke="#fde047" stroke-width="1" stroke-dasharray="2,2"/>`);
-        bistroPts.forEach(([bx, by]) => {
-          const bp = project(bx, by);
-          out.push(`<circle cx="${bp.x.toFixed(1)}" cy="${bp.y.toFixed(1)}" r="6" fill="url(#glow-2700k)"/><circle cx="${bp.x.toFixed(1)}" cy="${bp.y.toFixed(1)}" r="2" fill="#fef9c3"/>`);
         });
       }
 
