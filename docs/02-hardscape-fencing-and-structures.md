@@ -1,0 +1,153 @@
+---
+id: "02-hardscape-fencing-and-structures"
+title: "Lot 3152 — Hardscape, Fencing, Gates, Patio Awning & Raised Garden Boxes"
+domain: "hardscape-and-structures"
+canonical_topics:
+  - "Side-yard white vinyl fencing (145.5 lin ft), relative stucco setbacks (wx=57.5' S, wx=70.0' N), 50/50 neighbor split & 100% gate ownership"
+  - "Governing spatial equations for side-yard enclosure"
+  - "House-attached 2-pillar solid-roof heavy-timber patio awning (Option #1C — 100% open sides, no privacy wall)"
+  - "Two 52-inch outdoor ceiling fans with built-in dimmable warm LED lights (F1 & F2 — 0% blade strobing)"
+  - "L-shaped patio sectional & rectangular 50,000 BTU propane fire table (and why patio placement beats a corner fire pit)"
+  - "5 raised Western Red Cedar garden boxes (N1–N5 @ 3'W x 6'L) in compacted road base"
+  - "Straight flush Home Depot Pavestone Holland paver mow strip (~206–215 lin ft) & prominent 45-degree chamfered corners"
+  - "Compacted road base (487 sq ft total) & white decorative rock (479.3 sq ft total) material palette"
+coordinates_covered: "Fence gates at wx=57.5' (S) & wx=70.0' (N); Patio awning at wx=17.5'–30.0', wy=20.0'–41.0'; Garden boxes N1–N5 at wx=4.0'–27.0', wy=0.0'–8.5'"
+keywords: ["fencing", "vinyl fence", "gates", "setback", "50/50 split", "patio awning", "Option #1C", "2 pillars", "Glulam", "standing-seam roof", "ceiling fans", "propane fire table", "L-sectional", "cedar garden boxes", "Pavestone Holland paver", "mow strip", "45-degree chamfer", "compacted road base", "white decorative rock", "open AC unit"]
+related_files:
+  - "docs/01-site-measurements-and-coords.md"
+  - "docs/05-phased-budget-roadmap.md"
+---
+
+# 02 · Hardscape, Fencing, Gates, Patio Awning & Raised Garden Boxes
+
+> **Single Source of Truth for Hardscape & Structures:** This file is the canonical reference for all non-plant physical construction on Lot 3152: the `145.5 lin ft` white vinyl fence and gates, the `Option #1C` 2-pillar solid-roof patio awning and ceiling fans, the patio lounge and propane fire table, the 5 raised cedar garden boxes, the flush Holland paver mow strip rules, and all compacted road base and white decorative rock surfaces.
+
+---
+
+## 1. Material, Finish & Lighting Palette
+
+| Element | Locked-In Specification / Material | Color / Finish | Location |
+| :--- | :--- | :--- | :--- |
+| **Carpentry Stain** | Semi-transparent exterior wood stain | Dark Espresso / Deep Walnut (Kona Brown) | Open 2-pillar patio awning frame (no privacy wall) & 5 N–S raised cedar garden boxes |
+| **Perimeter Fencing & Gates** | $6\text{ ft}$ tall privacy vinyl fence + steel-reinforced gates (`145.5 lin ft` total) | Crisp White Vinyl + matte-black stainless latches/hinges | $57.5'$ South fence & $9.0'$ walk gate assembly (`2026 Phase 1`); $70.0'$ North fence & $9.0'$ double vehicle gate (`2027 Phase 2`) |
+| **Flush Lawn Paver Mow Strip** | **Home Depot Pavestone Holland Concrete Paver** (`7.87" L × 3.94" W × 2.36" H` 60mm or `7.75" × 4" × 1.75"` 45mm) + **prominent $45^\circ$ chamfered corners** | **`Charcoal Blend` (`#21703`)** / **`Antique Grey` (`#21778-AGR`)** or **`Sierra Blend` (`#21777`)** / **`Old Town Blend` (`#15699`)** (soil-flush) | **Installed where grass meets mulch, compacted road base, gravel, or the home; NO pavers where grass meets driveway, patio, or concrete sidewalks** ($\approx 206\text{–}215\text{ lin ft}$) |
+| **Compacted Road Base Hardscape** | $3/4"\text{-minus}$ crushed aggregate road base compacted in $2"$ lifts with a vibratory plate compactor over commercial geotextile fabric | Natural warm grey/tan compacted road base aggregate | $9.0'\times 40.0'$ North side pad inside gate ($360.0\text{ sq ft}$, `wx=30'–70'`) + $3.0'\times 11.0'$ rear house path to patio ($33.0\text{ sq ft}$, `wx=27'–30'`) + paths around the 5 garden boxes ($94.0\text{ sq ft}$ net, `wx=4'–27'`) = **$487.0\text{ sq ft}$ total** (`2029 Phase 4`) |
+| **White Decorative Rock (Front & NE Side)** | $1"\text{–}2"$ white decorative crushed rock / marble-quartzite landscape stone over heavy-duty geotextile weed barrier | Crisp White decorative rock (matching South neighbor's rock border at `wy > 50.0'`) | Both $6.0'$ street park strips (`wx=100.7'–106.7'`, $192.0\text{ sq ft}$) + NE front/side yard strip stopping at the `wx=70.0'` North fence/gate (`wx=70.0'–96.7'`, $287.3\text{ sq ft}$) = **$479.3\text{ sq ft}$ total** (`2027 Phase 2`) |
+| **Patio Awning, Ceiling Fans & Lighting (`Option #1C`)** | **House-Attached (Ledger-Mounted) 2-Pillar Dark-Espresso Heavy-Timber Awning with Solid Opaque Roof — 100% Open on All Sides (NO Privacy Wall)** (`2 outer West corner pillars` at `wx=18.0', wy=20.5' & 40.5'`; `0 pillars against the home`; `0 middle posts`; `0 privacy walls`) + $21.0'$ Glulam/flitch West header beam, $45^\circ$ knee braces, E–W $2\times 8$ rafters (`18" O.C.`), **solid $1\times 6$ T&G cedar ceiling deck underneath**, **matte-black standing-seam architectural steel roof & front rain gutter on top** (zero plastic), **2× $52"$ Outdoor Ceiling Fans with Built-In Dimmable Warm (`2700K`/`3000K`) LED Light Kits (`wx = 23.75', wy = 25.5' & 35.5'`)**, & $2700\text{K}$ bistro string lights | Deep Espresso / Walnut rough-sawn Western Red Cedar or Douglas Fir frame + warm natural cedar T&G ceiling + matte-black standing-seam steel roof & `Simpson Outdoor Accents` black steel hardware + 2× matte-black/espresso $52"$ ceiling fans w/ warm dimmable LED domes | Attached to rear house wall (`wx = 30.0'`) and spanning the entire $21.0\text{ ft} \times 12.5\text{ ft}$ ($262.5\text{ sq ft}$) rear concrete patio (`2030 Phase 5`) |
+| **Patio Seating & Fire Table** | **L-Shaped Outdoor Patio Sectional Furniture** + **Long Rectangular Dual-Purpose Propane Fire Table** | Weather-resistant charcoal/taupe Sunbrella cushions + dark bronze/espresso aluminum rectangular table ($50,000\text{ BTU}$ linear burner + flush lid) | On an $8'\times 10'$ charcoal/taupe all-weather flatweave rug in the South patio zone (`wy = 29.5'–41.0'`) under the open 2-pillar timber awning (`2030 Phase 5`) |
+| **Neighbor Boundary Contrast** | **North Neighbor (`wy < 0.0'`): Empty Bare Dirt** \| **South Neighbor (`wy > 50.0'`): White Decorative Rocks** | Raw graded dirt on North neighbor side; white decorative rock strip on South neighbor side | Marks the exact $50.0\text{ ft}$ N–S property lines and narrow $9.0\text{ ft}$ side yards across all views |
+| **Low-Voltage Landscape Lighting** | $12\text{V}$ LED landscape system ($2700\text{K}$ warm white, `300W` stainless transformer, $250'$ `12/2` direct-bury wire) | Matte black / bronze brass & aluminum fixtures | $9\text{–}10\times$ West wall `5+4` tree uplights, $4\times$ garden path lights, $48'$ patio bistro lights & $7\times$ front yard/column/Maple uplights (`2028 Phase 3`) |
+
+---
+
+## 2. Side-Yard White Vinyl Fencing, Relative Stucco Setbacks & 50/50 Cost Split
+
+### 2.1 Locked-In Configuration (`STUCCO_SETBACK` — `145.5 lin ft` Total: `2026 South` $\rightarrow$ `2027 North`)
+Both side yards are strictly **$9.0\text{ ft}$ wide**, and both side-yard gates are intentionally set back from the front corners of the house so they attach to **flat stucco** and leave the **front stone masonry wraps and downspouts 100% visible from the street**:
+
+* **Cost-Sharing & Ownership Rule**:
+  * **50/50 Neighbor Fence Split (`127.5 lin ft`):** Shared property-line vinyl fences ($57.5\text{ lin ft}$ South fence in **2026** + $70.0\text{ lin ft}$ North fence in **2027**) are **split 50/50 with our South and North neighbors**.
+  * **100% Our Gate Cost (`18.0 lin ft`):** Both side-yard gates, fixed return wing panels, aluminum/steel gate post stiffeners, and stainless hardware ($9.0\text{ lin ft}$ South pedestrian gate & fixed wing in **2026** + $9.0\text{ lin ft}$ North double-swing vehicle gate in **2027**) are **paid 100% by us**.
+* **2026 Phase 1 — South Side Fence (50% Neighbor Split) & Pedestrian Gate (100% Ours) (`wx = 57.5', wy = 41.0'–50.0'`):**
+  * **Setback**: Set back **$2.2\text{ ft}$ West of the SE stucco corner** (`wx = 59.7'`, or $8.2\text{ ft}$ West of the `3152` front porch stone pillar at `wx = 65.7'`) directly onto flat stucco just East of the gas and electric meters (`wx = 51.0'–54.5'`).
+  * **Gate Assembly (100% Ours)**: Uses a **$4.0\text{ ft}$ single-swing pedestrian walk gate** (`wy = 43.5'–47.5'`, aligned directly over the $4.0'\text{+}$ continuous grass corridor) + **$5.0\text{ ft}$ fixed vinyl wing panels** ($2.5'$ house-side wing + $2.5'$ property-line wing: $\$725$ Pro / $\$425$ DIY + $\$215$ Pro / $\$160$ DIY footings/hardware). Encloses the utility meters and **completely open AC condenser (`wx = 45.0'–48.0'`, no cover or shroud)** inside the gate while allowing both the **$4.0\text{ ft+}$ wide grass strip (`wy = 43.5'–47.5'`)** and the **$2.0\text{ ft}$ South planting bed (`wy = 48.0'–50.0'`)** to continue uninterrupted under/past the gate into the front yard.
+  * **South Property-Line Fence (50% Split)**: **$57.5\text{ lin ft}$** (`wx = 0.0'–57.5'`: $30.0'$ backyard + $27.5'$ South side yard) & 8 line post footings; our 50% share is $\$1,210$ Pro / $\$750$ DIY (full cost $\$2,420$ Pro / $\$1,500$ DIY). **2026 Phase 1 Total = $\$2,150$ Pro / $\$1,335$ DIY.** *(Stormwater Note: Maintain a **$2"$ bottom-rail clearance gap above soil grade** across the Westernmost $6.0\text{ ft}$ [`wx = 0.0'–6.0'`] so the fence never dams the West wall drainage swale or heaves in winter ice; also request a `$0` 1-year builder warranty check on the settled West wall footing trench before installing).*
+* **2027 Phase 2 — North Side Fence (50% Neighbor Split) & Double Vehicle Gate (100% Ours) (`wx = 70.0', wy = 0.0'–9.0'`):**
+  * **Setback**: Set back **$3.2\text{ ft}$ West of the NE garage corner** (`wx = 73.2'`), which places the hinge/latch post **$1.2\text{ ft}$ behind the $2.0\text{ ft}$ stone masonry wrap return** (`wx = 71.2'–73.2'`) and corner downspout splash block directly onto flat stucco.
+  * **Gate Assembly (100% Ours)**: Uses an **$8.0'\text{–}8.5'$ clear-opening double-swing steel-frame vinyl vehicle gate** (two $4.0'\text{–}4.25'$ leaves swinging inward/West across the $9.0\text{ ft}$ corridor: $\$1,350$ Pro / $\$850$ DIY). Cleanly separates the **white decorative rock front/side strip East of the gate (`wx = 70.0'–96.7'`)** from the **compacted road base utility/trailer pad West of the gate (`wx = 30.0'–70.0'`)**.
+  * **North Property-Line Fence (50% Split)**: **$70.0\text{ lin ft}$** (`wx = 0.0'–70.0'`: $30.0'$ backyard + $40.0'$ North side yard) & 10 line post footings; our 50% share is $\$1,590$ Pro / $\$990$ DIY (full cost $\$3,180$ Pro / $\$1,980$ DIY). **2027 North Fence + Gate Total = $\$2,940$ Pro / $\$1,840$ DIY.** *(Maintain the same **$2"$ bottom-rail clearance gap** across `wx = 0.0'–6.0'` at the NW wall corner).*
+
+### 2.2 Why Relative Stucco Setback (`2.2'–3.2'`) Was Chosen Over Alternatives
+
+| Evaluated Approach | Architectural & Structural Impact | Enclosed Side Area ($9.0\text{ ft}$ Runs) | Utility & Functional Impact | Status |
+| :--- | :--- | :--- | :--- | :--- |
+| **Relative Stucco Setback** (`3.2'` N at `wx=70.0'` / `2.2'` S at `wx=57.5'`) | **Best:** Clears the $2.0\text{ ft}$ North stone return (`wx=71.2'–73.2'`) and corner downspouts; mounts cleanly onto flat stucco with a balanced shadow line. | **$607.5\text{ sq ft}$ enclosed** ($360.0\text{ sq ft}$ N compacted road base pad + $247.5\text{ sq ft}$ S corridor). | Encloses the full North compacted road base utility/trailer pad, water spigot (`wx=51.0'`), open AC condenser (`wx=45.0'–48.0'`), and South gas/electric meters (`wx=51.0'–54.5'`), while white decorative rock finishes the front/side yard East of the North gate (`wx=70.0'–96.7'`). | **LOCKED IN** |
+| **Flush with Front Corner** (`0'` setback) | **Rejected:** Collides with the $2.0\text{ ft}$ stone masonry ledge, corner J-channels, and downspout splash blocks. | $658.8\text{ sq ft}$ | Traps roof downspout runoff against gate footings. | Rejected |
+| **Street-Line Alignment** (`16.2'` N setback to match front door) | **Rejected:** Leaves a shaded $9.0'\times 16.2'$ ($146\text{ sq ft}$) dead-end alley along the North garage wall. | $486.0\text{ sq ft}$ (loses $121.5\text{ sq ft}$ of North pad) | Sacrifices trailer/boat/trash storage depth behind the North vehicle gate. | Rejected |
+
+### 2.3 Governing Spatial Equations (Reconciled Lot 3152 Side Yards)
+Given side yard width $W = 9.0\text{ ft}$, North garage wall depth $D_{\text{north}} = 43.2\text{ ft}$ (`wx = 30.0'–73.2'`), South stucco wall depth $D_{\text{south}} = 29.7\text{ ft}$ (`wx = 30.0'–59.7'`), North setback $S_{\text{north}} = 3.2\text{ ft}$, and South setback $S_{\text{south}} = 2.2\text{ ft}$:
+
+$$L_{\text{north\_enclosed}} = 43.2 - 3.2 = 40.0\text{ ft} \quad (\text{Fence run including } 30.0'\text{ backyard} = 70.0\text{ lin ft})$$
+
+$$L_{\text{south\_enclosed}} = 29.7 - 2.2 = 27.5\text{ ft} \quad (\text{Fence run including } 30.0'\text{ backyard} = 57.5\text{ lin ft})$$
+
+$$A_{\text{north\_enclosed}} = 9.0 \times 40.0 = 360.0\text{ sq ft} \quad (\text{Compacted road base pad West of } wx = 70.0'\text{ gate; } 28.8\text{ sq ft white rock East of gate})$$
+
+$$A_{\text{south\_enclosed}} = 9.0 \times 27.5 = 247.5\text{ sq ft} \quad (\text{of } 267.3\text{ sq ft South stucco run})$$
+
+$$A_{\text{total\_enclosed\_sides}} = 360.0 + 247.5 = 607.5\text{ sq ft}$$
+
+---
+
+## 3. Straight Flush Paver Mow Strip + Prominent $45^\circ$ Chamfered Corners (`2027 Phase 2`)
+
+* **Canonical Paver Placement Rule (Where Pavers Go vs. Where No Pavers Go):**
+  * **Pavers ARE Installed (`Grass → Mulch, Compacted Road Base, Gravel, or Home`):** Everywhere the grass meets **mulch** (the $4.0'$ West wall bed, the continuous $2.0'$ South fence & front-yard bed running all the way to the green box, the $2.0'$ front-of-porch Hyacinth bed, the 3-sided utility box screen bed, and the $6.0'$ diameter octagonal Norwegian Sunset® Maple tree ring), **compacted road base** (the $8.0'$ North garden box zone at $wy = 8.0'\text{–}8.5'$ and the $3.0'\times 11.0'$ rear house path at $wx = 26.5'\text{–}27.0'$), **gravel**, or **the home** (the $2.0'$ South house wall/open-AC buffer at $wy = 43.0'\text{–}43.5'$ and home foundation transitions).
+  * **NO Pavers Are Installed (`Grass → Driveway, Patio, or Concrete Sidewalks`):** Everywhere the grass meets the **$18.0'\times 23.5'$ concrete driveway**, the **$21.0' \times 12.5'$ rear concrete patio**, the **$3.5'$ front porch concrete sidewalk/walkway**, or the **$4.0'$ public city sidewalk**, **there are NOT any pavers** (the flat poured concrete slab serves directly as the flush mower edge).
+* **Zero Curvy / S-Curve Edging & Prominent $45^\circ$ Chamfered Corners:**
+  * All lawn perimeters use straight geometric runs ($\approx 206\text{–}215\text{ linear ft}$ total: $\approx 131\text{ ft}$ Backyard/Side + $\approx 75\text{–}84\text{ ft}$ Front Yard including the octagonal tree ring).
+  * Every $90^\circ$ turf corner is replaced by a **prominent, clearly visible $45^\circ$ diagonal chamfered paver corner** ($\approx 2.0\text{ ft} \times 2.0\text{ ft}$ to $2.5\text{ ft} \times 2.5\text{ ft}$ diagonal transition cut with $22.5^\circ$ miter joints) so the lawn mower pivots continuously around corners in a single pass without backing up or scalping.
+* ** Exact Home Depot Paver to Buy (`Pavestone Holland Concrete Paver`):** Listed on Home Depot's website by exact metric mold size ($200\text{ mm} \times 100\text{ mm}$) rather than nominal "4×8":
+  * **Standard 60 mm (Most Stocked in Utah):** **`7.87 in. L × 3.94 in. W × 2.36 in. H`** ($\approx \$0.68\text{–}\$0.78/\text{brick}$ in-store; $480\text{ pcs/pallet}$). Extra thickness resists shifting or tipping in Utah freeze-thaw soil.
+  * **Thin 45 mm (#1 Budget Pick if In Stock Locally):** **`7.75 in. L × 4 in. W × 1.75 in. H`** (or `7.87" × 3.94" × 1.77"`, $\approx \$0.58\text{–}\$0.68/\text{brick}$; $672\text{ pcs/pallet}$). Requires only a $1.75\text{"}$ deep trench.
+  * **Built-In Mower Advantages:** Features side spacer bars for automatic joint alignment and a micro-chamfered top edge so mower wheels and blades never catch on a sharp lip. *(Skip `7.63" × 3.63" × 2.25"` structural masonry concrete bricks in the building materials aisle, which lack spacer nubs/chamfers and spall in wet winter turf).*
+* **Exact Color SKUs to Buy:**
+  * **Top Modern High-Contrast Pick:** **`Charcoal` / `Charcoal Blend` (Model `#21703` / HD SKU `204701612`)** or **`Antique Grey` (Model `#21778-AGR` / SKU `301595154`)** — blends seamlessly into dark brown/black mulch while creating a razor-sharp architectural frame against bright green turf and matching the black window trim/gutters and dark espresso wood stain.
+  * **Top Warm Stone Match:** **`Sierra Blend` (Model `#21777` / SKU `204701614`)** or **`Old Town Blend` (Model `#15699` / `#22099`)** — mixes charcoal/pewter grey with warm taupe/tan variegation that ties directly into the `3152` front porch stacked stone wainscot and the rear tan/grey precast wall while hiding Utah dust and hard-water spots. *(Avoid `Red`, `Red Charcoal`, and `San Diego Terracotta`).*
+* **Layout & Shopping Count for Lot 3152 ($\approx 206\text{–}215\text{ lin ft} + 5\%$ for $45^\circ$ miter cuts):**
+  * **Single Lengthwise Ribbon (`3.94"` / `~4"` wide strip):** $1.53\text{ bricks/ft} = \mathbf{330\text{–}345\text{ pavers}}$ (**$\approx \$230\text{–}\$270$ total**).
+  * **Crosswise Soldier Course or Staggered Double Row (`7.87"` / `~8"` wide strip):** $3.05\text{ bricks/ft} = \mathbf{660\text{–}685\text{ pavers}}$ (**$\approx \$450\text{–}\$530$ total**).
+* **Mandatory `6"` Deepened Geotextile + Road Base Sub-Base Along the `50.0'` West Wall Run (`wx = 4.0'–4.5'`):**
+  * Because heavy rain historically pooled along the West precast wall (`wx = 0.0'–4.5'`), excavate the $50.0\text{ ft}$ West mower strip trench to a full **$6\text{ inches}$ deep**, line the trench bottom and sides with **non-woven commercial geotextile separation fabric** (to prevent wet clay from pumping upward into the gravel), compact **$3"\text{ to }4"$ of $3/4"\text{-minus}$ crushed road base**, screed $1"$ of coarse concrete sand, and sweep polymeric joint sand into the joints so the Holland pavers never sink, seesaw, or heave under mower wheels.
+
+---
+
+## 4. Compacted Road Base Network (`487 sq ft` in `2029 Phase 4`) & Raised Cedar Garden Boxes (`N1`–`N5`)
+
+### 4.1 Unified Compacted Road Base Delivery (`3/4"-Minus` Crushed Aggregate Over Geotextile Fabric)
+In **2029 (Phase 4)**, a single bulk delivery ($\approx 11.0\text{ tons}$ of $3/4"\text{-minus}$ crushed aggregate road base compacted in $2"$ lifts with a vibratory plate compactor over commercial geotextile stabilization fabric, saving $\approx \$3,350$ vs. poured concrete) finishes three connected utility zones totaling **$487.0\text{ sq ft}$**:
+1. **North Side Yard Utility/Trailer Pad ($360.0\text{ sq ft}$):** Full $9.0\text{ ft W} \times 40.0\text{ ft L}$ corridor inside the $wx = 70.0'$ double-swing vehicle gate (`wx = 30.0'–70.0', wy = 0.0'–9.0'`).
+2. **Rear House Wall Sidewalk/Path ($33.0\text{ sq ft}$):** $3.0\text{ ft W} \times 11.0\text{ ft L}$ path (`wx = 27.0'–30.0', wy = 9.0'–20.0'`) right against the rear house foundation (no basement/window wells) connecting the concrete patio (`wy = 20.0'`) directly to the North side pad (`wy = 9.0'`).
+3. **Northern Garden Box Walkways & Borders ($94.0\text{ sq ft}$ net):** Surrounds all 5 raised cedar garden boxes (`wx = 4.0'–27.0', wy = 0.0'–8.0'`) so wheelbarrows roll seamlessly from the North gate to the boxes and patio.
+
+### 4.2 5 Raised Western Red Cedar Garden Boxes (`FIVE_NORTH_85` — `90.0 sq ft` Growing Area)
+* **Phased Rollout**: Started as an amended in-ground flat-dirt garden plot in **2028 (Phase 3)** (`$160` DIY soil prep, `$0` boxes) and upgraded in **2029 (Phase 4)** into **5 dark-espresso stained Western Red Cedar raised boxes** (`N1`–`N5`) with hardware cloth rodent mesh, $5.5\text{ cu yds}$ organic raised-bed soil/compost blend, and Zone 5 per-box grid drip manifolds.
+* **Dimensions & North–South Orientation ($8.5\text{ ft}$ Total to Grass)**:
+  * Each box measures **$3.0\text{ ft}$ wide (East–West) by $6.0\text{ ft}$ long (North–South)** ($18.0\text{ sq ft}$ each $= 90.0\text{ sq ft}$ total).
+  * $1.0\text{ ft}$ compacted road base clearance at the North white vinyl fence ($wy = 0.0'\text{–}1.0'$) + $6.0\text{ ft}$ N–S box length ($wy = 1.0'\text{–}7.0'$) + $1.0\text{ ft}$ South compacted road base clearance ($wy = 7.0'\text{–}8.0'$) + $6"$ ($0.5'$) flush Holland paver strip ($wy = 8.0'\text{–}8.5'$) = **$8.5\text{ ft}$ total from North fence to grass**.
+* **Exact East–West Box Coordinates ($wx = 4.0'\text{–}27.0'$, $1.75\text{ ft}$ Road Base Paths Between Boxes)**:
+  * `N1`: $wx = 5.0'\text{–}8.0'$
+  * `N2`: $wx = 9.75'\text{–}12.75'$
+  * `N3`: $wx = 14.5'\text{–}17.5'$
+  * `N4`: $wx = 19.25'\text{–}22.25'$
+  * `N5`: $wx = 24.0'\text{–}27.0'$
+
+---
+
+## 5. Open 2-Pillar Solid-Roof Patio Awning (`Option #1C`), Two $52"$ Lighted Ceiling Fans, L-Sectional & Propane Fire Table (`2030 Phase 5`)
+
+### 5.1 Structural & Architectural Specification (`21.0' N–S × 12.5' E–W = 262.5 sq ft` Existing Patio)
+1. **Why `Option #1C` (Solid Opaque Roof, 100% Open Sides, Zero Translucent Plastic) Is Locked In:**
+   * **Protects Furniture 24/7/365 While Staying 100% Open:** Blocks $100\%$ of UV fading, rain, snow, and debris so the L-sectional cushions and fire table are ready to use at a moment's notice, while keeping **all sides 100% open with NO privacy wall** so sightlines and airflow across the backyard and South side corridor remain unobstructed.
+   * **Zero Translucent Plastic:** Uses a **$100\%$ opaque $1\times 6$ Tongue-and-Groove (T&G) warm cedar wood ceiling deck underneath** and a **sleek matte-black standing-seam architectural steel roof on top** (unlike `#1A` open purlins which offer zero rain cover, or `#1B` polycarbonate plastic sheets which yellow, scratch, and show backlit dirt/leaves from underneath).
+2. **East Side (House Ledger Attachment at `wx = 30.0'` — ZERO Pillars Against the Home):**
+   * A $2\times 10$ or $2\times 12 \times 21.0\text{ ft}$ structural ledger board is lag-bolted directly into the house's 2nd-floor rim joist along the rear wall (`wx = 30.0', wy = 20.0'–41.0'`, $\approx 9.5'\text{–}10.0'$ height above the slab) above the sliding glass door and living room window.
+3. **West Side (`wx = 18.0'` — Strictly 2 Outer Corner Pillars, `0` Middle Posts, `0` Privacy Walls):**
+   * Supported strictly by **TWO $6\times 6$ or $8\times 8$ rough-sawn Western Red Cedar / #1 Douglas Fir posts** stained Dark Espresso / Kona Brown and anchored via matte-black powder-coated steel post bases (`Simpson Strong-Tie Outdoor Accents Avant APB66 / APB88` + `ZMAX Titen HD` concrete anchors) at:
+     * **Northwest Patio Pillar (`P1`):** `wx = 18.0', wy = 20.5'` ($6"$ inset from North/West slab edges)
+     * **Southwest Patio Pillar (`P2`):** `wx = 18.0', wy = 40.5'` ($6"$ inset from South/West slab edges)
+   * **Clear West Span ($20.0\text{ ft}$):** Spanned by a $21.0\text{ ft}$ continuous engineered $3.5"\times 11.875"$ exterior architectural Glulam header beam (or steel-flitch-plate double $2\times 12$ box beam) at $8.5'\text{–}9.0'$ underside clearance, reinforced by **$45^\circ$ heavy-timber corner knee braces** and matte-black `Simpson Outdoor Accents` steel T-straps (`APT6`).
+4. **Rafters, Solid Roof Assembly, Gutter & Buried PVC Downspout Tie-In:**
+   * Fourteen $2\times 8$ East–West rafters (`18" O.C.`) spanning $12.5\text{ ft}$ from the house ledger (`wx = 30.0'`) to the West header beam (`wx = 18.0'`) with a $12"$ notched West tail overhang (`wx = 17.0'`), topped with warm $1\times 6$ T&G Western Red Cedar ceiling decking facing downward, high-temp peel-and-stick ice-and-water underlayment, 26ga/24ga matte-black standing-seam steel roof panels, a matte-black $5"$ K-style front rain gutter (`wx = 17.0'`), and warm $2700\text{K}$ commercial shatterproof LED Edison bistro string lights.
+   * **Stormwater Tie-In (`163+ Gal` per `1"` Storm):** Route the $5"$ front rain gutter downspout down Northwest Patio Pillar `P1` (`wx = 18.0', wy = 20.5'`) directly into the **capped $4"$ smooth-wall PVC underground drain wye stub-out installed in `2027 Phase 2`** (see [`docs/04-irrigation-and-drainage.md`](./04-irrigation-and-drainage.md)) so zero patio roof water ever discharges onto the lawn or West wall bed.
+5. **Two $52"$ Outdoor Ceiling Fans with Built-In Dimmable Warm (`2700K`/`3000K`) LED Light Kits (`0%` Blade Strobing & `0` Roof-Deck Modification):**
+   * **Coordinates:** **North Fan `F1`** centered at `wx = 23.75', wy = 25.5'` and **South Fan `F2`** centered at `wx = 23.75', wy = 35.5'` ($10.0\text{ ft}$ on-center).
+   * **Engineering Rationale:** Mounted on $4"\text{–}6"$ downrods ($\approx 8.0'\text{–}8.2'$ blade clearance) to UL 70-lb fan-rated saddle boxes bolted to $2\times 8$ rafter cross-blocking, wired via `14/2 UF-B` to the existing rear patio `120V` circuit with wireless indoor smart dimmer/fan wall controls. Because the integrated dimmable warm LED light domes ($\approx 1,600\text{–}1,800\text{ lm}$ each = $3,200\text{–}3,600\text{ lm}$ total) sit **below the spinning $52"$ blades**, blade strobing is $100\%$ physically impossible and the single-layer $1\times 6$ T&G cedar ceiling requires zero recessed-can holes or double-deck sleeper framing.
+
+### 5.2 Two-Zone Patio Furniture Layout & Why Patio Placement Beats a Yard Corner Fire Pit
+* **North Zone (`wy = 20.0'–29.5'`, $9.5\text{ ft}$ wide):** Clear entry corridor from the $6.0\text{ ft}$ sliding glass door (`wy = 21.5'–27.5'`) and $3.0\text{ ft}$ rear compacted road base path (`wy = 9.0'–20.0'`), plus the stainless BBQ grill station (`wx = 28.0'–30.0', wy = 28.0'–31.0'`), cooled and lit overhead by North Ceiling Fan `F1` (`wx = 23.75', wy = 25.5'`).
+* **South Zone (`wy = 29.5'–41.0'`, $11.5\text{ ft}$ wide):** **L-Shaped Outdoor Lounge Sectional** on an $8'\times 10'$ outdoor rug centered around a **Long Rectangular Dual-Purpose Propane Fire Table** ($28"\times 48"$ to $32"\times 52"$, $50,000\text{ BTU}$, concealed $20\text{ lb}$ tank, flush metal burner lid that converts the pit into a full dining/coffee table), cooled and lit overhead by South Ceiling Fan `F2` (`wx = 23.75', wy = 35.5'`).
+* **Why Patio Placement Was Chosen Over a Yard Corner Pit or Paver Bump-Out:**
+  1. **Propane Eliminates Wood-Smoke Clearance Requirements:** Produces zero sparks or wood smoke and operates safely on the covered patio slab under the open-sided timber awning.
+  2. **Avoids the "Corner Trap" in a $30.0\text{ ft}$ Deep Backyard:** A dedicated yard corner fire pit requires a $12.5\text{ to }14.0\text{ ft}$ diameter gravel/paver circle ($\approx 150\text{ sq ft}$) plus a $3.0\text{ to }4.0\text{ ft}$ heat buffer from vinyl fencing and perimeter trees—pushing the pit center $9.5\text{ ft}$ out from the corner walls and colliding with the $12.5\text{ ft}$ patio in a $30.0\text{ ft}$ deep yard. Keeping the fire table on the existing $262.5\text{ sq ft}$ concrete slab preserves $100\%$ of the **$679\text{ sq ft}$ central emerald turf zone**, requires only **1 furniture set**, and costs **$\$0$ in extra hardscape excavation**.

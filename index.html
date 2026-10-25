@@ -41,12 +41,12 @@
         <a href="#model3d" class="px-2.5 py-1.5 rounded-lg hover:bg-slate-100 transition">3D Model</a>
         <a href="#budget" class="px-2.5 py-1.5 rounded-lg hover:bg-slate-100 transition">Budget (2026–2030)</a>
         <a href="#photos" class="px-2.5 py-1.5 rounded-lg hover:bg-slate-100 transition hidden md:inline-block">Current Photos</a>
-        <a href="Original%20Planning%20Information/model_3d_3152.html" target="_blank"
+        <a href="model_3d_3152.html" target="_blank"
            class="ml-1 inline-flex items-center gap-1 px-3 py-1.5 rounded-lg text-xs font-bold bg-amber-500 text-slate-950 hover:bg-amber-400 transition shadow-sm">
           <span>3D</span>
           <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
         </a>
-        <a href="Original%20Planning%20Information/cad_architectural_blueprint_3152.html" target="_blank"
+        <a href="cad_architectural_blueprint_3152.html" target="_blank"
            class="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg text-xs font-bold bg-emerald-700 text-white hover:bg-emerald-800 transition">
           <span>Designer</span>
           <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
@@ -148,7 +148,7 @@
         <button id="outer-btn-3d-sprinklers" onclick="toggle3DSprinklers(this)" class="px-2.5 py-1.5 rounded-lg text-xs font-bold bg-slate-200 text-slate-900 hover:bg-slate-300 transition" title="Toggle 5-Hydrozone Directional Sprinklers, Side-Strips & PC Drip in 3D">
           Sprinklers: OFF
         </button>
-        <a href="Original%20Planning%20Information/model_3d_3152.html" target="_blank"
+        <a href="model_3d_3152.html" target="_blank"
            class="ml-1 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold bg-slate-900 text-white hover:bg-slate-800 transition">
           <span>Fullscreen 3D</span>
           <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
@@ -159,7 +159,7 @@
     <div class="rounded-2xl overflow-hidden border border-slate-300 shadow-md bg-slate-950">
       <iframe
         id="model3d-iframe"
-        src="Original%20Planning%20Information/model_3d_3152.html"
+        src="model_3d_3152.html"
         title="Lot 3152 Interactive 1:1 3D Architectural & Landscape Model"
         class="w-full h-[640px] sm:h-[740px] border-0"
         loading="lazy">
@@ -199,7 +199,7 @@
         <button id="outer-btn-sprinklers" onclick="toggleDesignerOverlay('sprinklers', this)" class="px-2.5 py-1.5 rounded-lg text-xs font-bold bg-slate-200 text-slate-900 hover:bg-slate-300 transition" title="Toggle 5-Hydrozone Directional Head-to-Head Sprinklers & PC Drip">
           Sprinklers: OFF
         </button>
-        <a href="Original%20Planning%20Information/cad_architectural_blueprint_3152.html" target="_blank"
+        <a href="cad_architectural_blueprint_3152.html" target="_blank"
            class="ml-1 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold bg-slate-900 text-white hover:bg-slate-800 transition">
           <span>Fullscreen Designer</span>
           <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
@@ -210,7 +210,7 @@
     <div class="rounded-2xl overflow-hidden border border-slate-300 shadow-md bg-slate-950">
       <iframe
         id="blueprint-iframe"
-        src="Original%20Planning%20Information/cad_architectural_blueprint_3152.html"
+        src="cad_architectural_blueprint_3152.html"
         title="Lot 3152 Interactive Yard Designer"
         class="w-full h-[680px] sm:h-[780px] border-0">
       </iframe>
@@ -295,13 +295,16 @@
   <!-- 4. Current Property Photos -->
   <section id="photos" class="py-8 max-w-7xl mx-auto px-4 sm:px-6 w-full">
     <div class="flex flex-wrap items-center justify-between gap-2 mb-4">
-      <h2 class="text-lg font-bold text-slate-900">Current Yard</h2>
+      <h2 class="text-lg font-bold text-slate-900">Current Yard &amp; Rainfall Pooling</h2>
       <div class="flex flex-wrap gap-1.5">
         <button onclick="filterPhotos('ALL', this)" class="photo-filter-btn px-3 py-1 rounded-lg text-xs font-bold bg-emerald-700 text-white transition">
-          All (30)
+          All (33)
+        </button>
+        <button onclick="filterPhotos('RAIN_DRAINAGE', this)" class="photo-filter-btn px-3 py-1 rounded-lg text-xs font-bold bg-sky-100 text-sky-900 border border-sky-300 hover:bg-sky-200 transition">
+          Rain / Drainage (3)
         </button>
         <button onclick="filterPhotos('BACKYARD', this)" class="photo-filter-btn px-3 py-1 rounded-lg text-xs font-bold bg-slate-200 text-slate-800 hover:bg-slate-300 transition">
-          Backyard (13)
+          Backyard (16)
         </button>
         <button onclick="filterPhotos('FRONT_PARK', this)" class="photo-filter-btn px-3 py-1 rounded-lg text-xs font-bold bg-slate-200 text-slate-800 hover:bg-slate-300 transition">
           Front (9)
@@ -325,7 +328,7 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-between text-xs text-slate-500">
       <span class="font-semibold text-slate-700">Lot 3152</span>
       <div class="flex items-center gap-4">
-        <a href="Original%20Planning%20Information/cad_architectural_blueprint_3152.html" target="_blank" class="hover:text-emerald-700 underline">CAD Blueprint</a>
+        <a href="cad_architectural_blueprint_3152.html" target="_blank" class="hover:text-emerald-700 underline">CAD Blueprint</a>
         <a href="https://github.com/zowper/yard-planning" target="_blank" class="hover:text-emerald-700 underline">Markdown Specs</a>
       </div>
     </div>
@@ -572,6 +575,9 @@
     }
 
     const CURRENT_PHOTOS = [
+      { file: "rain_pooling_01_west_wall_from_patio.jpg", zone: "BACKYARD", isRain: true, tag: "Rain Pooling · West Wall Bed Trough (wx=0'–4.5')" },
+      { file: "rain_pooling_02_nw_downspout_and_north_trough.jpg", zone: "BACKYARD", isRain: true, tag: "Rain Pooling · NW Downspout Pipe & North Trough" },
+      { file: "rain_pooling_03_sw_downspout_and_south_trough.jpg", zone: "BACKYARD", isRain: true, tag: "Rain Pooling · SW Downspout Pipe & South Trough" },
       { file: "PXL_20261022_162032048.MP.jpg", zone: "FRONT_PARK", tag: "Front" },
       { file: "PXL_20261022_162046640.MP.jpg", zone: "FRONT_PARK", tag: "Front" },
       { file: "PXL_20261022_162056602.MP.jpg", zone: "FRONT_PARK", tag: "Front" },
@@ -621,17 +627,22 @@
       const grid = document.getElementById('current-photos-grid');
       const items = activePhotoFilter === 'ALL'
         ? CURRENT_PHOTOS
-        : CURRENT_PHOTOS.filter(p => p.zone === activePhotoFilter);
+        : activePhotoFilter === 'RAIN_DRAINAGE'
+          ? CURRENT_PHOTOS.filter(p => p.isRain)
+          : CURRENT_PHOTOS.filter(p => p.zone === activePhotoFilter);
 
       grid.innerHTML = items.map(p => {
         const thumbUrl = `photos_current_backyard/thumbs/${p.file}`;
         const fullUrl = `photos_current_backyard/${p.file}`;
+        const badgeClass = p.isRain
+          ? 'bg-sky-700/90 text-white border border-sky-300/60'
+          : 'bg-slate-900/75 text-white';
         return `
           <div class="relative aspect-[4/3] rounded-xl overflow-hidden bg-slate-200 border border-slate-200 cursor-pointer group"
                onclick="openLightbox('${thumbUrl}', '${p.tag}', '${fullUrl}')">
             <img src="${thumbUrl}" alt="${p.tag}" loading="lazy"
                  class="w-full h-full object-cover group-hover:scale-105 transition duration-300" />
-            <span class="absolute bottom-2 left-2 px-2 py-0.5 rounded text-[10px] font-bold bg-slate-900/75 text-white">
+            <span class="absolute bottom-2 left-2 px-2 py-0.5 rounded text-[10px] font-bold ${badgeClass}">
               ${p.tag}
             </span>
           </div>
@@ -659,15 +670,15 @@
       {
         year: '2026',
         phaseNum: 1,
-        title: 'South Vinyl Fence (50% Neighbor Split) & Person Gate (100% Ours)',
+        title: 'South Vinyl Fence (50% Neighbor Split), Person Gate (100% Ours) & Builder Warranty Grading Check',
         badgeColor: 'bg-emerald-100 text-emerald-900 border-emerald-300',
         hybridDefault: 'PRO',
-        summary: 'Enclose the South property line (57.5\' white vinyl fence split 50/50 with our South neighbor) and install our 9.0\' South pedestrian ("person") gate return at wx = 57.5\' over the continuous grass corridor (100% our cost; set back 2.2\' West of the SE stucco corner behind the meters).',
-        phaseNote: 'Cost-Split Rule: We split the 57.5\' shared South property-line fence & 8 line post footings 50/50 with our South neighbor (saving $1,210 Pro / $750 DIY), while paying 100% for our own 4.0\' walk gate, 5.0\' return wings, and gate hardware.',
+        summary: 'Enclose the South property line (57.5\' white vinyl fence split 50/50 with our South neighbor, with a 2" bottom-rail stormwater swale gap at wx = 0.0\'–6.0\'), install our 9.0\' South pedestrian ("person") gate return at wx = 57.5\' over the continuous grass corridor (100% our cost; set back 2.2\' West of the SE stucco corner behind the meters), and perform the $0 1-year builder warranty grading check on the settled West wall footing trench.',
+        phaseNote: 'Cost-Split & Drainage Rule: We split the 57.5\' shared South property-line fence & 8 line post footings 50/50 with our South neighbor (saving $1,210 Pro / $750 DIY), while paying 100% for our own 4.0\' walk gate, 5.0\' return wings, and gate hardware, and leaving a 2" bottom-rail clearance at wx = 0\'–6\' so heavy rain never dams behind the fence.',
         items: [
           {
-            name: 'South Property Line White Vinyl Privacy Fence (6\' Tall — 50% Neighbor Split)',
-            spec: '57.5 lin ft along South boundary (wx = 0.0\'–57.5\': 30.0\' backyard + 27.5\' South side yard) — Full fence cost ($2,420 Pro / $1,500 DIY) split 50/50 with South neighbor',
+            name: 'South Property Line White Vinyl Privacy Fence (6\' Tall — 50% Neighbor Split + 2" West Swale Gap)',
+            spec: '57.5 lin ft along South boundary (wx = 0.0\'–57.5\': 30.0\' backyard + 27.5\' South side yard, with 2" bottom-rail drainage clearance gap at wx = 0.0\'–6.0\' + $0 builder warranty West trench re-grade check) — Full fence cost ($2,420 Pro / $1,500 DIY) split 50/50 with South neighbor',
             qty: '57.5 lin ft (50% Share)',
             diyCost: 750,
             diyRange: '$675–$825',
@@ -697,16 +708,16 @@
       {
         year: '2027',
         phaseNum: 2,
-        title: 'North Fence/Gate + Sprinklers + Grass Seed (Under Gate) + All Pavers + Norwegian Sunset Maple & White Rock',
+        title: 'North Fence/Gate + Buried 4" PVC Downspout/Catch-Basin Drainage + Sprinklers + Pavers + Crowned West Bed/Seed & Front Yard',
         badgeColor: 'bg-teal-100 text-teal-900 border-teal-300',
         hybridDefault: 'DIY',
-        hybridBadgeLabel: 'Pro Fence + DIY Turf/Front',
-        summary: 'Install the 70.0\' North white vinyl fence (50/50 neighbor split) and our 8.5\' double-swing vehicle gate at wx = 70.0\' (100% our cost), trench the complete 6–8 zone underground sprinkler system, lay all ~206 lin ft of flush Holland paver mow strips (Front & Back, including the 6.0\' octagonal Norwegian Sunset Maple tree ring, 11.0\' rear compacted road base path edge, and continuous strips under the South gate), seed all 1,400 sq ft of lawn continuing under the South gate (saving $730+ vs. sod), and complete the Front Yard Norwegian Sunset Maple (centered at wx=83.0\', wy=39.5\' with its full recommended 20\'–25\' W space), continuous 2.0\' South planting bed to the green box, and white decorative rock in both 6.0\' park strips and the NE side yard up to the North gate (matching our South neighbors).',
-        phaseNote: '2027 Split Strategy: Laying both Front & Back flush pavers (~206 lin ft) and grass seed (1,400 sq ft continuing under the South gate) right after sprinkler trenching gives the entire yard a finished continuous lawn in Year 2 while deferring backyard trees, mulch, lighting & porch swing to 2028 (cutting 2027 by $2,300).',
+        hybridBadgeLabel: 'Pro Fence + DIY Drainage/Turf/Front',
+        summary: 'Install the 70.0\' North white vinyl fence (50/50 neighbor split) and our 8.5\' double-swing vehicle gate at wx = 70.0\' (100% our cost), bury 4" smooth-wall PVC roof downspout drain lines from the NW & SW rear corners sloped East to front pop-up emitters + 2× 9"×9" West lawn catch basins (wx=4.5\', wy=12\' & 38\') + a capped 4" stub-out (18.0\', 20.5\') for the 2030 Patio Awning gutter, trench the 5-hydrozone underground sprinkler system (with PRS40-CV check valves on low West heads B1–B5), lay all ~206 lin ft of flush Holland paver mow strips (with a 6" deepened geotextile + road-base trench along the 50\' West wall), crown the 4.0\' West Wall Bed +3"–4" above paver grade while seeding 1,400 sq ft of lawn continuing under the South gate, and complete the Front Yard Norwegian Sunset Maple (wx=83.0\', wy=39.5\'), Melinda\'s Hyacinths, and white decorative rock.',
+        phaseNote: '2027 Trench & Drainage Synergy: Burying the 4" smooth-wall PVC downspout drain lines and 2 West wall catch basins ($280 DIY) while the 2027 sprinkler and paver trenches are already open permanently eliminates West wall rainfall pooling before planting a single tree in 2028.',
         items: [
           {
-            name: 'North Property Line White Vinyl Privacy Fence (6\' Tall — 50% Neighbor Split)',
-            spec: '70.0 lin ft along North boundary (wx = 0.0\'–70.0\': 30.0\' backyard + 40.0\' North side yard) + 10 line post footings — Full cost ($3,180 Pro / $1,980 DIY) split 50/50 with North neighbor',
+            name: 'North Property Line White Vinyl Privacy Fence (6\' Tall — 50% Neighbor Split + 2" West Swale Gap)',
+            spec: '70.0 lin ft along North boundary (wx = 0.0\'–70.0\': 30.0\' backyard + 40.0\' North side yard, with 2" bottom-rail drainage gap at wx = 0.0\'–6.0\') + 10 line post footings — Full cost ($3,180 Pro / $1,980 DIY) split 50/50 with North neighbor',
             qty: '70.0 lin ft (50% Share)',
             hybridDefault: 'PRO',
             diyCost: 990,
@@ -725,8 +736,17 @@
             proRange: '$1,200–$1,500'
           },
           {
-            name: '5-Hydrozone Underground Sprinkler & PC Drip System (28 Directional Heads · 100% Head-to-Head · 0% Overspray)',
-            spec: '1" Febco 765 PVB backflow at N. hose bib (wx=51\', wy=8.6\'), 6/8-zone smart Wi-Fi controller in garage, M1/M2 valve manifolds, 2" Schedule 40 road-base sleeves, Zone 1 (15 Backyard PRS40 + MP Rotators, 5.32 GPM — zero spray on patio/awning), Zone 2 (4 South Paver MP Side-Strips, 0.88 GPM — 3.75\' N throw so zero water touches Open AC Unit or stucco), Zone 3 (9 SE Front PRS40 + MP Rotators, 3.49 GPM), Zone 4 (30 PSI PC Drip in W/S/Porch beds + Norwegian Sunset Maple root ring, 1.63 GPM) & Zone 5 (25 PSI Grid Drip stub-out for 5 Cedar Boxes, 1.38 GPM)',
+            name: 'Buried 4" Smooth-Wall PVC Roof Downspout, West Wall Catch-Basin & 2030 Awning Gutter Drainage System',
+            spec: 'Replaces the temporary black corrugated flex pipes on the NW (wx=30.0\', wy=9.0\') & SW (wx=30.0\', wy=41.0\') rear downspouts with ~140 lin ft of buried 4" smooth-wall PVC (SDR-35 / Schedule 40) solid drain pipe sloped East (1/8"–1/4"/ft) down the N & S side yards to front pop-up emitters (wx≈95\'), tied into 2× 9"×9" grated catch basins along the West lawn swale edge (wx=4.5\', wy=12.0\' & 38.0\') + 1× capped 4" wye stub-out at the NW patio corner (wx=18.0\', wy=20.5\') for the 2030 Solid-Roof Patio Awning gutter',
+            qty: '~140\' 4" PVC + 2 Catch Basins + 2 Pop-Ups',
+            diyCost: 280,
+            diyRange: '$230–$340',
+            proCost: 650,
+            proRange: '$550–$780'
+          },
+          {
+            name: '5-Hydrozone Underground Sprinkler & PC Drip System (28 Directional Heads w/ PRS40-CV Check Valves · 0% Overspray)',
+            spec: '1" Febco 765 PVB backflow at N. hose bib (wx=51\', wy=8.6\'), 6/8-zone smart Wi-Fi controller in garage, M1/M2 valve manifolds, 2" Schedule 40 road-base sleeves, Zone 1 (15 Backyard PRS40 + MP Rotators w/ PRS40-CV check-valve bodies on low West edge heads B1–B5 to prevent low-head drainage into West bed, 5.32 GPM — zero spray on patio/awning), Zone 2 (4 South Paver MP Side-Strips, 0.88 GPM — 3.75\' N throw so zero water touches Open AC Unit or stucco), Zone 3 (9 SE Front PRS40 + MP Rotators, 3.49 GPM), Zone 4 (30 PSI PC Drip in W/S/Porch beds + Norwegian Sunset Maple root ring, 1.63 GPM) & Zone 5 (25 PSI Grid Drip stub-out for 5 Cedar Boxes, 1.38 GPM)',
             qty: '5 Active Zones + 1 Spare (28 Heads · 12.70 GPM Total)',
             diyCost: 1350,
             diyRange: '$1,150–$1,550',
@@ -734,8 +754,8 @@
             proRange: '$2,900–$3,900'
           },
           {
-            name: 'Flush Lawn Paver Mow Strip — Front & Back (45° Chamfered Corners)',
-            spec: 'Installed everywhere grass meets mulch (including the 6.0\' octagonal Norwegian Sunset Maple tree ring), gravel/road base, or the home (continuing under the South gate along both sides of the lawn; no pavers where grass meets concrete driveway, patio, or sidewalk) — Home Depot Pavestone Holland Pavers (7.87"×3.94"×2.36"; 75\' Front + 131\' Back/Side including the 11.0\' rear road base path edge) + base & polymeric sand',
+            name: 'Flush Lawn Paver Mow Strip — Front & Back (45° Chamfered Corners + 6" Geotextile West Trench)',
+            spec: 'Installed everywhere grass meets mulch (including the 6.0\' octagonal Norwegian Sunset Maple tree ring), gravel/road base, or the home (continuing under the South gate along both sides of the lawn; no pavers where grass meets concrete driveway, patio, or sidewalk) — Home Depot Pavestone Holland Pavers (7.87"×3.94"×2.36"; 75\' Front + 131\' Back/Side, with a deepened 6" non-woven geotextile + 3"–4" compacted road-base trench along the 50\' West wall run to stop mud pumping & winter frost heave) + polymeric sand',
             qty: '206 lin ft (330–660 pcs)',
             diyCost: 450,
             diyRange: '$350–$565',
@@ -743,9 +763,9 @@
             proRange: '$1,150–$1,550'
           },
           {
-            name: 'Grass Seed & Topsoil Grading — Front & Back (Continuing Under South Gate)',
-            spec: '4 cu yds screened topsoil leveling + premium Kentucky Bluegrass / Perennial Rye / Turf-Type Tall Fescue seed blend across 555 sq ft SE Front, 679 sq ft Backyard & 110 sq ft South side wrap continuing directly under the wx = 57.5\' South gate + starter fertilizer & peat moss/tackifier mulch',
-            qty: '1,400 sq ft Seeded Lawn',
+            name: 'Crowned West Bed Grading (+3"–4") & Grass Seed / Topsoil Leveling — Front & Back (Continuing Under South Gate)',
+            spec: 'Backfill settled West precast wall footing trench and crown the 4.0\' West Wall Bed +3"–4" higher than the wx=4.0\'–4.5\' flush paver strip (shedding rainwater East to the lawn swale & catch basins and protecting the precast wall from efflorescence/spalling) + 4–5 cu yds screened topsoil leveling + premium Kentucky Bluegrass / Perennial Rye / Turf-Type Tall Fescue seed blend across 555 sq ft SE Front, 679 sq ft Backyard & 110 sq ft South side wrap continuing under the wx = 57.5\' South gate',
+            qty: '1,400 sq ft Seeded Lawn + Crowned West Bed',
             diyCost: 320,
             diyRange: '$250–$390',
             proCost: 950,
@@ -765,15 +785,15 @@
       {
         year: '2028',
         phaseNum: 3,
-        title: 'Backyard \'Standing Ovation\' Serviceberries/Mulch (In-Ground Garden & Open AC Unit) + Lighting + Porch Swing',
+        title: 'Backyard \'Standing Ovation\' Serviceberries/Mulch (Planted +2"–3" Proud on Crowned West Bed) + Lighting + Porch Swing',
         badgeColor: 'bg-indigo-100 text-indigo-900 border-indigo-300',
         hybridDefault: 'DIY',
-        summary: 'Plant the West Wall 5+4 Designer Hybrid trees (5× \'Standing Ovation\' Serviceberry pillars with snow-white spring blossoms, summer Juneberries & fiery red-orange fall foliage + 4× Evergreen Column Junipers) & 10-spot perennial under-story, plant the 2.0\' South fence berry/kiwi/pea trellis & shade bed (connecting into the front-yard South bed to the green box; AC unit remains completely open with no cover or shroud), till the 8\'×23\' in-ground flat-dirt vegetable garden, bury low-voltage wire right before laying 3.5 cu yds of backyard bark mulch, install all 2700K Front & Back LED lighting, and hang the 3152 front porch swing looking out over Melinda\'s hyacinths.',
-        phaseNote: 'Sequencing Win: Burying the 12/2 low-voltage landscape wire in the bare backyard perimeter beds right before laying weed barrier fabric and 3.5 cu yds of bark mulch avoids ever digging up finished mulch later, and brings lighting & the porch swing 3 years sooner.',
+        summary: 'Plant the West Wall 5+4 Designer Hybrid trees (5× \'Standing Ovation\' Serviceberry pillars with snow-white spring blossoms, summer Juneberries & fiery red-orange fall foliage + 4× Evergreen Column Junipers planted with root flares +2"–3" proud of the crowned +3"–4" West bed grade to prevent wet feet / root rot) & 10-spot perennial under-story, plant the 2.0\' South fence berry/kiwi/pea trellis & shade bed (connecting into the front-yard South bed to the green box; AC unit remains completely open with no cover or shroud), till the 8\'×23\' in-ground flat-dirt vegetable garden, bury low-voltage wire right before laying 3.5 cu yds of backyard bark mulch, install all 2700K Front & Back LED lighting, and hang the 3152 front porch swing looking out over Melinda\'s hyacinths.',
+        phaseNote: 'Sequencing & Root-Health Win: Planting the 4 Junipers and 5 Serviceberries with root flares +2"–3" proud on the crowned 4.0\' West bed prevents Phytophthora root rot, while burying 12/2 low-voltage wire right before laying weed fabric and 3.5 cu yds of bark mulch avoids ever digging up finished mulch later.',
         items: [
           {
-            name: 'Western Wall Trees (5+4 Designer Hybrid: \'Standing Ovation\' Serviceberries + Junipers) & 10-Spot Under-Story',
-            spec: '5× \'Standing Ovation\' Serviceberry Columnar Pillars (Amelanchier alnifolia \'Obelisk\', centered in the 5 panels at wy = 5\',15\',25\',35\',45\' — snow-white spring blossoms for Melinda, sweet purple-blue summer Juneberries & fiery fall color) + 4× Upright Evergreen Column Junipers ($20 Home Depot or \'Taylor\' Junipers at the 4 interior columns) + 10-spot under-story of Catmint/Russian Sage, Coneflower & Karl Foerster Grasses',
+            name: 'Western Wall Trees (5+4 Designer Hybrid: \'Standing Ovation\' Serviceberries + Junipers Planted +2"–3" Proud) & Under-Story',
+            spec: '5× \'Standing Ovation\' Serviceberry Columnar Pillars (Amelanchier alnifolia \'Obelisk\', centered in the 5 panels at wy = 5\',15\',25\',35\',45\' — snow-white spring blossoms for Melinda, sweet purple-blue summer Juneberries & fiery fall color) + 4× Upright Evergreen Column Junipers ($20 Home Depot or \'Taylor\' Junipers at the 4 interior columns) planted with root flares 2"–3" above the crowned +3"–4" West bed grade (80% native soil + 20% compost/expanded shale for drainage) + 10-spot under-story of Catmint/Russian Sage, Coneflower & Karl Foerster Grasses',
             qty: '9 Trees + 15 Perennials',
             diyCost: 890,
             diyRange: '$490–$1,030',
@@ -842,7 +862,7 @@
         title: 'North Compacted Road Base Pad + Rear Road Base Path + 5 Raised Cedar Garden Beds & Road Base Walkways',
         badgeColor: 'bg-lime-100 text-lime-900 border-lime-300',
         hybridDefault: 'DIY',
-        summary: 'Install the 9.0\' × 40.0\' North side compacted road base utility pad (inside the wx = 70.0\' gate) and 3.0\' × 11.0\' rear house compacted road base path to the patio, build the 5 North-to-South raised cedar garden boxes (N1–N5), connect dedicated grid drip manifolds, and compact the 94 sq ft of road base walkways around the garden boxes from the same bulk road base delivery.',
+        summary: 'Install the 9.0\' × 40.0\' North side compacted road base utility pad (inside the wx = 70.0\' gate, directly over the buried 2027 2" Sch 40 irrigation sleeves and 4" smooth-wall PVC storm drain line) and 3.0\' × 11.0\' rear house compacted road base path to the patio, build the 5 North-to-South raised cedar garden boxes (N1–N5), connect dedicated grid drip manifolds, and compact the 94 sq ft of road base walkways around the garden boxes from the same bulk road base delivery.',
         phaseNote: 'Single Bulk Delivery & Compactor Synergy: Combining the 360.0 sq ft North utility pad (inside the gate), 33.0 sq ft rear path to the patio, and 94.0 sq ft around the garden boxes into one ~11.0-ton Utah 3/4"-minus road base delivery and a single plate-compactor rental saves ~$3,350 vs. poured concrete and finishes the North corridor in one weekend.',
         items: [
           {
@@ -886,15 +906,15 @@
       {
         year: '2030',
         phaseNum: 5,
-        title: 'Option #1C Open Solid-Roof 2-Pillar Timber Patio Awning, 2 Lighted Ceiling Fans, L-Sectional & Propane Fire Table',
+        title: 'Option #1C Open Solid-Roof 2-Pillar Timber Patio Awning (Gutter Tied to 4" Drain), 2 Lighted Ceiling Fans, L-Sectional & Fire Table',
         badgeColor: 'bg-amber-100 text-amber-950 border-amber-300',
         hybridDefault: 'DIY',
-        summary: 'Complete the 5-year master plan by outfitting the existing 21.0\' × 12.5\' (262.5 sq ft) backyard concrete patio with the locked Option #1C house-attached 2-pillar dark-espresso timber awning — 100% open on all sides with no privacy wall (2 outer West corner pillars, 0 pillars against the home) — featuring a 100% solid opaque roof (1×6 T&G cedar wood ceiling underneath + matte-black standing-seam steel roof & front rain gutter on top), 2× 52" outdoor ceiling fans with built-in dimmable warm (2700K/3000K) LED light kits (0% blade strobing & 0 roof-deck modification), L-shaped sectional furniture, and a long rectangular propane fire table.',
-        phaseNote: 'Integrated Fan Lighting Win: Mounting the dimmable warm LED lights directly inside the two 52" ceiling fans (below the spinning blades at wx = 23.75\', wy = 25.5\' & 35.5\') 100% eliminates fan-blade strobing, keeps the single-layer 1×6 T&G cedar ceiling intact with only 2 wire runs, and saves ~$450–$1,500 vs. 9 recessed wafer lights.',
+        summary: 'Complete the 5-year master plan by outfitting the existing 21.0\' × 12.5\' (262.5 sq ft) backyard concrete patio with the locked Option #1C house-attached 2-pillar dark-espresso timber awning — 100% open on all sides with no privacy wall (2 outer West corner pillars, 0 pillars against the home) — featuring a 100% solid opaque roof (1×6 T&G cedar wood ceiling underneath + matte-black standing-seam steel roof & front rain gutter on top with its NW downspout connected directly into the 2027 buried 4" PVC drain stub-out), 2× 52" outdoor ceiling fans with built-in dimmable warm (2700K/3000K) LED light kits (0% blade strobing & 0 roof-deck modification), L-shaped sectional furniture, and a long rectangular propane fire table.',
+        phaseNote: 'Integrated Fan Lighting & Gutter Drainage Win: Mounting the dimmable warm LED lights inside the two 52" ceiling fans (below the spinning blades at wx = 23.75\', wy = 25.5\' & 35.5\') 100% eliminates fan-blade strobing, while dropping the awning\'s NW gutter downspout straight into the 2027 buried 4" PVC drain wye at (18.0\', 20.5\') sends 100% of the 262.5 sq ft awning roof runoff underground to the street.',
         items: [
           {
             name: 'Option #1C: House-Attached 2-Pillar Heavy-Timber Patio Awning — 100% Open on All Sides, No Privacy Wall (21.0\' × 12.5\')',
-            spec: 'Ledger-mounted to rear house wall (wx = 30.0\') with ONLY 2 pillars (6×6 or 8×8) on the outer West corners (wx = 18.0\', wy = 20.5\' & 40.5\'), 0 pillars against the home, and 0 privacy walls/screens (100% open on all sides); 21.0\' clear-span Glulam/flitch West beam, 45° knee braces, Simpson black steel hardware, warm 1×6 tongue-and-groove cedar ceiling decking underneath + matte-black standing-seam architectural steel roof & front rain gutter on top (zero translucent plastic)',
+            spec: 'Ledger-mounted to rear house wall (wx = 30.0\') with ONLY 2 pillars (6×6 or 8×8) on the outer West corners (wx = 18.0\', wy = 20.5\' & 40.5\'), 0 pillars against the home, and 0 privacy walls/screens (100% open on all sides); 21.0\' clear-span Glulam/flitch West beam, 45° knee braces, Simpson black steel hardware, warm 1×6 tongue-and-groove cedar ceiling decking underneath + matte-black standing-seam architectural steel roof & front rain gutter on top (zero translucent plastic, with NW pillar downspout at wx=18.0\', wy=20.5\' tied directly into the 2027 buried 4" PVC storm drain stub-out)',
             qty: '1 Open Solid-Roof 2-Pillar Awning (#1C)',
             diyCost: 2950,
             diyRange: '$2,650–$3,450',
@@ -1159,7 +1179,7 @@
       if (iframe && iframe.contentWindow && typeof iframe.contentWindow.setRenderStyle === 'function') {
         iframe.contentWindow.setRenderStyle(mode);
       } else if (iframe) {
-        iframe.src = `Original%20Planning%20Information/cad_architectural_blueprint_3152.html?style=${mode}`;
+        iframe.src = `cad_architectural_blueprint_3152.html?style=${mode}`;
       }
     }
 
