@@ -899,16 +899,30 @@
       const whiteRockFill = isDrone ? 'url(#drone-white-rocks)' : (isColor ? '#f1f5f9' : 'rgba(241, 245, 249, 0.32)');
       const whiteRockStroke = isDrone ? '#cbd5e1' : (isColor ? '#94a3b8' : '#e2e8f0');
 
+      // Helper to build an 8-vertex 45°-chamfered octagon around (cx, cy) with flat-side apothem aFt (flat-to-flat width = 2 * aFt)
+      const buildOctagonPts = (cx, cy, aFt) => {
+        const rVert = aFt / Math.cos(Math.PI / 8);
+        const pts = [];
+        for (let i = 0; i < 8; i++) {
+          const ang = (i * Math.PI) / 4 + Math.PI / 8;
+          pts.push([cx + Math.cos(ang) * rVert, cy + Math.sin(ang) * rVert]);
+        }
+        return pts;
+      };
+      const mapleOctInnerPts = buildOctagonPts(SE_MAPLE_WX, SE_MAPLE_WY, 2.50); // 5.0' × 5.0' flat-to-flat inner mulch octagon
+      const mapleOctMidPts   = buildOctagonPts(SE_MAPLE_WX, SE_MAPLE_WY, 2.75); // 5.5' × 5.5' centerline of 6" (0.50') Holland paver ring
+      const mapleOctOuterPts = buildOctagonPts(SE_MAPLE_WX, SE_MAPLE_WY, 3.00); // 6.0' × 6.0' flat-to-flat outer paver edge (lawn cutout)
+
       if (L.frontBeds) {
-        // Continuous 2.0' South planting bed in the front yard (wx=57.5'–96.7', wy=48.0'–50.0') all the way to the 3-sided green utility box bed
+        // Continuous 2.0' South planting bed in the front yard (wx=57.5'–96.7', wy=48.0'–50.0') with single clean 45° chamfer around green utility box
         const frontSouthBedToBoxPoly = projectPoly([
-          [LOCKED_SOUTH_GATE_WX, 48.0], [88.6, 48.0], [90.75, 45.6], [90.75, 44.4],
-          [92.1, 43.0], [96.7, 43.0], [96.7, 50.0], [LOCKED_SOUTH_GATE_WX, 50.0]
+          [LOCKED_SOUTH_GATE_WX, 48.0], [87.35, 48.0], [91.85, 43.5], [96.7, 43.5],
+          [96.7, 50.0], [LOCKED_SOUTH_GATE_WX, 50.0]
         ]);
-        // 2.0' Front-of-porch and South-of-porch foundation planting bed (leaving wy=43.5'–47.5' open for continuous grass under the gate!)
+        // 2.0' Front-of-porch and South-of-porch foundation planting bed (stopping at inner edge of 6" paver, leaving wy=43.5'–47.5' open for grass!)
         const frontPorchBedPoly = projectPoly([
-          [LOCKED_SOUTH_GATE_WX, 41.0], [65.7, 41.0], [65.7, 32.5], [68.0, 32.5],
-          [68.0, 41.35], [66.05, 43.25], [LOCKED_SOUTH_GATE_WX, 43.25]
+          [LOCKED_SOUTH_GATE_WX, 41.0], [65.7, 41.0], [65.7, 32.5], [67.7, 32.5],
+          [67.7, 41.25], [65.95, 43.0], [LOCKED_SOUTH_GATE_WX, 43.0]
         ]);
         // White decorative rock in NE side yard going up to North side yard (stopping at wx=70.0' fence) + both 6.0' street park strips
         const neWhiteRockPoly = projectPoly([
@@ -951,28 +965,32 @@
         out.push(`<rect x="${gBed.x.toFixed(1)}" y="${gBed.y.toFixed(1)}" width="${gBed.width.toFixed(1)}" height="${gBed.height.toFixed(1)}" fill="${gRockFill}" stroke="#94a3b8" stroke-width="1.1"/>`);
       }
 
-      // 8. PHASE 2 (2027) UNIFIED CONTINUOUS LAWN TURF (Continuing Under South Gate Into Front Yard!)
+      // 8. PHASE 2 (2027) UNIFIED CONTINUOUS LAWN TURF (With True 6.0'×6.0' Octagonal Cutout Around Norwegian Sunset Maple!)
       const unifiedLawnPts = [
         [4.5, 10.5], [6.5, 8.5], [25.0, 8.5], [26.5, 10.0], [26.5, 20.0],
         [17.5, 20.0], [17.5, 41.0], [30.0, 41.0], [32.5, 43.5],
-        [66.05, 43.5], [68.2, 41.35], [68.2, 32.5], [81.0, 32.5], [81.0, 29.0], [96.7, 29.0],
-        [96.7, 43.0], [92.0, 43.0], [90.5, 44.5], [90.5, 45.5], [88.5, 47.5],
+        [66.15, 43.5], [68.2, 41.45], [68.2, 32.5], [81.0, 32.5], [81.0, 29.0], [96.7, 29.0],
+        [96.7, 43.0], [91.65, 43.0], [87.15, 47.5],
         [6.5, 47.5], [4.5, 45.5]
       ];
       if (L.grass) {
         const turfFill = isDrone ? 'url(#drone-turf)' : (isColor ? '#22c55e' : 'rgba(16, 185, 129, 0.25)');
         const turfStroke = isDrone ? '#14532d' : (isColor ? '#15803d' : '#10b981');
+        const ptsToSubpath = (pts) => pts.map(([wx, wy], idx) => {
+          const p = project(wx, wy);
+          return `${idx === 0 ? 'M' : 'L'} ${p.x.toFixed(1)} ${p.y.toFixed(1)}`;
+        }).join(' ') + ' Z';
+        const lawnPathD = `${ptsToSubpath(unifiedLawnPts)} ${ptsToSubpath(mapleOctOuterPts)}`;
         out.push(`
-          <polygon points="${projectPoly(unifiedLawnPts)}" fill="${turfFill}" stroke="${turfStroke}" stroke-width="1.2"/>
+          <path d="${lawnPathD}" fill="${turfFill}" fill-rule="evenodd" stroke="${turfStroke}" stroke-width="1.2"/>
         `);
       }
 
-      // 8B. RECOMMENDED 6.0' DIAMETER (3.0' RADIUS) MULCHED ROOT-FLARE TREE RING FOR NORWEGIAN SUNSET MAPLE (wx=83.0', wy=39.5')
+      // 8B. RECOMMENDED 45°-CHAMFERED OCTAGONAL MULCHED ROOT-FLARE BED FOR NORWEGIAN SUNSET MAPLE (wx=83.0', wy=39.5')
+      //     5.0' × 5.0' flat-to-flat inner mulch bed (6.0' × 6.0' outer footprint with 6" flush Holland paver mow strip)
       if (L.frontBeds) {
-        const mapleRingPt = project(SE_MAPLE_WX, SE_MAPLE_WY);
-        const mapleRingRad = 3.0 * SCALE;
         out.push(`
-          <circle cx="${mapleRingPt.x.toFixed(1)}" cy="${mapleRingPt.y.toFixed(1)}" r="${mapleRingRad.toFixed(1)}" fill="${mulchFill}" stroke="${mulchStroke}" stroke-width="1.1"/>
+          <polygon points="${projectPoly(mapleOctInnerPts)}" fill="${mulchFill}" stroke="${mulchStroke}" stroke-width="1.1"/>
         `);
       }
 
@@ -990,17 +1008,13 @@
         out.push(`</g>`);
       }
 
-      // 10. PHASE 2 (2027) CONTINUOUS 6" HOLLAND PAVERS WITH 45° CHAMFERED CORNERS (Continuing Under South Gate + 6' Tree Ring!)
+      // 10. PHASE 2 (2027) CONTINUOUS 6" HOLLAND PAVERS WITH 45° CHAMFERED CORNERS (Perimeter + Mitered Octagonal Tree Ring!)
       if (L.pavers) {
-        const treeOctPts = [];
-        for (let i = 0; i <= 8; i++) {
-          const ang = (i * Math.PI) / 4 + Math.PI / 8;
-          treeOctPts.push([SE_MAPLE_WX + Math.cos(ang) * 3.15, SE_MAPLE_WY + Math.sin(ang) * 3.15]);
-        }
+        const treeOctClosedPts = [...mapleOctMidPts, mapleOctMidPts[0]];
         const paverChains = [
-          [[30.0, 41.0], [32.6, 43.25], [66.05, 43.25], [67.95, 41.35], [67.95, 32.5]],
-          [[26.75, 20.0], [26.75, 10.15], [24.85, 8.25], [6.4, 8.25], [4.25, 10.4], [4.25, 45.6], [6.4, 47.75], [88.6, 47.75], [90.75, 45.6], [90.75, 44.4], [92.1, 43.25], [96.7, 43.25]],
-          treeOctPts
+          [[30.0, 41.0], [32.25, 43.25], [66.05, 43.25], [67.95, 41.35], [67.95, 32.5]],
+          [[26.75, 20.0], [26.75, 10.15], [24.85, 8.25], [6.4, 8.25], [4.25, 10.4], [4.25, 45.6], [6.4, 47.75], [87.25, 47.75], [91.75, 43.25], [96.7, 43.25]],
+          treeOctClosedPts
         ];
         paverChains.forEach(chain => {
           const ptsStr = chain.map(([wx, wy]) => {
@@ -1009,13 +1023,13 @@
           }).join(' ');
           if (isDrone) {
             out.push(`
-              <polyline points="${ptsStr}" fill="none" stroke="#1e293b" stroke-width="${(0.58 * SCALE).toFixed(1)}" stroke-linecap="square" stroke-linejoin="bevel"/>
-              <polyline points="${ptsStr}" fill="none" stroke="#94a3b8" stroke-width="${(0.44 * SCALE).toFixed(1)}" stroke-dasharray="5,1.5" stroke-linejoin="bevel"/>
+              <polyline points="${ptsStr}" fill="none" stroke="#1e293b" stroke-width="${(0.50 * SCALE).toFixed(1)}" stroke-linecap="butt" stroke-linejoin="miter"/>
+              <polyline points="${ptsStr}" fill="none" stroke="#94a3b8" stroke-width="${(0.40 * SCALE).toFixed(1)}" stroke-dasharray="5,1.5" stroke-linejoin="miter"/>
             `);
           } else {
             out.push(`
-              <polyline points="${ptsStr}" fill="none" stroke="#334155" stroke-width="${(0.55 * SCALE).toFixed(1)}" stroke-linecap="square" stroke-linejoin="bevel"/>
-              <polyline points="${ptsStr}" fill="none" stroke="#2dd4bf" stroke-width="2.0" stroke-dasharray="4,2.5" stroke-linejoin="bevel"/>
+              <polyline points="${ptsStr}" fill="none" stroke="#334155" stroke-width="${(0.50 * SCALE).toFixed(1)}" stroke-linecap="butt" stroke-linejoin="miter"/>
+              <polyline points="${ptsStr}" fill="none" stroke="#2dd4bf" stroke-width="2.0" stroke-dasharray="4,2.5" stroke-linejoin="miter"/>
             `);
           }
         });
@@ -1127,7 +1141,7 @@
           { id: 'F4', wx: 88.80, wy: 29.25, rad: 7.6,  sDeg: 0,     eDeg: 180,   nozzle: 'MP800SR-90 (180° S)' },
           { id: 'F5', wx: 96.40, wy: 29.25, rad: 13.5, sDeg: 90,    eDeg: 180,   nozzle: 'MP1000-90 (90° SW)' },
           { id: 'F6', wx: 96.40, wy: 42.75, rad: 13.5, sDeg: 180,   eDeg: 270,   nozzle: 'MP1000-90 (90° NW)' },
-          { id: 'F7', wx: 88.20, wy: 47.25, rad: 14.0, sDeg: 180,   eDeg: 300,   nozzle: 'MP1000-90 (120° NNW)' },
+          { id: 'F7', wx: 87.00, wy: 47.25, rad: 14.0, sDeg: 180,   eDeg: 315,   nozzle: 'MP1000-90 (135° NW)' },
           { id: 'F8', wx: 77.50, wy: 47.25, rad: 11.0, sDeg: 180,   eDeg: 360,   nozzle: 'MP1000-90 (180° N)' },
           { id: 'F9', wx: 68.40, wy: 41.50, rad: 11.0, sDeg: -67.5, eDeg: 67.5,  nozzle: 'MP1000-90 (135° E)' }
         ];
@@ -1448,8 +1462,8 @@
         // 2. Melinda's Fragrant Jewel-Toned Hyacinth Drift in the 2' Porch-Front Bed (right in front of the 3152 Porch Swing!) & South Bed
         const hyacinthPalette = ['#9333ea', '#2563eb', '#ec4899', '#f8fafc', '#c084fc'];
         const hyacinthCoords = [
-          [66.1, 31.8], [66.1, 33.0], [66.1, 34.2], [66.1, 35.4], [66.1, 36.6],
-          [66.1, 37.8], [66.1, 39.0], [66.1, 40.2], [66.1, 41.4], [66.1, 42.4],
+          [66.5, 33.2], [66.5, 34.2], [66.5, 35.2], [66.5, 36.2], [66.5, 37.2],
+          [66.5, 38.2], [66.5, 39.2], [66.5, 40.2], [66.5, 41.2], [65.8, 42.1],
           [67.5, 49.0], [70.0, 49.0], [72.5, 49.0], [75.0, 49.0], [77.5, 49.0], [80.0, 49.0], [82.5, 49.0], [85.0, 49.0], [87.5, 49.0]
         ];
         hyacinthCoords.forEach(([hx, hy], idx) => {
@@ -1459,7 +1473,7 @@
         });
 
         // 3. 3-Sided Utility Box Grass Screen & 6.0' Street Park Strip Perennials
-        [[92.0, 44.4], [94.7, 44.4], [91.8, 46.8], [103.5, 3.5], [103.5, 7.5], [103.5, 35.0], [103.5, 41.0], [103.5, 46.5]].forEach(([px, py]) => {
+        [[92.4, 44.5], [94.8, 44.5], [91.8, 46.8], [103.5, 3.5], [103.5, 7.5], [103.5, 35.0], [103.5, 41.0], [103.5, 46.5]].forEach(([px, py]) => {
           const pt = project(px, py);
           out.push(`<circle cx="${pt.x.toFixed(1)}" cy="${pt.y.toFixed(1)}" r="${(0.65 * SCALE).toFixed(1)}" fill="#15803d" stroke="#86efac" stroke-width="1"/>`);
         });
