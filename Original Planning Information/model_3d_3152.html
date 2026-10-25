@@ -64,7 +64,7 @@
     <div class="flex items-center gap-2.5 min-w-0">
       <button onclick="window.toggleLeftPanel()" id="left-panel-btn"
               class="px-2.5 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold flex items-center gap-1.5 shadow transition shrink-0"
-              title="Toggle 2026–2031 Phases & 3D Layers">
+              title="Toggle 2026–2030 Phases & 3D Layers">
         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/>
         </svg>
@@ -165,10 +165,10 @@
         3. West Wall (5+4 Hybrid &amp; 45&deg; Pavers)
       </button>
       <button onclick="window.goToCameraPreset('NW_FIVE_PLANTERS', this)" class="cam-preset-btn px-2.5 py-1 rounded-lg text-[11px] font-semibold bg-slate-800 text-slate-200 hover:bg-slate-700 transition">
-        4. 5 Cedar Planters &amp; 3' Rear Walk
+        4. 5 Cedar Planters &amp; 3' Road Base Path
       </button>
       <button onclick="window.goToCameraPreset('NORTH_CEMENT_PAD', this)" class="cam-preset-btn px-2.5 py-1 rounded-lg text-[11px] font-semibold bg-slate-800 text-slate-200 hover:bg-slate-700 transition">
-        5. North 9' Cement Pad &amp; 8.5' Gate
+        5. North 9' Road Base Pad &amp; 8.5' Gate
       </button>
       <button onclick="window.goToCameraPreset('SOUTH_GRASS_CORRIDOR', this)" class="cam-preset-btn px-2.5 py-1 rounded-lg text-[11px] font-semibold bg-slate-800 text-slate-200 hover:bg-slate-700 transition">
         6. South 4'+ Grass Wrap &amp; 4' Gate
@@ -189,7 +189,7 @@
   <!-- ==================== MAIN WORKSPACE ==================== -->
   <div class="flex-1 flex overflow-hidden relative">
 
-    <!-- LEFT DRAWER: PHASE MILESTONES (2026–2031) & INDIVIDUAL 3D LAYER TOGGLES -->
+    <!-- LEFT DRAWER: PHASE MILESTONES (2026–2030) & INDIVIDUAL 3D LAYER TOGGLES -->
     <aside id="left-layer-panel"
            class="w-80 bg-slate-900/95 backdrop-blur-md border-r border-slate-800 flex flex-col shrink-0 z-20 transition-all duration-200 overflow-hidden">
 
@@ -207,9 +207,9 @@
           </div>
         </div>
         <p class="text-[10px] text-slate-400 mb-2">
-          Preview how Lot 3152 looks in 3D at the end of each year from 2026 to 2031:
+          Preview how Lot 3152 looks in 3D at the end of each year from 2026 to 2030:
         </p>
-        <div class="grid grid-cols-4 gap-1">
+        <div class="grid grid-cols-3 gap-1">
           <button onclick="window.applyYearMilestone(2025)" id="mile-2025"
                   class="mile-btn px-1.5 py-1 rounded text-[10px] font-mono-cad font-bold bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 transition">
             Baseline
@@ -223,20 +223,16 @@
             2027 · P2
           </button>
           <button onclick="window.applyYearMilestone(2028)" id="mile-2028"
-                  class="mile-btn px-1.5 py-1 rounded text-[10px] font-mono-cad font-bold bg-slate-800 hover:bg-slate-700 text-sky-300 border border-sky-500/30 transition">
+                  class="mile-btn px-1.5 py-1 rounded text-[10px] font-mono-cad font-bold bg-slate-800 hover:bg-slate-700 text-indigo-300 border border-indigo-500/30 transition">
             2028 · P3
           </button>
           <button onclick="window.applyYearMilestone(2029)" id="mile-2029"
-                  class="mile-btn px-1.5 py-1 rounded text-[10px] font-mono-cad font-bold bg-slate-800 hover:bg-slate-700 text-amber-300 border border-amber-500/30 transition">
+                  class="mile-btn px-1.5 py-1 rounded text-[10px] font-mono-cad font-bold bg-slate-800 hover:bg-slate-700 text-lime-300 border border-lime-500/30 transition">
             2029 · P4
           </button>
           <button onclick="window.applyYearMilestone(2030)" id="mile-2030"
-                  class="mile-btn px-1.5 py-1 rounded text-[10px] font-mono-cad font-bold bg-slate-800 hover:bg-slate-700 text-lime-300 border border-lime-500/30 transition">
-            2030 · P5
-          </button>
-          <button onclick="window.applyYearMilestone(2031)" id="mile-2031"
-                  class="mile-btn col-span-2 px-1.5 py-1 rounded text-[10px] font-mono-cad font-bold bg-emerald-600 text-white border border-emerald-400 shadow transition">
-            2031 · Complete (All)
+                  class="mile-btn px-1.5 py-1 rounded text-[10px] font-mono-cad font-bold bg-emerald-600 text-white border border-emerald-400 shadow transition">
+            2030 · Complete
           </button>
         </div>
       </div>
@@ -278,10 +274,10 @@
           </span>
         </div>
         <h3 id="insp-title" class="text-xs sm:text-sm font-bold text-white">
-          Lot 3152 — Complete 3D Master Plan (2026–2031)
+          Lot 3152 — Complete 3D Master Plan (2026–2030)
         </h3>
         <p id="insp-desc" class="text-[11px] text-slate-300 mt-0.5 leading-relaxed">
-          Drag to orbit 360&deg;, scroll to zoom, right-click to pan, or click any 3D pin or camera preset above to inspect the Option #1C 2-pillar solid-roof patio awning, 5+4 West wall hybrid trees, 5 cedar garden beds, and 45&deg; Holland pavers.
+          Drag to orbit 360&deg;, scroll to zoom, right-click to pan, or click any 3D pin or camera preset above to inspect the Option #1C 2-pillar solid-roof patio awning, 5+4 West wall hybrid trees, 5 cedar garden beds, compacted road base pad/path, and 45&deg; Holland pavers.
         </p>
       </div>
 
@@ -327,23 +323,24 @@
         northGate: true,
         pavers: true,
         grass: true,
+        frontBeds: true,
+        frontPlants: true,
+        irrigation: false,
+        // Phase 3 (2028)
         beds: true,
         westWallPlants: true,
         yardPlants: true,
-        irrigation: false,
-        // Phase 3 (2028)
+        lighting: true,
+        porchSwing: true,
+        // Phase 4 (2029)
         northCementPad: true,
         rearSidewalk: true,
-        // Phase 4 (2029)
-        patioAwning: true,
-        patioFurniture: true,
-        // Phase 5 (2030)
         planters: true,
         gardenRock: true,
         gardenDrip: true,
-        // Phase 6 (2031)
-        lighting: true,
-        porchSwing: true
+        // Phase 5 (2030)
+        patioAwning: true,
+        patioFurniture: true
       }
     };
 
@@ -371,19 +368,18 @@
         id: 'phase-2',
         year: 2027,
         badge: '2027 · Phase 2',
-        title: 'N. Fence/Gate, Pavers, Grass & Plants',
-        subtitle: "70' N. Fence + 8.5' Gate + 5+4 Trees + Pavers + Sod",
+        title: 'N. Fence, Seed, Pavers & Front',
+        subtitle: "70' N. Fence/Gate + Sprinklers + Pavers + Seed + Front",
         borderTint: 'rgba(52, 211, 153, 0.4)',
         bgTint: 'rgba(6, 78, 59, 0.16)',
         badgeClass: 'bg-emerald-500/20 text-emerald-300 border-emerald-500/40',
         layers: [
           { key: 'northFence', label: "North Vinyl Fence (70.0' · 50% Split)", swatch: '#c084fc' },
           { key: 'northGate', label: "North 8.5' Double Vehicle Gate (wx=70.0')", swatch: '#fbbf24' },
-          { key: 'pavers', label: '6" Flush Holland Pavers (45° Corners)', swatch: '#2dd4bf' },
-          { key: 'grass', label: "Sod / Lawn (BY + 4'+ S. Wrap + Front)", swatch: '#22c55e' },
-          { key: 'beds', label: 'Dark Bark Mulch Beds & Park Strips', swatch: '#854d0e' },
-          { key: 'westWallPlants', label: 'W. Wall 5+4 Hybrid Trees & Perennials', swatch: '#4ade80' },
-          { key: 'yardPlants', label: 'S. Berry Bed, Front Maple & Box Screen', swatch: '#f43f5e' },
+          { key: 'pavers', label: '6" Flush Holland Pavers (~206\' Front & Back)', swatch: '#2dd4bf' },
+          { key: 'grass', label: "Seeded Lawn (BY + 4'+ S. Wrap + Front)", swatch: '#22c55e' },
+          { key: 'frontBeds', label: 'Front Yard Mulch Beds & Park Strips', swatch: '#854d0e' },
+          { key: 'frontPlants', label: 'Front Maple, Box Screen & Shrubs', swatch: '#f43f5e' },
           { key: 'irrigation', label: 'Pop-Up Sprinkler Heads & Spray Arcs', swatch: '#38bdf8' }
         ]
       },
@@ -391,20 +387,40 @@
         id: 'phase-3',
         year: 2028,
         badge: '2028 · Phase 3',
-        title: "North Cement Pad & 3' Rear Walk",
-        subtitle: '388.8 sq ft N. Side Pad + 33 sq ft Rear Sidewalk',
-        borderTint: 'rgba(56, 189, 248, 0.4)',
-        bgTint: 'rgba(12, 74, 110, 0.16)',
-        badgeClass: 'bg-sky-500/20 text-sky-300 border-sky-500/40',
+        title: 'Backyard Trees, Lighting & Swing',
+        subtitle: 'W. Wall 5+4 Trees + Mulch + 2700K Lights + Porch Swing',
+        borderTint: 'rgba(129, 140, 248, 0.4)',
+        bgTint: 'rgba(49, 46, 129, 0.16)',
+        badgeClass: 'bg-indigo-500/20 text-indigo-300 border-indigo-500/40',
         layers: [
-          { key: 'northCementPad', label: "N. Side Poured Cement Pad (9'×43.2')", swatch: '#7dd3fc' },
-          { key: 'rearSidewalk', label: "Rear Wall Concrete Sidewalk (3'×11')", swatch: '#bae6fd' }
+          { key: 'beds', label: 'Backyard & S. Mulch Beds + Flat Dirt Garden', swatch: '#854d0e' },
+          { key: 'westWallPlants', label: 'W. Wall 5+4 Hybrid Trees & Perennials', swatch: '#4ade80' },
+          { key: 'yardPlants', label: 'S. Fence Berry/Kiwi Trellis & Shade Bed', swatch: '#f43f5e' },
+          { key: 'lighting', label: '12V 2700K Uplights & Patio Bistro Lights', swatch: '#fde047' },
+          { key: 'porchSwing', label: 'Hanging Cedar Front Porch Swing (3152)', swatch: '#fb923c' }
         ]
       },
       {
         id: 'phase-4',
         year: 2029,
         badge: '2029 · Phase 4',
+        title: 'Road Base Pad/Path & 5 Cedar Beds',
+        subtitle: "9'×43.2' Road Base Pad + 3' Path + 5 N–S Cedar Beds",
+        borderTint: 'rgba(132, 204, 22, 0.4)',
+        bgTint: 'rgba(54, 83, 20, 0.16)',
+        badgeClass: 'bg-lime-500/20 text-lime-300 border-lime-500/40',
+        layers: [
+          { key: 'northCementPad', label: "N. Side Compacted Road Base Pad (9'×43.2')", swatch: '#a8a29e' },
+          { key: 'rearSidewalk', label: "Rear Wall Road Base Path (3'×11')", swatch: '#d6d3d1' },
+          { key: 'planters', label: "5 N–S Raised Cedar Planters (N1–N5)", swatch: '#84cc16' },
+          { key: 'gardenRock', label: 'Compacted Road Base Garden Walkways', swatch: '#a8a29e' },
+          { key: 'gardenDrip', label: 'Per-Box Grid Drip Irrigation Manifolds', swatch: '#0ea5e9' }
+        ]
+      },
+      {
+        id: 'phase-5',
+        year: 2030,
+        badge: '2030 · Phase 5',
         title: 'Option #1C Solid-Roof Awning & Lounge',
         subtitle: '2-Pillar Timber Awning + L-Sectional + Fire Table',
         borderTint: 'rgba(245, 158, 11, 0.4)',
@@ -413,35 +429,6 @@
         layers: [
           { key: 'patioAwning', label: 'Option #1C 2-Pillar Solid-Roof Awning', swatch: '#92400e' },
           { key: 'patioFurniture', label: 'L-Sectional Sofa, Rug & Propane Fire Table', swatch: '#f59e0b' }
-        ]
-      },
-      {
-        id: 'phase-5',
-        year: 2030,
-        badge: '2030 · Phase 5',
-        title: '5 Raised Cedar Beds, Drip & Rock',
-        subtitle: "5 N–S Planters (3'×6') + 3/8\" Crushed Granite",
-        borderTint: 'rgba(132, 204, 22, 0.4)',
-        bgTint: 'rgba(54, 83, 20, 0.16)',
-        badgeClass: 'bg-lime-500/20 text-lime-300 border-lime-500/40',
-        layers: [
-          { key: 'planters', label: "5 N–S Raised Cedar Planters (N1–N5)", swatch: '#84cc16' },
-          { key: 'gardenRock', label: '3/8" Crushed Granite Garden Paths', swatch: '#a8a29e' },
-          { key: 'gardenDrip', label: 'Per-Box Grid Drip Irrigation Manifolds', swatch: '#0ea5e9' }
-        ]
-      },
-      {
-        id: 'phase-6',
-        year: 2031,
-        badge: '2031 · Phase 6',
-        title: '2700K Lighting & Front Porch Swing',
-        subtitle: '21 LED Uplights, Bistro String Lights & 3152 Swing',
-        borderTint: 'rgba(253, 224, 71, 0.4)',
-        bgTint: 'rgba(113, 63, 18, 0.16)',
-        badgeClass: 'bg-yellow-500/20 text-yellow-300 border-yellow-500/40',
-        layers: [
-          { key: 'lighting', label: '12V 2700K Uplights & Patio Bistro Lights', swatch: '#fde047' },
-          { key: 'porchSwing', label: 'Hanging Cedar Front Porch Swing (3152)', swatch: '#fb923c' }
         ]
       },
       {
@@ -994,27 +981,23 @@
       addBox(gUtil, 93.0, 45.5, 96.4, 48.5, 0.2, 2.85, new THREE.MeshStandardMaterial({ color: '#166534', roughness: 0.55, metalness: 0.25 }), true, true);
     }
 
-    // --- D. PHASE 3 (2028): NORTH SIDE POURED CEMENT PAD & 3.0' REAR HOUSE SIDEWALK ---
+    // --- D. PHASE 4 (2029): NORTH SIDE COMPACTED ROAD BASE PAD & 3.0' REAR HOUSE ROAD BASE PATH ---
     {
-      // 9.0' W × 43.2' L North Side Cement Pad (wx: 30.0..73.2, wy: 0.0..9.0)
+      // 9.0' W × 43.2' L North Side Compacted Road Base Pad (wx: 30.0..73.2, wy: 0.0..9.0)
       const gNPad = LAYER_GROUPS.northCementPad;
-      addBox(gNPad, 30.0, 0.0, 73.2, 9.0, 0.0, 0.12, MAT.newConcrete, false, true);
-      [40.8, 51.6, 62.4, 70.0].forEach(wx => {
-        addBox(gNPad, wx - 0.04, 0.0, wx + 0.04, 9.0, 0.12, 0.126, MAT.paverJoint, false, false);
-      });
+      addBox(gNPad, 30.0, 0.0, 73.2, 9.0, 0.0, 0.08, MAT.crushedRock, false, true);
 
-      // 3.0' W × 11.0' L Rear House Concrete Sidewalk (wx: 27.0..30.0, wy: 9.0..20.0)
+      // 3.0' W × 11.0' L Rear House Compacted Road Base Path to Patio (wx: 27.0..30.0, wy: 9.0..20.0)
       const gRWalk = LAYER_GROUPS.rearSidewalk;
-      addBox(gRWalk, 27.0, 9.0, 30.0, 20.0, 0.0, 0.12, MAT.newConcrete, false, true);
-      addBox(gRWalk, 27.0, 14.46, 30.0, 14.54, 0.12, 0.126, MAT.paverJoint, false, false);
+      addBox(gRWalk, 27.0, 9.0, 30.0, 20.0, 0.0, 0.08, MAT.crushedRock, false, true);
     }
 
-    // --- E. PHASE 2 (2027): SOD / LAWN, MULCH BEDS, PARK STRIPS & 45° HOLLAND PAVERS ---
+    // --- E. PHASE 2 (2027) & PHASE 3 (2028): SEEDED LAWN, FRONT/BACK MULCH BEDS, PARK STRIPS & 45° HOLLAND PAVERS ---
     {
-      // 1. Open Sod / Lawn (Backyard 679 sq ft + 4'+ South Wrap + 555 sq ft SE Front Lawn)
+      // 1. Open Seeded Lawn — Phase 2 (2027) (Backyard 679 sq ft + 4'+ South Wrap + 555 sq ft SE Front Lawn)
       const gGrass = LAYER_GROUPS.grass;
       const byLawnPts = [
-        [4.5, 10.5], [6.5, 8.5], [27.0, 8.5], [27.0, 20.0],
+        [4.5, 10.5], [6.5, 8.5], [25.0, 8.5], [26.5, 10.0], [26.5, 20.0],
         [17.5, 20.0], [17.5, 41.0], [30.0, 41.0], [32.5, 43.5],
         [LOCKED_SOUTH_GATE_WX, 43.5], [LOCKED_SOUTH_GATE_WX, 47.5],
         [6.5, 47.5], [4.5, 45.5]
@@ -1027,7 +1010,19 @@
       addExtrudedPoly(gGrass, byLawnPts, 0.01, 0.11, MAT.turf, false, true);
       addExtrudedPoly(gGrass, frontLawnPts, 0.01, 0.11, MAT.turf, false, true);
 
-      // 2. Bark Mulch Beds & Park Strips ('beds')
+      // 2A. Front Yard Mulch Beds & Park Strips — Phase 2 (2027) ('frontBeds')
+      const gFrontBeds = LAYER_GROUPS.frontBeds;
+      // SE Front Yard 2.0' Perimeter Mulch Beds (around front porch, South line & 3-sided utility box screen)
+      addBox(gFrontBeds, 57.5, 41.0, 68.0, 50.0, 0.0, 0.06, MAT.mulch, false, true);
+      addBox(gFrontBeds, 65.7, 32.5, 68.0, 45.6, 0.0, 0.06, MAT.mulch, false, true);
+      addBox(gFrontBeds, 68.0, 47.5, 96.7, 50.0, 0.0, 0.06, MAT.mulch, false, true);
+      addBox(gFrontBeds, 90.5, 43.0, 96.7, 48.0, 0.0, 0.06, MAT.mulch, false, true);
+      // NE Front Strip (wx: 73.2..96.7, wy: 0.0..11.0) & 6.0' Street Park Strips (wx: 100.7..106.7)
+      addBox(gFrontBeds, 73.2, 0.0, 96.7, 11.0, 0.0, 0.06, MAT.crushedRock, false, true);
+      addBox(gFrontBeds, 100.7, 0.0, 106.7, 9.5, 0.0, 0.06, MAT.crushedRock, false, true);
+      addBox(gFrontBeds, 100.7, 30.5, 106.7, 50.0, 0.0, 0.06, MAT.crushedRock, false, true);
+
+      // 2B. Backyard & Side Yard Bark Mulch Beds — Phase 3 (2028) ('beds')
       const gBeds = LAYER_GROUPS.beds;
       // 4.0' West Wall Mulch Bed (wx: 0.0..4.25, wy: 0.0..50.0)
       addBox(gBeds, 0.0, 0.0, 4.25, 50.0, 0.0, 0.07, MAT.mulch, false, true);
@@ -1038,30 +1033,21 @@
       addBox(gBeds, 0.0, 47.75, LOCKED_SOUTH_GATE_WX, 50.0, 0.0, 0.07, MAT.mulch, false, true);
       // 2.0' South House Wall Utility/AC Buffer (wx: 30.0..57.5, wy: 41.0..43.25)
       addBox(gBeds, 30.0, 41.0, LOCKED_SOUTH_GATE_WX, 43.25, 0.0, 0.07, MAT.crushedRock, false, true);
-      // SE Front Yard 2.0' Perimeter Mulch Beds (around front porch, South line & 3-sided utility box screen)
-      addBox(gBeds, 57.5, 41.0, 68.0, 50.0, 0.0, 0.06, MAT.mulch, false, true);
-      addBox(gBeds, 65.7, 32.5, 68.0, 45.6, 0.0, 0.06, MAT.mulch, false, true);
-      addBox(gBeds, 68.0, 47.5, 96.7, 50.0, 0.0, 0.06, MAT.mulch, false, true);
-      addBox(gBeds, 90.5, 43.0, 96.7, 48.0, 0.0, 0.06, MAT.mulch, false, true);
-      // NE Front Strip (wx: 73.2..96.7, wy: 0.0..11.0) & 6.0' Street Park Strips (wx: 100.7..106.7)
-      addBox(gBeds, 73.2, 0.0, 96.7, 11.0, 0.0, 0.06, MAT.crushedRock, false, true);
-      addBox(gBeds, 100.7, 0.0, 106.7, 9.5, 0.0, 0.06, MAT.crushedRock, false, true);
-      addBox(gBeds, 100.7, 30.5, 106.7, 50.0, 0.0, 0.06, MAT.crushedRock, false, true);
 
-      // 2027 Flat-Dirt In-Ground Garden Plot (shown when Phase 2 beds is ON and Phase 5 gardenRock is OFF)
+      // 2028 Flat-Dirt In-Ground Garden Plot (shown when Phase 3 beds is ON and Phase 4 gardenRock is OFF)
       addBox(flatDirtGardenGroup, 4.0, 0.0, 27.0, 8.25, 0.0, 0.07, MAT.mulch, false, true);
       for (let wy = 1.6; wy <= 6.6; wy += 1.6) {
         addBox(flatDirtGardenGroup, 5.2, wy - 0.3, 25.8, wy + 0.3, 0.07, 0.45, new THREE.MeshStandardMaterial({ color: '#16a34a', roughness: 0.8 }), true, true);
       }
 
       // 3. Flush 6" Home Depot Pavestone Holland Paver Mow Strip with Prominent 45° Chamfered Corners ('pavers')
-      //    Installed ONLY where grass meets mulch, gravel, or the home; ZERO pavers where grass meets concrete!
+      //    ~206 lin ft total installed in Phase 2 (2027) ONLY where grass meets mulch, gravel/road base, or the home; ZERO pavers where grass meets concrete!
       const gPavers = LAYER_GROUPS.pavers;
       const paverChains = [
         // South House Wall / AC Buffer Paver Chain (with 45° chamfer at SW house corner)
         [[30.0, 41.0], [32.5, 43.25], [LOCKED_SOUTH_GATE_WX, 43.25]],
-        // Main Backyard Perimeter Paver Chain (South Bed -> 45° SW -> West Wall Bed -> 45° NW -> North Garden)
-        [[LOCKED_SOUTH_GATE_WX, 47.75], [6.4, 47.75], [4.25, 45.6], [4.25, 10.4], [6.4, 8.25], [27.0, 8.25]],
+        // Main Backyard Perimeter Paver Chain (South Bed -> 45° SW -> West Wall Bed -> 45° NW -> North Garden -> 45° NE -> 11' Rear Compacted Road Base Path)
+        [[LOCKED_SOUTH_GATE_WX, 47.75], [6.4, 47.75], [4.25, 45.6], [4.25, 10.4], [6.4, 8.25], [24.85, 8.25], [26.75, 10.15], [26.75, 20.0]],
         // SE Front Yard Paver Chain (Front Porch Bed -> 45° SW -> South Line Bed -> 45° Utility Box Screen)
         [[67.95, 32.5], [67.95, 45.6], [70.1, 47.75], [88.6, 47.75], [90.75, 45.6], [90.75, 44.4], [92.1, 43.25], [96.7, 43.25]]
       ];
@@ -1107,7 +1093,7 @@
       });
     }
 
-    // --- F. PHASE 2 (2027): WEST WALL 5+4 DESIGNER HYBRID TREES & 10-SPOT UNDER-STORY ('westWallPlants') ---
+    // --- F. PHASE 3 (2028): WEST WALL 5+4 DESIGNER HYBRID TREES & 10-SPOT UNDER-STORY ('westWallPlants') ---
     {
       const gWestPlants = LAYER_GROUPS.westWallPlants;
       const trunkMat = new THREE.MeshStandardMaterial({ color: '#5c4033', roughness: 0.9 });
@@ -1210,15 +1196,16 @@
       });
     }
 
-    // --- G. PHASE 2 (2027): YARD PLANTS (South Berry/Kiwi Bed, Front Japanese Maple & Box Screen) ---
+    // --- G. PHASE 2 (2027) FRONT PLANTS ('frontPlants') & PHASE 3 (2028) BACKYARD PLANTS ('yardPlants') ---
     {
+      const gFrontPlants = LAYER_GROUPS.frontPlants;
       const gYardPlants = LAYER_GROUPS.yardPlants;
       const berryMat = new THREE.MeshStandardMaterial({ color: '#15803d', roughness: 0.82 });
       const shadeHostaMat = new THREE.MeshStandardMaterial({ color: '#0d9488', roughness: 0.8 });
       const mapleMat = new THREE.MeshStandardMaterial({ color: '#9f1239', roughness: 0.75 });
       const reedGrassMat = new THREE.MeshStandardMaterial({ color: '#65a30d', roughness: 0.82 });
 
-      // South Fence Berry, Kiwi & Shade Bed (wy = 48.9')
+      // Phase 3 (2028): South Fence Berry, Kiwi & Shade Bed (wy = 48.9')
       [6.5, 11.5, 16.5, 21.5, 26.5, 34.0, 41.0, 49.0, 54.5].forEach(wx => {
         const isSun = wx < 30.0;
         const shrub = new THREE.Mesh(
@@ -1231,42 +1218,42 @@
         gYardPlants.add(shrub);
       });
 
-      // Front Yard Focal Tree: Sculptural Red Japanese Maple (wx = 66.8, wy = 36.2)
+      // Phase 2 (2027): Front Yard Focal Tree: Sculptural Red Japanese Maple (wx = 66.8, wy = 36.2)
       const mapleTrunk = new THREE.Mesh(new THREE.CylinderGeometry(0.18, 0.28, 3.8, 8), new THREE.MeshStandardMaterial({ color: '#451a03' }));
       mapleTrunk.position.set(66.8, 1.9, 36.2);
       mapleTrunk.castShadow = true;
-      gYardPlants.add(mapleTrunk);
+      gFrontPlants.add(mapleTrunk);
       [[0, 4.5, 0, 2.2, 1.2, 2.2], [-0.6, 5.8, 0.5, 1.6, 1.0, 1.6], [0.5, 6.4, -0.4, 1.5, 0.95, 1.5]].forEach(([ox, oy, oz, sx, sy, sz]) => {
         const crown = new THREE.Mesh(new THREE.DodecahedronGeometry(1.0, 1), mapleMat);
         crown.position.set(66.8 + ox, oy, 36.2 + oz);
         crown.scale.set(sx, sy, sz);
         crown.castShadow = true;
-        gYardPlants.add(crown);
+        gFrontPlants.add(crown);
       });
 
-      // 3-Sided Utility Box Karl Foerster Grass Screen (screening West, North, South of box at wx:93..96.4, wy:45.5..48.5)
+      // Phase 2 (2027): 3-Sided Utility Box Karl Foerster Grass Screen (screening West, North, South of box at wx:93..96.4, wy:45.5..48.5)
       [[92.0, 44.5], [93.8, 44.5], [95.4, 44.5], [92.0, 46.2], [92.0, 47.8], [93.8, 49.1]].forEach(([gx, gy]) => {
         const reed = new THREE.Mesh(new THREE.CylinderGeometry(0.5, 0.35, 3.6, 8), reedGrassMat);
         reed.position.set(gx, 1.8, gy);
         reed.castShadow = true;
-        gYardPlants.add(reed);
+        gFrontPlants.add(reed);
       });
 
-      // Front South Bed & 6.0' Street Park Strip Perennials + Decorative Boulders
+      // Phase 2 (2027): Front South Bed & 6.0' Street Park Strip Perennials + Decorative Boulders
       [[72.0, 48.9], [78.0, 48.9], [84.0, 48.9], [103.5, 3.5], [103.5, 7.5], [103.5, 35.0], [103.5, 41.0], [103.5, 46.5]].forEach(([px, py]) => {
         const bush = new THREE.Mesh(new THREE.SphereGeometry(0.75, 8, 8), berryMat);
         bush.position.set(px, 0.65, py);
         bush.scale.set(1, 0.8, 1);
         bush.castShadow = true;
-        gYardPlants.add(bush);
+        gFrontPlants.add(bush);
       });
-      // Landscape Accent Boulders in Park Strips
+      // Phase 2 (2027): Landscape Accent Boulders in Park Strips
       [[103.2, 5.5], [103.8, 38.0], [103.0, 44.0], [82.0, 4.5]].forEach(([bx, by]) => {
         const boulder = new THREE.Mesh(new THREE.DodecahedronGeometry(0.85, 0), new THREE.MeshStandardMaterial({ color: '#78716c', roughness: 0.9 }));
         boulder.position.set(bx, 0.45, by);
         boulder.scale.set(1.3, 0.75, 1.1);
         boulder.castShadow = true;
-        gYardPlants.add(boulder);
+        gFrontPlants.add(boulder);
       });
     }
 
@@ -1334,7 +1321,7 @@
       gatePivots.northRight = nRightPivot;
     }
 
-    // --- I. PHASE 4 (2029): OPTION #1C HOUSE-ATTACHED 2-PILLAR SOLID-ROOF PATIO AWNING & LOUNGE ---
+    // --- I. PHASE 5 (2030): OPTION #1C HOUSE-ATTACHED 2-PILLAR SOLID-ROOF PATIO AWNING & LOUNGE ---
     {
       const gAwning = LAYER_GROUPS.patioAwning;
 
@@ -1440,9 +1427,9 @@
       fireFlames.push({ mesh: cone, baseZ: fz, phase: fz * 3.7 });
     }
 
-    // --- J. PHASE 5 (2030): 5 N–S RAISED CEDAR PLANTERS (3'×6'), CRUSHED ROCK & GRID DRIP ---
+    // --- J. PHASE 4 (2029): 5 N–S RAISED CEDAR PLANTERS (3'×6'), COMPACTED ROAD BASE & GRID DRIP ---
     {
-      // 1. 3/8" Crushed Granite Garden Paths (wx: 4.0..27.0, wy: 0.0..8.25)
+      // 1. Compacted Road Base Garden Paths (wx: 4.0..27.0, wy: 0.0..8.25)
       addBox(LAYER_GROUPS.gardenRock, 4.0, 0.0, 27.0, 8.25, 0.0, 0.08, MAT.crushedRock, false, true);
 
       // 2. 5 Raised Western Red Cedar Garden Boxes (N1–N5 at wx = 5.0, 9.75, 14.5, 19.25, 24.0; wy = 1.0..7.0)
@@ -1516,7 +1503,7 @@
       });
     }
 
-    // --- L. PHASE 6 (2031): HANGING FRONT PORCH SWING ('porchSwing') & 2700K LIGHTING ('lighting') ---
+    // --- L. PHASE 3 (2028): HANGING FRONT PORCH SWING ('porchSwing') & 2700K LIGHTING ('lighting') ---
     const nightLightObjects = [];
     {
       // 1. Hanging Front Porch Swing on Covered Porch (wx: 61.2..63.2, wy: 35.8..40.0)
@@ -1702,7 +1689,7 @@
         id: 'pin-awning',
         layer: 'patioAwning',
         wx: 21.5, wy: 30.5, h: 10.6,
-        badge: '2029 · PHASE 4 (OPTION #1C)',
+        badge: '2030 · PHASE 5 (OPTION #1C)',
         short: '#1C 2-Pillar Solid Awning',
         color: '#f59e0b',
         title: 'Option #1C House-Attached 2-Pillar Solid-Roof Timber Awning & Lounge',
@@ -1712,7 +1699,7 @@
         id: 'pin-west-wall',
         layer: 'westWallPlants',
         wx: 2.0, wy: 25.0, h: 15.2,
-        badge: '2027 · PHASE 2 (5+4 HYBRID)',
+        badge: '2028 · PHASE 3 (5+4 HYBRID)',
         short: '5+4 West Wall Hybrid',
         color: '#22c55e',
         title: "Western Back Wall (4.0' Mulch + 6\" Paver = 4.5' to Grass): 5+4 Designer Hybrid",
@@ -1722,11 +1709,11 @@
         id: 'pin-planters',
         layer: 'planters',
         wx: 15.5, wy: 4.0, h: 3.2,
-        badge: '2030 · PHASE 5 (5 CEDAR BOXES)',
+        badge: '2029 · PHASE 4 (5 CEDAR BOXES)',
         short: '5 Cedar Planters (N1–N5)',
         color: '#84cc16',
         title: "5 N–S Western Red Cedar Garden Boxes (3.0' W × 6.0' L = 90 sq ft)",
-        desc: "Started as a flat-dirt garden in 2027 and upgraded in 2030 to 5 raised cedar beds running North-to-South along the North fence with 1.75' crushed granite paths, per-box grid drip manifolds, and a 6\" flush paver strip at wy=8.5'."
+        desc: "Started as a flat-dirt garden in 2028 and upgraded in 2029 (Phase 4) to 5 raised cedar beds running North-to-South along the North fence with 1.75' compacted road base paths, per-box grid drip manifolds, and a 6\" flush paver strip at wy=8.5'."
       },
       {
         id: 'pin-pavers',
@@ -1736,33 +1723,33 @@
         short: '45° Holland Paver Strip',
         color: '#2dd4bf',
         title: 'Home Depot Pavestone Holland Paver Mow Strip (Prominent 45° Corners)',
-        desc: "195 lin ft of soil-flush 7.87\"×3.94\" Charcoal/Sierra Blend Holland Pavers with 45° diagonal chamfered corners so the mower pivots in 1 pass. Installed ONLY where grass meets mulch, gravel, or the home; ZERO pavers where grass meets concrete."
+        desc: "~206 lin ft of soil-flush 7.87\"×3.94\" Charcoal/Sierra Blend Holland Pavers (Front & Back) with 45° diagonal chamfered corners so the mower pivots in 1 pass. Installed ONLY where grass meets mulch, gravel/road base (including the 11' rear path), or the home; ZERO pavers where grass meets concrete."
       },
       {
         id: 'pin-rear-walk',
         layer: 'rearSidewalk',
         wx: 28.5, wy: 14.5, h: 1.5,
-        badge: '2028 · PHASE 3 (3\' WALK)',
-        short: "3'×11' Rear Concrete Walk",
+        badge: '2029 · PHASE 4 (3\' ROAD BASE PATH)',
+        short: "3'×11' Rear Road Base Path",
         color: '#38bdf8',
-        title: "3.0' × 11.0' Rear House Concrete Sidewalk (33.0 sq ft)",
-        desc: "Poured right against the rear slab-on-grade house wall (0 window wells) to connect the 21'×12.5' patio directly to the 9'×43.2' North side cement pad. Grass meets this concrete sidewalk directly with no pavers."
+        title: "3.0' × 11.0' Rear House Compacted Road Base Path (33.0 sq ft)",
+        desc: "Compacted 3/4\"-minus road base over geotextile fabric right against the rear slab-on-grade house wall (0 window wells) to connect the 21'×12.5' patio directly to the 9'×43.2' North side road base pad, bordered on the West by a flush Holland paver strip."
       },
       {
         id: 'pin-north-pad',
         layer: 'northCementPad',
         wx: 52.0, wy: 4.5, h: 2.0,
-        badge: '2028 · PHASE 3 (N. PAD & GATE)',
-        short: "9'×43.2' N. Cement Pad",
+        badge: '2029 · PHASE 4 (N. ROAD BASE PAD)',
+        short: "9'×43.2' N. Road Base Pad",
         color: '#38bdf8',
-        title: "North Side 9.0' × 43.2' Poured Cement Pad & 8.5' Double Vehicle Gate",
-        desc: "388.8 sq ft utility/trailer pad enclosed by a 70.0' white vinyl fence (split 50/50 with North neighbor over bare dirt) and an 8.5' double-swing vehicle gate at wx=70.0' (set back 3.2' West of NE garage face behind the 2.0' stone wrap)."
+        title: "North Side 9.0' × 43.2' Compacted Road Base Pad & 8.5' Double Vehicle Gate",
+        desc: "388.8 sq ft compacted 3/4\"-minus road base utility/trailer pad (installed in 2029) enclosed by the 2027 70.0' white vinyl fence (split 50/50 with North neighbor over bare dirt) and 8.5' double-swing vehicle gate at wx=70.0' (set back 3.2' West of NE garage face)."
       },
       {
         id: 'pin-south-corridor',
         layer: 'southGate',
         wx: 42.0, wy: 45.5, h: 2.0,
-        badge: '2026 · PHASE 1 (S. GATE & GRASS)',
+        badge: '2026 · PHASE 1 (S. FENCE & GATE)',
         short: "4'+ S. Grass Wrap & Gate",
         color: '#c084fc',
         title: "South Side 4.0'+ Continuous Lawn Wrap, AC Screen & 4.0' Walk Gate",
@@ -1770,13 +1757,13 @@
       },
       {
         id: 'pin-front-yard',
-        layer: 'porchSwing',
+        layer: 'frontPlants',
         wx: 76.0, wy: 39.5, h: 2.2,
-        badge: 'FRONT YARD & 3152 PORCH',
+        badge: '2027–2028 · FRONT YARD & 3152 PORCH',
         short: 'Front Lawn, Maple & 3152 Swing',
         color: '#f43f5e',
         title: "555 sq ft SE Front Lawn, 45° Pavers, 3-Sided Box Screen & '3152' Porch Swing",
-        desc: "Unbroken SE front lawn with 45° Holland pavers along the 2.0' beds, Japanese Maple specimen tree, 3-sided Karl Foerster grass screen around the green utility box, hanging cedar porch swing, and 6.0' water-wise street park strips."
+        desc: "Unbroken SE front lawn (seeded in 2027) with 45° Holland pavers along the 2.0' beds, Japanese Maple specimen tree, 3-sided Karl Foerster grass screen around the green utility box, 6.0' water-wise street park strips, and 2028 hanging cedar porch swing."
       }
     ];
 
@@ -1871,35 +1858,35 @@
         target: [20, 4.5, 25],
         badge: 'OVERVIEW · FULL BACKYARD',
         title: 'Lot 3152 — Complete Backyard, Option #1C Awning, 5+4 West Wall & 5 Cedar Beds',
-        desc: "Full 50' × 30' backyard preserving 679 sq ft of open turf, framed by the 5+4 West wall privacy screen, 5 N–S cedar planters, 3' rear house concrete walk, and the Option #1C 2-pillar solid-roof timber patio awning."
+        desc: "Full 50' × 30' backyard preserving 679 sq ft of open turf, framed by the 5+4 West wall privacy screen, 5 N–S cedar planters, 3' rear house compacted road base path, and the Option #1C 2-pillar solid-roof timber patio awning."
       },
       PATIO_AWNING_1C: {
         pos: [6.5, 6.2, 31.5],
         target: [25.5, 5.2, 30.8],
-        badge: '2029 · PHASE 4 (OPTION #1C)',
+        badge: '2030 · PHASE 5 (OPTION #1C)',
         title: 'Option #1C House-Attached 2-Pillar Solid-Roof Heavy-Timber Awning & Patio Lounge',
         desc: "Eye-level view looking East into the 21.0' × 12.5' patio: strictly TWO outer West corner 8×8 pillars (wx=18.0', wy=20.5' & 40.5'), ZERO house pillars, warm 1×6 T&G cedar wood ceiling underneath, matte-black standing-seam metal roof & gutter on top, 2700K bistro lights, L-sectional & propane fire table."
       },
       WEST_WALL_5PLUS4: {
         pos: [24.5, 6.5, 31.0],
         target: [1.5, 6.5, 24.0],
-        badge: '2027 · PHASE 2 (WEST WALL 5+4)',
+        badge: '2028 · PHASE 3 (WEST WALL 5+4)',
         title: "Western Back Wall (4.0' Mulch + 6\" Paver): 5+4 Designer Hybrid & 10-Spot Under-Story",
         desc: "Looking West from the patio across the 13.0' main lawn to the 5 Leafy Columnar Pillars (Serviceberry/Oak/Birch centered in the 5 panels) alternating with 4 Column Junipers (hiding the 4 wall columns) + purple perennials & Karl Foerster grasses."
       },
       NW_FIVE_PLANTERS: {
         pos: [8.0, 11.5, 23.5],
         target: [18.5, 2.2, 5.5],
-        badge: '2030 · PHASE 5 (5 N–S PLANTERS)',
-        title: "5 N–S Raised Cedar Garden Boxes (3'×6') & 3.0' Rear House Concrete Sidewalk",
-        desc: "5 Western Red Cedar boxes (N1–N5) running North-to-South along the North vinyl fence with 1.75' crushed granite paths, 6\" flush Holland paver edging (8.5' to grass), and the 3'×11' rear house concrete sidewalk connecting the patio to the North cement pad."
+        badge: '2029 · PHASE 4 (5 N–S PLANTERS)',
+        title: "5 N–S Raised Cedar Garden Boxes (3'×6') & 3.0' Rear House Compacted Road Base Path",
+        desc: "5 Western Red Cedar boxes (N1–N5) running North-to-South along the North vinyl fence with 1.75' compacted road base paths, 6\" flush Holland paver edging (8.5' to grass), and the 3'×11' rear house compacted road base path connecting the patio to the North road base pad."
       },
       NORTH_CEMENT_PAD: {
         pos: [86.0, 8.0, 4.5],
         target: [45.0, 3.0, 4.5],
-        badge: '2028 · PHASE 3 (NORTH SIDE)',
-        title: "North Side 9.0' × 43.2' Poured Cement Pad, 8.5' Vehicle Gate & Neighbor Bare Dirt",
-        desc: "Looking West from the NE front strip toward the 8.5' double-swing vehicle gate at wx=70.0' (set back 3.2' behind the NE garage corner & 2.0' stone wrap) and 388.8 sq ft concrete pad. Notice the North neighbor's bare dirt (wy < 0')."
+        badge: '2027 GATE & 2029 N. ROAD BASE PAD',
+        title: "North Side 9.0' × 43.2' Compacted Road Base Pad, 8.5' Vehicle Gate & Neighbor Bare Dirt",
+        desc: "Looking West from the NE front strip toward the 2027 8.5' double-swing vehicle gate at wx=70.0' (set back 3.2' behind the NE garage corner & 2.0' stone wrap) and 2029 388.8 sq ft compacted road base pad. Notice the North neighbor's bare dirt (wy < 0')."
       },
       SOUTH_GRASS_CORRIDOR: {
         pos: [22.0, 7.2, 45.5],
