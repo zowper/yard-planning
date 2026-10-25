@@ -1,0 +1,2320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lot 3152 — Interactive 3D Architectural &amp; Landscape Model (1:1 Scale)</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+        "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+      }
+    }
+  </script>
+  <style>
+    :root {
+      --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+    body {
+      font-family: var(--font-sans);
+      overflow: hidden;
+      user-select: none;
+      background-color: #090d16;
+      color: #f8fafc;
+    }
+    .font-mono-cad {
+      font-family: var(--font-mono);
+    }
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: rgba(15, 23, 42, 0.4);
+    }
+    ::-webkit-scrollbar-thumb {
+      background: rgba(100, 116, 139, 0.5);
+      border-radius: 3px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: rgba(148, 163, 184, 0.8);
+    }
+    .label-3d {
+      pointer-events: auto;
+      transform: translate(-50%, -100%);
+      transition: opacity 0.15s ease, transform 0.15s ease;
+    }
+    .label-3d:hover {
+      z-index: 50 !important;
+      transform: translate(-50%, -105%) scale(1.04);
+    }
+  </style>
+</head>
+<body class="h-screen w-screen flex flex-col overflow-hidden bg-slate-950 text-slate-100">
+
+  <!-- ==================== TOP COMMAND BAR ==================== -->
+  <header class="h-14 bg-slate-900/95 border-b border-slate-800 px-3 lg:px-4 flex items-center justify-between gap-2 shrink-0 z-30">
+    <!-- Left: Phases & Layers Drawer Toggle + Title -->
+    <div class="flex items-center gap-2.5 min-w-0">
+      <button onclick="window.toggleLeftPanel()" id="left-panel-btn"
+              class="px-2.5 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold flex items-center gap-1.5 shadow transition shrink-0"
+              title="Toggle 2026–2031 Phases & 3D Layers">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/>
+        </svg>
+        <span>Phases &amp; Layers</span>
+      </button>
+
+      <div class="min-w-0 hidden sm:block">
+        <div class="flex items-center gap-2">
+          <h1 class="font-bold text-xs lg:text-sm tracking-tight text-white truncate">LOT 3152 — 1:1 3D ARCHITECTURAL MODEL</h1>
+          <span class="hidden xl:inline-flex items-center px-2 py-0.5 rounded text-[10px] font-mono-cad font-semibold bg-emerald-500/15 text-emerald-300 border border-emerald-500/30">
+            50.0' &times; 96.7'
+          </span>
+        </div>
+        <p class="text-[10px] text-slate-400 truncate hidden md:block">
+          Option #1C 2-Pillar Solid-Roof Awning • 5+4 West Wall • 5 N–S Planters • 45&deg; Holland Pavers
+        </p>
+      </div>
+    </div>
+
+    <!-- Center: Lighting / Time of Day Switcher & Navigation Mode -->
+    <div class="flex items-center gap-1.5">
+      <div class="flex items-center bg-slate-950 p-1 rounded-xl border border-slate-800 shadow-inner">
+        <button id="light-day" onclick="window.setLightingMode('DAY')"
+                class="light-btn px-2.5 py-1 rounded-lg text-xs font-bold transition-all bg-sky-600 text-white shadow flex items-center gap-1"
+                title="Afternoon Sun (3:30 PM) — Realistic West Wall Tree & Awning Shade">
+          <span>&#9728;&#65039;</span>
+          <span class="hidden sm:inline">Daylight</span>
+        </button>
+        <button id="light-sunset" onclick="window.setLightingMode('SUNSET')"
+                class="light-btn px-2.5 py-1 rounded-lg text-xs font-bold transition-all text-slate-300 hover:text-white flex items-center gap-1"
+                title="Golden Hour Sunset (7:45 PM) — Warm Sun + 2700K Bistro & Uplights">
+          <span>&#127749;</span>
+          <span class="hidden sm:inline">Sunset</span>
+        </button>
+        <button id="light-night" onclick="window.setLightingMode('NIGHT')"
+                class="light-btn px-2.5 py-1 rounded-lg text-xs font-bold transition-all text-slate-300 hover:text-white flex items-center gap-1"
+                title="Night 2700K Showcase (9:30 PM) — Bistro String Lights, 21 Uplights & Fire Table">
+          <span>&#127769;</span>
+          <span class="hidden sm:inline">Night 2700K</span>
+        </button>
+      </div>
+
+      <!-- Orbit vs First-Person Eye-Level Walk Mode -->
+      <div class="flex items-center bg-slate-950 p-1 rounded-xl border border-slate-800">
+        <button id="nav-orbit" onclick="window.setNavMode('ORBIT')"
+                class="px-2.5 py-1 rounded-lg text-xs font-bold transition-all bg-emerald-600 text-white shadow"
+                title="3D Drone Orbit, Pan & Zoom">
+          Orbit 3D
+        </button>
+        <button id="nav-walk" onclick="window.setNavMode('WALK')"
+                class="px-2.5 py-1 rounded-lg text-xs font-bold transition-all text-slate-300 hover:text-white flex items-center gap-1"
+                title="First-Person Eye-Level Walkthrough (WASD / Arrows / Click Ground)">
+          <span>&#128694;</span>
+          <span>Walk Mode</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Right: Interactive Action Buttons (Gates, Roof Cutaway, Labels, Screenshot) -->
+    <div class="flex items-center gap-1.5">
+      <button id="gates-toggle-btn" onclick="window.toggleGatesOpen()"
+              class="px-2.5 py-1.5 rounded-lg text-xs font-semibold border border-slate-700 bg-slate-800 hover:bg-slate-700 text-slate-200 flex items-center gap-1 transition-all"
+              title="Swing Open / Close the 8.5' North Double Vehicle Gate & 4.0' South Walk Gate">
+        <span id="gates-btn-label">Open Gates</span>
+      </button>
+
+      <button id="roof-xray-btn" onclick="window.toggleAwningRoofXray()"
+              class="px-2.5 py-1.5 rounded-lg text-xs font-semibold border border-slate-700 bg-slate-800 hover:bg-slate-700 text-slate-200 hidden md:flex items-center gap-1 transition-all"
+              title="Toggle Solid Matte-Black Metal Awning Roof vs. Cutaway View of Patio Furniture">
+        <span id="roof-xray-label">Solid Roof</span>
+      </button>
+
+      <button id="labels-toggle-btn" onclick="window.toggle3DLabels()"
+              class="px-2.5 py-1.5 rounded-lg text-xs font-semibold border border-emerald-500/50 bg-emerald-950/60 text-emerald-300 flex items-center gap-1 transition-all"
+              title="Show / Hide 3D Callout Pins">
+        <span>3D Pins</span>
+      </button>
+
+      <button onclick="window.captureScreenshot()"
+              class="px-2.5 py-1.5 rounded-lg text-xs font-bold bg-sky-600 hover:bg-sky-500 text-white shadow hidden sm:flex items-center gap-1"
+              title="Download PNG Snapshot of Current 3D Angle">
+        <span>PNG</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- ==================== CAMERA PRESET RIBBON ==================== -->
+  <div class="bg-slate-900/90 border-b border-slate-800/80 px-3 py-1.5 flex items-center justify-between gap-2 overflow-x-auto shrink-0 z-20">
+    <div class="flex items-center gap-1.5 shrink-0">
+      <span class="text-[10px] font-mono-cad uppercase tracking-wider text-slate-400 font-bold mr-1">Camera Angles:</span>
+      <button onclick="window.goToCameraPreset('BACKYARD_OVERVIEW', this)" class="cam-preset-btn px-2.5 py-1 rounded-lg text-[11px] font-bold bg-emerald-600 text-white shadow transition">
+        1. Backyard Overview
+      </button>
+      <button onclick="window.goToCameraPreset('PATIO_AWNING_1C', this)" class="cam-preset-btn px-2.5 py-1 rounded-lg text-[11px] font-semibold bg-slate-800 text-slate-200 hover:bg-slate-700 transition">
+        2. Patio &amp; #1C Solid Awning (2 Pillars)
+      </button>
+      <button onclick="window.goToCameraPreset('WEST_WALL_5PLUS4', this)" class="cam-preset-btn px-2.5 py-1 rounded-lg text-[11px] font-semibold bg-slate-800 text-slate-200 hover:bg-slate-700 transition">
+        3. West Wall (5+4 Hybrid &amp; 45&deg; Pavers)
+      </button>
+      <button onclick="window.goToCameraPreset('NW_FIVE_PLANTERS', this)" class="cam-preset-btn px-2.5 py-1 rounded-lg text-[11px] font-semibold bg-slate-800 text-slate-200 hover:bg-slate-700 transition">
+        4. 5 Cedar Planters &amp; 3' Rear Walk
+      </button>
+      <button onclick="window.goToCameraPreset('NORTH_CEMENT_PAD', this)" class="cam-preset-btn px-2.5 py-1 rounded-lg text-[11px] font-semibold bg-slate-800 text-slate-200 hover:bg-slate-700 transition">
+        5. North 9' Cement Pad &amp; 8.5' Gate
+      </button>
+      <button onclick="window.goToCameraPreset('SOUTH_GRASS_CORRIDOR', this)" class="cam-preset-btn px-2.5 py-1 rounded-lg text-[11px] font-semibold bg-slate-800 text-slate-200 hover:bg-slate-700 transition">
+        6. South 4'+ Grass Wrap &amp; 4' Gate
+      </button>
+      <button onclick="window.goToCameraPreset('FRONT_ELEVATION', this)" class="cam-preset-btn px-2.5 py-1 rounded-lg text-[11px] font-semibold bg-slate-800 text-slate-200 hover:bg-slate-700 transition">
+        7. Front Yard, 3152 Porch &amp; Park Strips
+      </button>
+      <button onclick="window.goToCameraPreset('TOP_DRONE_3D', this)" class="cam-preset-btn px-2.5 py-1 rounded-lg text-[11px] font-semibold bg-slate-800 text-slate-200 hover:bg-slate-700 transition">
+        8. Top-Down 3D Aerial
+      </button>
+    </div>
+
+    <div class="hidden xl:flex items-center gap-2 text-[11px] text-slate-400 font-mono-cad shrink-0">
+      <span id="cursor-coords-readout">wx: 20.0' · wy: 30.0'</span>
+    </div>
+  </div>
+
+  <!-- ==================== MAIN WORKSPACE ==================== -->
+  <div class="flex-1 flex overflow-hidden relative">
+
+    <!-- LEFT DRAWER: PHASE MILESTONES (2026–2031) & INDIVIDUAL 3D LAYER TOGGLES -->
+    <aside id="left-layer-panel"
+           class="w-80 bg-slate-900/95 backdrop-blur-md border-r border-slate-800 flex flex-col shrink-0 z-20 transition-all duration-200 overflow-hidden">
+
+      <!-- Cumulative Timeline Bar -->
+      <div class="p-3 border-b border-slate-800 bg-slate-950/60">
+        <div class="flex items-center justify-between mb-1.5">
+          <span class="text-[11px] font-bold uppercase tracking-wider text-slate-300">Cumulative Build Timeline</span>
+          <div class="flex items-center gap-1">
+            <button onclick="window.setAllLayers(true)" class="px-1.5 py-0.5 rounded text-[10px] font-semibold bg-emerald-600/20 text-emerald-300 border border-emerald-500/30 hover:bg-emerald-600/30">
+              All On
+            </button>
+            <button onclick="window.setAllLayers(false)" class="px-1.5 py-0.5 rounded text-[10px] font-semibold bg-slate-800 text-slate-300 border border-slate-700 hover:bg-slate-700">
+              Base Only
+            </button>
+          </div>
+        </div>
+        <p class="text-[10px] text-slate-400 mb-2">
+          Preview how Lot 3152 looks in 3D at the end of each year from 2026 to 2031:
+        </p>
+        <div class="grid grid-cols-4 gap-1">
+          <button onclick="window.applyYearMilestone(2025)" id="mile-2025"
+                  class="mile-btn px-1.5 py-1 rounded text-[10px] font-mono-cad font-bold bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 transition">
+            Baseline
+          </button>
+          <button onclick="window.applyYearMilestone(2026)" id="mile-2026"
+                  class="mile-btn px-1.5 py-1 rounded text-[10px] font-mono-cad font-bold bg-slate-800 hover:bg-slate-700 text-purple-300 border border-purple-500/30 transition">
+            2026 · P1
+          </button>
+          <button onclick="window.applyYearMilestone(2027)" id="mile-2027"
+                  class="mile-btn px-1.5 py-1 rounded text-[10px] font-mono-cad font-bold bg-slate-800 hover:bg-slate-700 text-emerald-300 border border-emerald-500/30 transition">
+            2027 · P2
+          </button>
+          <button onclick="window.applyYearMilestone(2028)" id="mile-2028"
+                  class="mile-btn px-1.5 py-1 rounded text-[10px] font-mono-cad font-bold bg-slate-800 hover:bg-slate-700 text-sky-300 border border-sky-500/30 transition">
+            2028 · P3
+          </button>
+          <button onclick="window.applyYearMilestone(2029)" id="mile-2029"
+                  class="mile-btn px-1.5 py-1 rounded text-[10px] font-mono-cad font-bold bg-slate-800 hover:bg-slate-700 text-amber-300 border border-amber-500/30 transition">
+            2029 · P4
+          </button>
+          <button onclick="window.applyYearMilestone(2030)" id="mile-2030"
+                  class="mile-btn px-1.5 py-1 rounded text-[10px] font-mono-cad font-bold bg-slate-800 hover:bg-slate-700 text-lime-300 border border-lime-500/30 transition">
+            2030 · P5
+          </button>
+          <button onclick="window.applyYearMilestone(2031)" id="mile-2031"
+                  class="mile-btn col-span-2 px-1.5 py-1 rounded text-[10px] font-mono-cad font-bold bg-emerald-600 text-white border border-emerald-400 shadow transition">
+            2031 · Complete (All)
+          </button>
+        </div>
+      </div>
+
+      <!-- Scrollable Phase & Layer List -->
+      <div id="phase-layer-list" class="flex-1 overflow-y-auto p-2.5 space-y-2.5">
+        <!-- Populated by JS -->
+      </div>
+    </aside>
+
+    <!-- CENTER: INTERACTIVE 3D WEBGL VIEWPORT -->
+    <main id="viewport-container" class="flex-1 relative overflow-hidden bg-slate-950">
+      <canvas id="three-canvas" class="w-full h-full block outline-none"></canvas>
+
+      <!-- 3D Floating Callout Pins Container -->
+      <div id="labels-overlay" class="absolute inset-0 pointer-events-none overflow-hidden z-10"></div>
+
+      <!-- Walk Mode HUD Banner (Shown when in First-Person Walk Mode) -->
+      <div id="walk-mode-hud" class="hidden absolute top-3 left-1/2 -translate-x-1/2 z-20 bg-slate-900/90 backdrop-blur border border-emerald-500/50 rounded-xl px-4 py-2 shadow-xl flex items-center gap-3">
+        <span class="text-xs font-bold text-emerald-300 flex items-center gap-1.5">
+          <span>&#128694; Eye-Level Walk Mode (5'-8" H)</span>
+        </span>
+        <span class="text-[11px] text-slate-300">
+          Use <kbd class="px-1.5 py-0.5 bg-slate-800 rounded border border-slate-600 font-mono-cad text-[10px]">W</kbd><kbd class="px-1.5 py-0.5 bg-slate-800 rounded border border-slate-600 font-mono-cad text-[10px]">A</kbd><kbd class="px-1.5 py-0.5 bg-slate-800 rounded border border-slate-600 font-mono-cad text-[10px]">S</kbd><kbd class="px-1.5 py-0.5 bg-slate-800 rounded border border-slate-600 font-mono-cad text-[10px]">D</kbd> or <kbd class="px-1.5 py-0.5 bg-slate-800 rounded border border-slate-600 font-mono-cad text-[10px]">Arrows</kbd> to walk · Drag mouse to look around · Click any ground spot to step there
+        </span>
+        <button onclick="window.setNavMode('ORBIT')" class="px-2 py-0.5 rounded bg-slate-800 hover:bg-slate-700 text-xs font-bold text-slate-200 border border-slate-600">
+          Exit Walk
+        </button>
+      </div>
+
+      <!-- Selected Feature Inspector Toast (Bottom Left) -->
+      <div id="feature-inspector" class="absolute bottom-3 left-3 z-20 max-w-md bg-slate-900/95 backdrop-blur-md border border-slate-700 rounded-xl p-3 shadow-2xl">
+        <div class="flex items-center justify-between gap-2 mb-1">
+          <span id="insp-badge" class="px-2 py-0.5 rounded text-[10px] font-mono-cad font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/40">
+            LOCKED-IN MASTER SPEC
+          </span>
+          <span id="insp-coords" class="text-[10px] font-mono-cad text-slate-400">
+            Scale 1:1 (1 unit = 1.0 ft)
+          </span>
+        </div>
+        <h3 id="insp-title" class="text-xs sm:text-sm font-bold text-white">
+          Lot 3152 — Complete 3D Master Plan (2026–2031)
+        </h3>
+        <p id="insp-desc" class="text-[11px] text-slate-300 mt-0.5 leading-relaxed">
+          Drag to orbit 360&deg;, scroll to zoom, right-click to pan, or click any 3D pin or camera preset above to inspect the Option #1C 2-pillar solid-roof patio awning, 5+4 West wall hybrid trees, 5 cedar garden beds, and 45&deg; Holland pavers.
+        </p>
+      </div>
+
+      <!-- Bottom-Right Compass & Controls Legend -->
+      <div class="absolute bottom-3 right-3 z-20 bg-slate-900/85 backdrop-blur border border-slate-800 rounded-xl px-3 py-2 text-[10px] font-mono-cad text-slate-300 hidden sm:flex items-center gap-3 shadow-lg">
+        <div><span class="text-emerald-400 font-bold">Left-Drag:</span> Orbit</div>
+        <div><span class="text-sky-400 font-bold">Right-Drag:</span> Pan</div>
+        <div><span class="text-amber-400 font-bold">Scroll:</span> Zoom</div>
+        <div><span class="text-purple-400 font-bold">Click Pin:</span> Inspect</div>
+      </div>
+    </main>
+  </div>
+
+  <!-- ==================== 3D APPLICATION SCRIPT ==================== -->
+  <script type="module">
+    import * as THREE from 'three';
+    import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+
+    /*************************************************************************
+     * 1. STATE & LOCKED-IN PHASE LAYER SCHEMA
+     *************************************************************************/
+    const LOCKED_NORTH_GATE_WX = 70.0; // 3.2' West of NE garage face (1.2' behind 2.0' stone wrap)
+    const LOCKED_SOUTH_GATE_WX = 57.5; // 2.2' West of SE stucco corner (encloses meters & AC unit)
+
+    const STATE = {
+      lightingMode: 'DAY', // 'DAY' | 'SUNSET' | 'NIGHT'
+      navMode: 'ORBIT',    // 'ORBIT' | 'WALK'
+      leftPanelOpen: window.innerWidth >= 1024,
+      gatesOpen: false,
+      awningRoofXray: false,
+      showLabels: true,
+      layers: {
+        // Base Property
+        houseStructure: true,
+        existingConcrete: true,
+        neighbors: true,
+        utilities: true,
+        // Phase 1 (2026)
+        southFence: true,
+        southGate: true,
+        // Phase 2 (2027)
+        northFence: true,
+        northGate: true,
+        pavers: true,
+        grass: true,
+        beds: true,
+        westWallPlants: true,
+        yardPlants: true,
+        irrigation: false,
+        // Phase 3 (2028)
+        northCementPad: true,
+        rearSidewalk: true,
+        // Phase 4 (2029)
+        patioAwning: true,
+        patioFurniture: true,
+        // Phase 5 (2030)
+        planters: true,
+        gardenRock: true,
+        gardenDrip: true,
+        // Phase 6 (2031)
+        lighting: true,
+        porchSwing: true
+      }
+    };
+
+    // Collapse left drawer by default when embedded inside a narrow iframe
+    if (window.self !== window.top && window.innerWidth < 1100) {
+      STATE.leftPanelOpen = false;
+    }
+
+    const PHASE_GROUPS = [
+      {
+        id: 'phase-1',
+        year: 2026,
+        badge: '2026 · Phase 1',
+        title: 'South Vinyl Fence & Gate',
+        subtitle: "57.5' S. Fence (50% Split) + 4' Walk Gate (100% Ours)",
+        borderTint: 'rgba(192, 132, 252, 0.4)',
+        bgTint: 'rgba(88, 28, 135, 0.16)',
+        badgeClass: 'bg-purple-500/20 text-purple-300 border-purple-500/40',
+        layers: [
+          { key: 'southFence', label: "South Vinyl Fence (57.5' · 50% Split)", swatch: '#c084fc' },
+          { key: 'southGate', label: "South 4.0' Walk Gate & Wings (wx=57.5')", swatch: '#34d399' }
+        ]
+      },
+      {
+        id: 'phase-2',
+        year: 2027,
+        badge: '2027 · Phase 2',
+        title: 'N. Fence/Gate, Pavers, Grass & Plants',
+        subtitle: "70' N. Fence + 8.5' Gate + 5+4 Trees + Pavers + Sod",
+        borderTint: 'rgba(52, 211, 153, 0.4)',
+        bgTint: 'rgba(6, 78, 59, 0.16)',
+        badgeClass: 'bg-emerald-500/20 text-emerald-300 border-emerald-500/40',
+        layers: [
+          { key: 'northFence', label: "North Vinyl Fence (70.0' · 50% Split)", swatch: '#c084fc' },
+          { key: 'northGate', label: "North 8.5' Double Vehicle Gate (wx=70.0')", swatch: '#fbbf24' },
+          { key: 'pavers', label: '6" Flush Holland Pavers (45° Corners)', swatch: '#2dd4bf' },
+          { key: 'grass', label: "Sod / Lawn (BY + 4'+ S. Wrap + Front)", swatch: '#22c55e' },
+          { key: 'beds', label: 'Dark Bark Mulch Beds & Park Strips', swatch: '#854d0e' },
+          { key: 'westWallPlants', label: 'W. Wall 5+4 Hybrid Trees & Perennials', swatch: '#4ade80' },
+          { key: 'yardPlants', label: 'S. Berry Bed, Front Maple & Box Screen', swatch: '#f43f5e' },
+          { key: 'irrigation', label: 'Pop-Up Sprinkler Heads & Spray Arcs', swatch: '#38bdf8' }
+        ]
+      },
+      {
+        id: 'phase-3',
+        year: 2028,
+        badge: '2028 · Phase 3',
+        title: "North Cement Pad & 3' Rear Walk",
+        subtitle: '388.8 sq ft N. Side Pad + 33 sq ft Rear Sidewalk',
+        borderTint: 'rgba(56, 189, 248, 0.4)',
+        bgTint: 'rgba(12, 74, 110, 0.16)',
+        badgeClass: 'bg-sky-500/20 text-sky-300 border-sky-500/40',
+        layers: [
+          { key: 'northCementPad', label: "N. Side Poured Cement Pad (9'×43.2')", swatch: '#7dd3fc' },
+          { key: 'rearSidewalk', label: "Rear Wall Concrete Sidewalk (3'×11')", swatch: '#bae6fd' }
+        ]
+      },
+      {
+        id: 'phase-4',
+        year: 2029,
+        badge: '2029 · Phase 4',
+        title: 'Option #1C Solid-Roof Awning & Lounge',
+        subtitle: '2-Pillar Timber Awning + L-Sectional + Fire Table',
+        borderTint: 'rgba(245, 158, 11, 0.4)',
+        bgTint: 'rgba(120, 53, 15, 0.16)',
+        badgeClass: 'bg-amber-500/20 text-amber-300 border-amber-500/40',
+        layers: [
+          { key: 'patioAwning', label: 'Option #1C 2-Pillar Solid-Roof Awning', swatch: '#92400e' },
+          { key: 'patioFurniture', label: 'L-Sectional Sofa, Rug & Propane Fire Table', swatch: '#f59e0b' }
+        ]
+      },
+      {
+        id: 'phase-5',
+        year: 2030,
+        badge: '2030 · Phase 5',
+        title: '5 Raised Cedar Beds, Drip & Rock',
+        subtitle: "5 N–S Planters (3'×6') + 3/8\" Crushed Granite",
+        borderTint: 'rgba(132, 204, 22, 0.4)',
+        bgTint: 'rgba(54, 83, 20, 0.16)',
+        badgeClass: 'bg-lime-500/20 text-lime-300 border-lime-500/40',
+        layers: [
+          { key: 'planters', label: "5 N–S Raised Cedar Planters (N1–N5)", swatch: '#84cc16' },
+          { key: 'gardenRock', label: '3/8" Crushed Granite Garden Paths', swatch: '#a8a29e' },
+          { key: 'gardenDrip', label: 'Per-Box Grid Drip Irrigation Manifolds', swatch: '#0ea5e9' }
+        ]
+      },
+      {
+        id: 'phase-6',
+        year: 2031,
+        badge: '2031 · Phase 6',
+        title: '2700K Lighting & Front Porch Swing',
+        subtitle: '21 LED Uplights, Bistro String Lights & 3152 Swing',
+        borderTint: 'rgba(253, 224, 71, 0.4)',
+        bgTint: 'rgba(113, 63, 18, 0.16)',
+        badgeClass: 'bg-yellow-500/20 text-yellow-300 border-yellow-500/40',
+        layers: [
+          { key: 'lighting', label: '12V 2700K Uplights & Patio Bistro Lights', swatch: '#fde047' },
+          { key: 'porchSwing', label: 'Hanging Cedar Front Porch Swing (3152)', swatch: '#fb923c' }
+        ]
+      },
+      {
+        id: 'base-property',
+        year: null,
+        badge: 'Baseline',
+        title: 'Existing Property & Context',
+        subtitle: 'Lot 3152 House, Garage, Patio, Drive & Neighbors',
+        borderTint: 'rgba(100, 116, 139, 0.4)',
+        bgTint: 'rgba(15, 23, 42, 0.6)',
+        badgeClass: 'bg-slate-800 text-slate-300 border-slate-600',
+        layers: [
+          { key: 'houseStructure', label: 'House (3152), Garage, Porch & W. Wall', swatch: '#94a3b8' },
+          { key: 'existingConcrete', label: 'Existing Patio, Driveway & Sidewalk', swatch: '#cbd5e1' },
+          { key: 'neighbors', label: 'Neighbors (N. Bare Dirt / S. White Rocks)', swatch: '#e2e8f0' },
+          { key: 'utilities', label: 'Utilities (AC + Cedar Screen, Meters, Box)', swatch: '#fbbf24' }
+        ]
+      }
+    ];
+
+    /*************************************************************************
+     * 2. THREE.JS SCENE, RENDERER, CAMERA & LIGHTING INITIALIZATION
+     *************************************************************************/
+    const canvas = document.getElementById('three-canvas');
+    const viewportEl = document.getElementById('viewport-container');
+
+    const renderer = new THREE.WebGLRenderer({
+      canvas,
+      antialias: true,
+      preserveDrawingBuffer: true,
+      powerPreference: 'high-performance'
+    });
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.shadowMap.enabled = true;
+    renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+    renderer.toneMapping = THREE.ACESFilmicToneMapping;
+    renderer.toneMappingExposure = 1.08;
+
+    const scene = new THREE.Scene();
+    scene.background = new THREE.Color('#7dd3fc');
+    scene.fog = new THREE.FogExp2('#bae6fd', 0.0018);
+
+    const camera = new THREE.PerspectiveCamera(45, 1, 0.5, 650);
+    // Start at Backyard Overview (Southwest aerial looking Northeast)
+    camera.position.set(-18, 26, 56);
+
+    const controls = new OrbitControls(camera, renderer.domElement);
+    controls.target.set(22, 4.5, 25);
+    controls.enableDamping = true;
+    controls.dampingFactor = 0.06;
+    controls.maxPolarAngle = Math.PI / 2 - 0.015; // Keep camera above ground
+    controls.minDistance = 3;
+    controls.maxDistance = 220;
+    controls.update();
+
+    // Scene Layer Groups
+    const LAYER_GROUPS = {};
+    Object.keys(STATE.layers).forEach(k => {
+      const grp = new THREE.Group();
+      grp.name = `layer-${k}`;
+      scene.add(grp);
+      LAYER_GROUPS[k] = grp;
+    });
+    // Special sub-group for 2027 flat-dirt garden (visible when beds=true and gardenRock=false)
+    const flatDirtGardenGroup = new THREE.Group();
+    scene.add(flatDirtGardenGroup);
+
+    /*************************************************************************
+     * 3. PROCEDURAL HIGH-DPI PBR CANVAS TEXTURES
+     *************************************************************************/
+    function seededRandom(seed) {
+      let s = seed % 2147483647;
+      return function() {
+        s = (s * 16807) % 2147483647;
+        return (s - 1) / 2147483646;
+      };
+    }
+
+    function makeCanvasTexture(w, h, repeatX, repeatY, drawFn) {
+      const c = document.createElement('canvas');
+      c.width = w;
+      c.height = h;
+      const ctx = c.getContext('2d');
+      drawFn(ctx, w, h);
+      const tex = new THREE.CanvasTexture(c);
+      tex.wrapS = THREE.RepeatWrapping;
+      tex.wrapT = THREE.RepeatWrapping;
+      tex.repeat.set(repeatX, repeatY);
+      tex.colorSpace = THREE.SRGBColorSpace;
+      tex.anisotropy = 4;
+      return tex;
+    }
+
+    const rng = seededRandom(3152);
+
+    // 1. Mower-Striped Kentucky Bluegrass Turf
+    const turfTex = makeCanvasTexture(256, 256, 0.12, 0.12, (ctx, w, h) => {
+      ctx.fillStyle = '#2d6e32';
+      ctx.fillRect(0, 0, w, h);
+      for (let y = 0; y < h; y++) {
+        const stripe = Math.sin((y / h) * Math.PI * 4);
+        ctx.fillStyle = stripe > 0
+          ? `rgba(82, 182, 74, ${0.22 * stripe})`
+          : `rgba(20, 68, 26, ${0.20 * -stripe})`;
+        ctx.fillRect(0, y, w, 1);
+      }
+      for (let i = 0; i < 6000; i++) {
+        const x = rng() * w, y = rng() * h, v = rng();
+        ctx.fillStyle = v > 0.65 ? '#5cb85c' : (v > 0.3 ? '#3b823e' : '#1e4d23');
+        ctx.fillRect(x, y, 1.5, 2.4);
+      }
+    });
+
+    // 2. Dark Shredded Espresso Bark Mulch
+    const mulchTex = makeCanvasTexture(128, 128, 0.35, 0.35, (ctx, w, h) => {
+      ctx.fillStyle = '#2a1a11';
+      ctx.fillRect(0, 0, w, h);
+      for (let i = 0; i < 1800; i++) {
+        const x = rng() * w, y = rng() * h, len = 3 + rng() * 6, ang = rng() * Math.PI;
+        ctx.strokeStyle = rng() > 0.5 ? '#462c1c' : '#180e08';
+        ctx.lineWidth = 1.4;
+        ctx.beginPath();
+        ctx.moveTo(x, y);
+        ctx.lineTo(x + Math.cos(ang) * len, y + Math.sin(ang) * len);
+        ctx.stroke();
+      }
+    });
+
+    // 3. 3/8" Crushed Granite Texture
+    const crushedRockTex = makeCanvasTexture(128, 128, 0.4, 0.4, (ctx, w, h) => {
+      ctx.fillStyle = '#8b857c';
+      ctx.fillRect(0, 0, w, h);
+      for (let i = 0; i < 2800; i++) {
+        const x = rng() * w, y = rng() * h, sz = 1.3 + rng() * 2.2, v = rng();
+        ctx.fillStyle = v > 0.7 ? '#b8b2a8' : (v > 0.35 ? '#706a61' : '#57524b');
+        ctx.fillRect(x, y, sz, sz);
+      }
+    });
+
+    // 4. South Neighbor White River Rocks
+    const whiteRocksTex = makeCanvasTexture(128, 128, 0.35, 0.35, (ctx, w, h) => {
+      ctx.fillStyle = '#cbd5e1';
+      ctx.fillRect(0, 0, w, h);
+      for (let i = 0; i < 950; i++) {
+        const x = rng() * w, y = rng() * h, rx = 2 + rng() * 3, ry = 1.5 + rng() * 2.5;
+        ctx.fillStyle = 'rgba(71,85,105,0.35)';
+        ctx.beginPath();
+        ctx.ellipse(x + 1, y + 1, rx, ry, 0, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.fillStyle = rng() > 0.5 ? '#f8fafc' : '#e2e8f0';
+        ctx.beginPath();
+        ctx.ellipse(x, y, rx, ry, rng() * Math.PI, 0, Math.PI * 2);
+        ctx.fill();
+      }
+    });
+
+    // 5. North Neighbor Bare Dirt
+    const bareDirtTex = makeCanvasTexture(128, 128, 0.25, 0.25, (ctx, w, h) => {
+      ctx.fillStyle = '#7c5c43';
+      ctx.fillRect(0, 0, w, h);
+      for (let i = 0; i < 2500; i++) {
+        const x = rng() * w, y = rng() * h, v = rng();
+        ctx.fillStyle = v > 0.65 ? '#947155' : (v > 0.3 ? '#694b35' : '#543b28');
+        ctx.fillRect(x, y, 2, 2);
+      }
+    });
+
+    // 6. Broom-Finished Poured Concrete
+    const concreteTex = makeCanvasTexture(128, 128, 0.2, 0.2, (ctx, w, h) => {
+      ctx.fillStyle = '#d6dade';
+      ctx.fillRect(0, 0, w, h);
+      for (let y = 0; y < h; y += 2) {
+        ctx.fillStyle = y % 4 === 0 ? 'rgba(255,255,255,0.16)' : 'rgba(100,116,139,0.08)';
+        ctx.fillRect(0, y, w, 1);
+      }
+      for (let i = 0; i < 1500; i++) {
+        ctx.fillStyle = rng() > 0.5 ? 'rgba(255,255,255,0.22)' : 'rgba(71,85,105,0.14)';
+        ctx.fillRect(rng() * w, rng() * h, 1.5, 1.5);
+      }
+    });
+
+    // 7. West Precast Concrete Wall Ashlar Stone Pattern
+    const precastWallTex = makeCanvasTexture(256, 128, 6, 2, (ctx, w, h) => {
+      ctx.fillStyle = '#d6cab8';
+      ctx.fillRect(0, 0, w, h);
+      const rows = 4;
+      const rowH = h / rows;
+      for (let r = 0; r < rows; r++) {
+        const y = r * rowH;
+        const offset = (r % 2) * (w / 4);
+        for (let c = -1; c < 5; c++) {
+          const x = c * (w / 3) + offset;
+          const shade = (rng() - 0.5) * 16;
+          ctx.fillStyle = `rgb(${214 + shade}, ${202 + shade}, ${184 + shade})`;
+          ctx.fillRect(x + 2, y + 2, w / 3 - 4, rowH - 4);
+        }
+        ctx.fillStyle = '#9c8f7d';
+        ctx.fillRect(0, y, w, 2.5);
+      }
+    });
+
+    // 8. House Light Grey Stucco Texture
+    const stuccoTex = makeCanvasTexture(128, 128, 4, 4, (ctx, w, h) => {
+      ctx.fillStyle = '#cfd4da';
+      ctx.fillRect(0, 0, w, h);
+      for (let i = 0; i < 3000; i++) {
+        ctx.fillStyle = rng() > 0.5 ? 'rgba(255,255,255,0.18)' : 'rgba(100,116,139,0.15)';
+        ctx.fillRect(rng() * w, rng() * h, 1.5, 1.5);
+      }
+    });
+
+    // 9. Stacked Stone Masonry Wainscot Texture
+    const stackedStoneTex = makeCanvasTexture(256, 128, 2, 2, (ctx, w, h) => {
+      ctx.fillStyle = '#6b655e';
+      ctx.fillRect(0, 0, w, h);
+      const rows = 6;
+      const rh = h / rows;
+      for (let r = 0; r < rows; r++) {
+        let x = 0;
+        while (x < w) {
+          const bw = 24 + rng() * 38;
+          const palette = ['#8c8275', '#736b62', '#a3927e', '#57534e', '#94897c'];
+          ctx.fillStyle = palette[Math.floor(rng() * palette.length)];
+          ctx.fillRect(x + 1.5, r * rh + 1.5, bw - 3, rh - 3);
+          x += bw;
+        }
+      }
+    });
+
+    // 10. Architectural Dark Charcoal Roof Shingle Texture
+    const shingleTex = makeCanvasTexture(128, 128, 6, 6, (ctx, w, h) => {
+      ctx.fillStyle = '#262930';
+      ctx.fillRect(0, 0, w, h);
+      for (let y = 0; y < h; y += 16) {
+        ctx.fillStyle = '#14161a';
+        ctx.fillRect(0, y + 14, w, 2);
+        for (let x = 0; x < w; x += 32) {
+          const s = (rng() - 0.5) * 16;
+          ctx.fillStyle = `rgb(${38 + s},${42 + s},${49 + s})`;
+          ctx.fillRect(x + ((y / 16) % 2) * 16, y, 30, 14);
+        }
+      }
+    });
+
+    // 11. Warm 1x6 Tongue-and-Groove Cedar Ceiling Deck Texture (Option #1C Underside)
+    const tgCedarTex = makeCanvasTexture(256, 256, 3, 6, (ctx, w, h) => {
+      ctx.fillStyle = '#b46934';
+      ctx.fillRect(0, 0, w, h);
+      const planks = 8;
+      const pw = w / planks;
+      for (let p = 0; p < planks; p++) {
+        const tone = (rng() - 0.5) * 24;
+        ctx.fillStyle = `rgb(${182 + tone}, ${108 + tone * 0.7}, ${54 + tone * 0.4})`;
+        ctx.fillRect(p * pw + 1, 0, pw - 2, h);
+        // Subtle wood grain lines
+        for (let g = 0; g < 18; g++) {
+          ctx.fillStyle = 'rgba(69, 26, 3, 0.12)';
+          ctx.fillRect(p * pw + 2 + rng() * (pw - 4), 0, 1, h);
+        }
+        // V-groove seam
+        ctx.fillStyle = '#451a03';
+        ctx.fillRect(p * pw, 0, 2, h);
+      }
+    });
+
+    /*************************************************************************
+     * 4. SHARED MATERIALS
+     *************************************************************************/
+    const MAT = {
+      turf: new THREE.MeshStandardMaterial({ map: turfTex, roughness: 0.88, metalness: 0.02 }),
+      mulch: new THREE.MeshStandardMaterial({ map: mulchTex, roughness: 0.95 }),
+      crushedRock: new THREE.MeshStandardMaterial({ map: crushedRockTex, roughness: 0.9 }),
+      whiteRocks: new THREE.MeshStandardMaterial({ map: whiteRocksTex, roughness: 0.85 }),
+      bareDirt: new THREE.MeshStandardMaterial({ map: bareDirtTex, roughness: 0.96 }),
+      concrete: new THREE.MeshStandardMaterial({ map: concreteTex, roughness: 0.82 }),
+      newConcrete: new THREE.MeshStandardMaterial({ map: concreteTex, color: '#eef2f6', roughness: 0.76 }),
+      asphalt: new THREE.MeshStandardMaterial({ color: '#2b3038', roughness: 0.9 }),
+      precastWall: new THREE.MeshStandardMaterial({ map: precastWallTex, roughness: 0.85 }),
+      precastCap: new THREE.MeshStandardMaterial({ color: '#dfd5c6', roughness: 0.8 }),
+      stucco: new THREE.MeshStandardMaterial({ map: stuccoTex, roughness: 0.86 }),
+      foundation: new THREE.MeshStandardMaterial({ color: '#b8ab99', roughness: 0.88 }),
+      stoneVeneer: new THREE.MeshStandardMaterial({ map: stackedStoneTex, roughness: 0.88 }),
+      shingleRoof: new THREE.MeshStandardMaterial({ map: shingleTex, roughness: 0.85 }),
+      darkTrim: new THREE.MeshStandardMaterial({ color: '#1e2229', roughness: 0.5, metalness: 0.2 }),
+      whiteTrim: new THREE.MeshStandardMaterial({ color: '#f8fafc', roughness: 0.4 }),
+      vinylFence: new THREE.MeshStandardMaterial({ color: '#f8fafc', roughness: 0.35, metalness: 0.05 }),
+      paverBrick: new THREE.MeshStandardMaterial({ color: '#525b66', roughness: 0.78 }),
+      paverJoint: new THREE.MeshStandardMaterial({ color: '#334155', roughness: 0.9 }),
+      espressoTimber: new THREE.MeshStandardMaterial({ color: '#382214', roughness: 0.72 }),
+      tgCedarCeiling: new THREE.MeshStandardMaterial({ map: tgCedarTex, roughness: 0.65 }),
+      standingSeamMetal: new THREE.MeshStandardMaterial({
+        color: '#181b20',
+        roughness: 0.38,
+        metalness: 0.65,
+        transparent: false,
+        opacity: 1.0
+      }),
+      simpsonHardware: new THREE.MeshStandardMaterial({ color: '#111317', roughness: 0.35, metalness: 0.8 }),
+      cedarPlanter: new THREE.MeshStandardMaterial({ color: '#8f4219', roughness: 0.76 }),
+      soilDark: new THREE.MeshStandardMaterial({ color: '#23170f', roughness: 0.96 }),
+      windowGlass: new THREE.MeshStandardMaterial({
+        color: '#38bdf8',
+        roughness: 0.15,
+        metalness: 0.5,
+        emissive: new THREE.Color('#f59e0b'),
+        emissiveIntensity: 0.05
+      }),
+      bistroBulb: new THREE.MeshStandardMaterial({
+        color: '#fef08a',
+        emissive: new THREE.Color('#fbbf24'),
+        emissiveIntensity: 0.8
+      }),
+      flameMat: new THREE.MeshStandardMaterial({
+        color: '#fbbf24',
+        emissive: new THREE.Color('#f97316'),
+        emissiveIntensity: 2.2,
+        roughness: 0.2
+      }),
+      sofaFrame: new THREE.MeshStandardMaterial({ color: '#272320', roughness: 0.6 }),
+      sofaCushion: new THREE.MeshStandardMaterial({ color: '#d6cfc5', roughness: 0.82 }),
+      outdoorRug: new THREE.MeshStandardMaterial({ color: '#475569', roughness: 0.92 })
+    };
+
+    /*************************************************************************
+     * 5. GEOMETRY HELPER FUNCTIONS (1:1 CAD FEET: X=wx, Y=height, Z=wy)
+     *************************************************************************/
+    function addBox(parent, wx1, wy1, wx2, wy2, h1, h2, mat, cast = true, receive = true) {
+      const dx = Math.abs(wx2 - wx1);
+      const dy = Math.abs(h2 - h1);
+      const dz = Math.abs(wy2 - wy1);
+      const geom = new THREE.BoxGeometry(dx, dy, dz);
+      const mesh = new THREE.Mesh(geom, mat);
+      mesh.position.set((wx1 + wx2) / 2, (h1 + h2) / 2, (wy1 + wy2) / 2);
+      mesh.castShadow = cast;
+      mesh.receiveShadow = receive;
+      parent.add(mesh);
+      return mesh;
+    }
+
+    function addExtrudedPoly(parent, ptsWxWy, hBottom, hTop, mat, cast = false, receive = true) {
+      const shape = new THREE.Shape();
+      ptsWxWy.forEach(([wx, wy], idx) => {
+        // Because rotation.x = -PI/2 maps localY -> -worldZ, we pass -wy as localY
+        if (idx === 0) shape.moveTo(wx, -wy);
+        else shape.lineTo(wx, -wy);
+      });
+      shape.closePath();
+      const depth = Math.max(0.02, hTop - hBottom);
+      const geom = new THREE.ExtrudeGeometry(shape, { depth, bevelEnabled: false });
+      const mesh = new THREE.Mesh(geom, mat);
+      mesh.rotation.x = -Math.PI / 2;
+      mesh.position.y = hBottom;
+      mesh.castShadow = cast;
+      mesh.receiveShadow = receive;
+      parent.add(mesh);
+      return mesh;
+    }
+
+    /*************************************************************************
+     * 6. BUILD ALL 1:1 3D PROPERTY & LANDSCAPE LAYERS
+     *************************************************************************/
+
+    // --- A. BASELINE GROUND, NEIGHBORS & EXISTING CONCRETE ---
+    {
+      const gBase = LAYER_GROUPS.existingConcrete;
+      const gNeigh = LAYER_GROUPS.neighbors;
+
+      // Lot 3152 base soil (wx: 0..96.7, wy: 0..50)
+      addBox(gBase, -2.0, 0.0, 108.7, 50.0, -0.4, 0.0, MAT.bareDirt, false, true);
+
+      // North Neighbor (wy < 0.0'): Completely Empty Bare Dirt + Far Neighbor House Massing
+      addBox(gNeigh, -2.0, -24.0, 108.7, 0.0, -0.4, 0.01, MAT.bareDirt, false, true);
+      addBox(gNeigh, 32.0, -24.0, 72.0, -9.5, 0.0, 18.0, new THREE.MeshStandardMaterial({ color: '#cbd5e1', roughness: 0.85 }), true, true);
+
+      // South Neighbor (wy > 50.0'): White Decorative River Rocks + Neighbor Dark-Grey 2-Story House
+      addBox(gNeigh, -2.0, 50.0, 96.7, 59.0, -0.35, 0.03, MAT.whiteRocks, false, true);
+      addBox(gNeigh, 96.7, 50.0, 108.7, 74.0, -0.35, 0.01, MAT.bareDirt, false, true);
+      const sNeighborMat = new THREE.MeshStandardMaterial({ color: '#475569', roughness: 0.85 });
+      addBox(gNeigh, 30.0, 59.0, 68.0, 74.0, 0.0, 18.5, sNeighborMat, true, true);
+      // South neighbor pitched roof
+      const sRoofShape = new THREE.Shape();
+      sRoofShape.moveTo(58.5, 0);
+      sRoofShape.lineTo(66.5, 4.5);
+      sRoofShape.lineTo(74.5, 0);
+      sRoofShape.closePath();
+      const sRoofGeom = new THREE.ExtrudeGeometry(sRoofShape, { depth: 39.0, bevelEnabled: false });
+      const sRoofMesh = new THREE.Mesh(sRoofGeom, MAT.shingleRoof);
+      sRoofMesh.rotation.y = Math.PI / 2;
+      sRoofMesh.position.set(29.5, 18.5, 0);
+      // Use simple box gable instead for cleaner alignment
+      addBox(gNeigh, 29.5, 58.5, 68.5, 74.0, 18.5, 22.0, MAT.shingleRoof, true, true);
+
+      // Street (wx: 108.7..128), Curb (106.7..108.7), City Sidewalk (96.7..100.7)
+      addBox(gBase, 108.7, -24.0, 128.0, 74.0, -0.35, -0.05, MAT.asphalt, false, true);
+      addBox(gBase, 106.7, -24.0, 108.7, 74.0, -0.2, 0.12, MAT.concrete, false, true);
+      addBox(gBase, 96.7, -24.0, 100.7, 74.0, 0.0, 0.10, MAT.concrete, false, true);
+
+      // Flared Driveway Apron (wx: 100.7..106.7, wy: 9.5..30.5)
+      addExtrudedPoly(gBase, [[100.7, 11.0], [106.7, 9.5], [106.7, 30.5], [100.7, 29.0]], 0.0, 0.11, MAT.concrete, false, true);
+
+      // Main Concrete Driveway (18.0' W × 23.5' L: wx: 73.2..96.7, wy: 11.0..29.0)
+      addBox(gBase, 73.2, 11.0, 96.7, 29.0, 0.0, 0.11, MAT.concrete, false, true);
+      // Driveway Control Joint Grooves
+      [17.0, 23.0].forEach(wy => addBox(gBase, 73.2, wy - 0.04, 106.7, wy + 0.04, 0.11, 0.115, MAT.paverJoint, false, false));
+      [81.0, 88.85].forEach(wx => addBox(gBase, wx - 0.04, 11.0, wx + 0.04, 29.0, 0.11, 0.115, MAT.paverJoint, false, false));
+
+      // Front Porch Walkway Extension (3.5' W: wx: 65.7..81.0, wy: 29.0..32.5)
+      addBox(gBase, 65.7, 29.0, 81.0, 32.5, 0.0, 0.11, MAT.concrete, false, true);
+
+      // Existing Backyard Concrete Patio (21.0' N–S × 12.5' E–W = 262.5 sq ft: wx: 17.5..30.0, wy: 20.0..41.0)
+      addBox(gBase, 17.5, 20.0, 30.0, 41.0, 0.0, 0.12, MAT.concrete, false, true);
+      // 4 Patio Quadrant Control Joints (wx=23.75, wy=30.5)
+      addBox(gBase, 23.71, 20.0, 23.79, 41.0, 0.12, 0.126, MAT.paverJoint, false, false);
+      addBox(gBase, 17.5, 30.46, 30.0, 30.54, 0.12, 0.126, MAT.paverJoint, false, false);
+    }
+
+    // --- B. LOT 3152 HOUSE, 2-CAR GARAGE, COVERED FRONT PORCH & WEST PRECAST WALL ---
+    {
+      const gHouse = LAYER_GROUPS.houseStructure;
+
+      // 1. West Rear Precast Concrete Perimeter Wall (wx: -1.0..0.0, wy: 0.0..50.0, 6.2' tall)
+      addBox(gHouse, -1.0, 0.0, 0.0, 50.0, 0.0, 6.2, MAT.precastWall, true, true);
+      addBox(gHouse, -1.12, -0.1, 0.12, 50.1, 6.2, 6.42, MAT.precastCap, true, true);
+      // 6 Fluted Columns at 10.0' O.C. (wy = 0, 10, 20, 30, 40, 50)
+      [0, 10, 20, 30, 40, 50].forEach(wy => {
+        addBox(gHouse, -1.25, wy - 0.65, 0.25, wy + 0.65, 0.0, 6.55, MAT.precastCap, true, true);
+        addBox(gHouse, -1.35, wy - 0.78, 0.35, wy + 0.78, 6.55, 6.82, MAT.precastCap, true, true);
+      });
+
+      // 2. Main 2-Story House Core (wx: 30.0..59.7, wy: 9.0..41.0, eave h = 19.5')
+      addBox(gHouse, 30.0, 9.0, 59.7, 41.0, 0.0, 1.1, MAT.foundation, true, true);
+      addBox(gHouse, 30.0, 9.0, 59.7, 41.0, 1.1, 19.5, MAT.stucco, true, true);
+
+      // 3. 1st-Floor 2-Car Garage Projection (wx: 59.7..73.2, wy: 9.0..29.0, h = 0..10.5')
+      addBox(gHouse, 59.7, 9.0, 73.2, 29.0, 0.0, 1.1, MAT.foundation, true, true);
+      addBox(gHouse, 59.7, 9.0, 73.2, 29.0, 1.1, 10.5, MAT.stucco, true, true);
+
+      // Stacked Stone Veneer on Front Garage Face (wx: 73.2..73.5) & 2.0' NE Corner Wrap (wx: 71.2..73.5)
+      addBox(gHouse, 73.15, 8.75, 73.5, 11.1, 0.0, 10.2, MAT.stoneVeneer, true, true);
+      addBox(gHouse, 73.15, 26.9, 73.5, 29.25, 0.0, 10.2, MAT.stoneVeneer, true, true);
+      addBox(gHouse, 73.15, 11.0, 73.5, 27.0, 8.2, 10.2, MAT.stoneVeneer, true, true);
+      addBox(gHouse, 71.2, 8.75, 73.5, 9.05, 0.0, 10.2, MAT.stoneVeneer, true, true);
+
+      // 16.0' Wide 2-Car Overhead Garage Door (wx = 73.35, wy: 11.0..27.0, h: 0.1..8.1')
+      addBox(gHouse, 73.25, 11.0, 73.42, 27.0, 0.1, 8.1, MAT.whiteTrim, false, true);
+      for (let h = 2.0; h <= 6.5; h += 2.0) {
+        addBox(gHouse, 73.42, 11.2, 73.46, 26.8, h - 0.04, h + 0.04, MAT.paverJoint, false, false);
+      }
+
+      // 4. 2nd-Floor Upper Volume Above Garage (wx: 59.7..72.2, wy: 9.0..29.0, h: 10.5..19.5')
+      addBox(gHouse, 59.7, 9.0, 71.5, 29.0, 10.5, 19.5, MAT.stucco, true, true);
+      // Center Shake-Siding Front Gable Bump-Out (wx: 71.5..72.5, wy: 11.5..24.5, h: 10.8..19.5')
+      addBox(gHouse, 71.5, 11.5, 72.5, 24.5, 10.8, 19.5, new THREE.MeshStandardMaterial({ color: '#d8d4ce', roughness: 0.8 }), true, true);
+      // Garage Overhang Skirt Roof (wx: 71.5..74.1, wy: 8.6..29.4, h: 10.2..10.8')
+      addBox(gHouse, 71.5, 8.6, 74.1, 29.4, 10.2, 10.75, MAT.shingleRoof, true, true);
+
+      // 5. Covered Front Porch (wx: 59.7..65.7, wy: 29.0..41.0) & '3152' Stone Column
+      addBox(gHouse, 59.7, 29.0, 65.7, 41.0, 0.0, 0.42, MAT.concrete, true, true);
+      // Porch Stone Wainscot along front wall (wx: 59.7..60.0, wy: 34.0..41.0, h: 0.42..3.5')
+      addBox(gHouse, 59.7, 34.0, 60.05, 41.0, 0.42, 3.5, MAT.stoneVeneer, true, true);
+      // '3152' Front Porch Pillar (wx: 64.2..65.7, wy: 39.5..41.25)
+      addBox(gHouse, 64.2, 39.5, 65.7, 41.25, 0.0, 3.6, MAT.stoneVeneer, true, true);
+      addBox(gHouse, 64.1, 39.4, 65.8, 41.35, 3.6, 3.85, MAT.precastCap, true, true);
+      addBox(gHouse, 64.45, 39.75, 65.45, 41.0, 3.85, 9.2, MAT.whiteTrim, true, true);
+      // Covered Porch Roof & Fascia (wx: 59.7..66.4, wy: 29.0..41.6, h: 9.2..11.2')
+      addBox(gHouse, 59.7, 29.0, 66.4, 41.6, 9.1, 9.5, MAT.darkTrim, true, true);
+      const porchRoofPts = [[59.7, 29.0], [66.4, 29.0], [66.4, 41.6], [59.7, 41.6]];
+      addExtrudedPoly(gHouse, porchRoofPts, 9.5, 10.8, MAT.shingleRoof, true, true);
+
+      // 6. Main House Hipped/Gable Shingle Roof (h: 19.5..25.2')
+      addBox(gHouse, 28.8, 7.8, 60.8, 42.2, 19.3, 19.75, MAT.darkTrim, true, true);
+      addBox(gHouse, 59.0, 7.8, 73.2, 29.8, 19.3, 19.75, MAT.darkTrim, true, true);
+
+      // Pitched Roof Prism over Main House (wx: 29.0..60.5, wy: 8.0..42.0)
+      const mainRoofGeom = new THREE.ConeGeometry(22.5, 6.2, 4);
+      const mainRoofMesh = new THREE.Mesh(mainRoofGeom, MAT.shingleRoof);
+      mainRoofMesh.rotation.y = Math.PI / 4;
+      mainRoofMesh.scale.set(1.02, 1.0, 1.08);
+      mainRoofMesh.position.set(44.8, 22.8, 25.0);
+      mainRoofMesh.castShadow = true;
+      mainRoofMesh.receiveShadow = true;
+      gHouse.add(mainRoofMesh);
+
+      // Pitched Roof over 2nd-Floor Garage Wing (wx: 52.0..73.0, wy: 8.0..29.6)
+      const garRoofGeom = new THREE.ConeGeometry(15.2, 5.2, 4);
+      const garRoofMesh = new THREE.Mesh(garRoofGeom, MAT.shingleRoof);
+      garRoofMesh.rotation.y = Math.PI / 4;
+      garRoofMesh.scale.set(1.05, 1.0, 1.0);
+      garRoofMesh.position.set(62.2, 22.3, 18.8);
+      garRoofMesh.castShadow = true;
+      garRoofMesh.receiveShadow = true;
+      gHouse.add(garRoofMesh);
+
+      // 7. Rear (West) Windows, Sliding Glass Door & Concrete Step (wx = 30.0')
+      function addWindow(wx, wy1, wy2, h1, h2, isWestWall = true) {
+        const wThick = 0.25;
+        const x1 = isWestWall ? wx - 0.12 : wx - 0.05;
+        const x2 = isWestWall ? wx + 0.05 : wx + 0.12;
+        addBox(gHouse, x1, wy1 - 0.2, x2, wy2 + 0.2, h1 - 0.2, h2 + 0.2, MAT.whiteTrim, false, false);
+        addBox(gHouse, x1 - 0.03, wy1, x2 + 0.03, wy2, h1, h2, MAT.windowGlass, false, false);
+        // Center vertical mullion
+        const wyMid = (wy1 + wy2) / 2;
+        addBox(gHouse, x1 - 0.05, wyMid - 0.06, x2 + 0.05, wyMid + 0.06, h1, h2, MAT.whiteTrim, false, false);
+      }
+
+      // Three 2nd-floor Rear Windows
+      addWindow(30.0, 12.5, 16.8, 12.8, 17.2, true);
+      addWindow(30.0, 22.8, 27.2, 12.8, 17.2, true);
+      addWindow(30.0, 32.2, 36.5, 12.8, 17.2, true);
+
+      // 1st-floor Rear North Window (above 3' rear sidewalk)
+      addWindow(30.0, 12.5, 17.2, 3.8, 8.0, true);
+      // 1st-floor Rear South Living Room Window (behind patio sectional sofa)
+      addWindow(30.0, 31.8, 36.8, 3.2, 8.0, true);
+
+      // 1st-floor Rear 6.0' Sliding Glass Patio Door (wy: 21.5..27.5, h: 0.55..7.9') + Step
+      addWindow(30.0, 21.5, 27.5, 0.58, 7.9, true);
+      addBox(gHouse, 28.5, 21.5, 30.0, 27.5, 0.12, 0.58, MAT.concrete, true, true);
+
+      // Front Elevation Windows & Front Door
+      addBox(gHouse, 59.55, 30.8, 59.85, 33.8, 0.45, 7.8, MAT.darkTrim, false, false); // Front Door
+      addWindow(59.7, 35.2, 38.8, 3.6, 7.8, false); // Porch Window
+      addWindow(59.7, 31.8, 39.2, 13.8, 16.5, false); // 2nd-floor South Triple Transom Window
+      addWindow(72.5, 15.2, 20.8, 12.8, 17.2, false); // 2nd-floor Front Gable Center Window
+      // Black Shutters on Front Gable Window
+      addBox(gHouse, 72.45, 14.0, 72.62, 15.0, 12.8, 17.2, MAT.darkTrim, false, false);
+      addBox(gHouse, 72.45, 21.0, 72.62, 22.0, 12.8, 17.2, MAT.darkTrim, false, false);
+      addWindow(71.5, 25.2, 27.6, 13.2, 17.0, false); // 2nd-floor Right Bay Window
+    }
+
+    // --- C. UTILITIES (AC Condenser + Horizontal Cedar Screen, Meters, Spigot & Transformer Box) ---
+    {
+      const gUtil = LAYER_GROUPS.utilities;
+      // South AC Pad & Condenser Unit (wx: 45.0..48.0, wy: 41.0..44.0)
+      addBox(gUtil, 45.0, 41.0, 48.0, 44.0, 0.0, 0.25, MAT.concrete, true, true);
+      addBox(gUtil, 45.25, 41.25, 47.75, 43.75, 0.25, 3.1, new THREE.MeshStandardMaterial({ color: '#475569', roughness: 0.5, metalness: 0.4 }), true, true);
+      // Horizontal Cedar L-Screen hiding the AC unit from the backyard & South gate
+      addBox(gUtil, 44.5, 41.0, 44.7, 44.2, 0.1, 4.2, MAT.cedarPlanter, true, true);
+      addBox(gUtil, 44.5, 44.05, 48.2, 44.25, 0.1, 4.2, MAT.cedarPlanter, true, true);
+
+      // Gas & Electric Meters on South Wall (wx: 51.0..54.5, wy: 41.0..42.1)
+      addBox(gUtil, 51.2, 41.0, 52.6, 41.9, 1.5, 3.8, new THREE.MeshStandardMaterial({ color: '#94a3b8', metalness: 0.5 }), true, true);
+      addBox(gUtil, 53.2, 41.0, 54.4, 41.6, 4.0, 5.6, new THREE.MeshStandardMaterial({ color: '#cbd5e1', metalness: 0.4 }), true, true);
+
+      // North Hose Bib / Spigot (wx: 51.0, wy: 9.0)
+      addBox(gUtil, 50.8, 8.5, 51.2, 9.0, 1.6, 2.1, new THREE.MeshStandardMaterial({ color: '#0ea5e9', metalness: 0.6 }), false, false);
+
+      // SE Front Corner Green Utility Transformer Box (wx: 93.0..96.4, wy: 45.5..48.5)
+      addBox(gUtil, 92.8, 45.3, 96.5, 48.7, 0.0, 0.2, MAT.concrete, false, true);
+      addBox(gUtil, 93.0, 45.5, 96.4, 48.5, 0.2, 2.85, new THREE.MeshStandardMaterial({ color: '#166534', roughness: 0.55, metalness: 0.25 }), true, true);
+    }
+
+    // --- D. PHASE 3 (2028): NORTH SIDE POURED CEMENT PAD & 3.0' REAR HOUSE SIDEWALK ---
+    {
+      // 9.0' W × 43.2' L North Side Cement Pad (wx: 30.0..73.2, wy: 0.0..9.0)
+      const gNPad = LAYER_GROUPS.northCementPad;
+      addBox(gNPad, 30.0, 0.0, 73.2, 9.0, 0.0, 0.12, MAT.newConcrete, false, true);
+      [40.8, 51.6, 62.4, 70.0].forEach(wx => {
+        addBox(gNPad, wx - 0.04, 0.0, wx + 0.04, 9.0, 0.12, 0.126, MAT.paverJoint, false, false);
+      });
+
+      // 3.0' W × 11.0' L Rear House Concrete Sidewalk (wx: 27.0..30.0, wy: 9.0..20.0)
+      const gRWalk = LAYER_GROUPS.rearSidewalk;
+      addBox(gRWalk, 27.0, 9.0, 30.0, 20.0, 0.0, 0.12, MAT.newConcrete, false, true);
+      addBox(gRWalk, 27.0, 14.46, 30.0, 14.54, 0.12, 0.126, MAT.paverJoint, false, false);
+    }
+
+    // --- E. PHASE 2 (2027): SOD / LAWN, MULCH BEDS, PARK STRIPS & 45° HOLLAND PAVERS ---
+    {
+      // 1. Open Sod / Lawn (Backyard 679 sq ft + 4'+ South Wrap + 555 sq ft SE Front Lawn)
+      const gGrass = LAYER_GROUPS.grass;
+      const byLawnPts = [
+        [4.5, 10.5], [6.5, 8.5], [27.0, 8.5], [27.0, 20.0],
+        [17.5, 20.0], [17.5, 41.0], [30.0, 41.0], [32.5, 43.5],
+        [LOCKED_SOUTH_GATE_WX, 43.5], [LOCKED_SOUTH_GATE_WX, 47.5],
+        [6.5, 47.5], [4.5, 45.5]
+      ];
+      const frontLawnPts = [
+        [96.7, 29.0], [81.0, 29.0], [81.0, 32.5], [68.2, 32.5],
+        [68.2, 45.5], [70.2, 47.5], [88.5, 47.5], [90.5, 45.5],
+        [90.5, 44.5], [92.0, 43.0], [96.7, 43.0]
+      ];
+      addExtrudedPoly(gGrass, byLawnPts, 0.01, 0.11, MAT.turf, false, true);
+      addExtrudedPoly(gGrass, frontLawnPts, 0.01, 0.11, MAT.turf, false, true);
+
+      // 2. Bark Mulch Beds & Park Strips ('beds')
+      const gBeds = LAYER_GROUPS.beds;
+      // 4.0' West Wall Mulch Bed (wx: 0.0..4.25, wy: 0.0..50.0)
+      addBox(gBeds, 0.0, 0.0, 4.25, 50.0, 0.0, 0.07, MAT.mulch, false, true);
+      // NW & SW 45° Chamfer Mulch Triangles
+      addExtrudedPoly(gBeds, [[4.0, 8.0], [6.5, 8.0], [4.0, 10.5]], 0.0, 0.07, MAT.mulch, false, true);
+      addExtrudedPoly(gBeds, [[4.0, 45.5], [6.5, 48.0], [4.0, 48.0]], 0.0, 0.07, MAT.mulch, false, true);
+      // 2.0' South Fence Berry & Shade Bed (wx: 0.0..57.5, wy: 47.75..50.0)
+      addBox(gBeds, 0.0, 47.75, LOCKED_SOUTH_GATE_WX, 50.0, 0.0, 0.07, MAT.mulch, false, true);
+      // 2.0' South House Wall Utility/AC Buffer (wx: 30.0..57.5, wy: 41.0..43.25)
+      addBox(gBeds, 30.0, 41.0, LOCKED_SOUTH_GATE_WX, 43.25, 0.0, 0.07, MAT.crushedRock, false, true);
+      // SE Front Yard 2.0' Perimeter Mulch Beds (around front porch, South line & 3-sided utility box screen)
+      addBox(gBeds, 57.5, 41.0, 68.0, 50.0, 0.0, 0.06, MAT.mulch, false, true);
+      addBox(gBeds, 65.7, 32.5, 68.0, 45.6, 0.0, 0.06, MAT.mulch, false, true);
+      addBox(gBeds, 68.0, 47.5, 96.7, 50.0, 0.0, 0.06, MAT.mulch, false, true);
+      addBox(gBeds, 90.5, 43.0, 96.7, 48.0, 0.0, 0.06, MAT.mulch, false, true);
+      // NE Front Strip (wx: 73.2..96.7, wy: 0.0..11.0) & 6.0' Street Park Strips (wx: 100.7..106.7)
+      addBox(gBeds, 73.2, 0.0, 96.7, 11.0, 0.0, 0.06, MAT.crushedRock, false, true);
+      addBox(gBeds, 100.7, 0.0, 106.7, 9.5, 0.0, 0.06, MAT.crushedRock, false, true);
+      addBox(gBeds, 100.7, 30.5, 106.7, 50.0, 0.0, 0.06, MAT.crushedRock, false, true);
+
+      // 2027 Flat-Dirt In-Ground Garden Plot (shown when Phase 2 beds is ON and Phase 5 gardenRock is OFF)
+      addBox(flatDirtGardenGroup, 4.0, 0.0, 27.0, 8.25, 0.0, 0.07, MAT.mulch, false, true);
+      for (let wy = 1.6; wy <= 6.6; wy += 1.6) {
+        addBox(flatDirtGardenGroup, 5.2, wy - 0.3, 25.8, wy + 0.3, 0.07, 0.45, new THREE.MeshStandardMaterial({ color: '#16a34a', roughness: 0.8 }), true, true);
+      }
+
+      // 3. Flush 6" Home Depot Pavestone Holland Paver Mow Strip with Prominent 45° Chamfered Corners ('pavers')
+      //    Installed ONLY where grass meets mulch, gravel, or the home; ZERO pavers where grass meets concrete!
+      const gPavers = LAYER_GROUPS.pavers;
+      const paverChains = [
+        // South House Wall / AC Buffer Paver Chain (with 45° chamfer at SW house corner)
+        [[30.0, 41.0], [32.5, 43.25], [LOCKED_SOUTH_GATE_WX, 43.25]],
+        // Main Backyard Perimeter Paver Chain (South Bed -> 45° SW -> West Wall Bed -> 45° NW -> North Garden)
+        [[LOCKED_SOUTH_GATE_WX, 47.75], [6.4, 47.75], [4.25, 45.6], [4.25, 10.4], [6.4, 8.25], [27.0, 8.25]],
+        // SE Front Yard Paver Chain (Front Porch Bed -> 45° SW -> South Line Bed -> 45° Utility Box Screen)
+        [[67.95, 32.5], [67.95, 45.6], [70.1, 47.75], [88.6, 47.75], [90.75, 45.6], [90.75, 44.4], [92.1, 43.25], [96.7, 43.25]]
+      ];
+
+      function addPaverSegment(wx1, wy1, wx2, wy2) {
+        const dx = wx2 - wx1;
+        const dz = wy2 - wy1;
+        const len = Math.hypot(dx, dz);
+        const angle = Math.atan2(dz, dx);
+        const stripWidth = 0.55; // ~6.5" wide Holland Paver strip
+        const stripHeight = 0.115;
+
+        // Base mortar/bedding strip
+        const baseGeom = new THREE.BoxGeometry(len + 0.15, stripHeight * 0.85, stripWidth + 0.06);
+        const baseMesh = new THREE.Mesh(baseGeom, MAT.paverJoint);
+        baseMesh.position.set((wx1 + wx2) / 2, stripHeight * 0.42, (wy1 + wy2) / 2);
+        baseMesh.rotation.y = -angle;
+        baseMesh.receiveShadow = true;
+        gPavers.add(baseMesh);
+
+        // Individual 7.87" × 3.94" Holland Concrete Paver Bricks along the segment
+        const brickLen = 0.66;
+        const count = Math.max(1, Math.floor(len / brickLen));
+        const step = len / count;
+        for (let i = 0; i < count; i++) {
+          const t = (i + 0.5) / count;
+          const bx = wx1 + dx * t;
+          const bz = wy1 + dz * t;
+          const bGeom = new THREE.BoxGeometry(step * 0.9, stripHeight, stripWidth * 0.92);
+          const bMesh = new THREE.Mesh(bGeom, MAT.paverBrick);
+          bMesh.position.set(bx, stripHeight * 0.52, bz);
+          bMesh.rotation.y = -angle;
+          bMesh.castShadow = false;
+          bMesh.receiveShadow = true;
+          gPavers.add(bMesh);
+        }
+      }
+
+      paverChains.forEach(chain => {
+        for (let i = 0; i < chain.length - 1; i++) {
+          addPaverSegment(chain[i][0], chain[i][1], chain[i + 1][0], chain[i + 1][1]);
+        }
+      });
+    }
+
+    // --- F. PHASE 2 (2027): WEST WALL 5+4 DESIGNER HYBRID TREES & 10-SPOT UNDER-STORY ('westWallPlants') ---
+    {
+      const gWestPlants = LAYER_GROUPS.westWallPlants;
+      const trunkMat = new THREE.MeshStandardMaterial({ color: '#5c4033', roughness: 0.9 });
+      const leafCrownMat1 = new THREE.MeshStandardMaterial({ color: '#16a34a', roughness: 0.78 });
+      const leafCrownMat2 = new THREE.MeshStandardMaterial({ color: '#15803d', roughness: 0.82 });
+      const juniperMat1 = new THREE.MeshStandardMaterial({ color: '#065f46', roughness: 0.85 });
+      const juniperMat2 = new THREE.MeshStandardMaterial({ color: '#047857', roughness: 0.82 });
+
+      // 1. 5× Leafy Columnar Pillars (S1–S5 at wy = 5, 15, 25, 35, 45', wx = 2.0')
+      //    'Standing Ovation' Serviceberry / 'Crimson Spire' Columnar Oak (~15.5' tall × 4.2' W)
+      [5.0, 15.0, 25.0, 35.0, 45.0].forEach((wy, idx) => {
+        const treeGrp = new THREE.Group();
+        treeGrp.position.set(2.0, 0.07, wy);
+
+        // Multi-stem woody trunks (visible in bottom 3.5 ft)
+        [[-0.2, -0.2], [0.2, 0.15], [-0.1, 0.25]].forEach(([ox, oz]) => {
+          const stemGeom = new THREE.CylinderGeometry(0.12, 0.18, 5.5, 8);
+          const stem = new THREE.Mesh(stemGeom, trunkMat);
+          stem.position.set(ox, 2.75, oz);
+          stem.castShadow = true;
+          treeGrp.add(stem);
+        });
+
+        // Layered upright columnar foliage clusters (h = 3.5' to 15.8')
+        const clusters = [
+          [0, 5.2, 0, 1.85, 1.35, 1.85, leafCrownMat2],
+          [0.2, 7.6, -0.15, 2.0, 1.55, 2.0, leafCrownMat1],
+          [-0.15, 10.2, 0.15, 1.9, 1.5, 1.9, leafCrownMat2],
+          [0.1, 12.6, -0.1, 1.6, 1.4, 1.6, leafCrownMat1],
+          [0, 14.6, 0, 1.15, 1.2, 1.15, leafCrownMat1]
+        ];
+        clusters.forEach(([cx, cy, cz, sx, sy, sz, mat]) => {
+          const g = new THREE.DodecahedronGeometry(1.0, 1);
+          const m = new THREE.Mesh(g, mat);
+          m.position.set(cx, cy, cz);
+          m.scale.set(sx, sy, sz);
+          m.castShadow = true;
+          m.receiveShadow = true;
+          treeGrp.add(m);
+        });
+
+        gWestPlants.add(treeGrp);
+      });
+
+      // 2. 4× Upright Evergreen Column Junipers (J1–J4 at wy = 10, 20, 30, 40', wx = 1.75')
+      //    Aligned directly in front of the 4 interior precast wall columns (~14.5' tall × 3.2' W)
+      [10.0, 20.0, 30.0, 40.0].forEach((wy) => {
+        const jGrp = new THREE.Group();
+        jGrp.position.set(1.75, 0.07, wy);
+
+        // Tiered conical evergreen spire
+        const tiers = [
+          [3.6, 1.6, 6.2, juniperMat1],
+          [6.8, 1.42, 5.8, juniperMat2],
+          [9.8, 1.15, 5.2, juniperMat1],
+          [12.4, 0.82, 4.2, juniperMat2]
+        ];
+        tiers.forEach(([ty, rad, h, mat]) => {
+          const cone = new THREE.Mesh(new THREE.ConeGeometry(rad, h, 12), mat);
+          cone.position.y = ty;
+          cone.castShadow = true;
+          cone.receiveShadow = true;
+          jGrp.add(cone);
+        });
+        gWestPlants.add(jGrp);
+      });
+
+      // 3. 10-Spot Under-Story Ribbon (wx = 2.95': Purple Catmint/Russian Sage + Coneflower & Karl Foerster Grasses)
+      const purplePerennialMat = new THREE.MeshStandardMaterial({ color: '#7e22ce', roughness: 0.8 });
+      const coneflowerMat = new THREE.MeshStandardMaterial({ color: '#e11d48', roughness: 0.75 });
+      const reedGrassBaseMat = new THREE.MeshStandardMaterial({ color: '#4d7c0f', roughness: 0.85 });
+      const reedPlumeMat = new THREE.MeshStandardMaterial({ color: '#eab308', roughness: 0.75 });
+
+      [2.3, 7.6, 12.4, 17.6, 22.4, 27.6, 32.4, 37.6, 42.4, 47.4].forEach((wy, i) => {
+        if (i % 2 === 0) {
+          // Purple Catmint / Lavender mound + Coneflower accent
+          const mound = new THREE.Mesh(new THREE.SphereGeometry(0.95, 10, 8), purplePerennialMat);
+          mound.position.set(2.95, 0.65, wy);
+          mound.scale.set(1.0, 0.68, 1.15);
+          mound.castShadow = true;
+          gWestPlants.add(mound);
+
+          const cone = new THREE.Mesh(new THREE.SphereGeometry(0.58, 8, 8), coneflowerMat);
+          cone.position.set(3.15, 0.75, wy + 0.85);
+          cone.scale.set(1.0, 0.85, 1.0);
+          cone.castShadow = true;
+          gWestPlants.add(cone);
+        } else {
+          // Upright 'Karl Foerster' Feather Reed Grass (3.8' tall with golden plumes)
+          const grassBase = new THREE.Mesh(new THREE.CylinderGeometry(0.65, 0.42, 2.4, 10), reedGrassBaseMat);
+          grassBase.position.set(2.95, 1.25, wy);
+          grassBase.castShadow = true;
+          gWestPlants.add(grassBase);
+
+          const plume = new THREE.Mesh(new THREE.CylinderGeometry(0.45, 0.55, 1.6, 10), reedPlumeMat);
+          plume.position.set(2.95, 3.0, wy);
+          plume.castShadow = true;
+          gWestPlants.add(plume);
+        }
+      });
+    }
+
+    // --- G. PHASE 2 (2027): YARD PLANTS (South Berry/Kiwi Bed, Front Japanese Maple & Box Screen) ---
+    {
+      const gYardPlants = LAYER_GROUPS.yardPlants;
+      const berryMat = new THREE.MeshStandardMaterial({ color: '#15803d', roughness: 0.82 });
+      const shadeHostaMat = new THREE.MeshStandardMaterial({ color: '#0d9488', roughness: 0.8 });
+      const mapleMat = new THREE.MeshStandardMaterial({ color: '#9f1239', roughness: 0.75 });
+      const reedGrassMat = new THREE.MeshStandardMaterial({ color: '#65a30d', roughness: 0.82 });
+
+      // South Fence Berry, Kiwi & Shade Bed (wy = 48.9')
+      [6.5, 11.5, 16.5, 21.5, 26.5, 34.0, 41.0, 49.0, 54.5].forEach(wx => {
+        const isSun = wx < 30.0;
+        const shrub = new THREE.Mesh(
+          new THREE.DodecahedronGeometry(isSun ? 0.85 : 0.75, 1),
+          isSun ? berryMat : shadeHostaMat
+        );
+        shrub.position.set(wx, isSun ? 1.4 : 0.75, 48.9);
+        shrub.scale.set(1.1, isSun ? 1.6 : 0.85, 0.8);
+        shrub.castShadow = true;
+        gYardPlants.add(shrub);
+      });
+
+      // Front Yard Focal Tree: Sculptural Red Japanese Maple (wx = 66.8, wy = 36.2)
+      const mapleTrunk = new THREE.Mesh(new THREE.CylinderGeometry(0.18, 0.28, 3.8, 8), new THREE.MeshStandardMaterial({ color: '#451a03' }));
+      mapleTrunk.position.set(66.8, 1.9, 36.2);
+      mapleTrunk.castShadow = true;
+      gYardPlants.add(mapleTrunk);
+      [[0, 4.5, 0, 2.2, 1.2, 2.2], [-0.6, 5.8, 0.5, 1.6, 1.0, 1.6], [0.5, 6.4, -0.4, 1.5, 0.95, 1.5]].forEach(([ox, oy, oz, sx, sy, sz]) => {
+        const crown = new THREE.Mesh(new THREE.DodecahedronGeometry(1.0, 1), mapleMat);
+        crown.position.set(66.8 + ox, oy, 36.2 + oz);
+        crown.scale.set(sx, sy, sz);
+        crown.castShadow = true;
+        gYardPlants.add(crown);
+      });
+
+      // 3-Sided Utility Box Karl Foerster Grass Screen (screening West, North, South of box at wx:93..96.4, wy:45.5..48.5)
+      [[92.0, 44.5], [93.8, 44.5], [95.4, 44.5], [92.0, 46.2], [92.0, 47.8], [93.8, 49.1]].forEach(([gx, gy]) => {
+        const reed = new THREE.Mesh(new THREE.CylinderGeometry(0.5, 0.35, 3.6, 8), reedGrassMat);
+        reed.position.set(gx, 1.8, gy);
+        reed.castShadow = true;
+        gYardPlants.add(reed);
+      });
+
+      // Front South Bed & 6.0' Street Park Strip Perennials + Decorative Boulders
+      [[72.0, 48.9], [78.0, 48.9], [84.0, 48.9], [103.5, 3.5], [103.5, 7.5], [103.5, 35.0], [103.5, 41.0], [103.5, 46.5]].forEach(([px, py]) => {
+        const bush = new THREE.Mesh(new THREE.SphereGeometry(0.75, 8, 8), berryMat);
+        bush.position.set(px, 0.65, py);
+        bush.scale.set(1, 0.8, 1);
+        bush.castShadow = true;
+        gYardPlants.add(bush);
+      });
+      // Landscape Accent Boulders in Park Strips
+      [[103.2, 5.5], [103.8, 38.0], [103.0, 44.0], [82.0, 4.5]].forEach(([bx, by]) => {
+        const boulder = new THREE.Mesh(new THREE.DodecahedronGeometry(0.85, 0), new THREE.MeshStandardMaterial({ color: '#78716c', roughness: 0.9 }));
+        boulder.position.set(bx, 0.45, by);
+        boulder.scale.set(1.3, 0.75, 1.1);
+        boulder.castShadow = true;
+        gYardPlants.add(boulder);
+      });
+    }
+
+    // --- H. PHASE 1 (2026) & PHASE 2 (2027): WHITE VINYL FENCES & INTERACTIVE SWING GATES ---
+    const gatePivots = { southWalk: null, northLeft: null, northRight: null };
+    {
+      function buildVinylFenceRun(parent, wx1, wy1, wx2, wy2, numBays) {
+        const dx = wx2 - wx1;
+        const dz = wy2 - wy1;
+        for (let i = 0; i <= numBays; i++) {
+          const t = i / numBays;
+          const px = wx1 + dx * t;
+          const pz = wy1 + dz * t;
+          // 5"x5" White Vinyl Post (6.3' tall) + Pyramid Cap
+          addBox(parent, px - 0.22, pz - 0.22, px + 0.22, pz + 0.22, 0.0, 6.25, MAT.vinylFence, true, true);
+          addBox(parent, px - 0.26, pz - 0.26, px + 0.26, pz + 0.26, 6.25, 6.42, MAT.vinylFence, true, true);
+        }
+        // Continuous 6.0' Tall Tongue-and-Groove White Vinyl Privacy Panel + Top/Bottom Rails
+        addBox(parent, wx1, wy1 - 0.08, wx2, wy2 + 0.08, 0.25, 6.0, MAT.vinylFence, true, true);
+        addBox(parent, wx1, wy1 - 0.14, wx2, wy2 + 0.14, 5.75, 6.05, MAT.vinylFence, true, true);
+        addBox(parent, wx1, wy1 - 0.14, wx2, wy2 + 0.14, 0.25, 0.55, MAT.vinylFence, true, true);
+      }
+
+      // 1. Phase 1 (2026): 57.5' South White Vinyl Fence (50% Neighbor Split)
+      buildVinylFenceRun(LAYER_GROUPS.southFence, 0.0, 49.8, LOCKED_SOUTH_GATE_WX, 49.8, 8);
+
+      // 2. Phase 1 (2026): South 4.0' Walk Gate & 5.0' Fixed Wings at wx = 57.5' (100% Ours)
+      const gSGate = LAYER_GROUPS.southGate;
+      // House-side 3.5' fixed vinyl wing (wy: 41.0..44.5) & South-side 1.5' fixed wing (wy: 48.5..49.8)
+      addBox(gSGate, LOCKED_SOUTH_GATE_WX - 0.1, 41.0, LOCKED_SOUTH_GATE_WX + 0.1, 44.5, 0.2, 6.0, MAT.vinylFence, true, true);
+      addBox(gSGate, LOCKED_SOUTH_GATE_WX - 0.1, 48.5, LOCKED_SOUTH_GATE_WX + 0.1, 49.8, 0.2, 6.0, MAT.vinylFence, true, true);
+      // Gate Posts at wy = 44.5' and wy = 48.5'
+      [41.2, 44.5, 48.5, 49.8].forEach(wy => {
+        addBox(gSGate, LOCKED_SOUTH_GATE_WX - 0.22, wy - 0.22, LOCKED_SOUTH_GATE_WX + 0.22, wy + 0.22, 0.0, 6.35, MAT.vinylFence, true, true);
+      });
+      // Interactive Pivot for 4.0' South Walk Gate (hinged at wy = 48.5', swings Westward into backyard)
+      const sGatePivot = new THREE.Group();
+      sGatePivot.position.set(LOCKED_SOUTH_GATE_WX, 0, 48.5);
+      addBox(sGatePivot, -0.1, -3.9, 0.1, -0.1, 0.25, 5.95, MAT.vinylFence, true, true);
+      addBox(sGatePivot, -0.16, -3.85, 0.16, -3.55, 3.4, 3.8, MAT.simpsonHardware, false, false); // Black latch
+      gSGate.add(sGatePivot);
+      gatePivots.southWalk = sGatePivot;
+
+      // 3. Phase 2 (2027): 70.0' North White Vinyl Fence (50% Neighbor Split)
+      buildVinylFenceRun(LAYER_GROUPS.northFence, 0.0, 0.2, LOCKED_NORTH_GATE_WX, 0.2, 10);
+
+      // 4. Phase 2 (2027): North 8.5' Double-Swing Vehicle Gate at wx = 70.0' (100% Ours)
+      const gNGate = LAYER_GROUPS.northGate;
+      [0.2, 8.8].forEach(wy => {
+        addBox(gNGate, LOCKED_NORTH_GATE_WX - 0.24, wy - 0.24, LOCKED_NORTH_GATE_WX + 0.24, wy + 0.24, 0.0, 6.4, MAT.vinylFence, true, true);
+      });
+      // North Left Leaf (hinged at wy = 0.35')
+      const nLeftPivot = new THREE.Group();
+      nLeftPivot.position.set(LOCKED_NORTH_GATE_WX, 0, 0.35);
+      addBox(nLeftPivot, -0.1, 0.1, 0.1, 4.1, 0.25, 5.95, MAT.vinylFence, true, true);
+      addBox(nLeftPivot, -0.16, 3.85, 0.16, 4.08, 0.5, 4.2, MAT.simpsonHardware, false, false);
+      gNGate.add(nLeftPivot);
+      gatePivots.northLeft = nLeftPivot;
+
+      // North Right Leaf (hinged at wy = 8.65')
+      const nRightPivot = new THREE.Group();
+      nRightPivot.position.set(LOCKED_NORTH_GATE_WX, 0, 8.65);
+      addBox(nRightPivot, -0.1, -4.1, 0.1, -0.1, 0.25, 5.95, MAT.vinylFence, true, true);
+      gNGate.add(nRightPivot);
+      gatePivots.northRight = nRightPivot;
+    }
+
+    // --- I. PHASE 4 (2029): OPTION #1C HOUSE-ATTACHED 2-PILLAR SOLID-ROOF PATIO AWNING & LOUNGE ---
+    {
+      const gAwning = LAYER_GROUPS.patioAwning;
+
+      // 1. House Wall Ledger Beam at wx = 29.85', wy = 20.2..40.8', h = 10.05..10.65' (ZERO posts against house!)
+      addBox(gAwning, 29.65, 20.2, 30.0, 40.8, 10.0, 10.65, MAT.espressoTimber, true, true);
+
+      // 2. Strictly TWO Outer West Corner Heavy-Timber 8x8 Pillars (wx = 18.0', wy = 20.5' & 40.5')
+      //    + Matte-Black Simpson Outdoor Accents Post Bases, T-Straps & 45° Knee Braces
+      [20.5, 40.5].forEach(wy => {
+        // Simpson Black Steel Post Base (h = 0.12..0.95')
+        addBox(gAwning, 17.62, wy - 0.38, 18.38, wy + 0.38, 0.12, 0.95, MAT.simpsonHardware, true, true);
+        // 8x8 Dark-Espresso Heavy-Timber Pillar (h = 0.95..9.35')
+        addBox(gAwning, 17.66, wy - 0.34, 18.34, wy + 0.34, 0.95, 9.35, MAT.espressoTimber, true, true);
+        // Simpson Black Steel T-Strap at Beam-to-Post Connection
+        addBox(gAwning, 17.58, wy - 0.75, 18.42, wy + 0.75, 8.85, 9.45, MAT.simpsonHardware, false, false);
+        addBox(gAwning, 17.58, wy - 0.18, 18.42, wy + 0.18, 8.2, 8.85, MAT.simpsonHardware, false, false);
+      });
+
+      // 45° Heavy-Timber Knee Braces on the 2 Outer West Pillars
+      // North-South Knee Braces along West Header Beam (wy = 20.5 -> 22.8 and wy = 40.5 -> 38.2)
+      [[20.5, 1], [40.5, -1]].forEach(([wy, dir]) => {
+        const brace = new THREE.Mesh(new THREE.BoxGeometry(0.42, 0.42, 2.9), MAT.espressoTimber);
+        brace.position.set(18.0, 8.15, wy + dir * 1.05);
+        brace.rotation.x = -dir * (Math.PI / 4);
+        brace.castShadow = true;
+        gAwning.add(brace);
+
+        // East-West Knee Brace up to outer rafters
+        const ewBrace = new THREE.Mesh(new THREE.BoxGeometry(2.7, 0.42, 0.42), MAT.espressoTimber);
+        ewBrace.position.set(19.0, 8.25, wy);
+        ewBrace.rotation.z = Math.PI / 4;
+        ewBrace.castShadow = true;
+        gAwning.add(ewBrace);
+      });
+
+      // 3. Clear-Span 21.0' West Glulam Header Beam (wx = 18.0', wy = 20.0..41.0', h = 8.95..9.65')
+      addBox(gAwning, 17.62, 20.0, 18.38, 41.0, 8.95, 9.65, MAT.espressoTimber, true, true);
+
+      // 4. Sloped East-West Rafters, Warm 1x6 T&G Cedar Ceiling Deck & Matte-Black Standing-Seam Metal Roof
+      //    Roof slopes gently down from h = 10.45' at house ledger (wx=30.0) to h = 9.55' at West overhang (wx=17.3)
+      const roofSlopeGroup = new THREE.Group();
+      roofSlopeGroup.position.set(23.65, 10.0, 30.5);
+      roofSlopeGroup.rotation.z = Math.atan2(0.9, 12.7); // ~4° Westward drainage pitch
+
+      // 9 East–West 2x8 Dark-Espresso Rafters (every ~2.5' across the 21' patio span)
+      for (let oz = -10.0; oz <= 10.0; oz += 2.5) {
+        addBox(roofSlopeGroup, -6.35, oz - 0.12, 6.35, oz + 0.12, -0.32, 0.08, MAT.espressoTimber, true, true);
+      }
+
+      // 100% Opaque 1x6 Tongue-and-Groove Warm Cedar Wood Ceiling Deck (visible from underneath!)
+      addBox(roofSlopeGroup, -6.35, -10.5, 6.35, 10.5, 0.08, 0.20, MAT.tgCedarCeiling, true, true);
+
+      // Matte-Black Standing-Seam Architectural Steel Roof on Top + Standing Seams
+      addBox(roofSlopeGroup, -6.45, -10.6, 6.38, 10.6, 0.20, 0.32, MAT.standingSeamMetal, true, true);
+      for (let oz = -10.2; oz <= 10.2; oz += 1.45) {
+        addBox(roofSlopeGroup, -6.45, oz - 0.04, 6.38, oz + 0.04, 0.32, 0.42, MAT.standingSeamMetal, false, true);
+      }
+      gAwning.add(roofSlopeGroup);
+
+      // 5. Matte-Black Front Rain Gutter & North Downspout (wx = 17.2', wy = 19.9..41.1')
+      addBox(gAwning, 17.1, 19.9, 17.45, 41.1, 9.35, 9.72, MAT.simpsonHardware, true, true);
+      addBox(gAwning, 17.45, 20.1, 17.65, 20.3, 0.2, 9.4, MAT.simpsonHardware, true, true);
+
+      // 6. South Patio Horizontal Cedar Privacy Slat Screen (wx = 18.0..23.5, wy = 40.5, h = 0.2..6.5')
+      addBox(gAwning, 23.2, 40.35, 23.5, 40.65, 0.12, 6.5, MAT.espressoTimber, true, true);
+      for (let sh = 0.6; sh <= 6.2; sh += 0.42) {
+        addBox(gAwning, 18.3, 40.42, 23.3, 40.58, sh, sh + 0.3, MAT.cedarPlanter, true, true);
+      }
+
+      // 7. Patio Lounge Furniture: Outdoor Rug, L-Shaped Sectional Sofa & Rectangular Propane Fire Table
+      const gFurn = LAYER_GROUPS.patioFurniture;
+      // 8'×10' Woven Outdoor Area Rug
+      addBox(gFurn, 18.8, 29.2, 27.6, 39.8, 0.12, 0.16, MAT.outdoorRug, false, true);
+
+      // L-Shaped Sectional Sofa (South Arm wx:19.4..27.0, wy:37.0..39.6 + East Arm wx:24.5..27.0, wy:30.2..39.6)
+      addBox(gFurn, 19.4, 37.0, 27.0, 39.6, 0.16, 1.15, MAT.sofaFrame, true, true);
+      addBox(gFurn, 24.5, 30.2, 27.0, 37.0, 0.16, 1.15, MAT.sofaFrame, true, true);
+      // Seat Cushions
+      addBox(gFurn, 19.55, 37.1, 26.85, 39.2, 1.15, 1.65, MAT.sofaCushion, true, true);
+      addBox(gFurn, 24.6, 30.35, 26.6, 37.1, 1.15, 1.65, MAT.sofaCushion, true, true);
+      // Backrest Frame & Cushions
+      addBox(gFurn, 19.4, 39.2, 27.0, 39.65, 1.15, 2.85, MAT.sofaFrame, true, true);
+      addBox(gFurn, 26.6, 30.2, 27.05, 39.65, 1.15, 2.85, MAT.sofaFrame, true, true);
+      addBox(gFurn, 19.6, 38.85, 26.6, 39.3, 1.65, 2.75, MAT.sofaCushion, true, true);
+      addBox(gFurn, 26.25, 30.4, 26.65, 38.85, 1.65, 2.75, MAT.sofaCushion, true, true);
+
+      // Rectangular Dual-Purpose 50,000 BTU Propane Fire Table (wx: 20.4..23.0, wy: 31.2..35.8)
+      addBox(gFurn, 20.6, 31.4, 22.8, 35.6, 0.16, 1.95, MAT.sofaFrame, true, true);
+      addBox(gFurn, 20.3, 31.0, 23.1, 36.0, 1.95, 2.15, MAT.darkTrim, true, true); // Tabletop rim
+      // Glowing Fire Trough & Animated 3D Flames
+      addBox(gFurn, 21.35, 32.0, 22.05, 35.0, 2.15, 2.22, new THREE.MeshStandardMaterial({ color: '#d97706', emissive: '#b45309', emissiveIntensity: 0.8 }), false, false);
+    }
+
+    // Animated Fire Table Flame Cones + Warm Fire PointLight
+    const fireFlames = [];
+    const firePointLight = new THREE.PointLight('#fb923c', 2.4, 18, 1.5);
+    firePointLight.position.set(21.7, 2.8, 33.5);
+    LAYER_GROUPS.patioFurniture.add(firePointLight);
+    for (let fz = 32.2; fz <= 34.8; fz += 0.42) {
+      const cone = new THREE.Mesh(new THREE.ConeGeometry(0.18, 0.65, 6), MAT.flameMat);
+      cone.position.set(21.7, 2.45, fz);
+      LAYER_GROUPS.patioFurniture.add(cone);
+      fireFlames.push({ mesh: cone, baseZ: fz, phase: fz * 3.7 });
+    }
+
+    // --- J. PHASE 5 (2030): 5 N–S RAISED CEDAR PLANTERS (3'×6'), CRUSHED ROCK & GRID DRIP ---
+    {
+      // 1. 3/8" Crushed Granite Garden Paths (wx: 4.0..27.0, wy: 0.0..8.25)
+      addBox(LAYER_GROUPS.gardenRock, 4.0, 0.0, 27.0, 8.25, 0.0, 0.08, MAT.crushedRock, false, true);
+
+      // 2. 5 Raised Western Red Cedar Garden Boxes (N1–N5 at wx = 5.0, 9.75, 14.5, 19.25, 24.0; wy = 1.0..7.0)
+      const gPlanters = LAYER_GROUPS.planters;
+      const gDrip = LAYER_GROUPS.gardenDrip;
+      const vegMat1 = new THREE.MeshStandardMaterial({ color: '#15803d', roughness: 0.8 });
+      const vegMat2 = new THREE.MeshStandardMaterial({ color: '#22c55e', roughness: 0.78 });
+      const dripMat = new THREE.MeshStandardMaterial({ color: '#0284c7', roughness: 0.5 });
+
+      // Main Drip Header along North side of boxes
+      addBox(gDrip, 4.8, 0.65, 27.0, 0.78, 0.09, 0.16, dripMat, false, false);
+
+      [5.0, 9.75, 14.5, 19.25, 24.0].forEach((bx, idx) => {
+        const wx1 = bx, wx2 = bx + 3.0, wy1 = 1.0, wy2 = 7.0, boxH = 1.75;
+        // Cedar Side & End Planks
+        addBox(gPlanters, wx1, wy1, wx2, wy1 + 0.18, 0.08, boxH, MAT.cedarPlanter, true, true);
+        addBox(gPlanters, wx1, wy2 - 0.18, wx2, wy2, 0.08, boxH, MAT.cedarPlanter, true, true);
+        addBox(gPlanters, wx1, wy1, wx1 + 0.18, wy2, 0.08, boxH, MAT.cedarPlanter, true, true);
+        addBox(gPlanters, wx2 - 0.18, wy1, wx2, wy2, 0.08, boxH, MAT.cedarPlanter, true, true);
+        // Cedar Top Cap Trim Ledge
+        addBox(gPlanters, wx1 - 0.08, wy1 - 0.08, wx2 + 0.08, wy1 + 0.22, boxH, boxH + 0.1, MAT.cedarPlanter, true, true);
+        addBox(gPlanters, wx1 - 0.08, wy2 - 0.22, wx2 + 0.08, wy2 + 0.08, boxH, boxH + 0.1, MAT.cedarPlanter, true, true);
+        addBox(gPlanters, wx1 - 0.08, wy1, wx1 + 0.22, wy2, boxH, boxH + 0.1, MAT.cedarPlanter, true, true);
+        addBox(gPlanters, wx2 - 0.22, wy1, wx2 + 0.08, wy2, boxH, boxH + 0.1, MAT.cedarPlanter, true, true);
+
+        // Rich Organic Raised-Bed Soil
+        addBox(gPlanters, wx1 + 0.18, wy1 + 0.18, wx2 - 0.18, wy2 - 0.18, 0.08, boxH - 0.12, MAT.soilDark, false, true);
+
+        // Lush 3D Vegetable & Herb Crops inside each raised bed
+        for (let vy = wy1 + 0.9; vy <= wy2 - 0.8; vy += 1.25) {
+          for (let vx = wx1 + 0.85; vx <= wx2 - 0.8; vx += 1.3) {
+            const crop = new THREE.Mesh(
+              new THREE.DodecahedronGeometry(0.52, 1),
+              (vx + vy) % 2 > 1 ? vegMat1 : vegMat2
+            );
+            crop.position.set(vx, boxH + 0.18, vy);
+            crop.scale.set(1.0, 0.95 + (idx % 2) * 0.35, 1.0);
+            crop.castShadow = true;
+            gPlanters.add(crop);
+          }
+        }
+
+        // Per-Box Grid Drip Emitter Lines
+        [wx1 + 0.75, wx1 + 1.5, wx1 + 2.25].forEach(dx => {
+          addBox(gDrip, dx - 0.03, wy1 + 0.25, dx + 0.03, wy2 - 0.25, boxH - 0.10, boxH - 0.05, dripMat, false, false);
+        });
+      });
+    }
+
+    // --- K. PHASE 2 (2027): POP-UP SPRINKLER HEADS & SPRAY ARCS ('irrigation') ---
+    {
+      const gIrr = LAYER_GROUPS.irrigation;
+      const sprayMat = new THREE.MeshBasicMaterial({ color: '#38bdf8', transparent: true, opacity: 0.22, side: THREE.DoubleSide });
+      const headCoords = [
+        [6.5, 9.0, 9.5], [16.5, 9.0, 9.5], [26.5, 9.0, 9.0],
+        [5.0, 22.0, 11.0], [17.0, 20.5, 10.5], [5.0, 34.0, 11.0],
+        [17.0, 40.5, 10.5], [6.5, 47.0, 9.5], [18.0, 47.0, 9.5],
+        [35.0, 45.5, 4.0], [46.0, 45.5, 4.0],
+        [70.0, 36.0, 9.5], [82.0, 35.0, 9.5], [95.0, 32.5, 9.5],
+        [70.0, 47.0, 9.5], [84.0, 47.0, 9.5]
+      ];
+      headCoords.forEach(([hx, hy, rad]) => {
+        const riser = new THREE.Mesh(new THREE.CylinderGeometry(0.12, 0.12, 0.45, 8), new THREE.MeshStandardMaterial({ color: '#0284c7' }));
+        riser.position.set(hx, 0.25, hy);
+        gIrr.add(riser);
+
+        const disc = new THREE.Mesh(new THREE.RingGeometry(0.2, rad, 24), sprayMat);
+        disc.rotation.x = -Math.PI / 2;
+        disc.position.set(hx, 0.22, hy);
+        gIrr.add(disc);
+      });
+    }
+
+    // --- L. PHASE 6 (2031): HANGING FRONT PORCH SWING ('porchSwing') & 2700K LIGHTING ('lighting') ---
+    const nightLightObjects = [];
+    {
+      // 1. Hanging Front Porch Swing on Covered Porch (wx: 61.2..63.2, wy: 35.8..40.0)
+      const gSwing = LAYER_GROUPS.porchSwing;
+      addBox(gSwing, 61.2, 35.8, 63.1, 40.0, 2.0, 2.3, MAT.cedarPlanter, true, true); // Seat
+      addBox(gSwing, 61.2, 35.8, 61.55, 40.0, 2.3, 3.65, MAT.cedarPlanter, true, true); // Backrest
+      addBox(gSwing, 61.2, 35.8, 63.1, 36.1, 2.3, 2.95, MAT.cedarPlanter, true, true); // N Arm
+      addBox(gSwing, 61.2, 39.7, 63.1, 40.0, 2.3, 2.95, MAT.cedarPlanter, true, true); // S Arm
+      addBox(gSwing, 61.55, 36.1, 62.95, 39.7, 2.3, 2.6, MAT.sofaCushion, true, true); // Cushion
+      // Hanging Chains up to Porch Ceiling (h = 9.1')
+      [[61.4, 35.95], [62.9, 35.95], [61.4, 39.85], [62.9, 39.85]].forEach(([cx, cz]) => {
+        addBox(gSwing, cx - 0.04, cz - 0.04, cx + 0.04, cz + 0.04, 2.9, 9.1, MAT.simpsonHardware, false, false);
+      });
+
+      // 2. 12V 2700K Landscape Uplights & Patio Bistro String Lights ('lighting')
+      const gLight = LAYER_GROUPS.lighting;
+      const coneGlowMat = new THREE.MeshBasicMaterial({
+        color: '#fde047',
+        transparent: true,
+        opacity: 0.16,
+        side: THREE.DoubleSide,
+        depthWrite: false
+      });
+
+      const uplightCoords = [
+        [2.3, 5.0], [2.1, 10.0], [2.3, 15.0], [2.1, 20.0], [2.3, 25.0],
+        [2.1, 30.0], [2.3, 35.0], [2.1, 40.0], [2.3, 45.0],
+        [7.5, 7.8], [13.5, 7.8], [19.5, 7.8], [25.5, 7.8],
+        [66.8, 36.2], [65.2, 40.5]
+      ];
+      uplightCoords.forEach(([lx, lz]) => {
+        // Brass/Black Low-Voltage Uplight Fixture
+        const fix = new THREE.Mesh(new THREE.CylinderGeometry(0.18, 0.14, 0.35, 8), MAT.simpsonHardware);
+        fix.position.set(lx, 0.22, lz);
+        gLight.add(fix);
+
+        const lens = new THREE.Mesh(new THREE.CircleGeometry(0.15, 10), MAT.bistroBulb);
+        lens.rotation.x = -Math.PI / 2;
+        lens.position.set(lx, 0.41, lz);
+        gLight.add(lens);
+
+        // Volumetric Warm 2700K Light Cone
+        const cone = new THREE.Mesh(new THREE.ConeGeometry(1.85, 5.5, 12, 1, true), coneGlowMat);
+        cone.position.set(lx - 0.15, 2.8, lz);
+        cone.rotation.z = Math.PI;
+        gLight.add(cone);
+        nightLightObjects.push(cone);
+      });
+
+      // Overhead Patio 2700K Bistro String Lights under Option #1C Awning Rafters
+      const bistroPts = [
+        [18.8, 21.0], [21.2, 24.5], [23.8, 28.0], [26.2, 31.5], [23.8, 35.0], [21.2, 38.5], [18.8, 40.2],
+        [28.5, 22.0], [25.8, 26.5], [28.5, 31.0], [25.8, 35.5], [28.5, 39.5]
+      ];
+      bistroPts.forEach(([bx, bz]) => {
+        // Calculate height just below the sloped rafters
+        const h = 9.15 + ((bx - 18.0) / 12.0) * 0.75;
+        const bulb = new THREE.Mesh(new THREE.SphereGeometry(0.14, 8, 8), MAT.bistroBulb);
+        bulb.position.set(bx, h, bz);
+        gLight.add(bulb);
+      });
+
+      // Warm 2700K PointLights for Sunset/Night Illumination
+      const patioBistroLight1 = new THREE.PointLight('#fde047', 1.8, 28, 1.4);
+      patioBistroLight1.position.set(23.5, 9.1, 26.0);
+      gLight.add(patioBistroLight1);
+      nightLightObjects.push(patioBistroLight1);
+
+      const patioBistroLight2 = new THREE.PointLight('#fde047', 1.8, 28, 1.4);
+      patioBistroLight2.position.set(23.5, 9.1, 35.5);
+      gLight.add(patioBistroLight2);
+      nightLightObjects.push(patioBistroLight2);
+
+      const westWallNightLight1 = new THREE.PointLight('#fbbf24', 1.6, 32, 1.3);
+      westWallNightLight1.position.set(4.5, 5.5, 15.0);
+      gLight.add(westWallNightLight1);
+      nightLightObjects.push(westWallNightLight1);
+
+      const westWallNightLight2 = new THREE.PointLight('#fbbf24', 1.6, 32, 1.3);
+      westWallNightLight2.position.set(4.5, 5.5, 35.0);
+      gLight.add(westWallNightLight2);
+      nightLightObjects.push(westWallNightLight2);
+
+      const frontNightLight = new THREE.PointLight('#fbbf24', 1.6, 28, 1.3);
+      frontNightLight.position.set(66.8, 5.5, 38.0);
+      gLight.add(frontNightLight);
+      nightLightObjects.push(frontNightLight);
+    }
+
+    /*************************************************************************
+     * 7. SKY, SUNLIGHT & SHADOW RIG (DAY / SUNSET / NIGHT 2700K)
+     *************************************************************************/
+    const hemiLight = new THREE.HemisphereLight('#ffffff', '#334155', 0.85);
+    scene.add(hemiLight);
+
+    const sunLight = new THREE.DirectionalLight('#fffbeb', 1.95);
+    sunLight.position.set(-48, 62, 42); // Afternoon sun from West-Southwest
+    sunLight.castShadow = true;
+    sunLight.shadow.mapSize.width = 2048;
+    sunLight.shadow.mapSize.height = 2048;
+    sunLight.shadow.camera.near = 10;
+    sunLight.shadow.camera.far = 220;
+    const d = 68;
+    sunLight.shadow.camera.left = -d;
+    sunLight.shadow.camera.right = d;
+    sunLight.shadow.camera.top = d;
+    sunLight.shadow.camera.bottom = -d;
+    sunLight.shadow.bias = -0.0005;
+    sunLight.target.position.set(40, 0, 25);
+    scene.add(sunLight);
+    scene.add(sunLight.target);
+
+    window.setLightingMode = function(mode) {
+      STATE.lightingMode = mode;
+      document.querySelectorAll('.light-btn').forEach(b => {
+        b.classList.remove('bg-sky-600', 'bg-amber-600', 'bg-indigo-600', 'text-white', 'shadow');
+        b.classList.add('text-slate-300');
+      });
+
+      if (mode === 'DAY') {
+        const btn = document.getElementById('light-day');
+        btn.classList.add('bg-sky-600', 'text-white', 'shadow');
+        scene.background.set('#7dd3fc');
+        scene.fog.color.set('#bae6fd');
+        hemiLight.color.set('#ffffff');
+        hemiLight.groundColor.set('#334155');
+        hemiLight.intensity = 0.88;
+        sunLight.color.set('#fffbeb');
+        sunLight.intensity = 1.95;
+        sunLight.position.set(-48, 62, 42);
+        MAT.windowGlass.emissiveIntensity = 0.05;
+        MAT.bistroBulb.emissiveIntensity = 0.6;
+        firePointLight.intensity = 1.2;
+        nightLightObjects.forEach(obj => {
+          if (obj.isLight) obj.intensity = 0.25;
+          else obj.material.opacity = 0.04;
+        });
+      } else if (mode === 'SUNSET') {
+        const btn = document.getElementById('light-sunset');
+        btn.classList.add('bg-amber-600', 'text-white', 'shadow');
+        scene.background.set('#fb923c');
+        scene.fog.color.set('#fed7aa');
+        hemiLight.color.set('#fed7aa');
+        hemiLight.groundColor.set('#1e1b4b');
+        hemiLight.intensity = 0.62;
+        sunLight.color.set('#f97316');
+        sunLight.intensity = 1.65;
+        sunLight.position.set(-75, 24, 38); // Low golden-hour western sun
+        MAT.windowGlass.emissiveIntensity = 0.65;
+        MAT.bistroBulb.emissiveIntensity = 2.0;
+        firePointLight.intensity = 2.8;
+        nightLightObjects.forEach(obj => {
+          if (obj.isLight) obj.intensity = 1.6;
+          else obj.material.opacity = 0.18;
+        });
+      } else if (mode === 'NIGHT') {
+        const btn = document.getElementById('light-night');
+        btn.classList.add('bg-indigo-600', 'text-white', 'shadow');
+        scene.background.set('#090d1a');
+        scene.fog.color.set('#090d1a');
+        hemiLight.color.set('#38bdf8');
+        hemiLight.groundColor.set('#090d16');
+        hemiLight.intensity = 0.28;
+        sunLight.color.set('#64748b');
+        sunLight.intensity = 0.22; // Soft moonlight
+        sunLight.position.set(-35, 65, 20);
+        MAT.windowGlass.emissiveIntensity = 1.35;
+        MAT.bistroBulb.emissiveIntensity = 3.2;
+        firePointLight.intensity = 3.8;
+        nightLightObjects.forEach(obj => {
+          if (obj.isLight) obj.intensity = 2.6;
+          else obj.material.opacity = 0.28;
+        });
+      }
+    };
+
+    /*************************************************************************
+     * 8. 3D FLOATING CALLOUT PINS & INSPECTOR CARDS
+     *************************************************************************/
+    const PINS_DATA = [
+      {
+        id: 'pin-awning',
+        layer: 'patioAwning',
+        wx: 21.5, wy: 30.5, h: 10.6,
+        badge: '2029 · PHASE 4 (OPTION #1C)',
+        short: '#1C 2-Pillar Solid Awning',
+        color: '#f59e0b',
+        title: 'Option #1C House-Attached 2-Pillar Solid-Roof Timber Awning & Lounge',
+        desc: "Attached to the house ledger at wx=30.0' with strictly TWO outer West corner 8×8 pillars (wx=18.0', wy=20.5' & 40.5') and ZERO house pillars. Features a 100% opaque 1×6 T&G cedar wood ceiling underneath, matte-black standing-seam metal roof & rain gutter on top, 2700K bistro lights, L-sectional sofa, and 50,000 BTU propane fire table."
+      },
+      {
+        id: 'pin-west-wall',
+        layer: 'westWallPlants',
+        wx: 2.0, wy: 25.0, h: 15.2,
+        badge: '2027 · PHASE 2 (5+4 HYBRID)',
+        short: '5+4 West Wall Hybrid',
+        color: '#22c55e',
+        title: "Western Back Wall (4.0' Mulch + 6\" Paver = 4.5' to Grass): 5+4 Designer Hybrid",
+        desc: "5× Leafy Columnar Pillars (S1–S5 'Standing Ovation' Serviceberry / 'Crimson Spire' Oak at wy=5',15',25',35',45') alternating with 4× Upright Column Junipers (J1–J4 at wy=10',20',30',40') + 10-spot under-story of Purple Catmint/Russian Sage, Coneflower & Karl Foerster Feather Reed Grasses."
+      },
+      {
+        id: 'pin-planters',
+        layer: 'planters',
+        wx: 15.5, wy: 4.0, h: 3.2,
+        badge: '2030 · PHASE 5 (5 CEDAR BOXES)',
+        short: '5 Cedar Planters (N1–N5)',
+        color: '#84cc16',
+        title: "5 N–S Western Red Cedar Garden Boxes (3.0' W × 6.0' L = 90 sq ft)",
+        desc: "Started as a flat-dirt garden in 2027 and upgraded in 2030 to 5 raised cedar beds running North-to-South along the North fence with 1.75' crushed granite paths, per-box grid drip manifolds, and a 6\" flush paver strip at wy=8.5'."
+      },
+      {
+        id: 'pin-pavers',
+        layer: 'pavers',
+        wx: 5.3, wy: 46.6, h: 1.2,
+        badge: '2027 · PHASE 2 (45° PAVERS)',
+        short: '45° Holland Paver Strip',
+        color: '#2dd4bf',
+        title: 'Home Depot Pavestone Holland Paver Mow Strip (Prominent 45° Corners)',
+        desc: "195 lin ft of soil-flush 7.87\"×3.94\" Charcoal/Sierra Blend Holland Pavers with 45° diagonal chamfered corners so the mower pivots in 1 pass. Installed ONLY where grass meets mulch, gravel, or the home; ZERO pavers where grass meets concrete."
+      },
+      {
+        id: 'pin-rear-walk',
+        layer: 'rearSidewalk',
+        wx: 28.5, wy: 14.5, h: 1.5,
+        badge: '2028 · PHASE 3 (3\' WALK)',
+        short: "3'×11' Rear Concrete Walk",
+        color: '#38bdf8',
+        title: "3.0' × 11.0' Rear House Concrete Sidewalk (33.0 sq ft)",
+        desc: "Poured right against the rear slab-on-grade house wall (0 window wells) to connect the 21'×12.5' patio directly to the 9'×43.2' North side cement pad. Grass meets this concrete sidewalk directly with no pavers."
+      },
+      {
+        id: 'pin-north-pad',
+        layer: 'northCementPad',
+        wx: 52.0, wy: 4.5, h: 2.0,
+        badge: '2028 · PHASE 3 (N. PAD & GATE)',
+        short: "9'×43.2' N. Cement Pad",
+        color: '#38bdf8',
+        title: "North Side 9.0' × 43.2' Poured Cement Pad & 8.5' Double Vehicle Gate",
+        desc: "388.8 sq ft utility/trailer pad enclosed by a 70.0' white vinyl fence (split 50/50 with North neighbor over bare dirt) and an 8.5' double-swing vehicle gate at wx=70.0' (set back 3.2' West of NE garage face behind the 2.0' stone wrap)."
+      },
+      {
+        id: 'pin-south-corridor',
+        layer: 'southGate',
+        wx: 42.0, wy: 45.5, h: 2.0,
+        badge: '2026 · PHASE 1 (S. GATE & GRASS)',
+        short: "4'+ S. Grass Wrap & Gate",
+        color: '#c084fc',
+        title: "South Side 4.0'+ Continuous Lawn Wrap, AC Screen & 4.0' Walk Gate",
+        desc: "Continuous 4.0'+ wide green grass strip wrapping down the 9.0' South corridor between the 2.0' berry/shade bed and 2.0' house/AC buffer to the 4.0' walk gate at wx=57.5' (57.5' South fence split 50/50 with South neighbor next to white rocks)."
+      },
+      {
+        id: 'pin-front-yard',
+        layer: 'porchSwing',
+        wx: 76.0, wy: 39.5, h: 2.2,
+        badge: 'FRONT YARD & 3152 PORCH',
+        short: 'Front Lawn, Maple & 3152 Swing',
+        color: '#f43f5e',
+        title: "555 sq ft SE Front Lawn, 45° Pavers, 3-Sided Box Screen & '3152' Porch Swing",
+        desc: "Unbroken SE front lawn with 45° Holland pavers along the 2.0' beds, Japanese Maple specimen tree, 3-sided Karl Foerster grass screen around the green utility box, hanging cedar porch swing, and 6.0' water-wise street park strips."
+      }
+    ];
+
+    const labelsOverlay = document.getElementById('labels-overlay');
+    const pinDomElements = [];
+
+    function init3DPins() {
+      labelsOverlay.innerHTML = '';
+      PINS_DATA.forEach(pin => {
+        const el = document.createElement('button');
+        el.className = 'label-3d absolute px-2 py-1 rounded-lg bg-slate-900/90 border text-[10px] font-mono-cad font-bold text-white shadow-lg flex items-center gap-1.5 hover:bg-slate-800';
+        el.style.borderColor = pin.color;
+        el.innerHTML = `
+          <span class="w-2 h-2 rounded-full shrink-0" style="background:${pin.color}"></span>
+          <span>${pin.short}</span>
+        `;
+        el.onclick = (e) => {
+          e.stopPropagation();
+          selectPin(pin);
+        };
+        labelsOverlay.appendChild(el);
+        pinDomElements.push({ pin, el });
+      });
+    }
+
+    function selectPin(pin) {
+      document.getElementById('insp-badge').textContent = pin.badge;
+      document.getElementById('insp-coords').textContent = `wx: ${pin.wx.toFixed(1)}' · wy: ${pin.wy.toFixed(1)}'`;
+      document.getElementById('insp-title').textContent = pin.title;
+      document.getElementById('insp-desc').textContent = pin.desc;
+      animateCameraTo(
+        new THREE.Vector3(pin.wx - 14, Math.max(7, pin.h + 4), pin.wy + 12),
+        new THREE.Vector3(pin.wx, Math.min(pin.h * 0.5, 5), pin.wy)
+      );
+    }
+
+    function update3DPinsProjection() {
+      if (!STATE.showLabels) {
+        pinDomElements.forEach(({ el }) => { el.style.display = 'none'; });
+        return;
+      }
+      const rect = renderer.domElement.getBoundingClientRect();
+      const tempV = new THREE.Vector3();
+      const camX = camera.position.x;
+      const camY = camera.position.y;
+      pinDomElements.forEach(({ pin, el }) => {
+        if (!STATE.layers[pin.layer]) {
+          el.style.display = 'none';
+          return;
+        }
+        // Hide pins on the opposite side of the 2-story house when camera is below roof level
+        if (camY < 18.0) {
+          if (camX < 29.0 && pin.wx > 35.0) {
+            el.style.display = 'none';
+            return;
+          }
+          if (camX > 65.0 && pin.wx < 55.0) {
+            el.style.display = 'none';
+            return;
+          }
+        }
+        tempV.set(pin.wx, pin.h, pin.wy);
+        tempV.project(camera);
+        if (tempV.z > 1.0 || tempV.z < -1.0) {
+          el.style.display = 'none';
+          return;
+        }
+        const x = (tempV.x * 0.5 + 0.5) * rect.width;
+        const y = (-(tempV.y * 0.5) + 0.5) * rect.height;
+        el.style.display = 'flex';
+        el.style.left = `${x.toFixed(1)}px`;
+        el.style.top = `${y.toFixed(1)}px`;
+      });
+    }
+
+    window.toggle3DLabels = function() {
+      STATE.showLabels = !STATE.showLabels;
+      const btn = document.getElementById('labels-toggle-btn');
+      if (STATE.showLabels) {
+        btn.className = 'px-2.5 py-1.5 rounded-lg text-xs font-semibold border border-emerald-500/50 bg-emerald-950/60 text-emerald-300 flex items-center gap-1 transition-all';
+      } else {
+        btn.className = 'px-2.5 py-1.5 rounded-lg text-xs font-semibold border border-slate-700 bg-slate-800 text-slate-300 flex items-center gap-1 transition-all';
+      }
+    };
+
+    /*************************************************************************
+     * 9. CAMERA PRESETS & SMOOTH ANIMATION ENGINE
+     *************************************************************************/
+    const CAMERA_PRESETS = {
+      BACKYARD_OVERVIEW: {
+        pos: [-18, 25, 54],
+        target: [20, 4.5, 25],
+        badge: 'OVERVIEW · FULL BACKYARD',
+        title: 'Lot 3152 — Complete Backyard, Option #1C Awning, 5+4 West Wall & 5 Cedar Beds',
+        desc: "Full 50' × 30' backyard preserving 679 sq ft of open turf, framed by the 5+4 West wall privacy screen, 5 N–S cedar planters, 3' rear house concrete walk, and the Option #1C 2-pillar solid-roof timber patio awning."
+      },
+      PATIO_AWNING_1C: {
+        pos: [6.5, 6.2, 31.5],
+        target: [25.5, 5.2, 30.8],
+        badge: '2029 · PHASE 4 (OPTION #1C)',
+        title: 'Option #1C House-Attached 2-Pillar Solid-Roof Heavy-Timber Awning & Patio Lounge',
+        desc: "Eye-level view looking East into the 21.0' × 12.5' patio: strictly TWO outer West corner 8×8 pillars (wx=18.0', wy=20.5' & 40.5'), ZERO house pillars, warm 1×6 T&G cedar wood ceiling underneath, matte-black standing-seam metal roof & gutter on top, 2700K bistro lights, L-sectional & propane fire table."
+      },
+      WEST_WALL_5PLUS4: {
+        pos: [24.5, 6.5, 31.0],
+        target: [1.5, 6.5, 24.0],
+        badge: '2027 · PHASE 2 (WEST WALL 5+4)',
+        title: "Western Back Wall (4.0' Mulch + 6\" Paver): 5+4 Designer Hybrid & 10-Spot Under-Story",
+        desc: "Looking West from the patio across the 13.0' main lawn to the 5 Leafy Columnar Pillars (Serviceberry/Oak/Birch centered in the 5 panels) alternating with 4 Column Junipers (hiding the 4 wall columns) + purple perennials & Karl Foerster grasses."
+      },
+      NW_FIVE_PLANTERS: {
+        pos: [8.0, 11.5, 23.5],
+        target: [18.5, 2.2, 5.5],
+        badge: '2030 · PHASE 5 (5 N–S PLANTERS)',
+        title: "5 N–S Raised Cedar Garden Boxes (3'×6') & 3.0' Rear House Concrete Sidewalk",
+        desc: "5 Western Red Cedar boxes (N1–N5) running North-to-South along the North vinyl fence with 1.75' crushed granite paths, 6\" flush Holland paver edging (8.5' to grass), and the 3'×11' rear house concrete sidewalk connecting the patio to the North cement pad."
+      },
+      NORTH_CEMENT_PAD: {
+        pos: [86.0, 8.0, 4.5],
+        target: [45.0, 3.0, 4.5],
+        badge: '2028 · PHASE 3 (NORTH SIDE)',
+        title: "North Side 9.0' × 43.2' Poured Cement Pad, 8.5' Vehicle Gate & Neighbor Bare Dirt",
+        desc: "Looking West from the NE front strip toward the 8.5' double-swing vehicle gate at wx=70.0' (set back 3.2' behind the NE garage corner & 2.0' stone wrap) and 388.8 sq ft concrete pad. Notice the North neighbor's bare dirt (wy < 0')."
+      },
+      SOUTH_GRASS_CORRIDOR: {
+        pos: [22.0, 7.2, 45.5],
+        target: [58.0, 3.2, 45.5],
+        badge: '2026 · PHASE 1 (SOUTH SIDE)',
+        title: "South Side 4.0'+ Continuous Lawn Wrap, AC Cedar Screen & 4.0' Walk Gate",
+        desc: "Looking East down the narrow 9.0' South corridor: the backyard lawn wraps 4.0'+ wide all the way to the 4.0' walk gate at wx=57.5' between flush Holland pavers, the 2.0' berry/shade bed, and the horizontal cedar AC screen. South neighbor (wy > 50') is white rocks."
+      },
+      FRONT_ELEVATION: {
+        pos: [122.0, 11.5, 34.0],
+        target: [68.0, 6.5, 27.0],
+        badge: 'FRONT ELEVATION & PARK STRIPS',
+        title: "Front Elevation, 555 sq ft SE Lawn, 45° Pavers, '3152' Porch Swing & 6' Park Strips",
+        desc: "Looking West from the street across the 6.0' water-wise park strips, 18' driveway, unbroken 555 sq ft SE front lawn with 45° chamfered Holland pavers, 3-sided utility box grass screen, Japanese Maple, and '3152' stone porch column."
+      },
+      TOP_DRONE_3D: {
+        pos: [48.0, 108.0, 25.1],
+        target: [48.0, 0.0, 25.0],
+        badge: 'NADIR 3D AERIAL VIEW',
+        title: "Top-Down 1:1 3D Aerial View of Lot 3152 (50.0' W × 108.7' D to Street)",
+        desc: "True 3D overhead perspective showing every zone, roof slope, real-time sun shadow, and neighbor boundary contrast (North bare dirt vs. South white rocks)."
+      }
+    };
+
+    let camAnim = null;
+    function animateCameraTo(targetPos, targetLook) {
+      if (STATE.navMode === 'WALK') {
+        window.setNavMode('ORBIT');
+      }
+      camAnim = {
+        startPos: camera.position.clone(),
+        endPos: targetPos.clone(),
+        startLook: controls.target.clone(),
+        endLook: targetLook.clone(),
+        startTime: performance.now(),
+        duration: 750
+      };
+    }
+
+    window.goToCameraPreset = function(presetKey, btnEl) {
+      const p = CAMERA_PRESETS[presetKey];
+      if (!p) return;
+      document.querySelectorAll('.cam-preset-btn').forEach(b => {
+        b.className = 'cam-preset-btn px-2.5 py-1 rounded-lg text-[11px] font-semibold bg-slate-800 text-slate-200 hover:bg-slate-700 transition';
+      });
+      if (btnEl) {
+        btnEl.className = 'cam-preset-btn px-2.5 py-1 rounded-lg text-[11px] font-bold bg-emerald-600 text-white shadow transition';
+      }
+      document.getElementById('insp-badge').textContent = p.badge;
+      document.getElementById('insp-title').textContent = p.title;
+      document.getElementById('insp-desc').textContent = p.desc;
+      animateCameraTo(new THREE.Vector3(...p.pos), new THREE.Vector3(...p.target));
+    };
+
+    /*************************************************************************
+     * 10. FIRST-PERSON EYE-LEVEL WALK MODE (WASD / ARROWS / CLICK GROUND)
+     *************************************************************************/
+    const walkKeys = { w: false, a: false, s: false, d: false, up: false, down: false, left: false, right: false };
+    let walkYaw = 0;
+    let walkPitch = 0;
+    let isPointerDown = false;
+    let lastPointerX = 0;
+    let lastPointerY = 0;
+
+    window.setNavMode = function(mode) {
+      STATE.navMode = mode;
+      const orbitBtn = document.getElementById('nav-orbit');
+      const walkBtn = document.getElementById('nav-walk');
+      const hud = document.getElementById('walk-mode-hud');
+
+      if (mode === 'WALK') {
+        orbitBtn.className = 'px-2.5 py-1 rounded-lg text-xs font-bold transition-all text-slate-300 hover:text-white';
+        walkBtn.className = 'px-2.5 py-1 rounded-lg text-xs font-bold transition-all bg-emerald-600 text-white shadow flex items-center gap-1';
+        hud.classList.remove('hidden');
+        controls.enabled = false;
+
+        // Place viewer at human eye level (5.7 ft) on the backyard lawn / patio edge looking toward patio & West wall
+        if (camera.position.y > 14 || camera.position.x < -2 || camera.position.x > 115) {
+          camera.position.set(12.5, 5.7, 32.0);
+          walkYaw = -Math.PI * 0.65;
+          walkPitch = -0.04;
+        } else {
+          camera.position.y = 5.7;
+          const dir = new THREE.Vector3();
+          camera.getWorldDirection(dir);
+          walkYaw = Math.atan2(dir.x, dir.z);
+          walkPitch = Math.asin(Math.max(-0.6, Math.min(0.6, dir.y)));
+        }
+        updateWalkCameraLook();
+      } else {
+        orbitBtn.className = 'px-2.5 py-1 rounded-lg text-xs font-bold transition-all bg-emerald-600 text-white shadow';
+        walkBtn.className = 'px-2.5 py-1 rounded-lg text-xs font-bold transition-all text-slate-300 hover:text-white flex items-center gap-1';
+        hud.classList.add('hidden');
+        controls.enabled = true;
+        const dir = new THREE.Vector3();
+        camera.getWorldDirection(dir);
+        controls.target.copy(camera.position).add(dir.multiplyScalar(18));
+        controls.target.y = Math.max(1.5, Math.min(8, controls.target.y));
+        controls.update();
+      }
+    };
+
+    function updateWalkCameraLook() {
+      const lookDist = 10;
+      const tx = camera.position.x + Math.sin(walkYaw) * Math.cos(walkPitch) * lookDist;
+      const ty = camera.position.y + Math.sin(walkPitch) * lookDist;
+      const tz = camera.position.z + Math.cos(walkYaw) * Math.cos(walkPitch) * lookDist;
+      camera.lookAt(tx, ty, tz);
+    }
+
+    window.addEventListener('keydown', (e) => {
+      const k = e.key.toLowerCase();
+      if (k === 'w') walkKeys.w = true;
+      if (k === 's') walkKeys.s = true;
+      if (k === 'a') walkKeys.a = true;
+      if (k === 'd') walkKeys.d = true;
+      if (e.key === 'ArrowUp') walkKeys.up = true;
+      if (e.key === 'ArrowDown') walkKeys.down = true;
+      if (e.key === 'ArrowLeft') walkKeys.left = true;
+      if (e.key === 'ArrowRight') walkKeys.right = true;
+    });
+    window.addEventListener('keyup', (e) => {
+      const k = e.key.toLowerCase();
+      if (k === 'w') walkKeys.w = false;
+      if (k === 's') walkKeys.s = false;
+      if (k === 'a') walkKeys.a = false;
+      if (k === 'd') walkKeys.d = false;
+      if (e.key === 'ArrowUp') walkKeys.up = false;
+      if (e.key === 'ArrowDown') walkKeys.down = false;
+      if (e.key === 'ArrowLeft') walkKeys.left = false;
+      if (e.key === 'ArrowRight') walkKeys.right = false;
+    });
+
+    const raycaster = new THREE.Raycaster();
+    const mouseNDC = new THREE.Vector2();
+    const groundPlane = new THREE.Plane(new THREE.Vector3(0, 1, 0), 0);
+    const intersectPt = new THREE.Vector3();
+
+    renderer.domElement.addEventListener('pointerdown', (e) => {
+      isPointerDown = true;
+      lastPointerX = e.clientX;
+      lastPointerY = e.clientY;
+    });
+    window.addEventListener('pointerup', (e) => {
+      if (STATE.navMode === 'WALK' && isPointerDown && Math.hypot(e.clientX - lastPointerX, e.clientY - lastPointerY) < 5) {
+        // Click-to-step teleport in Walk Mode
+        const rect = renderer.domElement.getBoundingClientRect();
+        mouseNDC.x = ((e.clientX - rect.left) / rect.width) * 2 - 1;
+        mouseNDC.y = -((e.clientY - rect.top) / rect.height) * 2 + 1;
+        raycaster.setFromCamera(mouseNDC, camera);
+        if (raycaster.ray.intersectPlane(groundPlane, intersectPt)) {
+          if (intersectPt.x >= 0.5 && intersectPt.x <= 112 && intersectPt.z >= -5 && intersectPt.z <= 55) {
+            camera.position.set(intersectPt.x, 5.7, intersectPt.z);
+            updateWalkCameraLook();
+          }
+        }
+      }
+      isPointerDown = false;
+    });
+    renderer.domElement.addEventListener('pointermove', (e) => {
+      const rect = renderer.domElement.getBoundingClientRect();
+      mouseNDC.x = ((e.clientX - rect.left) / rect.width) * 2 - 1;
+      mouseNDC.y = -((e.clientY - rect.top) / rect.height) * 2 + 1;
+      raycaster.setFromCamera(mouseNDC, camera);
+      if (raycaster.ray.intersectPlane(groundPlane, intersectPt)) {
+        const rx = Math.max(0, Math.min(108.7, intersectPt.x));
+        const ry = Math.max(0, Math.min(50.0, intersectPt.z));
+        const readout = document.getElementById('cursor-coords-readout');
+        if (readout) readout.textContent = `wx: ${rx.toFixed(1)}' · wy: ${ry.toFixed(1)}'`;
+      }
+
+      if (STATE.navMode === 'WALK' && isPointerDown) {
+        const dx = e.clientX - lastPointerX;
+        const dy = e.clientY - lastPointerY;
+        lastPointerX = e.clientX;
+        lastPointerY = e.clientY;
+        walkYaw -= dx * 0.0045;
+        walkPitch = Math.max(-0.75, Math.min(0.75, walkPitch - dy * 0.0045));
+        updateWalkCameraLook();
+      }
+    });
+
+    /*************************************************************************
+     * 11. INTERACTIVE GATES, ROOF CUTAWAY, PHASES & LAYER DRAWER UI
+     *************************************************************************/
+    window.toggleGatesOpen = function() {
+      STATE.gatesOpen = !STATE.gatesOpen;
+      const lbl = document.getElementById('gates-btn-label');
+      lbl.textContent = STATE.gatesOpen ? 'Close Gates' : 'Open Gates';
+    };
+
+    window.toggleAwningRoofXray = function() {
+      STATE.awningRoofXray = !STATE.awningRoofXray;
+      MAT.standingSeamMetal.transparent = STATE.awningRoofXray;
+      MAT.standingSeamMetal.opacity = STATE.awningRoofXray ? 0.25 : 1.0;
+      MAT.standingSeamMetal.needsUpdate = true;
+      MAT.tgCedarCeiling.transparent = STATE.awningRoofXray;
+      MAT.tgCedarCeiling.opacity = STATE.awningRoofXray ? 0.25 : 1.0;
+      MAT.tgCedarCeiling.needsUpdate = true;
+      document.getElementById('roof-xray-label').textContent = STATE.awningRoofXray ? 'Roof Cutaway' : 'Solid Roof';
+    };
+
+    window.toggleLeftPanel = function() {
+      STATE.leftPanelOpen = !STATE.leftPanelOpen;
+      const panel = document.getElementById('left-layer-panel');
+      if (STATE.leftPanelOpen) {
+        panel.style.width = '20rem';
+        panel.style.borderRightWidth = '1px';
+      } else {
+        panel.style.width = '0px';
+        panel.style.borderRightWidth = '0px';
+      }
+      setTimeout(handleResize, 220);
+    };
+
+    function syncSceneVisibility() {
+      Object.keys(STATE.layers).forEach(k => {
+        if (LAYER_GROUPS[k]) {
+          LAYER_GROUPS[k].visible = !!STATE.layers[k];
+        }
+      });
+      // Show 2027 flat-dirt garden plot when Phase 2 beds is ON and Phase 5 gardenRock is OFF
+      flatDirtGardenGroup.visible = !!(STATE.layers.beds && !STATE.layers.gardenRock);
+    }
+
+    function renderLayerDrawer() {
+      const container = document.getElementById('phase-layer-list');
+      container.innerHTML = PHASE_GROUPS.map(grp => {
+        const allOn = grp.layers.every(l => STATE.layers[l.key]);
+        const someOn = grp.layers.some(l => STATE.layers[l.key]);
+        return `
+          <div class="rounded-xl border p-2.5 transition" style="background:${grp.bgTint}; border-color:${grp.borderTint};">
+            <div class="flex items-center justify-between gap-1.5 mb-1.5">
+              <div class="flex items-center gap-1.5 min-w-0">
+                <input type="checkbox" ${allOn ? 'checked' : ''}
+                       onchange="window.togglePhaseGroup('${grp.id}', this.checked)"
+                       class="w-3.5 h-3.5 rounded accent-emerald-500 cursor-pointer shrink-0"/>
+                <span class="px-1.5 py-0.5 rounded text-[9px] font-mono-cad font-bold border ${grp.badgeClass}">
+                  ${grp.badge}
+                </span>
+                <span class="text-xs font-bold text-white truncate">${grp.title}</span>
+              </div>
+              <span class="text-[10px] font-mono-cad ${allOn ? 'text-emerald-300' : (someOn ? 'text-amber-300' : 'text-slate-500')}">
+                ${grp.layers.filter(l => STATE.layers[l.key]).length}/${grp.layers.length}
+              </span>
+            </div>
+            <p class="text-[10px] text-slate-400 mb-2 pl-5">${grp.subtitle}</p>
+            <div class="space-y-1 pl-2">
+              ${grp.layers.map(l => `
+                <label class="flex items-center justify-between gap-2 px-2 py-1 rounded-lg bg-slate-950/65 hover:bg-slate-950/90 border border-slate-800/80 cursor-pointer transition">
+                  <div class="flex items-center gap-2 min-w-0">
+                    <input type="checkbox" ${STATE.layers[l.key] ? 'checked' : ''}
+                           onchange="window.toggleSingleLayer('${l.key}', this.checked)"
+                           class="w-3.5 h-3.5 rounded accent-emerald-500 cursor-pointer shrink-0"/>
+                    <span class="w-2.5 h-2.5 rounded-sm shrink-0" style="background:${l.swatch}"></span>
+                    <span class="text-[11px] font-medium text-slate-200 truncate">${l.label}</span>
+                  </div>
+                </label>
+              `).join('')}
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    window.toggleSingleLayer = function(key, val) {
+      STATE.layers[key] = val;
+      syncSceneVisibility();
+      renderLayerDrawer();
+    };
+
+    window.togglePhaseGroup = function(groupId, val) {
+      const grp = PHASE_GROUPS.find(g => g.id === groupId);
+      if (!grp) return;
+      grp.layers.forEach(l => { STATE.layers[l.key] = val; });
+      syncSceneVisibility();
+      renderLayerDrawer();
+    };
+
+    window.setAllLayers = function(enableAll) {
+      PHASE_GROUPS.forEach(grp => {
+        const isBase = grp.id === 'base-property';
+        grp.layers.forEach(l => {
+          STATE.layers[l.key] = isBase ? true : (l.key === 'irrigation' ? false : enableAll);
+        });
+      });
+      syncSceneVisibility();
+      renderLayerDrawer();
+    };
+
+    window.applyYearMilestone = function(targetYear) {
+      PHASE_GROUPS.forEach(grp => {
+        if (grp.id === 'base-property') {
+          grp.layers.forEach(l => { STATE.layers[l.key] = true; });
+        } else if (grp.year) {
+          const active = grp.year <= targetYear;
+          grp.layers.forEach(l => {
+            if (l.key === 'irrigation') {
+              STATE.layers[l.key] = false;
+            } else {
+              STATE.layers[l.key] = active;
+            }
+          });
+        }
+      });
+      document.querySelectorAll('.mile-btn').forEach(btn => {
+        btn.classList.remove('bg-emerald-600', 'text-white', 'shadow');
+        btn.classList.add('bg-slate-800');
+      });
+      const activeBtn = document.getElementById(`mile-${targetYear}`);
+      if (activeBtn) {
+        activeBtn.classList.remove('bg-slate-800');
+        activeBtn.classList.add('bg-emerald-600', 'text-white', 'shadow');
+      }
+      syncSceneVisibility();
+      renderLayerDrawer();
+    };
+
+    window.captureScreenshot = function() {
+      renderer.render(scene, camera);
+      const link = document.createElement('a');
+      link.download = `Lot_3152_3D_Model_${STATE.lightingMode}.png`;
+      link.href = renderer.domElement.toDataURL('image/png');
+      link.click();
+    };
+
+    // Listen for parent iframe messages from index.html
+    window.addEventListener('message', (e) => {
+      if (!e.data || typeof e.data !== 'object') return;
+      if (e.data.type === 'SET_3D_PRESET' && e.data.preset) {
+        window.goToCameraPreset(e.data.preset);
+      } else if (e.data.type === 'SET_3D_LIGHTING' && e.data.mode) {
+        window.setLightingMode(e.data.mode);
+      } else if (e.data.type === 'SET_3D_YEAR' && e.data.year) {
+        window.applyYearMilestone(e.data.year);
+      }
+    });
+
+    /*************************************************************************
+     * 12. RESIZE & MAIN ANIMATION LOOP
+     *************************************************************************/
+    function handleResize() {
+      const w = viewportEl.clientWidth;
+      const h = viewportEl.clientHeight;
+      if (w > 0 && h > 0) {
+        camera.aspect = w / h;
+        camera.updateProjectionMatrix();
+        renderer.setSize(w, h, false);
+      }
+    }
+    window.addEventListener('resize', handleResize);
+
+    // Initialize Drawer, Pins & Resize
+    if (!STATE.leftPanelOpen) {
+      const panel = document.getElementById('left-layer-panel');
+      panel.style.width = '0px';
+      panel.style.borderRightWidth = '0px';
+    }
+    renderLayerDrawer();
+    syncSceneVisibility();
+    init3DPins();
+    handleResize();
+
+    let lastFrameTime = performance.now();
+    function animate(now) {
+      requestAnimationFrame(animate);
+      const dt = Math.min(0.05, (now - lastFrameTime) / 1000);
+      lastFrameTime = now;
+
+      // 1. Camera Preset Interpolation
+      if (camAnim) {
+        const t = Math.min(1, (now - camAnim.startTime) / camAnim.duration);
+        const ease = 1 - Math.pow(1 - t, 3);
+        camera.position.lerpVectors(camAnim.startPos, camAnim.endPos, ease);
+        controls.target.lerpVectors(camAnim.startLook, camAnim.endLook, ease);
+        controls.update();
+        if (t >= 1) camAnim = null;
+      } else if (STATE.navMode === 'ORBIT') {
+        controls.update();
+      } else if (STATE.navMode === 'WALK') {
+        const moveSpeed = 14.0 * dt;
+        const forward = (walkKeys.w || walkKeys.up ? 1 : 0) - (walkKeys.s || walkKeys.down ? 1 : 0);
+        const strafe = (walkKeys.d || walkKeys.right ? 1 : 0) - (walkKeys.a || walkKeys.left ? 1 : 0);
+        if (forward !== 0 || strafe !== 0) {
+          camera.position.x += (Math.sin(walkYaw) * forward - Math.cos(walkYaw) * strafe) * moveSpeed;
+          camera.position.z += (Math.cos(walkYaw) * forward + Math.sin(walkYaw) * strafe) * moveSpeed;
+          camera.position.x = Math.max(-10, Math.min(122, camera.position.x));
+          camera.position.z = Math.max(-15, Math.min(65, camera.position.z));
+          camera.position.y = 5.7;
+          updateWalkCameraLook();
+        }
+      }
+
+      // 2. Smooth Gate Swing Animation
+      const targetAngle = STATE.gatesOpen ? (Math.PI * 0.48) : 0;
+      if (gatePivots.southWalk) {
+        gatePivots.southWalk.rotation.y += (-targetAngle - gatePivots.southWalk.rotation.y) * 0.1;
+      }
+      if (gatePivots.northLeft) {
+        gatePivots.northLeft.rotation.y += (targetAngle - gatePivots.northLeft.rotation.y) * 0.1;
+      }
+      if (gatePivots.northRight) {
+        gatePivots.northRight.rotation.y += (-targetAngle - gatePivots.northRight.rotation.y) * 0.1;
+      }
+
+      // 3. Flickering Propane Fire Table Flames
+      const timeSec = now * 0.005;
+      fireFlames.forEach(f => {
+        const s = 0.85 + 0.25 * Math.sin(timeSec * 2.2 + f.phase);
+        f.mesh.scale.set(1, s, 1);
+      });
+
+      renderer.render(scene, camera);
+      update3DPinsProjection();
+    }
+    requestAnimationFrame(animate);
+  </script>
+</body>
+</html>

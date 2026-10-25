@@ -36,13 +36,19 @@
       </div>
 
       <nav class="flex items-center gap-1 sm:gap-2 text-xs sm:text-sm font-semibold text-slate-700">
+        <a href="#blueprint" class="px-2.5 py-1.5 rounded-lg hover:bg-slate-100 transition text-emerald-800 font-bold">Yard Designer</a>
         <a href="#concepts" class="px-2.5 py-1.5 rounded-lg hover:bg-slate-100 transition">Concepts</a>
-        <a href="#blueprint" class="px-2.5 py-1.5 rounded-lg hover:bg-slate-100 transition">2D Plan</a>
+        <a href="#model3d" class="px-2.5 py-1.5 rounded-lg hover:bg-slate-100 transition">3D Model</a>
         <a href="#budget" class="px-2.5 py-1.5 rounded-lg hover:bg-slate-100 transition">Budget (2026–2031)</a>
-        <a href="#photos" class="px-2.5 py-1.5 rounded-lg hover:bg-slate-100 transition">Current Photos</a>
+        <a href="#photos" class="px-2.5 py-1.5 rounded-lg hover:bg-slate-100 transition hidden md:inline-block">Current Photos</a>
+        <a href="Original%20Planning%20Information/model_3d_3152.html" target="_blank"
+           class="ml-1 inline-flex items-center gap-1 px-3 py-1.5 rounded-lg text-xs font-bold bg-amber-500 text-slate-950 hover:bg-amber-400 transition shadow-sm">
+          <span>3D</span>
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+        </a>
         <a href="Original%20Planning%20Information/cad_architectural_blueprint_3152.html" target="_blank"
-           class="ml-1 inline-flex items-center gap-1 px-3 py-1.5 rounded-lg text-xs font-bold bg-emerald-700 text-white hover:bg-emerald-800 transition">
-          <span>CAD</span>
+           class="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg text-xs font-bold bg-emerald-700 text-white hover:bg-emerald-800 transition">
+          <span>Designer</span>
           <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
         </a>
       </nav>
@@ -95,36 +101,84 @@
     </div>
 
     <div id="concepts-grid" class="grid grid-cols-1 md:grid-cols-2 gap-4">
-      <!-- Populated via JS (12 Reconciled Angles) -->
+      <!-- Populated via JS (13 Reconciled Angles) -->
     </div>
   </section>
 
-  <!-- 2. Interactive 2D CAD Blueprint, Color Shapes & Top-Down Drone View -->
-  <section id="blueprint" class="py-6 max-w-7xl mx-auto px-4 sm:px-6 w-full">
+  <!-- 2. Interactive 1:1 3D Architectural & Landscape Model (Three.js) -->
+  <section id="model3d" class="py-6 max-w-7xl mx-auto px-4 sm:px-6 w-full">
     <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
       <div>
         <div class="flex flex-wrap items-center gap-2">
-          <h2 class="text-lg font-bold text-slate-900">2D Master Plan &amp; Top-Down Drone View</h2>
-          <span class="px-2 py-0.5 rounded-md text-xs font-mono-code font-bold bg-emerald-100 text-emerald-900 border border-emerald-300">Phased Visual Layers (2026–2031)</span>
+          <h2 class="text-lg font-bold text-slate-900">Interactive 3D Property Model (1:1 Scale)</h2>
+          <span class="px-2 py-0.5 rounded-md text-xs font-mono-code font-bold bg-amber-100 text-amber-900 border border-amber-300">Orbit 3D &middot; Eye-Level Walk Mode &middot; Day / Night 2700K</span>
         </div>
         <p class="text-xs text-slate-600 mt-0.5">
-          All decisions locked in. Toggle individual visual layers (pavers, concrete, plants, grass, beds, fence, awning, lighting) organized by build phase, or switch between CAD Blueprint, Solid Color Shapes, and Photorealistic Drone View.
+          Explore the finished Lot 3152 yard in true 1:1 3D scale. Orbit 360&deg;, walk around at eye level (<kbd class="px-1 py-0.5 rounded bg-slate-200 text-slate-800 font-mono-code text-[10px]">WASD</kbd> / <kbd class="px-1 py-0.5 rounded bg-slate-200 text-slate-800 font-mono-code text-[10px]">Arrows</kbd>), toggle 2026–2031 build phases, swing gates open, or preview 2700K nighttime lighting.
         </p>
       </div>
 
       <div class="flex flex-wrap items-center gap-1.5">
-        <button onclick="switchBlueprintMode('CAD', this)" class="bp-mode-pill px-2.5 py-1.5 rounded-lg text-xs font-bold bg-emerald-700 text-white transition">
-          CAD Blueprint
+        <button onclick="set3DLighting('DAY', this)" class="m3d-light-pill px-2.5 py-1.5 rounded-lg text-xs font-bold bg-emerald-700 text-white transition">
+          Daylight
         </button>
-        <button onclick="switchBlueprintMode('COLOR_SHAPES', this)" class="bp-mode-pill px-2.5 py-1.5 rounded-lg text-xs font-bold bg-slate-200 text-slate-900 hover:bg-slate-300 transition">
-          Color Shapes
+        <button onclick="set3DLighting('SUNSET', this)" class="m3d-light-pill px-2.5 py-1.5 rounded-lg text-xs font-bold bg-slate-200 text-slate-900 hover:bg-slate-300 transition">
+          Sunset
+        </button>
+        <button onclick="set3DLighting('NIGHT', this)" class="m3d-light-pill px-2.5 py-1.5 rounded-lg text-xs font-bold bg-slate-200 text-slate-900 hover:bg-slate-300 transition">
+          Night 2700K
+        </button>
+        <a href="Original%20Planning%20Information/model_3d_3152.html" target="_blank"
+           class="ml-1 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold bg-slate-900 text-white hover:bg-slate-800 transition">
+          <span>Fullscreen 3D</span>
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <div class="rounded-2xl overflow-hidden border border-slate-300 shadow-md bg-slate-950">
+      <iframe
+        id="model3d-iframe"
+        src="Original%20Planning%20Information/model_3d_3152.html"
+        title="Lot 3152 Interactive 1:1 3D Architectural & Landscape Model"
+        class="w-full h-[640px] sm:h-[740px] border-0"
+        loading="lazy">
+      </iframe>
+    </div>
+  </section>
+
+  <!-- 3. Interactive Yard Designer (Blueprint, Colored & Photo View) -->
+  <section id="blueprint" class="py-6 max-w-7xl mx-auto px-4 sm:px-6 w-full">
+    <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
+      <div>
+        <div class="flex flex-wrap items-center gap-2">
+          <h2 class="text-lg font-bold text-slate-900">Interactive Yard Designer</h2>
+          <span class="px-2 py-0.5 rounded-md text-xs font-mono-code font-bold bg-emerald-100 text-emerald-900 border border-emerald-300">Phases 1–6 (2026–2031)</span>
+        </div>
+        <p class="text-xs text-slate-600 mt-0.5">
+          Enable or disable whole phases at once (2026–2031), turn labels and measurements on or off, and switch between Blueprint View, Colored View, and Photo View.
+        </p>
+      </div>
+
+      <div class="flex flex-wrap items-center gap-1.5">
+        <button onclick="switchBlueprintMode('CAD', this)" class="bp-mode-pill px-2.5 py-1.5 rounded-lg text-xs font-bold bg-slate-200 text-slate-900 hover:bg-slate-300 transition">
+          Blueprint
+        </button>
+        <button onclick="switchBlueprintMode('COLOR_SHAPES', this)" class="bp-mode-pill px-2.5 py-1.5 rounded-lg text-xs font-bold bg-emerald-700 text-white transition">
+          Colored
         </button>
         <button onclick="switchBlueprintMode('DRONE', this)" class="bp-mode-pill px-2.5 py-1.5 rounded-lg text-xs font-bold bg-slate-200 text-slate-900 hover:bg-slate-300 transition">
-          Photorealistic Drone View
+          Photo View
+        </button>
+        <button id="outer-btn-labels" onclick="toggleDesignerOverlay('labels', this)" class="px-2.5 py-1.5 rounded-lg text-xs font-bold bg-emerald-100 text-emerald-900 border border-emerald-300 hover:bg-emerald-200 transition">
+          Labels: ON
+        </button>
+        <button id="outer-btn-dims" onclick="toggleDesignerOverlay('measurements', this)" class="px-2.5 py-1.5 rounded-lg text-xs font-bold bg-emerald-100 text-emerald-900 border border-emerald-300 hover:bg-emerald-200 transition">
+          Measurements: ON
         </button>
         <a href="Original%20Planning%20Information/cad_architectural_blueprint_3152.html" target="_blank"
            class="ml-1 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold bg-slate-900 text-white hover:bg-slate-800 transition">
-          <span>Fullscreen CAD</span>
+          <span>Fullscreen Designer</span>
           <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
         </a>
       </div>
@@ -134,9 +188,8 @@
       <iframe
         id="blueprint-iframe"
         src="Original%20Planning%20Information/cad_architectural_blueprint_3152.html"
-        title="Lot 3152 2D Blueprint & Photorealistic Drone View"
-        class="w-full h-[680px] sm:h-[780px] border-0"
-        loading="lazy">
+        title="Lot 3152 Interactive Yard Designer"
+        class="w-full h-[680px] sm:h-[780px] border-0">
       </iframe>
     </div>
   </section>
@@ -1116,6 +1169,43 @@
         iframe.contentWindow.setRenderStyle(mode);
       } else if (iframe) {
         iframe.src = `Original%20Planning%20Information/cad_architectural_blueprint_3152.html?style=${mode}`;
+      }
+    }
+
+    function toggleDesignerOverlay(type, btnEl) {
+      const iframe = document.getElementById('blueprint-iframe');
+      if (!iframe || !iframe.contentWindow) return;
+      if (type === 'labels' && typeof iframe.contentWindow.toggleLabels === 'function') {
+        iframe.contentWindow.toggleLabels();
+        const isOn = iframe.contentWindow.STATE ? iframe.contentWindow.STATE.showLabels : true;
+        if (btnEl) {
+          btnEl.textContent = isOn ? 'Labels: ON' : 'Labels: OFF';
+          btnEl.className = isOn
+            ? 'px-2.5 py-1.5 rounded-lg text-xs font-bold bg-emerald-100 text-emerald-900 border border-emerald-300 hover:bg-emerald-200 transition'
+            : 'px-2.5 py-1.5 rounded-lg text-xs font-bold bg-slate-200 text-slate-800 hover:bg-slate-300 transition';
+        }
+      } else if (type === 'measurements' && typeof iframe.contentWindow.toggleMeasurements === 'function') {
+        iframe.contentWindow.toggleMeasurements();
+        const isOn = iframe.contentWindow.STATE ? iframe.contentWindow.STATE.showMeasurements : true;
+        if (btnEl) {
+          btnEl.textContent = isOn ? 'Measurements: ON' : 'Measurements: OFF';
+          btnEl.className = isOn
+            ? 'px-2.5 py-1.5 rounded-lg text-xs font-bold bg-emerald-100 text-emerald-900 border border-emerald-300 hover:bg-emerald-200 transition'
+            : 'px-2.5 py-1.5 rounded-lg text-xs font-bold bg-slate-200 text-slate-800 hover:bg-slate-300 transition';
+        }
+      }
+    }
+
+    function set3DLighting(mode, btnEl) {
+      document.querySelectorAll('.m3d-light-pill').forEach(b => {
+        b.className = 'm3d-light-pill px-2.5 py-1.5 rounded-lg text-xs font-bold bg-slate-200 text-slate-900 hover:bg-slate-300 transition';
+      });
+      if (btnEl) {
+        btnEl.className = 'm3d-light-pill px-2.5 py-1.5 rounded-lg text-xs font-bold bg-emerald-700 text-white transition';
+      }
+      const iframe = document.getElementById('model3d-iframe');
+      if (iframe && iframe.contentWindow) {
+        iframe.contentWindow.postMessage({ type: 'SET_3D_LIGHTING', mode }, '*');
       }
     }
 
