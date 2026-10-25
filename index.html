@@ -60,7 +60,7 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 flex flex-wrap items-center justify-center sm:justify-between gap-2">
       <div class="flex flex-wrap items-center gap-1.5 text-xs font-semibold">
         <span class="px-2.5 py-1 rounded-full bg-emerald-100 text-emerald-900 border border-emerald-300">W. Wall: 5+4 Hybrid &middot; 2' S. Bed to Green Box &middot; Grass Under S. Gate</span>
-        <span class="px-2.5 py-1 rounded-full bg-amber-100 text-amber-900 border border-emerald-300">Open Solid-Roof 2-Pillar Awning (#1C, No Privacy Wall) &middot; Open AC Unit</span>
+        <span class="px-2.5 py-1 rounded-full bg-amber-100 text-amber-900 border border-emerald-300">Open Solid-Roof 2-Pillar Awning (#1C) + 2 Lighted Ceiling Fans &middot; Open AC Unit</span>
         <span class="px-2.5 py-1 rounded-full bg-lime-100 text-lime-900 border border-lime-300">Compacted Road Base: N. Pad, 3' Rear Path &amp; Around 5 N–S Garden Boxes</span>
         <span class="px-2.5 py-1 rounded-full bg-teal-100 text-teal-900 border border-teal-300">Pavers @ Grass-to-Mulch/Road Base/Home (45&deg;) &middot; No Pavers @ Concrete</span>
         <span class="px-2.5 py-1 rounded-full bg-slate-200 text-slate-900 border border-slate-300">White Rock Park Strips &amp; NE Side (to N. Gate) &middot; N. Neighbor: Bare Dirt</span>
@@ -145,6 +145,9 @@
         <button onclick="set3DLighting('NIGHT', this)" class="m3d-light-pill px-2.5 py-1.5 rounded-lg text-xs font-bold bg-slate-200 text-slate-900 hover:bg-slate-300 transition">
           Night 2700K
         </button>
+        <button id="outer-btn-3d-sprinklers" onclick="toggle3DSprinklers(this)" class="px-2.5 py-1.5 rounded-lg text-xs font-bold bg-slate-200 text-slate-900 hover:bg-slate-300 transition" title="Toggle 5-Hydrozone Directional Sprinklers, Side-Strips & PC Drip in 3D">
+          Sprinklers: OFF
+        </button>
         <a href="Original%20Planning%20Information/model_3d_3152.html" target="_blank"
            class="ml-1 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold bg-slate-900 text-white hover:bg-slate-800 transition">
           <span>Fullscreen 3D</span>
@@ -192,6 +195,9 @@
         </button>
         <button id="outer-btn-dims" onclick="toggleDesignerOverlay('measurements', this)" class="px-2.5 py-1.5 rounded-lg text-xs font-bold bg-emerald-100 text-emerald-900 border border-emerald-300 hover:bg-emerald-200 transition">
           Measurements: ON
+        </button>
+        <button id="outer-btn-sprinklers" onclick="toggleDesignerOverlay('sprinklers', this)" class="px-2.5 py-1.5 rounded-lg text-xs font-bold bg-slate-200 text-slate-900 hover:bg-slate-300 transition" title="Toggle 5-Hydrozone Directional Head-to-Head Sprinklers & PC Drip">
+          Sprinklers: OFF
         </button>
         <a href="Original%20Planning%20Information/cad_architectural_blueprint_3152.html" target="_blank"
            class="ml-1 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold bg-slate-900 text-white hover:bg-slate-800 transition">
@@ -271,7 +277,7 @@
             2029 · Road Base Pad/Path &amp; 5 Cedar Garden Beds
           </button>
           <button onclick="filterBudgetYear('2030', this)" class="budget-year-btn px-2.5 py-1 rounded-lg text-xs font-bold bg-slate-200 text-slate-900 hover:bg-slate-300 transition">
-            2030 · Patio Awning (#1C), L-Sectional &amp; Fire Table
+            2030 · Patio Awning (#1C), 2 Lighted Fans, L-Sectional &amp; Fire Table
           </button>
         </div>
         <span id="budget-mode-caption" class="text-xs font-semibold text-slate-600">
@@ -356,7 +362,7 @@
         id: 'patio-awning-option-1c-solid-roof',
         zone: 'BACKYARD',
         badge: 'Patio Awning · Locked Option #1C',
-        title: 'Open Solid-Roof 2-Pillar Timber Awning (No Privacy Wall, 0 House Posts): T&G Ceiling + Metal Roof',
+        title: 'Open Solid-Roof 2-Pillar Timber Awning (No Privacy Wall, 0 House Posts): T&G Ceiling, 2 Lighted Ceiling Fans & Metal Roof',
         renderUrl: 'photos_backyard_ideas/render_patio_awning_option_1c_solid_roof.jpg',
         beforeThumb: 'photos_current_backyard/thumbs/PXL_20261022_162150878.MP.jpg',
         beforeFull: 'photos_current_backyard/PXL_20261022_162150878.MP.jpg'
@@ -719,9 +725,9 @@
             proRange: '$1,200–$1,500'
           },
           {
-            name: 'Multi-Zone Underground Sprinkler System (Full Turf Zones + Garden Stub-Out)',
-            spec: 'Smart Wi-Fi controller, PVB backflow, manifold valves, PVC mainline, pop-up MP Rotators (Backyard, 4\'+ S. wrap continuing under gate & Front lawn) + capped stub-out at North garden',
-            qty: '6–8 Zones (~1,345 sq ft)',
+            name: '5-Hydrozone Underground Sprinkler & PC Drip System (28 Directional Heads · 100% Head-to-Head · 0% Overspray)',
+            spec: '1" Febco 765 PVB backflow at N. hose bib (wx=51\', wy=8.6\'), 6/8-zone smart Wi-Fi controller in garage, M1/M2 valve manifolds, 2" Schedule 40 road-base sleeves, Zone 1 (15 Backyard PRS40 + MP Rotators, 5.32 GPM — zero spray on patio/awning), Zone 2 (4 South Paver MP Side-Strips, 0.88 GPM — 3.75\' N throw so zero water touches Open AC Unit or stucco), Zone 3 (9 SE Front PRS40 + MP Rotators, 3.49 GPM), Zone 4 (30 PSI PC Drip in W/S/Porch beds, 1.63 GPM) & Zone 5 (25 PSI Grid Drip stub-out for 5 Cedar Boxes, 1.38 GPM)',
+            qty: '5 Active Zones + 1 Spare (28 Heads · 12.70 GPM Total)',
             diyCost: 1350,
             diyRange: '$1,150–$1,550',
             proCost: 3400,
@@ -880,11 +886,11 @@
       {
         year: '2030',
         phaseNum: 5,
-        title: 'Option #1C Open Solid-Roof 2-Pillar Timber Patio Awning (No Privacy Wall), L-Sectional & Propane Fire Table',
+        title: 'Option #1C Open Solid-Roof 2-Pillar Timber Patio Awning, 2 Lighted Ceiling Fans, L-Sectional & Propane Fire Table',
         badgeColor: 'bg-amber-100 text-amber-950 border-amber-300',
         hybridDefault: 'DIY',
-        summary: 'Complete the 5-year master plan by outfitting the existing 21.0\' × 12.5\' (262.5 sq ft) backyard concrete patio with the locked Option #1C house-attached 2-pillar dark-espresso timber awning — 100% open on all sides with no privacy wall (2 outer West corner pillars, 0 pillars against the home) — featuring a 100% solid opaque roof (1×6 T&G cedar wood ceiling underneath + matte-black standing-seam steel roof & front rain gutter on top), L-shaped sectional furniture, and a long rectangular propane fire table.',
-        phaseNote: 'Keeps 100% of the leisure & fire-lounge footprint strictly on the existing 262.5 sq ft concrete patio slab so 0 sq ft of backyard grass is lost, while the open-sided solid roof preserves sightlines and protects patio furniture and cushions year-round.',
+        summary: 'Complete the 5-year master plan by outfitting the existing 21.0\' × 12.5\' (262.5 sq ft) backyard concrete patio with the locked Option #1C house-attached 2-pillar dark-espresso timber awning — 100% open on all sides with no privacy wall (2 outer West corner pillars, 0 pillars against the home) — featuring a 100% solid opaque roof (1×6 T&G cedar wood ceiling underneath + matte-black standing-seam steel roof & front rain gutter on top), 2× 52" outdoor ceiling fans with built-in dimmable warm (2700K/3000K) LED light kits (0% blade strobing & 0 roof-deck modification), L-shaped sectional furniture, and a long rectangular propane fire table.',
+        phaseNote: 'Integrated Fan Lighting Win: Mounting the dimmable warm LED lights directly inside the two 52" ceiling fans (below the spinning blades at wx = 23.75\', wy = 25.5\' & 35.5\') 100% eliminates fan-blade strobing, keeps the single-layer 1×6 T&G cedar ceiling intact with only 2 wire runs, and saves ~$450–$1,500 vs. 9 recessed wafer lights.',
         items: [
           {
             name: 'Option #1C: House-Attached 2-Pillar Heavy-Timber Patio Awning — 100% Open on All Sides, No Privacy Wall (21.0\' × 12.5\')',
@@ -894,6 +900,15 @@
             diyRange: '$2,650–$3,450',
             proCost: 4600,
             proRange: '$4,200–$5,500'
+          },
+          {
+            name: '2× 52" Outdoor Wet/Damp-Rated Ceiling Fans with Built-In Dimmable Warm (2700K/3000K) LED Lights & Smart Controls',
+            spec: 'Two 52" matte-black / dark-espresso weatherproof DC ceiling fans with integrated dimmable warm LED light kits (~3,200–3,600 lumens total mounted below the blades for 0% blade strobing and 0 double-deck roof framing), centered over the North & South patio zones (F1 at wx = 23.75\', wy = 25.5\'; F2 at wx = 23.75\', wy = 35.5\') on UL 70-lb fan-rated saddle boxes + 14/2 UF-B wiring & wireless indoor smart dimmer/fan wall controls',
+            qty: '2 Lighted 52" Fans + Boxes/Controls',
+            diyCost: 550,
+            diyRange: '$450–$650',
+            proCost: 950,
+            proRange: '$850–$1,250'
           },
           {
             name: 'Weather-Resistant L-Shaped Patio Lounge Sectional Set',
@@ -1169,6 +1184,44 @@
             ? 'px-2.5 py-1.5 rounded-lg text-xs font-bold bg-emerald-100 text-emerald-900 border border-emerald-300 hover:bg-emerald-200 transition'
             : 'px-2.5 py-1.5 rounded-lg text-xs font-bold bg-slate-200 text-slate-800 hover:bg-slate-300 transition';
         }
+      } else if (type === 'sprinklers') {
+        let isOn = false;
+        if (typeof iframe.contentWindow.toggleSprinklersOverlay === 'function') {
+          iframe.contentWindow.toggleSprinklersOverlay();
+          isOn = iframe.contentWindow.STATE ? !!iframe.contentWindow.STATE.layers.irrigation : false;
+        } else {
+          const cur = btnEl && btnEl.dataset.active === '1';
+          isOn = !cur;
+          iframe.contentWindow.postMessage({ type: 'SET_CAD_SPRINKLERS', enabled: isOn }, '*');
+        }
+        if (btnEl) {
+          btnEl.dataset.active = isOn ? '1' : '0';
+          btnEl.textContent = isOn ? 'Sprinklers: ON' : 'Sprinklers: OFF';
+          btnEl.className = isOn
+            ? 'px-2.5 py-1.5 rounded-lg text-xs font-bold bg-sky-600 text-white shadow-sm transition'
+            : 'px-2.5 py-1.5 rounded-lg text-xs font-bold bg-slate-200 text-slate-900 hover:bg-slate-300 transition';
+        }
+      }
+    }
+
+    function toggle3DSprinklers(btnEl) {
+      const iframe = document.getElementById('model3d-iframe');
+      if (!iframe || !iframe.contentWindow) return;
+      let isOn = false;
+      if (typeof iframe.contentWindow.toggleSprinklers3D === 'function') {
+        iframe.contentWindow.toggleSprinklers3D();
+        isOn = iframe.contentWindow.STATE ? !!iframe.contentWindow.STATE.layers.irrigation : false;
+      } else {
+        const cur = btnEl && btnEl.dataset.active === '1';
+        isOn = !cur;
+        iframe.contentWindow.postMessage({ type: 'SET_3D_SPRINKLERS', enabled: isOn }, '*');
+      }
+      if (btnEl) {
+        btnEl.dataset.active = isOn ? '1' : '0';
+        btnEl.textContent = isOn ? 'Sprinklers: ON' : 'Sprinklers: OFF';
+        btnEl.className = isOn
+          ? 'px-2.5 py-1.5 rounded-lg text-xs font-bold bg-sky-600 text-white shadow-sm transition'
+          : 'px-2.5 py-1.5 rounded-lg text-xs font-bold bg-slate-200 text-slate-900 hover:bg-slate-300 transition';
       }
     }
 

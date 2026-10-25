@@ -94,7 +94,7 @@
         </button>
         <button id="cad-season-fall" onclick="setCADSeason('FALL')"
                 class="cad-season-btn px-2.5 py-1 rounded text-xs font-bold transition-all text-slate-200 hover:text-white flex items-center gap-1"
-                title="Fall — Fiery Orange-Red Serviceberries & Scarlet Maple">
+                title="Fall — Fiery Orange-Red Serviceberries & Norwegian Sunset Maple">
           <span>&#127810;</span>
           <span class="hidden md:inline">Fall</span>
         </button>
@@ -107,15 +107,21 @@
       </div>
     </div>
 
-    <!-- Right: Simple Labels & Measurements Toggles -->
+    <!-- Right: Simple Sprinklers, Labels & Measurements Toggles -->
     <div class="flex items-center gap-2">
+      <button id="btn-toggle-sprinklers" onclick="toggleSprinklersOverlay()"
+              class="h-9 px-3.5 rounded-md text-xs font-semibold border transition-colors duration-150 flex items-center gap-2 active:scale-[0.98]"
+              title="Toggle 5-Zone Best-Practice Sprinkler & Drip Engineering Plan">
+        <span id="dot-sprinklers" class="w-2 h-2 rounded-full"></span>
+        <span>Sprinklers (5-Zone)</span>
+      </button>
       <button id="btn-toggle-labels" onclick="toggleLabels()"
-              class="h-9 px-4 rounded-md text-xs font-medium border transition-colors duration-150 flex items-center gap-2 active:scale-[0.98]">
+              class="h-9 px-3.5 rounded-md text-xs font-medium border transition-colors duration-150 flex items-center gap-2 active:scale-[0.98]">
         <span id="dot-labels" class="w-2 h-2 rounded-full"></span>
         <span>Labels</span>
       </button>
       <button id="btn-toggle-measurements" onclick="toggleMeasurements()"
-              class="h-9 px-4 rounded-md text-xs font-medium border transition-colors duration-150 flex items-center gap-2 active:scale-[0.98]">
+              class="h-9 px-3.5 rounded-md text-xs font-medium border transition-colors duration-150 flex items-center gap-2 active:scale-[0.98]">
         <span id="dot-measurements" class="w-2 h-2 rounded-full"></span>
         <span>Measurements</span>
       </button>
@@ -192,6 +198,36 @@
           <div class="flex items-center gap-2"><span class="w-3 h-3 rounded-sm bg-[#b45309] shrink-0"></span><span>Open Awning (#1C)</span></div>
           <div class="flex items-center gap-2"><span class="w-3 h-3 rounded-sm bg-[#84cc16] shrink-0"></span><span>5 Cedar Planters</span></div>
           <div class="flex items-center gap-2"><span class="w-3 h-3 rounded-sm bg-[#c084fc] shrink-0"></span><span>Vinyl Fence/Gates</span></div>
+        </div>
+      </div>
+
+      <!-- 5-Zone Irrigation Engineering Schedule Card (Shown when Sprinklers Layer is ON) -->
+      <div id="irrigation-engineering-legend" class="hidden absolute top-4 right-4 z-20 bg-slate-900/95 backdrop-blur-md p-3.5 rounded-xl border border-sky-500/40 max-w-sm text-xs shadow-2xl pointer-events-none">
+        <div class="flex items-center justify-between gap-2 mb-2 pb-1.5 border-b border-slate-800">
+          <span class="font-bold text-sky-300 text-xs">5-Hydrozone Best-Practice Irrigation Plan</span>
+          <span class="px-1.5 py-0.5 rounded bg-sky-500/20 text-sky-200 font-mono-code text-[10px] font-bold">100% Head-to-Head</span>
+        </div>
+        <div class="space-y-1.5 text-[11px] text-slate-200">
+          <div class="flex items-start gap-2">
+            <span class="w-2.5 h-2.5 rounded-full bg-[#38bdf8] mt-0.5 shrink-0"></span>
+            <div><strong class="text-sky-300">Zone 1 · Backyard Lawn (15 Heads, B1–B14):</strong> <span class="text-slate-300">Hunter PRS40 + MP1000/MP800SR directional arcs (90°/135°/180°/270° · 5.32 GPM). 0% patio, tree or cedar-box overspray.</span></div>
+          </div>
+          <div class="flex items-start gap-2">
+            <span class="w-2.5 h-2.5 rounded-full bg-[#c084fc] mt-0.5 shrink-0"></span>
+            <div><strong class="text-purple-300">Zone 2 · S. Side 4' Corridor (4 Heads, S1–S4):</strong> <span class="text-slate-300">Hunter MP Side-Strip (3.75'×9.0' · 0.88 GPM) on South paver edge spraying North. 0% spray on Open AC Unit or stucco.</span></div>
+          </div>
+          <div class="flex items-start gap-2">
+            <span class="w-2.5 h-2.5 rounded-full bg-[#2dd4bf] mt-0.5 shrink-0"></span>
+            <div><strong class="text-teal-300">Zone 3 · SE Front Lawn (9 Heads, F1–F9):</strong> <span class="text-slate-300">Directional perimeter MP Rotators (3.49 GPM). 0% overspray on driveway, sidewalk, or 3152 porch swing.</span></div>
+          </div>
+          <div class="flex items-start gap-2">
+            <span class="w-2.5 h-2.5 rounded-full bg-[#fb923c] mt-0.5 shrink-0"></span>
+            <div><strong class="text-amber-300">Zone 4 · Perimeter Beds &amp; Tree Ring PC Drip (30 PSI):</strong> <span class="text-slate-300">1/2" PC drip in W. Wall 5+4 trees, Cont. 2' S. bed, Porch Hyacinths &amp; Norwegian Sunset Maple 6' ring (1.63 GPM).</span></div>
+          </div>
+          <div class="flex items-start gap-2">
+            <span class="w-2.5 h-2.5 rounded-full bg-[#4ade80] mt-0.5 shrink-0"></span>
+            <div><strong class="text-emerald-300">Zone 5 · 5 Cedar Boxes Drip Grid (25 PSI):</strong> <span class="text-slate-300">Per-box shutoff valves + 3-row 1/4" emitter grids in N1–N5 (1.38 GPM) from M2 manifold.</span></div>
+          </div>
         </div>
       </div>
 
@@ -339,7 +375,7 @@
         { title: 'Phase 4 (2029) · Backyard Looking East with 5 Planters in Road Base', url: '../photos_backyard_ideas/render_backyard_pergola_north_planters.jpg' }
       ],
       'phase-5': [
-        { title: 'Phase 5 (2030) · Open Solid-Roof 2-Pillar Timber Awning (#1C — No Privacy Wall)', url: '../photos_backyard_ideas/render_patio_awning_option_1c_solid_roof.jpg' },
+        { title: 'Phase 5 (2030) · Open Solid-Roof 2-Pillar Timber Awning (#1C) & 2× 52" Lighted Ceiling Fans', url: '../photos_backyard_ideas/render_patio_awning_option_1c_solid_roof.jpg' },
         { title: 'Phase 5 (2030) · Open Patio Lounge, L-Sectional & Fire Table', url: '../photos_backyard_ideas/render_backyard_sw_corner_patio_awning_south_corridor.jpg' }
       ]
     };
@@ -373,7 +409,7 @@
           { key: 'pavers', label: '45° Holland Paver Mow Strip (~195\')', swatch: '#2dd4bf', defaultOn: true },
           { key: 'frontBeds', label: '2\' Front Porch Hyacinth Bed & Park Strips', swatch: '#f1f5f9', defaultOn: true },
           { key: 'frontPlants', label: 'Melinda\'s Hyacinths, SE Maple & Box Screen', swatch: '#f43f5e', defaultOn: true },
-          { key: 'irrigation', label: 'Underground Sprinkler Arcs (6–8 Zones)', swatch: '#38bdf8', defaultOn: false }
+          { key: 'irrigation', label: '5-Zone Head-to-Head Sprinklers & PC Drip', swatch: '#38bdf8', defaultOn: false }
         ]
       },
       {
@@ -412,12 +448,12 @@
         id: 'phase-5',
         year: 2030,
         badge: 'Phase 5 · 2030',
-        title: 'Open 2-Pillar Solid Awning & Patio Set',
-        cost: '$5,250',
-        subtitle: 'Open Solid-Roof Awning (No Privacy Wall) + Sofa',
+        title: 'Open 2-Pillar Awning, 2 Lighted Fans & Sofa',
+        cost: '$5,800',
+        subtitle: 'Open Solid Awning + 2× 52" Lighted Ceiling Fans + Sofa',
         accent: '#f59e0b',
         layers: [
-          { key: 'patioAwning', label: 'Open 2-Pillar Solid-Roof Awning (#1C)', swatch: '#92400e', defaultOn: true },
+          { key: 'patioAwning', label: 'Open 2-Pillar Solid Awning (#1C) & 2× 52" Lighted Fans', swatch: '#92400e', defaultOn: true },
           { key: 'patioFurniture', label: 'L-Sectional Sofa & Fire Table', swatch: '#f59e0b', defaultOn: true }
         ]
       }
@@ -970,21 +1006,144 @@
         });
       }
 
-      // 11. SPRINKLERS (Optional in Blueprint/Colored)
-      if (L.irrigation && !isDrone) {
-        const heads = [
-          [6.5, 9.0, 11.0], [16.5, 9.0, 11.0], [26.5, 9.0, 10.5],
-          [5.0, 22.0, 12.5], [17.0, 20.5, 12.0], [5.0, 34.0, 12.5],
-          [17.0, 40.5, 12.0], [6.5, 47.0, 11.0], [18.0, 47.0, 11.0],
-          [60.0, 45.5, 8.0], [70.0, 36.0, 11.0], [82.0, 35.0, 11.0], [95.0, 32.5, 11.0]
+      // 11. 5-HYDROZONE BEST-PRACTICE SPRINKLER & DRIP SYSTEM (100% Head-to-Head Directional Sectors + Side-Strips + PC Drip)
+      if (L.irrigation) {
+        out.push(`<g id="layer-irrigation-engineering">`);
+
+        // 11A. Schedule 40 PVC Mainline, 2" Conduit Sleeves Under Road Base, POC/PVB Backflow & Valve Manifold Boxes (M1 & M2)
+        const sleeveNorthPad = projectPoly([[28.5, 7.8], [51.0, 7.8]]);
+        const sleeveRearPath = projectPoly([[28.5, 7.8], [28.5, 20.0]]);
+        const lateralSouthCorridor = projectPoly([[51.0, 7.8], [51.0, 4.5], [28.5, 4.5], [28.5, 47.25], [62.0, 47.25]]);
+        out.push(`
+          <polyline points="${sleeveNorthPad}" fill="none" stroke="#94a3b8" stroke-width="4.2" opacity="0.55" stroke-linecap="round"/>
+          <polyline points="${sleeveNorthPad}" fill="none" stroke="#38bdf8" stroke-width="1.8" stroke-dasharray="6,3"/>
+          <polyline points="${sleeveRearPath}" fill="none" stroke="#94a3b8" stroke-width="3.6" opacity="0.5" stroke-linecap="round"/>
+          <polyline points="${lateralSouthCorridor}" fill="none" stroke="#c084fc" stroke-width="1.1" stroke-dasharray="3,3" opacity="0.65"/>
+        `);
+
+        // Zone 4: 30 PSI Pressure-Compensating Drip Tubing (West 5+4 Bed, Cont. 2' South Bed to Green Box, Porch Hyacinths & SE Maple)
+        const westDripPts = projectPoly([[28.5, 7.8], [2.2, 7.8], [2.2, 2.0], [2.2, 49.0], [95.0, 49.0], [95.0, 44.2], [91.8, 44.2]]);
+        const porchDripPts = projectPoly([[66.2, 49.0], [66.2, 31.8]]);
+        out.push(`
+          <polyline points="${westDripPts}" fill="none" stroke="#fb923c" stroke-width="1.8" stroke-dasharray="4,2.5" opacity="0.9"/>
+          <polyline points="${porchDripPts}" fill="none" stroke="#fb923c" stroke-width="1.8" stroke-dasharray="4,2.5" opacity="0.9"/>
+        `);
+
+        // Helper to build a directional pie-sector SVG polygon in world coordinates (0°=East +wx, 90°=South +wy, 180°=West -wx, 270°=North -wy)
+        const buildSectorPolyPts = (hx, hy, radFt, startDeg, endDeg) => {
+          const pts = [[hx, hy]];
+          const steps = Math.max(10, Math.round(Math.abs(endDeg - startDeg) / 6));
+          for (let i = 0; i <= steps; i++) {
+            const deg = startDeg + ((endDeg - startDeg) * i) / steps;
+            const rad = (deg * Math.PI) / 180;
+            pts.push([hx + radFt * Math.cos(rad), hy + radFt * Math.sin(rad)]);
+          }
+          pts.push([hx, hy]);
+          return projectPoly(pts);
+        };
+
+        // ZONE 1: Backyard Full-Sun Turf (15 Perimeter Heads B1–B14 · Hunter PRS40 + MP1000 / MP800SR · 5.32 GPM Total)
+        // Strictly directional arcs (90°/135°/180°/270°): 0% overspray onto Patio Awning/Furniture, West 5+4 Trees, or North Cedar Boxes!
+        const zone1Heads = [
+          { id: 'B1',   wx: 5.20,  wy: 9.80,  rad: 11.2,  sDeg: -22.5, eDeg: 112.5, nozzle: 'MP1000-90 (135°)' },
+          { id: 'B2',   wx: 16.00, wy: 8.75,  rad: 11.25, sDeg: 0,     eDeg: 180,   nozzle: 'MP1000-90 (180°)' },
+          { id: 'B3',   wx: 25.60, wy: 9.40,  rad: 10.6,  sDeg: 67.5,  eDeg: 202.5, nozzle: 'MP1000-90 (135°)' },
+          { id: 'B4',   wx: 26.25, wy: 19.75, rad: 11.0,  sDeg: 180,   eDeg: 270,   nozzle: 'MP1000-90 (90°)' },
+          { id: 'B5',   wx: 17.50, wy: 20.00, rad: 11.25, sDeg: 90,    eDeg: 360,   nozzle: 'MP1000-210 (270°)' },
+          { id: 'B6',   wx: 4.75,  wy: 20.00, rad: 12.5,  sDeg: -90,   eDeg: 90,    nozzle: 'MP1000-90 (180°)' },
+          { id: 'B7',   wx: 4.75,  wy: 30.50, rad: 12.5,  sDeg: -90,   eDeg: 90,    nozzle: 'MP1000-90 (180°)' },
+          { id: 'B8',   wx: 4.75,  wy: 41.00, rad: 12.5,  sDeg: -90,   eDeg: 90,    nozzle: 'MP1000-90 (180°)' },
+          { id: 'B9',   wx: 17.25, wy: 30.50, rad: 12.5,  sDeg: 90,    eDeg: 270,   nozzle: 'MP1000-90 (180°)' },
+          { id: 'B10a', wx: 17.25, wy: 40.75, rad: 12.5,  sDeg: 180,   eDeg: 270,   nozzle: 'MP1000-90 (90° NW)' },
+          { id: 'B10b', wx: 18.00, wy: 41.25, rad: 6.25,  sDeg: 0,     eDeg: 180,   nozzle: 'MP800SR-90 (180° S)' },
+          { id: 'B11',  wx: 5.20,  wy: 46.20, rad: 11.5,  sDeg: 270,   eDeg: 360,   nozzle: 'MP1000-90 (90° NE)' },
+          { id: 'B12',  wx: 18.00, wy: 47.25, rad: 6.25,  sDeg: 180,   eDeg: 360,   nozzle: 'MP800SR-90 (180° N)' },
+          { id: 'B13',  wx: 28.50, wy: 47.25, rad: 6.25,  sDeg: 180,   eDeg: 315,   nozzle: 'MP800SR-90 (135°)' },
+          { id: 'B14',  wx: 29.50, wy: 41.25, rad: 6.25,  sDeg: 90,    eDeg: 180,   nozzle: 'MP800SR-90 (90° SW)' }
         ];
-        heads.forEach(([hx, hy, radFt]) => {
-          const hp = project(hx, hy);
+
+        zone1Heads.forEach(h => {
+          const polyStr = buildSectorPolyPts(h.wx, h.wy, h.rad, h.sDeg, h.eDeg);
+          const hp = project(h.wx, h.wy);
           out.push(`
-            <circle cx="${hp.x.toFixed(1)}" cy="${hp.y.toFixed(1)}" r="${(radFt * SCALE).toFixed(1)}" fill="rgba(56, 189, 248, 0.08)" stroke="#38bdf8" stroke-width="0.8" stroke-dasharray="3,3"/>
-            <circle cx="${hp.x.toFixed(1)}" cy="${hp.y.toFixed(1)}" r="2.8" fill="#0284c7" stroke="#e0f2fe" stroke-width="1"/>
+            <polygon points="${polyStr}" fill="rgba(56, 189, 248, 0.13)" stroke="#38bdf8" stroke-width="1.05" stroke-dasharray="3,2"/>
+            <circle cx="${hp.x.toFixed(1)}" cy="${hp.y.toFixed(1)}" r="3.2" fill="#0284c7" stroke="#e0f2fe" stroke-width="1.1"/>
           `);
+          if (STATE.showLabels) {
+            out.push(`<text x="${hp.x.toFixed(1)}" y="${(hp.y - 4.8).toFixed(1)}" fill="#bae6fd" font-family="JetBrains Mono" font-size="6.0" font-weight="700" text-anchor="middle">${h.id}</text>`);
+          }
         });
+
+        // ZONE 2: South Side 4.0' Shaded Corridor (4 Rectangular Side-Strip Heads S1–S4 · Hunter MP Side-Strip 3.75'×9.0' · 0.88 GPM)
+        // Placed strictly on the South Paver Edge (wy=47.25') spraying Northward (wy=47.25' -> 43.5') so ZERO water hits the Open AC Unit or Stucco!
+        const zone2StripHeads = [
+          { id: 'S1', wx: 35.0, wy: 47.25, halfW: 4.5, throwN: 3.75 },
+          { id: 'S2', wx: 44.0, wy: 47.25, halfW: 4.5, throwN: 3.75 },
+          { id: 'S3', wx: 53.0, wy: 47.25, halfW: 4.5, throwN: 3.75 },
+          { id: 'S4', wx: 62.0, wy: 47.25, halfW: 4.5, throwN: 3.75 }
+        ];
+        zone2StripHeads.forEach(s => {
+          const stripRectPts = projectPoly([
+            [s.wx - s.halfW, s.wy],
+            [s.wx + s.halfW, s.wy],
+            [s.wx + s.halfW, s.wy - s.throwN],
+            [s.wx - s.halfW, s.wy - s.throwN]
+          ]);
+          const sp = project(s.wx, s.wy);
+          out.push(`
+            <polygon points="${stripRectPts}" fill="rgba(192, 132, 252, 0.18)" stroke="#c084fc" stroke-width="1.1" stroke-dasharray="2.5,2"/>
+            <rect x="${(sp.x - 2.8).toFixed(1)}" y="${(sp.y - 2.8).toFixed(1)}" width="5.6" height="5.6" rx="1" fill="#9333ea" stroke="#f3e8ff" stroke-width="1.1"/>
+          `);
+          if (STATE.showLabels) {
+            out.push(`<text x="${sp.x.toFixed(1)}" y="${(sp.y - 4.8).toFixed(1)}" fill="#e9d5ff" font-family="JetBrains Mono" font-size="6.0" font-weight="700" text-anchor="middle">${s.id}</text>`);
+          }
+        });
+
+        // ZONE 3: SE Front Yard Full-Sun Turf (9 Perimeter Heads F1–F9 · Hunter PRS40 + MP1000 / MP800SR · 3.49 GPM Total)
+        // Strictly directional perimeter arcs: 0% overspray onto Concrete Driveway, City Sidewalk, White Rock Park Strips, or 3152 Porch Swing!
+        const zone3Heads = [
+          { id: 'F1', wx: 68.40, wy: 32.75, rad: 12.5, sDeg: 0,     eDeg: 90,    nozzle: 'MP1000-90 (90° SE)' },
+          { id: 'F2', wx: 80.75, wy: 32.75, rad: 13.0, sDeg: 0,     eDeg: 180,   nozzle: 'MP1000-90 (180° S)' },
+          { id: 'F3', wx: 81.25, wy: 29.25, rad: 14.0, sDeg: 0,     eDeg: 90,    nozzle: 'MP1000-90 (90° SE)' },
+          { id: 'F4', wx: 88.80, wy: 29.25, rad: 7.6,  sDeg: 0,     eDeg: 180,   nozzle: 'MP800SR-90 (180° S)' },
+          { id: 'F5', wx: 96.40, wy: 29.25, rad: 13.5, sDeg: 90,    eDeg: 180,   nozzle: 'MP1000-90 (90° SW)' },
+          { id: 'F6', wx: 96.40, wy: 42.75, rad: 13.5, sDeg: 180,   eDeg: 270,   nozzle: 'MP1000-90 (90° NW)' },
+          { id: 'F7', wx: 88.20, wy: 47.25, rad: 14.0, sDeg: 180,   eDeg: 300,   nozzle: 'MP1000-90 (120° NNW)' },
+          { id: 'F8', wx: 77.50, wy: 47.25, rad: 11.0, sDeg: 180,   eDeg: 360,   nozzle: 'MP1000-90 (180° N)' },
+          { id: 'F9', wx: 68.40, wy: 41.50, rad: 11.0, sDeg: -67.5, eDeg: 67.5,  nozzle: 'MP1000-90 (135° E)' }
+        ];
+
+        zone3Heads.forEach(h => {
+          const polyStr = buildSectorPolyPts(h.wx, h.wy, h.rad, h.sDeg, h.eDeg);
+          const hp = project(h.wx, h.wy);
+          out.push(`
+            <polygon points="${polyStr}" fill="rgba(45, 212, 191, 0.14)" stroke="#2dd4bf" stroke-width="1.05" stroke-dasharray="3,2"/>
+            <circle cx="${hp.x.toFixed(1)}" cy="${hp.y.toFixed(1)}" r="3.2" fill="#0d9488" stroke="#ccfbf1" stroke-width="1.1"/>
+          `);
+          if (STATE.showLabels) {
+            out.push(`<text x="${hp.x.toFixed(1)}" y="${(hp.y - 4.8).toFixed(1)}" fill="#99f6e4" font-family="JetBrains Mono" font-size="6.0" font-weight="700" text-anchor="middle">${h.id}</text>`);
+          }
+        });
+
+        // POC / PVB Backflow Preventer (wx=51.0', wy=8.6'), Valve Manifold M1 (wx=51.0', wy=7.8') & Backyard Valve Manifold M2 (wx=28.5', wy=7.8')
+        const pvbPt = project(51.0, 8.6);
+        const m1Rect = projectRect(50.1, 7.1, 51.9, 8.4);
+        const m2Rect = projectRect(27.6, 7.1, 29.4, 8.4);
+        const ctrlPt = project(52.5, 10.2);
+        out.push(`
+          <rect x="${m1Rect.x.toFixed(1)}" y="${m1Rect.y.toFixed(1)}" width="${m1Rect.width.toFixed(1)}" height="${m1Rect.height.toFixed(1)}" rx="2" fill="#15803d" stroke="#86efac" stroke-width="1.4"/>
+          <rect x="${m2Rect.x.toFixed(1)}" y="${m2Rect.y.toFixed(1)}" width="${m2Rect.width.toFixed(1)}" height="${m2Rect.height.toFixed(1)}" rx="2" fill="#15803d" stroke="#86efac" stroke-width="1.4"/>
+          <circle cx="${pvbPt.x.toFixed(1)}" cy="${pvbPt.y.toFixed(1)}" r="4.2" fill="#f59e0b" stroke="#fef08a" stroke-width="1.2"/>
+          <rect x="${(ctrlPt.x - 4.5).toFixed(1)}" y="${(ctrlPt.y - 4.5).toFixed(1)}" width="9" height="9" rx="2" fill="#0284c7" stroke="#bae6fd" stroke-width="1.2"/>
+        `);
+        if (STATE.showLabels) {
+          out.push(`
+            <text x="${m1Rect.cx.toFixed(1)}" y="${(m1Rect.y - 4).toFixed(1)}" fill="#86efac" font-family="JetBrains Mono" font-size="6.5" font-weight="700" text-anchor="middle">M1 (PVB + Z2/Z3/Z5)</text>
+            <text x="${m2Rect.cx.toFixed(1)}" y="${(m2Rect.y - 4).toFixed(1)}" fill="#86efac" font-family="JetBrains Mono" font-size="6.5" font-weight="700" text-anchor="middle">M2 (Z1 BY + Z4 DRIP)</text>
+          `);
+        }
+
+        out.push(`</g>`);
       }
 
       // 12. PHASE 4 (2029) 5 N–S RAISED CEDAR PLANTERS
@@ -1017,11 +1176,15 @@
         });
       }
 
-      if (L.gardenDrip && !isDrone) {
+      if (L.gardenDrip || L.irrigation) {
+        const headerLine1 = project(5.0, 0.7), headerLine2 = project(28.5, 0.7);
+        out.push(`<line x1="${headerLine1.x.toFixed(1)}" y1="${headerLine1.y.toFixed(1)}" x2="${headerLine2.x.toFixed(1)}" y2="${headerLine2.y.toFixed(1)}" stroke="#4ade80" stroke-width="1.8"/>`);
         planterBoxes.forEach(b => {
+          const valvePt = project(b.wx1 + 1.5, b.wy1);
+          out.push(`<circle cx="${valvePt.x.toFixed(1)}" cy="${valvePt.y.toFixed(1)}" r="2.4" fill="#22c55e" stroke="#ffffff" stroke-width="0.8"/>`);
           [b.wx1 + 0.75, b.wx1 + 1.5, b.wx1 + 2.25].forEach(dx => {
             const dp1 = project(dx, b.wy1 + 0.3), dp2 = project(dx, b.wy2 - 0.3);
-            out.push(`<line x1="${dp1.x.toFixed(1)}" y1="${dp1.y.toFixed(1)}" x2="${dp2.x.toFixed(1)}" y2="${dp2.y.toFixed(1)}" stroke="#38bdf8" stroke-width="1.0" stroke-dasharray="2,2"/>`);
+            out.push(`<line x1="${dp1.x.toFixed(1)}" y1="${dp1.y.toFixed(1)}" x2="${dp2.x.toFixed(1)}" y2="${dp2.y.toFixed(1)}" stroke="#38bdf8" stroke-width="1.15" stroke-dasharray="2,2"/>`);
           });
         });
       }
@@ -1126,6 +1289,30 @@
         [[18.0, 20.5], [18.0, 40.5]].forEach(([px, py]) => {
           const post = projectRect(px - 0.45, py - 0.45, px + 0.45, py + 0.45);
           out.push(`<rect x="${post.x.toFixed(1)}" y="${post.y.toFixed(1)}" width="${post.width.toFixed(1)}" height="${post.height.toFixed(1)}" fill="#78350f" stroke="#fef08a" stroke-width="1.4"/>`);
+        });
+        // Two 52" Outdoor Wet/Damp-Rated Ceiling Fans with Built-In Dimmable Warm (2700K/3000K) LED Light Kits (F1 @ wy=25.5', F2 @ wy=35.5')
+        const fanSweepRad = 2.17 * SCALE; // 52" diameter = 4.33' (2.17' radius)
+        [[23.75, 25.5, 'F1'], [23.75, 35.5, 'F2']].forEach(([fx, fy, fid]) => {
+          const fp = project(fx, fy);
+          out.push(`
+            <circle cx="${fp.x.toFixed(1)}" cy="${fp.y.toFixed(1)}" r="${(fanSweepRad * 1.15).toFixed(1)}" fill="url(#glow-2700k)" opacity="0.65" pointer-events="none"/>
+            <circle cx="${fp.x.toFixed(1)}" cy="${fp.y.toFixed(1)}" r="${fanSweepRad.toFixed(1)}" fill="rgba(15, 23, 42, 0.22)" stroke="#fef08a" stroke-width="1.1" stroke-dasharray="3,2"/>
+          `);
+          for (let b = 0; b < 5; b++) {
+            const ang = (b * 72 - 18) * (Math.PI / 180);
+            const bx = fp.x + Math.cos(ang) * (fanSweepRad * 0.92);
+            const by = fp.y + Math.sin(ang) * (fanSweepRad * 0.92);
+            out.push(`<line x1="${fp.x.toFixed(1)}" y1="${fp.y.toFixed(1)}" x2="${bx.toFixed(1)}" y2="${by.toFixed(1)}" stroke="#451a03" stroke-width="3.2" stroke-linecap="round"/>`);
+            out.push(`<line x1="${fp.x.toFixed(1)}" y1="${fp.y.toFixed(1)}" x2="${bx.toFixed(1)}" y2="${by.toFixed(1)}" stroke="#d97706" stroke-width="1.2" stroke-linecap="round"/>`);
+          }
+          // Center matte-black motor hub + warm 2700K/3000K integrated LED diffuser dome below blades (100% strobe-free)
+          out.push(`
+            <circle cx="${fp.x.toFixed(1)}" cy="${fp.y.toFixed(1)}" r="${(0.52 * SCALE).toFixed(1)}" fill="#18181b" stroke="#fbbf24" stroke-width="1.2"/>
+            <circle cx="${fp.x.toFixed(1)}" cy="${fp.y.toFixed(1)}" r="${(0.30 * SCALE).toFixed(1)}" fill="#fef08a" stroke="#f59e0b" stroke-width="0.9"/>
+          `);
+          if (STATE.showLabels) {
+            out.push(`<text x="${fp.x.toFixed(1)}" y="${(fp.y - fanSweepRad - 3.5).toFixed(1)}" fill="#fef08a" font-family="JetBrains Mono" font-size="6.5" font-weight="700" text-anchor="middle">${fid} (52" LED FAN)</text>`);
+          }
         });
         out.push(`</g>`);
       }
@@ -1360,7 +1547,7 @@
           { wx: 62.5, wy: 19.0, title: '2-CAR GARAGE', sub: '20\' × 21.5\'', color: '#e2e8f0', border: '#64748b', show: L.houseStructure },
           { wx: 85.0, wy: 20.0, title: 'CONCRETE DRIVEWAY', sub: '18\' × 23.5\'', color: '#e2e8f0', border: '#64748b', show: L.existingConcrete },
           { wx: 11.5, wy: 28.0, title: 'BACKYARD LAWN (679 SQ FT)', sub: '45° Pavers @ Mulch/Road Base · None @ Concrete', color: '#4ade80', border: '#10b981', show: L.grass },
-          { wx: 23.8, wy: 30.5, title: 'PATIO & OPEN 2-PILLAR AWNING', sub: 'Phase 5 (2030) · 2 West Pillars · No Privacy Wall', color: '#fbbf24', border: '#f59e0b', show: L.patioAwning || L.existingConcrete },
+          { wx: 23.8, wy: 30.5, title: 'PATIO, 2-PILLAR AWNING & 2× 52" FANS', sub: 'Phase 5 (2030) · 2 West Pillars · 2 Lighted Fans', color: '#fbbf24', border: '#f59e0b', show: L.patioAwning || L.existingConcrete },
           { wx: 15.5, wy: 4.2, title: L.planters ? '5 RAISED CEDAR BEDS (3\'×6\')' : 'NORTH GARDEN PLOT', sub: L.planters ? 'Phase 4 (2029) · Surrounded by Road Base' : 'Phase 3 (2028) · Flat Dirt Garden', color: '#bef264', border: '#84cc16', show: L.planters || L.beds },
           { wx: 50.0, wy: 4.5, title: 'NORTH COMPACTED ROAD BASE PAD', sub: 'Phase 4 (2029) · 9\' × 40\' to Gate (360 sq ft)', color: '#e7e5e4', border: '#a8a29e', show: L.northCementPad },
           { wx: 84.5, wy: 5.5, title: 'WHITE DECORATIVE ROCK (NE STRIP)', sub: 'Stops at North Fence · Matches S. Neighbors', color: '#f8fafc', border: '#cbd5e1', show: L.frontBeds },
@@ -1529,13 +1716,23 @@
         }
       });
 
-      // Labels & Measurements Buttons
+      // Sprinklers, Labels & Measurements Buttons
+      const sprBtn = document.getElementById('btn-toggle-sprinklers');
+      const sprDot = document.getElementById('dot-sprinklers');
+      if (sprBtn && sprDot) {
+        const sprOn = !!STATE.layers.irrigation;
+        sprBtn.className = sprOn
+          ? 'h-9 px-3.5 rounded-md text-xs font-semibold border transition-colors duration-150 flex items-center gap-2 bg-sky-500/20 border-sky-400/50 text-sky-200 shadow-sm'
+          : 'h-9 px-3.5 rounded-md text-xs font-semibold border transition-colors duration-150 flex items-center gap-2 bg-slate-800 border-slate-700 text-slate-300 hover:text-white';
+        sprDot.className = sprOn ? 'w-2 h-2 rounded-full bg-sky-400 animate-pulse' : 'w-2 h-2 rounded-full bg-slate-600';
+      }
+
       const lblBtn = document.getElementById('btn-toggle-labels');
       const lblDot = document.getElementById('dot-labels');
       if (lblBtn && lblDot) {
         lblBtn.className = STATE.showLabels
-          ? 'h-9 px-4 rounded-md text-xs font-medium border transition-colors duration-150 flex items-center gap-2 bg-emerald-500/15 border-emerald-500/40 text-emerald-200'
-          : 'h-9 px-4 rounded-md text-xs font-medium border transition-colors duration-150 flex items-center gap-2 bg-slate-800 border-slate-700 text-slate-400';
+          ? 'h-9 px-3.5 rounded-md text-xs font-medium border transition-colors duration-150 flex items-center gap-2 bg-emerald-500/15 border-emerald-500/40 text-emerald-200'
+          : 'h-9 px-3.5 rounded-md text-xs font-medium border transition-colors duration-150 flex items-center gap-2 bg-slate-800 border-slate-700 text-slate-400';
         lblDot.className = STATE.showLabels ? 'w-2 h-2 rounded-full bg-emerald-400' : 'w-2 h-2 rounded-full bg-slate-600';
       }
 
@@ -1543,8 +1740,8 @@
       const measDot = document.getElementById('dot-measurements');
       if (measBtn && measDot) {
         measBtn.className = STATE.showMeasurements
-          ? 'h-9 px-4 rounded-md text-xs font-medium border transition-colors duration-150 flex items-center gap-2 bg-sky-500/15 border-sky-500/40 text-sky-200'
-          : 'h-9 px-4 rounded-md text-xs font-medium border transition-colors duration-150 flex items-center gap-2 bg-slate-800 border-slate-700 text-slate-400';
+          ? 'h-9 px-3.5 rounded-md text-xs font-medium border transition-colors duration-150 flex items-center gap-2 bg-sky-500/15 border-sky-500/40 text-sky-200'
+          : 'h-9 px-3.5 rounded-md text-xs font-medium border transition-colors duration-150 flex items-center gap-2 bg-slate-800 border-slate-700 text-slate-400';
         measDot.className = STATE.showMeasurements ? 'w-2 h-2 rounded-full bg-sky-400' : 'w-2 h-2 rounded-full bg-slate-600';
       }
 
@@ -1563,6 +1760,10 @@
       const legend = document.getElementById('color-shapes-legend');
       if (legend) {
         legend.classList.toggle('hidden', STATE.renderStyle !== 'COLOR_SHAPES');
+      }
+      const irrLegend = document.getElementById('irrigation-engineering-legend');
+      if (irrLegend) {
+        irrLegend.classList.toggle('hidden', !STATE.layers.irrigation);
       }
       const photoHint = document.getElementById('photo-mode-hint');
       if (photoHint) {
@@ -1643,8 +1844,16 @@
     }
 
     function toggleLayer(layerKey) {
-      if (STATE.renderStyle === 'DRONE') return; // Photo View works on whole phases only
+      if (STATE.renderStyle === 'DRONE' && layerKey !== 'irrigation' && layerKey !== 'gardenDrip') return;
       STATE.layers[layerKey] = !STATE.layers[layerKey];
+      renderPhaseLayerTree();
+      renderBlueprint();
+    }
+
+    function toggleSprinklersOverlay() {
+      const next = !STATE.layers.irrigation;
+      STATE.layers.irrigation = next;
+      STATE.layers.gardenDrip = next;
       renderPhaseLayerTree();
       renderBlueprint();
     }
@@ -1881,6 +2090,11 @@
       if (!e.data || typeof e.data !== 'object') return;
       if (e.data.type === 'SET_CAD_SEASON' && e.data.season) {
         setCADSeason(e.data.season);
+      } else if (e.data.type === 'SET_CAD_SPRINKLERS') {
+        STATE.layers.irrigation = typeof e.data.enabled === 'boolean' ? e.data.enabled : !STATE.layers.irrigation;
+        renderLayerSidebar();
+        syncTopBarButtons();
+        renderBlueprint();
       }
     });
 

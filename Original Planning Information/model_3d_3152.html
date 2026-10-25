@@ -177,6 +177,12 @@
         <span id="roof-xray-label">Solid Roof</span>
       </button>
 
+      <button id="sprinklers-3d-btn" onclick="window.toggleSprinklers3D()"
+              class="px-2.5 py-1.5 rounded-lg text-xs font-semibold border border-slate-700 bg-slate-800 hover:bg-slate-700 text-slate-100 flex items-center gap-1 transition-all"
+              title="Toggle 5-Hydrozone Directional Head-to-Head Sprinklers, Side-Strip Nozzles & PC Drip Lines">
+        <span>Sprinklers (5-Zone)</span>
+      </button>
+
       <button id="pins-toggle-btn" onclick="window.toggleFloatingPins()"
               class="px-2.5 py-1.5 rounded-lg text-xs font-semibold border border-emerald-500/40 bg-emerald-500/15 text-emerald-300 flex items-center gap-1 transition-all"
               title="Show / Hide 3D Callout Pins">
@@ -413,7 +419,7 @@
           { key: 'sod', label: 'Seeded Lawn Continuing Under South Gate', swatch: '#22c55e' },
           { key: 'frontBeds', label: '2\' S. Bed to Green Box + White Rock Park Strips & NE Side', swatch: '#e2e8f0' },
           { key: 'frontPlants', label: 'Melinda\'s Hyacinths, SE Maple & Green Box Screen', swatch: '#f43f5e' },
-          { key: 'irrigation', label: 'Pop-Up Sprinkler Heads & Spray Arcs', swatch: '#38bdf8' }
+          { key: 'irrigation', label: '5-Zone Head-to-Head Sprinklers & PC Drip', swatch: '#38bdf8' }
         ]
       },
       {
@@ -1996,27 +2002,172 @@
       });
     }
 
-    // --- K. PHASE 2 (2027): POP-UP SPRINKLER HEADS & SPRAY ARCS ('irrigation') ---
+    // --- K. PHASE 2 (2027): 5-HYDROZONE DIRECTIONAL SPRINKLERS, SIDE-STRIPS & PC DRIP ('irrigation') ---
     {
       const gIrr = LAYER_GROUPS.irrigation;
-      const sprayMat = new THREE.MeshBasicMaterial({ color: '#38bdf8', transparent: true, opacity: 0.22, side: THREE.DoubleSide });
-      const headCoords = [
-        [6.5, 9.0, 9.5], [16.5, 9.0, 9.5], [26.5, 9.0, 9.0],
-        [5.0, 22.0, 11.0], [17.0, 20.5, 10.5], [5.0, 34.0, 11.0],
-        [17.0, 40.5, 10.5], [6.5, 47.0, 9.5], [18.0, 47.0, 9.5],
-        [35.0, 45.5, 4.0], [46.0, 45.5, 4.0],
-        [70.0, 36.0, 9.5], [82.0, 35.0, 9.5], [95.0, 32.5, 9.5],
-        [70.0, 47.0, 9.5], [84.0, 47.0, 9.5]
-      ];
-      headCoords.forEach(([hx, hy, rad]) => {
-        const riser = new THREE.Mesh(new THREE.CylinderGeometry(0.12, 0.12, 0.45, 8), new THREE.MeshStandardMaterial({ color: '#0284c7' }));
-        riser.position.set(hx, 0.25, hy);
+
+      // 1. POC / 1" Febco 765 PVB Backflow Preventer at North Hose Bib (wx=51.0', wy=8.6')
+      const copperMat = new THREE.MeshStandardMaterial({ color: '#d97706', roughness: 0.35, metalness: 0.7 });
+      const brassMat = new THREE.MeshStandardMaterial({ color: '#f59e0b', roughness: 0.3, metalness: 0.8 });
+      const pvbRiser1 = new THREE.Mesh(new THREE.CylinderGeometry(0.08, 0.08, 1.4, 10), copperMat);
+      pvbRiser1.position.set(50.8, 0.7, 8.6);
+      gIrr.add(pvbRiser1);
+      const pvbRiser2 = new THREE.Mesh(new THREE.CylinderGeometry(0.08, 0.08, 1.4, 10), copperMat);
+      pvbRiser2.position.set(51.25, 0.7, 8.6);
+      gIrr.add(pvbRiser2);
+      const pvbBell = new THREE.Mesh(new THREE.CylinderGeometry(0.22, 0.18, 0.35, 14), brassMat);
+      pvbBell.position.set(51.0, 1.45, 8.6);
+      gIrr.add(pvbBell);
+
+      // 2. Dual Valve Manifold Boxes: M1 (wx=51.0, wy=7.8) & M2 (wx=28.5, wy=7.8)
+      const vBoxBodyMat = new THREE.MeshStandardMaterial({ color: '#064e3b', roughness: 0.8 });
+      const vBoxLidMat = new THREE.MeshStandardMaterial({ color: '#10b981', roughness: 0.5 });
+      [[51.0, 7.8], [28.5, 7.8]].forEach(([mx, mz]) => {
+        const boxBase = new THREE.Mesh(new THREE.BoxGeometry(1.6, 0.22, 1.15), vBoxBodyMat);
+        boxBase.position.set(mx, 0.11, mz);
+        gIrr.add(boxBase);
+        const boxLid = new THREE.Mesh(new THREE.BoxGeometry(1.48, 0.06, 1.04), vBoxLidMat);
+        boxLid.position.set(mx, 0.24, mz);
+        gIrr.add(boxLid);
+      });
+
+      // 3. Zone 4 (30 PSI PC Drip Tubing in West Wall Bed, Cont. 2' South Bed & Front Porch Hyacinth Bed)
+      const dripTubeMat = new THREE.MeshStandardMaterial({ color: '#b45309', roughness: 0.6 });
+      const addDripRun = (x1, z1, x2, z2) => {
+        const len = Math.hypot(x2 - x1, z2 - z1);
+        const tube = new THREE.Mesh(new THREE.CylinderGeometry(0.045, 0.045, len, 8), dripTubeMat);
+        tube.position.set((x1 + x2) / 2, 0.19, (z1 + z2) / 2);
+        tube.rotation.z = Math.PI / 2;
+        tube.rotation.y = -Math.atan2(z2 - z1, x2 - x1);
+        gIrr.add(tube);
+      };
+      // West 4.0' tree & perennial bed double-loop
+      addDripRun(1.6, 10.5, 1.6, 48.0);
+      addDripRun(3.1, 10.5, 3.1, 48.0);
+      // Continuous 2.0' South bed (wx=1.6' to 96.2' at wy=48.8')
+      addDripRun(1.6, 48.8, 96.2, 48.8);
+      // Front porch 2.0' Hyacinth bed (wx=64.3', wy=33.0' to 43.2')
+      addDripRun(64.3, 33.0, 64.3, 43.2);
+
+      // Helper for Directional Sector Heads (Zones 1 & 3)
+      // Note: Rotating RingGeometry by +Math.PI/2 around X maps local (r*cos(t), r*sin(t), 0)
+      // to world (r*cos(t), 0, +r*sin(t)), matching 2D CAD angles: 0°=E(+X), 90°=S(+Z), 180°=W(-X), 270°=N(-Z).
+      const addDirectionalHead = (hx, hz, rad, sDeg, eDeg, fillHex, riserHex) => {
+        const riser = new THREE.Mesh(
+          new THREE.CylinderGeometry(0.13, 0.13, 0.45, 10),
+          new THREE.MeshStandardMaterial({ color: riserHex, roughness: 0.35 })
+        );
+        riser.position.set(hx, 0.25, hz);
         gIrr.add(riser);
 
-        const disc = new THREE.Mesh(new THREE.RingGeometry(0.2, rad, 24), sprayMat);
-        disc.rotation.x = -Math.PI / 2;
-        disc.position.set(hx, 0.22, hy);
-        gIrr.add(disc);
+        const cap = new THREE.Mesh(
+          new THREE.CylinderGeometry(0.16, 0.16, 0.06, 10),
+          new THREE.MeshBasicMaterial({ color: '#ffffff' })
+        );
+        cap.position.set(hx, 0.49, hz);
+        gIrr.add(cap);
+
+        const sRad = (sDeg * Math.PI) / 180;
+        const lenRad = ((eDeg - sDeg) * Math.PI) / 180;
+        const segs = Math.max(12, Math.round(((eDeg - sDeg) / 360) * 40));
+
+        const wedgeGeo = new THREE.RingGeometry(0.2, rad, segs, 1, sRad, lenRad);
+        const wedgeMat = new THREE.MeshBasicMaterial({
+          color: fillHex,
+          transparent: true,
+          opacity: 0.24,
+          side: THREE.DoubleSide,
+          depthWrite: false
+        });
+        const wedge = new THREE.Mesh(wedgeGeo, wedgeMat);
+        wedge.rotation.x = Math.PI / 2;
+        wedge.position.set(hx, 0.23, hz);
+        gIrr.add(wedge);
+
+        // Crisp perimeter outline of the directional spray sector
+        const pts = [new THREE.Vector3(hx, 0.25, hz)];
+        for (let i = 0; i <= segs; i++) {
+          const a = sRad + (lenRad * i) / segs;
+          pts.push(new THREE.Vector3(hx + rad * Math.cos(a), 0.25, hz + rad * Math.sin(a)));
+        }
+        pts.push(new THREE.Vector3(hx, 0.25, hz));
+        const lineGeo = new THREE.BufferGeometry().setFromPoints(pts);
+        const lineMat = new THREE.LineBasicMaterial({ color: fillHex, transparent: true, opacity: 0.85 });
+        gIrr.add(new THREE.Line(lineGeo, lineMat));
+      };
+
+      // 4. ZONE 1: Backyard Full-Sun Turf (15 Perimeter Directional Heads B1–B14, ZERO overspray on Patio/Awning/Beds)
+      const zone1Heads = [
+        [4.75, 10.25, 11.0, 0, 90],     // B1: NW Turf Corner (90° SE)
+        [15.75, 10.25, 10.5, 0, 180],   // B2: N Lawn Edge (180° S)
+        [26.25, 10.25, 10.5, 90, 180],  // B3: NE Turf Corner (90° SW)
+        [26.25, 19.75, 10.0, 180, 270], // B4: Patio NE Notch (90° NW)
+        [17.25, 20.25, 12.0, 90, 270],  // B5: Patio NW Corner (180° W — zero spray on patio!)
+        [4.75, 20.50, 12.5, -90, 90],   // B6: W Lawn Upper-Mid (180° E)
+        [17.25, 30.50, 12.5, 90, 270],  // B7: Patio W Center (180° W — zero spray on patio/furniture!)
+        [4.75, 30.50, 12.5, -90, 90],   // B8: W Lawn Center (180° E)
+        [4.75, 39.50, 12.5, -90, 90],   // B9: W Lawn Lower-Mid (180° E)
+        [17.25, 40.75, 12.5, 180, 270], // B10a: Patio SW Corner West-Throw (90° NW)
+        [18.00, 41.25, 6.25, 0, 180],   // B10b: Patio S Edge Strip (180° S @ 6.25' to South Paver)
+        [4.75, 47.25, 12.0, -90, 0],    // B11: SW Turf Corner (90° NE)
+        [18.00, 47.25, 6.25, 180, 360], // B12: S Lawn Mid-West (180° N @ 6.25' opposing B10b)
+        [29.75, 47.25, 6.5, 180, 360],  // B13: S Lawn House SW Corner (180° N)
+        [29.75, 41.25, 6.5, 90, 180]    // B14: House SW Corner (90° SW)
+      ];
+      zone1Heads.forEach(([hx, hz, rad, sDeg, eDeg]) => {
+        addDirectionalHead(hx, hz, rad, sDeg, eDeg, '#38bdf8', '#0284c7');
+      });
+
+      // 5. ZONE 2: South Side 4.0' Shaded Corridor (4 Hunter MP Side-Strip Heads S1–S4 on South Paver Edge)
+      // Strictly throws 3.75' North × 9.0' Wide (4.5' Left/Right) so ZERO water touches Open AC Unit (wx=45–48, wy=41–44)!
+      const sideStripFillMat = new THREE.MeshBasicMaterial({
+        color: '#c084fc',
+        transparent: true,
+        opacity: 0.28,
+        side: THREE.DoubleSide,
+        depthWrite: false
+      });
+      const sideStripLineMat = new THREE.LineBasicMaterial({ color: '#e879f9', transparent: true, opacity: 0.9 });
+      [35.0, 44.0, 53.0, 62.0].forEach(sx => {
+        const sz = 47.25;
+        const riser = new THREE.Mesh(
+          new THREE.CylinderGeometry(0.13, 0.13, 0.45, 10),
+          new THREE.MeshStandardMaterial({ color: '#9333ea', roughness: 0.35 })
+        );
+        riser.position.set(sx, 0.25, sz);
+        gIrr.add(riser);
+
+        const throwW = 9.0;
+        const throwD = 3.75;
+        const plane = new THREE.Mesh(new THREE.PlaneGeometry(throwW, throwD), sideStripFillMat);
+        plane.rotation.x = -Math.PI / 2;
+        plane.position.set(sx, 0.24, sz - throwD / 2);
+        gIrr.add(plane);
+
+        const rectPts = [
+          new THREE.Vector3(sx - throwW / 2, 0.26, sz),
+          new THREE.Vector3(sx + throwW / 2, 0.26, sz),
+          new THREE.Vector3(sx + throwW / 2, 0.26, sz - throwD),
+          new THREE.Vector3(sx - throwW / 2, 0.26, sz - throwD),
+          new THREE.Vector3(sx - throwW / 2, 0.26, sz)
+        ];
+        gIrr.add(new THREE.Line(new THREE.BufferGeometry().setFromPoints(rectPts), sideStripLineMat));
+      });
+
+      // 6. ZONE 3: SE Front Yard Full-Sun Turf (9 Perimeter Directional Heads F1–F9, ZERO spray on Hyacinths/Driveway/Sidewalk)
+      const zone3Heads = [
+        [66.25, 32.75, 11.5, 0, 90],    // F1: Front NW Lawn Corner (90° SE — zero spray in Hyacinth bed!)
+        [66.25, 43.25, 11.5, -45, 90],  // F2: Front W Porch Corner (135° E/NE/S)
+        [80.75, 32.75, 11.5, 0, 180],   // F3: Front Walk Step-Down Corner (180° S)
+        [88.80, 29.25, 7.6, 0, 180],    // F4: N Driveway Curb Edge (180° S MP800SR)
+        [96.45, 29.25, 9.5, 90, 180],   // F5: NE Sidewalk/Driveway Corner (90° SW)
+        [96.45, 38.25, 11.0, 90, 270],  // F6: E Sidewalk Mid Edge (180° W)
+        [96.45, 47.25, 11.0, 180, 270], // F7: SE Sidewalk Corner (90° NW)
+        [77.50, 47.25, 11.0, 180, 360], // F8: S Front Paver Mid-West (180° N @ 11.0' — stays inside 32.5' N edge)
+        [87.00, 47.25, 11.5, 180, 360]  // F9: S Front Paver Mid-East (180° N)
+      ];
+      zone3Heads.forEach(([hx, hz, rad, sDeg, eDeg]) => {
+        addDirectionalHead(hx, hz, rad, sDeg, eDeg, '#2dd4bf', '#0d9488');
       });
     }
 
@@ -2435,6 +2586,16 @@
         color: '#c084fc',
         title: "South Side: Continuous 2.0' Bed to Green Box, Grass Continuing Under Gate & Open AC Unit",
         desc: "The 2.0' South planting bed runs down the entire South fence and continues in the front yard all the way to the green box (wx=0.0'–96.7'). The 4.0'+ wide lawn continues directly under the 4.0' walk gate at wx=57.5' into the front yard, and the AC unit (wx=43.6'–46.4') is completely open with no cover or shroud."
+      },
+      {
+        id: 'pin-irrigation',
+        layer: 'irrigation',
+        wx: 15.75, wy: 10.25, h: 1.5,
+        badge: '2027 · PHASE 2 (5-ZONE SPRINKLERS & DRIP)',
+        short: '5-Zone Directional Sprinklers',
+        color: '#38bdf8',
+        title: '5-Hydrozone Best-Practice Sprinkler & PC Drip System (28 Directional Heads · 100% Head-to-Head · 0% Overspray)',
+        desc: 'Zone 1 (5.32 GPM): 15 Backyard PRS40 + MP Rotators (90°/180° sectors — zero patio/awning overspray). Zone 2 (0.88 GPM): 4 South Paver MP Side-Strips (3.75\' N throw × 9\' W — zero spray on Open AC Unit or stucco!). Zone 3 (3.49 GPM): 9 SE Front PRS40 + MP Rotators. Zone 4 (1.63 GPM): 30 PSI PC Drip in W/S/Porch beds. Zone 5 (1.38 GPM): 25 PSI Grid Drip in 5 Cedar Boxes. 1" Febco 765 PVB at (51\', 8.6\') + M1/M2 manifolds.'
       }
     ];
 
@@ -2784,7 +2945,26 @@
         }
       });
       flatDirtGardenGroup.visible = !!(STATE.layers.beds && !STATE.layers.gardenRock);
+      const sprBtn = document.getElementById('sprinklers-3d-btn');
+      if (sprBtn) {
+        if (STATE.layers.irrigation) {
+          sprBtn.className = 'px-2.5 py-1.5 rounded-lg text-xs font-bold border border-sky-400 bg-sky-600 text-white shadow flex items-center gap-1 transition-all';
+        } else {
+          sprBtn.className = 'px-2.5 py-1.5 rounded-lg text-xs font-semibold border border-slate-700 bg-slate-800 hover:bg-slate-700 text-slate-100 flex items-center gap-1 transition-all';
+        }
+      }
     }
+
+    window.toggleSprinklers3D = function(forceVal) {
+      STATE.layers.irrigation = typeof forceVal === 'boolean' ? forceVal : !STATE.layers.irrigation;
+      syncSceneVisibility();
+      renderLayerDrawer();
+      if (STATE.layers.irrigation) {
+        document.getElementById('insp-badge').textContent = '2027 · PHASE 2 (5-ZONE SPRINKLERS & DRIP)';
+        document.getElementById('insp-title').textContent = '5-Hydrozone Best-Practice Sprinkler & PC Drip System (28 Heads · 100% Head-to-Head · 0% Overspray)';
+        document.getElementById('insp-desc').textContent = 'Zone 1 (5.32 GPM): 15 Backyard PRS40 + MP Rotators (90°/180° sectors — zero patio/awning overspray). Zone 2 (0.88 GPM): 4 South Paver MP Side-Strips (3.75\' N throw × 9\' W — zero spray on Open AC Unit or stucco!). Zone 3 (3.49 GPM): 9 SE Front PRS40 + MP Rotators. Zone 4 (1.63 GPM): 30 PSI PC Drip in W/S/Porch beds. Zone 5 (1.38 GPM): 25 PSI Grid Drip in 5 Cedar Boxes. 1" Febco 765 PVB at (51\', 8.6\') + M1/M2 manifolds.';
+      }
+    };
 
     function renderLayerDrawer() {
       const container = document.getElementById('phase-layer-list');
@@ -2898,6 +3078,8 @@
         window.setSeasonMode(e.data.season);
       } else if (e.data.type === 'SET_3D_YEAR' && e.data.year) {
         window.applyYearMilestone(e.data.year);
+      } else if (e.data.type === 'SET_3D_SPRINKLERS') {
+        window.toggleSprinklers3D(e.data.enabled);
       }
     });
 
