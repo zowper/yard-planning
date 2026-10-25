@@ -572,8 +572,9 @@
       juniperSnowCaps: [],      // Winter snow dusting on evergreen junipers J1..J4
       hyacinthSpikes: [],       // Spring jewel-toned hyacinth blooms in front porch & S. beds
       summerFrontBlooms: [],    // Summer/Fall perennial blooms in front porch & S. beds
-      mapleCanopies: [],        // SE Corner Japanese Maple leaf domes (hidden in Winter)
-      mapleSnowCaps: [],        // Winter snow dusting on Japanese Maple branches
+      mapleCanopies: [],        // Norwegian Sunset Maple upright-oval leaf canopy (hidden in Winter)
+      mapleSpringCorymbs: [],   // Spring yellow-green corymb flower clusters & bronze-red new leaf tips on Norwegian Sunset Maple
+      mapleSnowCaps: [],        // Winter snow dusting on Norwegian Sunset Maple scaffold branches
       cropsSpring: [],          // Spring lettuce/spinach/pea shoots in 5 cedar planters
       cropsSummer: [],          // Summer staked tomatoes/peppers in 5 cedar planters
       cropsFall: [],            // Fall harvest pumpkins/squash in 5 cedar planters
@@ -1059,7 +1060,7 @@
         roughness: 0.5
       }),
       juneberryFruit: new THREE.MeshStandardMaterial({ color: '#3b0764', roughness: 0.35 }),
-      mapleFoliage: new THREE.MeshStandardMaterial({ color: '#be123c', roughness: 0.72 }),
+      mapleFoliage: new THREE.MeshStandardMaterial({ color: '#22993e', roughness: 0.68 }),
       juniperFoliage: new THREE.MeshStandardMaterial({ color: '#115e59', roughness: 0.82 }),
       snowWhite: new THREE.MeshStandardMaterial({ color: '#f8fafc', roughness: 0.65, metalness: 0.05 })
     };
@@ -1582,8 +1583,14 @@
       ];
       addPolygonExtrusion(gFrontBeds, frontSouthBedToBoxPts, 0.0, 0.09, MAT.mulch, true);
 
-      // SE Corner Mulch Pocket around Relocated Japanese Maple (wx: 84.5..91.0, wy: 45.2..48.2)
-      addBox(gFrontBeds, 84.5, 45.2, 91.0, 48.2, 0.0, 0.09, MAT.mulch, false, true);
+      // 6.0' Diameter (3.0' Radius) Mulched Root-Flare Tree Ring around Norwegian Sunset Maple (wx = 83.0', wy = 39.5')
+      const mapleMulchRing = new THREE.Mesh(
+        new THREE.CylinderGeometry(3.0, 3.0, 0.09, 32),
+        MAT.mulch
+      );
+      mapleMulchRing.position.set(SE_MAPLE_WX, 0.045, SE_MAPLE_WY);
+      mapleMulchRing.receiveShadow = true;
+      gFrontBeds.add(mapleMulchRing);
 
       // NE Front & Side Yard White Decorative Rock Going Up to the North Side Yard (Stopping at wx = 70.0' North Fence/Gate)
       const neWhiteRockPts = [
@@ -1634,6 +1641,19 @@
       for (let i = 0; i < chain2.length - 1; i++) {
         addPaverSegment(chain2[i][0], chain2[i][1], chain2[i + 1][0], chain2[i + 1][1]);
       }
+
+      // Paver Chain 3: 8-Segment 45°-Chamfered Octagonal Holland Paver Tree Ring Border (r = 3.15') around Norwegian Sunset Maple
+      const treeRingR = 3.15;
+      for (let i = 0; i < 8; i++) {
+        const a1 = (i * Math.PI) / 4 + Math.PI / 8;
+        const a2 = ((i + 1) * Math.PI) / 4 + Math.PI / 8;
+        addPaverSegment(
+          SE_MAPLE_WX + Math.cos(a1) * treeRingR,
+          SE_MAPLE_WY + Math.sin(a1) * treeRingR,
+          SE_MAPLE_WX + Math.cos(a2) * treeRingR,
+          SE_MAPLE_WY + Math.sin(a2) * treeRingR
+        );
+      }
     }
 
     // --- F. PHASE 3 (2028): WESTERN BACK WALL 5+4 DESIGNER HYBRID ('westWallPlants') ---
@@ -1643,44 +1663,82 @@
     {
       const gWestPlants = LAYER_GROUPS.westWallPlants;
 
-      // Helper: Build a multi-blade arching 'Karl Foerster' Feather Reed Grass Fountain + Golden Plumes
-      function buildFeatherReedGrass(wx, wy, scaleH = 1.0) {
-        const grassGrp = new THREE.Group();
-        grassGrp.position.set(wx, 0.08, wy);
-        const bladeMat = new THREE.MeshStandardMaterial({ color: '#4d7c0f', roughness: 0.78, side: THREE.DoubleSide });
-        const plumeMat = new THREE.MeshStandardMaterial({ color: '#fde047', roughness: 0.62 });
-        const stalkMat = new THREE.MeshStandardMaterial({ color: '#a3e635', roughness: 0.75 });
+      // Helper: Merge an array of transformed BufferGeometries into a single BufferGeometry (keeps 60 FPS while rendering thousands of 3D petals/florets!)
+      function mergeBufferGeos(geos) {
+        const posList = [];
+        const normList = [];
+        geos.forEach(g => {
+          const nonIdx = g.index ? g.toNonIndexed() : g;
+          const p = nonIdx.attributes.position.array;
+          const n = nonIdx.attributes.normal.array;
+          for (let i = 0; i < p.length; i++) posList.push(p[i]);
+          for (let i = 0; i < n.length; i++) normList.push(n[i]);
+        });
+        const merged = new THREE.BufferGeometry();
+        merged.setAttribute('position', new THREE.Float32BufferAttribute(posList, 3));
+        merged.setAttribute('normal', new THREE.Float32BufferAttribute(normList, 3));
+        return merged;
+      }
 
-        // 22 arching basal grass blades arranged in a fountain rosette
+      // Pre-build 5-Petal Star Blossom Cluster Geometry (1 draw call per panicle!)
+      const blossomPanicleGeo = (() => {
+        const parts = [];
+        for (let p = 0; p < 5; p++) {
+          const pAng = (p / 5) * Math.PI * 2;
+          const g = new THREE.SphereGeometry(0.14, 6, 5);
+          g.scale(0.75, 1.45, 0.35);
+          g.rotateZ(pAng - Math.PI / 2);
+          g.translate(Math.cos(pAng) * 0.16, Math.sin(pAng) * 0.16, 0);
+          parts.push(g);
+        }
+        return mergeBufferGeos(parts);
+      })();
+
+      // Helper: Build a multi-blade arching 'Karl Foerster' Feather Reed Grass Fountain + Golden Plumes
+      const reedFoliageCompoundGeo = (() => {
+        const parts = [];
         for (let b = 0; b < 22; b++) {
           const ang = (b / 22) * Math.PI * 2 + (b % 3) * 0.12;
           const tilt = 0.22 + (b % 4) * 0.11;
-          const hBlade = (1.7 + (b % 3) * 0.35) * scaleH;
-          const blade = new THREE.Mesh(new THREE.ConeGeometry(0.08, hBlade, 4), bladeMat);
-          blade.position.set(Math.cos(ang) * 0.22, hBlade * 0.45, Math.sin(ang) * 0.22);
-          blade.rotation.x = Math.sin(ang) * tilt;
-          blade.rotation.z = -Math.cos(ang) * tilt;
-          blade.castShadow = true;
-          grassGrp.add(blade);
+          const hBlade = 1.7 + (b % 3) * 0.35;
+          const g = new THREE.ConeGeometry(0.08, hBlade, 4);
+          g.rotateX(Math.sin(ang) * tilt);
+          g.rotateZ(-Math.cos(ang) * tilt);
+          g.translate(Math.cos(ang) * 0.22, hBlade * 0.45, Math.sin(ang) * 0.22);
+          parts.push(g);
         }
+        return mergeBufferGeos(parts);
+      })();
 
-        // 9 vertical golden wheat-like flower plumes rising above the foliage fountain
+      const reedPlumesCompoundGeo = (() => {
+        const parts = [];
         for (let p = 0; p < 9; p++) {
           const ang = (p / 9) * Math.PI * 2;
           const rOff = p === 0 ? 0 : (0.14 + (p % 2) * 0.12);
           const px = Math.cos(ang) * rOff;
           const pz = Math.sin(ang) * rOff;
-          const hStalk = (2.6 + (p % 3) * 0.28) * scaleH;
-
-          const stalk = new THREE.Mesh(new THREE.CylinderGeometry(0.018, 0.028, hStalk, 5), stalkMat);
-          stalk.position.set(px, hStalk * 0.5, pz);
-          grassGrp.add(stalk);
-
-          const plumeHead = new THREE.Mesh(new THREE.CylinderGeometry(0.04, 0.08, 1.15 * scaleH, 7), plumeMat);
-          plumeHead.position.set(px, hStalk + 0.35 * scaleH, pz);
-          plumeHead.castShadow = true;
-          grassGrp.add(plumeHead);
+          const hStalk = 2.6 + (p % 3) * 0.28;
+          const g = new THREE.CylinderGeometry(0.04, 0.08, 1.15, 7);
+          g.translate(px, hStalk + 0.35, pz);
+          parts.push(g);
         }
+        return mergeBufferGeos(parts);
+      })();
+
+      function buildFeatherReedGrass(wx, wy, scaleH = 1.0) {
+        const grassGrp = new THREE.Group();
+        grassGrp.position.set(wx, 0.08, wy);
+        grassGrp.scale.set(1.0, scaleH, 1.0);
+        const bladeMat = new THREE.MeshStandardMaterial({ color: '#4d7c0f', roughness: 0.78, side: THREE.DoubleSide });
+        const plumeMat = new THREE.MeshStandardMaterial({ color: '#fde047', roughness: 0.62 });
+
+        const bladesMesh = new THREE.Mesh(reedFoliageCompoundGeo, bladeMat);
+        bladesMesh.castShadow = true;
+        grassGrp.add(bladesMesh);
+
+        const plumesMesh = new THREE.Mesh(reedPlumesCompoundGeo, plumeMat);
+        plumesMesh.castShadow = true;
+        grassGrp.add(plumesMesh);
         return grassGrp;
       }
 
@@ -1734,7 +1792,6 @@
         for (let c = 0; c < 24; c++) {
           const hFrac = c / 23;
           const cy = 4.2 + hFrac * 10.8;
-          // Obelisk profile: widest around middle (40% height), tapering cleanly at top
           const envRadius = hFrac < 0.4
             ? (0.95 + (hFrac / 0.4) * 0.75)
             : (1.70 - ((hFrac - 0.4) / 0.6) * 1.15);
@@ -1757,52 +1814,33 @@
 
         // SPRING SHOWCASE: Detailed 5-Petal 'Standing Ovation' Blossom Panicles (Amelanchier alnifolia 'Obelisk')
         const blossomGroup = new THREE.Group();
-        const stamenMat = new THREE.MeshBasicMaterial({ color: '#fde047' });
-        for (let b = 0; b < 68; b++) {
-          const hFrac = b / 68;
+        for (let b = 0; b < 64; b++) {
+          const hFrac = b / 64;
           const by = 3.7 + hFrac * 11.4;
           const radiusAtH = (hFrac < 0.45 ? (1.25 + hFrac * 1.55) : (1.95 - (hFrac - 0.45) * 1.65));
           const theta = b * 2.39996 + idx * 1.1;
           const bx = Math.cos(theta) * radiusAtH;
           const bz = Math.sin(theta) * radiusAtH;
 
-          const panicle = new THREE.Group();
+          const petalMat = (b % 5 === 0) ? MAT.blossomPinkCenter : MAT.blossomWhite;
+          const panicle = new THREE.Mesh(blossomPanicleGeo, petalMat);
           panicle.position.set(bx, by, bz);
           panicle.lookAt(bx * 2.5, by + 0.5, bz * 2.5);
-
-          // 5 star-like white/blush petals + golden center per blossom cluster
-          const petalMat = (b % 5 === 0) ? MAT.blossomPinkCenter : MAT.blossomWhite;
-          for (let p = 0; p < 5; p++) {
-            const pAng = (p / 5) * Math.PI * 2;
-            const petal = new THREE.Mesh(new THREE.SphereGeometry(0.14, 6, 5), petalMat);
-            petal.scale.set(0.75, 1.45, 0.35);
-            petal.position.set(Math.cos(pAng) * 0.16, Math.sin(pAng) * 0.16, 0);
-            petal.rotation.z = pAng - Math.PI / 2;
-            panicle.add(petal);
-          }
-          const centerDot = new THREE.Mesh(new THREE.SphereGeometry(0.07, 6, 6), stamenMat);
-          centerDot.position.set(0, 0, 0.04);
-          panicle.add(centerDot);
-
           blossomGroup.add(panicle);
         }
         treeGrp.add(blossomGroup);
         SEASON_GROUPS.serviceberryBlossoms.push(blossomGroup);
 
-        // SUMMER SHOWCASE: Dark Purple-Blue Juneberry Clusters (3 berries per cluster)
+        // SUMMER SHOWCASE: Dark Purple-Blue Juneberry Clusters
         const berryGroup = new THREE.Group();
-        for (let j = 0; j < 26; j++) {
-          const hFrac = j / 26;
+        for (let j = 0; j < 28; j++) {
+          const hFrac = j / 28;
           const by = 4.2 + hFrac * 10.2;
           const radiusAtH = 1.60 - Math.abs(hFrac - 0.45) * 0.85;
           const theta = j * 2.4 + idx;
-          const cx = Math.cos(theta) * radiusAtH;
-          const cz = Math.sin(theta) * radiusAtH;
-          [[0, 0, 0], [0.11, 0.08, -0.06], [-0.09, -0.07, 0.08]].forEach(([ox, oy, oz]) => {
-            const berry = new THREE.Mesh(new THREE.SphereGeometry(0.10, 8, 8), MAT.juneberryFruit);
-            berry.position.set(cx + ox, by + oy, cz + oz);
-            berryGroup.add(berry);
-          });
+          const berry = new THREE.Mesh(new THREE.SphereGeometry(0.13, 8, 8), MAT.juneberryFruit);
+          berry.position.set(Math.cos(theta) * radiusAtH, by, Math.sin(theta) * radiusAtH);
+          berryGroup.add(berry);
         }
         berryGroup.visible = false;
         treeGrp.add(berryGroup);
@@ -1810,8 +1848,8 @@
 
         // Spring Fallen White Blossom Petals on the Mulch around each 'Standing Ovation' tree
         const petalRing = new THREE.Group();
-        for (let p = 0; p < 20; p++) {
-          const ang = (p / 20) * Math.PI * 2 + rng() * 0.5;
+        for (let p = 0; p < 18; p++) {
+          const ang = (p / 18) * Math.PI * 2 + rng() * 0.5;
           const dist = 0.45 + rng() * 1.45;
           const petal = new THREE.Mesh(new THREE.CircleGeometry(0.09 + rng() * 0.06, 6), MAT.blossomWhite);
           petal.rotation.x = -Math.PI / 2;
@@ -1825,8 +1863,8 @@
         const fallLeafRing = new THREE.Group();
         const fallLeafMat1 = new THREE.MeshStandardMaterial({ color: '#ea580c', roughness: 0.8 });
         const fallLeafMat2 = new THREE.MeshStandardMaterial({ color: '#dc2626', roughness: 0.8 });
-        for (let p = 0; p < 22; p++) {
-          const ang = (p / 22) * Math.PI * 2 + rng() * 0.5;
+        for (let p = 0; p < 20; p++) {
+          const ang = (p / 20) * Math.PI * 2 + rng() * 0.5;
           const dist = 0.45 + rng() * 1.55;
           const leaf = new THREE.Mesh(new THREE.CircleGeometry(0.11 + rng() * 0.08, 5), p % 2 === 0 ? fallLeafMat1 : fallLeafMat2);
           leaf.rotation.x = -Math.PI / 2;
@@ -1898,8 +1936,8 @@
           baseFoliage.position.set(0, 0.35, 0);
           baseFoliage.castShadow = true;
           catGrp.add(baseFoliage);
-          for (let s = 0; s < 14; s++) {
-            const ang = (s / 14) * Math.PI * 2;
+          for (let s = 0; s < 10; s++) {
+            const ang = (s / 10) * Math.PI * 2;
             const r = 0.15 + (s % 3) * 0.18;
             const spike = new THREE.Mesh(new THREE.ConeGeometry(0.075, 0.75, 6), catmintSpikeMat);
             spike.position.set(Math.cos(ang) * r, 0.78, Math.sin(ang) * r);
@@ -1916,15 +1954,12 @@
           echBase.scale.set(1.0, 0.6, 1.0);
           echBase.position.set(0, 0.3, 0);
           echGrp.add(echBase);
-          for (let f = 0; f < 7; f++) {
-            const ang = (f / 7) * Math.PI * 2;
+          for (let f = 0; f < 6; f++) {
+            const ang = (f / 6) * Math.PI * 2;
             const r = f === 0 ? 0 : 0.28;
             const fx = Math.cos(ang) * r;
             const fz = Math.sin(ang) * r;
             const fh = 0.85 + (f % 3) * 0.14;
-            const stem = new THREE.Mesh(new THREE.CylinderGeometry(0.02, 0.025, fh, 5), catmintLeafMat);
-            stem.position.set(fx, fh * 0.5, fz);
-            echGrp.add(stem);
             const petals = new THREE.Mesh(new THREE.CylinderGeometry(0.20, 0.14, 0.05, 10), coneflowerPetalMat);
             petals.position.set(fx, fh, fz);
             echGrp.add(petals);
@@ -1961,48 +1996,78 @@
         new THREE.MeshStandardMaterial({ color: '#c084fc', emissive: new THREE.Color('#7e22ce'), emissiveIntensity: 0.14, roughness: 0.50 })  // Soft Lilac
       ];
       const hyacinthLeafMat = new THREE.MeshStandardMaterial({ color: '#15803d', roughness: 0.65, side: THREE.DoubleSide });
-      const hyacinthStemMat = new THREE.MeshStandardMaterial({ color: '#166534', roughness: 0.70 });
 
-      // Shared geometries for high-fidelity multi-floret Hyacinth racemes (keeps draw calls fast & crisp)
-      const hyLeafGeo = new THREE.ConeGeometry(0.085, 0.62, 5);
-      const hyStemGeo = new THREE.CylinderGeometry(0.025, 0.035, 0.72, 6);
-      const hyFloretGeo = new THREE.DodecahedronGeometry(0.055, 0);
+      // Pre-build Compound BufferGeometries for Hyacinth Basal Leaf Rosette (6 strap leaves + 3 stalks) & 18-Floret Raceme Spike!
+      const hyBasalRosetteGeo = (() => {
+        const parts = [];
+        for (let l = 0; l < 6; l++) {
+          const ang = (l / 6) * Math.PI * 2;
+          const g = new THREE.ConeGeometry(0.085, 0.62, 5);
+          g.scale(1.0, 1.0, 0.42);
+          g.rotateX(0.36);
+          g.rotateY(-ang);
+          g.translate(Math.cos(ang) * 0.13, 0.26, Math.sin(ang) * 0.13);
+          parts.push(g);
+        }
+        [[0, 0, 0.88], [-0.14, 0.11, 0.78], [0.14, -0.10, 0.82]].forEach(([ox, oz, hSpike]) => {
+          const st = new THREE.CylinderGeometry(0.025, 0.035, hSpike * 0.72, 6);
+          st.translate(ox, hSpike * 0.36, oz);
+          parts.push(st);
+        });
+        const posList = [], normList = [];
+        parts.forEach(g => {
+          const ni = g.index ? g.toNonIndexed() : g;
+          const p = ni.attributes.position.array, n = ni.attributes.normal.array;
+          for (let i = 0; i < p.length; i++) posList.push(p[i]);
+          for (let i = 0; i < n.length; i++) normList.push(n[i]);
+        });
+        const bg = new THREE.BufferGeometry();
+        bg.setAttribute('position', new THREE.Float32BufferAttribute(posList, 3));
+        bg.setAttribute('normal', new THREE.Float32BufferAttribute(normList, 3));
+        return bg;
+      })();
 
-      // Helper to build a true botanical 3D Hyacinth Clump (~0.92' tall: 6 boat-shaped basal leaves + 3 multi-floret raceme spikes)
+      const hyRacemeSpikeGeo = (() => {
+        const parts = [];
+        for (let f = 0; f < 18; f++) {
+          const fFrac = f / 17;
+          const fy = 0.30 + fFrac * 0.56;
+          const rRing = (1.0 - fFrac * 0.42) * 0.088;
+          const fAng = f * 2.39996;
+          const g = new THREE.DodecahedronGeometry(0.056, 0);
+          g.scale(1.18, 0.85, 1.18);
+          g.translate(Math.cos(fAng) * rRing, fy, Math.sin(fAng) * rRing);
+          parts.push(g);
+        }
+        const posList = [], normList = [];
+        parts.forEach(g => {
+          const ni = g.index ? g.toNonIndexed() : g;
+          const p = ni.attributes.position.array, n = ni.attributes.normal.array;
+          for (let i = 0; i < p.length; i++) posList.push(p[i]);
+          for (let i = 0; i < n.length; i++) normList.push(n[i]);
+        });
+        const bg = new THREE.BufferGeometry();
+        bg.setAttribute('position', new THREE.Float32BufferAttribute(posList, 3));
+        bg.setAttribute('normal', new THREE.Float32BufferAttribute(normList, 3));
+        return bg;
+      })();
+
+      // Helper to build a true botanical 3D Hyacinth Clump (~0.90' tall: 6 boat-shaped basal leaves + 3 multi-floret raceme spikes in 4 draw calls!)
       function addHyacinthClump(wx, wy, colorIdx) {
         const clump = new THREE.Group();
         clump.position.set(wx, 0.09, wy);
 
-        // Basal whorl of 6 arching strap leaves
-        for (let l = 0; l < 6; l++) {
-          const ang = (l / 6) * Math.PI * 2 + (colorIdx % 3) * 0.2;
-          const leaf = new THREE.Mesh(hyLeafGeo, hyacinthLeafMat);
-          leaf.position.set(Math.cos(ang) * 0.13, 0.26, Math.sin(ang) * 0.13);
-          leaf.scale.set(1.0, 1.0, 0.42);
-          leaf.rotation.y = -ang;
-          leaf.rotation.x = 0.36;
-          clump.add(leaf);
-        }
+        const leavesMesh = new THREE.Mesh(hyBasalRosetteGeo, hyacinthLeafMat);
+        leavesMesh.rotation.y = (colorIdx % 5) * 0.6;
+        clump.add(leavesMesh);
 
-        // 3 Dense Raceme Flower Spikes per bulb clump (16 individual 3D star-bell florets per spike!)
-        [[0, 0, 0.88], [-0.14, 0.11, 0.78], [0.14, -0.10, 0.82]].forEach(([ox, oz, hSpike], sIdx) => {
+        [[0, 0, 1.0], [-0.14, 0.11, 0.90], [0.14, -0.10, 0.94]].forEach(([ox, oz, sScale], sIdx) => {
           const mat = hyacinthPalette[(colorIdx + sIdx) % hyacinthPalette.length];
-          const stem = new THREE.Mesh(hyStemGeo, hyacinthStemMat);
-          stem.position.set(ox, hSpike * 0.42, oz);
-          clump.add(stem);
-
-          // 16 tightly packed star-bell florets spiraling up the raceme
-          for (let f = 0; f < 16; f++) {
-            const fFrac = f / 15;
-            const fy = hSpike * (0.34 + fFrac * 0.64);
-            const rRing = (1.0 - fFrac * 0.45) * 0.085;
-            const fAng = f * 2.39996;
-            const floret = new THREE.Mesh(hyFloretGeo, mat);
-            floret.position.set(ox + Math.cos(fAng) * rRing, fy, oz + Math.sin(fAng) * rRing);
-            floret.scale.set(1.15, 0.85, 1.15);
-            floret.castShadow = true;
-            clump.add(floret);
-          }
+          const spikeMesh = new THREE.Mesh(hyRacemeSpikeGeo, mat);
+          spikeMesh.position.set(ox, 0, oz);
+          spikeMesh.scale.set(1.0, sScale, 1.0);
+          spikeMesh.castShadow = true;
+          clump.add(spikeMesh);
         });
 
         gFrontPlants.add(clump);
@@ -2052,62 +2117,145 @@
         SEASON_GROUPS.summerFrontBlooms.push(pGrp);
       }
 
-      // 2. Relocated Front Yard Focal Tree: Sculptural Multi-Tiered Red Japanese Maple at SE Corner Anchor (wx = 87.0', wy = 46.8')
-      //    100% clear of the hanging porch swing sightline while framing the front lawn from the street!
+      // 2. Front Yard Specimen Shade Tree: Norwegian Sunset® Maple (Acer truncatum × platanoides 'Keithsform')
+      //    Centered in SE Front Lawn at (wx = 83.0', wy = 39.5') with Recommended 20'–25' W × 30'–35' H Space
+      //    (17.3' from Porch Pillar, 10.5' from Driveway, 10.5' from S. Lot Line, 13.7' from Sidewalk, 6.8' Clear Trunk Under-Canopy Sightline!)
       const mapleGrp = new THREE.Group();
       mapleGrp.position.set(SE_MAPLE_WX, 0, SE_MAPLE_WY);
 
-      // Sculptural crooked multi-stem Japanese Maple trunk & 7 architectural scaffold limbs
-      const mainTrunk = new THREE.Mesh(new THREE.CylinderGeometry(0.16, 0.36, 3.0, 10), MAT.woodBark);
-      mainTrunk.position.set(0, 1.5, 0);
-      mainTrunk.rotation.z = 0.06;
+      // Subtle Ground-Level Ring Depicting Recommended Mature Canopy Space (21.0' Dia / 10.5' Radius)
+      const matureCanopyRing = new THREE.Mesh(
+        new THREE.RingGeometry(10.32, 10.50, 64),
+        new THREE.MeshBasicMaterial({
+          color: '#fb923c',
+          transparent: true,
+          opacity: 0.34,
+          side: THREE.DoubleSide,
+          depthWrite: false
+        })
+      );
+      matureCanopyRing.rotation.x = Math.PI / 2;
+      matureCanopyRing.position.set(0, 0.11, 0);
+      mapleGrp.add(matureCanopyRing);
+
+      // Single Straight Central-Leader Trunk (6.8' Clear Trunk Height Below Lowest Limbs for Walk-Under & Porch Swing Sightline!)
+      const rootFlare = new THREE.Mesh(new THREE.CylinderGeometry(0.42, 0.68, 0.9, 12), MAT.woodBark);
+      rootFlare.position.set(0, 0.45, 0);
+      rootFlare.castShadow = true;
+      mapleGrp.add(rootFlare);
+
+      const mainTrunk = new THREE.Mesh(new THREE.CylinderGeometry(0.18, 0.42, 16.5, 12), MAT.woodBark);
+      mainTrunk.position.set(0, 8.25, 0);
       mainTrunk.castShadow = true;
       mapleGrp.add(mainTrunk);
 
+      // Upright-Oval Ascending Scaffold Limbs & Tiered Canopy Lobes (h = 7.4' to 21.5', ~14.5' W Established Crown)
       const mapleScaffolds = [
-        // [bx, by, bz, rx, rz, padRadius]
-        [0.0, 4.2, 0.0, 0.0, 0.0, 1.65],
-        [-1.35, 5.0, 0.95, 0.32, 0.36, 1.45],
-        [1.25, 5.4, -0.85, -0.28, -0.34, 1.40],
-        [-0.95, 6.2, -1.10, -0.34, 0.26, 1.35],
-        [1.15, 6.6, 0.95, 0.30, -0.30, 1.30],
-        [-0.55, 7.3, 0.45, 0.16, 0.18, 1.25],
-        [0.35, 7.9, -0.25, -0.10, -0.12, 1.35]
+        // [bx, by, bz, forkY, padRadius]
+        [-3.4, 9.6,  1.8, 6.8, 2.35],
+        [ 3.5, 9.8, -1.7, 6.9, 2.35],
+        [-2.0, 10.4, -3.3, 7.1, 2.30],
+        [ 2.1, 10.6,  3.2, 7.2, 2.30],
+        [-3.9, 13.0, -0.5, 9.2, 2.55],
+        [ 3.8, 13.3,  0.7, 9.4, 2.55],
+        [-0.8, 13.8,  3.7, 9.6, 2.45],
+        [ 0.9, 14.0, -3.6, 9.8, 2.45],
+        [-2.3, 16.4,  1.9, 12.2, 2.25],
+        [ 2.2, 16.6, -1.8, 12.4, 2.25],
+        [ 0.0, 18.8,  0.0, 14.5, 2.45]
       ];
       const mapleCanopyGrp = new THREE.Group();
-      mapleScaffolds.forEach(([bx, by, bz, rx, rz, padRad], bIdx) => {
-        if (bIdx > 0) {
-          const limbLen = Math.hypot(bx, by - 2.4, bz);
-          const limb = new THREE.Mesh(new THREE.CylinderGeometry(0.05, 0.13, limbLen, 8), MAT.woodBark);
-          limb.position.set(bx * 0.52, 2.4 + (by - 2.4) * 0.52, bz * 0.52);
-          limb.rotation.set(rx, 0, rz);
-          limb.castShadow = true;
-          mapleGrp.add(limb);
-        }
+      const mapleCorymbGrp = new THREE.Group();
+      const corymbMat = new THREE.MeshStandardMaterial({
+        color: '#d9f99d',
+        emissive: new THREE.Color('#84cc16'),
+        emissiveIntensity: 0.16,
+        roughness: 0.55
+      });
 
-        // Layered horizontal umbrella-style laceleaf foliage pads (3 overlapping clouds per scaffold limb = 21 clouds total)
-        [[0, 0, 0, 1.0], [-0.55, -0.18, 0.42, 0.78], [0.52, 0.15, -0.45, 0.74]].forEach(([ox, oy, oz, sMul], pIdx) => {
+      mapleScaffolds.forEach(([bx, by, bz, forkY, padRad], bIdx) => {
+        // Ascending structural scaffold branch from central leader (forkY >= 6.8' clear trunk!)
+        const dx = bx, dy = by - forkY, dz = bz;
+        const limbLen = Math.hypot(dx, dy, dz);
+        const limb = new THREE.Mesh(new THREE.CylinderGeometry(0.07, 0.17, limbLen, 8), MAT.woodBark);
+        limb.position.set(dx * 0.5, forkY + dy * 0.5, dz * 0.5);
+        limb.quaternion.setFromUnitVectors(
+          new THREE.Vector3(0, 1, 0),
+          new THREE.Vector3(dx, dy, dz).normalize()
+        );
+        limb.castShadow = true;
+        mapleGrp.add(limb);
+
+        // Secondary sub-branches for rich winter architectural silhouette
+        [[-0.45, 0.65, 0.35], [0.48, 0.72, -0.38]].forEach(([sx, sy, sz]) => {
+          const subLen = Math.hypot(sx, sy, sz) * 1.35;
+          const sub = new THREE.Mesh(new THREE.CylinderGeometry(0.035, 0.07, subLen, 6), MAT.woodBark);
+          sub.position.set(bx + sx * 0.5, by + sy * 0.4, bz + sz * 0.5);
+          sub.quaternion.setFromUnitVectors(
+            new THREE.Vector3(0, 1, 0),
+            new THREE.Vector3(sx, sy, sz).normalize()
+          );
+          sub.castShadow = true;
+          mapleGrp.add(sub);
+        });
+
+        // Upright-oval glossy maple foliage clouds (3 overlapping clouds per scaffold limb)
+        [[0, 0, 0, 1.0], [-0.75, -0.25, 0.55, 0.82], [0.70, 0.35, -0.55, 0.78]].forEach(([ox, oy, oz, sMul], pIdx) => {
           const pad = new THREE.Mesh(new THREE.IcosahedronGeometry(padRad * sMul, 2), MAT.mapleFoliage);
           pad.position.set(bx + ox, by + oy, bz + oz);
-          pad.scale.set(1.38, 0.52, 1.38); // Characteristic flat umbrella layering of Japanese Maple
+          pad.scale.set(1.08, 1.15, 1.08); // Upright-oval Norwegian Sunset Maple crown habit
           pad.rotation.y = bIdx * 1.1 + pIdx * 0.8;
           pad.castShadow = true;
           pad.receiveShadow = true;
           mapleCanopyGrp.add(pad);
         });
 
-        // Winter frost cap on bare Japanese Maple branches
-        const mSnow = new THREE.Mesh(new THREE.SphereGeometry(0.30, 8, 6), MAT.snowWhite);
-        mSnow.scale.set(1.6, 0.38, 1.6);
-        mSnow.position.set(bx * 0.8, by - 0.25, bz * 0.8);
+        // Spring yellow-green maple corymb flower clusters on outer crown
+        for (let c = 0; c < 3; c++) {
+          const cAng = (c / 3) * Math.PI * 2 + bIdx * 0.7;
+          const corymb = new THREE.Mesh(new THREE.DodecahedronGeometry(0.24, 0), corymbMat);
+          corymb.position.set(
+            bx + Math.cos(cAng) * (padRad * 0.75),
+            by + 0.35 + (c % 2) * 0.35,
+            bz + Math.sin(cAng) * (padRad * 0.75)
+          );
+          mapleCorymbGrp.add(corymb);
+        }
+
+        // Winter frost cap on bare Norwegian Sunset Maple scaffold branches
+        const mSnow = new THREE.Mesh(new THREE.SphereGeometry(0.38, 8, 6), MAT.snowWhite);
+        mSnow.scale.set(1.7, 0.38, 1.7);
+        mSnow.position.set(bx * 0.75, forkY + (by - forkY) * 0.78 + 0.08, bz * 0.75);
         mSnow.visible = false;
         mapleGrp.add(mSnow);
         SEASON_GROUPS.mapleSnowCaps.push(mSnow);
       });
+
+      // Scattered fallen fiery orange-red maple leaves on the 6.0' mulch ring in Fall mode
+      const mapleFallLeafGrp = new THREE.Group();
+      const fallMapleLeafMat1 = new THREE.MeshStandardMaterial({ color: '#ea580c', roughness: 0.75 });
+      const fallMapleLeafMat2 = new THREE.MeshStandardMaterial({ color: '#dc2626', roughness: 0.75 });
+      for (let lf = 0; lf < 28; lf++) {
+        const lAng = (lf / 28) * Math.PI * 2 + (lf % 3) * 0.4;
+        const lRad = 0.55 + ((lf * 0.37) % 2.25);
+        const leaf = new THREE.Mesh(
+          new THREE.ConeGeometry(0.14, 0.04, 5),
+          lf % 2 === 0 ? fallMapleLeafMat1 : fallMapleLeafMat2
+        );
+        leaf.position.set(Math.cos(lAng) * lRad, 0.10, Math.sin(lAng) * lRad);
+        leaf.rotation.y = lAng;
+        mapleFallLeafGrp.add(leaf);
+      }
+      mapleFallLeafGrp.visible = false;
+      mapleGrp.add(mapleFallLeafGrp);
+      SEASON_GROUPS.mulchLeavesFall.push(mapleFallLeafGrp);
+
       mapleGrp.add(mapleCanopyGrp);
+      mapleGrp.add(mapleCorymbGrp);
       SEASON_GROUPS.mapleCanopies.push(mapleCanopyGrp);
+      SEASON_GROUPS.mapleSpringCorymbs.push(mapleCorymbGrp);
       gFrontPlants.add(mapleGrp);
-      SEASON_GROUPS.windSwayMeshes.push({ mesh: mapleGrp, phase: 2.2, amp: 0.010 });
+      SEASON_GROUPS.windSwayMeshes.push({ mesh: mapleGrp, phase: 2.2, amp: 0.008 });
 
       // 3. Phase 2 (2027): 3-Sided Utility Box Karl Foerster Grass Screen (wx: 91.8..95.4, wy: 44.2..49.1)
       [[91.8, 44.3], [93.6, 44.3], [95.4, 44.3], [91.8, 46.2], [91.8, 48.0], [93.8, 49.1]].forEach(([gx, gy]) => {
@@ -2592,7 +2740,7 @@
         gIrr.add(boxLid);
       });
 
-      // 3. Zone 4 (30 PSI PC Drip Tubing in West Wall Bed, Cont. 2' South Bed & Front Porch Hyacinth Bed)
+      // 3. Zone 4 (30 PSI PC Drip Tubing in West Wall Bed, Cont. 2' South Bed, Front Porch Hyacinth Bed & Norwegian Sunset Maple Root Ring)
       const dripTubeMat = new THREE.MeshStandardMaterial({ color: '#b45309', roughness: 0.6 });
       const addDripRun = (x1, z1, x2, z2) => {
         const len = Math.hypot(x2 - x1, z2 - z1);
@@ -2607,8 +2755,14 @@
       addDripRun(3.1, 10.5, 3.1, 48.0);
       // Continuous 2.0' South bed (wx=1.6' to 96.2' at wy=48.8')
       addDripRun(1.6, 48.8, 96.2, 48.8);
-      // Front porch 2.0' Hyacinth bed (wx=64.3', wy=33.0' to 43.2')
-      addDripRun(64.3, 33.0, 64.3, 43.2);
+      // Front porch 2.0' Hyacinth bed (wx=66.5', wy=32.8' to 41.2' — strictly South of porch walkway!)
+      addDripRun(66.5, 32.8, 66.5, 41.2);
+      // Norwegian Sunset Maple root-flare drip feeder & concentric 2.3' radius PC drip ring
+      addDripRun(SE_MAPLE_WX, 48.8, SE_MAPLE_WX, SE_MAPLE_WY + 2.3);
+      const mapleDripRing = new THREE.Mesh(new THREE.TorusGeometry(2.3, 0.045, 8, 32), dripTubeMat);
+      mapleDripRing.rotation.x = Math.PI / 2;
+      mapleDripRing.position.set(SE_MAPLE_WX, 0.19, SE_MAPLE_WY);
+      gIrr.add(mapleDripRing);
 
       // Helper for Directional Sector Heads (Zones 1 & 3)
       // Note: Rotating RingGeometry by +Math.PI/2 around X maps local (r*cos(t), r*sin(t), 0)
@@ -2717,10 +2871,10 @@
 
       // 6. ZONE 3: SE Front Yard Full-Sun Turf (9 Perimeter Directional Heads F1–F9, ZERO spray on Hyacinths/Driveway/Sidewalk)
       const zone3Heads = [
-        [66.25, 32.75, 11.5, 0, 90],    // F1: Front NW Lawn Corner (90° SE — zero spray in Hyacinth bed!)
-        [66.25, 43.25, 11.5, -45, 90],  // F2: Front W Porch Corner (135° E/NE/S)
+        [68.35, 32.75, 11.5, 0, 90],    // F1: Front NW Lawn Corner (90° SE — zero spray in Hyacinth bed!)
+        [68.35, 41.35, 11.5, -45, 90],  // F2: Front W Porch Corner (135° E/NE/S)
         [80.75, 32.75, 11.5, 0, 180],   // F3: Front Walk Step-Down Corner (180° S)
-        [88.80, 29.25, 7.6, 0, 180],    // F4: N Driveway Curb Edge (180° S MP800SR)
+        [88.80, 29.25, 7.6, 0, 180],    // F4: S Driveway Edge (180° S MP800SR)
         [96.45, 29.25, 9.5, 90, 180],   // F5: NE Sidewalk/Driveway Corner (90° SW)
         [96.45, 38.25, 11.0, 90, 270],  // F6: E Sidewalk Mid Edge (180° W)
         [96.45, 47.25, 11.0, 180, 270], // F7: SE Sidewalk Corner (90° NW)
@@ -2736,32 +2890,48 @@
     const nightLightObjects = [];
     let porchSwingPivot = null;
     {
-      // 1. Detailed Hanging Cedar Front Porch Swing on Covered Porch (wx: 61.2..63.1, wy: 35.8..40.0)
-      //    Facing East across Melinda's Fragrant Spring Hyacinths with ZERO tree obstruction!
+      // 1. High-Fidelity Slatted Cedar Front Porch Swing on Covered Porch (wx: 61.3..63.2, wy: 34.8..39.0)
+      //    Strictly South of the wy=29.8..32.8 Front Entry Door, Facing East across Melinda's Fragrant Spring Hyacinths!
       const gSwing = LAYER_GROUPS.porchSwing;
       porchSwingPivot = new THREE.Group();
-      porchSwingPivot.position.set(62.15, 9.1, 37.9); // Pivot at porch ceiling joist (h = 9.1')
+      porchSwingPivot.position.set(62.25, 9.15, 36.85); // Pivot at porch ceiling beam (h = 9.15')
 
-      // Slatted Cedar Seat & Contoured Backrest (relative to pivot at y = 9.1')
-      addBox(porchSwingPivot, -0.95, -2.1, 0.95, 2.1, -7.1, -6.8, MAT.cedarPlanter, true, true);
-      addBox(porchSwingPivot, -0.95, -2.1, -0.60, 2.1, -6.8, -5.35, MAT.cedarPlanter, true, true);
-      addBox(porchSwingPivot, -0.95, -2.1, 0.95, -1.8, -6.8, -6.1, MAT.cedarPlanter, true, true);
-      addBox(porchSwingPivot, -0.95, 1.8, 0.95, 2.1, -6.8, -6.1, MAT.cedarPlanter, true, true);
-      // Plush Sunbrella Cushion + Jewel-Toned Accent Pillows (matching Melinda's Hyacinths!)
-      addBox(porchSwingPivot, -0.60, -1.8, 0.85, 1.8, -6.8, -6.48, MAT.sofaCushion, true, true);
-      addBox(porchSwingPivot, -0.60, -1.8, -0.35, 1.8, -6.48, -5.45, MAT.sofaCushion, true, true);
-      const swingPillow1 = new THREE.Mesh(new THREE.BoxGeometry(0.32, 0.65, 0.65), new THREE.MeshStandardMaterial({ color: '#9333ea', roughness: 0.7 }));
-      swingPillow1.position.set(-0.15, -6.15, -1.35);
+      // Contoured Slatted Cedar Seat Frame (6 individual cedar slats) & Slatted Backrest (5 horizontal cedar slats)
+      addBox(porchSwingPivot, -0.92, -2.05, 0.92, -1.85, -6.95, -6.65, MAT.cedarPlanter, true, true);
+      addBox(porchSwingPivot, -0.92, 1.85, 0.92, 2.05, -6.95, -6.65, MAT.cedarPlanter, true, true);
+      for (let s = 0; s < 6; s++) {
+        const sx = -0.82 + s * 0.31;
+        addBox(porchSwingPivot, sx - 0.11, -1.95, sx + 0.11, 1.95, -6.72, -6.60, MAT.cedarPlanter, true, true);
+      }
+      // Backrest side stiles & 5 horizontal backrest slats
+      addBox(porchSwingPivot, -0.92, -2.02, -0.68, -1.82, -6.75, -5.15, MAT.cedarPlanter, true, true);
+      addBox(porchSwingPivot, -0.92, 1.82, -0.68, 2.02, -6.75, -5.15, MAT.cedarPlanter, true, true);
+      for (let b = 0; b < 5; b++) {
+        const by = -6.50 + b * 0.30;
+        addBox(porchSwingPivot, -0.86, -1.95, -0.72, 1.95, by - 0.10, by + 0.10, MAT.cedarPlanter, true, true);
+      }
+      // Scrolled Craftsman Cedar Armrests & Front Arm Posts
+      addBox(porchSwingPivot, 0.65, -2.02, 0.88, -1.82, -6.75, -5.95, MAT.cedarPlanter, true, true);
+      addBox(porchSwingPivot, 0.65, 1.82, 0.88, 2.02, -6.75, -5.95, MAT.cedarPlanter, true, true);
+      addBox(porchSwingPivot, -0.92, -2.10, 0.96, -1.78, -5.98, -5.84, MAT.cedarPlanter, true, true);
+      addBox(porchSwingPivot, -0.92, 1.78, 0.96, 2.10, -5.98, -5.84, MAT.cedarPlanter, true, true);
+
+      // Plush Sunbrella Bench Cushion + Jewel-Toned Accent Pillows (matching Melinda's Hyacinths!)
+      addBox(porchSwingPivot, -0.65, -1.78, 0.82, 1.78, -6.60, -6.34, MAT.sofaCushion, true, true);
+      const swingPillow1 = new THREE.Mesh(new THREE.BoxGeometry(0.30, 0.62, 0.62), new THREE.MeshStandardMaterial({ color: '#9333ea', roughness: 0.7 }));
+      swingPillow1.position.set(-0.38, -6.02, -1.32);
       swingPillow1.rotation.z = 0.25;
       porchSwingPivot.add(swingPillow1);
-      const swingPillow2 = new THREE.Mesh(new THREE.BoxGeometry(0.32, 0.65, 0.65), new THREE.MeshStandardMaterial({ color: '#ec4899', roughness: 0.7 }));
-      swingPillow2.position.set(-0.15, -6.15, 1.35);
+      const swingPillow2 = new THREE.Mesh(new THREE.BoxGeometry(0.30, 0.62, 0.62), new THREE.MeshStandardMaterial({ color: '#ec4899', roughness: 0.7 }));
+      swingPillow2.position.set(-0.38, -6.02, 1.32);
       swingPillow2.rotation.z = 0.25;
       porchSwingPivot.add(swingPillow2);
 
-      // Overhead Steel Chains up to Porch Ceiling Joist Eye-Bolts
-      [[-0.75, -1.95], [0.75, -1.95], [-0.75, 1.95], [0.75, 1.95]].forEach(([cx, cz]) => {
-        addBox(porchSwingPivot, cx - 0.04, cz - 0.04, cx + 0.04, cz + 0.04, -6.15, 0.0, MAT.simpsonHardware, false, false);
+      // 4 Overhead Matte-Black Steel Suspension Chains up to Porch Ceiling Eye-Bolts
+      [[-0.78, -1.94], [0.78, -1.94], [-0.78, 1.94], [0.78, 1.94]].forEach(([cx, cz]) => {
+        const chainRod = new THREE.Mesh(new THREE.CylinderGeometry(0.028, 0.028, 5.88, 8), MAT.simpsonHardware);
+        chainRod.position.set(cx, -2.94, cz);
+        porchSwingPivot.add(chainRod);
       });
       gSwing.add(porchSwingPivot);
 
@@ -2780,7 +2950,7 @@
         [2.4, 30.0], [2.4, 35.0], [2.4, 40.0], [2.4, 45.0],
         [7.5, 7.8], [15.5, 7.8], [23.5, 7.8],
         [18.0, 20.5], [18.0, 40.5],
-        [SE_MAPLE_WX, SE_MAPLE_WY], [65.8, 36.5], [65.2, 40.5]
+        [SE_MAPLE_WX, SE_MAPLE_WY], [66.6, 36.8], [66.6, 40.2]
       ];
       uplightCoords.forEach(([lx, ly]) => {
         const fixture = new THREE.Mesh(new THREE.CylinderGeometry(0.14, 0.18, 0.28, 8), MAT.simpsonHardware);
@@ -2826,7 +2996,7 @@
       nightLightObjects.push(westWallNightLight2);
 
       const frontNightLight = new THREE.PointLight('#fbbf24', 1.9, 30, 1.3);
-      frontNightLight.position.set(66.2, 5.5, 37.5);
+      frontNightLight.position.set(66.5, 5.5, 36.8);
       gLight.add(frontNightLight);
       nightLightObjects.push(frontNightLight);
 
@@ -2836,30 +3006,31 @@
       nightLightObjects.push(mapleNightLight);
     }
 
-    // --- M. SEASONAL ATMOSPHERIC FLOATING PARTICLE SYSTEM (Petals / Fireflies / Autumn Leaves / Snowflakes) ---
+    // --- M. WINTER SNOWFLAKE PARTICLE SYSTEM (STRICTLY VISIBLE IN WINTER ONLY — ZERO SKY PARTICLES IN SPRING/SUMMER/FALL!) ---
     const PARTICLE_COUNT = 220;
     const particleGeo = new THREE.BufferGeometry();
     const particlePositions = new Float32Array(PARTICLE_COUNT * 3);
     const particleVelocities = [];
     for (let i = 0; i < PARTICLE_COUNT; i++) {
-      particlePositions[i * 3] = rng() * 105;
-      particlePositions[i * 3 + 1] = 1.0 + rng() * 22;
+      particlePositions[i * 3] = rng() * 108;
+      particlePositions[i * 3 + 1] = 1.0 + rng() * 24;
       particlePositions[i * 3 + 2] = rng() * 52;
       particleVelocities.push({
-        vx: (rng() - 0.5) * 1.2,
-        vy: -(0.8 + rng() * 1.4),
-        vz: (rng() - 0.5) * 1.2,
+        vx: (rng() - 0.5) * 0.9,
+        vy: -(0.85 + rng() * 1.15),
+        vz: (rng() - 0.5) * 0.9,
         phase: rng() * Math.PI * 2
       });
     }
     particleGeo.setAttribute('position', new THREE.BufferAttribute(particlePositions, 3));
     const particleMat = new THREE.PointsMaterial({
-      color: '#fdf2f8',
-      size: 0.35,
+      color: '#ffffff',
+      size: 0.34,
       transparent: true,
-      opacity: 0.85
+      opacity: 0.90
     });
     const seasonalParticles = new THREE.Points(particleGeo, particleMat);
+    seasonalParticles.visible = false; // Strictly hidden in Spring, Summer, and Fall; enabled ONLY in Winter!
     scene.add(seasonalParticles);
 
     /*************************************************************************
@@ -2934,15 +3105,16 @@
       SEASON_GROUPS.hyacinthSpikes.forEach(g => { g.visible = isSpring; });
       SEASON_GROUPS.summerFrontBlooms.forEach(m => { m.visible = isSummer || isFall; });
 
-      // 3. SE Corner Sculptural Japanese Maple
+      // 3. SE Front Lawn Norwegian Sunset® Maple (Acer truncatum × platanoides 'Keithsform')
       SEASON_GROUPS.mapleCanopies.forEach(g => { g.visible = !isWinter; });
+      SEASON_GROUPS.mapleSpringCorymbs.forEach(g => { g.visible = isSpring; });
       SEASON_GROUPS.mapleSnowCaps.forEach(m => { m.visible = isWinter; });
       if (isSpring) {
-        MAT.mapleFoliage.color.set('#be123c'); // Vibrant ruby-crimson spring leaves
+        MAT.mapleFoliage.color.set('#22993e'); // Glossy spring emerald foliage beneath yellow-green corymb flower clusters
       } else if (isSummer) {
-        MAT.mapleFoliage.color.set('#881337'); // Rich burgundy-plum summer canopy
+        MAT.mapleFoliage.color.set('#156d2c'); // Deep glossy emerald summer shade canopy
       } else if (isFall) {
-        MAT.mapleFoliage.color.set('#ef4444'); // Glowing scarlet-red fall foliage
+        MAT.mapleFoliage.color.set('#ea580c'); // Signature fiery "Norwegian Sunset" orange-red & scarlet autumn blaze
       }
 
       // 4. Evergreen Upright Junipers (J1–J4)
@@ -2955,31 +3127,24 @@
       SEASON_GROUPS.cropsFall.forEach(g => { g.visible = isFall; });
       SEASON_GROUPS.cropsWinterSnow.forEach(m => { m.visible = isWinter; });
 
-      // 6. Turf, Roof & Ground Snow Blankets
+      // 6. Turf, Roof & Ground Snow Blankets + Gently Falling Snowflakes Strictly in WINTER ONLY
       SEASON_GROUPS.winterSnowBlankets.forEach(m => { m.visible = isWinter; });
+      seasonalParticles.visible = isWinter; // Nothing falling or suspended in the sky during Spring, Summer, or Fall!
+
       if (isSpring) {
         MAT.turf.color.set('#ffffff');
         MAT.mulch.color.set('#ffffff');
-        particleMat.color.set('#fff1f2'); // Falling snow-white blossom petals
-        particleMat.size = 0.34;
-        particleMat.opacity = 0.85;
       } else if (isSummer) {
         MAT.turf.color.set('#e2f5e4');
         MAT.mulch.color.set('#ffffff');
-        particleMat.color.set('#fef08a'); // Warm golden summer pollen/fireflies
-        particleMat.size = 0.24;
-        particleMat.opacity = 0.55;
       } else if (isFall) {
         MAT.turf.color.set('#d9e5b4');
         MAT.mulch.color.set('#f5d0b5');
-        particleMat.color.set('#f97316'); // Falling autumn leaves
-        particleMat.size = 0.38;
-        particleMat.opacity = 0.85;
       } else if (isWinter) {
         MAT.turf.color.set('#e2e8f0'); // Frost/snow-covered lawn
         MAT.mulch.color.set('#cbd5e1'); // Snow-dusted mulch beds
-        particleMat.color.set('#ffffff'); // Falling snowflakes
-        particleMat.size = 0.36;
+        particleMat.color.set('#ffffff'); // Gently falling winter snowflakes
+        particleMat.size = 0.34;
         particleMat.opacity = 0.90;
       }
 
@@ -3086,17 +3251,17 @@
         short: "Melinda's Hyacinths & 3152 Swing",
         color: '#ec4899',
         title: "Melinda's Fragrant Spring Hyacinth Border & Unobstructed '3152' Hanging Porch Swing",
-        desc: "Dense jewel-toned drifts of Royal Purple, Delft Blue, Rose Pink & Pearl White Hyacinths planted right in the 2.0' porch-front bed (wx=65.2'–67.2') directly in front of the hanging cedar porch swing and curving down the continuous 2.0' South bed to the green box. Relocating the Japanese Maple to the SE corner keeps the porch swing view 100% unobstructed!"
+        desc: "Dense jewel-toned drifts of Royal Purple, Delft Blue, Rose Pink & Pearl White Hyacinths planted right in the 2.0' porch-front bed (wx=65.2'–67.2') directly in front of the hanging cedar porch swing and curving down the continuous 2.0' South bed to the green box. Centering the Norwegian Sunset Maple out at (wx=83.0', wy=39.5') with a 6.8' clear trunk keeps the porch swing sightline 100% open and gives the Hyacinths full sun!"
       },
       {
         id: 'pin-se-maple',
         layer: 'frontPlants',
-        wx: SE_MAPLE_WX, wy: SE_MAPLE_WY, h: 7.8,
-        badge: '2027 · PHASE 2 (RELOCATED SE MAPLE)',
-        short: 'SE Corner Japanese Maple',
-        color: '#e11d48',
-        title: "Relocated Sculptural Red Japanese Maple at SE Front Corner Anchor (wx=87.0', wy=46.8')",
-        desc: "Moved from in front of the porch swing to the Southeast Front Corner Anchor near the continuous 2.0' South bed & sidewalk (West of the 3-sided utility box grass screen). Frames the 555 sq ft SE front lawn from the street while leaving the hanging porch bench view completely clear."
+        wx: SE_MAPLE_WX, wy: SE_MAPLE_WY, h: 17.5,
+        badge: '2027 · PHASE 2 (NORWEGIAN SUNSET MAPLE)',
+        short: 'Norwegian Sunset Maple (20\'–25\' W Space)',
+        color: '#ea580c',
+        title: "Norwegian Sunset® Maple (Acer truncatum × platanoides 'Keithsform') at SE Front Lawn Center (wx=83.0', wy=39.5')",
+        desc: "Stately upright-oval hybrid shade tree (30'–35' H × 20'–25' W mature size) centered in the open SE Front Lawn at (wx=83.0', wy=39.5') inside a 6.0' diameter mulched root-flare ring (bordered by octagonal 45° Holland pavers & Zone 4 PC drip ring). Provides full recommended structural clearances: 17.3' East of porch pillar (23.3' from front door wall), 10.5' South of driveway, 10.5' North of South lot line, 13.7' West of sidewalk, and 11.7' NW of the green utility box—with a 6.8' clear single trunk so the '3152' porch swing looks cleanly under the canopy!"
       },
       {
         id: 'pin-planters',
@@ -3116,7 +3281,7 @@
         short: '45° Holland Paver Strip',
         color: '#2dd4bf',
         title: 'Home Depot Pavestone Holland Paver Mow Strip (Prominent 45° Corners)',
-        desc: "~206 lin ft of soil-flush 7.87\"×3.94\" Charcoal/Sierra Blend Holland Pavers with 45° diagonal chamfered corners so the mower pivots in 1 pass. Installed everywhere grass meets mulch, compacted road base (including the 11' rear path), or the home (continuing under the South gate); ZERO pavers where grass meets concrete."
+        desc: "~206 lin ft of soil-flush 7.87\"×3.94\" Charcoal/Sierra Blend Holland Pavers with 45° diagonal chamfered corners so the mower pivots in 1 pass. Installed everywhere grass meets mulch (including the octagonal 6.0' Norwegian Sunset Maple tree ring), compacted road base (including the 11' rear path), or the home (continuing under the South gate); ZERO pavers where grass meets concrete."
       },
       {
         id: 'pin-rear-walk',
@@ -3156,7 +3321,7 @@
         short: '5-Zone Directional Sprinklers',
         color: '#38bdf8',
         title: '5-Hydrozone Best-Practice Sprinkler & PC Drip System (28 Directional Heads · 100% Head-to-Head · 0% Overspray)',
-        desc: 'Zone 1 (5.32 GPM): 15 Backyard PRS40 + MP Rotators (90°/180° sectors — zero patio/awning overspray). Zone 2 (0.88 GPM): 4 South Paver MP Side-Strips (3.75\' N throw × 9\' W — zero spray on Open AC Unit or stucco!). Zone 3 (3.49 GPM): 9 SE Front PRS40 + MP Rotators. Zone 4 (1.63 GPM): 30 PSI PC Drip in W/S/Porch beds. Zone 5 (1.38 GPM): 25 PSI Grid Drip in 5 Cedar Boxes. 1" Febco 765 PVB at (51\', 8.6\') + M1/M2 manifolds.'
+        desc: 'Zone 1 (5.32 GPM): 15 Backyard PRS40 + MP Rotators (90°/180° sectors — zero patio/awning overspray). Zone 2 (0.88 GPM): 4 South Paver MP Side-Strips (3.75\' N throw × 9\' W — zero spray on Open AC Unit or stucco!). Zone 3 (3.49 GPM): 9 SE Front PRS40 + MP Rotators. Zone 4 (1.63 GPM): 30 PSI PC Drip in W/S/Porch beds + Norwegian Sunset Maple root ring. Zone 5 (1.38 GPM): 25 PSI Grid Drip in 5 Cedar Boxes. 1" Febco 765 PVB at (51\', 8.6\') + M1/M2 manifolds.'
       }
     ];
 
@@ -3288,18 +3453,18 @@
         desc: "Looking East down the narrow 9.0' South corridor: the 4.0'+ wide lawn continues directly under the 4.0' walk gate at wx=57.5' into the front yard, the 2.0' planting bed runs down the entire South fence and continues to the green box, and the AC unit is completely open with no cover or shroud."
       },
       PORCH_SWING_HYACINTHS: {
-        pos: [76.5, 5.8, 38.2],
-        target: [62.2, 3.4, 37.5],
+        pos: [77.5, 5.6, 37.5],
+        target: [62.2, 3.2, 36.8],
         badge: "MELINDA'S FRONT PORCH SHOWCASE",
-        title: "'3152' Hanging Cedar Porch Swing, Fragrant Spring Hyacinths & Relocated SE Maple",
-        desc: "Close-up of the '3152' covered front porch hanging swing with dense jewel-toned Hyacinths (Royal Purple, Delft Blue, Rose Pink & Pearl White) blooming right in the 2.0' porch-front bed and curving down the continuous 2.0' South bed. Moving the Japanese Maple to the SE corner (wx=87', wy=46.8') gives the porch swing a 100% unobstructed view!"
+        title: "'3152' Hanging Cedar Porch Swing, Fragrant Spring Hyacinths & Norwegian Sunset Maple",
+        desc: "Close-up of the '3152' covered front porch hanging swing with dense jewel-toned Hyacinths (Royal Purple, Delft Blue, Rose Pink & Pearl White) blooming strictly inside the 2.0' porch-front mulch bed (South of the entry sidewalk) and curving down the continuous 2.0' South bed. Centering the Norwegian Sunset Maple at (wx=83.0', wy=39.5') with a 6.8' clear trunk gives the porch swing a 100% open under-canopy view!"
       },
       FRONT_ELEVATION: {
-        pos: [120.0, 11.5, 36.0],
-        target: [68.0, 5.5, 35.0],
-        badge: 'FRONT ELEVATION & WHITE ROCK PARK STRIPS',
-        title: "Front Elevation: White Decorative Rock Park Strips & NE Side Yard, Continuous 2' S. Bed & SE Lawn",
-        desc: "Looking West from the street across the 6.0' white decorative rock park strips and NE side yard (matching our South neighbors), 18' driveway, unbroken 555 sq ft SE front lawn continuing under the South gate, continuous 2.0' South bed to the green box, SE corner Japanese Maple, and '3152' porch swing & Hyacinth border."
+        pos: [122.0, 14.5, 31.0],
+        target: [68.0, 5.5, 29.5],
+        badge: 'FRONT ELEVATION & NORWEGIAN SUNSET MAPLE',
+        title: "Front Elevation: Aligned 18' Driveway & Garage, 6' White Rock Park Strips, Hyacinth Bed & Norwegian Sunset Maple",
+        desc: "Looking West from the street across the 6.0' white decorative rock park strips (wx=100.7'–106.7'), flared driveway apron & 18.0' driveway aligned with the 16.0' black carriage garage door, 3.5' porch walkway, Melinda's Hyacinths in the 2.0' porch-front bed, and the stately Norwegian Sunset Maple centered at (wx=83.0', wy=39.5') with its full 20'–25' W recommended canopy space."
       },
       TOP_DRONE_3D: {
         pos: [48.0, 108.0, 25.1],
@@ -3731,22 +3896,23 @@
         r.rotation.y += dt * 3.2;
       });
 
-      // 5. Seasonal Floating Particles (Petals / Fireflies / Leaves / Snowflakes)
-      const posAttr = particleGeo.attributes.position;
-      for (let i = 0; i < PARTICLE_COUNT; i++) {
-        const vel = particleVelocities[i];
-        let px = posAttr.getX(i) + (vel.vx + Math.sin(timeSec + vel.phase) * 0.6) * dt;
-        let py = posAttr.getY(i) + (STATE.seasonMode === 'SUMMER' ? Math.sin(timeSec * 2 + vel.phase) * 0.5 : vel.vy) * dt;
-        let pz = posAttr.getZ(i) + (vel.vz + Math.cos(timeSec + vel.phase) * 0.6) * dt;
-        if (py < 0.2) {
-          py = 20.0 + rng() * 4.0;
-          px = rng() * 105;
-          pz = rng() * 52;
+      // 5. Gently Falling Snowflakes Strictly in Winter Only
+      if (STATE.seasonMode === 'WINTER') {
+        const posAttr = particleGeo.attributes.position;
+        for (let i = 0; i < PARTICLE_COUNT; i++) {
+          const vel = particleVelocities[i];
+          let px = posAttr.getX(i) + (vel.vx + Math.sin(timeSec + vel.phase) * 0.5) * dt;
+          let py = posAttr.getY(i) + vel.vy * dt;
+          let pz = posAttr.getZ(i) + (vel.vz + Math.cos(timeSec + vel.phase) * 0.5) * dt;
+          if (py < 0.2) {
+            py = 20.0 + rng() * 4.0;
+            px = rng() * 108;
+            pz = rng() * 52;
+          }
+          posAttr.setXYZ(i, px, py, pz);
         }
-        if (py > 24.0) py = 2.0;
-        posAttr.setXYZ(i, px, py, pz);
+        posAttr.needsUpdate = true;
       }
-      posAttr.needsUpdate = true;
 
       renderer.render(scene, camera);
       update3DPinsProjection();
