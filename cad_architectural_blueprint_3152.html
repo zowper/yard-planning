@@ -214,7 +214,7 @@
           </div>
           <div class="flex items-start gap-2">
             <span class="w-2.5 h-2.5 rounded-full bg-[#c084fc] mt-0.5 shrink-0"></span>
-            <div><strong class="text-purple-300">Zone 2 · S. Side 4' Corridor (4 Heads, S1–S4):</strong> <span class="text-slate-300">Hunter MP Side-Strip (3.75'×9.0' · 0.88 GPM) on South paver edge spraying North. 0% spray on Open AC Unit or stucco.</span></div>
+            <div><strong class="text-purple-300">Zone 2 · S. Side 3'–6' Corridor (4 Heads, S1–S4):</strong> <span class="text-slate-300">Hunter MP Side-Strip (3.0'–5.75'×9.0' · 0.88 GPM) on South paver edge spraying North to wall/AC pavers. 0% spray on Open AC Unit.</span></div>
           </div>
           <div class="flex items-start gap-2">
             <span class="w-2.5 h-2.5 rounded-full bg-[#2dd4bf] mt-0.5 shrink-0"></span>
@@ -406,7 +406,7 @@
           { key: 'northFence', label: 'North Vinyl Fence (70.0\')', swatch: '#c084fc', defaultOn: true },
           { key: 'northGate', label: 'North 8.5\' Double Gate', swatch: '#fbbf24', defaultOn: true },
           { key: 'grass', label: 'Sod (BY) + Seeded Front Lawn', swatch: '#22c55e', defaultOn: true },
-          { key: 'pavers', label: '45° Holland Paver Mow Strip (~215\')', swatch: '#2dd4bf', defaultOn: true },
+          { key: 'pavers', label: '45° Holland Paver Mow Strip (~222\')', swatch: '#2dd4bf', defaultOn: true },
           { key: 'frontBeds', label: '2\' Porch Bed, 6\' Tree Ring & Park Strips', swatch: '#f1f5f9', defaultOn: true },
           { key: 'frontPlants', label: 'Melinda\'s Hyacinths, Norwegian Sunset Maple & Box Screen', swatch: '#f43f5e', defaultOn: true },
           { key: 'irrigation', label: '5-Zone Head-to-Head Sprinklers & PC Drip', swatch: '#38bdf8', defaultOn: false }
@@ -489,9 +489,9 @@
 
     // Reconciled Key Measurements for clean, non-cluttered display when "Measurements" is ON
     const MEASUREMENTS = [
-      { id: 'lot-width', primary: true, wx1: 0.0, wy1: 0.0, wx2: 0.0, wy2: 50.0, offset: -14.0, label: "50.0' LOT WIDTH" },
+      { id: 'lot-width', primary: true, wx1: 0.0, wy1: 0.0, wx2: 0.0, wy2: 50.0, offset: -14.0, label: "50.0' LOT WIDTH (~8' W. WALL)" },
       { id: 'lot-depth', primary: true, wx1: 0.0, wy1: 0.0, wx2: 96.7, wy2: 0.0, offset: -14.0, label: "96.7' LOT DEPTH TO WALK" },
-      { id: 'backyard-depth', primary: true, wx1: 0.0, wy1: 0.0, wx2: 30.0, wy2: 0.0, offset: -7.5, label: "30.0' BACKYARD" },
+      { id: 'backyard-depth', primary: true, wx1: 0.0, wy1: 0.0, wx2: 30.0, wy2: 0.0, offset: -7.5, label: "30.0' BACKYARD (6' VINYL FENCES)" },
       { id: 'north-wall-depth', primary: true, wx1: 30.0, wy1: 9.0, wx2: 70.0, wy2: 9.0, offset: -16.5, label: "40.0' N. ROAD BASE PAD (TO GATE)" },
       { id: 'driveway-length', primary: true, wx1: 73.2, wy1: 11.0, wx2: 96.7, wy2: 11.0, offset: -18.5, label: "23.5' DRIVEWAY / WHITE ROCK NE STRIP" },
       { id: 'house-width', primary: true, wx1: 30.0, wy1: 9.0, wx2: 30.0, wy2: 41.0, offset: -9.5, label: "32.0' HOUSE WIDTH" },
@@ -502,7 +502,7 @@
       { id: 'west-bed-depth', primary: false, wx1: 0.0, wy1: 35.0, wx2: 4.5, wy2: 35.0, offset: 0, label: "4.5' W. BED + PAVER" },
       { id: 'north-planter-depth', primary: false, wx1: 16.0, wy1: 0.0, wx2: 16.0, wy2: 8.5, offset: 0, label: "8.5' PLANTER ZONE (ROAD BASE)" },
       { id: 'rear-walk-dims', primary: false, wx1: 28.5, wy1: 9.0, wx2: 28.5, wy2: 20.0, offset: 0, label: "3'×11' ROAD BASE PATH" },
-      { id: 'south-wall-depth', primary: true, wx1: 30.0, wy1: 50.0, wx2: 59.7, wy2: 50.0, offset: 9.5, label: "29.7' S. WALL (2' BED + 4' GRASS)" },
+      { id: 'south-wall-depth', primary: true, wx1: 30.0, wy1: 50.0, wx2: 59.7, wy2: 50.0, offset: 9.5, label: "29.7' S. WALL (GRASS TO HOME + AC/WALL PAVERS)" },
       { id: 'se-front-depth', primary: true, wx1: 59.7, wy1: 50.0, wx2: 96.7, wy2: 50.0, offset: 9.5, label: "37.0' FRONT LAWN & 2' S. BED TO GREEN BOX" },
       { id: 'driveway-width', primary: true, wx1: 96.7, wy1: 11.0, wx2: 96.7, wy2: 29.0, offset: 14.5, label: "18.0' DRIVEWAY W" }
     ];
@@ -932,12 +932,12 @@
           [LOCKED_SOUTH_GATE_WX, 48.0], [87.35, 48.0], [91.85, 43.5], [96.7, 43.5],
           [96.7, 50.0], [LOCKED_SOUTH_GATE_WX, 50.0]
         ]);
-        // 2.0' Front-of-porch and South-of-porch foundation planting bed (stopping at inner edge of 6" paver, leaving wy=43.5'–47.5' open for grass!)
+        // 2.0' Front-of-porch and South-of-porch foundation planting bed (starting at SE house corner wx=59.7', leaving wy=41.5'–47.5' open for grass along entire South house wall!)
         const frontPorchBedPoly = projectPoly([
-          [LOCKED_SOUTH_GATE_WX, 41.0], [65.7, 41.0], [65.7, 32.5], [67.7, 32.5],
-          [67.7, 41.25], [65.95, 43.0], [LOCKED_SOUTH_GATE_WX, 43.0]
+          [59.7, 41.0], [65.7, 41.0], [65.7, 32.5], [67.7, 32.5],
+          [67.7, 41.25], [65.95, 43.0], [59.7, 43.0]
         ]);
-        // White decorative rock in NE side yard going up to North side yard (stopping at wx=70.0' fence) + both 6.0' street park strips
+        // White decorative rock in NE side yard going up to North side yard (stopping at wx=70.0' fence) + both 6.0' street park strips (0 sq ft on South side)
         const neWhiteRockPoly = projectPoly([
           [LOCKED_NORTH_GATE_WX, 0.0], [96.7, 0.0], [96.7, 11.0],
           [73.2, 11.0], [73.2, 9.0], [LOCKED_NORTH_GATE_WX, 9.0]
@@ -953,16 +953,14 @@
         `);
       }
 
-      // 6B. PHASE 3 (2028) BACKYARD & SOUTH SIDE MULCH BEDS + FLAT DIRT GARDEN
+      // 6B. PHASE 3 (2028) BACKYARD & SOUTH SIDE MULCH BEDS + FLAT DIRT GARDEN (ZERO GRAVEL ON SOUTH SIDE)
       if (L.beds) {
         const westBed = projectRect(0.0, 0.0, 4.0, 50.0);
         const southBed = projectRect(0.0, 48.0, LOCKED_SOUTH_GATE_WX, 50.0);
-        const southWallBuf = projectRect(30.0, 41.0, LOCKED_SOUTH_GATE_WX, 43.0);
 
         out.push(`
           <rect x="${westBed.x.toFixed(1)}" y="${westBed.y.toFixed(1)}" width="${westBed.width.toFixed(1)}" height="${westBed.height.toFixed(1)}" fill="${mulchFill}" stroke="${mulchStroke}" stroke-width="1"/>
           <rect x="${southBed.x.toFixed(1)}" y="${southBed.y.toFixed(1)}" width="${southBed.width.toFixed(1)}" height="${southBed.height.toFixed(1)}" fill="${mulchFill}" stroke="${mulchStroke}" stroke-width="1"/>
-          <rect x="${southWallBuf.x.toFixed(1)}" y="${southWallBuf.y.toFixed(1)}" width="${southWallBuf.width.toFixed(1)}" height="${southWallBuf.height.toFixed(1)}" fill="${rockBufFill}" stroke="#94a3b8" stroke-width="0.9"/>
         `);
 
         if (!L.gardenRock) {
@@ -978,10 +976,11 @@
         out.push(`<rect x="${gBed.x.toFixed(1)}" y="${gBed.y.toFixed(1)}" width="${gBed.width.toFixed(1)}" height="${gBed.height.toFixed(1)}" fill="${gRockFill}" stroke="#94a3b8" stroke-width="1.1"/>`);
       }
 
-      // 8. PHASE 2 (2027) UNIFIED CONTINUOUS LAWN TURF (With True 6.0'×6.0' Octagonal Cutout Around Norwegian Sunset Maple!)
+      // 8. PHASE 2 (2027) UNIFIED CONTINUOUS LAWN TURF (Grass up to South house wall pavers wx=30.0'–44.5' & 48.5'–59.7', wrapping AC paver border + 6.0'×6.0' Octagonal Maple Cutout!)
       const unifiedLawnPts = [
         [4.5, 10.5], [6.5, 8.5], [25.0, 8.5], [26.5, 10.0], [26.5, 20.0],
-        [17.5, 20.0], [17.5, 41.0], [30.0, 41.0], [32.5, 43.5],
+        [17.5, 20.0], [17.5, 41.0], [30.0, 41.0], [30.0, 41.5],
+        [44.5, 41.5], [44.5, 44.5], [48.5, 44.5], [48.5, 41.5], [59.2, 41.5], [59.2, 43.5],
         [66.15, 43.5], [68.2, 41.45], [68.2, 32.5], [81.0, 32.5], [81.0, 29.0], [96.7, 29.0],
         [96.7, 43.0], [91.65, 43.0], [87.15, 47.5],
         [6.5, 47.5], [4.5, 45.5]
@@ -1021,11 +1020,11 @@
         out.push(`</g>`);
       }
 
-      // 10. PHASE 2 (2027) CONTINUOUS 6" HOLLAND PAVERS WITH 45° CHAMFERED CORNERS (Perimeter + Mitered Octagonal Tree Ring!)
+      // 10. PHASE 2 (2027) CONTINUOUS 6" HOLLAND PAVERS WITH 45° CHAMFERED CORNERS (Against Entire S. House Wall, Wrapping AC Unit, Notched Around Conduits, Perimeter & Maple Ring!)
       if (L.pavers) {
         const treeOctClosedPts = [...mapleOctMidPts, mapleOctMidPts[0]];
         const paverChains = [
-          [[30.0, 41.0], [32.25, 43.25], [66.05, 43.25], [67.95, 41.35], [67.95, 32.5]],
+          [[30.0, 41.25], [44.75, 41.25], [44.75, 44.25], [48.25, 44.25], [48.25, 41.25], [59.45, 41.25], [59.45, 43.25], [66.05, 43.25], [67.95, 41.35], [67.95, 32.5]],
           [[26.75, 20.0], [26.75, 10.15], [24.85, 8.25], [6.4, 8.25], [4.25, 10.4], [4.25, 45.6], [6.4, 47.75], [87.25, 47.75], [91.75, 43.25], [96.7, 43.25]],
           treeOctClosedPts
         ];
@@ -1120,12 +1119,12 @@
           }
         });
 
-        // ZONE 2: South Side 4.0' Shaded Corridor (4 Rectangular Side-Strip Heads S1–S4 · Hunter MP Side-Strip 3.75'×9.0' · 0.88 GPM)
-        // Placed strictly on the South Paver Edge (wy=47.25') spraying Northward (wy=47.25' -> 43.5') so ZERO water hits the Open AC Unit or Stucco!
+        // ZONE 2: South Side 3.0'–6.0' Shaded Corridor (4 Rectangular Side-Strip Heads S1–S4 · Hunter MP Side-Strip 3.0'–5.75'×9.0' · 0.88 GPM)
+        // Placed strictly on the South Paver Edge (wy=47.25') spraying Northward to the South wall pavers (wy=41.5') or AC paver wrap (wy=44.25') so ZERO water hits the Open AC Unit!
         const zone2StripHeads = [
-          { id: 'S1', wx: 35.0, wy: 47.25, halfW: 4.5, throwN: 3.75 },
-          { id: 'S2', wx: 44.0, wy: 47.25, halfW: 4.5, throwN: 3.75 },
-          { id: 'S3', wx: 53.0, wy: 47.25, halfW: 4.5, throwN: 3.75 },
+          { id: 'S1', wx: 35.0, wy: 47.25, halfW: 4.5, throwN: 5.75 },
+          { id: 'S2', wx: 44.0, wy: 47.25, halfW: 4.5, throwN: 3.00 },
+          { id: 'S3', wx: 53.0, wy: 47.25, halfW: 4.5, throwN: 5.75 },
           { id: 'S4', wx: 62.0, wy: 47.25, halfW: 4.5, throwN: 3.75 }
         ];
         zone2StripHeads.forEach(s => {
@@ -1276,13 +1275,19 @@
         const pillarRect = projectRect(64.2, 39.5, 65.7, 41.25);
         out.push(`<rect x="${pillarRect.x}" y="${pillarRect.y}" width="${pillarRect.width}" height="${pillarRect.height}" fill="${T.stoneFill}" stroke="${T.houseStroke}" stroke-width="1.2"/>`);
 
-        // Completely Open AC Condenser Pad & Unit (3.0' × 3.0' at wx=45.0'–48.0', wy=41.0'–44.0' — NO cover or shroud!)
+        // Completely Open AC Condenser Pad & Unit (3.0' × 3.0' at wx=45.0'–48.0', wy=41.0'–44.0') + Fiber Conduit (wx=49.8'), Electricity Meter (wx=51.0'–52.2') & Gas Meter (wx=52.8'–54.5') to the East (with ~4" conduit cutouts in the flush wall pavers!)
         const acPad = projectRect(45.0, 41.0, 48.0, 44.0);
         const acUnit = projectRect(45.35, 41.35, 47.65, 43.65);
+        const fiberConduit = projectRect(49.65, 41.0, 50.0, 41.32);
+        const elecMeter = projectRect(51.0, 41.0, 52.2, 41.34);
+        const gasMeter = projectRect(52.8, 41.0, 54.4, 41.35);
         out.push(`
           <rect x="${acPad.x.toFixed(1)}" y="${acPad.y.toFixed(1)}" width="${acPad.width.toFixed(1)}" height="${acPad.height.toFixed(1)}" fill="#94a3b8" stroke="#e2e8f0" stroke-width="1"/>
           <rect x="${acUnit.x.toFixed(1)}" y="${acUnit.y.toFixed(1)}" width="${acUnit.width.toFixed(1)}" height="${acUnit.height.toFixed(1)}" rx="2" fill="#475569" stroke="#cbd5e1" stroke-width="1.1"/>
           <circle cx="${acUnit.cx.toFixed(1)}" cy="${acUnit.cy.toFixed(1)}" r="${(0.75 * SCALE).toFixed(1)}" fill="#1e293b" stroke="#94a3b8" stroke-width="0.9"/>
+          <rect x="${fiberConduit.x.toFixed(1)}" y="${fiberConduit.y.toFixed(1)}" width="${fiberConduit.width.toFixed(1)}" height="${fiberConduit.height.toFixed(1)}" rx="1" fill="#16a34a" stroke="#86efac" stroke-width="0.8"/>
+          <rect x="${elecMeter.x.toFixed(1)}" y="${elecMeter.y.toFixed(1)}" width="${elecMeter.width.toFixed(1)}" height="${elecMeter.height.toFixed(1)}" rx="1" fill="#64748b" stroke="#e2e8f0" stroke-width="0.9"/>
+          <rect x="${gasMeter.x.toFixed(1)}" y="${gasMeter.y.toFixed(1)}" width="${gasMeter.width.toFixed(1)}" height="${gasMeter.height.toFixed(1)}" rx="1" fill="#94a3b8" stroke="#f8fafc" stroke-width="0.9"/>
         `);
 
         // Green Utility Transformer Box in SE Front Corner (wx=93.0'–96.4', wy=45.5'–48.5')
@@ -1633,11 +1638,11 @@
           { wx: 103.7, wy: 40.0, title: 'WHITE ROCK PARK STRIPS (6\')', sub: 'Matches South Neighbors', color: '#f8fafc', border: '#cbd5e1', show: L.frontBeds },
           { wx: 65.5, wy: 37.5, title: "MELINDA'S HYACINTHS & 3152 SWING", sub: '2\' Porch Bed · Unobstructed View to Street', color: '#f472b6', border: '#ec4899', show: L.frontPlants || L.porchSwing },
           { wx: SE_MAPLE_WX, wy: SE_MAPLE_WY, title: 'NORWEGIAN SUNSET MAPLE', sub: '(83\', 39.5\') · 8\'–9.5\' Trunk / 11\'–12\'+ Lawn Clear', color: '#fdba74', border: '#ea580c', show: L.frontPlants },
-          { wx: 46.5, wy: 42.5, title: 'OPEN AC UNIT (3\'×3\')', sub: 'No Cover or Shroud', color: '#cbd5e1', border: '#64748b', show: L.houseStructure },
-          { wx: 43.0, wy: 45.5, title: 'SOUTH GRASS & 2\' BED', sub: 'Continues Under Gate to Front / Green Box', color: '#34d399', border: '#10b981', show: L.grass },
+          { wx: 46.5, wy: 42.5, title: 'OPEN AC + ELEC/GAS METERS', sub: 'Pavers Wrap AC & Wall (~4" Conduit Cutouts)', color: '#cbd5e1', border: '#64748b', show: L.houseStructure },
+          { wx: 37.0, wy: 45.0, title: 'SOUTH GRASS UP TO HOME', sub: 'Grass to Wall/AC Pavers (0 Gravel) + 2\' S. Bed', color: '#34d399', border: '#10b981', show: L.grass },
           { wx: 73.5, wy: 43.5, title: '555 SQ FT SE FRONT LAWN', sub: 'Grass Continues Under Gate · 45° Pavers', color: '#4ade80', border: '#10b981', show: L.grass },
-          { wx: 70.0, wy: 4.5, title: 'NORTH 8.5\' DOUBLE GATE', sub: 'Phase 2 (2027) · Road Base Inside / White Rock Outside', color: '#fbbf24', border: '#f59e0b', show: L.northGate },
-          { wx: 57.5, wy: 45.5, title: 'SOUTH 4\' WALK GATE', sub: 'Phase 1 (2026) · Grass & 2\' Bed Continue Under Gate', color: '#c084fc', border: '#a855f7', show: L.southGate },
+          { wx: 70.0, wy: 4.5, title: 'NORTH 8.5\' DOUBLE GATE (6\' H)', sub: 'Phase 2 (2027) · Road Base Inside / White Rock Outside', color: '#fbbf24', border: '#f59e0b', show: L.northGate },
+          { wx: 57.5, wy: 45.5, title: 'SOUTH 4\' WALK GATE (6\' H)', sub: 'Phase 1 (2026) · Grass & 2\' Bed Continue Under Gate', color: '#c084fc', border: '#a855f7', show: L.southGate },
           { wx: 48.0, wy: -2.5, title: 'NORTH NEIGHBOR: BARE DIRT', sub: '', color: '#fcd34d', border: '#b45309', show: L.neighbors },
           { wx: 48.0, wy: 52.5, title: 'SOUTH NEIGHBOR: WHITE ROCKS', sub: '', color: '#f8fafc', border: '#cbd5e1', show: L.neighbors }
         ];

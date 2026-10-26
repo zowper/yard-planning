@@ -10,8 +10,8 @@ canonical_topics:
   - "Front Yard Specimen Tree: Norwegian Sunset Maple centered at (wx=83.0', wy=39.5'), house elevation benchmarks, 3-stage high-canopy pruning (8.0'–9.5' trunk -> 11'–12'+ lawn ceiling), and 4-option placement audit"
   - "Melinda's fragrant jewel-toned Spring Hyacinth border (2.0' porch-front bed & 2.0' South front bed)"
   - "Continuous 2.0' Southern fence & front yard planting bed to the green utility box + 3-sided utility box grass screen"
-  - "Continuous seeded turf across Backyard (679 sq ft), South corridor under gate (110–151 sq ft) & SE Front Lawn (555 sq ft)"
-coordinates_covered: "West bed wx=0.0'–4.5', wy=0.0'–50.0'; South bed wx=0.0'–96.7', wy=47.5'–50.0'; Porch Hyacinth bed wx=65.2'–67.2', wy=31.0'–43.0'; Norwegian Sunset Maple wx=83.0', wy=39.5'"
+  - "Continuous seeded turf across Backyard (679 sq ft), South corridor up to house wall & under gate (176–201 sq ft) & SE Front Lawn (555 sq ft)"
+coordinates_covered: "West bed wx=0.0'–4.5', wy=0.0'–50.0'; South bed wx=0.0'–96.7', wy=47.5'–50.0'; Porch Hyacinth bed wx=59.7'–67.7', wy=32.5'–43.0'; Norwegian Sunset Maple wx=83.0', wy=39.5'"
 keywords: ["plants", "trees", "Standing Ovation Serviceberry", "Amelanchier", "Taylor Juniper", "Spartan Juniper", "Crimson Spire Oak", "Parkland Pillar Birch", "Karl Foerster", "Catmint", "Russian Sage", "Coneflower", "Norwegian Sunset Maple", "Keithsform", "Hyacinths", "pruning", "crown raising", "raspberries", "hardy kiwi", "grass seed"]
 related_files:
   - "docs/01-site-measurements-and-coords.md"
@@ -24,23 +24,23 @@ related_files:
 
 ---
 
-## 1. Continuous Open Turf Mandate (`~1,344–1,385 sq ft` Seeded in `2027 Phase 2`)
+## 1. Continuous Open Turf Mandate (`~1,410–1,435 sq ft` Seeded in `2027 Phase 2`)
 
-* **Maximum Open Grass (`90%–95%` Turf Preservation) Continuing Under the South Gate:**
-  * Preserves open, rectangular turf across the **Backyard ($679.0\text{ sq ft}$)**, the **$4.0'\text{+}$ wide South side corridor wrap ($110.0\text{–}151.0\text{ sq ft}$)**, and the **SE Front Yard ($555.0\text{ sq ft}$)**—with the **grass continuing directly under the South walk gate (`wx = 57.5'`, `wy = 43.5'–47.5'`) into the front yard** as one continuous lawn for recreation and single-pass mowing.
+* **Maximum Open Grass (`90%–95%` Turf Preservation) Extending to the Entire South House Wall, Wrapping the AC Paver Border & Continuing Under the South Gate:**
+  * Preserves open, rectangular turf across the **Backyard (`679.0 sq ft`)**, the **South Side Corridor (`176.0 sq ft` inside gate + `25.0 sq ft` East of gate = `201.0 sq ft` total, with zero gravel or white rock)**, and the **SE Front Yard (`555.0 sq ft`)**—extending right up to the continuous flush Holland pavers against the South house foundation wall (`wx = 30.0'–44.5'` and `wx = 48.5'–59.7'`, `wy = 41.0'–41.5'`, with $\approx 4"$ conduit cutouts around the internet/electric/gas ground lines), wrapping around the flush paver border of the $3.0'\times 3.0'$ Open AC Condenser (`wx = 44.5'–48.5', wy = 41.0'–44.5'`), and **continuing directly under the South walk gate (`wx = 57.5'`, `wy = 41.5'–47.5'`) into the front yard** as one continuous lawn for recreation and single-pass mowing.
   * Planted from premium **Kentucky Bluegrass / Perennial Rye / Fescue grass seed** over $4\text{ cu yds}$ of fine-graded topsoil in **2027 (Phase 2)**.
 
 ---
 
-## 2. Western Back Wall Bed ($4.0\text{ ft}$ Deep $+ 6\text{"}$ Paver $= 4.5\text{ ft}$ to Grass; $wx = 0.0'\text{–}4.0', wy = 0.0'\text{–}50.0'$)
+## 2. Western `~8.0'` Back Wall Bed ($4.0\text{ ft}$ Deep $+ 6\text{"}$ Paver $= 4.5\text{ ft}$ to Grass; $wx = 0.0'\text{–}4.0', wy = 0.0'\text{–}50.0'$)
 
-The $50.0\text{ ft}$ West precast concrete wall consists of **5 recessed stone-textured panels ($10.0\text{ ft}$ on-center)** separated by **6 fluted concrete columns ($1.5\text{ ft} \times 1.5\text{ ft}$ at $wy = 0.0', 10.0', 20.0', 30.0', 40.0', 50.0'$)**:
+The $50.0\text{ ft}$ wide by **`~8.0\text{ ft}$ tall** West precast concrete wall consists of **5 recessed stone-textured panels ($10.0\text{ ft}$ on-center)** separated by **6 fluted concrete columns ($1.5\text{ ft} \times 1.5\text{ ft}$ at $wy = 0.0', 10.0', 20.0', 30.0', 40.0', 50.0'$)**:
 
 ### 2.1 Locked-In Layout (`HYBRID_5_PLUS_4`): The `5 + 4` Alternating Designer Hybrid ($\approx \$280\text{–}\$380$ Total Tree Cost — `2028 Phase 3`)
 * **Why the `5 + 4` Rhythm Is Locked In:**
   1. **Architectural Framing ("A-B-A-B" Rhythm):** Instead of a monotonous "barcode" of identical evergreens, the **4 upright evergreen junipers (`J1`–`J4`) sit directly in front of the 4 interior concrete wall columns ($wy = 10.0', 20.0', 30.0', 40.0'$) like living green pillars**, while the **5 lush, soft-leaved columnar trees (`S1`–`S5`) sit centered inside each of the 5 stone wall panels ($wy = 5.0', 15.0', 25.0', 35.0', 45.0'$)** like framed artwork.
   2. **Solves Claustrophobia ($17.5\text{ ft}$ Patio-to-Wall Span):** Because the concrete patio edge ($wx = 17.5'$) is only **$17.5\text{ ft}$ East of the West wall** (leaving **$13.0\text{ ft}$ of open grass** between the patio and the $wx = 4.5'$ mower strip), every tree in the `5 + 4` layout stays **$3.0\text{ to }5.0\text{ ft}$ narrow**, preserving $100\%$ of the open sky overhead while leaving $2.5\text{ ft}$ breathing gaps so the decorative tan/grey stone panels remain visible.
-  3. **Blocks City Works Buildings/Antennas + Adds Afternoon Shade + Soft Lush Green for Melinda:** The 5 leafy panel pillars rise **$15\text{ to }25\text{ ft}$ tall** ($9\text{ to }19\text{ ft}$ above the $6\text{ ft}$ concrete wall) to screen the neighboring City Works buildings and antennas and cast dappled afternoon shade across the lawn and patio, while the 4 evergreen column junipers provide 365-day winter structure.
+  3. **Blocks City Works Buildings/Antennas + Adds Afternoon Shade + Soft Lush Green for Melinda:** The 5 leafy panel pillars rise **$15\text{ to }25\text{ ft}$ tall** ($7\text{ to }17\text{ ft}$ above the $\sim 8.0\text{ ft}$ concrete wall) to screen the neighboring City Works buildings and antennas and cast dappled afternoon shade across the lawn and patio, while the 4 evergreen column junipers provide 365-day winter structure.
 
 * **Part 1 — 5× Leafy Columnar Pillars Centered in Each $10.0\text{ ft}$ Panel (`S1`–`S5` at $wy = 5.0', 15.0', 25.0', 35.0', 45.0'$, $wx = 2.0'$):**
   * **#1 Best Pick ("Cross Between a Juniper & a Hornbeam") — `'Standing Ovation'` Serviceberry (*Amelanchier alnifolia 'Obelisk'*):**
