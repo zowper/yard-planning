@@ -295,10 +295,10 @@
   <!-- 4. Current Property Photos -->
   <section id="photos" class="py-8 max-w-7xl mx-auto px-4 sm:px-6 w-full">
     <div class="flex flex-wrap items-center justify-between gap-2 mb-4">
-      <h2 class="text-lg font-bold text-slate-900">Current Yard &amp; Rainfall Pooling</h2>
+      <h2 class="text-lg font-bold text-slate-900">Current Yard, Wall Verification &amp; Rainfall Pooling</h2>
       <div class="flex flex-wrap gap-1.5">
         <button onclick="filterPhotos('ALL', this)" class="photo-filter-btn px-3 py-1 rounded-lg text-xs font-bold bg-emerald-700 text-white transition">
-          All (33)
+          All (36)
         </button>
         <button onclick="filterPhotos('RAIN_DRAINAGE', this)" class="photo-filter-btn px-3 py-1 rounded-lg text-xs font-bold bg-sky-100 text-sky-900 border border-sky-300 hover:bg-sky-200 transition">
           Rain / Drainage (3)
@@ -310,10 +310,10 @@
           Front (9)
         </button>
         <button onclick="filterPhotos('NORTH_SIDE', this)" class="photo-filter-btn px-3 py-1 rounded-lg text-xs font-bold bg-slate-200 text-slate-800 hover:bg-slate-300 transition">
-          North (5)
+          North (6)
         </button>
         <button onclick="filterPhotos('SOUTH_SIDE', this)" class="photo-filter-btn px-3 py-1 rounded-lg text-xs font-bold bg-slate-200 text-slate-800 hover:bg-slate-300 transition">
-          South (3)
+          South (5)
         </button>
       </div>
     </div>
@@ -575,6 +575,9 @@
     }
 
     const CURRENT_PHOTOS = [
+      { file: "wall_verify_01_north_stone_and_siding_wrap.jpg", zone: "NORTH_SIDE", tag: "North Wall Verify · 2' Stone + 1' Siding Wrap (Gate @ wx=70.0')" },
+      { file: "wall_verify_02_south_wall_wide_sw_to_se.jpg", zone: "SOUTH_SIDE", tag: "South Wall Verify · Wide SW-to-SE (AC @ 41.5'–44.5', Gate @ 55.5')" },
+      { file: "wall_verify_03_south_wall_utilities_and_stone_wrap.jpg", zone: "SOUTH_SIDE", tag: "South Wall Verify · AC, Green Tube (47.1'–50'), Elec (51.2'), Gas (56'–57.5') & 2' Stone Wrap" },
       { file: "rain_pooling_01_west_wall_from_patio.jpg", zone: "BACKYARD", isRain: true, tag: "Rain Pooling · West Wall Bed Trough (wx=0'–4.5')" },
       { file: "rain_pooling_02_nw_downspout_and_north_trough.jpg", zone: "BACKYARD", isRain: true, tag: "Rain Pooling · NW Downspout Pipe & North Trough" },
       { file: "rain_pooling_03_sw_downspout_and_south_trough.jpg", zone: "BACKYARD", isRain: true, tag: "Rain Pooling · SW Downspout Pipe & South Trough" },
@@ -673,13 +676,13 @@
         title: 'South Vinyl Fence (50% Neighbor Split), Person Gate (100% Ours) & Builder Warranty Grading Check',
         badgeColor: 'bg-emerald-100 text-emerald-900 border-emerald-300',
         hybridDefault: 'PRO',
-        summary: 'Enclose the South property line (57.5\' white vinyl fence split 50/50 with our South neighbor, with a 2" bottom-rail stormwater swale gap at wx = 0.0\'–6.0\'), install our 9.0\' South pedestrian ("person") gate return at wx = 57.5\' over the continuous grass corridor (100% our cost; set back 2.2\' West of the SE stucco corner behind the meters), and perform the $0 1-year builder warranty grading check on the settled West wall footing trench.',
-        phaseNote: 'Cost-Split & Drainage Rule: We split the 57.5\' shared South property-line fence & 8 line post footings 50/50 with our South neighbor (saving $1,210 Pro / $750 DIY), while paying 100% for our own 4.0\' walk gate, 5.0\' return wings, and gate hardware, and leaving a 2" bottom-rail clearance at wx = 0\'–6\' so heavy rain never dams behind the fence.',
+        summary: 'Enclose the South property line (55.5\' white vinyl fence split 50/50 with our South neighbor, with a 2" bottom-rail stormwater swale gap at wx = 0.0\'–6.0\'), install our 9.0\' South pedestrian ("person") gate return at wx = 55.5\' over the continuous grass corridor (100% our cost; set back 4.2\' West of the SE stucco corner and lined up against flat stucco right behind the wx = 56.0\'–57.5\' gas meter), and perform the $0 1-year builder warranty grading check on the settled West wall footing trench.',
+        phaseNote: 'Cost-Split & Drainage Rule: We split the 55.5\' shared South property-line fence & 8 line post footings 50/50 with our South neighbor (saving $1,210 Pro / $750 DIY), while paying 100% for our own 4.0\' walk gate, 5.0\' return wings, and gate hardware at wx = 55.5\' (leaving the gas meter outside/East of the gate for 24/7 utility access), and leaving a 2" bottom-rail clearance at wx = 0\'–6\' so heavy rain never dams behind the fence.',
         items: [
           {
             name: 'South Property Line White Vinyl Privacy Fence (6\' Tall — 50% Neighbor Split + 2" West Swale Gap)',
-            spec: '57.5 lin ft along South boundary (wx = 0.0\'–57.5\': 30.0\' backyard + 27.5\' South side yard, with 2" bottom-rail drainage clearance gap at wx = 0.0\'–6.0\' + $0 builder warranty West trench re-grade check) — Full fence cost ($2,420 Pro / $1,500 DIY) split 50/50 with South neighbor',
-            qty: '57.5 lin ft (50% Share)',
+            spec: '55.5 lin ft along South boundary (wx = 0.0\'–55.5\': 30.0\' backyard + 25.5\' South side yard, with 2" bottom-rail drainage clearance gap at wx = 0.0\'–6.0\' + $0 builder warranty West trench re-grade check) — Full fence cost ($2,420 Pro / $1,500 DIY) split 50/50 with South neighbor',
+            qty: '55.5 lin ft (50% Share)',
             diyCost: 750,
             diyRange: '$675–$825',
             proCost: 1210,
@@ -687,7 +690,7 @@
           },
           {
             name: 'South Pedestrian ("Person") Gate & Fixed Vinyl Return Wings (100% Our Cost)',
-            spec: '9.0\' span at wx = 57.5\' (4.0\' single-swing walk gate aligned over the continuous wy = 43.5\'–47.5\' grass corridor + 5.0\' fixed vinyl wings) — Paid 100% by us',
+            spec: '9.0\' span at wx = 55.5\' (4.0\' single-swing walk gate aligned over the continuous wy = 43.5\'–47.5\' grass corridor + 5.0\' fixed vinyl wings, lined up against flat stucco right behind the wx = 56.0\'–57.5\' gas meter) — Paid 100% by us',
             qty: '9.0 lin ft (1 Gate · 100%)',
             diyCost: 425,
             diyRange: '$375–$475',
@@ -712,7 +715,7 @@
         badgeColor: 'bg-teal-100 text-teal-900 border-teal-300',
         hybridDefault: 'DIY',
         hybridBadgeLabel: 'Pro Fence + DIY Drainage/Turf/Front',
-        summary: 'Install the 70.0\' North white vinyl fence (50/50 neighbor split) and our 8.5\' double-swing vehicle gate at wx = 70.0\' (100% our cost), bury 4" smooth-wall PVC roof downspout drain lines from the NW & SW rear corners sloped East to front pop-up emitters + 2× 9"×9" West lawn catch basins (wx=4.5\', wy=12\' & 38\') + a capped 4" stub-out (18.0\', 20.5\') for the 2030 Patio Awning gutter, trench the 5-hydrozone underground sprinkler system (with PRS40-CV check valves on low West heads B1, B6, B8, B9, B11), lay all ~222 lin ft of flush Holland paver mow strips (running continuously along the South house wall, wrapping around the AC condenser pad, and notched ~4" around the fiber/electric/gas ground conduits), crown the 4.0\' West Wall Bed +3"–4" above paver grade while seeding ~1,435 sq ft of lawn continuing under the South gate (zero gravel on the South side), and complete the Front Yard Norwegian Sunset Maple (wx=83.0\', wy=39.5\'), Melinda\'s Hyacinths, and white decorative rock.',
+        summary: 'Install the 70.0\' North white vinyl fence (50/50 neighbor split) and our 8.5\' double-swing vehicle gate at wx = 70.0\' (100% our cost; lined up against flat stucco right behind the wx = 70.2\'–73.2\' North stone & siding wrap), bury 4" smooth-wall PVC roof downspout drain lines from the NW & SW rear corners sloped East to front pop-up emitters + 2× 9"×9" West lawn catch basins (wx=4.5\', wy=12\' & 38\') + a capped 4" stub-out (18.0\', 20.5\') for the 2030 Patio Awning gutter, trench the 5-hydrozone underground sprinkler system (with PRS40-CV check valves on low West heads B1, B6, B8, B9, B11), lay all ~222 lin ft of flush Holland paver mow strips (running continuously along the South house wall, wrapping around the AC condenser pad at wx=41.5\'–44.5\', and notched ~4" around the internet/electric/gas ground conduits at wx=50.0\', 51.2\' & 56.2\'), crown the 4.0\' West Wall Bed +3"–4" above paver grade while seeding ~1,435 sq ft of lawn continuing under the South gate (zero gravel on the South side), and complete the Front Yard Norwegian Sunset Maple (wx=83.0\', wy=39.5\'), Melinda\'s Hyacinths, and white decorative rock.',
         phaseNote: '2027 Trench & Drainage Synergy: Burying the 4" smooth-wall PVC downspout drain lines and 2 West wall catch basins ($280 DIY) while the 2027 sprinkler and paver trenches are already open permanently eliminates West wall rainfall pooling before planting a single tree in 2028.',
         items: [
           {
@@ -727,7 +730,7 @@
           },
           {
             name: 'North Double-Swing Vehicle Gate & Heavy-Duty Hardware (100% Our Cost)',
-            spec: '9.0\' span at wx = 70.0\' (8.5\' clear opening, two 4.25\' steel-framed vinyl leaves set back 3.2\' West of NE garage face) + steel-core hinge post stiffeners, ball-bearing hinges, dual drop rods & gate footings — Paid 100% by us',
+            spec: '9.0\' span at wx = 70.0\' (8.5\' clear opening, two 4.25\' steel-framed vinyl leaves set back 3.2\' West of NE garage face and lined up against flat stucco right behind the wx = 70.2\'–71.2\' siding wrap) + steel-core hinge post stiffeners, ball-bearing hinges, dual drop rods & gate footings — Paid 100% by us',
             qty: '9.0 lin ft (8.5\' Dbl Gate · 100%)',
             hybridDefault: 'PRO',
             diyCost: 850,
@@ -746,7 +749,7 @@
           },
           {
             name: '5-Hydrozone Underground Sprinkler & PC Drip System (28 Directional Heads w/ PRS40-CV Check Valves · 0% Overspray)',
-            spec: '1" Febco 765 PVB backflow at N. hose bib (wx=51\', wy=8.6\'), 6/8-zone smart Wi-Fi controller in garage, M1/M2 valve manifolds, 2" Schedule 40 road-base sleeves, Zone 1 (15 Backyard PRS40 + MP Rotators w/ PRS40-CV check-valve bodies on low West edge heads B1, B6, B8, B9, B11 to prevent low-head drainage into West bed, 5.32 GPM — zero spray on patio/awning), Zone 2 (4 South Paver MP Side-Strips, 0.88 GPM — 5.75\' N throw on S1/S3 to S. wall pavers & 3.0\' N throw on S2 opposite AC pad so zero water touches Open AC Unit or stucco), Zone 3 (9 SE Front PRS40 + MP Rotators, 3.49 GPM), Zone 4 (30 PSI PC Drip in W/S/Porch beds + Norwegian Sunset Maple root ring, 1.63 GPM) & Zone 5 (25 PSI Grid Drip stub-out for 5 Cedar Boxes, 1.38 GPM)',
+            spec: '1" Febco 765 PVB backflow at N. hose bib (wx=51\', wy=8.6\'), 6/8-zone smart Wi-Fi controller in garage, M1/M2 valve manifolds, 2" Schedule 40 road-base sleeves, Zone 1 (15 Backyard PRS40 + MP Rotators w/ PRS40-CV check-valve bodies on low West edge heads B1, B6, B8, B9, B11 to prevent low-head drainage into West bed, 5.32 GPM — zero spray on patio/awning), Zone 2 (4 South Paver MP Side-Strips at wx=34.5\', 43.0\', 51.5\', 60.0\', 0.88 GPM — 5.75\' N throw on S1/S3 to S. wall pavers & 3.0\' N throw on S2 opposite AC pad at wx=43.0\' so zero water touches Open AC Unit or stucco), Zone 3 (9 SE Front PRS40 + MP Rotators, 3.49 GPM), Zone 4 (30 PSI PC Drip in W/S/Porch beds + Norwegian Sunset Maple root ring, 1.63 GPM) & Zone 5 (25 PSI Grid Drip stub-out for 5 Cedar Boxes, 1.38 GPM)',
             qty: '5 Active Zones + 1 Spare (28 Heads · 12.70 GPM Total)',
             diyCost: 1350,
             diyRange: '$1,150–$1,550',
@@ -755,7 +758,7 @@
           },
           {
             name: 'Flush Lawn Paver Mow Strip — Front & Back (45° Corners + S. Wall/AC Wrap + ~4" Conduit Cutouts)',
-            spec: 'Installed everywhere grass meets mulch (including the 6.0\' octagonal Norwegian Sunset Maple tree ring), compacted road base, or the South house foundation wall (running right along the South wall wx=30.0\'–44.5\', wrapping the 3\'×3\' AC condenser pad on its West/South/East sides at wx=44.5\'–48.5\', and returning along the South house wall wx=48.5\'–59.7\' with ~4" cutouts notched around the fiber, electric, and gas conduits entering the ground, leaving ~3"+ of solid paver width to spare; no pavers where grass meets concrete driveway, patio, or sidewalk) — Home Depot Pavestone Holland Pavers (~84\' Front + ~138\' Back/Side, with a deepened 6" non-woven geotextile + 3"–4" compacted road-base trench along the 50\' West wall run) + polymeric sand',
+            spec: 'Installed everywhere grass meets mulch (including the 6.0\' octagonal Norwegian Sunset Maple tree ring), compacted road base, or the South house foundation wall (running right along the South wall wx=30.0\'–41.0\', wrapping the 3\'×3\' AC condenser pad on its West/South/East sides at wx=41.0\'–45.0\', and returning along the South house wall wx=45.0\'–59.7\' with ~4" cutouts notched around the internet (wx=50.0\'), electric (wx=51.2\'), and gas (wx=56.2\') conduits entering the ground, leaving ~3"+ of solid paver width to spare; no pavers where grass meets concrete driveway, patio, or sidewalk) — Home Depot Pavestone Holland Pavers (~84\' Front + ~138\' Back/Side, with a deepened 6" non-woven geotextile + 3"–4" compacted road-base trench along the 50\' West wall run) + polymeric sand',
             qty: '~222 lin ft (340–700 pcs)',
             diyCost: 450,
             diyRange: '$350–$565',
@@ -764,7 +767,7 @@
           },
           {
             name: 'Crowned West Bed Grading (+3"–4") & Grass Seed / Topsoil Leveling — Front & Back (Maximized South Grass · Zero South Gravel)',
-            spec: 'Backfill settled West precast wall footing trench and crown the 4.0\' West Wall Bed +3"–4" higher than the wx=4.0\'–4.5\' flush paver strip (shedding rainwater East to the lawn swale & catch basins and protecting the precast wall from efflorescence/spalling) + 4–5 cu yds screened topsoil leveling + premium Kentucky Bluegrass / Perennial Rye / Turf-Type Tall Fescue seed blend across 555 sq ft SE Front, 679 sq ft Backyard & ~201 sq ft South side corridor/gate wrap (extending all the way up to the flush Holland pavers along the entire South house wall and around the AC condenser pad, and continuing under the wx = 57.5\' South gate with zero gravel on the South side)',
+            spec: 'Backfill settled West precast wall footing trench and crown the 4.0\' West Wall Bed +3"–4" higher than the wx=4.0\'–4.5\' flush paver strip (shedding rainwater East to the lawn swale & catch basins and protecting the precast wall from efflorescence/spalling) + 4–5 cu yds screened topsoil leveling + premium Kentucky Bluegrass / Perennial Rye / Turf-Type Tall Fescue seed blend across 555 sq ft SE Front, 679 sq ft Backyard & ~201 sq ft South side corridor/gate wrap (extending all the way up to the flush Holland pavers along the entire South house wall and around the AC condenser pad, and continuing under the wx = 55.5\' South gate with zero gravel on the South side)',
             qty: '~1,435 sq ft Seeded Lawn + Crowned West Bed',
             diyCost: 320,
             diyRange: '$250–$390',
@@ -788,7 +791,7 @@
         title: 'Backyard \'Standing Ovation\' Serviceberries/Mulch (Planted +2"–3" Proud on Crowned West Bed) + Lighting + Porch Swing',
         badgeColor: 'bg-indigo-100 text-indigo-900 border-indigo-300',
         hybridDefault: 'DIY',
-        summary: 'Plant the West Wall 5+4 Designer Hybrid trees (5× \'Standing Ovation\' Serviceberry pillars with snow-white spring blossoms, summer Juneberries & fiery red-orange fall foliage + 4× Evergreen Column Junipers planted with root flares +2"–3" proud of the crowned +3"–4" West bed grade to prevent wet feet / root rot) & 10-spot perennial under-story, plant the 2.0\' South fence berry/kiwi/pea trellis bed (connecting into the front-yard South bed to the green box; AC unit is wrapped in flush pavers and East fiber/electric/gas conduits are notched into the wall pavers with grass right up to the pavers and zero gravel), till the 8\'×23\' in-ground flat-dirt vegetable garden, bury low-voltage wire right before laying 3.5 cu yds of backyard bark mulch, install all 2700K Front & Back LED lighting, and hang the 3152 front porch swing looking out over Melinda\'s hyacinths.',
+        summary: 'Plant the West Wall 5+4 Designer Hybrid trees (5× \'Standing Ovation\' Serviceberry pillars with snow-white spring blossoms, summer Juneberries & fiery red-orange fall foliage + 4× Evergreen Column Junipers planted with root flares +2"–3" proud of the crowned +3"–4" West bed grade to prevent wet feet / root rot) & 10-spot perennial under-story, plant the 2.0\' South fence berry/kiwi/pea trellis bed (connecting into the front-yard South bed to the green box; AC unit at wx=41.5\'–44.5\' is wrapped in flush pavers and East internet/electric/gas conduits are notched into the wall pavers with grass right up to the pavers and zero gravel), till the 8\'×23\' in-ground flat-dirt vegetable garden, bury low-voltage wire right before laying 3.5 cu yds of backyard bark mulch, install all 2700K Front & Back LED lighting, and hang the 3152 front porch swing looking out over Melinda\'s hyacinths.',
         phaseNote: 'Sequencing & Root-Health Win: Planting the 4 Junipers and 5 Serviceberries with root flares +2"–3" proud on the crowned 4.0\' West bed prevents Phytophthora root rot, while burying 12/2 low-voltage wire right before laying weed fabric and 3.5 cu yds of bark mulch avoids ever digging up finished mulch later.',
         items: [
           {
@@ -802,7 +805,7 @@
           },
           {
             name: 'South Fence 2.0\' Berry/Kiwi/Pea Bed (Paver-Wrapped Open AC, Wall Paver Conduit Cutouts & Grass Corridor)',
-            spec: 'Trellised raspberries, hardy kiwi (\'Issai\'), sugar snap peas & alpine strawberries along the entire South fence (wx = 0.0\'–57.5\', wy = 48.0\'–50.0\', continuing in the front yard all the way to the green box; AC unit at wx = 45.0\'–48.0\' is wrapped in flush pavers and remains completely open, while East fiber/electric/gas conduits at wx = 49.8\'–54.5\' have ~4" cutouts in the South wall pavers with grass everywhere else and zero gravel)',
+            spec: 'Trellised raspberries, hardy kiwi (\'Issai\'), sugar snap peas & alpine strawberries along the entire South fence (wx = 0.0\'–55.5\', wy = 48.0\'–50.0\', continuing in the front yard all the way to the green box; AC unit at wx = 41.5\'–44.5\' is wrapped in flush pavers and remains completely open, while East internet/electric/gas conduits at wx = 50.0\'–56.2\' have ~4" cutouts in the South wall pavers with grass everywhere else and zero gravel)',
             qty: '~16 Berry/Trellis Plants & Trellis',
             diyCost: 340,
             diyRange: '$280–$400',

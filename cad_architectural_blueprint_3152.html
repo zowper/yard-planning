@@ -297,7 +297,7 @@
     const WORLD_SPAN_WY = WORLD_MAX_WY - WORLD_MIN_WY;
 
     const LOCKED_NORTH_GATE_WX = 70.0;
-    const LOCKED_SOUTH_GATE_WX = 57.5;
+    const LOCKED_SOUTH_GATE_WX = 55.5;
 
     const SE_MAPLE_WX = 83.0;
     const SE_MAPLE_WY = 39.5;
@@ -357,11 +357,11 @@
     // Phase-to-Photo mapping for Photo View (whole-phase visualization photos, not per-element)
     const PHASE_PHOTOS = {
       'phase-1': [
-        { title: 'Phase 1 (2026) · South Vinyl Fence & 4\' Walk Gate (Grass & 2\' Bed Under Gate)', url: 'photos_backyard_ideas/render_south_gate_porch_entry.jpg' },
-        { title: 'Phase 1 (2026) · South Side Corridor & Open AC Unit (No Cover/Shroud)', url: 'photos_backyard_ideas/render_south_side_flagstone_ac_screen.jpg' }
+        { title: 'Phase 1 (2026) · South Vinyl Fence & 4\' Walk Gate (wx=55.5\' Behind Gas Meter)', url: 'photos_backyard_ideas/render_south_gate_porch_entry.jpg' },
+        { title: 'Phase 1 (2026) · South Side Corridor & Open AC Unit (wx=41.5\'–44.5\')', url: 'photos_backyard_ideas/render_south_side_flagstone_ac_screen.jpg' }
       ],
       'phase-2': [
-        { title: 'Phase 2 (2027) · North Double Gate & White Rock NE Strip (Stops at Fence)', url: 'photos_backyard_ideas/render_north_vehicle_gate_ne_strip.jpg' },
+        { title: 'Phase 2 (2027) · North Double Gate (wx=70.0\' Behind Siding) & White Rock NE Strip', url: 'photos_backyard_ideas/render_north_vehicle_gate_ne_strip.jpg' },
         { title: 'Phase 2 (2027) · Front Lawn, Melinda\'s Hyacinths, Norwegian Sunset Maple & 45° Pavers', url: 'photos_backyard_ideas/render_front_se_lawn_chamfered_beds.jpg' },
         { title: 'Phase 2 (2027) · Full Front Elevation & White Rock 6\' Park Strips', url: 'photos_backyard_ideas/render_front_full_elevation_park_strips.jpg' }
       ],
@@ -386,12 +386,12 @@
         year: 2026,
         badge: 'Phase 1 · 2026',
         title: 'South Fence & Walk Gate',
-        cost: '$2,113',
-        subtitle: '57.5\' S. Fence (50% Split) + 4\' Gate',
+        cost: '$2,150',
+        subtitle: '55.5\' S. Fence (50% Split) + 4\' Gate @ wx=55.5\' (Behind Gas Meter)',
         accent: '#c084fc',
         layers: [
-          { key: 'southFence', label: 'South Vinyl Fence (57.5\')', swatch: '#c084fc', defaultOn: true },
-          { key: 'southGate', label: 'South 4\' Walk Gate & Wings', swatch: '#34d399', defaultOn: true }
+          { key: 'southFence', label: 'South Vinyl Fence (55.5\')', swatch: '#c084fc', defaultOn: true },
+          { key: 'southGate', label: 'South 4\' Walk Gate @ wx=55.5\' (Behind Gas Meter)', swatch: '#34d399', defaultOn: true }
         ]
       },
       {
@@ -399,12 +399,12 @@
         year: 2027,
         badge: 'Phase 2 · 2027',
         title: 'N. Fence, Sprinklers, Pavers & Hyacinths',
-        cost: '$5,610',
-        subtitle: '70\' N. Fence, Sprinklers, Pavers, Hyacinths & Norwegian Sunset Maple',
+        cost: '$5,800',
+        subtitle: '70\' N. Fence (@ wx=70.0\' Behind Siding), Sprinklers, Pavers, Hyacinths & Maple',
         accent: '#34d399',
         layers: [
           { key: 'northFence', label: 'North Vinyl Fence (70.0\')', swatch: '#c084fc', defaultOn: true },
-          { key: 'northGate', label: 'North 8.5\' Double Gate', swatch: '#fbbf24', defaultOn: true },
+          { key: 'northGate', label: 'North 8.5\' Double Gate @ wx=70.0\' (Behind Siding)', swatch: '#fbbf24', defaultOn: true },
           { key: 'grass', label: 'Sod (BY) + Seeded Front Lawn', swatch: '#22c55e', defaultOn: true },
           { key: 'pavers', label: '45° Holland Paver Mow Strip (~222\')', swatch: '#2dd4bf', defaultOn: true },
           { key: 'frontBeds', label: '2\' Porch Bed, 6\' Tree Ring & Park Strips', swatch: '#f1f5f9', defaultOn: true },
@@ -976,11 +976,11 @@
         out.push(`<rect x="${gBed.x.toFixed(1)}" y="${gBed.y.toFixed(1)}" width="${gBed.width.toFixed(1)}" height="${gBed.height.toFixed(1)}" fill="${gRockFill}" stroke="#94a3b8" stroke-width="1.1"/>`);
       }
 
-      // 8. PHASE 2 (2027) UNIFIED CONTINUOUS LAWN TURF (Grass up to South house wall pavers wx=30.0'–44.5' & 48.5'–59.7', wrapping AC paver border + 6.0'×6.0' Octagonal Maple Cutout!)
+      // 8. PHASE 2 (2027) UNIFIED CONTINUOUS LAWN TURF (Grass up to South house wall pavers wx=30.0'–41.0' & 45.0'–59.7', wrapping AC paver border + 6.0'×6.0' Octagonal Maple Cutout!)
       const unifiedLawnPts = [
         [4.5, 10.5], [6.5, 8.5], [25.0, 8.5], [26.5, 10.0], [26.5, 20.0],
         [17.5, 20.0], [17.5, 41.0], [30.0, 41.0], [30.0, 41.5],
-        [44.5, 41.5], [44.5, 44.5], [48.5, 44.5], [48.5, 41.5], [59.2, 41.5], [59.2, 43.5],
+        [41.0, 41.5], [41.0, 44.5], [45.0, 44.5], [45.0, 41.5], [59.2, 41.5], [59.2, 43.5],
         [66.15, 43.5], [68.2, 41.45], [68.2, 32.5], [81.0, 32.5], [81.0, 29.0], [96.7, 29.0],
         [96.7, 43.0], [91.65, 43.0], [87.15, 47.5],
         [6.5, 47.5], [4.5, 45.5]
@@ -1020,11 +1020,11 @@
         out.push(`</g>`);
       }
 
-      // 10. PHASE 2 (2027) CONTINUOUS 6" HOLLAND PAVERS WITH 45° CHAMFERED CORNERS (Against Entire S. House Wall, Wrapping AC Unit, Notched Around Conduits, Perimeter & Maple Ring!)
+      // 10. PHASE 2 (2027) CONTINUOUS 6" HOLLAND PAVERS WITH 45° CHAMFERED CORNERS (Against Entire S. House Wall, Wrapping AC Unit at wx=41.0'–45.0', Notched Around Conduits, Perimeter & Maple Ring!)
       if (L.pavers) {
         const treeOctClosedPts = [...mapleOctMidPts, mapleOctMidPts[0]];
         const paverChains = [
-          [[30.0, 41.25], [44.75, 41.25], [44.75, 44.25], [48.25, 44.25], [48.25, 41.25], [59.45, 41.25], [59.45, 43.25], [66.05, 43.25], [67.95, 41.35], [67.95, 32.5]],
+          [[30.0, 41.25], [41.25, 41.25], [41.25, 44.25], [44.75, 44.25], [44.75, 41.25], [59.45, 41.25], [59.45, 43.25], [66.05, 43.25], [67.95, 41.35], [67.95, 32.5]],
           [[26.75, 20.0], [26.75, 10.15], [24.85, 8.25], [6.4, 8.25], [4.25, 10.4], [4.25, 45.6], [6.4, 47.75], [87.25, 47.75], [91.75, 43.25], [96.7, 43.25]],
           treeOctClosedPts
         ];
@@ -1054,7 +1054,7 @@
         // 11A. Schedule 40 PVC Mainline, 2" Conduit Sleeves Under Road Base, POC/PVB Backflow & Valve Manifold Boxes (M1 & M2)
         const sleeveNorthPad = projectPoly([[28.5, 7.8], [51.0, 7.8]]);
         const sleeveRearPath = projectPoly([[28.5, 7.8], [28.5, 20.0]]);
-        const lateralSouthCorridor = projectPoly([[51.0, 7.8], [51.0, 4.5], [28.5, 4.5], [28.5, 47.25], [62.0, 47.25]]);
+        const lateralSouthCorridor = projectPoly([[51.0, 7.8], [51.0, 4.5], [28.5, 4.5], [28.5, 47.25], [60.0, 47.25]]);
         out.push(`
           <polyline points="${sleeveNorthPad}" fill="none" stroke="#94a3b8" stroke-width="4.2" opacity="0.55" stroke-linecap="round"/>
           <polyline points="${sleeveNorthPad}" fill="none" stroke="#38bdf8" stroke-width="1.8" stroke-dasharray="6,3"/>
@@ -1120,12 +1120,12 @@
         });
 
         // ZONE 2: South Side 3.0'–6.0' Shaded Corridor (4 Rectangular Side-Strip Heads S1–S4 · Hunter MP Side-Strip 3.0'–5.75'×9.0' · 0.88 GPM)
-        // Placed strictly on the South Paver Edge (wy=47.25') spraying Northward to the South wall pavers (wy=41.5') or AC paver wrap (wy=44.25') so ZERO water hits the Open AC Unit!
+        // Placed strictly on the South Paver Edge (wy=47.25') spraying Northward to the South wall pavers (wy=41.5') or AC paver wrap (wy=44.25' at wx=43.0') so ZERO water hits the Open AC Unit!
         const zone2StripHeads = [
-          { id: 'S1', wx: 35.0, wy: 47.25, halfW: 4.5, throwN: 5.75 },
-          { id: 'S2', wx: 44.0, wy: 47.25, halfW: 4.5, throwN: 3.00 },
-          { id: 'S3', wx: 53.0, wy: 47.25, halfW: 4.5, throwN: 5.75 },
-          { id: 'S4', wx: 62.0, wy: 47.25, halfW: 4.5, throwN: 3.75 }
+          { id: 'S1', wx: 34.5, wy: 47.25, halfW: 4.5, throwN: 5.75 },
+          { id: 'S2', wx: 43.0, wy: 47.25, halfW: 4.5, throwN: 3.00 },
+          { id: 'S3', wx: 51.5, wy: 47.25, halfW: 4.5, throwN: 5.75 },
+          { id: 'S4', wx: 60.0, wy: 47.25, halfW: 4.5, throwN: 3.75 }
         ];
         zone2StripHeads.forEach(s => {
           const stripRectPts = projectPoly([
@@ -1234,7 +1234,7 @@
         });
       }
 
-      // 13. HOUSE STRUCTURE + COMPLETELY OPEN AC UNIT (NO COVER/SHROUD) + GREEN UTILITY BOX
+      // 13. HOUSE STRUCTURE + STONE & SIDING WRAPS + COMPLETELY OPEN AC UNIT (wx=41.5'–44.5') + INTERNET TUBE & METERS + GREEN UTILITY BOX
       if (L.houseStructure) {
         const rearWall = projectRect(-1.0, 0.0, 0.0, 50.0);
         const wallFill = isDrone ? '#a8a29e' : (isColor ? '#94a3b8' : T.wallConcrete);
@@ -1272,19 +1272,39 @@
           `);
         }
 
+        // North Wall 2.0' Stone Wrap (wx=71.2'–73.2', wy=8.75'–9.0') + 1.0' Siding & White Trim Wrap (wx=70.2'–71.2', wy=8.82'–9.0')
+        const northStoneWrap = projectRect(71.2, 8.72, 73.2, 9.0);
+        const northSidingWrap = projectRect(70.2, 8.80, 71.2, 9.0);
+        // South Wall 2.0' Stone & Siding Wrap (wx=57.7'–59.7', wy=41.0'–41.28') + '3152' Porch Pillar (wx=64.2'–65.7', wy=39.5'–41.25')
+        const southStoneWrap = projectRect(57.7, 41.0, 59.7, 41.28);
         const pillarRect = projectRect(64.2, 39.5, 65.7, 41.25);
-        out.push(`<rect x="${pillarRect.x}" y="${pillarRect.y}" width="${pillarRect.width}" height="${pillarRect.height}" fill="${T.stoneFill}" stroke="${T.houseStroke}" stroke-width="1.2"/>`);
-
-        // Completely Open AC Condenser Pad & Unit (3.0' × 3.0' at wx=45.0'–48.0', wy=41.0'–44.0') + Fiber Conduit (wx=49.8'), Electricity Meter (wx=51.0'–52.2') & Gas Meter (wx=52.8'–54.5') to the East (with ~4" conduit cutouts in the flush wall pavers!)
-        const acPad = projectRect(45.0, 41.0, 48.0, 44.0);
-        const acUnit = projectRect(45.35, 41.35, 47.65, 43.65);
-        const fiberConduit = projectRect(49.65, 41.0, 50.0, 41.32);
-        const elecMeter = projectRect(51.0, 41.0, 52.2, 41.34);
-        const gasMeter = projectRect(52.8, 41.0, 54.4, 41.35);
         out.push(`
+          <rect x="${northStoneWrap.x.toFixed(1)}" y="${northStoneWrap.y.toFixed(1)}" width="${northStoneWrap.width.toFixed(1)}" height="${northStoneWrap.height.toFixed(1)}" fill="${T.stoneFill}" stroke="${T.houseStroke}" stroke-width="1.0"/>
+          <rect x="${northSidingWrap.x.toFixed(1)}" y="${northSidingWrap.y.toFixed(1)}" width="${northSidingWrap.width.toFixed(1)}" height="${northSidingWrap.height.toFixed(1)}" fill="#cbd5e1" stroke="#f8fafc" stroke-width="0.9"/>
+          <rect x="${southStoneWrap.x.toFixed(1)}" y="${southStoneWrap.y.toFixed(1)}" width="${southStoneWrap.width.toFixed(1)}" height="${southStoneWrap.height.toFixed(1)}" fill="${T.stoneFill}" stroke="${T.houseStroke}" stroke-width="1.0"/>
+          <rect x="${pillarRect.x}" y="${pillarRect.y}" width="${pillarRect.width}" height="${pillarRect.height}" fill="${T.stoneFill}" stroke="${T.houseStroke}" stroke-width="1.2"/>
+        `);
+
+        // Verified South Wall Utilities:
+        // - AC Disconnect Box (wx=40.5'–40.9') & Open AC Condenser Pad & Unit (3.0' × 3.0' at wx=41.5'–44.5', wy=41.0'–44.0')
+        // - Internet Line: Gray PVC Wall Box (wx=46.95'–47.25') + Angled Green Tube to Ground/Paver Notch (wx=50.0')
+        // - Electricity Meter (wx=50.6'–52.1', Ground Conduit at wx=51.2')
+        // - Gas Meter (wx=56.0'–57.5', East of the wx=55.5' South Gate and West of the wx=57.7' South Stone Wrap)
+        const acDisconnect = projectRect(40.5, 41.0, 40.9, 41.22);
+        const acPad = projectRect(41.5, 41.0, 44.5, 44.0);
+        const acUnit = projectRect(41.85, 41.35, 44.15, 43.65);
+        const fiberWallBox = projectRect(46.95, 41.0, 47.25, 41.22);
+        const fiberTubePts = projectPoly([[47.1, 41.10], [50.0, 41.22]]);
+        const fiberConduit = projectRect(49.82, 41.0, 50.18, 41.32);
+        const elecMeter = projectRect(50.6, 41.0, 52.1, 41.34);
+        const gasMeter = projectRect(56.0, 41.0, 57.5, 41.38);
+        out.push(`
+          <rect x="${acDisconnect.x.toFixed(1)}" y="${acDisconnect.y.toFixed(1)}" width="${acDisconnect.width.toFixed(1)}" height="${acDisconnect.height.toFixed(1)}" rx="0.8" fill="#64748b" stroke="#cbd5e1" stroke-width="0.7"/>
           <rect x="${acPad.x.toFixed(1)}" y="${acPad.y.toFixed(1)}" width="${acPad.width.toFixed(1)}" height="${acPad.height.toFixed(1)}" fill="#94a3b8" stroke="#e2e8f0" stroke-width="1"/>
           <rect x="${acUnit.x.toFixed(1)}" y="${acUnit.y.toFixed(1)}" width="${acUnit.width.toFixed(1)}" height="${acUnit.height.toFixed(1)}" rx="2" fill="#475569" stroke="#cbd5e1" stroke-width="1.1"/>
           <circle cx="${acUnit.cx.toFixed(1)}" cy="${acUnit.cy.toFixed(1)}" r="${(0.75 * SCALE).toFixed(1)}" fill="#1e293b" stroke="#94a3b8" stroke-width="0.9"/>
+          <polyline points="${fiberTubePts}" fill="none" stroke="#22c55e" stroke-width="1.6" stroke-linecap="round"/>
+          <rect x="${fiberWallBox.x.toFixed(1)}" y="${fiberWallBox.y.toFixed(1)}" width="${fiberWallBox.width.toFixed(1)}" height="${fiberWallBox.height.toFixed(1)}" rx="0.8" fill="#94a3b8" stroke="#e2e8f0" stroke-width="0.7"/>
           <rect x="${fiberConduit.x.toFixed(1)}" y="${fiberConduit.y.toFixed(1)}" width="${fiberConduit.width.toFixed(1)}" height="${fiberConduit.height.toFixed(1)}" rx="1" fill="#16a34a" stroke="#86efac" stroke-width="0.8"/>
           <rect x="${elecMeter.x.toFixed(1)}" y="${elecMeter.y.toFixed(1)}" width="${elecMeter.width.toFixed(1)}" height="${elecMeter.height.toFixed(1)}" rx="1" fill="#64748b" stroke="#e2e8f0" stroke-width="0.9"/>
           <rect x="${gasMeter.x.toFixed(1)}" y="${gasMeter.y.toFixed(1)}" width="${gasMeter.width.toFixed(1)}" height="${gasMeter.height.toFixed(1)}" rx="1" fill="#94a3b8" stroke="#f8fafc" stroke-width="0.9"/>
@@ -1514,14 +1534,14 @@
       // 17B. PHASE 3 (2028) SOUTH BERRY / KIWI / PEA TRELLIS & SHADE PLANTS
       if (L.yardPlants) {
         out.push(`<g id="layer-yard-plants">`);
-        [6.5, 11.5, 16.5, 21.5, 26.5, 34.0, 41.0, 49.0, 54.5].forEach(wx => {
+        [6.5, 11.5, 16.5, 21.5, 26.5, 34.0, 41.0, 49.0, 53.5].forEach(wx => {
           const sp = project(wx, 49.0);
           out.push(`<circle cx="${sp.x.toFixed(1)}" cy="${sp.y.toFixed(1)}" r="${(0.72 * SCALE).toFixed(1)}" fill="#16a34a" stroke="#fda4af" stroke-width="1.1"/>`);
         });
         out.push(`</g>`);
       }
 
-      // 18. WHITE VINYL FENCE & GATES (Phase 1 South / Phase 2 North)
+      // 18. WHITE VINYL FENCE & GATES (Phase 1 South @ wx=55.5' / Phase 2 North @ wx=70.0')
       if (L.southFence || L.northFence) {
         const nf1 = project(0.0, 0.4), nf2 = project(LOCKED_NORTH_GATE_WX, 0.4);
         const sf1 = project(0.0, 49.6), sf2 = project(LOCKED_SOUTH_GATE_WX, 49.6);
@@ -1638,11 +1658,11 @@
           { wx: 103.7, wy: 40.0, title: 'WHITE ROCK PARK STRIPS (6\')', sub: 'Matches South Neighbors', color: '#f8fafc', border: '#cbd5e1', show: L.frontBeds },
           { wx: 65.5, wy: 37.5, title: "MELINDA'S HYACINTHS & 3152 SWING", sub: '2\' Porch Bed · Unobstructed View to Street', color: '#f472b6', border: '#ec4899', show: L.frontPlants || L.porchSwing },
           { wx: SE_MAPLE_WX, wy: SE_MAPLE_WY, title: 'NORWEGIAN SUNSET MAPLE', sub: '(83\', 39.5\') · 8\'–9.5\' Trunk / 11\'–12\'+ Lawn Clear', color: '#fdba74', border: '#ea580c', show: L.frontPlants },
-          { wx: 46.5, wy: 42.5, title: 'OPEN AC + ELEC/GAS METERS', sub: 'Pavers Wrap AC & Wall (~4" Conduit Cutouts)', color: '#cbd5e1', border: '#64748b', show: L.houseStructure },
-          { wx: 37.0, wy: 45.0, title: 'SOUTH GRASS UP TO HOME', sub: 'Grass to Wall/AC Pavers (0 Gravel) + 2\' S. Bed', color: '#34d399', border: '#10b981', show: L.grass },
+          { wx: 43.0, wy: 42.5, title: 'OPEN AC (43\') + INTERNET/ELEC/GAS', sub: 'AC 41.5\'–44.5\' · Tube 47.1\'–50\' · Elec 51.2\' · Gas 56\'–57.5\'', color: '#cbd5e1', border: '#64748b', show: L.houseStructure },
+          { wx: 36.0, wy: 45.0, title: 'SOUTH GRASS UP TO HOME', sub: 'Grass to Wall/AC Pavers (0 Gravel) + 2\' S. Bed', color: '#34d399', border: '#10b981', show: L.grass },
           { wx: 73.5, wy: 43.5, title: '555 SQ FT SE FRONT LAWN', sub: 'Grass Continues Under Gate · 45° Pavers', color: '#4ade80', border: '#10b981', show: L.grass },
-          { wx: 70.0, wy: 4.5, title: 'NORTH 8.5\' DOUBLE GATE (6\' H)', sub: 'Phase 2 (2027) · Road Base Inside / White Rock Outside', color: '#fbbf24', border: '#f59e0b', show: L.northGate },
-          { wx: 57.5, wy: 45.5, title: 'SOUTH 4\' WALK GATE (6\' H)', sub: 'Phase 1 (2026) · Grass & 2\' Bed Continue Under Gate', color: '#c084fc', border: '#a855f7', show: L.southGate },
+          { wx: 70.0, wy: 4.5, title: 'NORTH 8.5\' DOUBLE GATE (wx=70.0\')', sub: 'Phase 2 (2027) · On Stucco Right Behind Siding Wrap (70.2\')', color: '#fbbf24', border: '#f59e0b', show: L.northGate },
+          { wx: 55.5, wy: 45.5, title: 'SOUTH 4\' WALK GATE (wx=55.5\')', sub: 'Phase 1 (2026) · On Stucco Right Behind Gas Meter (56.0\')', color: '#c084fc', border: '#a855f7', show: L.southGate },
           { wx: 48.0, wy: -2.5, title: 'NORTH NEIGHBOR: BARE DIRT', sub: '', color: '#fcd34d', border: '#b45309', show: L.neighbors },
           { wx: 48.0, wy: 52.5, title: 'SOUTH NEIGHBOR: WHITE ROCKS', sub: '', color: '#f8fafc', border: '#cbd5e1', show: L.neighbors }
         ];

@@ -367,8 +367,8 @@
      *   Three.js Y = Elevation height in feet above finished grade (0.0' ground)
      *   Three.js Z = CAD wy (North-to-South width: 0.0' North Boundary -> 50.0' South Boundary)
      *************************************************************************/
-    const LOCKED_SOUTH_GATE_WX = 57.5; // 57.5' South Fence (50% Split) + 4.0' Walk Gate
-    const LOCKED_NORTH_GATE_WX = 70.0; // 70.0' North Fence (50% Split) + 8.5' Double Vehicle Gate (3.2' behind NE garage face)
+    const LOCKED_SOUTH_GATE_WX = 55.5; // 55.5' South Fence (50% Split) + 4.0' Walk Gate (on stucco right behind gas meter wx=56.0'–57.5')
+    const LOCKED_NORTH_GATE_WX = 70.0; // 70.0' North Fence (50% Split) + 8.5' Double Vehicle Gate (on stucco right behind siding wrap wx=70.2'–73.2')
     const SE_MAPLE_WX = 83.0;          // Norwegian Sunset Maple centered in SE Front Lawn (20'–25' W recommended space!)
     const SE_MAPLE_WY = 39.5;
 
@@ -394,27 +394,27 @@
         year: 2026,
         badge: '2026 · Phase 1',
         title: 'South 6\' Vinyl Fence & 4\' Gate ($2,150)',
-        subtitle: '57.5\' S. 6\' Fence (50% Split) + 4\' Walk Gate Over Grass (100% Ours)',
+        subtitle: '55.5\' S. 6\' Fence (50% Split) + 4\' Walk Gate @ wx=55.5\' Behind Gas Meter (100% Ours)',
         badgeClass: 'bg-purple-950/90 text-purple-200 border-purple-500/40',
         bgTint: 'rgba(88, 28, 135, 0.16)',
         borderTint: 'rgba(168, 85, 247, 0.35)',
         layers: [
-          { key: 'southFence', label: 'South 6\' Vinyl Fence (57.5\' · 50% Split)', swatch: '#c084fc' },
-          { key: 'southGate', label: 'South 4.0\' Walk Gate Over Grass (wx=57.5\')', swatch: '#10b981' }
+          { key: 'southFence', label: 'South 6\' Vinyl Fence (55.5\' · 50% Split)', swatch: '#c084fc' },
+          { key: 'southGate', label: 'South 4.0\' Walk Gate @ wx=55.5\' (Behind Gas Meter)', swatch: '#10b981' }
         ]
       },
       {
         id: 'phase-2-2027',
         year: 2027,
         badge: '2027 · Phase 2',
-        title: 'N. 6\' Fence, Sprinklers, Pavers, Grass Seed & White Rock ($5,520)',
-        subtitle: '70\' N. 6\' Fence + 8.5\' Gate + Sprinklers + Pavers + Grass to Home + White Rock',
+        title: 'N. 6\' Fence, Sprinklers, Pavers, Grass Seed & White Rock ($5,800)',
+        subtitle: '70\' N. 6\' Fence + 8.5\' Gate (@ wx=70.0\' Behind Siding) + Sprinklers + Pavers + Grass + White Rock',
         badgeClass: 'bg-emerald-950/90 text-emerald-200 border-emerald-500/40',
         bgTint: 'rgba(6, 78, 59, 0.18)',
         borderTint: 'rgba(16, 185, 129, 0.35)',
         layers: [
           { key: 'northFence', label: 'North 6\' Vinyl Fence (70.0\' · 50% Split)', swatch: '#a855f7' },
-          { key: 'northGate', label: 'North 8.5\' Double Vehicle Gate (wx=70.0\')', swatch: '#f59e0b' },
+          { key: 'northGate', label: 'North 8.5\' Double Gate @ wx=70.0\' (Behind Siding)', swatch: '#f59e0b' },
           { key: 'pavers', label: '6" Flush Holland Pavers (~222\' · 45° Corners + AC/Wall Wrap)', swatch: '#2dd4bf' },
           { key: 'sod', label: 'Seeded Lawn (Up to Entire S. Wall/AC Pavers & Under Gate)', swatch: '#22c55e' },
           { key: 'frontBeds', label: '2\' S. Bed, 6\' Tree Ring + White Rock Park Strips & NE Side', swatch: '#e2e8f0' },
@@ -1936,17 +1936,31 @@
       addBox(g, 59.7, 9.0, 73.2, 29.0, 1.0, 10.2, MAT.stucco, true, true);
 
       // Full-Height Stacked Ledger Stone Facade on East Garage Wall (wx: 73.0..73.45, wy: 8.75..29.25, h: 0.4..9.8')
-      // + 2.0' North Return & 3.8' High South Return Along Porch Walkway (matching PXL_20261022_162056602.MP.jpg!)
+      // + North Wall 2.0' Stone Return (wx: 71.2..73.48) + 1.0' Siding & White Trim Return (wx: 70.2..71.2, h: 0.4..3.8') + 3.0' Upper Siding Return (wx: 70.2..73.2, h: 4.0..10.2')
+      // + South Wall 2.0' Stone & Siding Return (wx: 57.7..59.7, wy: 40.85..41.25) (matching wall_verify_01..03.jpg!)
       addBox(g, 73.0, 8.75, 73.48, 11.0, 0.4, 9.8, MAT.stoneVeneer, true, true);   // North stone pier
       addBox(g, 73.0, 27.0, 73.48, 29.25, 0.4, 9.8, MAT.stoneVeneer, true, true);  // South stone pier
       addBox(g, 73.0, 11.0, 73.48, 27.0, 8.2, 9.8, MAT.stoneVeneer, true, true);   // Stone lintel above garage door
-      addBox(g, 71.2, 8.75, 73.48, 9.15, 0.4, 3.8, MAT.stoneVeneer, true, true);   // 2.0' NE corner stone wrap
+      // North Wall 2.0' Lower Stone Wrap (wx: 71.2..73.48) + Precast Cap
+      addBox(g, 71.2, 8.75, 73.48, 9.15, 0.4, 3.8, MAT.stoneVeneer, true, true);
       addBox(g, 71.15, 8.68, 73.55, 9.22, 3.8, 4.0, MAT.precastCap, true, true);
+      // North Wall 1.0' Lower Horizontal Lap Siding & White Vertical Trim Return (wx: 70.2..71.2, h: 0.4..4.0') + 3.0' Upper Lap Siding Return (wx: 70.2..73.2, h: 4.0..10.2')
+      addBox(g, 70.2, 8.85, 71.2, 9.08, 0.4, 4.0, MAT.lapSiding, true, true);
+      addBox(g, 70.2, 8.83, 70.50, 9.10, 0.4, 10.2, MAT.whiteTrim, true, true);    // West vertical white trim board at wx=70.2' (just East of wx=70.0' North Gate!)
+      addBox(g, 70.9, 8.83, 71.20, 9.10, 0.4, 4.0, MAT.whiteTrim, true, true);     // Inner vertical white trim board against stone wrap
+      addBox(g, 70.2, 8.85, 73.2, 9.08, 4.0, 10.2, MAT.lapSiding, true, true);    // Upper grey lap siding wrap on North wall
+      addBox(g, 72.9, 8.83, 73.22, 9.10, 4.0, 10.2, MAT.whiteTrim, true, true);    // NE corner upper white trim board
       // South Garage Wall Stone Wainscot (along porch walkway wx: 59.7..73.48, wy: 28.85..29.25, h: 0.4..3.8')
       addBox(g, 59.7, 28.85, 73.48, 29.25, 0.4, 3.8, MAT.stoneVeneer, true, true);
       addBox(g, 59.7, 28.78, 73.0, 29.32, 3.8, 4.02, MAT.precastCap, true, true);
       // Gray Lap Siding on South Garage Wall Above Stone Wainscot (wx: 59.7..73.2, wy: 28.9..29.15, h: 4.02..10.2')
       addBox(g, 59.7, 28.9, 73.2, 29.18, 4.02, 10.2, MAT.lapSiding, true, true);
+      // South House Wall 2.0' Stone Wainscot & Upper Lap Siding Return (wx: 57.7..59.7, wy: 40.85..41.25 — East of Gas Meter wx=56.0'–57.5'!)
+      addBox(g, 57.7, 40.85, 59.75, 41.25, 0.4, 3.8, MAT.stoneVeneer, true, true);
+      addBox(g, 57.65, 40.80, 59.80, 41.32, 3.8, 4.02, MAT.precastCap, true, true);
+      addBox(g, 57.7, 40.90, 59.75, 41.15, 4.02, 10.2, MAT.lapSiding, true, true);
+      addBox(g, 57.7, 40.88, 58.00, 41.18, 4.02, 10.2, MAT.whiteTrim, true, true);
+      addBox(g, 59.42, 40.88, 59.75, 41.18, 4.02, 10.2, MAT.whiteTrim, true, true);
 
       // 16.0' × 8.0' Matte-Black 2-Car Carriage Garage Door (wx: 73.25, wy: 11.0..27.0) — Aligned with Driveway (wy: 11.0..29.0)!
       // White Exterior Jamb Trim
@@ -2085,53 +2099,67 @@
         addBox(g, dx - 0.12, dz - 0.12, dx + kickDir * 0.65, dz + 0.12, 0.14, 0.45, MAT.darkTrim, true, false);
       });
 
-      // 6. Existing Completely Open AC Condenser (3.0' × 3.0' at wx: 45.0..48.0, wy: 41.0..44.0 — NO Cover or Shroud!)
-      //    Modeled with Louvered Coil Grille, Top Fan Guard, Swept Fan Blades, Insulated Copper Line-Set & Disconnect Box!
-      addBox(g, 45.0, 41.0, 48.0, 44.0, 0.0, 0.24, MAT.concrete, true, true);
-      addBox(g, 45.35, 41.35, 47.65, 43.65, 0.24, 3.02, MAT.acUnit, true, true);
+      // 6. Verified South Wall Utilities (matching wall_verify_02 & wall_verify_03.jpg!):
+      //    - Rear Exterior GFCI Outlet (wx = 32.6', h = 2.0')
+      //    - AC Disconnect Box & Whip (wx = 40.45..40.85, h = 3.5..4.35')
+      //    - Open AC Condenser (3.0' × 3.0' Pad at wx: 41.5..44.5, wy: 41.0..44.0, Centered at wx=43.0' — NO Cover or Shroud!)
+      addBox(g, 32.48, 41.0, 32.72, 41.16, 1.85, 2.20, new THREE.MeshStandardMaterial({ color: '#cbd5e1', roughness: 0.5 }), false, false);
+      addBox(g, 41.5, 41.0, 44.5, 44.0, 0.0, 0.24, MAT.concrete, true, true);
+      addBox(g, 41.85, 41.35, 44.15, 43.65, 0.24, 3.02, MAT.acUnit, true, true);
       // Corner post bumpers & top dark louver cap on AC unit
-      addBox(g, 45.30, 41.30, 47.70, 43.70, 2.88, 3.08, MAT.darkTrim, true, true);
+      addBox(g, 41.80, 41.30, 44.20, 43.70, 2.88, 3.08, MAT.darkTrim, true, true);
       const fanRing = new THREE.Mesh(new THREE.CylinderGeometry(0.82, 0.82, 0.06, 24), MAT.simpsonHardware);
-      fanRing.position.set(46.5, 3.08, 42.5);
+      fanRing.position.set(43.0, 3.08, 42.5);
       g.add(fanRing);
       // Internal AC fan hub & 3 swept condenser fan blades
       const acHub = new THREE.Mesh(new THREE.CylinderGeometry(0.18, 0.18, 0.10, 12), MAT.simpsonHardware);
-      acHub.position.set(46.5, 3.04, 42.5);
+      acHub.position.set(43.0, 3.04, 42.5);
       g.add(acHub);
       for (let fb = 0; fb < 3; fb++) {
         const blade = new THREE.Mesh(new THREE.BoxGeometry(0.68, 0.02, 0.24), MAT.simpsonHardware);
         const fAng = (fb / 3) * Math.PI * 2;
-        blade.position.set(46.5 + Math.cos(fAng) * 0.38, 3.04, 42.5 + Math.sin(fAng) * 0.38);
+        blade.position.set(43.0 + Math.cos(fAng) * 0.38, 3.04, 42.5 + Math.sin(fAng) * 0.38);
         blade.rotation.y = -fAng;
         blade.rotation.x = 0.28;
         g.add(blade);
       }
-      // Insulated black foam & copper refrigerant line-set + wall service disconnect box (just behind AC condenser)
-      addBox(g, 45.2, 41.0, 45.36, 41.45, 0.55, 2.25, MAT.simpsonHardware, false, false);
-      addBox(g, 44.35, 41.0, 44.80, 41.28, 3.6, 4.45, new THREE.MeshStandardMaterial({ color: '#64748b', metalness: 0.6, roughness: 0.35 }), true, false);
+      // Insulated black foam & copper refrigerant line-set + wall service disconnect box (at wx=40.6' West of AC condenser)
+      addBox(g, 41.7, 41.0, 41.86, 41.45, 0.55, 2.25, MAT.simpsonHardware, false, false);
+      addBox(g, 40.45, 41.0, 40.85, 41.28, 3.5, 4.35, new THREE.MeshStandardMaterial({ color: '#64748b', metalness: 0.6, roughness: 0.35 }), true, false);
+      // Vertical Stucco Expansion Joint (wx = 43.4') & Brass Cleanout/Stub-Out (wx = 44.7', h = 1.8')
+      addBox(g, 43.38, 41.0, 43.42, 41.06, 1.0, 19.2, new THREE.MeshStandardMaterial({ color: '#94a3b8', roughness: 0.8 }), false, false);
+      addBox(g, 44.62, 41.0, 44.78, 41.18, 1.72, 1.88, new THREE.MeshStandardMaterial({ color: '#d97706', metalness: 0.7, roughness: 0.3 }), false, false);
 
-      // Green Fiber/Internet Conduit (wx ≈ 49.8), Digital Glass Electric Meter (wx: 51.0..52.2) & Detailed Gas Meter (wx: 52.8..54.5) on South Wall EAST of AC Condenser
-      // Ground conduits enter within wy = 41.0..41.35 (~4" cutout into the 6" flush Holland paver strip along the wall, leaving ~3"+ of solid paver width on the grass side)
+      // Internet Line (Gray Wall Box @ wx=47.1', Green Tube Angling Down-East to Ground @ wx=50.0'),
+      // Digital Glass Electric Meter (wx: 50.6..52.1, Conduit @ wx=51.2'),
+      // & Detailed Gas Meter (wx: 56.0..57.5, East of the wx=55.5' South Gate and right against the wx=57.7' South Stone Wrap!)
       const meterMetalMat = new THREE.MeshStandardMaterial({ color: '#94a3b8', metalness: 0.65, roughness: 0.32 });
       const fiberGreenMat = new THREE.MeshStandardMaterial({ color: '#16a34a', roughness: 0.45, metalness: 0.15 });
-      // Green fiber/internet box & ground conduit (wx: 49.65..49.95, wy: 41.0..41.32)
-      addBox(g, 49.62, 41.0, 49.98, 41.28, 2.2, 3.1, fiberGreenMat, true, false);
-      addBox(g, 49.74, 41.06, 49.86, 41.24, 0.0, 2.2, fiberGreenMat, false, false);
-      // Electric meter box + glass round kilowatt-hour dome + ~4" vertical PVC ground conduit (wx: 51.0..52.2)
-      addBox(g, 51.1, 41.0, 52.1, 41.45, 3.8, 5.25, meterMetalMat, true, false);
+      const pvcGrayMat = new THREE.MeshStandardMaterial({ color: '#cbd5e1', roughness: 0.55 });
+      // Gray 4"x4" Telecom/Fiber Junction Box on Stucco at wx = 47.1', h = 2.7'–3.1' + Angled Green Internet Tube to Ground at wx = 50.0'
+      addBox(g, 46.92, 41.0, 47.28, 41.22, 2.7, 3.1, pvcGrayMat, true, false);
+      const fiberTubeLen = Math.hypot(50.0 - 47.1, 2.8);
+      const fiberTubeMesh = new THREE.Mesh(new THREE.CylinderGeometry(0.055, 0.055, fiberTubeLen, 10), fiberGreenMat);
+      fiberTubeMesh.position.set((47.1 + 50.0) / 2, 1.4, 41.12);
+      fiberTubeMesh.rotation.z = Math.atan2(50.0 - 47.1, 2.8);
+      g.add(fiberTubeMesh);
+      addBox(g, 49.90, 41.05, 50.10, 41.25, 0.0, 0.45, fiberGreenMat, false, false);
+      // Electric meter box (wx: 50.6..52.1, h: 3.5..5.3') + glass kilowatt-hour dome (wx: 50.95') + vertical gray PVC ground conduit (wx: 51.2')
+      addBox(g, 50.6, 41.0, 52.1, 41.45, 3.5, 5.3, meterMetalMat, true, false);
       const elecDome = new THREE.Mesh(new THREE.CylinderGeometry(0.34, 0.34, 0.28, 18), MAT.windowGlass);
       elecDome.rotation.x = Math.PI / 2;
-      elecDome.position.set(51.6, 4.55, 41.52);
+      elecDome.position.set(50.95, 4.45, 41.52);
       g.add(elecDome);
-      addBox(g, 51.45, 41.05, 51.75, 41.35, 0.0, 3.8, meterMetalMat, false, false);
-      // Detailed Gas Meter (with pressure regulator & silver risers notched into South wall pavers) EAST of Electric Meter (wx: 52.8..54.5)
-      addBox(g, 52.95, 41.0, 54.05, 41.65, 1.15, 2.85, meterMetalMat, true, false);
+      addBox(g, 51.05, 41.05, 51.35, 41.35, 0.0, 3.5, meterMetalMat, false, false);
+      // Detailed Gas Meter (wx: 56.0..57.5, tucked between wx=55.5' South Gate and wx=57.7' South Stone Wrap)
+      addBox(g, 56.15, 41.0, 57.35, 41.68, 1.15, 2.85, meterMetalMat, true, false);
       const gasReg = new THREE.Mesh(new THREE.CylinderGeometry(0.24, 0.24, 0.12, 16), meterMetalMat);
       gasReg.rotation.x = Math.PI / 2;
-      gasReg.position.set(53.5, 3.25, 41.35);
+      gasReg.position.set(56.25, 2.55, 41.35);
       g.add(gasReg);
-      addBox(g, 53.1, 41.12, 53.24, 41.32, 0.0, 3.3, meterMetalMat, false, false);
-      addBox(g, 53.76, 41.12, 53.90, 41.32, 0.0, 3.3, meterMetalMat, false, false);
+      addBox(g, 56.12, 41.10, 56.30, 41.32, 0.0, 3.1, meterMetalMat, false, false);  // Ground riser at wx=56.2'
+      addBox(g, 57.28, 41.05, 57.46, 41.32, 1.8, 3.25, meterMetalMat, false, false); // House supply pipe elbow at wx=57.4'
+      addBox(g, 55.95, 41.0, 56.55, 41.08, 3.5, 4.1, pvcGrayMat, false, false);      // Square stucco patch above gas meter
 
       // 7. Green Telecom / Transformer Pad-Mount Box at SE Front Corner (wx: 93.0..96.4, wy: 45.5..48.5)
       addBox(g, 92.8, 45.3, 96.6, 48.7, 0.0, 0.22, MAT.concrete, true, true);
@@ -2157,13 +2185,13 @@
       const mapleOctInnerPts = buildOctagonPts(SE_MAPLE_WX, SE_MAPLE_WY, 2.50); // 5.0' × 5.0' flat-to-flat inner mulch bed
       const mapleOctOuterPts = buildOctagonPts(SE_MAPLE_WX, SE_MAPLE_WY, 3.00); // 6.0' × 6.0' flat-to-flat outer paver edge (lawn cutout)
 
-      // 1. CONTINUOUS LAWN ZONE ('sod' — Backyard + Grass Up to Entire S. House Wall Pavers wx=30..59.2 & Paver-Wrapped AC Pad wx=44.5..48.5 + Under Gate into SE Front Lawn)
+      // 1. CONTINUOUS LAWN ZONE ('sod' — Backyard + Grass Up to Entire S. House Wall Pavers wx=30..59.2 & Paver-Wrapped AC Pad wx=41.0..45.0 + Under Gate into SE Front Lawn)
       //    Includes a true 6.0'×6.0' octagonal cutout around the Norwegian Sunset Maple so turf never bleeds into the tree ring!
       const gSod = LAYER_GROUPS.sod;
       const unifiedLawnPts = [
         [4.5, 10.5], [6.5, 8.5], [25.0, 8.5], [26.5, 10.0], [26.5, 20.0],
-        [17.5, 20.0], [17.5, 41.0], [30.0, 41.0], [30.0, 41.5], [44.5, 41.5], [44.5, 44.5],
-        [48.5, 44.5], [48.5, 41.5], [59.2, 41.5], [59.2, 43.5],
+        [17.5, 20.0], [17.5, 41.0], [30.0, 41.0], [30.0, 41.5], [41.0, 41.5], [41.0, 44.5],
+        [45.0, 44.5], [45.0, 41.5], [59.2, 41.5], [59.2, 43.5],
         [66.15, 43.5], [68.2, 41.45], [68.2, 32.5], [81.0, 32.5], [81.0, 29.0], [96.7, 29.0],
         [96.7, 43.0], [91.65, 43.0], [87.15, 47.5],
         [6.5, 47.5], [4.5, 45.5]
@@ -2179,7 +2207,7 @@
       ];
       addPolygonExtrusion(gFrontBeds, frontPorchBedPts, 0.0, 0.095, MAT.mulch, true);
 
-      // Continuous 2.0' South Front Property-Line Bed (wx: 57.5..96.7, wy: 48.0..50.0) with Single Clean 45° Chamfer around Green Utility Box
+      // Continuous 2.0' South Front Property-Line Bed (wx: 55.5..96.7, wy: 48.0..50.0) with Single Clean 45° Chamfer around Green Utility Box
       const frontSouthBedToBoxPts = [
         [LOCKED_SOUTH_GATE_WX, 48.0], [87.35, 48.0], [91.85, 43.5], [96.7, 43.5],
         [96.7, 50.0], [LOCKED_SOUTH_GATE_WX, 50.0]
@@ -2222,20 +2250,20 @@
         gPavers.add(mesh);
       }
 
-      // Paver Chain 1: Flush against S. House Wall (wx=30.0..44.75), wrapping around Open AC Condenser pad (wx=44.75..48.25, wy=41.25..44.25),
-      // returning along S. House Wall (wx=48.25..59.45) with ~4" conduit cutouts at Fiber/Electric/Gas conduits, and turning around Porch Bed to Porch Walk
+      // Paver Chain 1: Flush against S. House Wall (wx=30.0..41.25), wrapping around Open AC Condenser pad (wx=41.25..44.75, wy=41.25..44.25),
+      // returning along S. House Wall (wx=44.75..59.45) with ~4" conduit cutouts at Internet/Electric/Gas conduits, and turning around Porch Bed to Porch Walk
       const chain1 = [
-        [30.0, 41.25], [44.75, 41.25], [44.75, 44.25], [48.25, 44.25],
-        [48.25, 41.25], [59.45, 41.25], [59.45, 43.25], [66.05, 43.25], [67.95, 41.35], [67.95, 32.5]
+        [30.0, 41.25], [41.25, 41.25], [41.25, 44.25], [44.75, 44.25],
+        [44.75, 41.25], [59.45, 41.25], [59.45, 43.25], [66.05, 43.25], [67.95, 41.35], [67.95, 32.5]
       ];
       for (let i = 0; i < chain1.length - 1; i++) {
         addPaverSegment(chain1[i][0], chain1[i][1], chain1[i + 1][0], chain1[i + 1][1]);
       }
-      // ~4" Conduit Cutout Notches along South Wall Pavers (wy = 41.0..41.35, leaving ~3"+ of solid paver width on grass side)
+      // ~4" Conduit Cutout Notches along South Wall Pavers (wy = 41.0..41.35 at wx=50.0' Internet, wx=51.2' Electric, wx=56.2' Gas, leaving ~3"+ of solid paver width)
       const cutoutMat = new THREE.MeshStandardMaterial({ color: '#1e293b', roughness: 0.92 });
-      addBox(gPavers, 49.70, 41.01, 49.90, 41.28, 0.0, 0.118, cutoutMat, false, false);
-      addBox(gPavers, 51.42, 41.01, 51.78, 41.36, 0.0, 0.118, cutoutMat, false, false);
-      addBox(gPavers, 53.06, 41.01, 53.94, 41.34, 0.0, 0.118, cutoutMat, false, false);
+      addBox(gPavers, 49.85, 41.01, 50.15, 41.28, 0.0, 0.118, cutoutMat, false, false);
+      addBox(gPavers, 51.02, 41.01, 51.38, 41.36, 0.0, 0.118, cutoutMat, false, false);
+      addBox(gPavers, 56.06, 41.01, 56.36, 41.34, 0.0, 0.118, cutoutMat, false, false);
 
       // Paver Chain 2: Rear 11' Road Base Path + NW 5-Planter Zone + West Wall 5+4 Bed + Continuous 2' South Bed with Single Clean 45° SE Chamfer
       const chain2 = [
@@ -3019,8 +3047,8 @@
       const whiteBlossomMat = new THREE.MeshStandardMaterial({ color: '#ffffff', emissive: new THREE.Color('#f8fafc'), emissiveIntensity: 0.15, roughness: 0.4 });
       const trellisWireMat = new THREE.MeshStandardMaterial({ color: '#334155', metalness: 0.7, roughness: 0.35 });
 
-      // 5A. Alternating Cane Raspberries & Climbing Sugar Snap Pea Trellis Panels hugging the South Fence (wx = 6.5' to 54.5', wy = 49.35')
-      [6.5, 10.5, 14.5, 18.5, 22.5, 26.5, 30.5, 34.5, 38.5, 42.5, 46.5, 50.5, 54.5].forEach((wx, sIdx) => {
+      // 5A. Alternating Cane Raspberries & Climbing Sugar Snap Pea Trellis Panels hugging the South Fence (wx = 6.5' to 53.5', wy = 49.35')
+      [6.5, 10.5, 14.5, 18.5, 22.5, 26.5, 30.5, 34.5, 38.5, 42.5, 46.5, 50.0, 53.5].forEach((wx, sIdx) => {
         const plantGrp = new THREE.Group();
         plantGrp.position.set(wx, 0.09, 49.35);
 
@@ -3065,8 +3093,8 @@
         gYardPlants.add(plantGrp);
       });
 
-      // 5B. Continuous Low Alpine Strawberry Groundcover Ribbon along the Front Half of the 2.0' South Bed (wx = 5.5' to 56.0', wy = 48.55')
-      for (let wx = 5.5; wx <= 56.0; wx += 1.40) {
+      // 5B. Continuous Low Alpine Strawberry Groundcover Ribbon along the Front Half of the 2.0' South Bed (wx = 5.5' to 54.5', wy = 48.55')
+      for (let wx = 5.5; wx <= 54.5; wx += 1.40) {
         const strawGrp = new THREE.Group();
         strawGrp.position.set(wx, 0.09, 48.55);
         for (let l = 0; l < 4; l++) {
@@ -3106,10 +3134,10 @@
         addBox(parent, wx1, wy1 - 0.14, wx2, wy2 + 0.14, 0.25, 0.55, MAT.vinylFence, true, true);
       }
 
-      // 1. Phase 1 (2026): 57.5' South White Vinyl Fence (50% Neighbor Split)
+      // 1. Phase 1 (2026): 55.5' South White Vinyl Fence (50% Neighbor Split)
       buildVinylFenceRun(LAYER_GROUPS.southFence, 0.0, 49.8, LOCKED_SOUTH_GATE_WX, 49.8, 8);
 
-      // 2. Phase 1 (2026): South 4.0' Walk Gate Over Continuous Grass Corridor (wy = 43.5'–47.5') & 5.0' Fixed Wings at wx = 57.5' (100% Ours)
+      // 2. Phase 1 (2026): South 4.0' Walk Gate Over Continuous Grass Corridor (wy = 43.5'–47.5') & 5.0' Fixed Wings at wx = 55.5' (100% Ours)
       const gSGate = LAYER_GROUPS.southGate;
       addBox(gSGate, LOCKED_SOUTH_GATE_WX - 0.1, 41.0, LOCKED_SOUTH_GATE_WX + 0.1, 43.5, 0.2, 6.0, MAT.vinylFence, true, true);
       addBox(gSGate, LOCKED_SOUTH_GATE_WX - 0.1, 47.5, LOCKED_SOUTH_GATE_WX + 0.1, 49.8, 0.2, 6.0, MAT.vinylFence, true, true);
@@ -3943,7 +3971,7 @@
       });
 
       // 5. ZONE 2: South Side Shaded Corridor (4 Hunter MP Side-Strip Heads S1–S4 on South Paver Edge)
-      // S1 & S3 throw 5.75' N up to S. house wall pavers; S2 throws 3.00' N opposite AC wrap so ZERO water touches Open AC Unit (wx=45–48, wy=41–44)!
+      // S1 & S3 throw 5.75' N up to S. house wall pavers; S2 throws 3.00' N opposite AC wrap so ZERO water touches Open AC Unit (wx=41.5–44.5, wy=41–44)!
       const sideStripFillMat = new THREE.MeshBasicMaterial({
         color: '#c084fc',
         transparent: true,
@@ -3952,7 +3980,7 @@
         depthWrite: false
       });
       const sideStripLineMat = new THREE.LineBasicMaterial({ color: '#e879f9', transparent: true, opacity: 0.9 });
-      [[35.0, 5.75], [44.0, 3.00], [53.0, 5.75], [62.0, 3.75]].forEach(([sx, throwD]) => {
+      [[34.5, 5.75], [43.0, 3.00], [51.5, 5.75], [60.0, 3.75]].forEach(([sx, throwD]) => {
         const sz = 47.25;
         const riser = new THREE.Mesh(
           new THREE.CylinderGeometry(0.13, 0.13, 0.45, 10),
