@@ -575,10 +575,7 @@
     }
 
     const CURRENT_PHOTOS = [
-      { file: "wall_verify_01_north_stone_and_siding_wrap.jpg", zone: "NORTH_SIDE", tag: "North Wall Verify · 2' Stone + 1' Siding Wrap (Gate @ wx=70.0')" },
-      { file: "wall_verify_02_south_wall_wide_sw_to_se.jpg", zone: "SOUTH_SIDE", tag: "South Wall Verify · Wide SW-to-SE (AC @ 41.5'–44.5', Gate @ 55.5')" },
-      { file: "wall_verify_03_south_wall_utilities_and_stone_wrap.jpg", zone: "SOUTH_SIDE", tag: "South Wall Verify · AC, Green Tube (47.1'–50'), Elec (51.2'), Gas (56'–57.5') & 2' Stone Wrap" },
-      { file: "rain_pooling_01_west_wall_from_patio.jpg", zone: "BACKYARD", isRain: true, tag: "Rain Pooling · West Wall Bed Trough (wx=0'–4.5')" },
+      { file: "rain_pooling_01_west_wall_from_patio.jpg", zone: "BACKYARD", isRain: true, tag: "Rain Pooling · West Wall Bed Trough (wx=0–4.5 ft)" },
       { file: "rain_pooling_02_nw_downspout_and_north_trough.jpg", zone: "BACKYARD", isRain: true, tag: "Rain Pooling · NW Downspout Pipe & North Trough" },
       { file: "rain_pooling_03_sw_downspout_and_south_trough.jpg", zone: "BACKYARD", isRain: true, tag: "Rain Pooling · SW Downspout Pipe & South Trough" },
       { file: "PXL_20261022_162032048.MP.jpg", zone: "FRONT_PARK", tag: "Front" },
@@ -590,11 +587,14 @@
       { file: "PXL_20261022_004632253.MP.jpg", zone: "FRONT_PARK", tag: "Front" },
       { file: "PXL_20261022_004640801.MP.jpg", zone: "FRONT_PARK", tag: "Front" },
       { file: "PXL_20261022_004655951.MP.jpg", zone: "FRONT_PARK", tag: "Front" },
+      { file: "wall_verify_01_north_stone_and_siding_wrap.jpg", zone: "NORTH_SIDE", tag: "North · 2 ft Stone + 1 ft Siding Wrap (Gate @ wx=70.0 ft)" },
       { file: "PXL_20261022_162209617.MP.jpg", zone: "NORTH_SIDE", tag: "North" },
       { file: "PXL_20261022_162233919.MP.jpg", zone: "NORTH_SIDE", tag: "North" },
       { file: "PXL_20261022_162243180.MP.jpg", zone: "NORTH_SIDE", tag: "North" },
       { file: "PXL_20261022_162132591.MP.jpg", zone: "NORTH_SIDE", tag: "North" },
       { file: "PXL_20261022_162230541.MP.jpg", zone: "NORTH_SIDE", tag: "North" },
+      { file: "wall_verify_02_south_wall_wide_sw_to_se.jpg", zone: "SOUTH_SIDE", tag: "South · Wide SW-to-SE Wall (AC @ 41.5–44.5 ft, Gate @ 55.5 ft)" },
+      { file: "wall_verify_03_south_wall_utilities_and_stone_wrap.jpg", zone: "SOUTH_SIDE", tag: "South · AC, Green Tube, Elec/Gas Meters & 2 ft Stone Wrap" },
       { file: "PXL_20261022_162104480.MP.jpg", zone: "SOUTH_SIDE", tag: "South" },
       { file: "PXL_20261022_162115166.MP.jpg", zone: "SOUTH_SIDE", tag: "South" },
       { file: "PXL_20261022_004709213.MP.jpg", zone: "SOUTH_SIDE", tag: "South" },
@@ -637,12 +637,13 @@
       grid.innerHTML = items.map(p => {
         const thumbUrl = `photos_current_backyard/thumbs/${p.file}`;
         const fullUrl = `photos_current_backyard/${p.file}`;
+        const safeTag = p.tag.replace(/'/g, "\\'");
         const badgeClass = p.isRain
           ? 'bg-sky-700/90 text-white border border-sky-300/60'
           : 'bg-slate-900/75 text-white';
         return `
           <div class="relative aspect-[4/3] rounded-xl overflow-hidden bg-slate-200 border border-slate-200 cursor-pointer group"
-               onclick="openLightbox('${thumbUrl}', '${p.tag}', '${fullUrl}')">
+               onclick="openLightbox('${thumbUrl}', '${safeTag}', '${fullUrl}')">
             <img src="${thumbUrl}" alt="${p.tag}" loading="lazy"
                  class="w-full h-full object-cover group-hover:scale-105 transition duration-300" />
             <span class="absolute bottom-2 left-2 px-2 py-0.5 rounded text-[10px] font-bold ${badgeClass}">
