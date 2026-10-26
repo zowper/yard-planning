@@ -59,10 +59,10 @@ locked_in_decisions:
   2_flush_paver_mow_strip:
     product: "Home Depot Pavestone Holland Concrete Paver (60mm: 7.87x3.94x2.36 in OR 45mm: 7.75x4x1.75 in; uniform solid dark Charcoal #21703 / #475569)"
     linear_ft: 222 # ~138' Backyard/South House Wall & AC Wrap + ~84' Front (345-360 bricks single lengthwise row OR 680-710 bricks crosswise/double row)
-    corner_style: "Zero S-curves; prominent 45-degree diagonal chamfered corners (2.0'x2.0' to 2.5'x2.5' with 22.5-deg miter cuts) for 1-pass mowing."
+    corner_style: "Zero S-curves; compact 1.0'x1.0' 45-degree diagonal chamfered corners (with 22.5-deg miter cuts) so a robot mower can pivot into corners without leaving the pavers. SW corner behind pavers is filled with mulch; West wall paver line (wx=4.25') continues all the way to the North fence (wy=0.0') to divide the West mulch bed from the North road base."
     west_wall_subbase: "6-in deepened trench lined with non-woven geotextile separation fabric + 3-4 in compacted 3/4-minus road base along the 50' West run (wx=4.0'-4.5') to prevent wet clay pumping & frost heave."
     placement_rule:
-      installed: "Everywhere grass meets mulch, compacted road base, or the South house foundation wall (running continuously along the South wall from wx=30.0' to 59.7', wrapping around the 3'x3' Open AC Condenser pad at wx=41.0'-45.0', wy=41.0'-44.5', and continuing along the wall on the East side with ~4-in cutouts for the internet [wx=50.0'], electric [wx=51.2'], and gas [wx=56.2'] ground conduits leaving ~3+ in of paver to spare)."
+      installed: "Everywhere grass meets mulch, compacted road base, or the South house foundation wall (running continuously along the South wall from wx=30.0' to 59.7', wrapping around the 3'x3' Open AC Condenser pad at wx=41.0'-45.0', wy=41.0'-44.5', and continuing along the wall on the East side with ~4-in cutouts for the internet [wx=50.0'], electric [wx=51.2'], and gas [wx=56.2'] ground conduits leaving ~3+ in of paver to spare), plus continuing along wx=4.25' to the North fence (wy=0.0') to divide the West mulch bed from the road base."
       not_installed: "NEVER where grass meets poured concrete (driveway, 21'x12.5' patio, 3.5' porch walkway, or 4.0' city sidewalk)."
   3_west_wall_5_plus_4_hybrid:
     bed_dimensions: "4.0' D mulch bed (wx=0.0'-4.0', crowned +3 to +4 in above paver grade in 2027) + 6-in paver (wx=4.0'-4.5') x 50.0' L (wy=0.0'-50.0') = 200.0 sq ft along the ~8.0' H West precast wall (Phase 3, 2028; root flares elevated +2 to +3 in)"
@@ -70,7 +70,7 @@ locked_in_decisions:
     column_junipers_4x: "4x Upright Evergreen Junipers ($20 Home Depot 'Spartan' or 'Taylor' Juniper, 18'-25' H x 3.0'-3.5' W) at wx=1.75', wy=10.0', 20.0', 30.0', 40.0'"
     understory_10_spots: "Alternating ribbon at wx=2.95' (wy=2.3, 7.6, 12.4, 17.6, 22.4, 27.6, 32.4, 37.6, 42.4, 47.4): 5x Catmint/Russian Sage + 5x Coneflower (wy=2.3..42.4) alternating with 5x 'Karl Foerster' Feather Reed Grass (wy=7.6..47.4)"
   4_compacted_road_base_and_5_cedar_boxes:
-    road_base_total_sqft: 487.0 # Single bulk 3/4"-minus delivery in Phase 4 (2029): 360.0 N pad (wx=30'-70') + 33.0 rear path (wx=27'-30', wy=9'-20') + 94.0 garden paths
+    road_base_total_sqft: 794.0 # One continuous compacted 3/4"-minus road base network (zero gaps): around all 5 raised garden beds, into both 45-deg corners, across the 3'x11' walkway, between the garden beds and side yard (wx=27'-30', wy=0'-9'), all the way down the North side yard (wx=30'-70'), and into the front yard on the North side (wx=70'-96.7')
     cedar_boxes_5x: "5x Western Red Cedar boxes N1-N5 (3.0' W E-W x 6.0' L N-S = 90.0 sq ft growing area) at wy=1.0'-7.0' (+1' N & S gaps + 6-in paver = 8.5' to grass); wx = 5-8, 9.75-12.75, 14.5-17.5, 19.25-22.25, 24-27 (Flat dirt in 2028 -> Cedar boxes in 2029)"
   5_patio_awning_1c_fans_and_lounge:
     awning_spec: "Option #1C House-Attached 2-Pillar Solid-Roof Heavy-Timber Awning (Phase 5, 2030) — 100% OPEN ON ALL SIDES (zero privacy walls, zero house posts, zero center posts, zero translucent plastic)"
@@ -85,7 +85,7 @@ locked_in_decisions:
   7_front_yard_maple_hyacinths_and_white_rock:
     norwegian_sunset_maple: "Centered in SE Front Lawn at (wx=83.0', wy=39.5') inside 6.0' dia octagonal paver mulch ring (30'-35' H x 20'-25' W spec; ~28'-32' H Utah). Pruned in 3 stages to 8.0'-9.5' trunk attachment (level w/ ~9.5' porch eave) -> 11.0'-12.0'+ outer lawn clearance ceiling via 45-deg ascending limbs + 15% crown thinning."
     melindas_hyacinths: "120+ jewel-toned fragrant Spring Hyacinths (Royal Purple, Delft Blue, Rose Pink, Lilac, White) + dwarf perennials in 2.0' porch-front bed (wx=65.2'-67.2', wy=31.0'-43.0') & continuous 2.0' South bed (wx=0.0'-96.7', wy=48.0'-50.0')."
-    white_decorative_rock: "479.3 sq ft total (Front & NE Side Only — zero gravel on South side): 192.0 sq ft in both 6.0' street park strips (wx=100.7'-106.7') + 287.3 sq ft in NE front/side strip stopping cleanly at the wx=70.0' North fence/gate."
+    white_decorative_rock: "192.0 sq ft total in both 6.0' street park strips (wx=100.7'-106.7'); zero gravel on South side; North side yard & NE front strip are continuous compacted road base."
   8_five_hydrozone_irrigation_and_stormwater_drainage:
     total_flow_gpm: 12.70 # 28 directional Hunter PRS40 + MP Rotator / MP Side-Strip heads (0% overspray onto patio, pillars, or Open AC unit)
     stormwater_drainage_2027: "Buried 4-in smooth-wall PVC (SDR-35/Sch 40) NW (30',9') & SW (30',41') downspout drain lines (~140 lin ft) sloped East to front pop-up emitters (wx~95') + 2x 9x9-in West lawn catch basins at (wx=4.5', wy=12' & 38') + capped 4-in stub-out at (wx=18.0', wy=20.5') for 2030 Awning gutter (+$280 DIY / +$650 Pro in Phase 2)."

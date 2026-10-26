@@ -2185,31 +2185,32 @@
       const mapleOctInnerPts = buildOctagonPts(SE_MAPLE_WX, SE_MAPLE_WY, 2.50); // 5.0' × 5.0' flat-to-flat inner mulch bed
       const mapleOctOuterPts = buildOctagonPts(SE_MAPLE_WX, SE_MAPLE_WY, 3.00); // 6.0' × 6.0' flat-to-flat outer paver edge (lawn cutout)
 
-      // 1. CONTINUOUS LAWN ZONE ('sod' — Backyard + Grass Up to Entire S. House Wall Pavers wx=30..59.2 & Paver-Wrapped AC Pad wx=41.0..45.0 + Under Gate into SE Front Lawn)
-      //    Includes a true 6.0'×6.0' octagonal cutout around the Norwegian Sunset Maple so turf never bleeds into the tree ring!
+      // 1. CONTINUOUS LAWN ZONE ('sod' — Backyard + Grass Up to Entire S. House Wall Pavers wx=30..59.45 & Paver-Wrapped AC Pad wx=41.25..44.75 + Under Gate into SE Front Lawn)
+      //    Includes compact 1.0'×1.0' 45° robot-mower corners and a true 6.0'×6.0' octagonal cutout around the Norwegian Sunset Maple!
       const gSod = LAYER_GROUPS.sod;
       const unifiedLawnPts = [
-        [4.5, 10.5], [6.5, 8.5], [25.0, 8.5], [26.5, 10.0], [26.5, 20.0],
-        [17.5, 20.0], [17.5, 41.0], [30.0, 41.0], [30.0, 41.5], [41.0, 41.5], [41.0, 44.5],
-        [45.0, 44.5], [45.0, 41.5], [59.2, 41.5], [59.2, 43.5],
-        [66.15, 43.5], [68.2, 41.45], [68.2, 32.5], [81.0, 32.5], [81.0, 29.0], [96.7, 29.0],
-        [96.7, 43.0], [91.65, 43.0], [87.15, 47.5],
-        [6.5, 47.5], [4.5, 45.5]
+        [4.25, 9.25], [5.25, 8.25], [25.75, 8.25], [26.75, 9.25], [26.75, 20.0],
+        [17.5, 20.0], [17.5, 41.0], [30.0, 41.0], [30.0, 41.25], [41.25, 41.25], [41.25, 44.25],
+        [44.75, 44.25], [44.75, 41.25], [59.45, 41.25], [59.45, 43.25],
+        [66.95, 43.25], [67.95, 42.25], [67.95, 32.5], [81.0, 32.5], [81.0, 29.0], [96.7, 29.0],
+        [96.7, 43.25], [92.25, 43.25], [91.25, 44.25], [91.25, 46.75], [90.25, 47.75],
+        [5.25, 47.75], [4.25, 46.75]
       ];
       addPolygonExtrusion(gSod, unifiedLawnPts, 0.0, 0.10, MAT.turf, true, [mapleOctOuterPts]);
 
-      // 2. PHASE 2 (2027) FRONT PORCH HYACINTH BED, CONTINUOUS 2' SOUTH BED TO GREEN BOX & WHITE ROCK PARK STRIPS/NE SIDE ('frontBeds')
+      // 2. PHASE 2 (2027) FRONT PORCH HYACINTH BED, CONTINUOUS 2' SOUTH BED TO GREEN BOX & WHITE ROCK PARK STRIPS ('frontBeds')
       const gFrontBeds = LAYER_GROUPS.frontBeds;
-      // Front-of-Porch & South-of-Porch 2.0' Foundation Mulch Bed (Strictly South of the wy=29.0..32.5 Porch Walkway, starting at SE corner wx=59.7')
+      // Front-of-Porch & South-of-Porch 2.0' Foundation Mulch Bed with compact 1.0' 45° corner filled with mulch
       const frontPorchBedPts = [
-        [59.7, 41.0], [65.7, 41.0], [65.7, 32.5], [67.7, 32.5],
-        [67.7, 41.25], [65.95, 43.0], [59.7, 43.0]
+        [59.45, 41.0], [65.7, 41.0], [65.7, 32.5], [67.95, 32.5],
+        [67.95, 42.25], [66.95, 43.25], [59.45, 43.25]
       ];
       addPolygonExtrusion(gFrontBeds, frontPorchBedPts, 0.0, 0.095, MAT.mulch, true);
 
-      // Continuous 2.0' South Front Property-Line Bed (wx: 55.5..96.7, wy: 48.0..50.0) with Single Clean 45° Chamfer around Green Utility Box
+      // Continuous 2.0' South Front Property-Line Bed (wx: 55.5..96.7, wy: 47.75..50.0) with compact 1.0' 45° corners around Green Utility Box
       const frontSouthBedToBoxPts = [
-        [LOCKED_SOUTH_GATE_WX, 48.0], [87.35, 48.0], [91.85, 43.5], [96.7, 43.5],
+        [LOCKED_SOUTH_GATE_WX, 47.75], [90.25, 47.75], [91.25, 46.75],
+        [91.25, 44.25], [92.25, 43.25], [96.7, 43.25],
         [96.7, 50.0], [LOCKED_SOUTH_GATE_WX, 50.0]
       ];
       addPolygonExtrusion(gFrontBeds, frontSouthBedToBoxPts, 0.0, 0.095, MAT.mulch, true);
@@ -2217,26 +2218,26 @@
       // 5.0' × 5.0' Flat-to-Flat Octagonal Mulched Root-Flare Bed inside the 6.0' × 6.0' Holland Paver Ring around Norwegian Sunset Maple (wx = 83.0', wy = 39.5')
       addPolygonExtrusion(gFrontBeds, mapleOctInnerPts, 0.0, 0.095, MAT.mulch, true);
 
-      // NE Front & Side Yard White Decorative Rock Going Up to the North Side Yard (Stopping at wx = 70.0' North Fence/Gate)
-      const neWhiteRockPts = [
-        [LOCKED_NORTH_GATE_WX, 0.0], [96.7, 0.0], [96.7, 11.0],
-        [73.2, 11.0], [73.2, 9.0], [LOCKED_NORTH_GATE_WX, 9.0]
-      ];
-      addPolygonExtrusion(gFrontBeds, neWhiteRockPts, 0.0, 0.08, MAT.whiteRocks, true);
-
       // 6.0' Street Park Strips Between Sidewalk (100.7') and Curb (106.7') — White Decorative Rock Matching South Neighbors!
       addBox(gFrontBeds, 100.7, 0.0, 106.7, 9.5, 0.0, 0.09, MAT.whiteRocks, false, true);
       addBox(gFrontBeds, 100.7, 30.5, 106.7, 50.0, 0.0, 0.09, MAT.whiteRocks, false, true);
 
-      // 3. PHASE 3 (2028) BACKYARD & SIDE MULCH BEDS ('beds' — ZERO gravel/white rock on South side)
+      // 3. PHASE 3 (2028) BACKYARD & SIDE MULCH BEDS ('beds' — Unified L-shape filling the SW 45° corner with mulch; ZERO gravel on South side)
       const gBeds = LAYER_GROUPS.beds;
-      addBox(gBeds, 0.0, 0.0, 4.0, 50.0, 0.0, 0.095, MAT.mulch, false, true);
-      addBox(gBeds, 4.0, 48.0, LOCKED_SOUTH_GATE_WX, 50.0, 0.0, 0.095, MAT.mulch, false, true);
+      const backyardWestSouthMulchPts = [
+        [0.0, 0.0], [4.25, 0.0], [4.25, 46.75], [5.25, 47.75],
+        [LOCKED_SOUTH_GATE_WX, 47.75], [LOCKED_SOUTH_GATE_WX, 50.0], [0.0, 50.0]
+      ];
+      addPolygonExtrusion(gBeds, backyardWestSouthMulchPts, 0.0, 0.095, MAT.mulch, true);
 
       // 2028 Flat-Dirt Vegetable Garden Plot (visible when beds=ON and 2029 gardenRock=OFF)
-      addBox(flatDirtGardenGroup, 4.0, 0.0, 27.0, 8.0, 0.0, 0.08, MAT.soilDark, false, true);
+      const flatGardenPts = [
+        [4.25, 0.0], [27.0, 0.0], [27.0, 9.25], [26.75, 9.25],
+        [25.75, 8.25], [5.25, 8.25], [4.25, 9.25]
+      ];
+      addPolygonExtrusion(flatDirtGardenGroup, flatGardenPts, 0.0, 0.09, MAT.soilDark, true);
 
-      // 4. 6" SOIL-FLUSH HOLLAND PAVER MOW STRIPS WITH PROMINENT 45° CHAMFERED CORNERS & AC/WALL WRAP ('pavers')
+      // 4. 6" SOIL-FLUSH HOLLAND PAVER MOW STRIPS WITH COMPACT 1.0'×1.0' 45° CORNERS & AC/WALL WRAP ('pavers')
       const gPavers = LAYER_GROUPS.pavers;
       function addPaverSegment(wx1, wy1, wx2, wy2) {
         const dx = wx2 - wx1, dy = wy2 - wy1;
@@ -2254,7 +2255,7 @@
       // returning along S. House Wall (wx=44.75..59.45) with ~4" conduit cutouts at Internet/Electric/Gas conduits, and turning around Porch Bed to Porch Walk
       const chain1 = [
         [30.0, 41.25], [41.25, 41.25], [41.25, 44.25], [44.75, 44.25],
-        [44.75, 41.25], [59.45, 41.25], [59.45, 43.25], [66.05, 43.25], [67.95, 41.35], [67.95, 32.5]
+        [44.75, 41.25], [59.45, 41.25], [59.45, 43.25], [66.95, 43.25], [67.95, 42.25], [67.95, 32.5]
       ];
       for (let i = 0; i < chain1.length - 1; i++) {
         addPaverSegment(chain1[i][0], chain1[i][1], chain1[i + 1][0], chain1[i + 1][1]);
@@ -2265,13 +2266,21 @@
       addBox(gPavers, 51.02, 41.01, 51.38, 41.36, 0.0, 0.118, cutoutMat, false, false);
       addBox(gPavers, 56.06, 41.01, 56.36, 41.34, 0.0, 0.118, cutoutMat, false, false);
 
-      // Paver Chain 2: Rear 11' Road Base Path + NW 5-Planter Zone + West Wall 5+4 Bed + Continuous 2' South Bed with Single Clean 45° SE Chamfer
+      // Paver Chain 2: West Wall Paver Line Continuing All the Way from North Fence (wy=0.0') to SW 45° Corner + Continuous 2' South Bed to SE Box
       const chain2 = [
-        [26.75, 20.0], [26.75, 10.15], [24.85, 8.25], [6.4, 8.25], [4.25, 10.4],
-        [4.25, 45.6], [6.4, 47.75], [87.25, 47.75], [91.75, 43.25], [96.7, 43.25]
+        [4.25, 0.0], [4.25, 46.75], [5.25, 47.75],
+        [90.25, 47.75], [91.25, 46.75], [91.25, 44.25], [92.25, 43.25], [96.7, 43.25]
       ];
       for (let i = 0; i < chain2.length - 1; i++) {
         addPaverSegment(chain2[i][0], chain2[i][1], chain2[i + 1][0], chain2[i + 1][1]);
+      }
+
+      // Paver Chain 2B: North Garden Bed & Rear Walkway Branch with Compact 1.0'×1.0' 45° Robot-Mower Corners
+      const chain2B = [
+        [4.25, 9.25], [5.25, 8.25], [25.75, 8.25], [26.75, 9.25], [26.75, 20.0]
+      ];
+      for (let i = 0; i < chain2B.length - 1; i++) {
+        addPaverSegment(chain2B[i][0], chain2B[i][1], chain2B[i + 1][0], chain2B[i + 1][1]);
       }
 
       // Paver Chain 3: True Mitered 8-Segment 45°-Chamfered Octagonal Holland Paver Tree Ring (6.0'×6.0' outer, 5.0'×5.0' inner = 6" wide)
@@ -3179,11 +3188,15 @@
     const awningLightObjects = [];
     let firePointLight = null;
     {
-      // 1. North Side 9.0' x 40.0' Compacted Road Base Pad Inside Gate (wx: 27.0..70.0, wy: 0.0..9.0 = 360.0 sq ft inside gate)
-      addBox(LAYER_GROUPS.northCementPad, 27.0, 0.0, 70.0, 9.0, 0.0, 0.10, MAT.crushedRock, false, true);
+      // 1. Continuous North Side & Front Yard Compacted Road Base (wx: 26.75..96.7, wy: 0.0..9.0/11.0)
+      const northSideAndFrontRoadBasePts = [
+        [26.75, 0.0], [96.7, 0.0], [96.7, 11.0],
+        [73.2, 11.0], [73.2, 9.0], [26.75, 9.0]
+      ];
+      addPolygonExtrusion(LAYER_GROUPS.northCementPad, northSideAndFrontRoadBasePts, 0.0, 0.095, MAT.crushedRock, true);
 
-      // 2. Rear House Wall 3.0' x 11.0' Compacted Road Base Path to Patio (wx: 27.0..30.0, wy: 9.0..20.0 = 33.0 sq ft)
-      addBox(LAYER_GROUPS.rearSidewalk, 27.0, 9.0, 30.0, 20.0, 0.0, 0.10, MAT.crushedRock, false, true);
+      // 2. Rear House Wall 3.25' x 11.0' Compacted Road Base Path to Patio (wx: 26.75..30.0, wy: 9.0..20.0)
+      addBox(LAYER_GROUPS.rearSidewalk, 26.75, 9.0, 30.0, 20.0, 0.0, 0.095, MAT.crushedRock, false, true);
 
       // 3. Option #1C House-Attached 2-Pillar Solid-Roof Heavy-Timber Awning ('patioAwning')
       //    100% OPEN ON ALL SIDES (No Privacy Wall): Strictly TWO outer West corner 8x8 posts at (wx=18.0', wy=20.5' & 40.5') and ZERO house posts!
@@ -3596,8 +3609,12 @@
 
     // --- J. PHASE 4 (2029): 5 N–S RAISED CEDAR PLANTERS (3'×6'), COMPACTED ROAD BASE & HIGH-DETAIL 4-SEASON CROPS ---
     {
-      // 1. Compacted Road Base Garden Paths (wx: 4.0..27.0, wy: 0.0..8.25)
-      addBox(LAYER_GROUPS.gardenRock, 4.0, 0.0, 27.0, 8.25, 0.0, 0.08, MAT.crushedRock, false, true);
+      // 1. Compacted Road Base Garden Paths (wx: 4.25..26.75, wy: 0.0..8.25, extending into both 45° corners)
+      const gardenRoadBasePts = [
+        [4.25, 0.0], [26.75, 0.0], [26.75, 9.25],
+        [25.75, 8.25], [5.25, 8.25], [4.25, 9.25]
+      ];
+      addPolygonExtrusion(LAYER_GROUPS.gardenRock, gardenRoadBasePts, 0.0, 0.095, MAT.crushedRock, true);
 
       // 2. 5 Raised Western Red Cedar Garden Boxes (N1–N5 at wx = 5.0, 9.75, 14.5, 19.25, 24.0; wy = 1.0..7.0)
       const gPlanters = LAYER_GROUPS.planters;

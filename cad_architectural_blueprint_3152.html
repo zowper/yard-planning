@@ -432,12 +432,12 @@
         id: 'phase-4',
         year: 2029,
         badge: 'Phase 4 · 2029',
-        title: 'Road Base Pad/Path & 5 Cedar Beds',
+        title: 'Continuous N. Road Base & 5 Cedar Beds',
         cost: '$2,600',
-        subtitle: '9\'×40\' Road Base Pad + 3\' Path + 5 Planters in Road Base',
+        subtitle: 'Continuous Road Base (Garden, Walk, Side Yard & N. Front) + 5 Planters',
         accent: '#84cc16',
         layers: [
-          { key: 'northCementPad', label: 'North Road Base Pad (9\'×40\' to Gate)', swatch: '#a8a29e', defaultOn: true },
+          { key: 'northCementPad', label: 'Continuous North Side & Front Road Base', swatch: '#a8a29e', defaultOn: true },
           { key: 'rearSidewalk', label: 'Rear Wall Road Base Path (3\'×11\')', swatch: '#d6d3d1', defaultOn: true },
           { key: 'planters', label: '5 Raised Cedar Planters (N1–N5)', swatch: '#84cc16', defaultOn: true },
           { key: 'gardenRock', label: 'Compacted Road Base Around Garden Boxes', swatch: '#a8a29e', defaultOn: true },
@@ -493,7 +493,7 @@
       { id: 'lot-depth', primary: true, wx1: 0.0, wy1: 0.0, wx2: 96.7, wy2: 0.0, offset: -14.0, label: "96.7' LOT DEPTH TO WALK" },
       { id: 'backyard-depth', primary: true, wx1: 0.0, wy1: 0.0, wx2: 30.0, wy2: 0.0, offset: -7.5, label: "30.0' BACKYARD (6' VINYL FENCES)" },
       { id: 'north-wall-depth', primary: true, wx1: 30.0, wy1: 9.0, wx2: 70.0, wy2: 9.0, offset: -16.5, label: "40.0' N. ROAD BASE PAD (TO GATE)" },
-      { id: 'driveway-length', primary: true, wx1: 73.2, wy1: 11.0, wx2: 96.7, wy2: 11.0, offset: -18.5, label: "23.5' DRIVEWAY / WHITE ROCK NE STRIP" },
+      { id: 'driveway-length', primary: true, wx1: 73.2, wy1: 11.0, wx2: 96.7, wy2: 11.0, offset: -18.5, label: "23.5' DRIVEWAY / N. FRONT ROAD BASE" },
       { id: 'house-width', primary: true, wx1: 30.0, wy1: 9.0, wx2: 30.0, wy2: 41.0, offset: -9.5, label: "32.0' HOUSE WIDTH" },
       { id: 'north-setback', primary: false, wx1: 30.0, wy1: 0.0, wx2: 30.0, wy2: 9.0, offset: -9.5, label: "9.0' N. SIDE" },
       { id: 'south-setback', primary: false, wx1: 30.0, wy1: 41.0, wx2: 30.0, wy2: 50.0, offset: -9.5, label: "9.0' S. SIDE" },
@@ -893,19 +893,41 @@
         `);
       }
 
-      // 5. PHASE 4 (2029) COMPACTED ROAD BASE PAD (Inside North Gate wx=30.0'–70.0') & REAR PATH (wx=27.0'–30.0')
+      // 5. PHASE 4 (2029) ONE CONTINUOUS COMPACTED ROAD BASE (Around Raised Garden Beds, Into Both 45° Corners, Across Walkway, Between Garden & Side Yard, Down Side Yard & Into Front Yard on North Side)
       const roadBaseFill = isDrone ? 'url(#drone-crushed-rock)' : (isColor ? '#a8a29e' : 'url(#pat-gravel)');
       const roadBaseStroke = isDrone ? '#64748b' : (isColor ? '#e7e5e4' : '#cbd5e1');
-      if (L.northCementPad) {
-        const nPad = projectRect(30.0, 0.0, LOCKED_NORTH_GATE_WX, 9.0);
-        out.push(`<rect x="${nPad.x.toFixed(1)}" y="${nPad.y.toFixed(1)}" width="${nPad.width.toFixed(1)}" height="${nPad.height.toFixed(1)}" fill="${roadBaseFill}" stroke="${roadBaseStroke}" stroke-width="1.6"/>`);
-      }
-      if (L.rearSidewalk) {
-        const rWalk = projectRect(27.0, 9.0, 30.0, 20.0);
-        out.push(`<rect x="${rWalk.x.toFixed(1)}" y="${rWalk.y.toFixed(1)}" width="${rWalk.width.toFixed(1)}" height="${rWalk.height.toFixed(1)}" fill="${roadBaseFill}" stroke="${roadBaseStroke}" stroke-width="1.6"/>`);
+      if (L.northCementPad || L.rearSidewalk || L.gardenRock) {
+        if (L.northCementPad && L.rearSidewalk && L.gardenRock) {
+          const unifiedRoadBasePoly = projectPoly([
+            [4.25, 0.0], [96.7, 0.0], [96.7, 11.0], [73.2, 11.0], [73.2, 9.0],
+            [30.0, 9.0], [30.0, 20.0], [26.75, 20.0], [26.75, 9.25],
+            [25.75, 8.25], [5.25, 8.25], [4.25, 9.25]
+          ]);
+          out.push(`<polygon points="${unifiedRoadBasePoly}" fill="${roadBaseFill}" stroke="${roadBaseStroke}" stroke-width="1.2" stroke-linejoin="round"/>`);
+        } else {
+          if (L.gardenRock) {
+            const gBedPoly = projectPoly([
+              [4.25, 0.0], [27.0, 0.0], [27.0, 9.25], [26.75, 9.25],
+              [25.75, 8.25], [5.25, 8.25], [4.25, 9.25]
+            ]);
+            out.push(`<polygon points="${gBedPoly}" fill="${roadBaseFill}" stroke="${roadBaseStroke}" stroke-width="1.1"/>`);
+          }
+          if (L.rearSidewalk) {
+            const rWalkPoly = projectPoly([
+              [26.75, 9.0], [30.0, 9.0], [30.0, 20.0], [26.75, 20.0]
+            ]);
+            out.push(`<polygon points="${rWalkPoly}" fill="${roadBaseFill}" stroke="${roadBaseStroke}" stroke-width="1.1"/>`);
+          }
+          if (L.northCementPad) {
+            const nPadPoly = projectPoly([
+              [27.0, 0.0], [96.7, 0.0], [96.7, 11.0], [73.2, 11.0], [73.2, 9.0], [27.0, 9.0]
+            ]);
+            out.push(`<polygon points="${nPadPoly}" fill="${roadBaseFill}" stroke="${roadBaseStroke}" stroke-width="1.1"/>`);
+          }
+        }
       }
 
-      // 6A. PHASE 2 (2027) FRONT YARD MULCH BEDS (2' S. Bed Continuing to Green Box + Porch Bed) & WHITE DECORATIVE ROCK (Park Strips + NE Side Yard Stopping at North Fence)
+      // 6A. PHASE 2 (2027) FRONT YARD MULCH BEDS (2' S. Bed Continuing to Green Box + Porch Bed) & WHITE DECORATIVE ROCK (6' Street Park Strips)
       const mulchFill = isDrone ? 'url(#drone-mulch)' : (isColor ? '#78350f' : 'rgba(21, 128, 61, 0.24)');
       const mulchStroke = isDrone ? '#1c1008' : (isColor ? '#b45309' : '#4ade80');
       const rockBufFill = isDrone ? 'url(#drone-crushed-rock)' : (isColor ? '#a8a29e' : 'url(#pat-gravel)');
@@ -927,63 +949,56 @@
       const mapleOctOuterPts = buildOctagonPts(SE_MAPLE_WX, SE_MAPLE_WY, 3.00); // 6.0' × 6.0' flat-to-flat outer paver edge (lawn cutout)
 
       if (L.frontBeds) {
-        // Continuous 2.0' South planting bed in the front yard (wx=57.5'–96.7', wy=48.0'–50.0') with single clean 45° chamfer around green utility box
+        // Continuous 2.0' South planting bed in the front yard (wx=55.5'–96.7', wy=47.75'–50.0') with compact 1.0' 45° corners around green utility box
         const frontSouthBedToBoxPoly = projectPoly([
-          [LOCKED_SOUTH_GATE_WX, 48.0], [87.35, 48.0], [91.85, 43.5], [96.7, 43.5],
+          [LOCKED_SOUTH_GATE_WX, 47.75], [90.25, 47.75], [91.25, 46.75],
+          [91.25, 44.25], [92.25, 43.25], [96.7, 43.25],
           [96.7, 50.0], [LOCKED_SOUTH_GATE_WX, 50.0]
         ]);
-        // 2.0' Front-of-porch and South-of-porch foundation planting bed (starting at SE house corner wx=59.7', leaving wy=41.5'–47.5' open for grass along entire South house wall!)
+        // 2.0' Front-of-porch and South-of-porch foundation planting bed with compact 1.0' 45° corner filled with mulch
         const frontPorchBedPoly = projectPoly([
-          [59.7, 41.0], [65.7, 41.0], [65.7, 32.5], [67.7, 32.5],
-          [67.7, 41.25], [65.95, 43.0], [59.7, 43.0]
+          [59.45, 41.0], [65.7, 41.0], [65.7, 32.5], [67.95, 32.5],
+          [67.95, 42.25], [66.95, 43.25], [59.45, 43.25]
         ]);
-        // White decorative rock in NE side yard going up to North side yard (stopping at wx=70.0' fence) + both 6.0' street park strips (0 sq ft on South side)
-        const neWhiteRockPoly = projectPoly([
-          [LOCKED_NORTH_GATE_WX, 0.0], [96.7, 0.0], [96.7, 11.0],
-          [73.2, 11.0], [73.2, 9.0], [LOCKED_NORTH_GATE_WX, 9.0]
-        ]);
+        // White decorative rock in both 6.0' street park strips (North side yard & NE front strip are continuous compacted road base)
         const nPark = projectRect(100.7, 0.0, 106.7, 9.5);
         const sPark = projectRect(100.7, 30.5, 106.7, 50.0);
         out.push(`
           <polygon points="${frontSouthBedToBoxPoly}" fill="${mulchFill}" stroke="${mulchStroke}" stroke-width="1"/>
           <polygon points="${frontPorchBedPoly}" fill="${mulchFill}" stroke="${mulchStroke}" stroke-width="1"/>
-          <polygon points="${neWhiteRockPoly}" fill="${whiteRockFill}" stroke="${whiteRockStroke}" stroke-width="1.1"/>
           <rect x="${nPark.x.toFixed(1)}" y="${nPark.y.toFixed(1)}" width="${nPark.width.toFixed(1)}" height="${nPark.height.toFixed(1)}" fill="${whiteRockFill}" stroke="${whiteRockStroke}" stroke-width="1.1"/>
           <rect x="${sPark.x.toFixed(1)}" y="${sPark.y.toFixed(1)}" width="${sPark.width.toFixed(1)}" height="${sPark.height.toFixed(1)}" fill="${whiteRockFill}" stroke="${whiteRockStroke}" stroke-width="1.1"/>
         `);
       }
 
-      // 6B. PHASE 3 (2028) BACKYARD & SOUTH SIDE MULCH BEDS + FLAT DIRT GARDEN (ZERO GRAVEL ON SOUTH SIDE)
+      // 6B. PHASE 3 (2028) BACKYARD WEST & SOUTH MULCH BEDS (Unified L-shape filling the SW 45° corner with mulch!) + FLAT DIRT GARDEN
       if (L.beds) {
-        const westBed = projectRect(0.0, 0.0, 4.0, 50.0);
-        const southBed = projectRect(0.0, 48.0, LOCKED_SOUTH_GATE_WX, 50.0);
+        const backyardWestSouthMulchPoly = projectPoly([
+          [0.0, 0.0], [4.25, 0.0], [4.25, 46.75], [5.25, 47.75],
+          [LOCKED_SOUTH_GATE_WX, 47.75], [LOCKED_SOUTH_GATE_WX, 50.0], [0.0, 50.0]
+        ]);
 
         out.push(`
-          <rect x="${westBed.x.toFixed(1)}" y="${westBed.y.toFixed(1)}" width="${westBed.width.toFixed(1)}" height="${westBed.height.toFixed(1)}" fill="${mulchFill}" stroke="${mulchStroke}" stroke-width="1"/>
-          <rect x="${southBed.x.toFixed(1)}" y="${southBed.y.toFixed(1)}" width="${southBed.width.toFixed(1)}" height="${southBed.height.toFixed(1)}" fill="${mulchFill}" stroke="${mulchStroke}" stroke-width="1"/>
+          <polygon points="${backyardWestSouthMulchPoly}" fill="${mulchFill}" stroke="${mulchStroke}" stroke-width="1"/>
         `);
 
         if (!L.gardenRock) {
-          const flatGarden = projectRect(4.0, 0.0, 27.0, 8.0);
-          out.push(`<rect x="${flatGarden.x.toFixed(1)}" y="${flatGarden.y.toFixed(1)}" width="${flatGarden.width.toFixed(1)}" height="${flatGarden.height.toFixed(1)}" fill="${mulchFill}" stroke="#ca8a04" stroke-width="1.1" stroke-dasharray="3,2"/>`);
+          const flatGardenPoly = projectPoly([
+            [4.25, 0.0], [27.0, 0.0], [27.0, 9.25], [26.75, 9.25],
+            [25.75, 8.25], [5.25, 8.25], [4.25, 9.25]
+          ]);
+          out.push(`<polygon points="${flatGardenPoly}" fill="${mulchFill}" stroke="#ca8a04" stroke-width="1.1" stroke-dasharray="3,2"/>`);
         }
       }
 
-      // 7. PHASE 4 (2029) COMPACTED ROAD BASE AROUND GARDEN BOXES
-      if (L.gardenRock) {
-        const gBed = projectRect(4.0, 0.0, 27.0, 8.0);
-        const gRockFill = isDrone ? 'url(#drone-crushed-rock)' : (isColor ? '#a8a29e' : 'url(#pat-gravel)');
-        out.push(`<rect x="${gBed.x.toFixed(1)}" y="${gBed.y.toFixed(1)}" width="${gBed.width.toFixed(1)}" height="${gBed.height.toFixed(1)}" fill="${gRockFill}" stroke="#94a3b8" stroke-width="1.1"/>`);
-      }
-
-      // 8. PHASE 2 (2027) UNIFIED CONTINUOUS LAWN TURF (Grass up to South house wall pavers wx=30.0'–41.0' & 45.0'–59.7', wrapping AC paver border + 6.0'×6.0' Octagonal Maple Cutout!)
+      // 8. PHASE 2 (2027) UNIFIED CONTINUOUS LAWN TURF (Compact 1.0'×1.0' 45° Robot-Mower Corners + Grass up to S. House Wall & AC Pavers + 6.0'×6.0' Octagonal Maple Cutout!)
       const unifiedLawnPts = [
-        [4.5, 10.5], [6.5, 8.5], [25.0, 8.5], [26.5, 10.0], [26.5, 20.0],
-        [17.5, 20.0], [17.5, 41.0], [30.0, 41.0], [30.0, 41.5],
-        [41.0, 41.5], [41.0, 44.5], [45.0, 44.5], [45.0, 41.5], [59.2, 41.5], [59.2, 43.5],
-        [66.15, 43.5], [68.2, 41.45], [68.2, 32.5], [81.0, 32.5], [81.0, 29.0], [96.7, 29.0],
-        [96.7, 43.0], [91.65, 43.0], [87.15, 47.5],
-        [6.5, 47.5], [4.5, 45.5]
+        [4.25, 9.25], [5.25, 8.25], [25.75, 8.25], [26.75, 9.25], [26.75, 20.0],
+        [17.5, 20.0], [17.5, 41.0], [30.0, 41.0], [30.0, 41.25],
+        [41.25, 41.25], [41.25, 44.25], [44.75, 44.25], [44.75, 41.25], [59.45, 41.25], [59.45, 43.25],
+        [66.95, 43.25], [67.95, 42.25], [67.95, 32.5], [81.0, 32.5], [81.0, 29.0], [96.7, 29.0],
+        [96.7, 43.25], [92.25, 43.25], [91.25, 44.25], [91.25, 46.75], [90.25, 47.75],
+        [5.25, 47.75], [4.25, 46.75]
       ];
       if (L.grass) {
         const turfFill = isDrone ? 'url(#drone-turf)' : (isColor ? '#22c55e' : 'rgba(16, 185, 129, 0.25)');
@@ -1020,12 +1035,14 @@
         out.push(`</g>`);
       }
 
-      // 10. PHASE 2 (2027) CONTINUOUS 6" HOLLAND PAVERS WITH 45° CHAMFERED CORNERS (Against Entire S. House Wall, Wrapping AC Unit at wx=41.0'–45.0', Notched Around Conduits, Perimeter & Maple Ring!)
+      // 10. PHASE 2 (2027) CONTINUOUS 6" HOLLAND PAVERS WITH COMPACT 1.0'×1.0' 45° ROBOT-MOWER CORNERS
+      //     (West Wall Paver Line Continues All the Way to North Fence at wy=0.0' to Divide Mulch from Road Base!)
       if (L.pavers) {
         const treeOctClosedPts = [...mapleOctMidPts, mapleOctMidPts[0]];
         const paverChains = [
-          [[30.0, 41.25], [41.25, 41.25], [41.25, 44.25], [44.75, 44.25], [44.75, 41.25], [59.45, 41.25], [59.45, 43.25], [66.05, 43.25], [67.95, 41.35], [67.95, 32.5]],
-          [[26.75, 20.0], [26.75, 10.15], [24.85, 8.25], [6.4, 8.25], [4.25, 10.4], [4.25, 45.6], [6.4, 47.75], [87.25, 47.75], [91.75, 43.25], [96.7, 43.25]],
+          [[30.0, 41.25], [41.25, 41.25], [41.25, 44.25], [44.75, 44.25], [44.75, 41.25], [59.45, 41.25], [59.45, 43.25], [66.95, 43.25], [67.95, 42.25], [67.95, 32.5]],
+          [[4.25, 0.0], [4.25, 46.75], [5.25, 47.75], [90.25, 47.75], [91.25, 46.75], [91.25, 44.25], [92.25, 43.25], [96.7, 43.25]],
+          [[4.25, 9.25], [5.25, 8.25], [25.75, 8.25], [26.75, 9.25], [26.75, 20.0]],
           treeOctClosedPts
         ];
         paverChains.forEach(chain => {
@@ -1090,9 +1107,9 @@
         // ZONE 1: Backyard Full-Sun Turf (15 Perimeter Heads B1–B14 · Hunter PRS40 + MP1000 / MP800SR · 5.32 GPM Total)
         // Strictly directional arcs (90°/135°/180°/270°): 0% overspray onto Patio Awning/Furniture, West 5+4 Trees, or North Cedar Boxes!
         const zone1Heads = [
-          { id: 'B1',   wx: 5.20,  wy: 9.80,  rad: 11.2,  sDeg: -22.5, eDeg: 112.5, nozzle: 'MP1000-90 (135°)' },
+          { id: 'B1',   wx: 4.85,  wy: 8.85,  rad: 11.2,  sDeg: -22.5, eDeg: 112.5, nozzle: 'MP1000-90 (135°)' },
           { id: 'B2',   wx: 16.00, wy: 8.75,  rad: 11.25, sDeg: 0,     eDeg: 180,   nozzle: 'MP1000-90 (180°)' },
-          { id: 'B3',   wx: 25.60, wy: 9.40,  rad: 10.6,  sDeg: 67.5,  eDeg: 202.5, nozzle: 'MP1000-90 (135°)' },
+          { id: 'B3',   wx: 26.15, wy: 8.85,  rad: 10.6,  sDeg: 67.5,  eDeg: 202.5, nozzle: 'MP1000-90 (135°)' },
           { id: 'B4',   wx: 26.25, wy: 19.75, rad: 11.0,  sDeg: 180,   eDeg: 270,   nozzle: 'MP1000-90 (90°)' },
           { id: 'B5',   wx: 17.50, wy: 20.00, rad: 11.25, sDeg: 90,    eDeg: 360,   nozzle: 'MP1000-210 (270°)' },
           { id: 'B6',   wx: 4.75,  wy: 20.00, rad: 12.5,  sDeg: -90,   eDeg: 90,    nozzle: 'MP1000-90 (180°)' },
@@ -1101,7 +1118,7 @@
           { id: 'B9',   wx: 17.25, wy: 30.50, rad: 12.5,  sDeg: 90,    eDeg: 270,   nozzle: 'MP1000-90 (180°)' },
           { id: 'B10a', wx: 17.25, wy: 40.75, rad: 12.5,  sDeg: 180,   eDeg: 270,   nozzle: 'MP1000-90 (90° NW)' },
           { id: 'B10b', wx: 18.00, wy: 41.25, rad: 6.25,  sDeg: 0,     eDeg: 180,   nozzle: 'MP800SR-90 (180° S)' },
-          { id: 'B11',  wx: 5.20,  wy: 46.20, rad: 11.5,  sDeg: 270,   eDeg: 360,   nozzle: 'MP1000-90 (90° NE)' },
+          { id: 'B11',  wx: 4.85,  wy: 47.15, rad: 11.5,  sDeg: 270,   eDeg: 360,   nozzle: 'MP1000-90 (90° NE)' },
           { id: 'B12',  wx: 18.00, wy: 47.25, rad: 6.25,  sDeg: 180,   eDeg: 360,   nozzle: 'MP800SR-90 (180° N)' },
           { id: 'B13',  wx: 28.50, wy: 47.25, rad: 6.25,  sDeg: 180,   eDeg: 315,   nozzle: 'MP800SR-90 (135°)' },
           { id: 'B14',  wx: 29.50, wy: 41.25, rad: 6.25,  sDeg: 90,    eDeg: 180,   nozzle: 'MP800SR-90 (90° SW)' }
@@ -1153,9 +1170,9 @@
           { id: 'F4', wx: 88.80, wy: 29.25, rad: 7.6,  sDeg: 0,     eDeg: 180,   nozzle: 'MP800SR-90 (180° S)' },
           { id: 'F5', wx: 96.40, wy: 29.25, rad: 13.5, sDeg: 90,    eDeg: 180,   nozzle: 'MP1000-90 (90° SW)' },
           { id: 'F6', wx: 96.40, wy: 42.75, rad: 13.5, sDeg: 180,   eDeg: 270,   nozzle: 'MP1000-90 (90° NW)' },
-          { id: 'F7', wx: 87.00, wy: 47.25, rad: 14.0, sDeg: 180,   eDeg: 315,   nozzle: 'MP1000-90 (135° NW)' },
+          { id: 'F7', wx: 89.80, wy: 47.25, rad: 14.0, sDeg: 180,   eDeg: 315,   nozzle: 'MP1000-90 (135° NW)' },
           { id: 'F8', wx: 77.50, wy: 47.25, rad: 11.0, sDeg: 180,   eDeg: 360,   nozzle: 'MP1000-90 (180° N)' },
-          { id: 'F9', wx: 68.40, wy: 41.50, rad: 11.0, sDeg: -67.5, eDeg: 67.5,  nozzle: 'MP1000-90 (135° E)' }
+          { id: 'F9', wx: 68.40, wy: 42.00, rad: 11.0, sDeg: -67.5, eDeg: 67.5,  nozzle: 'MP1000-90 (135° E)' }
         ];
 
         zone3Heads.forEach(h => {
@@ -1652,9 +1669,9 @@
           { wx: 85.0, wy: 20.0, title: 'CONCRETE DRIVEWAY', sub: '18\' × 23.5\'', color: '#e2e8f0', border: '#64748b', show: L.existingConcrete },
           { wx: 11.5, wy: 28.0, title: 'BACKYARD LAWN (679 SQ FT)', sub: '45° Pavers @ Mulch/Road Base · None @ Concrete', color: '#4ade80', border: '#10b981', show: L.grass },
           { wx: 23.8, wy: 30.5, title: 'PATIO, 2-PILLAR AWNING & 2× 52" FANS', sub: 'Phase 5 (2030) · 2 West Pillars · 2 Lighted Fans', color: '#fbbf24', border: '#f59e0b', show: L.patioAwning || L.existingConcrete },
-          { wx: 15.5, wy: 4.2, title: L.planters ? '5 RAISED CEDAR BEDS (3\'×6\')' : 'NORTH GARDEN PLOT', sub: L.planters ? 'Phase 4 (2029) · Surrounded by Road Base' : 'Phase 3 (2028) · Flat Dirt Garden', color: '#bef264', border: '#84cc16', show: L.planters || L.beds },
-          { wx: 50.0, wy: 4.5, title: 'NORTH COMPACTED ROAD BASE PAD', sub: 'Phase 4 (2029) · 9\' × 40\' to Gate (360 sq ft)', color: '#e7e5e4', border: '#a8a29e', show: L.northCementPad },
-          { wx: 84.5, wy: 5.5, title: 'WHITE DECORATIVE ROCK (NE STRIP)', sub: 'Stops at North Fence · Matches S. Neighbors', color: '#f8fafc', border: '#cbd5e1', show: L.frontBeds },
+          { wx: 15.5, wy: 4.2, title: L.planters ? '5 RAISED CEDAR BEDS (3\'×6\')' : 'NORTH GARDEN PLOT', sub: L.planters ? 'Phase 4 (2029) · Continuous Road Base' : 'Phase 3 (2028) · Flat Dirt Garden', color: '#bef264', border: '#84cc16', show: L.planters || L.beds },
+          { wx: 50.0, wy: 4.5, title: 'CONTINUOUS COMPACTED ROAD BASE', sub: 'Phase 4 (2029) · Garden, Walk, Side Yard & N. Front', color: '#e7e5e4', border: '#a8a29e', show: L.northCementPad },
+          { wx: 84.5, wy: 5.5, title: 'COMPACTED ROAD BASE (N. FRONT)', sub: 'Continuous From Garden & Side Yard Through Gate', color: '#e7e5e4', border: '#a8a29e', show: L.northCementPad },
           { wx: 103.7, wy: 40.0, title: 'WHITE ROCK PARK STRIPS (6\')', sub: 'Matches South Neighbors', color: '#f8fafc', border: '#cbd5e1', show: L.frontBeds },
           { wx: 65.5, wy: 37.5, title: "MELINDA'S HYACINTHS & 3152 SWING", sub: '2\' Porch Bed · Unobstructed View to Street', color: '#f472b6', border: '#ec4899', show: L.frontPlants || L.porchSwing },
           { wx: SE_MAPLE_WX, wy: SE_MAPLE_WY, title: 'NORWEGIAN SUNSET MAPLE', sub: '(83\', 39.5\') · 8\'–9.5\' Trunk / 11\'–12\'+ Lawn Clear', color: '#fdba74', border: '#ea580c', show: L.frontPlants },
