@@ -69,29 +69,29 @@
     </div>
   </section>
 
-  <!-- 1. Visual Concepts (What We Want — All 13 Angles) -->
+  <!-- 1. Visual Concepts (What We Want — All 14 Angles) -->
   <section id="concepts" class="py-8 max-w-7xl mx-auto px-4 sm:px-6 w-full">
     <div class="flex flex-wrap items-center justify-between gap-2 mb-4">
       <div class="flex items-center gap-2">
         <h2 class="text-lg font-bold text-slate-900">Target Design</h2>
-        <span class="px-2 py-0.5 rounded-md text-xs font-mono-code font-bold bg-emerald-100 text-emerald-900 border border-emerald-300">13 Angles</span>
+        <span class="px-2 py-0.5 rounded-md text-xs font-mono-code font-bold bg-emerald-100 text-emerald-900 border border-emerald-300">14 Angles</span>
       </div>
 
       <div class="flex flex-wrap items-center gap-1.5">
         <button onclick="filterConcepts('ALL', this)" class="concept-filter-btn px-2.5 py-1 rounded-lg text-xs font-bold bg-emerald-700 text-white transition">
-          All (13)
+          All (14)
         </button>
-        <button onclick="filterConcepts('BACKYARD', this)" class="concept-filter-btn px-2.5 py-1 rounded-lg text-xs font-bold bg-slate-200 text-slate-900 hover:bg-slate-300 transition">
-          Backyard (7)
-        </button>
-        <button onclick="filterConcepts('NORTH_SIDE', this)" class="concept-filter-btn px-2.5 py-1 rounded-lg text-xs font-bold bg-slate-200 text-slate-900 hover:bg-slate-300 transition">
-          North (2)
+        <button onclick="filterConcepts('FRONT_PARK', this)" class="concept-filter-btn px-2.5 py-1 rounded-lg text-xs font-bold bg-slate-200 text-slate-900 hover:bg-slate-300 transition">
+          Front (2)
         </button>
         <button onclick="filterConcepts('SOUTH_SIDE', this)" class="concept-filter-btn px-2.5 py-1 rounded-lg text-xs font-bold bg-slate-200 text-slate-900 hover:bg-slate-300 transition">
           South (2)
         </button>
-        <button onclick="filterConcepts('FRONT_PARK', this)" class="concept-filter-btn px-2.5 py-1 rounded-lg text-xs font-bold bg-slate-200 text-slate-900 hover:bg-slate-300 transition">
-          Front (2)
+        <button onclick="filterConcepts('NORTH_SIDE', this)" class="concept-filter-btn px-2.5 py-1 rounded-lg text-xs font-bold bg-slate-200 text-slate-900 hover:bg-slate-300 transition">
+          North (2)
+        </button>
+        <button onclick="filterConcepts('BACKYARD', this)" class="concept-filter-btn px-2.5 py-1 rounded-lg text-xs font-bold bg-slate-200 text-slate-900 hover:bg-slate-300 transition">
+          Backyard (7)
         </button>
         <button id="toggle-baseline-btn" onclick="toggleBaselineCompare()"
                 class="ml-1 px-3 py-1 rounded-lg text-xs font-bold bg-amber-500 text-slate-950 hover:bg-amber-400 transition shadow-sm">
@@ -101,7 +101,7 @@
     </div>
 
     <div id="concepts-grid" class="grid grid-cols-1 md:grid-cols-2 gap-4">
-      <!-- Populated via JS (13 Reconciled Angles) -->
+      <!-- Populated via JS (14 Reconciled Angles) -->
     </div>
   </section>
 
@@ -362,76 +362,31 @@
   <script>
     const CONCEPT_RENDERS = [
       {
-        id: 'patio-awning-option-1c-solid-roof',
-        zone: 'BACKYARD',
-        badge: 'Patio Awning · Locked Option #1C',
-        title: 'Open Solid-Roof 2-Pillar Timber Awning (No Privacy Wall, 0 House Posts): T&G Ceiling, 2 Lighted Ceiling Fans & Metal Roof',
-        renderUrl: 'photos_backyard_ideas/render_01_patio_awning_1c_closeup.jpg',
-        beforeThumb: 'photos_current_backyard/thumbs/PXL_20261022_162150878.MP.jpg',
-        beforeFull: 'photos_current_backyard/PXL_20261022_162150878.MP.jpg'
+        id: 'front-se-lawn-chamfered',
+        zone: 'FRONT_PARK',
+        badge: 'Front SE · Looking NW',
+        title: 'Norwegian Sunset Maple, Layered 4-Season Porch & 2\' S. Garden (Boxwoods, Grasses, Coral Bells, Lavender & Hyacinth Drifts), Grass Under Gate & 45° Deep Charcoal Pavers',
+        renderUrl: 'photos_backyard_ideas/render_12_front_se_lawn_maple_hyacinths.jpg',
+        beforeThumb: 'photos_current_backyard/thumbs/PXL_20261022_162056602.MP.jpg',
+        beforeFull: 'photos_current_backyard/PXL_20261022_162056602.MP.jpg'
       },
       {
-        id: 'backyard-pergola-planters',
-        zone: 'BACKYARD',
-        badge: 'Backyard · Looking East',
-        title: 'Open 2-Pillar Awning, L-Sectional, Fire Table, 5 Planters on Road Base & Paver-Wrapped AC Unit',
-        renderUrl: 'photos_backyard_ideas/render_02_backyard_looking_east_dusk.jpg',
-        beforeThumb: 'photos_current_backyard/thumbs/PXL_20261022_004857161.MP.jpg',
-        beforeFull: 'photos_current_backyard/PXL_20261022_004857161.MP.jpg'
+        id: 'front-full-elevation-park-strips',
+        zone: 'FRONT_PARK',
+        badge: 'Front Full · Looking West',
+        title: 'Full Front: Norwegian Sunset Maple, Layered Porch/S. Garden, Warm Grey/Taupe Stone Planted 6\' Park Strips (16" Curb Step-Out) & Paver-Framed NE Lane',
+        renderUrl: 'photos_backyard_ideas/render_13_front_full_elevation_park_strips.jpg',
+        beforeThumb: 'photos_current_backyard/thumbs/PXL_20261022_162032048.MP.jpg',
+        beforeFull: 'photos_current_backyard/PXL_20261022_162032048.MP.jpg'
       },
       {
-        id: 'backyard-west-juniper-patio',
-        zone: 'BACKYARD',
-        badge: 'Backyard · Looking NW',
-        title: '8\' W. Wall 5+4 Screen, 6\' N. Vinyl Fence, Open 2-Pillar Awning, Bistro Lights & L-Sectional',
-        renderUrl: 'photos_backyard_ideas/render_03_backyard_looking_nw_5plus4_wall.jpg',
-        beforeThumb: 'photos_current_backyard/thumbs/PXL_20261022_162126370.MP.jpg',
-        beforeFull: 'photos_current_backyard/PXL_20261022_162126370.MP.jpg'
-      },
-      {
-        id: 'backyard-nw-planters-sidewalk',
-        zone: 'BACKYARD',
-        badge: 'Backyard · Looking SE from NW',
-        title: '5 N–S Cedar Planters (3\'×6\') on Compacted Road Base, 45° Pavers, 3\' Road Base Walk & Bare Dirt N. Neighbor',
-        renderUrl: 'photos_backyard_ideas/render_04_backyard_nw_five_cedar_boxes.jpg',
-        beforeThumb: 'photos_current_backyard/thumbs/PXL_20261022_162206648.MP.jpg',
-        beforeFull: 'photos_current_backyard/PXL_20261022_162206648.MP.jpg'
-      },
-      {
-        id: 'backyard-sw-berry-juniper',
-        zone: 'BACKYARD',
-        badge: 'Backyard · Looking SW at Dusk',
-        title: '8\' W. Wall 5+4 Screen w/ 2700K Uplights, Continuous 2\' S. Bed, 45° Pavers & Grass to S. House Wall',
-        renderUrl: 'photos_backyard_ideas/render_05_backyard_sw_panoramic_dusk.jpg',
-        beforeThumb: 'photos_current_backyard/thumbs/PXL_20261022_004925322.MP.jpg',
-        beforeFull: 'photos_current_backyard/PXL_20261022_004925322.MP.jpg'
-      },
-      {
-        id: 'backyard-full-50ft-span-ten-junipers',
-        zone: 'BACKYARD',
-        badge: 'Backyard · Full 50\' Span Looking S',
-        title: 'Full 50\' Span: 8\' W. Wall 5+4 Screen, 45° Chamfered Pavers & Open 2-Pillar Awning (No Privacy Wall)',
-        renderUrl: 'photos_backyard_ideas/render_06_backyard_full_50ft_span_south.jpg',
-        beforeThumb: 'photos_current_backyard/thumbs/PXL_20261022_162216594.MP.jpg',
-        beforeFull: 'photos_current_backyard/PXL_20261022_162216594.MP.jpg'
-      },
-      {
-        id: 'backyard-sw-corner-patio-awning',
-        zone: 'BACKYARD',
-        badge: 'Backyard · Looking NE from SW Corner',
-        title: 'Open 2-Pillar Awning, Grass + Flush Pavers Along S. Wall, AC Paver Wrap & 2\' S. Bed (0 Gravel)',
-        renderUrl: 'photos_backyard_ideas/render_07_backyard_sw_corner_looking_ne.jpg',
-        beforeThumb: 'photos_current_backyard/thumbs/PXL_20261022_162141898.MP.jpg',
-        beforeFull: 'photos_current_backyard/PXL_20261022_162141898.MP.jpg'
-      },
-      {
-        id: 'north-side-cement-corridor',
-        zone: 'NORTH_SIDE',
-        badge: 'North Side · Looking East',
-        title: 'Narrow 9\'×40\' Crushed Grey Limestone Road Base Pad (Inside Gate), 3\' Rear Path & Full-Width 8.5\' Gate',
-        renderUrl: 'photos_backyard_ideas/render_08_north_side_road_base_pad.jpg',
-        beforeThumb: 'photos_current_backyard/thumbs/PXL_20261022_162209617.MP.jpg',
-        beforeFull: 'photos_current_backyard/PXL_20261022_162209617.MP.jpg'
+        id: 'south-gate-porch-entry',
+        zone: 'SOUTH_SIDE',
+        badge: 'South Gate · Looking West',
+        title: 'S. Gate (wx=55.5\'): Grass Under Gate, Layered 4-Season Porch & S. Border Garden (Boxwoods, Grasses, Coral Bells, Lavender & Hyacinth Drifts) & White Rocks S. Neighbor',
+        renderUrl: 'photos_backyard_ideas/render_11_south_gate_porch_entry.jpg',
+        beforeThumb: 'photos_current_backyard/thumbs/PXL_20261022_162104480.MP.jpg',
+        beforeFull: 'photos_current_backyard/PXL_20261022_162104480.MP.jpg'
       },
       {
         id: 'north-vehicle-gate-ne-strip',
@@ -452,31 +407,85 @@
         beforeFull: 'photos_current_backyard/PXL_20261022_162115166.MP.jpg'
       },
       {
-        id: 'south-gate-porch-entry',
-        zone: 'SOUTH_SIDE',
-        badge: 'South Gate · Looking West',
-        title: 'S. Gate (wx=55.5\'): Grass Under Gate, Layered 4-Season Porch & S. Border Garden (Boxwoods, Grasses, Coral Bells, Lavender & Hyacinth Drifts) & White Rocks S. Neighbor',
-        renderUrl: 'photos_backyard_ideas/render_11_south_gate_porch_entry.jpg',
-        beforeThumb: 'photos_current_backyard/thumbs/PXL_20261022_162104480.MP.jpg',
-        beforeFull: 'photos_current_backyard/PXL_20261022_162104480.MP.jpg'
+        id: 'backyard-west-juniper-patio',
+        zone: 'BACKYARD',
+        badge: 'Backyard · Looking NW',
+        title: '8\' W. Wall 5+4 Screen, 6\' N. Vinyl Fence, Open 2-Pillar Awning, Bistro Lights & L-Sectional',
+        renderUrl: 'photos_backyard_ideas/render_03_backyard_looking_nw_5plus4_wall.jpg',
+        beforeThumb: 'photos_current_backyard/thumbs/PXL_20261022_162126370.MP.jpg',
+        beforeFull: 'photos_current_backyard/PXL_20261022_162126370.MP.jpg'
       },
       {
-        id: 'front-se-lawn-chamfered',
-        zone: 'FRONT_PARK',
-        badge: 'Front SE · Looking NW',
-        title: 'Norwegian Sunset Maple, Layered 4-Season Porch & 2\' S. Garden (Boxwoods, Grasses, Coral Bells, Lavender & Hyacinth Drifts), Grass Under Gate & 45° Deep Charcoal Pavers',
-        renderUrl: 'photos_backyard_ideas/render_12_front_se_lawn_maple_hyacinths.jpg',
-        beforeThumb: 'photos_current_backyard/thumbs/PXL_20261022_162056602.MP.jpg',
-        beforeFull: 'photos_current_backyard/PXL_20261022_162056602.MP.jpg'
+        id: 'backyard-pergola-planters',
+        zone: 'BACKYARD',
+        badge: 'Backyard · Looking East',
+        title: 'Open 2-Pillar Awning, L-Sectional, Fire Table, 5 Planters on Road Base & Paver-Wrapped AC Unit',
+        renderUrl: 'photos_backyard_ideas/render_02_backyard_looking_east_dusk.jpg',
+        beforeThumb: 'photos_current_backyard/thumbs/PXL_20261022_004857161.MP.jpg',
+        beforeFull: 'photos_current_backyard/PXL_20261022_004857161.MP.jpg'
       },
       {
-        id: 'front-full-elevation-park-strips',
-        zone: 'FRONT_PARK',
-        badge: 'Front Full · Looking West',
-        title: 'Full Front: Norwegian Sunset Maple, Layered Porch/S. Garden, Warm Grey/Taupe Stone Planted 6\' Park Strips (16" Curb Step-Out) & Paver-Framed NE Lane',
-        renderUrl: 'photos_backyard_ideas/render_13_front_full_elevation_park_strips.jpg',
-        beforeThumb: 'photos_current_backyard/thumbs/PXL_20261022_162032048.MP.jpg',
-        beforeFull: 'photos_current_backyard/PXL_20261022_162032048.MP.jpg'
+        id: 'patio-awning-option-1c-solid-roof',
+        zone: 'BACKYARD',
+        badge: 'Patio Awning · Locked Option #1C',
+        title: 'Open Solid-Roof 2-Pillar Timber Awning (No Privacy Wall, 0 House Posts): T&G Ceiling, 2 Lighted Ceiling Fans & Metal Roof',
+        renderUrl: 'photos_backyard_ideas/render_01_patio_awning_1c_closeup.jpg',
+        beforeThumb: 'photos_current_backyard/thumbs/PXL_20261022_162150878.MP.jpg',
+        beforeFull: 'photos_current_backyard/PXL_20261022_162150878.MP.jpg'
+      },
+      {
+        id: 'backyard-nw-planters-sidewalk',
+        zone: 'BACKYARD',
+        badge: 'Backyard · Looking SE from NW',
+        title: '5 N–S Cedar Planters (3\'×6\') on Compacted Road Base, 45° Pavers, 3\' Road Base Walk & Bare Dirt N. Neighbor',
+        renderUrl: 'photos_backyard_ideas/render_04_backyard_nw_five_cedar_boxes.jpg',
+        beforeThumb: 'photos_current_backyard/thumbs/PXL_20261022_162206648.MP.jpg',
+        beforeFull: 'photos_current_backyard/PXL_20261022_162206648.MP.jpg'
+      },
+      {
+        id: 'backyard-full-50ft-span-ten-junipers',
+        zone: 'BACKYARD',
+        badge: 'Backyard · Full 50\' Span Looking S',
+        title: 'Full 50\' Span: 8\' W. Wall 5+4 Screen, 45° Chamfered Pavers & Open 2-Pillar Awning (No Privacy Wall)',
+        renderUrl: 'photos_backyard_ideas/render_06_backyard_full_50ft_span_south.jpg',
+        beforeThumb: 'photos_current_backyard/thumbs/PXL_20261022_162216594.MP.jpg',
+        beforeFull: 'photos_current_backyard/PXL_20261022_162216594.MP.jpg'
+      },
+      {
+        id: 'backyard-sw-berry-juniper',
+        zone: 'BACKYARD',
+        badge: 'Backyard · Looking SW at Dusk',
+        title: '8\' W. Wall 5+4 Screen w/ 2700K Uplights, Continuous 2\' S. Bed, 45° Pavers & Grass to S. House Wall',
+        renderUrl: 'photos_backyard_ideas/render_05_backyard_sw_panoramic_dusk.jpg',
+        beforeThumb: 'photos_current_backyard/thumbs/PXL_20261022_004925322.MP.jpg',
+        beforeFull: 'photos_current_backyard/PXL_20261022_004925322.MP.jpg'
+      },
+      {
+        id: 'backyard-sw-corner-patio-awning',
+        zone: 'BACKYARD',
+        badge: 'Backyard · Looking NE from SW Corner',
+        title: 'Open 2-Pillar Awning, Grass + Flush Pavers Along S. Wall, AC Paver Wrap & 2\' S. Bed (0 Gravel)',
+        renderUrl: 'photos_backyard_ideas/render_07_backyard_sw_corner_looking_ne.jpg',
+        beforeThumb: 'photos_current_backyard/thumbs/PXL_20261022_162141898.MP.jpg',
+        beforeFull: 'photos_current_backyard/PXL_20261022_162141898.MP.jpg'
+      },
+      {
+        id: 'north-side-cement-corridor',
+        zone: 'NORTH_SIDE',
+        badge: 'North Side · Looking East',
+        title: 'Narrow 9\'×40\' Crushed Grey Limestone Road Base Pad (Inside Gate), 3\' Rear Path & Full-Width 8.5\' Gate',
+        renderUrl: 'photos_backyard_ideas/render_08_north_side_road_base_pad.jpg',
+        beforeThumb: 'photos_current_backyard/thumbs/PXL_20261022_162209617.MP.jpg',
+        beforeFull: 'photos_current_backyard/PXL_20261022_162209617.MP.jpg'
+      },
+      {
+        id: 'drone-top-down-full-property',
+        zone: 'FULL_LOT',
+        badge: 'Top-Down Drone View · Full Property',
+        title: '90° Orthographic Master Plan (50\'×108.7\'): 5+4 W. Wall, 5 Cedar Boxes, Grey Limestone Road Base, Awning #1C, Centered Maple & 6\' Park Strips',
+        renderUrl: 'photos_backyard_ideas/render_drone_top_down_full_property.jpg',
+        beforeThumb: null,
+        beforeFull: null
       }
     ];
 
@@ -516,8 +525,9 @@
         : CONCEPT_RENDERS.filter(c => c.zone === activeConceptFilter);
 
       grid.innerHTML = items.map(c => {
-        const imgSrc = showingBaseline ? c.beforeThumb : c.renderUrl;
-        const statusBadge = showingBaseline
+        const hasBefore = Boolean(c.beforeThumb);
+        const imgSrc = (showingBaseline && hasBefore) ? c.beforeThumb : c.renderUrl;
+        const statusBadge = (showingBaseline && hasBefore)
           ? `<span class="px-2 py-0.5 rounded text-[11px] font-bold bg-amber-500 text-slate-950">Before</span>`
           : `<span class="px-2 py-0.5 rounded text-[11px] font-bold bg-emerald-700 text-white">Target</span>`;
         return `
@@ -543,13 +553,13 @@
       const c = CONCEPT_RENDERS.find(item => item.id === conceptId);
       if (!c) return;
       activeLightboxConcept = c;
-      lightboxShowingBefore = showingBaseline;
+      lightboxShowingBefore = showingBaseline && Boolean(c.beforeThumb);
       updateConceptLightboxView();
       document.getElementById('lightbox-modal').classList.remove('hidden');
     }
 
     function toggleLightboxBeforeAfter() {
-      if (!activeLightboxConcept) return;
+      if (!activeLightboxConcept || !activeLightboxConcept.beforeThumb) return;
       lightboxShowingBefore = !lightboxShowingBefore;
       updateConceptLightboxView();
     }
@@ -558,8 +568,12 @@
       if (!activeLightboxConcept) return;
       const c = activeLightboxConcept;
       const compareBtn = document.getElementById('lightbox-compare-btn');
-      compareBtn.classList.remove('hidden');
-      if (lightboxShowingBefore) {
+      if (c.beforeThumb) {
+        compareBtn.classList.remove('hidden');
+      } else {
+        compareBtn.classList.add('hidden');
+      }
+      if (lightboxShowingBefore && c.beforeThumb) {
         document.getElementById('lightbox-img').src = c.beforeThumb;
         document.getElementById('lightbox-caption').textContent = `[BEFORE] ${c.badge} — ${c.title}`;
         document.getElementById('lightbox-download').href = c.beforeFull;
