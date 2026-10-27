@@ -418,7 +418,7 @@
           { key: 'pavers', label: 'Deep Charcoal Pavers (~360\' · NE Frame + 16" Curb Step-Outs)', swatch: '#2dd4bf' },
           { key: 'sod', label: 'Seeded Lawn (Up to Entire S. Wall/AC Pavers & Under Gate)', swatch: '#22c55e' },
           { key: 'frontBeds', label: 'Dark Espresso Mulch Beds (1.5\' N. Border + 2\' S.) & Warm Taupe Park Strips', swatch: '#8b837a' },
-          { key: 'frontPlants', label: 'Melinda\'s Hyacinths, Maple, 1.5\' N. Border & Park Strip Perennials', swatch: '#f43f5e' },
+          { key: 'frontPlants', label: 'Layered Porch & S. Garden (Boxwoods/Grasses/Hyacinths), Maple & Park Strips', swatch: '#f43f5e' },
           { key: 'irrigation', label: '5-Zone Sprinklers, Driveway Conduit S-4 & PC Drip', swatch: '#38bdf8' }
         ]
       },
@@ -2812,58 +2812,232 @@
         SEASON_GROUPS.hyacinthSpikes.push(clump);
       }
 
-      // 1A. Melinda's Primary Fragrant Hyacinth Drift in the 2.0' Porch-Front Mulch Bed
-      //     STRICTLY South of the wy = 29.0..32.5 Concrete Porch Entry Walkway!
-      //     Planted inside wx = 66.05..67.40, wy = 33.05..40.95 (Right in front of the Hanging Porch Swing & '3152' Column!)
-      let hCount = 0;
-      for (let wy = 33.05; wy <= 40.95; wy += 0.62) {
-        addHyacinthClump(66.15 + (hCount % 2) * 0.28, wy, hCount);
-        addHyacinthClump(67.05 - (hCount % 2) * 0.22, wy + 0.28, hCount + 2);
-        hCount++;
-      }
-      // South-of-Porch Foundation Turn (wx = 59.5..65.5, wy = 41.6..42.7)
-      for (let wx = 59.8; wx <= 65.4; wx += 0.95) {
-        addHyacinthClump(wx, 42.1 + (hCount % 2) * 0.35, hCount);
-        hCount++;
-      }
-      // 1B. Sweeping Hyacinth Ribbon along the Continuous 2.0' South Front Bed toward the SE Utility Box Screen (wx = 64.0..84.2, wy = 48.55..49.35)
-      for (let wx = 64.0; wx <= 84.2; wx += 1.10) {
-        addHyacinthClump(wx, 48.65 + (hCount % 2) * 0.45, hCount);
-        hCount++;
-      }
+      // 1A. LAYERED 4-SEASON FRONT PORCH & SOUTH BORDER DESIGNER GARDEN PLAN
+      //     Replaces the single-species Hyacinth wall/line with a professional 3-tier botanical composition:
+      //     - Tier 1 (365-Day Evergreen Bones): 7× Sculpted Emerald Dwarf Globe Boxwoods (Buxus 'Winter Gem', 3 in Porch Bed + 4 in South Bed)
+      //     - Tier 2 (Vertical Plume Movement): 4× Upright 'Karl Foerster' Feather Reed Grasses along the 2.0' South Bed (wx = 58.0, 66.5, 75.0, 83.5)
+      //     - Tier 3 (Contrasting Foliage & May–Oct Blooms): 8× Ruffled Burgundy 'Obsidian' & Amber 'Caramel' Coral Bells (Heuchera) +
+      //       8× Fragrant 'Hidcote' English Lavender / 'Cat's Pajamas' Catmint / 'May Night' Salvia + 4× 'PowWow Wild Berry' Coneflower
+      //     - Spring Jewels: 9× Naturalistic Triangular Pocket Drifts of Melinda's Fragrant Jewel-Toned Hyacinths (4 in Porch Bed + 5 in South Bed)
 
-      // 1C. Summer & Fall Companion Dwarf Perennials in the Porch-Front Bed (strictly wy = 33.4..40.6, never on the sidewalk!)
-      const summerLavMat = new THREE.MeshStandardMaterial({ color: '#7c3aed', roughness: 0.68 });
-      const summerCoralMat = new THREE.MeshStandardMaterial({ color: '#e11d48', roughness: 0.68 });
-      const summerLeafMat = new THREE.MeshStandardMaterial({
-        color: '#228b46',
+      const boxwoodFoliageMat = new THREE.MeshStandardMaterial({
+        color: '#166534',
+        map: foliageLeafTex,
+        bumpMap: foliageLeafBumpTex,
+        bumpScale: 0.05,
+        roughness: 0.72
+      });
+      const coralBellObsidianMat = new THREE.MeshStandardMaterial({
+        color: '#581c3c',
+        bumpMap: foliageLeafBumpTex,
+        bumpScale: 0.04,
+        roughness: 0.68
+      });
+      const coralBellCaramelMat = new THREE.MeshStandardMaterial({
+        color: '#b45309',
+        bumpMap: foliageLeafBumpTex,
+        bumpScale: 0.04,
+        roughness: 0.68
+      });
+      const coralBellWandMat = new THREE.MeshStandardMaterial({ color: '#fbcfe8', roughness: 0.55 });
+      const lavenderFoliageMat = new THREE.MeshStandardMaterial({
+        color: '#2e6f56',
         map: foliageLeafTex,
         bumpMap: foliageLeafBumpTex,
         bumpScale: 0.04,
         roughness: 0.78
       });
-      for (let wy = 33.4; wy <= 40.6; wy += 1.2) {
+      const summerLavMat = new THREE.MeshStandardMaterial({ color: '#7c3aed', roughness: 0.62 });
+      const summerCoralMat = new THREE.MeshStandardMaterial({ color: '#e11d48', roughness: 0.62 });
+      const summerConeCenterMat = new THREE.MeshStandardMaterial({ color: '#d97706', roughness: 0.65 });
+
+      // Helper: Sculpted Dwarf Globe Boxwood Shrub (Buxus microphylla 'Winter Gem', ~1.5'–1.7' H × 1.8' W, 365-day evergreen)
+      function addDwarfBoxwoodGlobe(wx, wy, scaleMul = 1.0) {
+        const bxGrp = new THREE.Group();
+        bxGrp.position.set(wx, 0.08, wy);
+        bxGrp.scale.set(scaleMul, scaleMul, scaleMul);
+
+        const core = new THREE.Mesh(new THREE.SphereGeometry(0.76, 14, 12), boxwoodFoliageMat);
+        core.scale.set(1.12, 0.86, 1.12);
+        core.position.set(0, 0.64, 0);
+        core.castShadow = true;
+        core.receiveShadow = true;
+        bxGrp.add(core);
+
+        for (let l = 0; l < 6; l++) {
+          const ang = (l / 6) * Math.PI * 2 + 0.3;
+          const tuft = new THREE.Mesh(new THREE.SphereGeometry(0.42, 10, 8), boxwoodFoliageMat);
+          tuft.scale.set(1.08, 0.84, 1.08);
+          tuft.position.set(Math.cos(ang) * 0.44, 0.56 + (l % 2) * 0.14, Math.sin(ang) * 0.44);
+          tuft.castShadow = true;
+          bxGrp.add(tuft);
+        }
+
+        const snowCap = new THREE.Mesh(new THREE.SphereGeometry(0.68, 12, 8), MAT.snowWhite);
+        snowCap.scale.set(1.10, 0.32, 1.10);
+        snowCap.position.set(0, 1.18, 0);
+        snowCap.visible = false;
+        bxGrp.add(snowCap);
+        SEASON_GROUPS.juniperSnowCaps.push(snowCap);
+
+        gFrontPlants.add(bxGrp);
+      }
+
+      // Helper: Ruffled Burgundy 'Obsidian' or Warm Amber 'Caramel' Coral Bells (Heuchera) Foliage Rosette
+      function addCoralBellMound(wx, wy, isCaramel = false) {
+        const cbGrp = new THREE.Group();
+        cbGrp.position.set(wx, 0.08, wy);
+        const leafMat = isCaramel ? coralBellCaramelMat : coralBellObsidianMat;
+
+        for (let l = 0; l < 7; l++) {
+          const ang = (l / 7) * Math.PI * 2;
+          const r = l === 0 ? 0 : 0.24;
+          const lobe = new THREE.Mesh(new THREE.SphereGeometry(0.30, 10, 8), leafMat);
+          lobe.scale.set(1.18, 0.48, 1.18);
+          lobe.position.set(Math.cos(ang) * r, 0.20 + (l % 2) * 0.04, Math.sin(ang) * r);
+          lobe.castShadow = true;
+          cbGrp.add(lobe);
+        }
+
+        // Delicate airy flower wands in late Spring / Summer
+        const wandGrp = new THREE.Group();
+        for (let w = 0; w < 4; w++) {
+          const wAng = (w / 4) * Math.PI * 2 + 0.4;
+          const stem = new THREE.Mesh(new THREE.CylinderGeometry(0.01, 0.015, 0.72, 6), leafMat);
+          stem.position.set(Math.cos(wAng) * 0.12, 0.48, Math.sin(wAng) * 0.12);
+          wandGrp.add(stem);
+          const panicle = new THREE.Mesh(new THREE.ConeGeometry(0.055, 0.28, 7), coralBellWandMat);
+          panicle.position.set(Math.cos(wAng) * 0.12, 0.86, Math.sin(wAng) * 0.12);
+          wandGrp.add(panicle);
+        }
+        wandGrp.visible = false;
+        cbGrp.add(wandGrp);
+        SEASON_GROUPS.summerFrontBlooms.push(wandGrp);
+
+        gFrontPlants.add(cbGrp);
+      }
+
+      // Helper: Multi-Season English Lavender / Purple Catmint / Salvia Mound (Lush silvery-green basal foliage in Spring + full violet spires in Summer/Fall)
+      function addLavenderOrCatmintMound(wx, wy, scaleMul = 1.0, withConeflower = false) {
         const pGrp = new THREE.Group();
-        pGrp.position.set(66.65, 0.09, wy);
-        for (let l = 0; l < 4; l++) {
-          const lAng = (l / 4) * Math.PI * 2;
-          const foliage = new THREE.Mesh(new THREE.SphereGeometry(0.32, 10, 8), summerLeafMat);
+        pGrp.position.set(wx, 0.08, wy);
+        pGrp.scale.set(scaleMul, scaleMul, scaleMul);
+
+        // Year-round / Spring silvery-sage & emerald foliage cushion (frames Hyacinths in April and hides bulb leaves in May/June!)
+        for (let l = 0; l < 6; l++) {
+          const lAng = (l / 6) * Math.PI * 2;
+          const lr = l === 0 ? 0 : 0.25;
+          const foliage = new THREE.Mesh(new THREE.SphereGeometry(0.38, 10, 8), lavenderFoliageMat);
           foliage.scale.set(1.15, 0.58, 1.15);
-          foliage.position.set(Math.cos(lAng) * 0.12, 0.22, Math.sin(lAng) * 0.12);
+          foliage.position.set(Math.cos(lAng) * lr, 0.26, Math.sin(lAng) * lr);
+          foliage.castShadow = true;
           pGrp.add(foliage);
         }
-        const bloomMat = (Math.round(wy) % 2 === 0) ? summerLavMat : summerCoralMat;
-        for (let b = 0; b < 9; b++) {
-          const ang = (b / 9) * Math.PI * 2;
-          const bMesh = new THREE.Mesh(new THREE.SphereGeometry(0.10, 8, 8), bloomMat);
-          bMesh.scale.set(1.1, 0.75, 1.1);
-          bMesh.position.set(Math.cos(ang) * 0.22, 0.52 + (b % 2) * 0.08, Math.sin(ang) * 0.22);
-          pGrp.add(bMesh);
+
+        // Early spring emerging lavender/salvia flower buds (subtle vertical texture in Spring)
+        for (let s = 0; s < 6; s++) {
+          const ang = (s / 6) * Math.PI * 2;
+          const r = 0.16 + (s % 2) * 0.12;
+          const budSpike = new THREE.Mesh(new THREE.ConeGeometry(0.045, 0.45, 7), summerLavMat);
+          budSpike.position.set(Math.cos(ang) * r, 0.56, Math.sin(ang) * r);
+          budSpike.rotation.x = Math.sin(ang) * 0.16;
+          budSpike.rotation.z = -Math.cos(ang) * 0.16;
+          pGrp.add(budSpike);
         }
-        pGrp.visible = false;
+
+        // Full Summer & Fall violet-purple bloom panicles + optional rose-magenta Echinacea Coneflowers
+        const fullBloomGrp = new THREE.Group();
+        for (let b = 0; b < 12; b++) {
+          const ang = (b / 12) * Math.PI * 2;
+          const r = 0.14 + (b % 3) * 0.15;
+          const bSpike = new THREE.Mesh(new THREE.ConeGeometry(0.068, 0.72, 8), summerLavMat);
+          bSpike.position.set(Math.cos(ang) * r, 0.72, Math.sin(ang) * r);
+          bSpike.rotation.x = Math.sin(ang) * 0.22;
+          bSpike.rotation.z = -Math.cos(ang) * 0.22;
+          fullBloomGrp.add(bSpike);
+        }
+        if (withConeflower) {
+          for (let f = 0; f < 5; f++) {
+            const fAng = (f / 5) * Math.PI * 2 + 0.5;
+            const fx = Math.cos(fAng) * 0.28, fz = Math.sin(fAng) * 0.22;
+            const fh = 0.85 + (f % 2) * 0.12;
+            const ray = new THREE.Mesh(new THREE.ConeGeometry(0.18, 0.07, 10, 1, true), summerCoralMat);
+            ray.position.set(fx, fh, fz);
+            fullBloomGrp.add(ray);
+            const ctr = new THREE.Mesh(new THREE.SphereGeometry(0.075, 8, 8), summerConeCenterMat);
+            ctr.position.set(fx, fh + 0.03, fz);
+            fullBloomGrp.add(ctr);
+          }
+        }
+        fullBloomGrp.visible = false;
+        pGrp.add(fullBloomGrp);
+        SEASON_GROUPS.summerFrontBlooms.push(fullBloomGrp);
+
         gFrontPlants.add(pGrp);
-        SEASON_GROUPS.summerFrontBlooms.push(pGrp);
       }
+
+      // Helper: Naturalistic Triangular Pocket Drift of Melinda's Jewel-Toned Hyacinths (3–4 clumps tucked organically together)
+      function addHyacinthPocketDrift(cx, cy, baseColorIdx) {
+        const offsets = [
+          [0.0, -0.10, 0],
+          [-0.24, 0.16, 1],
+          [0.24, 0.14, 2],
+          [0.02, 0.34, 4]
+        ];
+        offsets.forEach(([ox, oy, cOff]) => {
+          addHyacinthClump(cx + ox, cy + oy, baseColorIdx + cOff);
+        });
+      }
+
+      // --- AREA 1: 2.0' PORCH-FRONT & SE FOUNDATION WRAP GARDEN (wx = 59.5..67.5, wy = 33.0..42.8) ---
+      // 1) 3× Sculpted Dwarf Globe Boxwood Evergreen Anchors (BX-1 at North entry walk, BX-2 at '3152' stone pillar, BX-3 on South porch turn)
+      addDwarfBoxwoodGlobe(66.55, 33.55, 0.92);
+      addDwarfBoxwoodGlobe(66.55, 41.15, 0.96);
+      addDwarfBoxwoodGlobe(61.10, 42.15, 0.88);
+
+      // 2) 3× Fragrant 'Hidcote' English Lavender & 'May Night' Salvia Mounds along mid-back of porch bed
+      addLavenderOrCatmintMound(66.35, 35.85, 0.92, false);
+      addLavenderOrCatmintMound(66.35, 38.75, 0.92, false);
+      addLavenderOrCatmintMound(63.65, 42.10, 0.88, false);
+
+      // 3) 4× Ruffled Burgundy 'Obsidian' & Amber 'Caramel' Coral Bells (Heuchera)
+      addCoralBellMound(66.85, 34.70, false); // 'Obsidian' deep burgundy
+      addCoralBellMound(66.80, 37.30, true);  // 'Caramel' warm amber-gold
+      addCoralBellMound(66.85, 39.95, false); // 'Obsidian' deep burgundy
+      addCoralBellMound(62.35, 42.25, false); // 'Obsidian' deep burgundy
+
+      // 4) 4× Naturalistic Spring Hyacinth Jewel Pocket Drifts tucked into the foreground bays
+      addHyacinthPocketDrift(67.00, 34.65, 0); // Drift P1 (between BX-1 & Lavender)
+      addHyacinthPocketDrift(66.95, 37.25, 2); // Drift P2 (centerpiece in front of porch swing)
+      addHyacinthPocketDrift(67.00, 39.85, 1); // Drift P3 (beside BX-2 & '3152' stone column)
+      addHyacinthPocketDrift(64.95, 42.20, 3); // Drift P4 (SE corner turn)
+
+      // --- AREA 2: 2.0' SOUTH FRONT BORDER BED / "LEFT PLANTER BOX" (wx = 55.8..90.5, wy = 48.0..50.0) ---
+      // 1) 4× Upright 'Karl Foerster' Feather Reed Grasses at ~8.5' intervals (wx = 58.0, 66.5, 75.0, 83.5) linking to the SE utility box screen
+      [58.0, 66.5, 75.0, 83.5].forEach(gx => {
+        const sGrass = buildFeatherReedGrass(gx, 49.15, 0.88);
+        gFrontPlants.add(sGrass);
+        SEASON_GROUPS.windSwayMeshes.push({ mesh: sGrass, phase: gx * 0.4 + 1.2, amp: 0.016 });
+      });
+
+      // 2) 4× Sculpted Dwarf Globe Boxwoods midway between the grasses (wx = 62.2, 70.8, 79.2, 87.8)
+      [62.2, 70.8, 79.2, 87.8].forEach(bx => {
+        addDwarfBoxwoodGlobe(bx, 49.05, 0.90);
+      });
+
+      // 3) 5× Billowy Purple 'Cat's Pajamas' Catmint / 'Hidcote' Lavender Mounds + 4× Burgundy Coral Bells & Coneflowers
+      [56.3, 64.3, 72.9, 81.3, 89.8].forEach((lx, idx) => {
+        addLavenderOrCatmintMound(lx, 48.95, 0.90, idx % 2 === 1);
+      });
+      [60.1, 68.6, 77.1, 85.6].forEach((cx, idx) => {
+        addCoralBellMound(cx, 48.80, idx % 2 === 1);
+        addLavenderOrCatmintMound(cx, 49.25, 0.78, true);
+      });
+
+      // 4) 5× Naturalistic Spring Hyacinth Jewel Pocket Drifts woven along the South border foreground bays
+      [59.0, 65.3, 71.8, 78.2, 84.6].forEach((hx, idx) => {
+        addHyacinthPocketDrift(hx, 48.62, idx * 2);
+      });
 
       // 2. Front Yard Specimen Shade Tree: Norwegian Sunset® Maple (Acer truncatum × platanoides 'Keithsform')
       //    Centered in SE Front Lawn at (wx = 83.0', wy = 39.5') with Recommended 20'–25' W × 30'–35' H Space (~28'–32' H Utah Stature)
@@ -4528,11 +4702,11 @@
         id: 'pin-hyacinths',
         layer: 'frontPlants',
         wx: 66.2, wy: 37.5, h: 2.2,
-        badge: "2027 · PHASE 2 (MELINDA'S HYACINTHS)",
-        short: "Melinda's Hyacinths & 3152 Swing",
+        badge: "2027 · PHASE 2 (LAYERED PORCH & SOUTH GARDEN)",
+        short: "Layered Porch & S. Garden + Swing",
         color: '#ec4899',
-        title: "Melinda's Fragrant Spring Hyacinth Border & Unobstructed '3152' Hanging Porch Swing",
-        desc: "Dense jewel-toned drifts of Royal Purple, Delft Blue, Rose Pink & Pearl White Hyacinths planted right in the 2.0' porch-front bed (wx=65.2'–67.2') directly in front of the hanging cedar porch swing and curving down the continuous 2.0' South bed to the green box. Centering the Norwegian Sunset Maple out at (wx=83.0', wy=39.5') with an 8.0'–9.5' clear trunk attachment (and 11'–12'+ outer lawn clearance ceiling) keeps the porch swing sightline 100% open and gives the Hyacinths full sun!"
+        title: "Layered 4-Season Front Porch & South Border Garden (Dwarf Boxwoods, Grasses, Coral Bells, Lavender & Hyacinth Pocket Drifts)",
+        desc: "Instead of a single-species row of bulbs, Melinda's fragrant jewel-toned Hyacinths (Royal Purple, Delft Blue, Rose Pink, Soft Lilac & Pearl White) are woven in 9 naturalistic 5-to-8 bulb pocket drifts between 7× sculpted Dwarf Globe Boxwoods ('Winter Gem', 3 in the 2.0' porch bed + 4 in the 2.0' South bed), 4× upright 'Karl Foerster' Feather Reed Grasses (wx=58.0, 66.5, 75.0, 83.5), 8× burgundy 'Obsidian' & amber 'Caramel' Coral Bells, English Lavender, Purple Catmint, Salvia & Coneflowers—delivering 365-day evergreen structure and nonstop blooms from April through October while keeping the '3152' porch swing sightline 100% open!"
       },
       {
         id: 'pin-se-maple',
