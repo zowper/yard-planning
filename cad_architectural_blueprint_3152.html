@@ -1335,9 +1335,9 @@
         out.push(`<rect x="${porchRect.x}" y="${porchRect.y}" width="${porchRect.width}" height="${porchRect.height}" fill="${isDrone ? 'url(#drone-concrete)' : (isColor ? '#475569' : T.porchFill)}" stroke="${T.concreteStroke}" stroke-width="1.6"/>`);
 
         if (isDrone) {
-          const housePolyPts = projectPoly([[30.0, 9.0], [73.2, 9.0], [73.2, 29.0], [65.7, 29.0], [65.7, 41.0], [30.0, 41.0]]);
+          const housePolyPts = projectPoly([[30.0, 9.0], [73.2, 9.0], [73.2, 29.0], [59.7, 29.0], [59.7, 41.0], [30.0, 41.0]]);
           const westSlope = projectPoly([[30.0, 9.0], [38.0, 17.0], [38.0, 33.0], [30.0, 41.0]]);
-          const southSlope = projectPoly([[30.0, 41.0], [38.0, 33.0], [56.0, 33.0], [65.7, 41.0]]);
+          const southSlope = projectPoly([[30.0, 41.0], [38.0, 33.0], [56.0, 33.0], [59.7, 41.0]]);
           const northSlope = projectPoly([[30.0, 9.0], [73.2, 9.0], [65.0, 17.0], [38.0, 17.0]]);
           const ridgeMain1 = project(38.0, 25.0), ridgeMain2 = project(58.0, 25.0);
           out.push(`
