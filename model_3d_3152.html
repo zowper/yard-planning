@@ -2004,13 +2004,13 @@
       addGableSection(g, 55.0, 12.0, 73.6, 27.2, 19.0, 4.4, 'X', MAT.whiteShake, true);
 
       // 4. Covered Front Porch (wx: 59.7..65.7, wy: 29.0..41.0), '3152' Stone Column, Craftsman Entry Door & Porch Lights
-      // Sloped Shed/Hip Porch Roof (h: 9.2' at eave wx=66.2' rising to 10.8' at house wall wx=59.7')
+      // Sloped Shed/Hip Porch Roof (h: 9.2' at eave wx=65.7' rising to 10.8' at house wall wx=59.7')
       const porchRoofGrp = new THREE.Group();
-      porchRoofGrp.position.set(62.9, 10.0, 35.0);
-      porchRoofGrp.rotation.z = -Math.atan2(1.4, 6.8);
-      addBox(porchRoofGrp, -3.6, -6.2, 3.6, 6.4, -0.18, 0.18, MAT.shingleRoof, true, true);
-      addBox(porchRoofGrp, 3.45, -6.25, 3.7, 6.45, -0.22, 0.16, MAT.darkTrim, true, false);
-      const porchRoofSnow = addBox(porchRoofGrp, -3.4, -6.0, 3.4, 6.2, 0.18, 0.34, MAT.snowWhite, false, true);
+      porchRoofGrp.position.set(62.7, 10.0, 35.0);
+      porchRoofGrp.rotation.z = -Math.atan2(1.4, 6.0);
+      addBox(porchRoofGrp, -3.05, -6.0, 3.05, 6.1, -0.18, 0.18, MAT.shingleRoof, true, true);
+      addBox(porchRoofGrp, 2.90, -6.05, 3.12, 6.15, -0.22, 0.16, MAT.darkTrim, true, false);
+      const porchRoofSnow = addBox(porchRoofGrp, -2.95, -5.9, 2.95, 6.0, 0.18, 0.34, MAT.snowWhite, false, true);
       porchRoofSnow.visible = false;
       SEASON_GROUPS.winterSnowBlankets.push(porchRoofSnow);
       g.add(porchRoofGrp);

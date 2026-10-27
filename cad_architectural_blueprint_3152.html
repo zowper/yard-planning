@@ -1335,9 +1335,9 @@
         out.push(`<rect x="${porchRect.x}" y="${porchRect.y}" width="${porchRect.width}" height="${porchRect.height}" fill="${isDrone ? 'url(#drone-concrete)' : (isColor ? '#475569' : T.porchFill)}" stroke="${T.concreteStroke}" stroke-width="1.6"/>`);
 
         if (isDrone) {
-          const housePolyPts = projectPoly([[30.0, 9.0], [73.2, 9.0], [73.2, 29.0], [59.7, 29.0], [59.7, 41.0], [30.0, 41.0]]);
+          const housePolyPts = projectPoly([[30.0, 9.0], [73.2, 9.0], [73.2, 29.0], [65.7, 29.0], [65.7, 41.0], [30.0, 41.0]]);
           const westSlope = projectPoly([[30.0, 9.0], [38.0, 17.0], [38.0, 33.0], [30.0, 41.0]]);
-          const southSlope = projectPoly([[30.0, 41.0], [38.0, 33.0], [56.0, 33.0], [59.7, 41.0]]);
+          const southSlope = projectPoly([[30.0, 41.0], [38.0, 33.0], [56.0, 33.0], [65.7, 41.0]]);
           const northSlope = projectPoly([[30.0, 9.0], [73.2, 9.0], [65.0, 17.0], [38.0, 17.0]]);
           const ridgeMain1 = project(38.0, 25.0), ridgeMain2 = project(58.0, 25.0);
           out.push(`
@@ -1368,7 +1368,7 @@
           <rect x="${northStoneWrap.x.toFixed(1)}" y="${northStoneWrap.y.toFixed(1)}" width="${northStoneWrap.width.toFixed(1)}" height="${northStoneWrap.height.toFixed(1)}" fill="${T.stoneFill}" stroke="${T.houseStroke}" stroke-width="1.0"/>
           <rect x="${northSidingWrap.x.toFixed(1)}" y="${northSidingWrap.y.toFixed(1)}" width="${northSidingWrap.width.toFixed(1)}" height="${northSidingWrap.height.toFixed(1)}" fill="#cbd5e1" stroke="#f8fafc" stroke-width="0.9"/>
           <rect x="${southStoneWrap.x.toFixed(1)}" y="${southStoneWrap.y.toFixed(1)}" width="${southStoneWrap.width.toFixed(1)}" height="${southStoneWrap.height.toFixed(1)}" fill="${T.stoneFill}" stroke="${T.houseStroke}" stroke-width="1.0"/>
-          <rect x="${pillarRect.x}" y="${pillarRect.y}" width="${pillarRect.width}" height="${pillarRect.height}" fill="${T.stoneFill}" stroke="${T.houseStroke}" stroke-width="1.2"/>
+          ${!isDrone ? `<rect x="${pillarRect.x}" y="${pillarRect.y}" width="${pillarRect.width}" height="${pillarRect.height}" fill="${T.stoneFill}" stroke="${T.houseStroke}" stroke-width="1.2"/>` : ''}
         `);
 
         // Verified South Wall Utilities:
@@ -1403,8 +1403,8 @@
         `);
       }
 
-      // 14. PHASE 3 (2028) PORCH SWING
-      if (L.porchSwing) {
+      // 14. PHASE 3 (2028) PORCH SWING (Hidden under porch roof in top-down DRONE view)
+      if (L.porchSwing && !isDrone) {
         const swingRect = projectRect(61.2, 35.8, 63.2, 40.0);
         out.push(`<rect x="${swingRect.x.toFixed(1)}" y="${swingRect.y.toFixed(1)}" width="${swingRect.width.toFixed(1)}" height="${swingRect.height.toFixed(1)}" rx="2" fill="#ea580c" stroke="#fed7aa" stroke-width="1.3"/>`);
       }
