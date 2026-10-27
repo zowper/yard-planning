@@ -82,25 +82,25 @@
       <div class="flex items-center bg-slate-800/90 p-1 rounded-lg border border-slate-700">
         <button id="cad-season-spring" onclick="setCADSeason('SPRING')"
                 class="cad-season-btn px-2.5 py-1 rounded text-xs font-bold transition-all bg-pink-600 text-white shadow flex items-center gap-1"
-                title="Spring — Snow-White 'Standing Ovation' Blossoms & Melinda's Front-Porch Hyacinths">
+                title="Spring — Snow-White 'Adirondack' Crabapple Blossoms & Melinda's Front-Porch Hyacinths">
           <span>&#127800;</span>
           <span class="hidden md:inline">Spring</span>
         </button>
         <button id="cad-season-summer" onclick="setCADSeason('SUMMER')"
                 class="cad-season-btn px-2.5 py-1 rounded text-xs font-bold transition-all text-slate-200 hover:text-white flex items-center gap-1"
-                title="Summer — Lush Green Canopy, Juneberries & Tomatoes">
+                title="Summer — Lush Green Canopy, Developing Crabapples & Tomatoes">
           <span>&#9728;&#65039;</span>
           <span class="hidden md:inline">Summer</span>
         </button>
         <button id="cad-season-fall" onclick="setCADSeason('FALL')"
                 class="cad-season-btn px-2.5 py-1 rounded text-xs font-bold transition-all text-slate-200 hover:text-white flex items-center gap-1"
-                title="Fall — Fiery Orange-Red Serviceberries & Norwegian Sunset Maple">
+                title="Fall — Golden-Apricot 'Adirondack' Crabapples, Red Fruit & Norwegian Sunset Maple">
           <span>&#127810;</span>
           <span class="hidden md:inline">Fall</span>
         </button>
         <button id="cad-season-winter" onclick="setCADSeason('WINTER')"
                 class="cad-season-btn px-2.5 py-1 rounded text-xs font-bold transition-all text-slate-200 hover:text-white flex items-center gap-1"
-                title="Winter — Bare Deciduous Branch Skeletons & Evergreen Junipers">
+                title="Winter — Bare Deciduous Branch Skeletons, Persistent Red Crabapples & Evergreen Junipers">
           <span>&#10052;&#65039;</span>
           <span class="hidden md:inline">Winter</span>
         </button>
@@ -366,7 +366,7 @@
         { title: 'Phase 2 (2027) · Full Front Elevation & White Rock 6\' Park Strips', url: 'photos_backyard_ideas/render_front_full_elevation_park_strips.jpg' }
       ],
       'phase-3': [
-        { title: 'Phase 3 (2028) · West Wall 5+4 (\'Standing Ovation\' Blossoms & Junipers)', url: 'photos_backyard_ideas/render_backyard_full_50ft_span_ten_junipers.jpg' },
+        { title: 'Phase 3 (2028) · West Wall 5+4 (\'Adirondack\' Crabapple Blossoms & Junipers)', url: 'photos_backyard_ideas/render_backyard_full_50ft_span_ten_junipers.jpg' },
         { title: 'Phase 3 (2028) · 2700K Uplights & Patio Bistro Lights', url: 'photos_backyard_ideas/render_backyard_west_juniper_bed_patio.jpg' }
       ],
       'phase-4': [
@@ -416,13 +416,13 @@
         id: 'phase-3',
         year: 2028,
         badge: 'Phase 3 · 2028',
-        title: '\'Standing Ovation\' Trees, Uplights & Swing',
-        cost: '$3,580',
-        subtitle: 'W. Wall 5+4 Blossoms, Dark Espresso Mulch, 12V Uplights & Swing',
+        title: '\'Adirondack\' Crabapples, Uplights & Swing',
+        cost: '$3,780',
+        subtitle: 'W. Wall 5+4 Blossoms ($95/tree), Dark Espresso Mulch, 12V Uplights & Swing',
         accent: '#818cf8',
         layers: [
           { key: 'beds', label: 'West & Continuous 2\' S. Dark Espresso Mulch Beds', swatch: '#3b2618', defaultOn: true },
-          { key: 'westWallPlants', label: 'W. Wall 5+4 (\'Standing Ovation\' Blossoms & Junipers)', swatch: '#f472b6', defaultOn: true },
+          { key: 'westWallPlants', label: 'W. Wall 5+4 (\'Adirondack\' Crabapples & Junipers)', swatch: '#f472b6', defaultOn: true },
           { key: 'yardPlants', label: 'South Berry/Kiwi Trellis & Shade Bed', swatch: '#f43f5e', defaultOn: true },
           { key: 'lighting', label: '12V 2700K Landscape & Tree Uplights', swatch: '#fde047', defaultOn: true },
           { key: 'porchSwing', label: 'Front Porch Hanging Swing (3152)', swatch: '#fb923c', defaultOn: true }
@@ -1487,7 +1487,7 @@
         out.push(`</g>`);
       }
 
-      // 16. PHASE 3 (2028) WEST WALL 5+4 DESIGNER HYBRID TREES ('Standing Ovation' Serviceberries + Junipers + Under-Story)
+      // 16. PHASE 3 (2028) WEST WALL 5+4 DESIGNER HYBRID TREES ('Adirondack' Crabapples + Junipers + Under-Story)
       if (L.westWallPlants) {
         const isSpring = STATE.season === 'SPRING';
         const isSummer = STATE.season === 'SUMMER';
@@ -1505,7 +1505,7 @@
             <circle cx="${lp.x.toFixed(1)}" cy="${lp.y.toFixed(1)}" r="${rad.toFixed(1)}" fill="${fillCol}" stroke="${strokeCol}" stroke-width="1.6" ${isDrone ? 'filter="url(#shadow-tree)"' : ''}/>
             ${!isWinter ? `<circle cx="${lp.x.toFixed(1)}" cy="${lp.y.toFixed(1)}" r="${(rad * 0.55).toFixed(1)}" fill="${isFall ? '#dc2626' : '#15803d'}"/>` : ''}
           `);
-          // Spring snow-white 'Standing Ovation' blossom clusters around each pillar!
+          // Spring snow-white 'Adirondack' Crabapple blossom clusters around each pillar!
           if (isSpring) {
             for (let b = 0; b < 8; b++) {
               const ang = (b / 8) * Math.PI * 2;
@@ -1513,13 +1513,13 @@
               const by = lp.y + Math.sin(ang) * (rad * 0.72);
               out.push(`<circle cx="${bx.toFixed(1)}" cy="${by.toFixed(1)}" r="${(0.36 * SCALE).toFixed(1)}" fill="#ffffff" stroke="#fbcfe8" stroke-width="0.9"/>`);
             }
-          } else if (isSummer) {
-            // Summer dark-blue Juneberry fruit dots
+          } else if (isSummer || isFall) {
+            // Summer/Fall bright red-orange 'Adirondack' crabapple fruit dots
             for (let b = 0; b < 6; b++) {
               const ang = (b / 6) * Math.PI * 2;
               const bx = lp.x + Math.cos(ang) * (rad * 0.65);
               const by = lp.y + Math.sin(ang) * (rad * 0.65);
-              out.push(`<circle cx="${bx.toFixed(1)}" cy="${by.toFixed(1)}" r="${(0.24 * SCALE).toFixed(1)}" fill="#4c1d95" stroke="#c4b5fd" stroke-width="0.6"/>`);
+              out.push(`<circle cx="${bx.toFixed(1)}" cy="${by.toFixed(1)}" r="${(0.24 * SCALE).toFixed(1)}" fill="#dc2626" stroke="#fca5a5" stroke-width="0.6"/>`);
             }
           } else if (isWinter) {
             // Winter bare branch star
