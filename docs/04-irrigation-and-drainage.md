@@ -4,11 +4,11 @@ title: "Lot 3152 — 5-Hydrozone Sprinkler & Drip Irrigation Engineering + Storm
 domain: "irrigation-and-drainage"
 canonical_topics:
   - "Point of Connection (POC at wx=51.0', wy=8.6'), 1-inch Febco 765 PVB backflow preventer & winterization blowout port"
-  - "Smart Wi-Fi controller in garage (wx=52.5', wy=10.2'), dual valve manifolds (M1 & M2) & mandatory 2-inch Schedule 40 PVC road-base sleeves (S-1, S-2, S-3)"
-  - "5-Hydrozone hydraulics & Utah clay cycle-and-soak runtime schedule (12.70 GPM total across Zones 1–5 + Zone 6 spare)"
+  - "Smart Wi-Fi controller in garage (wx=52.5', wy=10.2'), dual valve manifolds (M1 & M2), mandatory 2-inch Schedule 40 PVC road-base sleeves (S-1, S-2, S-3) & existing builder under-driveway PVC conduit sleeve (S-4 at wx≈85.0', wy=11.0'–29.0')"
+  - "5-Hydrozone hydraulics & Utah clay cycle-and-soak runtime schedule (13.18 GPM total across Zones 1–5 + Zone 6 spare)"
   - "Complete 28-head coordinate, nozzle, sector arc & throw schedule (B1–B14, S1–S4, F1–F9) with 0% overspray onto patio, awning pillars, or Open AC unit"
   - "October 2026 rain-pooling site observations (West precast wall clay trough & NW/SW downspouts) and grading/drainage mitigation"
-coordinates_covered: "POC (51.0', 8.6'), Controller (52.5', 10.2'), M1 (51.0', 7.8'), M2 (28.5', 7.8'), 28 turf heads across Backyard, South Corridor & SE Front Lawn"
+coordinates_covered: "POC (51.0', 8.6'), Controller (52.5', 10.2'), M1 (51.0', 7.8'), M2 (28.5', 7.8'), Under-Driveway Sleeve S-4 (85.0', 11.0'–29.0'), 28 turf heads across Backyard, South Corridor & SE Front Lawn + Zone 4 PC Drip into 1.5' North Border Bed & Both 6.0' Street Park Strips"
 keywords: ["irrigation", "sprinklers", "drip", "hydrozones", "GPM", "Hunter PRS40", "MP Rotator", "MP1000", "MP800SR", "MP Side-Strip", "Febco 765 PVB", "backflow", "manifold", "M1", "M2", "sleeves", "Rachio", "Hydrawise", "overspray", "rain pooling", "drainage", "downspouts"]
 related_files:
   - "docs/01-site-measurements-and-coords.md"
@@ -31,21 +31,22 @@ related_files:
 3. **Dual Flush Valve Manifold Boxes (`M1` & `M2`):**
    * **`Manifold Box M1` (`wx = 51.0', wy = 7.8'` — North Corridor next to POC):** Houses **Zone 2** (`1" Hunter PGV-101G`), **Zone 3** (`1" Hunter PGV-101G`), **Zone 5** (`Hunter PCZ-101-25` Drip Filter/Regulator Valve), and **Zone 6** (capped spare manifold port).
    * **`Manifold Box M2` (`wx = 28.5', wy = 7.8'` — NW House Corner):** Fed via $1"$ Schedule 40 PVC mainline inside a $2"$ sleeve; houses **Zone 1** (`1" Hunter PGV-101G`) and **Zone 4** (`Hunter PCZ-101-25` Drip Filter/Regulator Valve).
-4. **Mandatory `2"` Schedule 40 PVC Conduit Sleeves Under Compacted Road Base (`Installed in 2027 Prior to 2029 Road Base`):**
+4. **Mandatory `2"` Schedule 40 PVC Conduit Sleeves Under Compacted Road Base (`S-1`–`S-3`) & Existing Builder Under-Driveway Conduit Sleeve (`S-4`):**
    * **`Sleeve S-1` (`wx = 27.0'–52.0', wy = 7.8'`):** $25\text{ lin ft}$ of $2"$ Schedule 40 PVC under the North side compacted road base pad for the $1"$ mainline and `18/7` valve wire between `M1` and `M2`.
    * **`Sleeve S-2` (`wx = 27.0'–30.0', wy = 10.2'`):** $4\text{ lin ft}$ of $2"$ Schedule 40 PVC under the North end of the $3.0'\times 11.0'$ rear house compacted road base path.
    * **`Sleeve S-3` (`wx = 27.0'–30.0', wy = 19.5'`):** $4\text{ lin ft}$ of $2"$ Schedule 40 PVC under the South end of the $3.0'\times 11.0'$ rear house compacted road base path.
+   * **`Sleeve S-4` (`wx ≈ 85.0', wy = 11.0'–29.0'` — Existing Builder Under-Driveway PVC Conduit):** $18.0\text{ lin ft}$ of existing under-driveway PVC conduit sleeve crossing beneath the $18.0\text{ ft}$ concrete driveway from the SE front lawn (`wy = 29.0'`) to the NE strip (`wy = 11.0'`). Used to route the **Zone 4 (`30 PSI` PC Drip)** poly supply lateral across the driveway into the **$1.5\text{ ft}$ North border bed** (`wx = 78.0'–96.7', wy = 0.0'–1.5'`) and beneath the city sidewalk into the **North $6.0\text{ ft}$ street park strip** (`wx = 100.7'–106.7', wy = 0.0'–9.5'`).
 
 ---
 
-## 2. 5-Hydrozone Hydraulics & Runtime Summary (`12.70 GPM` Total Across All 5 Zones)
+## 2. 5-Hydrozone Hydraulics & Runtime Summary (`13.18 GPM` Total Across All 5 Zones)
 
 | Zone | Hydrozone Name & Microclimate | Manifold | Equipment & Nozzle Type | Head / Emitter Count | Peak Flow (`GPM`) | Precip Rate | Cycle-and-Soak Schedule (Utah Clay) |
 | :--- | :--- | :---: | :--- | :---: | :---: | :---: | :--- |
 | **Zone 1** | **Backyard Full-Sun Turf** (`679 sq ft`) | `M2` | `Hunter PRS40` (`PRS40-CV` check valves on low West heads `B1, B6, B8, B9, B11`) + `MP1000` / `MP800SR` (`90°` & `180°` sectors) | **15 Heads** (`B1`–`B14`) | **`5.32 GPM`** | $0.40\text{–}0.80\text{ in/hr}$ | $3\times 14\text{ min}$ cycles ($42\text{ min}$ total, $3\times/\text{wk}$ Summer) |
 | **Zone 2** | **South Side `3.0'–6.0'` Shaded Corridor Turf** (`176 sq ft`, up to South house wall pavers along `wx=30–41.0'` & `wx=45.0–59.7'`, wrapping AC paver border & continuing under `wx=55.5'` gate) | `M1` | `Hunter PRS40 (40 PSI)` + **`MP Side-Strip`** (`3.0'–5.75' N × 9.0' W` rectangular throw) | **4 Heads** (`S1`–`S4`) | **`0.88 GPM`** | $0.40\text{ in/hr}$ | $2\times 12\text{ min}$ cycles ($24\text{ min}$ total, $2\text{–}3\times/\text{wk}$ — $55\%$ of full-sun runtime) |
 | **Zone 3** | **SE Front Yard Full-Sun Turf** (`555 sq ft`) | `M1` | `Hunter PRS40 (40 PSI)` + `MP1000` / `MP800SR` (`90°`, `135°` & `180°` sectors) | **9 Heads** (`F1`–`F9`) | **`3.49 GPM`** | $0.40\text{ in/hr}$ | $3\times 14\text{ min}$ cycles ($42\text{ min}$ total, $3\times/\text{wk}$ Summer) |
-| **Zone 4** | **Perimeter Beds PC Drip** (W. `5+4` Trees, Cont. `2'` S. Bed, Norwegian Sunset Maple Ring & Porch Hyacinths) | `M2` | `Hunter PCZ-101-25` (`30 PSI` / `150 Mesh`) + $1/2"$ PC Drip Tubing & Button Emitters | `~230 lin ft` Tubing | **`1.63 GPM`** (`98 GPH`) | Deep root soak | $45\text{–}60\text{ min}$, $2\times/\text{wk}$ ($1\times/\text{wk}$ established trees) |
+| **Zone 4** | **Perimeter Beds, `1.5'` North Border Bed & Both `6.0'` Street Park Strips PC Drip** (W. `5+4` Trees, Cont. `2'` S. Bed, Norwegian Sunset Maple Ring, Porch Hyacinths, `1.5'` North Border Bed & N/S `6'` Park Strips via Under-Driveway Conduit `S-4`) | `M2` | `Hunter PCZ-101-25` (`30 PSI` / `150 Mesh`) + $1/2"$ PC Drip Tubing & Button Emitters routed through Under-Driveway Sleeve `S-4` (`wx≈85'`) | `~295 lin ft` Tubing | **`2.11 GPM`** (`127 GPH`) | Deep root soak | $45\text{–}60\text{ min}$, $2\times/\text{wk}$ ($1\times/\text{wk}$ established trees) |
 | **Zone 5** | **5 Raised Cedar Garden Boxes (`N1`–`N5`) Grid Drip** (`90 sq ft` growing area) | `M1` | `Hunter PCZ-101-25` (`25 PSI`) + 5 Per-Box Ball Valves + $1/4"$ Emitter Grids (`0.5 GPH @ 6"`) | **5 Box Grids** (`165 Emitters`) | **`1.38 GPM`** (`82.5 GPH`) | Vegetable root grid | $25\text{–}35\text{ min}$ daily / every other day in peak Summer |
 | **Zone 6** | **Capped Spare Port & Wire** | `M1` | Capped $1"$ manifold port + spare `18/7` conductor | — | `0.00 GPM` | Future expansion | Available for future patio hanging baskets / pots |
 

@@ -191,10 +191,10 @@
         <div class="font-semibold text-slate-200 text-xs mb-2">Color Key</div>
         <div class="grid grid-cols-2 gap-x-4 gap-y-1.5 text-[11px] text-slate-300">
           <div class="flex items-center gap-2"><span class="w-3 h-3 rounded-sm bg-[#22c55e] shrink-0"></span><span>Lawn (Under Gate)</span></div>
-          <div class="flex items-center gap-2"><span class="w-3 h-3 rounded-sm bg-[#2dd4bf] shrink-0"></span><span>45° Paver Edging</span></div>
-          <div class="flex items-center gap-2"><span class="w-3 h-3 rounded-sm bg-[#854d0e] shrink-0"></span><span>2' S. &amp; W. Mulch</span></div>
-          <div class="flex items-center gap-2"><span class="w-3 h-3 rounded-sm bg-[#f1f5f9] border border-slate-400 shrink-0"></span><span>White Rock Strips</span></div>
-          <div class="flex items-center gap-2"><span class="w-3 h-3 rounded-sm bg-[#a8a29e] shrink-0"></span><span>Road Base Pad/Beds</span></div>
+          <div class="flex items-center gap-2"><span class="w-3 h-3 rounded-sm bg-[#1e293b] border border-[#2dd4bf] shrink-0"></span><span>Deep Charcoal Pavers</span></div>
+          <div class="flex items-center gap-2"><span class="w-3 h-3 rounded-sm bg-[#3b2618] border border-amber-700 shrink-0"></span><span>Dark Espresso Mulch</span></div>
+          <div class="flex items-center gap-2"><span class="w-3 h-3 rounded-sm bg-[#8c857b] border border-stone-400 shrink-0"></span><span>Warm Taupe Stone</span></div>
+          <div class="flex items-center gap-2"><span class="w-3 h-3 rounded-sm bg-[#94a3b8] shrink-0"></span><span>Grey Limestone Base</span></div>
           <div class="flex items-center gap-2"><span class="w-3 h-3 rounded-sm bg-[#b45309] shrink-0"></span><span>Open Awning (#1C)</span></div>
           <div class="flex items-center gap-2"><span class="w-3 h-3 rounded-sm bg-[#84cc16] shrink-0"></span><span>5 Cedar Planters</span></div>
           <div class="flex items-center gap-2"><span class="w-3 h-3 rounded-sm bg-[#c084fc] shrink-0"></span><span>Vinyl Fence/Gates</span></div>
@@ -205,7 +205,7 @@
       <div id="irrigation-engineering-legend" class="hidden absolute top-4 right-4 z-20 bg-slate-900/95 backdrop-blur-md p-3.5 rounded-xl border border-sky-500/40 max-w-sm text-xs shadow-2xl pointer-events-none">
         <div class="flex items-center justify-between gap-2 mb-2 pb-1.5 border-b border-slate-800">
           <span class="font-bold text-sky-300 text-xs">5-Hydrozone Best-Practice Irrigation Plan</span>
-          <span class="px-1.5 py-0.5 rounded bg-sky-500/20 text-sky-200 font-mono-code text-[10px] font-bold">100% Head-to-Head</span>
+          <span class="px-1.5 py-0.5 rounded bg-sky-500/20 text-sky-200 font-mono-code text-[10px] font-bold">13.18 GPM Total</span>
         </div>
         <div class="space-y-1.5 text-[11px] text-slate-200">
           <div class="flex items-start gap-2">
@@ -222,11 +222,11 @@
           </div>
           <div class="flex items-start gap-2">
             <span class="w-2.5 h-2.5 rounded-full bg-[#fb923c] mt-0.5 shrink-0"></span>
-            <div><strong class="text-amber-300">Zone 4 · Perimeter Beds &amp; Tree Ring PC Drip (30 PSI):</strong> <span class="text-slate-300">1/2" PC drip in W. Wall 5+4 trees, Cont. 2' S. bed, Porch Hyacinths &amp; Norwegian Sunset Maple 6' ring (1.63 GPM).</span></div>
+            <div><strong class="text-amber-300">Zone 4 · Perimeter Beds, 1.5' N. Bed &amp; Park Strips PC Drip (30 PSI):</strong> <span class="text-slate-300">1/2" PC drip in W. Wall 5+4, Cont. 2' S. bed, Porch, Maple 6' ring + Under-Driveway Conduit (S-4 @ wx≈85') to 1.5' N. border bed &amp; both 6' park strips (2.11 GPM).</span></div>
           </div>
           <div class="flex items-start gap-2">
             <span class="w-2.5 h-2.5 rounded-full bg-[#4ade80] mt-0.5 shrink-0"></span>
-            <div><strong class="text-emerald-300">Zone 5 · 5 Cedar Boxes Drip Grid (25 PSI):</strong> <span class="text-slate-300">Per-box shutoff valves + 3-row 1/4" emitter grids in N1–N5 (1.38 GPM) from M2 manifold.</span></div>
+            <div><strong class="text-emerald-300">Zone 5 · 5 Cedar Boxes Drip Grid (25 PSI):</strong> <span class="text-slate-300">Per-box shutoff valves + 3-row 1/4" emitter grids in N1–N5 (1.38 GPM) from M1 manifold.</span></div>
           </div>
         </div>
       </div>
@@ -398,18 +398,18 @@
         id: 'phase-2',
         year: 2027,
         badge: 'Phase 2 · 2027',
-        title: 'N. Fence, Sprinklers, Pavers & Hyacinths',
+        title: 'N. Fence, Sprinklers, Pavers & Front/Park Beds',
         cost: '$5,800',
-        subtitle: '70\' N. Fence (@ wx=70.0\' Behind Siding), Sprinklers, Pavers, Hyacinths & Maple',
+        subtitle: '70\' N. Fence, Full-Width Gate, Deep Charcoal Pavers, 1.5\' N. Bed & Warm Stone Park Strips',
         accent: '#34d399',
         layers: [
           { key: 'northFence', label: 'North Vinyl Fence (70.0\')', swatch: '#c084fc', defaultOn: true },
-          { key: 'northGate', label: 'North 8.5\' Double Gate @ wx=70.0\' (Behind Siding)', swatch: '#fbbf24', defaultOn: true },
-          { key: 'grass', label: 'Sod (BY) + Seeded Front Lawn', swatch: '#22c55e', defaultOn: true },
-          { key: 'pavers', label: '45° Holland Paver Mow Strip (~222\')', swatch: '#2dd4bf', defaultOn: true },
-          { key: 'frontBeds', label: '2\' Porch Bed, 6\' Tree Ring & Park Strips', swatch: '#f1f5f9', defaultOn: true },
-          { key: 'frontPlants', label: 'Melinda\'s Hyacinths, Norwegian Sunset Maple & Box Screen', swatch: '#f43f5e', defaultOn: true },
-          { key: 'irrigation', label: '5-Zone Head-to-Head Sprinklers & PC Drip', swatch: '#38bdf8', defaultOn: false }
+          { key: 'northGate', label: 'North Full-Width 8.5\' Gate @ wx=70.0\' (Post-to-Post)', swatch: '#fbbf24', defaultOn: true },
+          { key: 'grass', label: 'Seeded Lawn (~1,435 sq ft Under S. Gate)', swatch: '#22c55e', defaultOn: true },
+          { key: 'pavers', label: 'Deep Charcoal / Onyx Pavers w/ Sealer (~360\' + 16" Curb Step)', swatch: '#2dd4bf', defaultOn: true },
+          { key: 'frontBeds', label: '1.5\' N. Border Bed, 2\' Porch/S. Beds & Warm Stone Park Strips', swatch: '#8c857b', defaultOn: true },
+          { key: 'frontPlants', label: 'Norwegian Sunset Maple, Hyacinths, N. Border & Park Strip Plants', swatch: '#f43f5e', defaultOn: true },
+          { key: 'irrigation', label: '5-Zone Sprinklers & Under-Driveway Conduit (S-4) PC Drip', swatch: '#38bdf8', defaultOn: false }
         ]
       },
       {
@@ -418,10 +418,10 @@
         badge: 'Phase 3 · 2028',
         title: '\'Standing Ovation\' Trees, Uplights & Swing',
         cost: '$3,580',
-        subtitle: 'W. Wall 5+4 Blossoms, 2\' S. Bed, 12V Uplights & Swing',
+        subtitle: 'W. Wall 5+4 Blossoms, Dark Espresso Mulch, 12V Uplights & Swing',
         accent: '#818cf8',
         layers: [
-          { key: 'beds', label: 'West & Continuous 2\' S. Mulch Beds + Flat Garden', swatch: '#854d0e', defaultOn: true },
+          { key: 'beds', label: 'West & Continuous 2\' S. Dark Espresso Mulch Beds', swatch: '#3b2618', defaultOn: true },
           { key: 'westWallPlants', label: 'W. Wall 5+4 (\'Standing Ovation\' Blossoms & Junipers)', swatch: '#f472b6', defaultOn: true },
           { key: 'yardPlants', label: 'South Berry/Kiwi Trellis & Shade Bed', swatch: '#f43f5e', defaultOn: true },
           { key: 'lighting', label: '12V 2700K Landscape & Tree Uplights', swatch: '#fde047', defaultOn: true },
@@ -432,15 +432,15 @@
         id: 'phase-4',
         year: 2029,
         badge: 'Phase 4 · 2029',
-        title: 'Continuous N. Road Base & 5 Cedar Beds',
+        title: '3/4"-Minus Grey Limestone Road Base & 5 Cedar Beds',
         cost: '$2,600',
-        subtitle: 'Continuous Road Base (Garden, Walk, Side Yard & N. Front) + 5 Planters',
+        subtitle: 'Crushed Grey Limestone Road Base (NE Lane, N. Pad, Walk & Garden) + 5 Planters',
         accent: '#84cc16',
         layers: [
-          { key: 'northCementPad', label: 'Continuous North Side & Front Road Base', swatch: '#a8a29e', defaultOn: true },
-          { key: 'rearSidewalk', label: 'Rear Wall Road Base Path (3\'×11\')', swatch: '#d6d3d1', defaultOn: true },
+          { key: 'northCementPad', label: 'Crushed Grey Limestone Road Base (N. Pad & NE Lane)', swatch: '#94a3b8', defaultOn: true },
+          { key: 'rearSidewalk', label: 'Rear Wall Grey Limestone Path (3\'×11\')', swatch: '#cbd5e1', defaultOn: true },
           { key: 'planters', label: '5 Raised Cedar Planters (N1–N5)', swatch: '#84cc16', defaultOn: true },
-          { key: 'gardenRock', label: 'Compacted Road Base Around Garden Boxes', swatch: '#a8a29e', defaultOn: true },
+          { key: 'gardenRock', label: 'Grey Limestone Road Base Around Garden Boxes', swatch: '#94a3b8', defaultOn: true },
           { key: 'gardenDrip', label: 'Per-Box Grid Drip Lines', swatch: '#0ea5e9', defaultOn: false }
         ]
       },
@@ -492,8 +492,8 @@
       { id: 'lot-width', primary: true, wx1: 0.0, wy1: 0.0, wx2: 0.0, wy2: 50.0, offset: -14.0, label: "50.0' LOT WIDTH (~8' W. WALL)" },
       { id: 'lot-depth', primary: true, wx1: 0.0, wy1: 0.0, wx2: 96.7, wy2: 0.0, offset: -14.0, label: "96.7' LOT DEPTH TO WALK" },
       { id: 'backyard-depth', primary: true, wx1: 0.0, wy1: 0.0, wx2: 30.0, wy2: 0.0, offset: -7.5, label: "30.0' BACKYARD (6' VINYL FENCES)" },
-      { id: 'north-wall-depth', primary: true, wx1: 30.0, wy1: 9.0, wx2: 70.0, wy2: 9.0, offset: -16.5, label: "40.0' N. ROAD BASE PAD (TO GATE)" },
-      { id: 'driveway-length', primary: true, wx1: 73.2, wy1: 11.0, wx2: 96.7, wy2: 11.0, offset: -18.5, label: "23.5' DRIVEWAY / N. FRONT ROAD BASE" },
+      { id: 'north-wall-depth', primary: true, wx1: 30.0, wy1: 9.0, wx2: 70.0, wy2: 9.0, offset: -16.5, label: "40.0' N. GREY LIMESTONE PAD (TO 8.5' FULL GATE)" },
+      { id: 'driveway-length', primary: true, wx1: 73.2, wy1: 11.0, wx2: 96.7, wy2: 11.0, offset: -18.5, label: "23.5' PAVER-FRAMED ROAD BASE + 1.5' N. BED" },
       { id: 'house-width', primary: true, wx1: 30.0, wy1: 9.0, wx2: 30.0, wy2: 41.0, offset: -9.5, label: "32.0' HOUSE WIDTH" },
       { id: 'north-setback', primary: false, wx1: 30.0, wy1: 0.0, wx2: 30.0, wy2: 9.0, offset: -9.5, label: "9.0' N. SIDE" },
       { id: 'south-setback', primary: false, wx1: 30.0, wy1: 41.0, wx2: 30.0, wy2: 50.0, offset: -9.5, label: "9.0' S. SIDE" },
@@ -541,22 +541,34 @@
         }
       });
       DRONE_TEXTURES.mulch = makeTex(128, 128, (ctx, w, h) => {
-        ctx.fillStyle = '#2b1b12';
+        // Dark Espresso shredded bark mulch (deep umber/black-brown with zero red undertones)
+        ctx.fillStyle = '#1f1916';
         ctx.fillRect(0, 0, w, h);
-        for (let i = 0; i < 1400; i++) {
+        for (let i = 0; i < 1500; i++) {
           const x = rng() * w, y = rng() * h, len = 3 + rng() * 5, ang = rng() * Math.PI, r = rng();
-          ctx.strokeStyle = r > 0.7 ? '#4a2f1d' : (r > 0.35 ? '#382214' : '#1a0f09');
+          ctx.strokeStyle = r > 0.7 ? '#332924' : (r > 0.35 ? '#261e1a' : '#120e0c');
           ctx.lineWidth = 1.3;
           ctx.beginPath(); ctx.moveTo(x, y); ctx.lineTo(x + Math.cos(ang) * len, y + Math.sin(ang) * len); ctx.stroke();
         }
       });
       DRONE_TEXTURES.crushedRock = makeTex(128, 128, (ctx, w, h) => {
-        ctx.fillStyle = '#8c857b';
+        // 3/4"-minus crushed grey limestone road base (cool grey, zero yellow/tan pit-run)
+        ctx.fillStyle = '#828991';
         ctx.fillRect(0, 0, w, h);
-        for (let i = 0; i < 2000; i++) {
+        for (let i = 0; i < 2200; i++) {
           const v = rng();
-          ctx.fillStyle = v > 0.75 ? '#b8b2a8' : (v > 0.4 ? '#736d65' : '#57524b');
+          ctx.fillStyle = v > 0.75 ? '#a3abb4' : (v > 0.4 ? '#6e767f' : '#565d65');
           ctx.fillRect(rng() * w, rng() * h, 1.8, 1.8);
+        }
+      });
+      DRONE_TEXTURES.parkStone = makeTex(128, 128, (ctx, w, h) => {
+        // 3/4"–1" angular warm grey/taupe crushed stone (matches 3152 stone wainscot)
+        ctx.fillStyle = '#8b837a';
+        ctx.fillRect(0, 0, w, h);
+        for (let i = 0; i < 1600; i++) {
+          const x = rng() * w, y = rng() * h, sz = 1.8 + rng() * 1.8, v = rng();
+          ctx.fillStyle = v > 0.7 ? '#b3aba0' : (v > 0.35 ? '#756e65' : '#5c554e');
+          ctx.fillRect(x, y, sz, sz);
         }
       });
       DRONE_TEXTURES.whiteRocks = makeTex(128, 128, (ctx, w, h) => {
@@ -787,6 +799,9 @@
           <pattern id="drone-crushed-rock" width="64" height="64" patternUnits="userSpaceOnUse">
             <image href="${DRONE_TEXTURES.crushedRock}" width="64" height="64" preserveAspectRatio="none"/>
           </pattern>
+          <pattern id="drone-park-stone" width="64" height="64" patternUnits="userSpaceOnUse">
+            <image href="${DRONE_TEXTURES.parkStone}" width="64" height="64" preserveAspectRatio="none"/>
+          </pattern>
           <pattern id="drone-white-rocks" width="64" height="64" patternUnits="userSpaceOnUse">
             <image href="${DRONE_TEXTURES.whiteRocks}" width="64" height="64" preserveAspectRatio="none"/>
           </pattern>
@@ -893,13 +908,14 @@
         `);
       }
 
-      // 5. PHASE 4 (2029) ONE CONTINUOUS COMPACTED ROAD BASE (Around Raised Garden Beds, Into Both 45° Corners, Across Walkway, Between Garden & Side Yard, Down Side Yard & Into Front Yard on North Side)
-      const roadBaseFill = isDrone ? 'url(#drone-crushed-rock)' : (isColor ? '#a8a29e' : 'url(#pat-gravel)');
-      const roadBaseStroke = isDrone ? '#64748b' : (isColor ? '#e7e5e4' : '#cbd5e1');
+      // 5. PHASE 4 (2029) ONE CONTINUOUS 3/4"-MINUS CRUSHED GREY LIMESTONE ROAD BASE NETWORK
+      //    (Around Raised Garden Beds, Into Both 45° Corners, Across 3'×11' Walkway, Down North Side Yard & Into Paver-Framed NE Driveway Lane)
+      const roadBaseFill = isDrone ? 'url(#drone-crushed-rock)' : (isColor ? '#94a3b8' : 'url(#pat-gravel)');
+      const roadBaseStroke = isDrone ? '#64748b' : (isColor ? '#cbd5e1' : '#cbd5e1');
       if (L.northCementPad || L.rearSidewalk || L.gardenRock) {
         if (L.northCementPad && L.rearSidewalk && L.gardenRock) {
           const unifiedRoadBasePoly = projectPoly([
-            [4.25, 0.0], [96.7, 0.0], [96.7, 11.0], [73.2, 11.0], [73.2, 9.0],
+            [4.25, 0.0], [76.25, 0.0], [78.0, 1.75], [96.45, 1.75], [96.45, 10.75], [73.2, 10.75], [73.2, 9.0],
             [30.0, 9.0], [30.0, 20.0], [26.75, 20.0], [26.75, 9.25],
             [25.75, 8.25], [5.25, 8.25], [4.25, 9.25]
           ]);
@@ -920,19 +936,18 @@
           }
           if (L.northCementPad) {
             const nPadPoly = projectPoly([
-              [27.0, 0.0], [96.7, 0.0], [96.7, 11.0], [73.2, 11.0], [73.2, 9.0], [27.0, 9.0]
+              [27.0, 0.0], [76.25, 0.0], [78.0, 1.75], [96.45, 1.75], [96.45, 10.75], [73.2, 10.75], [73.2, 9.0], [27.0, 9.0]
             ]);
             out.push(`<polygon points="${nPadPoly}" fill="${roadBaseFill}" stroke="${roadBaseStroke}" stroke-width="1.1"/>`);
           }
         }
       }
 
-      // 6A. PHASE 2 (2027) FRONT YARD MULCH BEDS (2' S. Bed Continuing to Green Box + Porch Bed) & WHITE DECORATIVE ROCK (6' Street Park Strips)
-      const mulchFill = isDrone ? 'url(#drone-mulch)' : (isColor ? '#78350f' : 'rgba(21, 128, 61, 0.24)');
-      const mulchStroke = isDrone ? '#1c1008' : (isColor ? '#b45309' : '#4ade80');
-      const rockBufFill = isDrone ? 'url(#drone-crushed-rock)' : (isColor ? '#a8a29e' : 'url(#pat-gravel)');
-      const whiteRockFill = isDrone ? 'url(#drone-white-rocks)' : (isColor ? '#f1f5f9' : 'rgba(241, 245, 249, 0.32)');
-      const whiteRockStroke = isDrone ? '#cbd5e1' : (isColor ? '#94a3b8' : '#e2e8f0');
+      // 6A. PHASE 2 (2027) FRONT YARD DARK ESPRESSO MULCH BEDS (2' S. Bed, Porch Bed & 1.5' North Border Bed) & WARM GREY/TAUPE CRUSHED STONE (6' Street Park Strips)
+      const mulchFill = isDrone ? 'url(#drone-mulch)' : (isColor ? '#3b2618' : 'rgba(21, 128, 61, 0.24)');
+      const mulchStroke = isDrone ? '#120e0c' : (isColor ? '#78350f' : '#4ade80');
+      const parkStoneFill = isDrone ? 'url(#drone-park-stone)' : (isColor ? '#8c857b' : 'url(#pat-gravel)');
+      const parkStoneStroke = isDrone ? '#5c554e' : (isColor ? '#d6d3d1' : '#cbd5e1');
 
       // Helper to build an 8-vertex 45°-chamfered octagon around (cx, cy) with flat-side apothem aFt (flat-to-flat width = 2 * aFt)
       const buildOctagonPts = (cx, cy, aFt) => {
@@ -955,19 +970,28 @@
           [91.25, 44.25], [92.25, 43.25], [96.7, 43.25],
           [96.7, 50.0], [LOCKED_SOUTH_GATE_WX, 50.0]
         ]);
-        // 2.0' Front-of-porch and South-of-porch foundation planting bed with compact 1.0' 45° corner filled with mulch
+        // 2.0' Front-of-porch and South-of-porch foundation planting bed with compact 1.0' 45° corner filled with Dark Espresso mulch
         const frontPorchBedPoly = projectPoly([
           [59.45, 41.0], [65.7, 41.0], [65.7, 32.5], [67.95, 32.5],
           [67.95, 42.25], [66.95, 43.25], [59.45, 43.25]
         ]);
-        // White decorative rock in both 6.0' street park strips (North side yard & NE front strip are continuous compacted road base)
-        const nPark = projectRect(100.7, 0.0, 106.7, 9.5);
-        const sPark = projectRect(100.7, 30.5, 106.7, 50.0);
+        // 1.5' North border bed on the right side of the NE strip (wy=0.0'–1.5', tapering at 45° from wx=78.0' to wx=76.5' so the full 9.0' gate opening stays clear)
+        const northBorderBedPoly = projectPoly([
+          [76.25, 0.0], [96.7, 0.0], [96.7, 1.75], [78.0, 1.75]
+        ]);
+        // Two 6.0' street park strips (wx=100.7'–106.7') filled with 3/4"–1" angular warm grey/taupe crushed stone inside their 4-sided Deep Charcoal paver frames
+        const nParkPoly = projectPoly([
+          [100.7, 0.0], [106.7, 0.0], [106.7, 9.5], [100.7, 11.0]
+        ]);
+        const sParkPoly = projectPoly([
+          [100.7, 29.0], [106.7, 30.5], [106.7, 50.0], [100.7, 50.0]
+        ]);
         out.push(`
           <polygon points="${frontSouthBedToBoxPoly}" fill="${mulchFill}" stroke="${mulchStroke}" stroke-width="1"/>
           <polygon points="${frontPorchBedPoly}" fill="${mulchFill}" stroke="${mulchStroke}" stroke-width="1"/>
-          <rect x="${nPark.x.toFixed(1)}" y="${nPark.y.toFixed(1)}" width="${nPark.width.toFixed(1)}" height="${nPark.height.toFixed(1)}" fill="${whiteRockFill}" stroke="${whiteRockStroke}" stroke-width="1.1"/>
-          <rect x="${sPark.x.toFixed(1)}" y="${sPark.y.toFixed(1)}" width="${sPark.width.toFixed(1)}" height="${sPark.height.toFixed(1)}" fill="${whiteRockFill}" stroke="${whiteRockStroke}" stroke-width="1.1"/>
+          <polygon points="${northBorderBedPoly}" fill="${mulchFill}" stroke="${mulchStroke}" stroke-width="1"/>
+          <polygon points="${nParkPoly}" fill="${parkStoneFill}" stroke="${parkStoneStroke}" stroke-width="1.1"/>
+          <polygon points="${sParkPoly}" fill="${parkStoneFill}" stroke="${parkStoneStroke}" stroke-width="1.1"/>
         `);
       }
 
@@ -1035,15 +1059,25 @@
         out.push(`</g>`);
       }
 
-      // 10. PHASE 2 (2027) CONTINUOUS 6" HOLLAND PAVERS WITH COMPACT 1.0'×1.0' 45° ROBOT-MOWER CORNERS
-      //     (West Wall Paver Line Continues All the Way to North Fence at wy=0.0' to Divide Mulch from Road Base!)
+      // 10. PHASE 2 (2027) DEEP CHARCOAL / ONYX HOLLAND PAVER BORDERS (~360 LIN FT W/ LOW-SHEEN SEALER)
+      //     Includes 45° Robot-Mower Corners, South Wall/AC Wrap, 3-Sided NE Courtyard Picture Frame & 4-Sided Park Strip Frames w/ 16" Curb Step-Outs
       if (L.pavers) {
         const treeOctClosedPts = [...mapleOctMidPts, mapleOctMidPts[0]];
         const paverChains = [
+          // 1. South house wall, Open AC condenser wrap & front porch bed mow strip
           [[30.0, 41.25], [41.25, 41.25], [41.25, 44.25], [44.75, 44.25], [44.75, 41.25], [59.45, 41.25], [59.45, 43.25], [66.95, 43.25], [67.95, 42.25], [67.95, 32.5]],
+          // 2. West wall 50' run (dividing mulch from road base at North end), SW 45° corner & continuous South bed to green box
           [[4.25, 0.0], [4.25, 46.75], [5.25, 47.75], [90.25, 47.75], [91.25, 46.75], [91.25, 44.25], [92.25, 43.25], [96.7, 43.25]],
+          // 3. Backyard North garden bed & rear path border
           [[4.25, 9.25], [5.25, 8.25], [25.75, 8.25], [26.75, 9.25], [26.75, 20.0]],
-          treeOctClosedPts
+          // 4. Norwegian Sunset Maple 6.0' octagonal paver ring
+          treeOctClosedPts,
+          // 5. 3-Sided NE Courtyard Picture Frame (1.5' North border bed w/ 45° taper at wx=76.25'–78.0', sidewalk header & North driveway edge)
+          [[76.25, 0.0], [78.0, 1.75], [96.45, 1.75], [96.45, 10.75], [73.2, 10.75]],
+          // 6. North 6.0' Park Strip 3-sided 6" frame (sidewalk, North property line & flared driveway wing)
+          [[106.03, 0.25], [100.95, 0.25], [100.95, 10.75], [106.03, 9.35]],
+          // 7. South 6.0' Park Strip 3-sided 6" frame (flared driveway wing, sidewalk & South property line)
+          [[106.03, 30.65], [100.95, 29.25], [100.95, 49.75], [106.03, 49.75]]
         ];
         paverChains.forEach(chain => {
           const ptsStr = chain.map(([wx, wy]) => {
@@ -1052,42 +1086,77 @@
           }).join(' ');
           if (isDrone) {
             out.push(`
-              <polyline points="${ptsStr}" fill="none" stroke="#1e293b" stroke-width="${(0.50 * SCALE).toFixed(1)}" stroke-linecap="butt" stroke-linejoin="miter"/>
-              <polyline points="${ptsStr}" fill="none" stroke="#94a3b8" stroke-width="${(0.40 * SCALE).toFixed(1)}" stroke-dasharray="5,1.5" stroke-linejoin="miter"/>
+              <polyline points="${ptsStr}" fill="none" stroke="#18181b" stroke-width="${(0.50 * SCALE).toFixed(1)}" stroke-linecap="butt" stroke-linejoin="miter"/>
+              <polyline points="${ptsStr}" fill="none" stroke="#52525b" stroke-width="${(0.40 * SCALE).toFixed(1)}" stroke-dasharray="5,1.5" stroke-linejoin="miter"/>
             `);
           } else {
             out.push(`
-              <polyline points="${ptsStr}" fill="none" stroke="#334155" stroke-width="${(0.50 * SCALE).toFixed(1)}" stroke-linecap="butt" stroke-linejoin="miter"/>
+              <polyline points="${ptsStr}" fill="none" stroke="#1e293b" stroke-width="${(0.50 * SCALE).toFixed(1)}" stroke-linecap="butt" stroke-linejoin="miter"/>
               <polyline points="${ptsStr}" fill="none" stroke="#2dd4bf" stroke-width="2.0" stroke-dasharray="4,2.5" stroke-linejoin="miter"/>
+            `);
+          }
+        });
+
+        // 16" (1.33' wide) Double-Row Curbside Step-Out Bands along the East street curb of both 6.0' park strips (wx=105.37'–106.7', centerline wx=106.03')
+        const stepOutChains = [
+          [[106.03, 0.0], [106.03, 9.55]],
+          [[106.03, 30.45], [106.03, 50.0]]
+        ];
+        stepOutChains.forEach(chain => {
+          const ptsStr = chain.map(([wx, wy]) => {
+            const p = project(wx, wy);
+            return `${p.x.toFixed(1)},${p.y.toFixed(1)}`;
+          }).join(' ');
+          if (isDrone) {
+            out.push(`
+              <polyline points="${ptsStr}" fill="none" stroke="#18181b" stroke-width="${(1.33 * SCALE).toFixed(1)}" stroke-linecap="butt"/>
+              <polyline points="${ptsStr}" fill="none" stroke="#52525b" stroke-width="${(1.15 * SCALE).toFixed(1)}" stroke-dasharray="5,1.5"/>
+            `);
+          } else {
+            out.push(`
+              <polyline points="${ptsStr}" fill="none" stroke="#1e293b" stroke-width="${(1.33 * SCALE).toFixed(1)}" stroke-linecap="butt"/>
+              <polyline points="${ptsStr}" fill="none" stroke="#2dd4bf" stroke-width="2.6" stroke-dasharray="4,2.5"/>
             `);
           }
         });
       }
 
-      // 11. 5-HYDROZONE BEST-PRACTICE SPRINKLER & DRIP SYSTEM (100% Head-to-Head Directional Sectors + Side-Strips + PC Drip)
+      // 11. 5-HYDROZONE BEST-PRACTICE SPRINKLER & DRIP SYSTEM (100% Head-to-Head Directional Sectors + Side-Strips + Under-Driveway Conduit PC Drip)
       if (L.irrigation) {
         out.push(`<g id="layer-irrigation-engineering">`);
 
-        // 11A. Schedule 40 PVC Mainline, 2" Conduit Sleeves Under Road Base, POC/PVB Backflow & Valve Manifold Boxes (M1 & M2)
+        // 11A. Schedule 40 PVC Mainline, 2" Conduit Sleeves Under Road Base (S-1..S-3), Existing Under-Driveway Conduit (S-4 @ wx=85.0'), POC/PVB Backflow & Valve Manifold Boxes (M1 & M2)
         const sleeveNorthPad = projectPoly([[28.5, 7.8], [51.0, 7.8]]);
         const sleeveRearPath = projectPoly([[28.5, 7.8], [28.5, 20.0]]);
+        const sleeveUnderDriveway = projectPoly([[85.0, 29.0], [85.0, 11.0]]);
         const lateralSouthCorridor = projectPoly([[51.0, 7.8], [51.0, 4.5], [28.5, 4.5], [28.5, 47.25], [60.0, 47.25]]);
         out.push(`
           <polyline points="${sleeveNorthPad}" fill="none" stroke="#94a3b8" stroke-width="4.2" opacity="0.55" stroke-linecap="round"/>
           <polyline points="${sleeveNorthPad}" fill="none" stroke="#38bdf8" stroke-width="1.8" stroke-dasharray="6,3"/>
           <polyline points="${sleeveRearPath}" fill="none" stroke="#94a3b8" stroke-width="3.6" opacity="0.5" stroke-linecap="round"/>
+          <polyline points="${sleeveUnderDriveway}" fill="none" stroke="#94a3b8" stroke-width="4.4" opacity="0.65" stroke-linecap="round"/>
           <polyline points="${lateralSouthCorridor}" fill="none" stroke="#c084fc" stroke-width="1.1" stroke-dasharray="3,3" opacity="0.65"/>
         `);
+        if (STATE.showLabels) {
+          const s4Mid = project(85.0, 20.0);
+          out.push(`<text x="${s4Mid.x.toFixed(1)}" y="${(s4Mid.y - 5).toFixed(1)}" fill="#fdba74" font-family="JetBrains Mono" font-size="6.0" font-weight="700" text-anchor="middle">CONDUIT S-4 (Z4 DRIP)</text>`);
+        }
 
-        // Zone 4: 30 PSI Pressure-Compensating Drip Tubing (West 5+4 Bed, Cont. 2' South Bed to Green Box, Porch Hyacinths & Norwegian Sunset Maple 6' Ring)
+        // Zone 4: 30 PSI Pressure-Compensating Drip Tubing (West 5+4 Bed, Cont. 2' South Bed, Porch Hyacinths, Norwegian Sunset Maple 6' Ring, South Park Strip, & via Under-Driveway Conduit S-4 to 1.5' North Border Bed & North Park Strip)
         const westDripPts = projectPoly([[28.5, 7.8], [2.2, 7.8], [2.2, 2.0], [2.2, 49.0], [95.0, 49.0], [95.0, 44.2], [91.8, 44.2]]);
         const porchDripPts = projectPoly([[66.2, 49.0], [66.2, 31.8]]);
         const mapleDripFeedPts = projectPoly([[SE_MAPLE_WX, 49.0], [SE_MAPLE_WX, SE_MAPLE_WY + 2.3]]);
+        const southParkDripPts = projectPoly([[95.0, 49.0], [103.3, 49.0], [103.3, 31.5]]);
+        const northConduitDripPts = projectPoly([[85.0, 49.0], [85.0, 29.0], [85.0, 11.0], [85.0, 0.75]]);
+        const northBorderDripPts = projectPoly([[78.0, 0.75], [96.0, 0.75], [103.3, 1.8], [103.3, 8.8]]);
         const mapleDripCenter = project(SE_MAPLE_WX, SE_MAPLE_WY);
         out.push(`
           <polyline points="${westDripPts}" fill="none" stroke="#fb923c" stroke-width="1.8" stroke-dasharray="4,2.5" opacity="0.9"/>
           <polyline points="${porchDripPts}" fill="none" stroke="#fb923c" stroke-width="1.8" stroke-dasharray="4,2.5" opacity="0.9"/>
           <polyline points="${mapleDripFeedPts}" fill="none" stroke="#fb923c" stroke-width="1.6" stroke-dasharray="3,2.5" opacity="0.85"/>
+          <polyline points="${southParkDripPts}" fill="none" stroke="#fb923c" stroke-width="1.7" stroke-dasharray="4,2.5" opacity="0.9"/>
+          <polyline points="${northConduitDripPts}" fill="none" stroke="#fb923c" stroke-width="1.7" stroke-dasharray="4,2.5" opacity="0.9"/>
+          <polyline points="${northBorderDripPts}" fill="none" stroke="#fb923c" stroke-width="1.8" stroke-dasharray="4,2.5" opacity="0.95"/>
           <circle cx="${mapleDripCenter.x.toFixed(1)}" cy="${mapleDripCenter.y.toFixed(1)}" r="${(2.3 * SCALE).toFixed(1)}" fill="none" stroke="#fb923c" stroke-width="1.6" stroke-dasharray="3.5,2" opacity="0.9"/>
         `);
 
@@ -1527,12 +1596,13 @@
         }
         out.push(`<circle cx="${maplePt.x.toFixed(1)}" cy="${maplePt.y.toFixed(1)}" r="${(0.38 * SCALE).toFixed(1)}" fill="#78350f" stroke="#fde68a" stroke-width="0.9"/>`);
 
-        // 2. Melinda's Fragrant Jewel-Toned Hyacinth Drift in the 2' Porch-Front Bed (right in front of the 3152 Porch Swing!) & South Bed
+        // 2. Melinda's Fragrant Jewel-Toned Hyacinth Drift in the 2' Porch-Front Bed (right in front of the 3152 Porch Swing!), South Bed & South 6' Park Strip
         const hyacinthPalette = ['#9333ea', '#2563eb', '#ec4899', '#f8fafc', '#c084fc'];
         const hyacinthCoords = [
           [66.5, 33.2], [66.5, 34.2], [66.5, 35.2], [66.5, 36.2], [66.5, 37.2],
           [66.5, 38.2], [66.5, 39.2], [66.5, 40.2], [66.5, 41.2], [65.8, 42.1],
-          [67.5, 49.0], [70.0, 49.0], [72.5, 49.0], [75.0, 49.0], [77.5, 49.0], [80.0, 49.0], [82.5, 49.0], [85.0, 49.0], [87.5, 49.0]
+          [67.5, 49.0], [70.0, 49.0], [72.5, 49.0], [75.0, 49.0], [77.5, 49.0], [80.0, 49.0], [82.5, 49.0], [85.0, 49.0], [87.5, 49.0],
+          [102.3, 36.0], [102.3, 42.0]
         ];
         hyacinthCoords.forEach(([hx, hy], idx) => {
           const hp = project(hx, hy);
@@ -1540,10 +1610,37 @@
           out.push(`<circle cx="${hp.x.toFixed(1)}" cy="${hp.y.toFixed(1)}" r="${(0.48 * SCALE).toFixed(1)}" fill="${col}" stroke="#ffffff" stroke-width="0.9"/>`);
         });
 
-        // 3. 3-Sided Utility Box Grass Screen & 6.0' Street Park Strip Perennials
-        [[92.4, 44.5], [94.8, 44.5], [91.8, 46.8], [103.5, 3.5], [103.5, 7.5], [103.5, 35.0], [103.5, 41.0], [103.5, 46.5]].forEach(([px, py]) => {
+        // 3. 3-Sided Utility Box Grass Screen + 1.5' North Border Bed & 6.0' Street Park Strip Upright 'Karl Foerster' Feather Reed Grasses
+        const frontGrassCoords = [
+          // 3-Sided Green Utility Transformer Box Screen (6x)
+          [92.0, 44.3], [93.8, 44.3], [95.6, 44.3], [92.0, 46.2], [92.0, 47.8], [93.8, 49.1],
+          // 1.5' North Border Bed (4x Karl Foerster Grasses @ wy=0.75')
+          [79.5, 0.75], [83.9, 0.75], [88.3, 0.75], [92.7, 0.75],
+          // North 6.0' Street Park Strip (2x Karl Foerster Grasses @ wx=103.3')
+          [103.3, 2.2], [103.3, 8.5],
+          // South 6.0' Street Park Strip (3x Karl Foerster Grasses @ wx=103.3')
+          [103.3, 34.5], [103.3, 40.5], [103.3, 46.5]
+        ];
+        frontGrassCoords.forEach(([px, py]) => {
           const pt = project(px, py);
-          out.push(`<circle cx="${pt.x.toFixed(1)}" cy="${pt.y.toFixed(1)}" r="${(0.65 * SCALE).toFixed(1)}" fill="#15803d" stroke="#86efac" stroke-width="1"/>`);
+          const gFill = isFall ? '#eab308' : (isWinter ? '#cbd5e1' : '#15803d');
+          const gStroke = isFall ? '#fef08a' : '#86efac';
+          out.push(`<circle cx="${pt.x.toFixed(1)}" cy="${pt.y.toFixed(1)}" r="${(0.65 * SCALE).toFixed(1)}" fill="${gFill}" stroke="${gStroke}" stroke-width="1"/>`);
+        });
+
+        // 4. 1.5' North Border Bed (4x) & 6.0' Street Park Strips (6x) Purple 'Walker's Low' Catmint / English Lavender
+        const frontCatmintCoords = [
+          // 1.5' North Border Bed (4x Catmint @ wy=0.75')
+          [81.7, 0.75], [86.1, 0.75], [90.5, 0.75], [94.9, 0.75],
+          // North 6.0' Street Park Strip (2x Catmint @ wx=103.3')
+          [103.3, 4.4], [103.3, 6.6],
+          // South 6.0' Street Park Strip (4x Catmint @ wx=103.3')
+          [103.3, 31.8], [103.3, 37.5], [103.3, 43.5], [103.3, 48.5]
+        ];
+        frontCatmintCoords.forEach(([cx, cy]) => {
+          const cp = project(cx, cy);
+          const cFill = isWinter ? '#94a3b8' : '#9333ea';
+          out.push(`<circle cx="${cp.x.toFixed(1)}" cy="${cp.y.toFixed(1)}" r="${(0.58 * SCALE).toFixed(1)}" fill="${cFill}" stroke="#e9d5ff" stroke-width="0.95"/>`);
         });
         out.push(`</g>`);
       }
@@ -1572,12 +1669,15 @@
       }
 
       if (L.northGate) {
-        const nPostL = project(LOCKED_NORTH_GATE_WX, 0.6), nPostR = project(LOCKED_NORTH_GATE_WX, 8.6);
-        const nSwingL = project(LOCKED_NORTH_GATE_WX - 4.0, 0.6), nSwingR = project(LOCKED_NORTH_GATE_WX - 4.0, 8.6);
+        // Full-width 9.0' span post-to-post (two 5"x5" posts at wy=0.2' and wy=8.8' with zero fixed wing panels = 8.5' clear opening, two 4.25' leaves)
+        const nPostL = project(LOCKED_NORTH_GATE_WX, 0.25), nPostR = project(LOCKED_NORTH_GATE_WX, 8.75);
+        const nSwingL = project(LOCKED_NORTH_GATE_WX - 4.25, 0.25), nSwingR = project(LOCKED_NORTH_GATE_WX - 4.25, 8.75);
         out.push(`
-          <line x1="${nPostL.x}" y1="${nPostL.y}" x2="${nPostR.x}" y2="${nPostR.y}" stroke="#fbbf24" stroke-width="3"/>
-          <line x1="${nPostL.x}" y1="${nPostL.y}" x2="${nSwingL.x}" y2="${nSwingL.y}" stroke="#fbbf24" stroke-width="2"/>
-          <line x1="${nPostR.x}" y1="${nPostR.y}" x2="${nSwingR.x}" y2="${nSwingR.y}" stroke="#fbbf24" stroke-width="2"/>
+          <line x1="${nPostL.x}" y1="${nPostL.y}" x2="${nPostR.x}" y2="${nPostR.y}" stroke="#fbbf24" stroke-width="3.2"/>
+          <line x1="${nPostL.x}" y1="${nPostL.y}" x2="${nSwingL.x}" y2="${nSwingL.y}" stroke="#fbbf24" stroke-width="2.1"/>
+          <line x1="${nPostR.x}" y1="${nPostR.y}" x2="${nSwingR.x}" y2="${nSwingR.y}" stroke="#fbbf24" stroke-width="2.1"/>
+          <circle cx="${nPostL.x}" cy="${nPostL.y}" r="2.6" fill="#fef08a" stroke="#b45309" stroke-width="1"/>
+          <circle cx="${nPostR.x}" cy="${nPostR.y}" r="2.6" fill="#fef08a" stroke="#b45309" stroke-width="1"/>
         `);
       }
 
@@ -1670,15 +1770,15 @@
           { wx: 11.5, wy: 28.0, title: 'BACKYARD LAWN (679 SQ FT)', sub: '45° Pavers @ Mulch/Road Base · None @ Concrete', color: '#4ade80', border: '#10b981', show: L.grass },
           { wx: 23.8, wy: 30.5, title: 'PATIO, 2-PILLAR AWNING & 2× 52" FANS', sub: 'Phase 5 (2030) · 2 West Pillars · 2 Lighted Fans', color: '#fbbf24', border: '#f59e0b', show: L.patioAwning || L.existingConcrete },
           { wx: 15.5, wy: 4.2, title: L.planters ? '5 RAISED CEDAR BEDS (3\'×6\')' : 'NORTH GARDEN PLOT', sub: L.planters ? 'Phase 4 (2029) · Continuous Road Base' : 'Phase 3 (2028) · Flat Dirt Garden', color: '#bef264', border: '#84cc16', show: L.planters || L.beds },
-          { wx: 50.0, wy: 4.5, title: 'CONTINUOUS COMPACTED ROAD BASE', sub: 'Phase 4 (2029) · Garden, Walk, Side Yard & N. Front', color: '#e7e5e4', border: '#a8a29e', show: L.northCementPad },
-          { wx: 84.5, wy: 5.5, title: 'COMPACTED ROAD BASE (N. FRONT)', sub: 'Continuous From Garden & Side Yard Through Gate', color: '#e7e5e4', border: '#a8a29e', show: L.northCementPad },
-          { wx: 103.7, wy: 40.0, title: 'WHITE ROCK PARK STRIPS (6\')', sub: 'Matches South Neighbors', color: '#f8fafc', border: '#cbd5e1', show: L.frontBeds },
-          { wx: 65.5, wy: 37.5, title: "MELINDA'S HYACINTHS & 3152 SWING", sub: '2\' Porch Bed · Unobstructed View to Street', color: '#f472b6', border: '#ec4899', show: L.frontPlants || L.porchSwing },
+          { wx: 50.0, wy: 4.5, title: '3/4"-MINUS CRUSHED GREY LIMESTONE', sub: 'Phase 4 (2029) · Garden, Walk, Side Yard & NE Lane', color: '#e2e8f0', border: '#94a3b8', show: L.northCementPad },
+          { wx: 85.5, wy: 6.0, title: 'PAVER-FRAMED ROAD BASE + 1.5\' N. BED', sub: '3-Sided Deep Charcoal Pavers · 1.5\' Dark Espresso Mulch Bed (45° Taper)', color: '#e2e8f0', border: '#2dd4bf', show: L.northCementPad || L.frontBeds },
+          { wx: 103.7, wy: 40.0, title: 'WARM GREY/TAUPE STONE PARK STRIPS (6\')', sub: '4-Sided Paver Frame + 16" Curb Step-Out · Grasses & Catmint', color: '#f5f5f4', border: '#a8a29e', show: L.frontBeds },
+          { wx: 65.5, wy: 37.5, title: "MELINDA'S HYACINTHS & 3152 SWING", sub: '2\' Dark Espresso Mulch Bed · Unobstructed View', color: '#f472b6', border: '#ec4899', show: L.frontPlants || L.porchSwing },
           { wx: SE_MAPLE_WX, wy: SE_MAPLE_WY, title: 'NORWEGIAN SUNSET MAPLE', sub: '(83\', 39.5\') · 8\'–9.5\' Trunk / 11\'–12\'+ Lawn Clear', color: '#fdba74', border: '#ea580c', show: L.frontPlants },
           { wx: 43.0, wy: 42.5, title: 'OPEN AC (43\') + INTERNET/ELEC/GAS', sub: 'AC 41.5\'–44.5\' · Tube 47.1\'–50\' · Elec 51.2\' · Gas 56\'–57.5\'', color: '#cbd5e1', border: '#64748b', show: L.houseStructure },
           { wx: 36.0, wy: 45.0, title: 'SOUTH GRASS UP TO HOME', sub: 'Grass to Wall/AC Pavers (0 Gravel) + 2\' S. Bed', color: '#34d399', border: '#10b981', show: L.grass },
-          { wx: 73.5, wy: 43.5, title: '555 SQ FT SE FRONT LAWN', sub: 'Grass Continues Under Gate · 45° Pavers', color: '#4ade80', border: '#10b981', show: L.grass },
-          { wx: 70.0, wy: 4.5, title: 'NORTH 8.5\' DOUBLE GATE (wx=70.0\')', sub: 'Phase 2 (2027) · On Stucco Right Behind Siding Wrap (70.2\')', color: '#fbbf24', border: '#f59e0b', show: L.northGate },
+          { wx: 73.5, wy: 43.5, title: '555 SQ FT SE FRONT LAWN', sub: 'Grass Continues Under Gate · 45° Deep Charcoal Pavers', color: '#4ade80', border: '#10b981', show: L.grass },
+          { wx: 70.0, wy: 4.5, title: 'FULL-WIDTH 8.5\' DOUBLE GATE (wx=70.0\')', sub: 'Phase 2 (2027) · Post-to-Post on Stucco Behind Siding (70.2\')', color: '#fbbf24', border: '#f59e0b', show: L.northGate },
           { wx: 55.5, wy: 45.5, title: 'SOUTH 4\' WALK GATE (wx=55.5\')', sub: 'Phase 1 (2026) · On Stucco Right Behind Gas Meter (56.0\')', color: '#c084fc', border: '#a855f7', show: L.southGate },
           { wx: 48.0, wy: -2.5, title: 'NORTH NEIGHBOR: BARE DIRT', sub: '', color: '#fcd34d', border: '#b45309', show: L.neighbors },
           { wx: 48.0, wy: 52.5, title: 'SOUTH NEIGHBOR: WHITE ROCKS', sub: '', color: '#f8fafc', border: '#cbd5e1', show: L.neighbors }
